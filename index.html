@@ -602,6 +602,29 @@ button.btn{cursor:pointer}
 .alt .feature.gm-new .media{aspect-ratio:16/10}
 .cards.c2{grid-template-columns:repeat(2,minmax(0,1fr))}
 @media (max-width:560px){.cards.c2{grid-template-columns:1fr}}
+
+/* v27 · Tigre stripes: the studio's generative tiger-stripe field + Inter Display caps, blended into the site system */
+@font-face{font-family:"Inter Display";src:url(fonts/InterDisplay-Black.woff2) format("woff2");font-weight:900;font-display:swap}
+@font-face{font-family:"Inter Display";src:url(fonts/InterDisplay-Bold.woff2) format("woff2");font-weight:700;font-display:swap}
+:root{--display:"Inter Display","Helvetica Neue",Helvetica,Arial,sans-serif;--head:"Inter Display","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --st1:#4fb3e0;--st2:#0a35ff;--st3:#7a3cff;--st4:#e00000;--st5:#ffa800}
+.spectrum{background:linear-gradient(90deg,var(--st1),var(--st2) 25%,var(--st3) 50%,var(--st4) 75%,var(--st5))}
+.name{font-family:var(--display);font-weight:900;letter-spacing:-.02em;line-height:.86}
+.sh-title,.role,.fr-t h3,.lane h3,.card h3,.tile h3{font-family:var(--head)}
+.sh-title,.contact h2,main h1:not(.name),main h2{font-family:var(--head);text-transform:uppercase;font-weight:900;letter-spacing:-.01em}
+.stats b{font-family:var(--head);font-weight:900}
+.stripey{isolation:isolate}
+.stripey .stripes{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:right top;z-index:-1;pointer-events:none;opacity:.95}
+.stripey .lines{opacity:.5}
+.foot-b .stripes{opacity:.35;object-position:center}
+@media (max-width:900px){.stripey .stripes{opacity:.3}.foot-b .stripes{opacity:.25}}
+.social{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:12px 28px}
+.social a{display:inline-flex;align-items:center;gap:12px;text-decoration:none;font-weight:700;font-size:18px}
+.social svg{width:26px;height:26px;flex:none}
+.social a:hover span{text-decoration:underline;text-underline-offset:4px}
+.social.mini{margin:0;gap:16px}
+.social.mini span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.social.mini svg{width:20px;height:20px}
 </style>
 
 <div id="app"></div>
@@ -656,6 +679,8 @@ const RES = {
  edu:[['2005','Associate of Science in Graphic Design','The Art Institute of Fort Lauderdale'],['2009','One-Year Certificate in Multimedia','Portland Community College'],['In progress','Master in Parametric Design','Controlmad']]
 };
 const EMAIL='ortegatohenry@gmail.com', PHONE='971.217.0821', LI='https://www.linkedin.com/in/henryortega';
+const SOCIAL=[['LinkedIn','in/henryortega',LI,`<svg viewBox="0 0 448 512" aria-hidden="true"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>`],['Instagram','@tigrestudio.design','https://www.instagram.com/tigrestudio.design/',`<svg viewBox="0 0 448 512" aria-hidden="true"><path fill="currentColor" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>`],['Facebook','Tigre Studio','https://www.facebook.com/profile.php?id=61596439086564',`<svg viewBox="0 0 512 512" aria-hidden="true"><path fill="currentColor" d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></svg>`]];
+const socials=(cls='')=>`<ul class="social ${cls}">${SOCIAL.map(([n,h,u,i])=>`<li><a href="${u}" target="_blank" rel="noopener" aria-label="${n}: ${h}">${i}<span>${h}</span></a></li>`).join('')}</ul>`;
 
 const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
 const n2=i=>String(i+1).padStart(2,'0');
@@ -699,7 +724,7 @@ const PATH=[
 const sheet=r=>`<div class="sheet"><p class="sheet-k">Rhino · ${r.caps.length} ${/view/.test(r.meta)?'views':'steps'}</p><ol>${r.caps.map((c,j)=>`<li><b>${n2(j)}</b>${esc(c.replace(/^\d+ · /,''))}</li>`).join('')}</ol><ul class="sheet-t">${r.tags.map(t=>`<li>${esc(t)}</li>`).join('')}</ul></div>`;
 const lines=()=>`<svg class="lines" viewBox="0 0 1440 140" preserveAspectRatio="none" aria-hidden="true"><polyline fill="none" stroke="#0036f9" stroke-width="1" points="0,110 220,96 420,128 640,70 860,100 1080,60 1300,92 1440,80"/><polyline fill="none" stroke="#e50000" stroke-width="1" points="420,128 520,104 640,70"/><polyline fill="none" stroke="#333333" stroke-width="1" points="0,70 180,120 360,60 560,118 760,84 980,130 1200,74 1440,112"/></svg>`;
 
-const foot=()=>`<div class="band dark"><div class="wrap foot"><b>Tigre Studio</b><span>Henry Mauricio Ortega Vera · Portland, OR · Portfolio 2027 · v26</span><a href="#top">Back to top</a></div></div><span class="spectrum"></span>`;
+const foot=()=>`<div class="band dark rel stripey foot-b"><img class="stripes" src="img/stripe-band.webp" alt="" aria-hidden="true"><div class="wrap foot"><b>Tigre Studio</b>${socials('mini')}<span>Henry Mauricio Ortega Vera · Portland, OR · Portfolio 2027 · v27</span><a href="#top">Back to top</a></div></div><span class="spectrum"></span>`;
 const head=(sec,num)=>`<div class="band dark"><div class="wrap rh"><a href="#${sec}" style="text-decoration:none">← Back to portfolio</a><span class="hide-s">Henry Ortega · Portfolio</span><span class="hide-s">Footwear · Product · Visual Communication</span><span class="num">${num}</span></div></div>`;
 
 /* ---------- v19: recruiter-first home, BASECAMP ---------- */
@@ -756,7 +781,7 @@ function home(){
  const lane=l=>`<div class="lane"><p class="lane-k">${l.k}</p><h3>${esc(l.t)}</h3><p class="lane-b">${esc(l.b)}</p><ul class="lane-p">${l.pts.map(p=>`<li>${esc(p)}</li>`).join('')}</ul><p class="lane-e">See it in</p><div class="lane-l">${l.ev.map(([id,t])=>`<a href="#${id}">${esc(t)} →</a>`).join('')}</div></div>`;
  const heroImgs=[NK('p01').hero,BC.img.crop,NK('p10').hero];
  return nav()+`<main id="top">
- <section class="band dark rel"><div class="wrap hero v19h">
+ <section class="band dark rel stripey"><img class="stripes" src="img/stripe-hero.webp" alt="" aria-hidden="true"><div class="wrap hero v19h">
   <div class="v19h-t">
    <p class="avail">Available now · Remote (US) or Portland, OR · Full-time or contract</p>
    <h1 class="name">Henry Ortega</h1>
@@ -1331,9 +1356,10 @@ function resume(){
  </div></section>`;
 }
 function contact(){
- return `<section id="contact" class="band dark contact"><div class="wrap">
+ return `<section id="contact" class="band dark contact rel stripey"><img class="stripes" src="img/stripe-hero.webp" alt="" aria-hidden="true"><div class="wrap">
   <p class="eyebrow">Contact</p><h2>Let's Talk</h2><p class="intro" style="margin-top:0">Tell me a little about what you need and I'll get back to you.</p>
   <ul class="contact-list" style="max-width:640px;margin-top:32px"><li><span>Email</span><span>${EMAIL}<button class="copy" data-copy="${EMAIL}">Copy</button></span></li><li><span>Phone</span><span>${PHONE}<button class="copy" data-copy="${PHONE}">Copy</button></span></li><li><span>LinkedIn</span><span><a href="${LI}" target="_blank" rel="noopener">linkedin.com/in/henryortega</a></span></li></ul>
+  <p class="eyebrow" style="margin-top:40px">Follow Tigre Studio</p>${socials()}
  </div></section>`;
 }
 
