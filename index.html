@@ -625,6 +625,15 @@ button.btn{cursor:pointer}
 .social.mini{margin:0;gap:16px}
 .social.mini span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .social.mini svg{width:20px;height:20px}
+
+.nav-r{display:flex;align-items:center;gap:18px}
+.nav-soc a{color:var(--muted-d)}.nav-soc a:hover{color:var(--white)}
+.hero-soc{display:flex;align-items:center;gap:16px;margin-top:22px;flex-wrap:wrap}
+.hero-soc>span{font-family:var(--serif);font-style:italic;color:var(--muted)}
+.hero-soc .social{margin:0;gap:10px 22px}
+.hero-soc .social a{font-size:15px}
+.hero-soc .social svg{width:22px;height:22px}
+@media (max-width:760px){.nav-soc{display:none}}
 </style>
 
 <div id="app"></div>
@@ -729,7 +738,7 @@ const head=(sec,num)=>`<div class="band dark"><div class="wrap rh"><a href="#${s
 
 /* ---------- v19: recruiter-first home, BASECAMP ---------- */
 const NAV=[['fit','What I Do'],['work','Case Studies'],['brand','Brand'],['nike','Nike'],['documentation','Documentation'],['product','Product Design'],['resume','Résumé'],['contact','Contact']];
-const nav=()=>`<header class="nav band"><div class="wrap"><a class="brand" href="#top">Henry Ortega<span> · Tigre Studio</span></a><nav aria-label="Sections"><ul>${NAV.map(([h,t])=>`<li><a href="#${h}">${t}</a></li>`).join('')}</ul></nav><a class="nav-cta" href="mailto:${EMAIL}">Email me</a></div></header>`;
+const nav=()=>`<header class="nav band"><div class="wrap"><a class="brand" href="#top">Henry Ortega<span> · Tigre Studio</span></a><nav aria-label="Sections"><ul>${NAV.map(([h,t])=>`<li><a href="#${h}">${t}</a></li>`).join('')}</ul></nav><div class="nav-r">${socials('mini nav-soc')}<a class="nav-cta" href="mailto:${EMAIL}">Email me</a></div></div></header>`;
 
 const BC={id:'basecamp',title:'BASECAMP',
  img:{hero:['img/bc__hero.webp',1800,1440],crop:['img/bc__hero-crop.webp',1600,1156],dial:['img/bc__dial.webp',1400,1400],fb:['img/bc__frontback.webp',1400,1400],
@@ -788,6 +797,7 @@ function home(){
    <p class="role">Footwear Innovation &amp; Product Development Lead</p>
    <p class="lead">16 years taking Nike's most experimental footwear from concept to factory floor: Flyknit, VaporMax, React, Atomknit and powered footwear with Hyperice. Now I design and build the product myself, in Rhino and Grasshopper.</p>
    <div class="ctas"><a class="btn inv" href="mailto:${EMAIL}">Email me</a><a class="btn" href="#resume">Résumé</a><a class="btn" href="${LI}" target="_blank" rel="noopener">LinkedIn</a></div>
+   <div class="hero-soc"><span>Follow</span>${socials()}</div>
   </div>
   <div class="v19h-m" aria-hidden="true"><a class="media tr-l a" href="#p01" tabindex="-1">${im(heroImgs[0],'')}</a><a class="media bl b" href="#basecamp" tabindex="-1">${im(heroImgs[1],'')}</a><a class="media tr c" href="#p10" tabindex="-1">${im(heroImgs[2],'')}</a></div>
   <div class="stats v19s"><div><b>16+</b><span>Years at Nike</span></div><div><b>50+</b><span>Products brought to market</span></div><div><b>50+</b><span>Tech manuals · 5,000+ pages</span></div><div><b>9</b><span>Years leading teams</span></div></div>
