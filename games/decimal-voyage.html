@@ -1,0 +1,569 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Decimal Voyage</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Lexend:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: a night-sea chart. Map of 5 islands -> each island is a short run of problems with a rule card on top. Single deliberate dark-sea theme. */
+:root{
+  --sea:#0a3049; --sea2:#0e4262; --panel:#11486b; --line:#2a6a90;
+  --foam:#eef7fa; --mist:#a8c8d8; --signal:#ffcc29; --flag:#ff6146; --kelp:#43e09f;
+  --display:"Bowlby One", "Arial Black", Impact, sans-serif;
+  --body:"Lexend", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: dark;
+}
+*{box-sizing:border-box}
+body{background:var(--sea);color:var(--foam);font-family:var(--body);font-size:16px;line-height:1.5;
+  background-image:linear-gradient(var(--sea2) 1px,transparent 1px),linear-gradient(90deg,var(--sea2) 1px,transparent 1px);
+  background-size:40px 40px;min-height:100vh}
+.wrap{max-width:860px;margin:0 auto;padding-block:20px 60px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:20px}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(28px,6vw,44px);line-height:1;margin:0;letter-spacing:.01em;color:var(--signal);text-wrap:balance}
+h1 small{display:block;font-family:var(--body);font-size:13px;color:var(--mist);letter-spacing:.12em;text-transform:uppercase;margin-top:6px;font-weight:500}
+h2{font-family:var(--display);font-weight:400;font-size:26px;margin:0;line-height:1.1;text-wrap:balance}
+h3{margin:0;font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:var(--signal);font-weight:700}
+.coins{font-family:var(--mono);font-weight:700;background:var(--panel);border:2px solid var(--signal);color:var(--signal);padding:6px 14px;border-radius:999px;font-size:18px;display:flex;gap:8px;align-items:center}
+.coin{width:16px;height:16px;border-radius:50%;background:var(--signal);box-shadow:inset -3px -3px 0 #c99a00}
+.panel{background:var(--panel);border:2px solid var(--line);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.map{position:relative;padding:0;overflow:hidden}
+.map svg{display:block;width:100%;height:auto}
+.islands{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.isl{all:unset;cursor:pointer;background:var(--sea2);border:2px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:6px;transition:transform .12s,border-color .12s}
+.isl:hover,.isl:focus-visible{border-color:var(--signal);transform:translateY(-2px)}
+.isl:focus-visible{outline:3px solid var(--signal);outline-offset:2px}
+.isl .sec{font-family:var(--mono);font-size:12px;color:var(--mist)}
+.isl .nm{font-weight:700;font-size:16px;line-height:1.2}
+.isl .st{font-family:var(--mono);color:var(--signal);letter-spacing:.15em}
+.isl.boss{border-color:var(--flag)}
+.isl.boss .nm{color:var(--flag)}
+.rule{background:var(--sea);border-left:5px solid var(--signal);border-radius:8px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.rule p{margin:0;max-width:62ch}
+.rule ol{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:4px}
+.mono{font-family:var(--mono)}
+.big{font-family:var(--mono);font-size:clamp(26px,7vw,40px);font-weight:700;letter-spacing:.02em;text-align:center;padding:10px 0;overflow-x:auto}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+input[type=text]{font-family:var(--mono);font-size:22px;font-weight:700;background:var(--foam);color:var(--sea);border:3px solid var(--line);border-radius:10px;padding:8px 12px;width:180px;max-width:100%}
+input[type=text]:focus{outline:none;border-color:var(--signal)}
+button.btn{font-family:var(--body);font-weight:700;font-size:16px;border:none;border-radius:10px;padding:11px 18px;cursor:pointer;background:var(--signal);color:var(--sea);transition:transform .08s}
+button.btn:active{transform:scale(.97)}
+button.btn:focus-visible{outline:3px solid var(--foam);outline-offset:2px}
+button.ghost{background:transparent;color:var(--foam);border:2px solid var(--line)}
+button.red{background:var(--flag);color:var(--foam)}
+.fb{border-radius:10px;padding:12px 14px;font-weight:500}
+.fb.ok{background:rgba(67,224,159,.15);border:2px solid var(--kelp);color:var(--foam)}
+.fb.no{background:rgba(255,97,70,.14);border:2px solid var(--flag)}
+.fb.tip{background:rgba(255,204,41,.1);border:2px dashed var(--signal)}
+pre.align{font-family:var(--mono);font-size:22px;line-height:1.35;margin:6px 0;background:var(--sea);padding:12px 18px;border-radius:8px;display:inline-block;overflow-x:auto;max-width:100%}
+.stackwrap{display:flex;justify-content:center}
+pre.align.stackq{font-size:clamp(30px,8vw,44px);font-weight:700;padding:16px 28px;white-space:pre}
+.dots{display:flex;gap:6px}
+.dots i{width:12px;height:12px;border-radius:50%;background:var(--sea);border:2px solid var(--line)}
+.dots i.done{background:var(--kelp);border-color:var(--kelp)}
+.dots i.now{border-color:var(--signal)}
+.muted{color:var(--mist)}
+/* long division board */
+.board{background:var(--sea);border-radius:10px;padding:18px;overflow-x:auto;display:flex;justify-content:center}
+.ld{font-family:var(--mono);font-size:clamp(24px,6vw,34px);font-weight:700;display:grid;grid-template-columns:auto auto;column-gap:4px;row-gap:2px}
+.ld .cells{display:flex}
+.ld .c{width:1.05em;text-align:center;border-radius:4px}
+.ld .q .c{color:var(--kelp)}
+.ld .dv{border-top:3px solid var(--foam);border-left:3px solid var(--foam);border-top-left-radius:14px;padding-left:4px}
+.ld .dsr{padding-right:6px;color:var(--signal);align-self:end}
+.c.hot{background:var(--signal);color:var(--sea)}
+.c.used{color:var(--mist)}
+.c.add{color:var(--flag)}
+.c.pt{color:var(--flag)}
+.work{display:flex;flex-direction:column;gap:10px}
+.work .now{font-size:18px}
+.mult{display:flex;flex-wrap:wrap;gap:6px}
+.mult span{font-family:var(--mono);font-size:14px;background:var(--sea);border:1px solid var(--line);padding:4px 8px;border-radius:6px}
+.mult span.best{border-color:var(--kelp);color:var(--kelp)}
+.mult span.over{opacity:.45}
+.log{font-family:var(--mono);font-size:14px;color:var(--mist);display:flex;flex-direction:column;gap:2px;max-height:160px;overflow:auto}
+/* shift */
+.shift{display:grid;grid-template-columns:auto 1fr;gap:8px 14px;align-items:center;font-family:var(--mono);font-size:clamp(26px,7vw,40px);font-weight:700}
+.shift .lbl{font-family:var(--body);font-size:13px;color:var(--mist);text-transform:uppercase;letter-spacing:.1em;font-weight:500}
+.shift .num{display:flex;overflow-x:auto}
+.shift .num span{min-width:.75em;text-align:center}
+.shift .num .pt{color:var(--flag)}
+.shift .num .add{color:var(--flag)}
+.tag{display:inline-block;font-family:var(--mono);font-size:13px;background:var(--sea);border:1px solid var(--signal);color:var(--signal);padding:2px 8px;border-radius:999px}
+.choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px}
+.cheat{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.cheat .rule{height:100%}
+@keyframes pop{0%{transform:scale(.6);opacity:0}60%{transform:scale(1.15)}100%{transform:scale(1);opacity:1}}
+.pop{animation:pop .35s ease-out}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+#ship{animation:bob 2.4s ease-in-out infinite;transition:transform .8s}
+@media (prefers-reduced-motion:reduce){.pop,#ship{animation:none}}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>Decimal Voyage<small>Chapter 2 · Decimals · Test prep</small></h1>
+    <div class="coins" aria-label="Gold coins"><span class="coin"></span><span id="coinCount">0</span></div>
+  </header>
+  <main id="app"></main>
+</div>
+
+<script>
+(() => {
+/* ---------- helpers ---------- */
+const $ = s => document.querySelector(s);
+const rand = (a,b) => Math.floor(Math.random()*(b-a+1))+a;
+const pick = a => a[rand(0,a.length-1)];
+const shuffle = a => a.map(v=>[Math.random(),v]).sort((x,y)=>x[0]-y[0]).map(x=>x[1]);
+const places = s => s.includes('.') ? s.split('.')[1].length : 0;
+const toInt = s => parseInt(s.replace('.',''),10);
+function fmt(n,p){ // integer n scaled by 10^p -> trimmed decimal string
+  const neg=n<0; let s=String(Math.abs(n)).padStart(p+1,'0');
+  const ip=s.slice(0,s.length-p); const fp=p?s.slice(s.length-p).replace(/0+$/,''):'';
+  return (neg?'-':'')+ip+(fp?'.'+fp:'');
+}
+function eq(input, ans){
+  const t=String(input).trim().replace(/[$,\s]/g,'');
+  if(!/^-?\d*\.?\d+$|^-?\d+\.$/.test(t)) return false;
+  return Math.abs(parseFloat(t)-parseFloat(ans))<1e-9;
+}
+const esc = s => String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* ---------- save ---------- */
+let save={coins:0,stars:{}};
+try{ const s=JSON.parse(localStorage.getItem('decimal-voyage')||'null'); if(s) save=s; }catch(e){}
+function persist(){ try{localStorage.setItem('decimal-voyage',JSON.stringify(save));}catch(e){} $('#coinCount').textContent=save.coins; }
+function addCoins(n){ save.coins+=n; persist(); const c=$('#coinCount'); c.classList.remove('pop'); void c.offsetWidth; c.classList.add('pop'); }
+
+/* ---------- problem generators ---------- */
+function genAddSub(){
+  const mk=()=>{ const p=rand(0,3); return fmt(rand(p?10:2, p?9999:99)* (p?1:1), p); };
+  let a=mk(), b=mk(); while(places(a)===places(b)) b=mk();
+  const op=Math.random()<.5?'+':'−';
+  if(op==='−' && parseFloat(a)<parseFloat(b)) [a,b]=[b,a];
+  const P=Math.max(places(a),places(b));
+  const A=Math.round(parseFloat(a)*10**P), B=Math.round(parseFloat(b)*10**P);
+  return {a,b,op,P,ans:fmt(op==='+'?A+B:A-B,P)};
+}
+function genMult(){
+  const p=rand(1,2); const a=fmt(rand(11,p===1?99:499),p);
+  const b=pick([String(rand(2,9)), '0.'+rand(2,9), fmt(rand(11,35),1), fmt(rand(2,9),2)]);
+  const pa=places(a), pb=places(b);
+  return {a,b,dp:pa+pb,raw:toInt(a)*toInt(b),ans:fmt(toInt(a)*toInt(b),pa+pb)};
+}
+function genWholeDiv(){
+  const d=pick([3,4,5,6,7,8,12]); const pq=rand(1,2); const qI=rand(pq===1?105:105, pq===1?999:999);
+  return {dividend:fmt(qI*d,pq), divisor:String(d), ans:fmt(qI,pq)};
+}
+function genDecDiv(hard){
+  const dv=pick(hard?['1.2','0.25','2.5','0.15','3.2','0.05','1.6']:['0.4','0.6','0.8','1.2','2.5','0.3','1.5','0.25','0.7']);
+  const k=places(dv), dI=toInt(dv);
+  const pq=hard?rand(1,2):rand(0,1); const qI=rand(hard?120:12, hard?2999:480);
+  return {dividend:fmt(qI*dI,pq+k), divisor:dv, ans:fmt(qI,pq)};
+}
+
+/* ---------- shift helpers ---------- */
+function shiftNum(str,m){
+  const [ip,fp='']=str.split('.'); let d=ip+fp; const newDec=ip.length+m; let added=0;
+  while(d.length<newDec){d+='0';added++;}
+  let int=d.slice(0,newDec), frac=d.slice(newDec);
+  const lead=(int.match(/^0+(?=\d)/)||[''])[0].length; int=int.slice(lead);
+  return {int,frac,added,text:int+(frac?'.'+frac:'')};
+}
+
+/* ---------- islands ---------- */
+const ISLANDS=[
+ {id:'lagoon',sec:'2.4',name:'Line-Up Lagoon',n:6,kind:'addsub',
+  rule:`<h3>Captain's rule · Adding & subtracting</h3><p>Stack the numbers so the <b>decimal points line up</b>. Fill empty spots with <b>zeros</b>. Then add or subtract like whole numbers and drop the decimal point straight down.</p><p class="muted">Why? Tenths have to go with tenths and hundredths with hundredths, just like ones go with ones.</p>`},
+ {id:'reef',sec:'2.5',name:'Multiply Reef',n:5,kind:'mult',
+  rule:`<h3>Captain's rule · Multiplying</h3><ol><li>Ignore the decimal points and multiply like whole numbers.</li><li>Count the decimal places in <b>both</b> numbers together.</li><li>Your answer gets that many decimal places.</li></ol><p class="muted">Example: 0.3 × 0.2 → 3 × 2 = 6 → 1 + 1 = 2 places → 0.06. (Tenths × tenths = hundredths.) No lining up needed here!</p>`},
+ {id:'light',sec:'2.6–2.7',name:'Lighthouse Division',n:3,kind:'board',
+  rule:`<h3>Captain's rule · Long division (decimal ÷ whole number)</h3><p>Repeat the four moves: <b>Divide → Multiply → Subtract → Bring down</b>.</p><p>When you reach the decimal point, put a decimal point in the answer <b>straight above it</b>. If you run out of digits and still have a remainder, <b>add a 0</b> and keep going.</p>`},
+ {id:'strait',sec:'2.7',name:'Decimal Shift Strait',n:5,kind:'shift',
+  rule:`<h3>Captain's rule · Decimal ÷ decimal</h3><p>You can't do long division with a decimal outside the house. So move the decimal in the <b>divisor</b> to the right until it's a whole number. Move the dividend's decimal the <b>same number of places</b>.</p><p class="muted">Why does that work? Each move multiplies by 10. Do it to <b>both</b> numbers and the answer stays the same: 6 ÷ 2 = 3, 60 ÷ 20 = 3, 600 ÷ 200 = 3. It's the same trade at a bigger scale.</p>`},
+ {id:'boss',sec:'DO NOW',name:"Captain's Challenge",n:3,kind:'boss',boss:true,
+  rule:`<h3>Final challenge</h3><p>Monday's DO NOW: <b class="mono">367.62 ÷ 1.2</b>. Estimate first, shift the decimal, then work the board. Two more after that to prove it wasn't luck.</p>`},
+];
+
+/* ---------- map view ---------- */
+function stars(id){ return save.stars[id]||0; }
+function renderMap(){
+  const done=ISLANDS.filter(i=>stars(i.id)>0).length;
+  const pts=[[70,150],[210,70],[370,140],[520,60],[680,120]];
+  const shipAt = done===0 ? [20,90] : pts[Math.min(done,5)-1];
+  $('#app').innerHTML=`
+  <div class="panel map">
+    <svg viewBox="0 0 760 210" role="img" aria-label="Sea chart showing your progress through ${done} of 5 islands">
+      <path d="M20 90 Q 40 160 70 150 T 210 70 T 370 140 T 520 60 T 680 120" fill="none" stroke="#a8c8d8" stroke-width="3" stroke-dasharray="8 10" opacity=".6"/>
+      ${pts.map((p,i)=>`<g transform="translate(${p[0]} ${p[1]})">
+        <ellipse rx="34" ry="16" fill="${i===4?'#ff6146':'#e9c46a'}" opacity="${stars(ISLANDS[i].id)?1:.55}"/>
+        <ellipse rx="22" ry="9" cy="-6" fill="${i===4?'#b8392a':'#3d9a6e'}" opacity="${stars(ISLANDS[i].id)?1:.55}"/>
+        <text y="38" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" fill="#eef7fa">${ISLANDS[i].sec}</text>
+        ${stars(ISLANDS[i].id)?`<text y="-22" text-anchor="middle" font-size="14" fill="#ffcc29" font-family="JetBrains Mono, monospace">${'★'.repeat(stars(ISLANDS[i].id))}</text>`:''}
+      </g>`).join('')}
+      <g id="ship" style="transform:translate(${shipAt[0]}px,${shipAt[1]-30}px)">
+        <path d="M-22 6 L22 6 L14 18 L-14 18 Z" fill="#7a4b2a"/>
+        <path d="M0 -26 L0 6" stroke="#eef7fa" stroke-width="2"/>
+        <path d="M2 -24 L20 2 L2 2 Z" fill="#eef7fa"/>
+        <path d="M-2 -18 L-16 2 L-2 2 Z" fill="#ffcc29"/>
+        <path d="M0 -26 L10 -22 L0 -18 Z" fill="#ff6146"/>
+      </g>
+    </svg>
+  </div>
+  <div class="panel">
+    <h2>Pick an island</h2>
+    <p class="muted" style="margin:0">Go in order for the best voyage. Correct on the first try = 10 coins. Stars: ★★★ means almost no mistakes.</p>
+    <div class="islands">${ISLANDS.map(i=>`
+      <button class="isl ${i.boss?'boss':''}" data-go="${i.id}">
+        <span class="sec">Section ${i.sec}</span><span class="nm">${i.name}</span>
+        <span class="st">${'★'.repeat(stars(i.id))}${'☆'.repeat(3-stars(i.id))}</span>
+      </button>`).join('')}</div>
+  </div>
+  <div class="panel">
+    <h2>Night-before cheat card</h2>
+    <div class="cheat">
+      <div class="rule"><h3>+ and −</h3><p>Line up the decimal points. Fill with zeros.</p><pre class="align" style="font-size:16px">  12.50
++  3.07
+-------
+  15.57</pre></div>
+      <div class="rule"><h3>×</h3><p>Multiply like whole numbers. Count all the decimal places in both numbers. Answer gets that many.</p><p class="mono">1.25 × 0.4 → 125×4=500 → 3 places → 0.500 = 0.5</p></div>
+      <div class="rule"><h3>÷ by a whole number</h3><p>Divide → Multiply → Subtract → Bring down. Decimal point goes straight up. Out of digits? Add a 0.</p></div>
+      <div class="rule"><h3>÷ by a decimal</h3><p>Make the divisor whole. Move both decimals the same number of places right.</p><p class="mono">367.62 ÷ 1.2 → 3676.2 ÷ 12 = 306.35</p></div>
+      <div class="rule"><h3>Check it</h3><p>Estimate first. Then multiply back: answer × divisor should equal the dividend.</p><p class="mono">306.35 × 1.2 = 367.62 ✓</p></div>
+    </div>
+  </div>`;
+  document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>startIsland(b.dataset.go));
+}
+
+/* ---------- island run ---------- */
+let run=null;
+function startIsland(id){
+  const isl=ISLANDS.find(i=>i.id===id);
+  run={isl,idx:0,mistakes:0,earned:0};
+  renderProblem();
+  window.scrollTo({top:0});
+}
+function frame(inner){
+  const {isl,idx}=run;
+  $('#app').innerHTML=`
+  <div class="panel">
+    <div class="row" style="justify-content:space-between">
+      <button class="btn ghost" id="back">← Sea chart</button>
+      <div class="dots">${Array.from({length:isl.n},(_,i)=>`<i class="${i<idx?'done':i===idx?'now':''}"></i>`).join('')}</div>
+    </div>
+    <h2>${isl.name} <span class="tag">${isl.sec}</span></h2>
+    <div class="rule">${isl.rule}</div>
+  </div>
+  <div class="panel" id="stage">${inner}</div>`;
+  $('#back').onclick=renderMap;
+}
+function nextProblem(coins){
+  if(coins) {addCoins(coins); run.earned+=coins;}
+  run.idx++;
+  if(run.idx>=run.isl.n) return finishIsland();
+  renderProblem();
+}
+function finishIsland(){
+  const {isl,mistakes,earned}=run;
+  const s = mistakes<=1?3:mistakes<=4?2:1;
+  save.stars[isl.id]=Math.max(stars(isl.id),s); persist();
+  const nextI=ISLANDS[ISLANDS.indexOf(isl)+1];
+  $('#app').innerHTML=`<div class="panel" style="text-align:center;align-items:center">
+    <h2 class="pop" style="font-size:34px;color:var(--signal)">${isl.boss?'Treasure found!':'Island cleared!'}</h2>
+    <div class="mono pop" style="font-size:40px;color:var(--signal)">${'★'.repeat(s)}${'☆'.repeat(3-s)}</div>
+    <p>${earned} coins earned · ${mistakes} slip${mistakes===1?'':'s'}</p>
+    <p class="muted" style="max-width:50ch">${isl.boss?'You solved the DO NOW before class even started. Walk in tomorrow and show your teacher how it works.':s<3?'Run it again for 3 stars. Each run has new problems.':'Clean sailing. On to the next island.'}</p>
+    <div class="row" style="justify-content:center">
+      ${nextI?`<button class="btn" id="nx">Sail to ${nextI.name} →</button>`:''}
+      <button class="btn ghost" id="again">New problems here</button>
+      <button class="btn ghost" id="mp">Sea chart</button>
+    </div></div>`;
+  if(nextI) $('#nx').onclick=()=>startIsland(nextI.id);
+  $('#again').onclick=()=>startIsland(isl.id);
+  $('#mp').onclick=renderMap;
+}
+
+/* generic "type an answer" block */
+function answerBlock(host,{label='Your answer',ans,hint,reveal,onRight,coinsFirst=10}){
+  let tries=0;
+  host.insertAdjacentHTML('beforeend',`<div class="ab"><div class="row"><label class="muted" for="ansIn">${label}</label></div>
+    <div class="row"><input type="text" id="ansIn" inputmode="decimal" autocomplete="off"><button class="btn" id="chk">Check</button><button class="btn ghost" id="hintBtn">Hint</button></div>
+    <div id="fb"></div></div>`);
+  const inp=host.querySelector('#ansIn'), fb=host.querySelector('#fb');
+  setTimeout(()=>inp.focus(),30);
+  const showHint=()=>{fb.innerHTML=`<div class="fb tip">${hint()}</div>`;};
+  host.querySelector('#hintBtn').onclick=()=>{ if(tries===0) tries=1; showHint(); };
+  const check=()=>{
+    if(!inp.value.trim()) return;
+    if(eq(inp.value,ans)){
+      const c = tries===0?coinsFirst:tries<3?Math.ceil(coinsFirst/2):1;
+      fb.innerHTML=`<div class="fb ok pop">Correct! <b class="mono">${esc(ans)}</b> · +${c} coins</div>`;
+      inp.disabled=true; host.querySelector('#chk').disabled=true;
+      onRight(c);
+    } else {
+      tries++; run.mistakes++;
+      if(tries>=3){ fb.innerHTML=`<div class="fb no">Here's how it works out:</div><div class="fb tip">${reveal()}</div><p class="muted" style="margin:0">Type <b class="mono">${esc(ans)}</b> to keep sailing.</p>`; }
+      else { fb.innerHTML=`<div class="fb no">Not quite${tries===1?'. Try again or tap Hint.':'. Here is a hint:'}</div>${tries===2?`<div class="fb tip">${hint()}</div>`:''}`; }
+      inp.select();
+    }
+  };
+  host.querySelector('#chk').onclick=check;
+  inp.onkeydown=e=>{ if(e.key==='Enter') check(); };
+}
+function nextBtn(host,coins,label='Next →'){
+  host.insertAdjacentHTML('beforeend',`<div class="row"><button class="btn" id="nextB">${label}</button></div>`);
+  const b=host.querySelector('#nextB'); b.focus(); b.onclick=()=>nextProblem(coins);
+}
+
+function alignedPre(a,b,op,P,ans,fill=true,cls=''){
+  const pad=s=>{ let [i,f='']=s.split('.'); if(!P) return i; if(!fill && !s.includes('.')) return i+' '.repeat(P+1); return i+'.'+f.padEnd(P,fill?'0':' '); };
+  const A=pad(a), B=pad(b), R=ans!=null?pad(ans):'';
+  const w=Math.max(A.length,B.length,R.length)+2;
+  const line='-'.repeat(w);
+  return `<pre class="align ${cls}">${A.padStart(w)}\n${(op+' '+B.padStart(w-2)).padStart(w)}\n${line}${ans!=null?'\n'+R.padStart(w):''}</pre>`;
+}
+
+/* ---------- renderers by kind ---------- */
+function renderProblem(){
+  const k=run.isl.kind;
+  if(k==='addsub') return pAddSub();
+  if(k==='mult') return pMult();
+  if(k==='board') return pBoard();
+  if(k==='shift') return pShift();
+  if(k==='boss') return pBoss();
+}
+
+function pAddSub(){
+  const p=genAddSub();
+  frame(`<div class="stackwrap">${alignedPre(p.a,p.b,p.op,p.P,null,false,'stackq')}</div><p class="muted" style="margin:0;text-align:center">The decimal points are lined up. Empty spots count as 0.</p>`);
+  const st=$('#stage');
+  answerBlock(st,{ans:p.ans,
+    hint:()=>`Line up the decimal points and fill the empty spots with zeros:${alignedPre(p.a,p.b,p.op,p.P)}`,
+    reveal:()=>`${alignedPre(p.a,p.b,p.op,p.P,p.ans)}Zeros at the end of a decimal don't change it, so ${p.ans} is the answer.`,
+    onRight:c=>nextBtn(st,c)});
+}
+
+function pMult(){
+  const p=genMult(); const pa=places(p.a), pb=places(p.b);
+  const wM=Math.max(p.a.length,p.b.length)+2;
+  frame(`<div class="stackwrap"><pre class="align stackq">${p.a.padStart(wM)}\n${('× '+p.b.padStart(wM-2)).padStart(wM)}\n${'-'.repeat(wM)}</pre></div><p class="muted" style="margin:0;text-align:center">For multiplying, line up the right edges. The decimal points don't need to match.</p><p style="margin:0"><b>Step 1.</b> How many decimal places will the answer have? (count them in both numbers)</p><div id="s1"></div><div id="s2"></div>`);
+  const s1=$('#s1'); let t1=0;
+  s1.innerHTML=`<p class="muted" style="margin:0 0 8px">Not the answer yet! Just count: how many digits come after the decimal points in both numbers?</p>
+    <div class="choices">${[0,1,2,3,4].map(n=>`<button class="btn ghost" data-dp="${n}">${n} place${n===1?'':'s'}</button>`).join('')}</div><div id="dpfb" style="margin-top:10px"></div>`;
+  s1.querySelectorAll('[data-dp]').forEach(b=>b.onclick=()=>{
+    const n=+b.dataset.dp, fb=s1.querySelector('#dpfb');
+    if(n!==p.dp){ t1++; run.mistakes++; b.disabled=true;
+      fb.innerHTML=`<div class="fb tip"><span class="mono">${p.a}</span> has <b>${pa}</b> digit${pa===1?'':'s'} after the point${pa===0?' (no decimal point at all)':''}. <span class="mono">${p.b}</span> has <b>${pb}</b>. Add them: ${pa} + ${pb} = ?</div>`; return; }
+    s1.querySelectorAll('[data-dp]').forEach(x=>x.disabled=true); b.style.borderColor='var(--kelp)';
+    const c=t1?1:4; fb.innerHTML=`<div class="fb ok pop">${pa} + ${pb} = ${p.dp} decimal places. +${c} coins</div>`;
+    { addCoins(c); run.earned+=c;
+      const s2=$('#s2'); s2.innerHTML=`<p style="margin:0"><b>Step 2.</b> Multiply <span class="mono">${toInt(p.a)} × ${toInt(p.b)}</span> like whole numbers, then put in ${p.dp} decimal place${p.dp===1?'':'s'}.</p>`;
+      answerBlock(s2,{ans:p.ans,
+        hint:()=>`${toInt(p.a)} × ${toInt(p.b)} = ${p.raw}. Now start at the right end and count ${p.dp} place${p.dp===1?'':'s'} left for the point.`,
+        reveal:()=>`${toInt(p.a)} × ${toInt(p.b)} = <b class="mono">${p.raw}</b>. Move the point ${p.dp} place${p.dp===1?'':'s'} left: <b class="mono">${(String(p.raw).padStart(p.dp+1,'0')).replace(new RegExp('(\\d{'+p.dp+'})$'),'.$1')}</b>${/0$/.test(String(p.raw))&&p.dp?` = <b class="mono">${p.ans}</b> (zeros at the end can go)`:''}.`,
+        onRight:c2=>nextBtn(s2,c2)});
+    }});
+}
+
+/* ---------- long division board ---------- */
+function planDivision(divStr,d){
+  const [ip,fp='']=divStr.split('.');
+  const digits=(ip+fp).split('').map(Number), orig=digits.length, decPos=ip.length;
+  const steps=[]; let cur=0,i=0,extra=0,started=false;
+  while(true){
+    if(i>=digits.length){ digits.push(0); extra++; if(extra>6) break; }
+    cur=cur*10+digits[i]; const q=Math.floor(cur/d), prod=q*d, rem=cur-prod;
+    const auto=!started && q===0 && (i<decPos-1 || (cur===0 && i<decPos));
+    if(q>0) started=true;
+    steps.push({i,cur,q,prod,rem,auto}); cur=rem; i++;
+    if(i>=digits.length && rem===0) break;
+  }
+  return {digits,orig,decPos,steps};
+}
+function Board(host,dividend,divisor,onDone){
+  const d=parseInt(divisor,10); const plan=planDivision(dividend,d);
+  let si=0, phase='divide', mistakes=0, showMult=false, msg='', log=[];
+  const qDigits={};
+  // skip leading auto steps
+  const intro=[];
+  while(si<plan.steps.length && plan.steps[si].auto){ qDigits[plan.steps[si].i]=null; si++; }
+  if(si>0 && si<plan.steps.length) msg=`${d} doesn't fit into ${plan.digits.slice(0,si).join('').replace(/^0+/,'')||'0'}, so we use more digits: <b class="mono">${plan.steps[si].cur}</b>.`;
+  const col=i=> i<plan.decPos? i : i+1;
+  function cellsRow(kind){
+    const st=plan.steps[Math.min(si,plan.steps.length-1)];
+    const curI = si<plan.steps.length? st.i : -1;
+    const shownLen = Math.max(plan.orig, curI+1, ...Object.keys(qDigits).map(Number).map(x=>x+1));
+    const hasPt = shownLen>plan.decPos;
+    const n = shownLen + (hasPt?1:0);
+    const out=[];
+    for(let c=0;c<n;c++){
+      if(hasPt && c===plan.decPos){
+        const qPt = kind==='q' && Object.keys(qDigits).some(k=>+k>=plan.decPos);
+        out.push(`<span class="c pt">${kind==='q'?(qPt?'.':'&nbsp;'):'.'}</span>`); continue;
+      }
+      const idx = hasPt && c>plan.decPos ? c-1 : c;
+      if(kind==='q'){
+        let v=qDigits[idx];
+        if(v==null){ v='&nbsp;';
+          // show a 0 before the point if answer is 0.xx
+          if(idx===plan.decPos-1 && Object.keys(qDigits).some(k=>+k>=plan.decPos) && !Object.entries(qDigits).some(([k,x])=>+k<plan.decPos && x!=null)) v='0';
+        }
+        out.push(`<span class="c">${v}</span>`);
+      } else {
+        const isAdd = idx>=plan.orig;
+        const usedTo = si<plan.steps.length? curI : 99;
+        const cls = idx===curI && si<plan.steps.length ? 'hot' : idx<=usedTo-1||si>=plan.steps.length ? 'used' : '';
+        out.push(`<span class="c ${cls} ${isAdd?'add':''}">${plan.digits[idx]}</span>`);
+      }
+    }
+    return out.join('');
+  }
+  function render(){
+    const done = si>=plan.steps.length;
+    const s = plan.steps[si];
+    const mults = Array.from({length:9},(_,k)=>(k+1)*d);
+    host.innerHTML=`
+      <div class="board"><div class="ld">
+        <div></div><div class="cells q">${cellsRow('q')}</div>
+        <div class="dsr">${d}</div><div class="cells dv">${cellsRow('d')}</div>
+      </div></div>
+      <div class="work">
+        ${msg?`<div class="fb tip">${msg}</div>`:''}
+        ${done?'':
+          phase==='divide'?`<div class="now"><b>Divide.</b> How many times does <b class="mono">${d}</b> fit into <b class="mono">${s.cur}</b>?</div>
+            <div class="row"><input type="text" id="bIn" inputmode="numeric" autocomplete="off"><button class="btn" id="bChk">Check</button><button class="btn ghost" id="mt">${showMult?'Hide':'Show'} ${d}s table</button></div>
+            ${showMult?`<div class="mult">${mults.map((m,k)=>`<span class="${m<=s.cur&&(k+2)*d>s.cur?'best':m>s.cur?'over':''}">${k+1}×${d}=${m}</span>`).join('')}</div>`:''}`
+          :`<div class="now"><b>Multiply.</b> <span class="mono">${s.q} × ${d} = ${s.prod}</span><br><b>Subtract.</b> <span class="mono">${s.cur} − ${s.prod} = ?</span></div>
+            <div class="row"><input type="text" id="bIn" inputmode="numeric" autocomplete="off"><button class="btn" id="bChk">Check</button></div>`}
+        <div id="bFb"></div>
+        ${log.length?`<div><h3 style="margin-bottom:4px">Ship's log</h3><div class="log">${log.map(l=>`<div>${l}</div>`).join('')}</div></div>`:''}
+      </div>`;
+    if(done) return;
+    const inp=host.querySelector('#bIn'); setTimeout(()=>inp.focus(),20);
+    const mt=host.querySelector('#mt'); if(mt) mt.onclick=()=>{showMult=!showMult; render();};
+    const go=()=>{
+      const v=inp.value.trim(); if(v==='') return;
+      const n=parseInt(v,10); const bfb=host.querySelector('#bFb');
+      if(phase==='divide'){
+        if(n===s.q){ qDigits[s.i]=s.q; phase='subtract'; msg=''; render(); }
+        else { mistakes++; run.mistakes++;
+          bfb.innerHTML=`<div class="fb no">${isNaN(n)?'Type a whole number.':n*d>s.cur?`Too big: ${n} × ${d} = ${n*d}, which is more than ${s.cur}.`:`It fits more: ${n+1} × ${d} = ${(n+1)*d}, still not more than ${s.cur}.`}</div>`;
+          if(mistakes>=2 && !showMult){ showMult=true; setTimeout(()=>{ const keep=bfb.innerHTML; render(); host.querySelector('#bFb').innerHTML=keep; },0); }
+          inp.select(); }
+      } else {
+        if(n===s.rem){
+          let line=`${s.cur} ÷ ${d} → ${s.q}   ${s.q}×${d}=${s.prod}   ${s.cur}−${s.prod}=${s.rem}`;
+          si++; phase='divide';
+          if(si<plan.steps.length){
+            const nx=plan.steps[si]; const dig=plan.digits[nx.i];
+            const notes=[];
+            if(nx.i>=plan.orig) notes.push(`Out of digits but the remainder is ${s.rem}, so <b>add a 0</b> to the dividend.`);
+            if(nx.i===plan.decPos) notes.push(`You're passing the decimal point, so put a <b>decimal point in the answer straight above it</b>.`);
+            notes.push(`<b>Bring down</b> the ${dig} → now you have <b class="mono">${nx.cur}</b>.`);
+            line+=`   bring down ${dig} → ${nx.cur}`;
+            msg=notes.join(' ');
+          } else {
+            msg=`Remainder 0. Division complete!`;
+          }
+          log.push(line); render();
+          if(si>=plan.steps.length) finish();
+        } else { mistakes++; run.mistakes++; bfb.innerHTML=`<div class="fb no">Check the subtraction: ${s.cur} − ${s.prod}.</div>`; inp.select(); }
+      }
+    };
+    host.querySelector('#bChk').onclick=go; inp.onkeydown=e=>{if(e.key==='Enter')go();};
+  }
+  function finish(){
+    const ks=Object.keys(qDigits).map(Number).sort((a,b)=>a-b);
+    let ip='',fp='';
+    ks.forEach(k=>{ const v=qDigits[k]==null?0:qDigits[k]; if(k<plan.decPos) ip+=v; else fp+=v; });
+    ip=ip.replace(/^0+(?=\d)/,'')||'0';
+    const q=ip+(fp?'.'+fp:'');
+    onDone(q,mistakes);
+  }
+  render();
+}
+
+function pBoard(){
+  const p=genWholeDiv();
+  frame(`<div class="big">${p.dividend} ÷ ${p.divisor}</div><p class="muted" style="margin:0">Work it on the board. The yellow digit is the one you're working on.</p><div id="bd" class="work"></div><div id="after"></div>`);
+  Board($('#bd'),p.dividend,p.divisor,(q,m)=>{
+    const c=Math.max(4,15-m*3);
+    $('#after').innerHTML=`<div class="fb ok pop"><span class="mono">${p.dividend} ÷ ${p.divisor} = <b>${q}</b></span> · +${c} coins<br><span class="muted">Check: ${q} × ${p.divisor} = ${p.dividend} ✓</span></div>`;
+    nextBtn($('#after'),c);
+  });
+}
+
+/* ---------- shift widget ---------- */
+function Shift(host,dividend,divisor,onDone){
+  const k=places(divisor); let m=0, note='';
+  const numHTML=(str,mm)=>{ const r=shiftNum(str,mm); const intChars=r.int.split('');
+    return intChars.map((ch,i)=>`<span class="${i>=intChars.length-r.added?'add':''}">${ch}</span>`).join('')+(r.frac?`<span class="pt">.</span>`+r.frac.split('').map(ch=>`<span>${ch}</span>`).join(''):''); };
+  function render(){
+    const whole = m===k;
+    host.innerHTML=`
+      <div class="shift">
+        <span class="lbl">Dividend</span><div class="num">${numHTML(dividend,m)}</div>
+        <span class="lbl">Divisor</span><div class="num">${numHTML(divisor,m)}</div>
+      </div>
+      <div class="row"><span class="tag">moved ${m} place${m===1?'':'s'} · both × ${10**m}</span></div>
+      ${whole?'':`<div class="row"><button class="btn" id="mv">Move both decimals → one place</button>${m?'<button class="btn ghost" id="un">Undo</button>':''}</div>`}
+      ${note?`<div class="fb tip">${note}</div>`:''}
+      ${whole?`<div class="fb ok pop">The divisor is a whole number now. New problem: <b class="mono">${shiftNum(dividend,k).text} ÷ ${shiftNum(divisor,k).text}</b> — same answer as the original.</div><div class="row"><button class="btn" id="go">Continue →</button></div>`:''}`;
+    const mv=host.querySelector('#mv'); if(mv) mv.onclick=()=>{ m++; const r=shiftNum(dividend,m); note = r.added && shiftNum(dividend,m-1).added<r.added ? 'The dividend ran out of digits, so we wrote a <b>0</b> (in red) to hold the place.' : `Both numbers × 10. The divisor ${m<k?'still has a decimal. Keep going.':'is whole!'}`; render(); };
+    const un=host.querySelector('#un'); if(un) un.onclick=()=>{ m--; note=''; render(); };
+    const go=host.querySelector('#go'); if(go){ go.focus(); go.onclick=()=>onDone(shiftNum(dividend,k).text, shiftNum(divisor,k).text); }
+  }
+  render();
+}
+
+function pShift(){
+  const p=genDecDiv(false);
+  frame(`<div class="big">${p.dividend} ÷ ${p.divisor}</div><p style="margin:0"><b>Step 1.</b> Make the divisor a whole number.</p><div id="sh" class="work"></div><div id="s2" class="work"></div>`);
+  Shift($('#sh'),p.dividend,p.divisor,(nd,nv)=>{
+    $('#sh').querySelectorAll('button').forEach(b=>b.remove());
+    const s2=$('#s2');
+    s2.innerHTML=`<p style="margin:0"><b>Step 2.</b> Solve <b class="mono">${nd} ÷ ${nv}</b>. Type the answer, or work it on the board.</p>`;
+    answerBlock(s2,{ans:p.ans,
+      hint:()=>`Use long division on <span class="mono">${nd} ÷ ${nv}</span>. Check: your answer × ${p.divisor} should be ${p.dividend}.`,
+      reveal:()=>`<span class="mono">${nd} ÷ ${nv} = ${p.ans}</span>, so <span class="mono">${p.dividend} ÷ ${p.divisor} = ${p.ans}</span>. Check: ${p.ans} × ${p.divisor} = ${p.dividend} ✓`,
+      onRight:c=>{ const bb=s2.querySelector('#useBoard'); if(bb) bb.remove(); nextBtn(s2,c); }});
+    s2.insertAdjacentHTML('beforeend',`<div class="row"><button class="btn ghost" id="useBoard">Work it on the board</button></div><div id="bd2" class="work"></div>`);
+    $('#useBoard').onclick=()=>{ $('#useBoard').remove(); s2.querySelector('.ab').remove();
+      Board($('#bd2'),nd,nv,(q,m)=>{ const c=Math.max(4,12-m*3);
+        $('#bd2').insertAdjacentHTML('beforeend',`<div class="fb ok pop"><span class="mono">${p.dividend} ÷ ${p.divisor} = <b>${q}</b></span> · +${c} coins</div>`); nextBtn($('#bd2'),c); }); };
+  });
+}
+
+/* ---------- boss ---------- */
+function pBoss(){
+  const p = run.idx===0 ? {dividend:'367.62',divisor:'1.2',ans:'306.35'} : genDecDiv(true);
+  const ans=parseFloat(p.ans); const mag=10**Math.floor(Math.log10(ans)); const est=Math.round(ans/mag)*mag;
+  const opts=shuffle([est/100,est/10,est,est*10].map(x=>+x.toPrecision(2)));
+  frame(`${run.idx===0?'<p class="tag" style="align-self:flex-start">Monday\'s DO NOW</p>':''}<div class="big">${p.dividend} ÷ ${p.divisor}</div>
+    <p style="margin:0"><b>Step 1. Estimate.</b> About how big is the answer? Think: how many ${p.divisor}s fit into ${p.dividend}?</p>
+    <div class="choices">${opts.map(o=>`<button class="btn ghost" data-e="${o}">about ${o}</button>`).join('')}</div><div id="efb"></div><div id="sh" class="work"></div><div id="bd" class="work"></div>`);
+  let eTries=0;
+  document.querySelectorAll('[data-e]').forEach(b=>b.onclick=()=>{
+    const v=+b.dataset.e;
+    if(Math.abs(v-+est.toPrecision(2))<1e-9){
+      document.querySelectorAll('[data-e]').forEach(x=>x.disabled=true); b.style.borderColor='var(--kelp)';
+      const c=eTries?2:5; addCoins(c); run.earned+=c;
+      $('#efb').innerHTML=`<div class="fb ok pop">Good estimate. Check: ${+est.toPrecision(2)} × ${p.divisor} = ${+(est*parseFloat(p.divisor)).toPrecision(4)}, close to ${p.dividend}. +${c} coins</div><p style="margin:0"><b>Step 2.</b> Make the divisor whole.</p>`;
+      Shift($('#sh'),p.dividend,p.divisor,(nd,nv)=>{
+        $('#sh').querySelectorAll('button').forEach(x=>x.remove());
+        $('#bd').insertAdjacentHTML('beforebegin','');
+        const bd=$('#bd'); bd.innerHTML=`<p style="margin:0"><b>Step 3.</b> Long division: <b class="mono">${nd} ÷ ${nv}</b></p><div id="bdIn" class="work"></div>`;
+        Board($('#bdIn'),nd,nv,(q,m)=>{ const c=Math.max(5,20-m*3);
+          bd.insertAdjacentHTML('beforeend',`<div class="fb ok pop"><span class="mono">${p.dividend} ÷ ${p.divisor} = <b>${q}</b></span> · +${c} coins<br><span class="muted">Your estimate was about ${+est.toPrecision(2)}. ${q} is close, so it makes sense ✓</span></div>`);
+          nextBtn(bd,c, run.idx+1>=run.isl.n?'Claim the treasure →':'Next →'); });
+      });
+    } else { eTries++; run.mistakes++; b.disabled=true;
+      $('#efb').innerHTML=`<div class="fb no">Check it: ${v} × ${p.divisor} = ${+(v*parseFloat(p.divisor)).toPrecision(6)}. Is that close to ${p.dividend}?</div>`; }
+  });
+}
+
+persist();
+renderMap();
+})();
+</script>
+
+</body></html>
