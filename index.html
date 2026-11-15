@@ -513,6 +513,20 @@ button.btn{cursor:pointer}
 @media (max-width:520px){.ka-balls{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 /* v21: Knit Nodes */
+.kn-lib{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:28px 18px;margin-top:8px}
+.kn-card{margin:0;min-width:0;display:grid;gap:12px;align-content:start}
+.kn-card .kn-sw{position:relative;aspect-ratio:1;overflow:hidden;border-radius:4px;background:#111}
+.kn-card .kn-sw img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.kn-card:hover .kn-sw img{transform:scale(1.18)}
+.kn-card .kn-n{position:absolute;left:8px;top:8px;font:600 11px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.12em;color:#fff;background:rgba(0,0,0,.72);padding:3px 6px;border-radius:3px}
+.kn-card h3{margin:0;font-size:17px;line-height:1.15;text-transform:uppercase;letter-spacing:.01em}
+.kn-meta{display:grid;grid-template-columns:76px minmax(0,1fr);gap:12px;align-items:start}
+.kn-chart{width:76px;height:auto;display:block}
+.kn-meta p{margin:0;font-size:13px;line-height:1.4;color:#B9BCC4}.kn-meta p b{color:#fff;font-weight:600;display:block;margin-bottom:2px}
+.kn-legend{display:flex;flex-wrap:wrap;gap:8px 22px;margin:26px 0 30px;padding:0;list-style:none;font-size:13px;color:#B9BCC4}
+.kn-legend li{display:flex;align-items:center;gap:8px}.kn-legend svg{width:18px;height:18px}
+@media (max-width:1100px){.kn-lib{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:640px){.kn-lib{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 12px}.kn-meta{grid-template-columns:1fr}.kn-chart{width:100%;max-width:120px}}
 .kn-duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;padding-top:24px}
 .kn-duo figure,.kn-close figure{margin:0;min-width:0}
 .kn-duo img,.kn-close img{display:block;width:100%;height:auto;background:#161826}
@@ -1072,7 +1086,7 @@ const KN={id:'knit-nodes',
  wire:KNI('12_wire',1800,1012,'Wire pass. Every loop is a scripted curve.'),
  sw:KNI('13_swatch_detail',1800,1012,'Swatch detail: lace eyelets, with garter and rib behind.'),
  steps:[['One loop equation','x = w·u + A·sin 2πu, y = H(1 − cos 2πu)/2, z = ±D·cos 4πu. When A > w/2π the loop head overhangs into the classic interlocking shape. Flip the sign of z and a knit becomes a purl.'],
-  ['Stitch patterns as rules','Each pattern is a rule on (row, column): a checkerboard for seed, column pairs for 2×2 rib, eased shifts for cable, enlarged loops for eyelets, stretched loops for tuck, straight back-floats for slip stitch.'],
+  ['Stitch patterns as rules','Each pattern is a rule on (row, column): a checkerboard for seed, column pairs for 2×2 rib, a three-over-three crossing for cable, yarn-overs above decreases for eyelets, held loops for tuck, floats carried across the face for slip stitch.'],
   ['Knitting in the round','On the node each row becomes a closed round and the wales run along the strut. Stitches per round are fixed, so they stretch as the sleeve swells, like a real knitted tube pulled over a form.'],
   ['Two sleeves, one node','Each strut gets its own sleeve. Where they meet, yarn that would sit inside the other sleeve is trimmed, so the two read as one X-shaped garment.'],
   ['Behaviour model','Each knit has a relaxed stitch width, a row take-up and a stretch capacity. These set stitches per round, how tightly rows pack, how far the sleeve can bulge, and the colour of every round.'],
@@ -1083,8 +1097,48 @@ const KN={id:'knit-nodes',
   ['Cable, seed and slip-stitch brace','At 182–214% of capacity they pull the sleeve slimmer, which suits a joint that needs bracing more than drape.','#DC3228']],
  ramp:[['#285AC8','Relaxed'],['#3CB478','Comfortable'],['#F0D23C','At limit'],['#DC3228','Overstretched']],
  mats:[['#F0EEE8','Yarn · matte white'],['#96989E','Struts · satin grey'],['#D6564A','Swatch · coral'],['#5A5A64','Swatch · slate']],
- fun:['Every knit comes from the same loop equation. Only the rule table changes.','The cable crossing is an eased half-cosine shift spread over eight rows.','Slip-stitch is stiff because of its floats: the straight yarn carried behind the stitches can’t stretch.','Garter needs 34 more rounds than jersey to cover the same node.']
+ fun:['Every knit comes from the same loop equation. Only the rule table changes.','In the cable, the crossing stitches reach three wales sideways in a single row, which is why the legs run diagonal.','Slip-stitch is stiff because of its floats: the straight yarn carried across the stitches can’t stretch.','Garter needs 34 more rounds than jersey to cover the same node.']
 };
+
+/* stitch library: renders + charts generated from the same rules */
+const KL=[
+ ['stockinette','Stockinette (Jersey)','#D9483B','Every stitch knit.','Columns of V’s. Smooth, and it curls at the edges.'],
+ ['garter','Garter','#E8922A','Knit every row, so a purl course shows on every other row.','Horizontal ridges of purl bumps. Squat and springy lengthwise.'],
+ ['rib1','Rib 1×1','#E0BF2E','Alternate knit and purl columns.','Purl wales sink behind the knits, so the fabric draws in.'],
+ ['rib2','Rib 2×2','#5DAA45','Two knit columns, two purl.','Deeper channels than 1×1; bolder, slightly looser grip.'],
+ ['seed','Seed / Moss','#2E9E8E','Knit and purl checkerboard, offset every row.','Pebbled all over. Lies flat with no curl.'],
+ ['cable','Cable','#3B6FD0','Six knits swap three-over-three every sixth row, between purl columns.','Legs stretch diagonally and the front pair lifts over the back.'],
+ ['lace','Lace Eyelet','#8A55C8','Yarn-over above a decrease, on a half-drop grid.','The decrease makes room and the yarn-over opens a hole.'],
+ ['tuck','Honeycomb Tuck','#D0509A','Hold a loop for one row, staggered every second row.','Held loops stretch tall and pull their neighbours into cells.'],
+ ['slip','Slip-Stitch Float','#8A5A30','Two-colour stripes; slip every fourth stitch with the yarn in front.','Floats lie on the face and slipped stitches carry colour up.'],
+ ['chevron','Chevron Wave','#4A4C56','Stockinette with wales raised and lowered on a ten-stitch zigzag.','Stripes bend into peaks and valleys.']];
+function knChart(id,col){
+ const C=10,R=10,u=10; let g='';
+ const two=id==='slip'?['#E8DCC2','#8A5A30']:id==='chevron'?['#C9CBD2','#4A4C56']:null;
+ for(let r=0;r<R;r++)for(let c=0;c<C;c++){
+  const x=c*u,y=(R-1-r)*u; let k='K', fill=null;
+  if(id==='garter'&&r%2)k='P';
+  if(id==='rib1'&&c%2)k='P';
+  if(id==='rib2'&&c%4>=2)k='P';
+  if(id==='seed'&&(r+c)%2)k='P';
+  if(id==='cable'&&(c<2||c>7))k='P';
+  if(id==='lace'){if((r%6===2&&c%6===1)||(r%6===5&&c%6===4))k='O';else if((r%6===1&&c%6===1)||(r%6===4&&c%6===4))k='/'}
+  if(id==='tuck'&&((r%4===1&&c%4===1)||(r%4===3&&c%4===3)))k='T';
+  if(id==='slip'){const B=Math.floor(r/2)%2===1;fill=two[B?1:0];if(B&&c%4===(Math.floor(r/4)%2===0?1:3)){k='V';fill=two[0]}}
+  if(id==='chevron'){const m=c%10,o=(m<=5?m:10-m);fill=two[Math.floor((r+o+30)/3)%2]}
+  g+=`<rect x="${x+.5}" y="${y+.5}" width="${u-1}" height="${u-1}" fill="${fill||'#fff'}" fill-opacity="${fill?1:.06}" stroke="#fff" stroke-opacity=".22" stroke-width=".6"/>`;
+  const cx=x+u/2,cy=y+u/2,ink=fill==='#E8DCC2'||fill==='#C9CBD2'?'#222':'#fff';
+  if(k==='P')g+=`<circle cx="${cx}" cy="${cy}" r="1.6" fill="${ink}"/>`;
+  if(k==='O')g+=`<circle cx="${cx}" cy="${cy}" r="3" fill="none" stroke="${ink}" stroke-width="1.1"/>`;
+  if(k==='/')g+=`<path d="M${x+2.5} ${y+u-2.5}L${x+u-2.5} ${y+2.5}" stroke="${ink}" stroke-width="1.2"/>`;
+  if(k==='T')g+=`<path d="M${x+2.5} ${y+3}Q${cx} ${y+u+2} ${x+u-2.5} ${y+3}" fill="none" stroke="${ink}" stroke-width="1.1"/>`;
+  if(k==='V')g+=`<path d="M${x+2.5} ${y+2.5}L${cx} ${y+u-2.5}L${x+u-2.5} ${y+2.5}" fill="none" stroke="${ink}" stroke-width="1.1"/>`;
+ }
+ if(id==='cable')for(const r of [3,9]){const y=(R-1-r)*u;g+=`<rect x="20.5" y="${y+.5}" width="59" height="9" fill="#0B0C10" stroke="#fff" stroke-width=".8"/><path d="M22 ${y+8}L49 ${y+2}M51 ${y+8}L78 ${y+2}" stroke="${col}" stroke-width="2.2"/><path d="M22 ${y+2}L49 ${y+8}" stroke="#fff" stroke-width="1.1"/>`}
+ return `<svg class="kn-chart" viewBox="0 0 ${C*u} ${R*u}" role="img" aria-label="Knitting chart for ${id}">${g}</svg>`;
+}
+const knLib=()=>`<ul class="kn-legend" aria-label="Chart key"><li><svg viewBox="0 0 10 10"><rect x=".5" y=".5" width="9" height="9" fill="#fff" fill-opacity=".06" stroke="#fff" stroke-opacity=".3"/></svg>Knit</li><li><svg viewBox="0 0 10 10"><rect x=".5" y=".5" width="9" height="9" fill="#fff" fill-opacity=".06" stroke="#fff" stroke-opacity=".3"/><circle cx="5" cy="5" r="1.6" fill="#fff"/></svg>Purl</li><li><svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="3" fill="none" stroke="#fff"/></svg>Yarn-over</li><li><svg viewBox="0 0 10 10"><path d="M2.5 7.5L7.5 2.5" stroke="#fff" stroke-width="1.2"/></svg>Decrease</li><li><svg viewBox="0 0 10 10"><path d="M2.5 3Q5 12 7.5 3" fill="none" stroke="#fff"/></svg>Tuck</li><li><svg viewBox="0 0 10 10"><path d="M2.5 2.5L5 7.5L7.5 2.5" fill="none" stroke="#fff"/></svg>Slip</li><li><svg viewBox="0 0 10 10"><path d="M1 8L9 2" stroke="#3B6FD0" stroke-width="2"/><path d="M1 2L9 8" stroke="#fff"/></svg>Cable cross</li></ul>
+ <div class="kn-lib">${KL.map(([id,n,col,rule,read],i)=>`<figure class="kn-card"><div class="kn-sw">${im(['img/kn__lib_'+id+'.webp',900,900],n+' swatch: '+read)}<span class="kn-n">${n2(i)}</span></div><h3>${n}</h3><div class="kn-meta">${knChart(id,col)}<p><b>${esc(rule)}</b>${esc(read)}</p></div></figure>`).join('')}</div>`;
 function knPage(){
  const fig=(r,cls='')=>`<figure class="${cls}">${im(r,r[3])}<figcaption>${esc(r[3])}</figcaption></figure>`;
  return head('product','New')+`<main>
@@ -1098,9 +1152,10 @@ function knPage(){
   <div class="stats" style="margin-top:0"><div><b>10</b><span>Knit structures</span></div><div><b>612</b><span>Knitted rounds</span></div><div><b>1</b><span>Loop equation</span></div><div><b>0</b><span>Hand-drawn stitches</span></div></div></div>
  </div></section>
 
- <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Stitch Library</h2><p class="sh-sub">Ten swatches / One parametric loop / Rules, not drawings</p>
-  <div class="mono">${fig(KN.swatches)}</div>
-  <div class="kn-duo">${fig(KN.sw)}${fig(KN.white)}</div>
+ <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Stitch Library</h2><p class="sh-sub">Ten structures / One parametric loop / Rules, not drawings</p>
+  <p class="intro" style="margin-top:24px">Each stitch is the same loop equation run through a different rule. Knits show their legs, purls show their heads, and the rule decides which, where, and how far a loop stretches. Charts read from the bottom row up.</p>
+  ${knLib()}
+  <div class="kn-duo" style="padding-top:48px">${fig(KN.sw)}${fig(KN.white)}</div>
  </div></section>
 
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Process</h2><p class="sh-sub">Six steps / One rule table / Every loop generated</p>
