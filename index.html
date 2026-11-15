@@ -377,6 +377,13 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 body.gm-lock{overflow:hidden}
 button.btn{cursor:pointer}
 
+/* v29: Rhino ⇄ Adobe series */
+.ra-dl{display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:40px;align-items:center;padding-top:32px}
+.ra-dl .media{aspect-ratio:4/5}
+.ra-dl h3{margin:0 0 8px}
+.ra-dl .btn{margin-top:20px}
+.gl-pages.ra-pages{grid-template-columns:repeat(5,minmax(0,1fr))}
+@media (max-width:900px){.ra-dl{grid-template-columns:minmax(0,1fr)}.gl-pages.ra-pages{grid-template-columns:repeat(2,minmax(0,1fr))}}
 /* v27: Rhino & Grasshopper Glossaries */
 .gl-dl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;padding-top:32px}
 .gl-dl figure{margin:0;min-width:0;display:grid;gap:10px;align-content:start}
@@ -906,6 +913,8 @@ function home(){
   <p class="intro" style="margin-top:12px">Projects where the craft is the system behind the visuals: scripted 3D illustration and type, AI-built design systems and a cookbook generated from code.</p>
   <div class="cards c2">${vis}</div>
   <h3 class="sub-h">Free Resources</h3>
+  <a class="feature gl-feat" href="#${RA.id}"><div class="media tr-l"><span class="badge">New</span>${im(RA.img.hero,'Three slides from Rhino to Illustrator, volume one of the Rhino and Adobe series')}</div>
+  <div><small>New · Free download · Rhino ⇄ Adobe · Vol. 01</small><h3>Rhino → Illustrator</h3><p>The first volume of a series on moving work between Rhino and Adobe's tools: a bridge glossary, the full round trip and the five things that go wrong, in ten slides.</p><span class="go">Get the PDF →</span></div></a>
   <a class="feature gl-feat" href="#${GL.id}"><div class="media tr-l"><span class="badge">New</span>${im(GL.img.hero,'Covers of the Rhino Glossary and the Grasshopper Glossary')}</div>
   <div><small>New · Free download · English &amp; Español</small><h3>Rhino &amp; Grasshopper Glossaries</h3><p>Two beginner glossaries I wrote and designed as LinkedIn carousels: 96 terms, commands and components in plain language, each linked to its reference page.</p><span class="go">Get the PDFs →</span></div></a>
  </div></section>
@@ -2092,6 +2101,41 @@ document.addEventListener('click',e=>{
   setTimeout(()=>{try{f.focus();f.contentWindow&&f.contentWindow.focus()}catch(err){}},150)}
  else if(e.target.closest('#gm-x')) gmExit();
 });
+/* ---------- v29: Rhino ⇄ Adobe · Vol. 01 · Rhino → Illustrator (free PDF) ---------- */
+const RAI=(f,w,h,c)=>['img/ra__'+f+'.webp',w||864,h||1080,c||''];
+const RA={id:'rhino-to-illustrator',
+ img:{hero:RAI('hero',1600,1000),row:RAI('row',1600,900),cover:RAI('01')},
+ pdf:'downloads/Rhino-to-Illustrator-Vol01-Tigre-Studio.pdf',
+ pages:[RAI('02',0,0,'Two kinds of curve: NURBS and Bézier'),RAI('03',0,0,'Bridge glossary: in Rhino'),RAI('04',0,0,'Bridge glossary: the handoff'),RAI('05',0,0,'Bridge glossary: in Illustrator'),RAI('06',0,0,'The round trip: Rhino side'),RAI('07',0,0,'The round trip: Illustrator side'),RAI('08',0,0,'Five things that go wrong'),RAI('09',0,0,'By the numbers'),RAI('10',0,0,'Next: Rhino → Stager'),RAI('01',0,0,'The cover')]
+};
+function raPage(){
+ const pages=RA.pages.map((p,i)=>`<figure><div class="media ${i%2?'bl':'tr'}">${im(p,p[3])}</div><figcaption>${esc(p[3])}</figcaption></figure>`).join('');
+ return head('product','New')+`<main>
+ <section class="band dark"><div class="wrap case"><p class="num">New · Free Resource / Rhino ⇄ Adobe · Vol. 01</p><h1>Rhino → Illustrator</h1><p class="meta">A bridge glossary / The round trip / The fixes · LinkedIn carousel and free PDF</p>
+  <p class="note">Rhino draws with NURBS. Illustrator draws with Béziers. This is the guide to getting work from one to the other and back, without a blank artboard or a wobbly curve.</p>
+  <dl class="facts"><div><dt>Role</dt><dd>Research, writing, design, illustration</dd></div><div><dt>Tools</dt><dd>McNeel &amp; Adobe docs · HTML → PDF · Python</dd></div><div><dt>Output</dt><dd>1 PDF · 10 carousel slides</dd></div><div><dt>Content</dt><dd>12 bridge terms · 7 steps · 5 fixes</dd></div></dl></div></section>
+ <div class="band dark" style="padding-bottom:56px"><div class="wrap"><div class="media tr-l">${im(RA.img.hero,'Three slides from Rhino to Illustrator','heroimg')}</div></div></div>
+
+ <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Download The PDF</h2><p class="sh-sub">Free / 10 pages / English</p>
+  <div class="ra-dl"><a class="media tr" href="${RA.pdf}" download aria-label="Download the Rhino to Illustrator PDF">${im(RA.img.cover,'Cover of Rhino to Illustrator')}</a>
+  <div><h3>Rhino ⇄ Adobe · Vol. 01</h3><p>Twelve terms that matter at the handoff, the seven-step round trip from model to artboard and back, and the fixes for the five most common problems. Checked against McNeel's and Adobe's documentation.</p>
+  <a class="btn inv" href="${RA.pdf}" download>Download PDF ↓</a></div></div>
+  <p class="fine">A direct download, no sign-up. Share it freely; credit Tigre Studio. Not affiliated with McNeel or Adobe; Rhino and Illustrator are trademarks of their owners.</p>
+ </div></section>
+
+ <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Why A Series</h2><p class="sh-sub">One bridge per volume / Glossary, workflow, a finished piece</p>
+  <div class="cols"><div><h3>The Gap</h3><p>Plenty of people teach Rhino and plenty teach Illustrator. Almost nobody covers the handoff, where curves change type, scale gets lost and layers go missing.</p></div>
+  <div><h3>The Format</h3><p>Each volume is a bridge glossary, a round-trip workflow and the common fixes, built on one 1080 × 1350 template for LinkedIn and exported as a PDF.</p></div>
+  <div><h3>What's Next</h3><p>Vol. 02 takes Rhino models into Substance 3D Stager for product staging and rendering. More bridges follow.</p></div></div>
+ </div></section>
+
+ <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Inside The Pages</h2><p class="sh-sub">Black and white / Original diagrams / Tigre stripes</p>
+  <div class="gl-pages ra-pages">${pages}</div>
+ </div></section>
+
+ <section class="statement">${im(RA.img.row,'Four slides from Rhino to Illustrator side by side')}<p>Two kinds of curve, <span class="it">one round trip.</span></p></section>
+ ${nextLink('product',{id:GL.id,title:'Rhino & Grasshopper Glossaries'})}</main>`+foot();
+}
 /* ---------- Rhino & Grasshopper Glossaries (free PDFs) ---------- */
 const GLI=(f,w,h,c)=>['img/gl__'+f+'.webp',w||864,h||1080,c||''];
 const GL={id:'glossaries',
@@ -2136,6 +2180,7 @@ function route(){
  let i, html=null, title='Henry Ortega · Footwear Innovation & Product Development';
  if((i=GAMES.findIndex(g=>g.id===h))>=0){html=gamePage(i);title=GAMES[i].title+' · Henry Ortega'}
  else if(h===CB.id){html=cookbookPage();title='Fold / Bake · Henry Ortega'}
+ else if(h===RA.id){html=raPage();title='Rhino → Illustrator · Rhino ⇄ Adobe Vol. 01 · Henry Ortega'}
  else if(h===GL.id){html=glPage();title='Rhino & Grasshopper Glossaries · Henry Ortega'}
  else if(h===RS.id){html=rsmPage();title='The Rising Sun Museum · Henry Ortega'}
  else if(h===BC.id){html=bcPage();title='BASECAMP · Henry Ortega'}
