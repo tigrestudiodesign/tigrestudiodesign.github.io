@@ -504,6 +504,11 @@ button.btn{cursor:pointer}
 @media (max-width:560px){.ar-3,.ar-5{grid-template-columns:1fr 1fr}}
 
 /* v37: Knit Curve Atlas specimen book */
+.ka2-th{display:block;width:100%;aspect-ratio:1;background:url(img/ka2/sprite_th.webp) var(--x) var(--y)/1200% 1000% no-repeat;transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.ka2-vw{display:block;width:100%;aspect-ratio:1;background:url(img/ka2/sprite_view.webp) var(--x) var(--y)/1200% 1000% no-repeat}
+.ka2-plate .ka2-th{margin:-6% 0}
+.ka2-index button:hover .ka2-th{transform:scale(1.07) rotate(-4deg)}
+
 .ka2 h1,.ka2 h2,.ka2 h3{text-transform:uppercase}
 .ka2-hero{padding-top:56px;padding-bottom:0}
 .ka2-eyebrow{display:flex;gap:28px;margin:0 0 40px;font:500 12px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-d);border-top:1px solid #fff;padding-top:14px}
@@ -1439,6 +1444,8 @@ const KA={id:'knit-curve-atlas',
   ['109','Viviani’s curve','Where a cylinder pierces a sphere. Seen head-on it is a figure-eight; it closes the atlas where the lemniscate opened its algebra.']]
 };
 const kaImg=(n,sz)=>`img/ka2/ball_${n}${sz?'_'+sz:''}.webp`;
+const kaPos=n=>{const i=+n-1;return `--x:${((i%12)/11*100).toFixed(3)}%;--y:${(Math.floor(i/12)/9*100).toFixed(3)}%`};
+const kaTh=(n,label)=>`<span class="ka2-th" style="${kaPos(n)}"${label?` role="img" aria-label="${esc(label)}"`:' aria-hidden="true"'}></span>`;
 function kaPage(){
  const famBar=KA.fams.map(([k,l,c,n])=>`<li style="--c:${c};flex:${n}"><span>${n}</span></li>`).join('');
  return head('product','New')+`<main class="ka2">
@@ -1446,7 +1453,7 @@ function kaPage(){
   <p class="ka2-eyebrow"><span>Personal study</span><span>Pattern · Textile CMF</span><span>2026</span></p>
   <div class="ka2-title"><b aria-hidden="true">109</b><div><h1>Knit Curve Atlas</h1><p>One knitted sphere. One yarn system. One hundred and nine mathematical curves, worked into the stitches as contrast yarn and catalogued like a type specimen.</p></div></div>
  </div>
- <div class="ka2-plate" aria-label="The atlas plate: 109 knitted spheres">${Array.from({length:109},(_,i)=>{const n=String(i+1).padStart(3,'0');return `<img src="${kaImg(n)}" alt="" loading="${i<36?'eager':'lazy'}" decoding="async" width="360" height="360">`}).join('')}<div class="ka2-plate-end"><b>109</b><span>curves<br>13 families<br>1 knit</span></div></div>
+ <div class="ka2-plate" aria-label="The atlas plate: 109 knitted spheres">${Array.from({length:109},(_,i)=>kaTh(i+1)).join('')}<div class="ka2-plate-end"><b>109</b><span>curves<br>13 families<br>1 knit</span></div></div>
  </section>
 
  <section class="band dark ka2-statement"><div class="wrap"><p>Line, conic, cubic, rose, spiral, fractal, knot. Every curve here is drawn by an equation, and every one is knitted on the same ball, in the same yarn, at the same gauge. <em>Only the rule changes.</em></p>
@@ -1470,7 +1477,7 @@ function kaPage(){
   <ol class="ka2-steps">
    <li><figure><div class="ka2-draw" data-curve="29" aria-label="Line drawing of the lemniscate"></div></figure><b>A · Draw</b><h3>The curve as a line</h3><p>Each curve is written as an equation, an implicit polynomial or an L-system, then fitted to the visible face of the sphere.</p></li>
    <li><figure>${im(['img/ka2/proc_map.webp',900,900],'The lemniscate quantised onto the stitch grid')}</figure><b>B · Map</b><h3>The line becomes stitches</h3><p>Every stitch whose centre falls on the curve switches to white. The motif is resolved stitch by stitch, like an intarsia chart.</p></li>
-   <li><figure>${im([kaImg('029'),360,360],'The knitted lemniscate')}</figure><b>C · Knit</b><h3>The knit carries the motif</h3><p>Stitch rows tighten toward the poles as on a real knitted ball, so the motif lives in the material instead of being printed on top.</p></li>
+   <li><figure>${im([kaImg('029','l'),1200,1200],'The knitted lemniscate')}</figure><b>C · Knit</b><h3>The knit carries the motif</h3><p>Stitch rows tighten toward the poles as on a real knitted ball, so the motif lives in the material instead of being printed on top.</p></li>
   </ol>
  </div></section>
 
@@ -1486,7 +1493,7 @@ function kaPage(){
   <div><small>Scale</small><h3>Hundreds of variants, one setup</h3><p>Base, yarn, gauge and light stay fixed while the rule changes, so a whole range can be reviewed side by side.</p></div></div>
   <p class="ka2-credit">Curve library, knit mapping, colour system and rendering by Henry Mauricio Ortega Vera · Rhino 9 · Python · Blender Cycles. Companion study: <a href="#knit-nodes">Computational Couture: Knit Nodes</a>.</p>
  </div></section>
- <div class="ka2-view" id="kaView" hidden role="dialog" aria-modal="true" aria-label="Specimen"><button type="button" class="x" aria-label="Close">×</button><button type="button" class="pv" aria-label="Previous">←</button><button type="button" class="nx" aria-label="Next">→</button><div class="in"><figure><img alt=""></figure><div><b></b><h3></h3><p></p><div class="ka2-draw"></div></div></div></div>
+ <div class="ka2-view" id="kaView" hidden role="dialog" aria-modal="true" aria-label="Specimen"><button type="button" class="x" aria-label="Close">×</button><button type="button" class="pv" aria-label="Previous">←</button><button type="button" class="nx" aria-label="Next">→</button><div class="in"><figure><span class="ka2-vw" role="img"></span></figure><div><b></b><h3></h3><p></p><div class="ka2-draw"></div></div></div></div>
  ${nextLink('product',{id:'knit-nodes',title:'Knit Nodes'})}</main>`+foot();
 }
 let KAD=null;
@@ -1495,7 +1502,7 @@ function mountKA(){
  const ix=document.getElementById('kaIndex'); if(!ix) return;
  const famC=Object.fromEntries(KA.fams.map(f=>[f[0],f])),view=document.getElementById('kaView');
  const go=d=>{KAD=d;
-  ix.innerHTML=d.curves.map(c=>{const n=String(c.n).padStart(3,'0');return `<li data-f="${c.f}"><button type="button" data-n="${c.n}" style="--c:${famC[c.f][2]}"><img src="${kaImg(n)}" alt="" loading="lazy" decoding="async" width="360" height="360"><b>${n}</b><span>${esc(c.name)}</span></button></li>`}).join('');
+  ix.innerHTML=d.curves.map(c=>{const n=String(c.n).padStart(3,'0');return `<li data-f="${c.f}"><button type="button" data-n="${c.n}" style="--c:${famC[c.f][2]}">${kaTh(c.n)}<b>${n}</b><span>${esc(c.name)}</span></button></li>`}).join('');
   document.querySelectorAll('.ka2-draw[data-curve]').forEach(el=>{const c=d.curves[+el.dataset.curve-1];el.innerHTML=kaSvg(c,famC[c.f][2])});
  };
  fetch('data/ka_atlas.json').then(r=>r.json()).then(go).catch(()=>{});
@@ -1503,7 +1510,7 @@ function mountKA(){
  chips.forEach(b=>b.addEventListener('click',()=>{chips.forEach(x=>x.setAttribute('aria-pressed',x===b));const f=b.dataset.f;ix.querySelectorAll('li').forEach(li=>li.hidden=!(f==='all'||li.dataset.f===f))}));
  let cur=1;
  const show=n=>{if(!KAD)return;cur=(n+108)%109+1;const c=KAD.curves[cur-1],f=famC[c.f],nn=String(cur).padStart(3,'0');
-  view.querySelector('img').src=kaImg(nn,'m');view.querySelector('img').alt=c.name+' knitted on a sphere';view.querySelector('b').textContent=nn;view.querySelector('h3').textContent=c.name;
+  const vw=view.querySelector('.ka2-vw');vw.setAttribute('style',kaPos(cur));vw.setAttribute('aria-label',c.name+' knitted on a sphere');view.querySelector('b').textContent=nn;view.querySelector('h3').textContent=c.name;
   view.querySelector('p').innerHTML=`<em style="--c:${f[2]}"></em>${f[1]}`;view.querySelector('.ka2-draw').innerHTML=kaSvg(c,f[2]);};
  const open=n=>{show(n);view.hidden=false;document.body.style.overflow='hidden';view.querySelector('.x').focus()};
  const close=()=>{view.hidden=true;document.body.style.overflow='';const b=ix.querySelector(`[data-n="${cur}"]`);b&&b.focus()};
