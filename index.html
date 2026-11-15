@@ -260,31 +260,40 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .swatch-row li{width:34px;height:22px;border:1px solid var(--grid)}
 @media (max-width:760px){.tape-row{grid-template-columns:1fr;gap:20px}.tape-row .media{max-width:320px}}
 .tt-stats{display:flex;flex-wrap:wrap;gap:8px 28px;margin:22px 0 0;padding:0;list-style:none;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#7D97A0}.tt-stats b{color:#2EF2D0;font-weight:600}
-.tt-cluster{--t:#2EF2D0;margin-top:32px;position:relative;display:grid;grid-template-columns:1fr minmax(0,1.25fr) 1fr;align-items:center;gap:18px;padding:30px 30px 26px;border-radius:120px 120px 28px 28px/90px 90px 28px 28px;background:radial-gradient(120% 90% at 50% 0%,#141B21 0%,#07090B 62%);border:1px solid #1E272E;box-shadow:inset 0 2px 0 rgba(255,255,255,.05),inset 0 -30px 60px rgba(0,0,0,.6),0 30px 60px -30px rgba(0,0,0,.9)}
-.tt-cluster:before{content:"";position:absolute;inset:10px;border-radius:inherit;pointer-events:none;background:linear-gradient(170deg,rgba(255,255,255,.07) 0%,rgba(255,255,255,0) 32%);mix-blend-mode:screen}
-.tt-dial svg{width:100%;height:auto;display:block;overflow:visible}
-.tt-dial .tk{stroke:#3A4A52;stroke-width:2}.tt-dial .tk.mj{stroke:#8FA6AE;stroke-width:3}.tt-dial .rd{stroke:#FF3B30}
-.tt-dial text{fill:#8FA6AE;font:600 11px ui-monospace,Menlo,Consolas,monospace;text-anchor:middle}
-.tt-dial .lbl{fill:#56707A;font-size:8px;letter-spacing:.14em}
-.tt-dial .rdout{fill:var(--t);font-size:22px;filter:drop-shadow(0 0 5px rgba(46,242,208,.7))}
+.tt-cluster{--t:#2EF2D0;margin-top:36px;display:grid;justify-items:center;gap:22px;padding:56px 24px 40px;border-radius:6px;background:radial-gradient(80% 120% at 50% 0%,#1A1F23 0%,#0A0C0E 55%,#050607 100%)}
+.lx-bin{position:relative;box-sizing:border-box;width:min(100%,1000px);padding:26px 30px 18px;border-radius:64px;background:linear-gradient(180deg,#16191C 0%,#0B0D0F 40%,#060708 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),inset 0 -1px 0 rgba(255,255,255,.04),0 2px 0 #000,0 40px 70px -30px rgba(0,0,0,1),0 0 0 1px #24292E}
+.lx-bin:after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(60% 35% at 50% 0%,rgba(255,255,255,.07),rgba(255,255,255,0) 100%);pointer-events:none}
+.lx-dials{display:grid;grid-template-columns:1fr 1.32fr 1fr;align-items:center;gap:14px}
+.tt-dial{position:relative;border-radius:50%;padding:7%;background:conic-gradient(from 210deg,#5D646A,#D9DEE1 12%,#7C848A 25%,#2E3338 38%,#AEB5BA 52%,#4A5157 66%,#E6EAEC 80%,#6B7379 92%,#5D646A);box-shadow:0 0 0 1px #000,0 8px 18px -6px rgba(0,0,0,.9),inset 0 0 0 1px rgba(255,255,255,.25)}
+.tt-dial:before{content:"";position:absolute;inset:7%;border-radius:50%;box-shadow:inset 0 3px 8px rgba(0,0,0,.95);z-index:1;pointer-events:none}
+.tt-dial:after{content:"";position:absolute;inset:7%;border-radius:50%;z-index:2;pointer-events:none;background:radial-gradient(70% 45% at 35% 18%,rgba(255,255,255,.16),rgba(255,255,255,0) 70%),radial-gradient(120% 120% at 50% 120%,rgba(255,255,255,.05),rgba(255,255,255,0) 50%)}
+.tt-dial svg{width:100%;height:auto;display:block;border-radius:50%;background:radial-gradient(circle at 50% 45%,#121518,#060708 72%)}
+.tt-dial .tk{stroke:#5B656B;stroke-width:1}.tt-dial .tk.md{stroke:#9AA4A9;stroke-width:1.4}.tt-dial .tk.mj{stroke:#F2F4F5;stroke-width:2.4}.tt-dial .rd{stroke:#FF4A2E}
+.tt-dial text{fill:#E9EDEF;font:300 13px Inter,system-ui,sans-serif;text-anchor:middle;letter-spacing:.02em}
+.tt-dial .lbl{fill:#7D8A90;font:500 6.5px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.24em}
+.tt-dial .rdout{fill:var(--t);font:500 19px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.04em;filter:drop-shadow(0 0 4px rgba(46,242,208,.55))}
 .tt-ndl{transform-origin:100px 100px;transform:rotate(var(--a,-135deg));transition:transform 1.1s cubic-bezier(.45,.05,.2,1)}
-.tt-ndl path{fill:#FF5A3C;filter:drop-shadow(0 0 4px rgba(255,90,60,.8))}
-.tt-mid{display:grid;gap:16px;justify-items:center;min-width:0}
-.tt-lamps{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;padding:12px;border-radius:14px;background:#050607;border:1px solid #1E272E;box-shadow:inset 0 0 18px rgba(0,0,0,.9)}
-.tt-lamps button{all:unset;cursor:pointer;width:46px;height:46px;display:grid;place-items:center;border-radius:9px;background:#0B0F12;color:#1F2A31;transition:color .12s,filter .12s,background .12s}
-.tt-lamps button:focus-visible{outline:2px solid var(--t);outline-offset:2px}
-.tt-lamps svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:2.25;stroke-linecap:round;stroke-linejoin:round}
-.tt-lamps .on,.is-check .tt-lamps button{background:#0E1418}
-.tt-lamps .on[data-c=g],.is-check [data-c=g]{color:#4CFF6A;filter:drop-shadow(0 0 7px #4CFF6A)}
-.tt-lamps .on[data-c=b],.is-check [data-c=b]{color:#3FA9FF;filter:drop-shadow(0 0 7px #3FA9FF)}
-.tt-lamps .on[data-c=a],.is-check [data-c=a]{color:#FFB23E;filter:drop-shadow(0 0 7px #FFB23E)}
-.tt-lamps .on[data-c=r],.is-check [data-c=r]{color:#FF3B30;filter:drop-shadow(0 0 7px #FF3B30)}
+.tt-ndl .sh{fill:#F2F4F5}.tt-ndl .tp{fill:#FF4A2E}
+.tt-ndl.hd{transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
+.tt-dial .cap{fill:url(#lxCap);stroke:#000;stroke-width:.6}
+.lx-low{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:14px;padding:0 6%}
+.tt-lamps{display:flex;flex-wrap:wrap;justify-content:center;gap:4px}
+.tt-lamps button{all:unset;cursor:pointer;width:40px;height:36px;display:grid;place-items:center;border-radius:6px;color:#1A2227;transition:color .12s,filter .12s}
+.tt-lamps button:focus-visible{outline:1px solid var(--t);outline-offset:1px}
+.tt-lamps svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2.25;stroke-linecap:round;stroke-linejoin:round}
+.tt-lamps .on[data-c=g],.is-check [data-c=g]{color:#4CFF6A;filter:drop-shadow(0 0 6px #4CFF6A)}
+.tt-lamps .on[data-c=b],.is-check [data-c=b]{color:#3FA9FF;filter:drop-shadow(0 0 6px #3FA9FF)}
+.tt-lamps .on[data-c=a],.is-check [data-c=a]{color:#FFB23E;filter:drop-shadow(0 0 6px #FFB23E)}
+.tt-lamps .on[data-c=r],.is-check [data-c=r]{color:#FF3B30;filter:drop-shadow(0 0 6px #FF3B30)}
 .tt-lamps .blink{animation:ttBlink .9s steps(1) infinite}
-@keyframes ttBlink{50%{color:#1F2A31;filter:none}}
-.tt-odo{font:500 13px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.18em;color:var(--t);text-shadow:0 0 6px rgba(46,242,208,.6);padding:6px 14px;border-radius:6px;background:#050607;border:1px solid #1E272E}
-.tt-ctrl{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
-.tt-ctrl button{font:600 11px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.12em;text-transform:uppercase;color:#C9D6DA;background:#10151A;border:1px solid #2B3640;border-radius:999px;padding:8px 14px;cursor:pointer}
+@keyframes ttBlink{50%{color:#1A2227;filter:none}}
+.tt-odo{font:500 11px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.22em;color:var(--t);text-shadow:0 0 6px rgba(46,242,208,.5);white-space:nowrap}
+.tt-ctrl{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tt-ctrl button{font:600 11px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.14em;text-transform:uppercase;color:#C9D0D3;background:linear-gradient(180deg,#1B1F23,#0E1114);border:1px solid #30373D;box-shadow:inset 0 1px 0 rgba(255,255,255,.08);border-radius:999px;padding:9px 16px;cursor:pointer}
 .tt-ctrl button:hover,.tt-ctrl button[aria-pressed=true]{border-color:var(--t);color:var(--t)}
+@media (max-width:820px){.tt-cluster{padding:30px 10px 26px}.lx-bin{padding:16px 14px 12px;border-radius:40px}.lx-dials{gap:6px}.lx-low{flex-direction:column;gap:8px}.tt-dial text{font-size:15px}}
+@media (max-width:480px){.lx-low{padding:0}.tt-lamps{gap:1px;flex-wrap:nowrap}.tt-lamps button{width:27px;height:26px}.tt-lamps svg{width:17px;height:17px}}
+@media (prefers-reduced-motion:reduce){.tt-ndl{transition:none}.tt-lamps .blink{animation:none}}
 .tt-key{list-style:none;padding:0;margin:20px 0 0;display:flex;flex-wrap:wrap;gap:10px 26px;font-size:13px;color:#B8C4C8}
 .tt-key li{display:flex;align-items:center;gap:8px}.tt-key i{width:10px;height:10px;border-radius:50%;background:var(--c);box-shadow:0 0 8px var(--c)}.tt-key b{color:#fff;font-weight:600}
 .tt-h{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:#7D97A0;margin:44px 0 14px;display:flex;justify-content:space-between;border-bottom:1px solid #1E272E;padding-bottom:10px}
@@ -294,8 +303,6 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .tt-icons svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:2.25;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 5px var(--c))}
 .tt-icons figcaption{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10px;color:#7D97A0;text-align:center;overflow-wrap:anywhere}
 .tt-icons [data-c=r]{--c:#FF3B30}.tt-icons [data-c=a]{--c:#FFB23E}.tt-icons [data-c=g]{--c:#4CFF6A}.tt-icons [data-c=b]{--c:#3FA9FF}
-@media (max-width:820px){.tt-cluster{grid-template-columns:1fr 1fr;border-radius:28px;padding:22px 16px}.tt-mid{grid-column:1/-1;order:-1}.tt-lamps button{width:40px;height:40px}}
-@media (max-width:420px){.tt-lamps{gap:5px;padding:8px}.tt-lamps button{width:34px;height:34px}.tt-lamps svg{width:22px;height:22px}}
 @media (prefers-reduced-motion:reduce){.tt-ndl{transition:none}.tt-lamps .blink{animation:none}}
 .split-note{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px;padding-top:32px}
 .split-note h3{font-weight:700;font-size:24px;margin:0 0 12px}
@@ -1818,8 +1825,13 @@ function spPage(){
  const veh=Object.keys(ICONS).filter(n=>n in TTC), ui=Object.keys(ICONS).filter(n=>!(n in TTC));
  const icons=`<h3 class="tt-h"><span>Vehicle telltales</span><span>${veh.length}</span></h3><div class="tt-icons">${veh.map(fig).join('')}</div><h3 class="tt-h"><span>Interface</span><span>${ui.length}</span></h3><div class="tt-icons">${ui.map(fig).join('')}</div>`;
  const lamps=[['turn-left','g',1],['high-beam','b',1],['fuel','a',1],['oil','r'],['battery','r'],['coolant','r'],['brake','r',1],['service','a'],['warning','a'],['turn-right','g']].map(([n,c,r])=>`<button type="button" data-c="${c}" data-n="${n}"${r?' data-run':''} aria-pressed="false" aria-label="${n} lamp">${ico(n)}</button>`).join('');
- const dial=(max,step,unit,red)=>{let t='';const N=max/step;for(let i=0;i<=N*2;i++){const v=i*step/2,ang=(-225+270*v/max)*Math.PI/180,mj=i%2===0,r1=mj?74:79,isR=red&&v>=red;t+=`<line class="tk${mj?' mj':''}${isR?' rd':''}" x1="${(100+r1*Math.cos(ang)).toFixed(1)}" y1="${(100+r1*Math.sin(ang)).toFixed(1)}" x2="${(100+86*Math.cos(ang)).toFixed(1)}" y2="${(100+86*Math.sin(ang)).toFixed(1)}"/>`;if(mj)t+=`<text x="${(100+60*Math.cos(ang)).toFixed(1)}" y="${(104+60*Math.sin(ang)).toFixed(1)}">${unit==='rpm'?v/1000:v}</text>`}
-  return `<div class="tt-dial"><svg viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="94" fill="#050607" stroke="#1E272E" stroke-width="2"/>${t}<text class="rdout" x="100" y="146" data-r>0</text><text class="lbl" x="100" y="162">${unit==='rpm'?'×1000 RPM':'MPH'}</text><g class="tt-ndl" data-max="${max}" style="--a:-135deg"><path d="M98 104 L100 22 L102 104 Z"/></g><circle cx="100" cy="100" r="9" fill="#10151A" stroke="#2B3640" stroke-width="2"/></svg></div>`};
+ const capDef=`<defs><radialGradient id="lxCap" cx="40%" cy="35%"><stop offset="0" stop-color="#E6EAEC"/><stop offset=".6" stop-color="#6E767C"/><stop offset="1" stop-color="#2A2F33"/></radialGradient></defs>`;
+ const pt=(r,ang)=>[(100+r*Math.cos(ang)).toFixed(1),(100+r*Math.sin(ang)).toFixed(1)];
+ const ndl=(role,max,dec,len)=>`<g class="tt-ndl" data-role="${role}" data-max="${max}" data-dec="${dec}" style="--a:-135deg"><path class="sh" d="M98.6 116 L99.4 ${100-len+14} L100.6 ${100-len+14} L101.4 116 Z"/><path class="tp" d="M99.4 ${100-len+14} L100 ${100-len} L100.6 ${100-len+14} Z"/></g><circle class="cap" cx="100" cy="100" r="6.5"/>`;
+ const dial=(role,max,step,unit,red,div)=>{let t='';const sub=10;for(let i=0;i<=max/step*sub;i++){const v=i*step/sub,ang=(-225+270*v/max)*Math.PI/180,mj=i%sub===0,md=!mj&&i%(sub/2)===0,r1=mj?72:md?77:80,isR=red&&v>=red;const[x1,y1]=pt(r1,ang),[x2,y2]=pt(86,ang);t+=`<line class="tk${mj?' mj':md?' md':''}${isR?' rd':''}" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/>`;if(mj){const[x,y]=pt(58,ang);t+=`<text x="${x}" y="${(+y+4.5).toFixed(1)}">${v/div}</text>`}}
+  return `<div class="tt-dial"><svg viewBox="0 0 200 200" aria-hidden="true">${capDef}${t}<text class="rdout" x="100" y="143" data-r="${role}">0</text><text class="lbl" x="100" y="157">${unit}</text>${ndl(role,max,div>1?1:0,84)}</svg></div>`};
+ const clock=()=>{let t='';for(let i=0;i<60;i++){const ang=(i*6-90)*Math.PI/180,mj=i%5===0,[x1,y1]=pt(mj?76:81,ang),[x2,y2]=pt(86,ang);t+=`<line class="tk${mj?' mj':''}" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/>`;if(i%15===0){const[x,y]=pt(62,ang);t+=`<text x="${x}" y="${(+y+4.5).toFixed(1)}">${i?i/5:12}</text>`}}
+  return `<div class="tt-dial"><svg viewBox="0 0 200 200" aria-hidden="true">${capDef}${t}<text class="lbl" x="100" y="140">LOCAL TIME</text><g class="tt-ndl hd" data-h style="--a:0deg"><path class="sh" d="M98.2 108 L99 52 L101 52 L101.8 108 Z"/></g><g class="tt-ndl hd" data-m style="--a:0deg"><path class="sh" d="M98.8 110 L99.4 26 L100.6 26 L101.2 110 Z"/></g><g class="tt-ndl hd" data-s style="--a:0deg"><path class="tp" d="M99.5 118 L99.7 20 L100.3 20 L100.5 118 Z"/></g><circle class="cap" cx="100" cy="100" r="5"/></svg></div>`};
  const nx=RH[0];
  return head('product','AI')+`<main>
  <section class="band dark"><div class="wrap case"><p class="num">AI Design Systems / Standard Play</p><h1>Standard Play</h1><p class="meta">An open library of design systems on tape</p>
@@ -1834,9 +1846,9 @@ function spPage(){
  </div></section>
  <section class="band light"><div class="wrap" style="padding-bottom:64px"><h2 class="sh-title" style="font-size:32px">The Shelf</h2><p class="sh-sub">Five tapes, five eras / Each one boxed like the real thing</p>${rows}</div></section>
  <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Telltales</h2><p class="sh-sub">46 icons drawn like dashboard warning lights</p>
-  <p class="intro">Part of the C-46 tape. Each icon is outlined to one shape, so its color survives an icon swap, and a lamp component lights it in the color a real dashboard would use. Turn the key to run the bulb check, or tap any lamp.</p>
+  <p class="intro">Part of the C-46 tape. Each icon is outlined to one shape, so its color survives an icon swap, and a lamp component lights it in the color a real dashboard would use. The cluster is drawn like a modern binnacle: three ringed dials under domed glass, with the lamps set into the casing below. Turn the key to run the bulb check, or tap any lamp.</p>
   <ul class="tt-stats"><li><b>46</b> icons</li><li><b>24px</b> grid</li><li><b>2.25</b> stroke</li><li><b>1</b> outlined shape each</li><li><b>5</b> lamp colors</li></ul>
-  <div class="tt-cluster" id="ttc">${dial(160,20,'mph')}<div class="tt-mid"><div class="tt-lamps" role="group" aria-label="Telltale lamps: tap one to switch it on or off">${lamps}</div><div class="tt-odo" data-odo>ODO 046046</div><div class="tt-ctrl"><button type="button" data-k="key">Key on</button><button type="button" data-k="haz" aria-pressed="false">Hazards</button><button type="button" data-k="off">Lamps off</button></div></div>${dial(8000,1000,'rpm',6500)}</div>
+  <div class="tt-cluster" id="ttc"><div class="lx-bin"><div class="lx-dials">${dial('rpm',8000,1000,'×1000 RPM',6500,1000)}${dial('spd',160,20,'MPH',0,1)}${clock()}</div><div class="lx-low"><div class="tt-odo" data-odo>ODO 046046</div><div class="tt-lamps" role="group" aria-label="Telltale lamps: tap one to switch it on or off">${lamps}</div><div class="tt-odo">C-46 · NIGHT</div></div></div><div class="tt-ctrl"><button type="button" data-k="key">Key on</button><button type="button" data-k="haz" aria-pressed="false">Hazards</button><button type="button" data-k="off">Lamps off</button></div></div>
   <ul class="tt-key"><li><i style="--c:#FF3B30"></i><b>Red</b> stop safely</li><li><i style="--c:#FFB23E"></i><b>Amber</b> check soon</li><li><i style="--c:#4CFF6A"></i><b>Green</b> system on</li><li><i style="--c:#3FA9FF"></i><b>Blue</b> high beam</li><li><i style="--c:#2EF2D0"></i><b>Teal</b> interface</li></ul>
   ${icons}
  </div></section>
@@ -2190,18 +2202,21 @@ function gamePage(i){
 function mountTT(){
  const c=document.getElementById('ttc'); if(!c) return;
  const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
- const L=[...c.querySelectorAll('.tt-lamps button')], N=[...c.querySelectorAll('.tt-ndl')], R=[...c.querySelectorAll('[data-r]')], odo=c.querySelector('[data-odo]'), haz=c.querySelector('[data-k=haz]');
+ const L=[...c.querySelectorAll('.tt-lamps button')], N=[...c.querySelectorAll('.tt-ndl[data-role]')], odo=c.querySelector('[data-odo]'), haz=c.querySelector('[data-k=haz]');
  let timers=[], raf=0;
  const set=(b,on)=>{b.classList.toggle('on',on);b.setAttribute('aria-pressed',on)};
  const blinkTurns=()=>L.forEach(b=>b.classList.toggle('blink',b.classList.contains('on')&&b.dataset.c==='g'&&!rm));
- const needles=f=>{N.forEach((n,i)=>{n.style.setProperty('--a',(-135+270*f[i])+'deg')});const t0=performance.now(),from=R.map(r=>+r.textContent),to=N.map((n,i)=>Math.round(f[i]*n.dataset.max/(i?1000:1)*(i?10:1))/(i?10:1));cancelAnimationFrame(raf);const step=t=>{const k=Math.min(1,(t-t0)/1100);R.forEach((r,i)=>r.textContent=(from[i]+(to[i]-from[i])*k).toFixed(i?1:0));if(k<1)raf=requestAnimationFrame(step)};raf=requestAnimationFrame(step)};
+ const needles=f=>{const st=N.map(n=>{const r=c.querySelector(`[data-r=${n.dataset.role}]`),dec=+n.dataset.dec,div=dec?1000:1,to=f[n.dataset.role]*n.dataset.max/div;n.style.setProperty('--a',(-135+270*f[n.dataset.role])+'deg');return{r,dec,from:+r.textContent,to}});const t0=performance.now();cancelAnimationFrame(raf);const step=t=>{const k=rm?1:Math.min(1,(t-t0)/1100),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;st.forEach(o=>o.r.textContent=(o.from+(o.to-o.from)*e).toFixed(o.dec));if(k<1)raf=requestAnimationFrame(step)};raf=requestAnimationFrame(step)};
+ const H=c.querySelector('[data-h]'),M=c.querySelector('[data-m]'),S=c.querySelector('[data-s]');let sAcc=null;
+ const tick=()=>{if(!document.body.contains(c)){clearInterval(ck);return}const d=new Date(),sec=d.getSeconds(),min=d.getMinutes()+sec/60,hr=(d.getHours()%12)+min/60;if(sAcc===null)sAcc=sec*6;else{sAcc+=6;}H.style.setProperty('--a',hr*30+'deg');M.style.setProperty('--a',min*6+'deg');S.style.setProperty('--a',(rm?sec*6:sAcc)+'deg')};
+ const ck=setInterval(tick,1000);tick();
  const keyOn=()=>{timers.forEach(clearTimeout);timers=[];haz.setAttribute('aria-pressed','false');L.forEach(b=>{set(b,false);b.classList.remove('blink')});odo.textContent='BULB CHECK';c.classList.add('is-check');
   if(rm){c.classList.remove('is-check');run();return}
-  needles([1,1]);timers.push(setTimeout(()=>needles([0,0]),1200),setTimeout(()=>{c.classList.remove('is-check');run()},2000))};
- const run=()=>{L.forEach(b=>set(b,b.hasAttribute('data-run')));blinkTurns();needles([0,.1]);odo.textContent='ODO 046046'};
+  needles({spd:1,rpm:1});timers.push(setTimeout(()=>needles({spd:0,rpm:0}),1200),setTimeout(()=>{c.classList.remove('is-check');run()},2000))};
+ const run=()=>{L.forEach(b=>set(b,b.hasAttribute('data-run')));blinkTurns();needles({spd:0,rpm:.1});odo.textContent='ODO 046046'};
  L.forEach(b=>b.addEventListener('click',()=>{set(b,!b.classList.contains('on'));blinkTurns()}));
  c.querySelector('[data-k=key]').addEventListener('click',keyOn);
- c.querySelector('[data-k=off]').addEventListener('click',()=>{haz.setAttribute('aria-pressed','false');L.forEach(b=>{set(b,false);b.classList.remove('blink')});needles([0,0]);odo.textContent='KEY OFF'});
+ c.querySelector('[data-k=off]').addEventListener('click',()=>{timers.forEach(clearTimeout);haz.setAttribute('aria-pressed','false');L.forEach(b=>{set(b,false);b.classList.remove('blink')});needles({spd:0,rpm:0});odo.textContent='KEY OFF'});
  haz.addEventListener('click',()=>{const on=haz.getAttribute('aria-pressed')!=='true';haz.setAttribute('aria-pressed',on);L.filter(b=>b.dataset.c==='g').forEach(b=>set(b,on));blinkTurns()});
  if('IntersectionObserver' in window){const io=new IntersectionObserver(e=>{if(e[0].isIntersecting){io.disconnect();keyOn()}},{threshold:.45});io.observe(c)}else keyOn();
 }
