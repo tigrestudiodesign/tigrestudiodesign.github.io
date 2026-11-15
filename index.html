@@ -520,6 +520,7 @@ button.btn{cursor:pointer}
 .nt-ways span{font-size:14px;opacity:.75}
 .nt-ways em{display:flex;gap:6px;margin-top:4px} .nt-ways em i{width:20px;height:20px;border-radius:4px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.15)}
 @media (max-width:900px){.nt-lib{grid-template-columns:1fr}.nt-cap4{grid-template-columns:repeat(2,1fr)}.nt-ways{grid-template-columns:1fr}.nt-spec td:nth-child(3),.nt-spec th:nth-child(3){display:none}}
+.kp-sp{background:url(img/kp__cmf.webp) no-repeat;background-size:100% auto;width:100%}.kp-sp-mac{aspect-ratio:3600/900;background-position:0 0}.kp-sp-way{aspect-ratio:3600/800;background-position:0 46.154%}.kp-sp-top{aspect-ratio:1400/1050;background-size:257.143% auto;background-position:0 100%}
 /* v37: Knit Curve Atlas specimen book */
 .ka2-th{display:block;width:100%;aspect-ratio:1;background:url(img/ka2/sprite_th.webp) var(--x) var(--y)/1200% 1000% no-repeat;transition:transform .4s cubic-bezier(.2,.7,.2,1)}
 .ka2-vw{display:block;width:100%;aspect-ratio:1;background:url(img/ka2/sprite_view.webp) var(--x) var(--y)/1200% 1000% no-repeat}
@@ -982,7 +983,7 @@ const BC={id:'basecamp',title:'BASECAMP',
 const CARD_BC={id:BC.id,isNew:true,kind:'Industrial Design',title:'BASECAMP',meta:'Emergency radio + lantern concept · Rhino 9 · Grasshopper',imgs:[BC.img.crop]};
 const CARD_KN={id:'knit-nodes',isNew:true,kind:'CMF · Computational Textiles',title:'Computational Couture: Knit Nodes',meta:'Ten knit structures on one robotic joint, with a material behaviour model',imgs:[['img/kn__01_hero.webp',1800,1012]]};
 const CARD_KA={id:'knit-curve-atlas',isNew:true,kind:'Pattern · Textile CMF',title:'Knit Curve Atlas',meta:'109 mathematical curves knitted onto spheres, colour-coded by family',imgs:[['img/ka2/card.webp',1800,1012]]};
-const CARD_KP={id:'parametric-keypad',isNew:false,kind:'Parametric Design',title:'Parametric Keypad',meta:'Grasshopper 2 · Blender · Voronoi case, AI launcher keys',imgs:[['img/kp__hero.webp',2000,1320]]};
+const CARD_KP={id:'parametric-keypad',isNew:false,kind:'Parametric Design',title:'Parametric Keypad',meta:'Grasshopper 2 · Blender · Voronoi case, AI launcher keys',imgs:[['img/kp__render.webp',2000,1320]]};
 const PICK=id=>[...RH,...ALL3D].find(p=>p.id===id);
 const CUR=['penny-loafer','f1-car','nesting-tables','electric-guitar'].map(PICK).filter(Boolean).map(p=>({...p,isNew:false,kind:p.kind||'Product Modeling'}));
 const NIKE_ROLE={p01:'Atomknit upper · Tech docs',p02:'Upper design · Tech manual',p03:'3D-printing tech packs',p04:'Bottom-making tech packs',p05:'Yarn tech · Quick start guide',p06:'Tooling & hardware',p07:'Tech packs · Air Zoom',p08:'Tech packs',p09:'Electronics integration',p10:'Electronics integration'};
@@ -1817,7 +1818,7 @@ function ravenPage(i){
 
 const KP={id:'parametric-keypad',title:'Parametric Keypad',
  meta:'Rhino 9 · Grasshopper 2 · Voronoi texture on a solid case',
- img:{render:['img/kp__render.webp',1351,1223],edges:['img/kp__edges.webp',1351,1223],four:['img/kp__4view.webp',1800,789],top:['img/kp__top-wire.webp',1595,699],front:['img/kp__front.webp',1595,685],gh:['img/kp__gh.webp',902,410],ai:['img/kp__ai.webp',552,492]}};
+ img:{render:['img/kp__render.webp',2000,1320],edges:['img/kp__edges.webp',1351,1223],four:['img/kp__4view.webp',1800,789],top:['img/kp__top-wire.webp',1595,699],gh:['img/kp__gh.webp',902,410],ai:['img/kp__ai.webp',552,492]}};
 
 function keypadPage(){
  const I=KP.img;
@@ -1825,7 +1826,7 @@ function keypadPage(){
  <section class="band dark"><div class="wrap case"><p class="num">New · Rhino Workflow / Parametric · November 2026</p><h1>${KP.title}</h1><p class="meta">${KP.meta}</p>
   <p class="note">A four-key macropad whose case texture is generated, not modeled. Move a slider and the whole case re-tiles in Voronoi cells, while the key pockets, knob and USB-C port stay clean. The Blender CMF pass turns it into an AI launcher: four pad-printed keys, an orange power key, and cells that wrap every edge without a seam.</p>
   <dl class="facts"><div><dt>Software</dt><dd>Rhino 9 · Grasshopper 2</dd></div><div><dt>Model</dt><dd>13 solids on 6 layers, in mm</dd></div><div><dt>Texture</dt><dd>~100–120 Voronoi cells, cut as grooves</dd></div><div><dt>Update</dt><dd>About 15 s per slider change</dd></div></dl></div></section>
- <div class="band dark" style="padding-bottom:56px"><div class="wrap"><div class="media tr-l" style="aspect-ratio:2000/1320;background:#bdbcb8">${im(['img/kp__hero.webp',2000,1320],'Keypad in the Signal colorway: warm white case wrapped in black Voronoi grooves, four pad-printed launcher keys, an orange power key and a black knurled knob')}</div></div></div>
+ <div class="band dark" style="padding-bottom:56px"><div class="wrap"><div class="media tr-l" style="aspect-ratio:2000/1320;background:#bdbcb8">${im(I.render,'Keypad in the Signal colorway: warm white case wrapped in black Voronoi grooves, four pad-printed launcher keys, an orange power key and a black knurled knob')}</div></div></div>
 
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Brief, Approach, Result</h2><p class="sh-sub">One solid, one definition, any pattern</p>
   <div class="pra">
@@ -1839,8 +1840,7 @@ function keypadPage(){
 
  <section class="band alt section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Base Model</h2><p class="sh-sub">Built clean so the texture has something reliable to cut</p>
   <div class="mono"><figure>${im(I.four,'Four-view layout of the untextured keypad: top, perspective, front and right')}<figcaption>Top, perspective, front and right views before texturing. Each part type sits on its own layer: Case, Keycaps_Blue, Keycap_Mint, Knob, Feet, USB_Port.</figcaption></figure></div>
-  <div class="duo"><figure>${im(I.top,'Top wireframe of the case outline, keycap pockets, knob and feet')}<figcaption>Top wireframe: the pockets and knob footprint become the texture's keep-out zones.</figcaption></figure>
-  <figure>${im(I.front,'Front and right elevations with the USB-C port and feet')}<figcaption>Elevations: the USB-C recess on the front wall stays clear of the pattern.</figcaption></figure></div>
+  <div class="mono"><figure>${im(I.top,'Top wireframe of the case outline, keycap pockets, knob and feet')}<figcaption>Top wireframe: the pockets and knob footprint become the texture's keep-out zones.</figcaption></figure></div>
  </div></section>
 
  <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">How I Worked</h2><p class="sh-sub">Designer-directed, AI-assisted</p>
@@ -1852,7 +1852,7 @@ function keypadPage(){
  </div></section>
 
  ${kpCMF()}
- <section class="statement">${im(I.render,'The original Grasshopper render of the keypad')}<p>The same method fits an outsole: a pattern that <span class="it">follows the form, avoids functional zones</span> and changes with a slider instead of a remodel.</p></section>
+ <section class="statement">${im(I.edges,'The original Grasshopper case with its Voronoi grooves')}<p>The same method fits an outsole: a pattern that <span class="it">follows the form, avoids functional zones</span> and changes with a slider instead of a remodel.</p></section>
  ${nextLink('product',CUR[0])}</main>`+foot();
 }
 
@@ -1880,14 +1880,14 @@ const KP_WAYS=[['Glacier','Clear anodised case, cyan keys, frosted mint power ke
 function kpCMF(){
  const macro=['Launcher keys 01–04: pad-printed number, glyph and row/unit micro-type','Black knurled knob with an orange index dot','The Voronoi cells run unbroken over every edge and corner','Power key: one hot accent, ON/OFF pad print, hold 2 s'];
  return `<section class="band light section nt"><div class="wrap"><h2 class="sh-title" style="font-size:32px">MATERIAL SPEC</h2><p class="sh-sub">Seven parts, Signal colorway</p>
-  <div class="nt-lib"><figure>${im(['img/kp__top.webp',1400,1050],'Keypad from above')}<figcaption>Top view: four launcher keys, the power key and the indexed knob</figcaption></figure>
+  <div class="nt-lib"><figure><div class="kp-sp kp-sp-top" role="img" aria-label="Keypad from above"></div><figcaption>Top view: four launcher keys, the power key and the indexed knob</figcaption></figure>
   <table class="nt-spec"><thead><tr><th>Part</th><th>Material</th><th>Finish</th><th>Color</th></tr></thead><tbody>${KP_SPEC.map(([a,b,c,d])=>`<tr><td>${a}</td><td>${b}</td><td>${c}</td><td><i style="background:${d}"></i>${d}</td></tr>`).join('')}</tbody></table></div>
  </div></section>
  <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">CLOSE-UPS</h2><p class="sh-sub">How each finish reads up close</p>
-  <figure class="nt-strip">${im(['img/kp__macros.webp',3600,900],'Keypad close-ups')}</figure>
+  <figure class="nt-strip"><div class="kp-sp kp-sp-mac" role="img" aria-label="Keypad close-ups: launcher keys, knob, edge wrap, power key"></div></figure>
   <div class="nt-cap4">${macro.map((c,i)=>`<p><b>0${i+1}</b>${c}</p>`).join('')}</div></div></section>
  <section class="band alt section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">COLORWAYS</h2><p class="sh-sub">Same solid, three more finish stories</p>
-  <figure class="nt-strip">${im(['img/kp__ways.webp',3600,800],'Glacier, Graphite and Sand colorways')}</figure>
+  <figure class="nt-strip"><div class="kp-sp kp-sp-way" role="img" aria-label="Glacier, Graphite and Sand colorways"></div></figure>
   <div class="nt-ways">${KP_WAYS.map(([n,d,sw])=>`<div><b>${n.toUpperCase()}</b><span>${d}</span><em>${sw.map(c=>`<i style="background:${c}"></i>`).join('')}</em></div>`).join('')}</div></div></section>`;
 }
 
