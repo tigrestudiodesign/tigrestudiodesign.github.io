@@ -982,7 +982,7 @@ const BC={id:'basecamp',title:'BASECAMP',
 const CARD_BC={id:BC.id,isNew:true,kind:'Industrial Design',title:'BASECAMP',meta:'Emergency radio + lantern concept · Rhino 9 · Grasshopper',imgs:[BC.img.crop]};
 const CARD_KN={id:'knit-nodes',isNew:true,kind:'CMF · Computational Textiles',title:'Computational Couture: Knit Nodes',meta:'Ten knit structures on one robotic joint, with a material behaviour model',imgs:[['img/kn__01_hero.webp',1800,1012]]};
 const CARD_KA={id:'knit-curve-atlas',isNew:true,kind:'Pattern · Textile CMF',title:'Knit Curve Atlas',meta:'109 mathematical curves knitted onto spheres, colour-coded by family',imgs:[['img/ka2/card.webp',1800,1012]]};
-const CARD_KP={id:'parametric-keypad',isNew:false,kind:'Parametric Design',title:'Parametric Keypad',meta:'Grasshopper 2 · Voronoi texture on a solid case',imgs:[['img/kp__render.webp',1351,1223]]};
+const CARD_KP={id:'parametric-keypad',isNew:false,kind:'Parametric Design',title:'Parametric Keypad',meta:'Grasshopper 2 · Blender · Voronoi case, AI launcher keys',imgs:[['img/kp__hero.webp',2000,1320]]};
 const PICK=id=>[...RH,...ALL3D].find(p=>p.id===id);
 const CUR=['penny-loafer','f1-car','nesting-tables','electric-guitar'].map(PICK).filter(Boolean).map(p=>({...p,isNew:false,kind:p.kind||'Product Modeling'}));
 const NIKE_ROLE={p01:'Atomknit upper · Tech docs',p02:'Upper design · Tech manual',p03:'3D-printing tech packs',p04:'Bottom-making tech packs',p05:'Yarn tech · Quick start guide',p06:'Tooling & hardware',p07:'Tech packs · Air Zoom',p08:'Tech packs',p09:'Electronics integration',p10:'Electronics integration'};
@@ -1823,9 +1823,9 @@ function keypadPage(){
  const I=KP.img;
  return head('product','New')+`<main>
  <section class="band dark"><div class="wrap case"><p class="num">New · Rhino Workflow / Parametric · November 2026</p><h1>${KP.title}</h1><p class="meta">${KP.meta}</p>
-  <p class="note">A four-key macropad whose case texture is generated, not modeled. Move a slider and the whole case re-tiles in Voronoi cells, while the key pockets, knob and USB-C port stay clean.</p>
+  <p class="note">A four-key macropad whose case texture is generated, not modeled. Move a slider and the whole case re-tiles in Voronoi cells, while the key pockets, knob and USB-C port stay clean. The Blender CMF pass turns it into an AI launcher: four pad-printed keys, an orange power key, and cells that wrap every edge without a seam.</p>
   <dl class="facts"><div><dt>Software</dt><dd>Rhino 9 · Grasshopper 2</dd></div><div><dt>Model</dt><dd>13 solids on 6 layers, in mm</dd></div><div><dt>Texture</dt><dd>~100–120 Voronoi cells, cut as grooves</dd></div><div><dt>Update</dt><dd>About 15 s per slider change</dd></div></dl></div></section>
- <div class="band dark" style="padding-bottom:56px"><div class="wrap"><div class="media tr-l" style="aspect-ratio:16/9;background:#fff">${im(I.render,'Shaded keypad: grey case tiled in Voronoi cells, four blue keycaps, a mint key and a knurled knob')}</div></div></div>
+ <div class="band dark" style="padding-bottom:56px"><div class="wrap"><div class="media tr-l" style="aspect-ratio:2000/1320;background:#bdbcb8">${im(['img/kp__hero.webp',2000,1320],'Keypad in the Signal colorway: warm white case wrapped in black Voronoi grooves, four pad-printed launcher keys, an orange power key and a black knurled knob')}</div></div></div>
 
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Brief, Approach, Result</h2><p class="sh-sub">One solid, one definition, any pattern</p>
   <div class="pra">
@@ -1851,7 +1851,8 @@ function keypadPage(){
    <figure>${im(I.ai,'Notes from the Rhino AI panel on baking, previews, speed and failed booleans')}<figcaption style="font-family:var(--serif);font-style:italic;color:var(--muted-d);margin-top:8px">The build notes inside Rhino: bake behavior, speed and how to recover a failed boolean.</figcaption></figure></div>
  </div></section>
 
- <section class="statement">${im(I.render,'Keypad render')}<p>The same method fits an outsole: a pattern that <span class="it">follows the form, avoids functional zones</span> and changes with a slider instead of a remodel.</p></section>
+ ${kpCMF()}
+ <section class="statement">${im(I.render,'The original Grasshopper render of the keypad')}<p>The same method fits an outsole: a pattern that <span class="it">follows the form, avoids functional zones</span> and changes with a slider instead of a remodel.</p></section>
  ${nextLink('product',CUR[0])}</main>`+foot();
 }
 
@@ -1865,6 +1866,30 @@ const CAPS3={
  'render-nave-03-v2':'Underside against the sky: glass and copper rings','render-nave-01-v2':'Top view on studio grey','render-nave-02-v2':'Top view, closer: cones, treads and caps','render-nave-04-v2':'Close up: cone, tread and cap materials','render-nave-06-v2':'Underside, straight up',
  'nuevos-004':'From below: lacquer, woven metal and concrete','nuevos-005':'Lacquered fin against the sky','nuevos-002':'Concrete column and color band','nuevos-001':'Layered bands: lacquer, wood grain and woven metal','nuevos-003':'Close up: lacquer over a concrete edge',
  '004-v-ray':'Speaker concept: anodized green and wood grille','005-v-ray':'Speaker with fabric wrap and cable','001-v-ray':'Exploded cylindrical assembly','002-v-ray':'Exploded assembly, side view','003-v-ray':'Exploded assembly, full length','006-v-ray':'Organic lattice in black gloss','stager-tryout-001':'Two-material sphere: brushed metal and textured copper'};
+
+/* ---------- Parametric Keypad CMF (v40) ---------- */
+const KP_SPEC=[
+ ['Case','6061 aluminium, CNC from billet','Matte powder coat, warm white','#E4E1DA'],
+ ['Voronoi grooves','Laser-etched, 0.5 mm, ~115 cells','Black fill, wraps every edge','#26272A'],
+ ['Launcher keys (×4)','PBT, sculpted profile','Pad-printed legends 01–04','#F3F1EB'],
+ ['Power key','PBT, safety orange','Pad-printed ON/OFF, hold 2 s','#FF4D12'],
+ ['Knob','Black anodised aluminium','Straight knurl, orange index dot','#1B1C1F'],
+ ['Key well','Aluminium plate','Dark anodise, satin','#1D1F22'],
+ ['USB-C port','Stainless shell','Machined recess','#0A0A0B']];
+const KP_WAYS=[['Glacier','Clear anodised case, cyan keys, frosted mint power key',['#AEB2B8','#1FA6D6','#8FE0BD']],['Graphite','Dark grey case, safety-orange keys, bone power key',['#3A3C40','#FF5A1F','#F2EFE8']],['Sand','Champagne case, navy keys, amber power key',['#D8CBB3','#1F3A6B','#E8B04A']]];
+function kpCMF(){
+ const macro=['Launcher keys 01–04: pad-printed number, glyph and row/unit micro-type','Black knurled knob with an orange index dot','The Voronoi cells run unbroken over every edge and corner','Power key: one hot accent, ON/OFF pad print, hold 2 s'];
+ return `<section class="band light section nt"><div class="wrap"><h2 class="sh-title" style="font-size:32px">MATERIAL SPEC</h2><p class="sh-sub">Seven parts, Signal colorway</p>
+  <div class="nt-lib"><figure>${im(['img/kp__top.webp',1400,1050],'Keypad from above')}<figcaption>Top view: four launcher keys, the power key and the indexed knob</figcaption></figure>
+  <table class="nt-spec"><thead><tr><th>Part</th><th>Material</th><th>Finish</th><th>Color</th></tr></thead><tbody>${KP_SPEC.map(([a,b,c,d])=>`<tr><td>${a}</td><td>${b}</td><td>${c}</td><td><i style="background:${d}"></i>${d}</td></tr>`).join('')}</tbody></table></div>
+ </div></section>
+ <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">CLOSE-UPS</h2><p class="sh-sub">How each finish reads up close</p>
+  <figure class="nt-strip">${im(['img/kp__macros.webp',3600,900],'Keypad close-ups')}</figure>
+  <div class="nt-cap4">${macro.map((c,i)=>`<p><b>0${i+1}</b>${c}</p>`).join('')}</div></div></section>
+ <section class="band alt section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">COLORWAYS</h2><p class="sh-sub">Same solid, three more finish stories</p>
+  <figure class="nt-strip">${im(['img/kp__ways.webp',3600,800],'Glacier, Graphite and Sand colorways')}</figure>
+  <div class="nt-ways">${KP_WAYS.map(([n,d,sw])=>`<div><b>${n.toUpperCase()}</b><span>${d}</span><em>${sw.map(c=>`<i style="background:${c}"></i>`).join('')}</em></div>`).join('')}</div></div></section>`;
+}
 
 /* ---------- Nesting Tables CMF ---------- */
 const NT_SPEC=[
