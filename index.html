@@ -503,7 +503,87 @@ button.btn{cursor:pointer}
 @media (max-width:900px){.ar-5{grid-template-columns:repeat(3,minmax(0,1fr))}.ar-strip{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:560px){.ar-3,.ar-5{grid-template-columns:1fr 1fr}}
 
-/* v22: Knit Curve Atlas */
+/* v37: Knit Curve Atlas specimen book */
+.ka2 h1,.ka2 h2,.ka2 h3{text-transform:uppercase}
+.ka2-hero{padding-top:56px;padding-bottom:0}
+.ka2-eyebrow{display:flex;gap:28px;margin:0 0 40px;font:500 12px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-d);border-top:1px solid #fff;padding-top:14px}
+.ka2-title{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(20px,4vw,64px);align-items:end}
+.ka2-title b{font:900 clamp(140px,26vw,400px)/.78 var(--display);letter-spacing:-.06em;background:linear-gradient(90deg,#E2557A,#EE8A2E,#E9C230,#2FB59A,#3E8EDB,#6C5CE0,#C64FB9);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ka2-title h1{font:900 clamp(40px,6vw,92px)/.9 var(--display);letter-spacing:-.02em;margin:0 0 20px}
+.ka2-title p{font-size:clamp(17px,1.5vw,21px);line-height:1.4;max-width:34em;margin:0;color:#d6d6d6}
+.ka2-plate{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:0;padding:56px max(16px,2vw) 64px;max-width:1800px;margin:0 auto}
+.ka2-plate img{width:100%;height:auto;display:block;margin:-6% 0}
+.ka2-plate-end{grid-column:span 11;display:flex;align-items:center;gap:22px;padding-left:2%}
+.ka2-plate-end b{font:900 clamp(40px,5vw,84px)/1 var(--display);letter-spacing:-.04em}
+.ka2-plate-end span{font:500 12px/1.5 ui-monospace,Menlo,Consolas,monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted-d)}
+.ka2-statement{padding-top:80px;padding-bottom:80px;border-top:1px solid #222}
+.ka2-statement p{font:400 clamp(26px,3.4vw,52px)/1.12 var(--sans);letter-spacing:-.015em;margin:0;max-width:22em}
+.ka2-statement em{font-family:var(--serif);color:var(--muted-d)}
+.ka2-facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin:56px 0 0;border-top:1px solid #333;padding-top:18px}
+.ka2-facts dt{font:500 11px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-d)}.ka2-facts dd{margin:6px 0 0;font-size:15px}
+.ka2-sec{padding-top:96px;padding-bottom:96px}
+.ka2-h{display:grid;grid-template-columns:72px minmax(0,1fr) minmax(0,26em);gap:16px;align-items:baseline;border-top:2px solid currentColor;padding-top:16px;margin-bottom:40px}
+.ka2-h span{font:500 13px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.1em}
+.ka2-h h2{margin:0;font:900 clamp(34px,4.4vw,64px)/.92 var(--display);letter-spacing:-.02em}
+.ka2-h p{margin:0;font-size:15px;line-height:1.45;opacity:.75}
+.ka2-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.ka2-chips button{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:8px;padding:8px 13px;border:1px solid #3a3a3a;border-radius:999px;font-size:13px;color:#ddd}
+.ka2-chips button em{width:9px;height:9px;border-radius:50%;background:var(--c)}
+.ka2-chips button i{font-style:normal;font:500 11px ui-monospace,Menlo,Consolas,monospace;color:var(--muted-d)}
+.ka2-chips button[aria-pressed=true]{background:#fff;color:#000;border-color:#fff}.ka2-chips button[aria-pressed=true] i{color:#555}
+.ka2-chips button:focus-visible,.ka2-index button:focus-visible{outline:2px solid #59c0e6;outline-offset:2px}
+.ka2-index{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:2px}
+.ka2-index li[hidden]{display:none}
+.ka2-index button{all:unset;cursor:pointer;display:grid;width:100%;box-sizing:border-box;padding:6px 12px 14px;background:#0b0b0d;position:relative;transition:background .2s}
+.ka2-index button:hover{background:#151519}
+.ka2-index button:after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--c);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.ka2-index button:hover:after,.ka2-index button:focus-visible:after{transform:scaleX(1)}
+.ka2-index img{width:100%;height:auto;display:block;transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.ka2-index button:hover img{transform:scale(1.07) rotate(-4deg)}
+.ka2-index b{font:500 11px ui-monospace,Menlo,Consolas,monospace;color:var(--muted-d);letter-spacing:.06em}
+.ka2-index span{font-size:13px;font-weight:600;line-height:1.2;margin-top:2px}
+.ka2-fambar{list-style:none;margin:0;padding:0;display:flex;height:120px;gap:2px}
+.ka2-fambar li{background:var(--c);position:relative;min-width:6px}
+.ka2-fambar span{position:absolute;left:8px;bottom:8px;font:700 15px var(--sans);color:#000;mix-blend-mode:multiply}
+.ka2-famkey{list-style:none;margin:22px 0 0;padding:0;columns:4 220px;column-gap:24px}
+.ka2-famkey li{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #2a2a2a;break-inside:avoid;font-size:14px}
+.ka2-famkey em{width:12px;height:12px;border-radius:50%;background:var(--c);flex:none}.ka2-famkey i{margin-left:auto;font-style:normal;font:500 12px ui-monospace,Menlo,Consolas,monospace;color:var(--muted-d)}
+.ka2-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.ka2-steps figure{margin:0 0 18px;aspect-ratio:1;background:#0b0b0d;display:grid;place-items:center;overflow:hidden}
+.ka2-steps figure img{width:100%;height:100%;object-fit:cover;display:block}
+.ka2-steps li:last-child figure img{object-fit:contain;width:86%;height:auto}
+.ka2-steps b{font:500 12px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.12em}
+.ka2-steps h3{margin:6px 0 8px;font-size:22px;line-height:1.1}.ka2-steps p{margin:0;font-size:15px;line-height:1.45}
+.ka2-draw svg{width:100%;height:auto;display:block;color:#fff}
+.ka2-steps .ka2-draw{width:82%}
+.ka2-feat article{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(24px,5vw,80px);align-items:center;padding:24px 0;border-bottom:1px solid #222}
+.ka2-feat article.r figure{order:2}
+.ka2-feat figure{margin:0;background:radial-gradient(60% 60% at 50% 45%,#18181d,#000 75%)}
+.ka2-feat figure img{width:100%;height:auto;display:block}
+.ka2-feat b{font:900 clamp(64px,9vw,140px)/.8 var(--display);letter-spacing:-.05em;display:block;color:#2a2a2a}
+.ka2-feat h3{font:900 clamp(26px,3vw,44px)/.95 var(--display);margin:14px 0 14px}
+.ka2-feat p{font-size:17px;line-height:1.5;color:#cfcfcf;max-width:28em;margin:0}
+.ka2-draw.sm{width:120px;margin-top:24px}
+.ka2-why{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.ka2-why small{font:500 12px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.14em;text-transform:uppercase}
+.ka2-why h3{margin:8px 0;font-size:22px;line-height:1.1}.ka2-why p{margin:0;font-size:15px;line-height:1.5}
+.ka2-credit{margin:56px 0 0;padding-top:16px;border-top:1px solid currentColor;font-size:14px}
+.ka2-view{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.97);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:grid;place-items:center;padding:24px}
+.ka2-view[hidden]{display:none}
+.ka2-view .in{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:40px;align-items:center;max-width:1200px;width:100%}
+.ka2-view figure{margin:0}.ka2-view figure img{width:100%;height:auto;display:block}
+.ka2-view b{font:900 clamp(60px,8vw,120px)/.8 var(--display);letter-spacing:-.05em;color:#333;display:block}
+.ka2-view h3{font:900 clamp(28px,3.4vw,48px)/.95 var(--display);margin:14px 0 10px;text-transform:uppercase}
+.ka2-view p{display:flex;align-items:center;gap:10px;margin:0 0 24px;color:#bbb}.ka2-view p em{width:12px;height:12px;border-radius:50%;background:var(--c)}
+.ka2-view .ka2-draw{width:min(240px,60%)}
+.ka2-view>button{all:unset;cursor:pointer;position:absolute;font-size:28px;color:#fff;width:48px;height:48px;display:grid;place-items:center;border:1px solid #444;border-radius:50%}
+.ka2-view>button:focus-visible{outline:2px solid #59c0e6}
+.ka2-view .x{top:20px;right:20px}.ka2-view .pv{left:20px;top:50%}.ka2-view .nx{right:20px;top:50%}
+@media (max-width:900px){.ka2-title{grid-template-columns:1fr}.ka2-plate{grid-template-columns:repeat(6,minmax(0,1fr))}.ka2-plate-end{grid-column:span 5}.ka2-h{grid-template-columns:48px minmax(0,1fr)}.ka2-h p{grid-column:2}.ka2-facts,.ka2-steps,.ka2-why{grid-template-columns:1fr 1fr}.ka2-feat article{grid-template-columns:1fr}.ka2-feat article.r figure{order:0}.ka2-view .in{grid-template-columns:1fr;gap:16px}.ka2-view .pv,.ka2-view .nx{top:auto;bottom:20px}}
+@media (max-width:560px){.ka2-index{grid-template-columns:repeat(3,minmax(0,1fr))}.ka2-index button{padding:4px 6px 10px}.ka2-index span{font-size:11px}.ka2-steps,.ka2-why,.ka2-facts{grid-template-columns:1fr}.ka2-fambar{height:72px}.ka2-fambar span{font-size:11px;left:3px}.ka2-eyebrow{gap:14px;flex-wrap:wrap}}
+@media (prefers-reduced-motion:reduce){.ka2-index img,.ka2-index button:after{transition:none}}
+
+/* v22: Knit Curve Atlas (legacy) */
 .ka-balls{list-style:none;margin:0;padding:32px 0 0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:28px 20px}
 .ka-balls li{min-width:0;display:grid;gap:2px}
 .ka-balls img{display:block;width:100%;height:auto}
@@ -879,7 +959,7 @@ const BC={id:'basecamp',title:'BASECAMP',
 };
 const CARD_BC={id:BC.id,isNew:true,kind:'Industrial Design',title:'BASECAMP',meta:'Emergency radio + lantern concept · Rhino 9 · Grasshopper',imgs:[BC.img.crop]};
 const CARD_KN={id:'knit-nodes',isNew:true,kind:'CMF · Computational Textiles',title:'Computational Couture: Knit Nodes',meta:'Ten knit structures on one robotic joint, with a material behaviour model',imgs:[['img/kn__02_white_lineup.webp',1800,1012]]};
-const CARD_KA={id:'knit-curve-atlas',isNew:true,kind:'Pattern · Textile CMF',title:'Knit Curve Atlas',meta:'109 mathematical curves knitted onto spheres, colour-coded by family',imgs:[['img/ka__hero.webp',1800,1012]]};
+const CARD_KA={id:'knit-curve-atlas',isNew:true,kind:'Pattern · Textile CMF',title:'Knit Curve Atlas',meta:'109 mathematical curves knitted onto spheres, colour-coded by family',imgs:[['img/ka2/card.webp',1800,1012]]};
 const CARD_KP={id:'parametric-keypad',isNew:false,kind:'Parametric Design',title:'Parametric Keypad',meta:'Grasshopper 2 · Voronoi texture on a solid case',imgs:[['img/kp__render.webp',1351,1223]]};
 const PICK=id=>[...RH,...ALL3D].find(p=>p.id===id);
 const CUR=['penny-loafer','f1-car','nesting-tables','electric-guitar'].map(PICK).filter(Boolean).map(p=>({...p,isNew:false,kind:p.kind||'Product Modeling'}));
@@ -1348,69 +1428,89 @@ int p = n / 100, r = (n % 100) / 10, c = n % 10;</code></pre>
  ${nextLink('product',{id:'parametric-keypad',title:'Parametric Keypad'})}</main>`+foot();
 }
 
-/* ---------- v22: Knit Curve Atlas ---------- */
-const KAI=(f,w,h,c)=>['img/ka__'+f+'.webp',w,h,c];
+/* ---------- v37: Knit Curve Atlas, rebuilt as a specimen book ---------- */
 const KA={id:'knit-curve-atlas',
- hero:KAI('hero',1800,1012,'The atlas as a pattern field: rows of knitted spheres, each carrying its own curve.'),
- rows:KAI('rows',1800,1012,'The first three rows: from 001 Line through the algebraic curves, coloured by family.'),
- first:KAI('first',1800,1012,'001–010 up close: line, circle, ellipse, parabola, hyperbola and the first cubic curves.'),
- persp:KAI('persp',1800,1012,'A perspective pass across the grid. Colour changes mark where one family of curves ends and the next begins.'),
- rec:KAI('recession',1800,1012,'Row recession: one family in teal, curve after curve.'),
- sweep:KAI('sweep',1800,1012,'Field sweep across the full atlas.'),
- balls:[['029','Lemniscate of Bernoulli'],['048','Lissajous curve'],['050','Rose curve'],['055','Butterfly curve'],['071','Rhumb line (loxodrome)'],['083','Logarithmic spiral'],['091','Maurer rose'],['095','Dragon curve'],['097','Hilbert curve'],['098','Koch snowflake'],['103','Helix'],['106','Seiffert’s spherical spiral'],['109','Viviani’s curve']],
- macro:[KAI('macro_029',1600,900,'Lemniscate: the figure-eight crosses itself, and the contrast stitches turn to follow it.'),KAI('macro_095',1600,900,'Dragon curve: fractal turns pack the contrast yarn into a dense maze.'),
-  KAI('macro_098',1600,900,'Koch snowflake: the fractal edge outlines a white island on purple.'),KAI('macro_106',1600,900,'Seiffert’s spiral: a single path winding over the sphere from pole to pole.')],
- how:[['A Curve Library','109 named curves, numbered 001 to 109 and grouped by family: algebraic curves by degree, spirals and roses, fractals and true space curves.'],
-  ['Knit As The Canvas','Every sphere is covered in rows of capsule-shaped stitches in two tones of the same colour, so the base reads like a heathered yarn.'],
-  ['The Curve As Contrast Yarn','Where the curve crosses the surface, stitches switch to white and turn to run along it, the way a jacquard or intarsia motif sits in a knit.'],
-  ['Colour By Family','Each family of curves gets its own yarn colour, so the whole atlas reads as a colour-coded index before you read a single label.']]
+ fams:[['d1','Algebraic · degree 1','#E2557A',1],['d2','Algebraic · degree 2','#EE8A2E',4],['d3','Algebraic · degree 3','#E9C230',11],['d4','Algebraic · degree 4','#2FB59A',21],['d5','Algebraic · degree 5','#7E64D6',1],['d6','Algebraic · degree 6','#C64FB9',4],['dv','Roulettes & variable degree','#3E8EDB',11],['ro','Roses & polar','#E0508C',5],['tr','Transcendental','#E4613A',16],['sp','Spherical curves','#9BC53D',10],['sl','Spirals','#22A6C6',10],['fr','Fractals','#6C5CE0',8],['sc','Space curves','#2E9E6E',7]],
+ feat:[['029','Lemniscate of Bernoulli','A figure-eight with a single crossing. The contrast stitches step through the knot one stitch at a time, the way an intarsia chart resolves a curve into a grid.'],
+  ['050','Rose curve','Five petals from one polar equation, r = cos 5θ. Every petal meets at the centre, where the white yarn pools into a single knot of stitches.'],
+  ['055','Butterfly curve','Temple Fay’s transcendental curve, r = e^cos θ − 2 cos 4θ − sin⁵(θ/12), traced over twelve turns. The wings overlap so densely that the knit reads them as one white silhouette.'],
+  ['098','Koch snowflake','A fractal edge, four iterations deep. At this gauge the finest teeth merge, so the knit keeps the silhouette and drops the detail, as real yarn would.'],
+  ['106','Seiffert’s spherical spiral','A true sphere curve: one continuous path from pole to pole that never crosses itself, wound like yarn on a ball.'],
+  ['109','Viviani’s curve','Where a cylinder pierces a sphere. Seen head-on it is a figure-eight; it closes the atlas where the lemniscate opened its algebra.']]
 };
+const kaImg=(n,sz)=>`img/ka2/ball_${n}${sz?'_'+sz:''}.webp`;
 function kaPage(){
- const fig=(r,cls='')=>`<figure class="${cls}">${im(r,r[3])}<figcaption>${esc(r[3])}</figcaption></figure>`;
- return head('product','New')+`<main>
- <section class="band dark"><div class="wrap case"><p class="num">New · Personal Study / Pattern &amp; Textile CMF</p><h1>Knit Curve Atlas</h1><p class="meta">109 mathematical curves, knitted onto spheres · Rhino 9 + Python</p>
-  <p class="note">A specimen atlas: 109 named curves, from a straight line to the Koch snowflake, each knitted onto its own sphere. The curve becomes a white contrast yarn running through the stitches, and colour sorts the curves into families.</p>
-  <dl class="facts"><div><dt>Role</dt><dd>Solo: curve library, knit mapping, colour system, rendering</dd></div><div><dt>Tools</dt><dd>Rhino 9 · Python</dd></div><div><dt>Output</dt><dd>109 knitted spheres in 9 rows of 12</dd></div><div><dt>Focus</dt><dd>Pattern systems, colour, textile CMF</dd></div></dl></div></section>
- <div class="band dark" style="padding-bottom:56px"><div class="wrap"><div class="media tr-l">${im(KA.hero,KA.hero[3],'heroimg')}</div></div></div>
+ const famBar=KA.fams.map(([k,l,c,n])=>`<li style="--c:${c};flex:${n}"><span>${n}</span></li>`).join('');
+ return head('product','New')+`<main class="ka2">
+ <section class="band dark ka2-hero"><div class="wrap">
+  <p class="ka2-eyebrow"><span>Personal study</span><span>Pattern · Textile CMF</span><span>2026</span></p>
+  <div class="ka2-title"><b aria-hidden="true">109</b><div><h1>Knit Curve Atlas</h1><p>One knitted sphere. One yarn system. One hundred and nine mathematical curves, worked into the stitches as contrast yarn and catalogued like a type specimen.</p></div></div>
+ </div>
+ <div class="ka2-plate" aria-label="The atlas plate: 109 knitted spheres">${Array.from({length:109},(_,i)=>{const n=String(i+1).padStart(3,'0');return `<img src="${kaImg(n)}" alt="" loading="${i<36?'eager':'lazy'}" decoding="async" width="360" height="360">`}).join('')}<div class="ka2-plate-end"><b>109</b><span>curves<br>13 families<br>1 knit</span></div></div>
+ </section>
 
- <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">One Sphere, 109 Patterns</h2><p class="sh-sub">What it is / In numbers</p>
-  <div class="cb-feature" style="padding-top:24px"><p class="intro" style="margin:0">Knit Nodes asked how stitch structure changes behaviour. This study asks how a knit carries graphics: the same knitted sphere, the same yarn system, and 109 different motifs placed into it, from simple conics to fractals and curves that only exist in 3D.</p>
-  <div class="stats" style="margin-top:0"><div><b>109</b><span>Curves knitted</span></div><div><b>9 × 12</b><span>Atlas grid</span></div><div><b>1</b><span>Shared knit base</span></div><div><b>13</b><span>Specimen renders</span></div></div></div>
+ <section class="band dark ka2-statement"><div class="wrap"><p>Line, conic, cubic, rose, spiral, fractal, knot. Every curve here is drawn by an equation, and every one is knitted on the same ball, in the same yarn, at the same gauge. <em>Only the rule changes.</em></p>
+  <dl class="ka2-facts"><div><dt>Role</dt><dd>Solo: curve library, knit mapping, colour system, rendering</dd></div><div><dt>Tools</dt><dd>Rhino 9 · Python · Blender Cycles</dd></div><div><dt>Output</dt><dd>109 specimens, 13 families</dd></div><div><dt>Focus</dt><dd>Pattern systems · colour · textile CMF</dd></div></dl>
  </div></section>
 
- <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Atlas</h2><p class="sh-sub">Numbered / Grouped by family / Colour-coded</p>
-  <div class="mono">${fig(KA.rows)}</div>
-  <div class="kn-duo">${fig(KA.first)}${fig(KA.persp)}</div>
+ <section class="band dark ka2-sec" id="kaIndexSec"><div class="wrap">
+  <header class="ka2-h"><span>01</span><h2>The Index</h2><p>All 109 specimens. Filter by family, then open any sphere to see the curve it carries.</p></header>
+  <div class="ka2-chips" role="group" aria-label="Filter by family"><button type="button" aria-pressed="true" data-f="all">All <i>109</i></button>${KA.fams.map(([k,l,c,n])=>`<button type="button" aria-pressed="false" data-f="${k}" style="--c:${c}"><em></em>${l.replace('Algebraic · ','')}<i>${n}</i></button>`).join('')}</div>
+  <ol class="ka2-index" id="kaIndex" aria-live="polite"></ol>
  </div></section>
 
- <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">How It Works</h2><p class="sh-sub">Library / Canvas / Motif / Colour</p>
-  <ol class="rs-steps">${KA.how.map(([h,t],i)=>`<li><b>${n2(i)}</b><h3>${esc(h)}</h3><p>${esc(t)}</p></li>`).join('')}</ol>
+ <section class="band dark ka2-sec"><div class="wrap">
+  <header class="ka2-h"><span>02</span><h2>Colour Is The Index</h2><p>One yarn colour per family, so the range sorts itself before you read a label. Bar widths show how many curves each family holds.</p></header>
+  <ul class="ka2-fambar">${famBar}</ul>
+  <ul class="ka2-famkey">${KA.fams.map(([k,l,c,n])=>`<li style="--c:${c}"><em></em>${l}<i>${n}</i></li>`).join('')}</ul>
  </div></section>
 
- <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Specimens</h2><p class="sh-sub">Thirteen curves, rendered on their own</p>
-  <ul class="ka-balls">${KA.balls.map(([n,t])=>`<li>${im(['img/ka__ball_'+n+'.webp',720,720],t)}<b>${n}</b><span>${esc(t)}</span></li>`).join('')}</ul>
+ <section class="band light ka2-sec ka2-process"><div class="wrap">
+  <header class="ka2-h"><span>03</span><h2>From Equation To Stitch</h2><p>The same three steps for every curve. Shown here with 029, the Lemniscate of Bernoulli.</p></header>
+  <ol class="ka2-steps">
+   <li><figure><div class="ka2-draw" data-curve="29" aria-label="Line drawing of the lemniscate"></div></figure><b>A · Draw</b><h3>The curve as a line</h3><p>Each curve is written as an equation, an implicit polynomial or an L-system, then fitted to the visible face of the sphere.</p></li>
+   <li><figure>${im(['img/ka2/proc_map.webp',900,900],'The lemniscate quantised onto the stitch grid')}</figure><b>B · Map</b><h3>The line becomes stitches</h3><p>Every stitch whose centre falls on the curve switches to white. The motif is resolved stitch by stitch, like an intarsia chart.</p></li>
+   <li><figure>${im([kaImg('029'),360,360],'The knitted lemniscate')}</figure><b>C · Knit</b><h3>The knit carries the motif</h3><p>Stitch rows tighten toward the poles as on a real knitted ball, so the motif lives in the material instead of being printed on top.</p></li>
+  </ol>
  </div></section>
 
- <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Up Close</h2><p class="sh-sub">Where the motif meets the stitch</p>
-  <div class="kn-duo">${KA.macro.map(r=>fig(r)).join('')}</div>
+ <section class="band dark ka2-sec"><div class="wrap">
+  <header class="ka2-h"><span>04</span><h2>Specimens</h2><p>Six curves, up close.</p></header>
+  <div class="ka2-feat">${KA.feat.map(([n,t,d],i)=>`<article class="${i%2?'r':''}"><figure>${im([kaImg(n,'l'),1200,1200],t+' knitted on a sphere')}</figure><div><b>${n}</b><h3>${t}</h3><p>${d}</p><div class="ka2-draw sm" data-curve="${+n}" aria-hidden="true"></div></div></article>`).join('')}</div>
  </div></section>
 
- <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Field</h2><p class="sh-sub">Rows / Recession / Sweep</p>
-  <div class="kn-duo">${fig(KA.rec)}${fig(KA.sweep)}</div>
+ <section class="band light ka2-sec"><div class="wrap">
+  <header class="ka2-h"><span>05</span><h2>Why It Matters For CMF</h2><p>What the study proves.</p></header>
+  <div class="ka2-why"><div><small>Pattern</small><h3>Graphics that live in the material</h3><p>The motif is built from the same stitches as the base, the way knit, weave and jacquard graphics work on product.</p></div>
+  <div><small>Colour</small><h3>A palette that works as a system</h3><p>One colour per family turns 109 objects into a readable range, the same thinking behind a seasonal colourway or a CMF library.</p></div>
+  <div><small>Scale</small><h3>Hundreds of variants, one setup</h3><p>Base, yarn, gauge and light stay fixed while the rule changes, so a whole range can be reviewed side by side.</p></div></div>
+  <p class="ka2-credit">Curve library, knit mapping, colour system and rendering by Henry Mauricio Ortega Vera · Rhino 9 · Python · Blender Cycles. Companion study: <a href="#knit-nodes">Computational Couture: Knit Nodes</a>.</p>
  </div></section>
-
- <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Why It Matters For CMF</h2><p class="sh-sub">What this study proves</p>
-  <div class="pra"><div><small>Pattern</small><h3>Graphics That Live In The Material</h3><p>The motif isn't printed on top. It is built from the same stitches as the base, the way knit, weave and jacquard graphics really work.</p></div>
-  <div><small>Colour</small><h3>A Palette That Works As A System</h3><p>One colour per family turns 109 objects into a readable range, the same thinking behind a seasonal colourway or a CMF library.</p></div>
-  <div><small>Scale</small><h3>Hundreds Of Variants, One Setup</h3><p>The base, yarn and lighting stay fixed while the motif changes, so a whole range can be reviewed side by side in one board.</p></div></div>
- </div></section>
-
- <section class="band alt section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Credits</h2><p class="sh-sub">Study / Tools</p>
-  <div class="cols"><div><h3>Study</h3><p>Curve library, knit mapping, colour system and rendering by Henry Mauricio Ortega Vera.</p></div><div><h3>Tools</h3><p>Rhino 9 · Python.</p></div><div><h3>Companion Study</h3><p><a href="#knit-nodes">Computational Couture: Knit Nodes</a>, on how stitch structure changes behaviour.</p></div></div>
- </div></section>
-
- <section class="statement">${im(KA.macro[2],'Koch snowflake knitted on a sphere')}<p>Every curve, <span class="it">knitted.</span></p></section>
+ <div class="ka2-view" id="kaView" hidden role="dialog" aria-modal="true" aria-label="Specimen"><button type="button" class="x" aria-label="Close">×</button><button type="button" class="pv" aria-label="Previous">←</button><button type="button" class="nx" aria-label="Next">→</button><div class="in"><figure><img alt=""></figure><div><b></b><h3></h3><p></p><div class="ka2-draw"></div></div></div></div>
  ${nextLink('product',{id:'knit-nodes',title:'Knit Nodes'})}</main>`+foot();
+}
+let KAD=null;
+function kaSvg(c,col){return `<svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-opacity=".25" stroke-width=".4"/><path d="${c.d}" fill="none" stroke="${col}" stroke-width="${c.f==='fr'?.45:.9}" stroke-linecap="round" stroke-linejoin="round"/></svg>`}
+function mountKA(){
+ const ix=document.getElementById('kaIndex'); if(!ix) return;
+ const famC=Object.fromEntries(KA.fams.map(f=>[f[0],f])),view=document.getElementById('kaView');
+ const go=d=>{KAD=d;
+  ix.innerHTML=d.curves.map(c=>{const n=String(c.n).padStart(3,'0');return `<li data-f="${c.f}"><button type="button" data-n="${c.n}" style="--c:${famC[c.f][2]}"><img src="${kaImg(n)}" alt="" loading="lazy" decoding="async" width="360" height="360"><b>${n}</b><span>${esc(c.name)}</span></button></li>`}).join('');
+  document.querySelectorAll('.ka2-draw[data-curve]').forEach(el=>{const c=d.curves[+el.dataset.curve-1];el.innerHTML=kaSvg(c,famC[c.f][2])});
+ };
+ fetch('data/ka_atlas.json').then(r=>r.json()).then(go).catch(()=>{});
+ const chips=[...document.querySelectorAll('.ka2-chips button')];
+ chips.forEach(b=>b.addEventListener('click',()=>{chips.forEach(x=>x.setAttribute('aria-pressed',x===b));const f=b.dataset.f;ix.querySelectorAll('li').forEach(li=>li.hidden=!(f==='all'||li.dataset.f===f))}));
+ let cur=1;
+ const show=n=>{if(!KAD)return;cur=(n+108)%109+1;const c=KAD.curves[cur-1],f=famC[c.f],nn=String(cur).padStart(3,'0');
+  view.querySelector('img').src=kaImg(nn,'m');view.querySelector('img').alt=c.name+' knitted on a sphere';view.querySelector('b').textContent=nn;view.querySelector('h3').textContent=c.name;
+  view.querySelector('p').innerHTML=`<em style="--c:${f[2]}"></em>${f[1]}`;view.querySelector('.ka2-draw').innerHTML=kaSvg(c,f[2]);};
+ const open=n=>{show(n);view.hidden=false;document.body.style.overflow='hidden';view.querySelector('.x').focus()};
+ const close=()=>{view.hidden=true;document.body.style.overflow='';const b=ix.querySelector(`[data-n="${cur}"]`);b&&b.focus()};
+ ix.addEventListener('click',e=>{const b=e.target.closest('button[data-n]');b&&open(+b.dataset.n)});
+ view.querySelector('.x').addEventListener('click',close);view.querySelector('.pv').addEventListener('click',()=>show(cur-1));view.querySelector('.nx').addEventListener('click',()=>show(cur+1));
+ view.addEventListener('click',e=>{if(e.target===view)close()});
+ document.addEventListener('keydown',e=>{if(view.hidden)return;if(e.key==='Escape')close();if(e.key==='ArrowLeft')show(cur-1);if(e.key==='ArrowRight')show(cur+1)});
 }
 
 /* ---------- v23: Arepa.AI brand identity ---------- */
@@ -2471,7 +2571,7 @@ function route(){
  else if(h===KP.id){html=keypadPage();title=KP.title+' · Henry Ortega'}
  else if((i=RH.findIndex(p=>p.id===h))>=0){html=CS[RH[i].id]?casePage(RH,i,'rhino','Rhino Workflow'):galleryPage(RH,i,'rhino','Rhino Workflow');title=RH[i].title+' · Henry Ortega'}
  document.body.classList.remove('gm-lock');
- if(html){app.innerHTML=html;app.dataset.view='project';scrollTo(0,0);mountGame();mountTT();mountKN();window.TigreFigures&&TigreFigures.mountAll(app)}
+ if(html){app.innerHTML=html;app.dataset.view='project';scrollTo(0,0);mountGame();mountTT();mountKN();mountKA();window.TigreFigures&&TigreFigures.mountAll(app)}
  else{
   if(app.dataset.view!=='home'){app.innerHTML=home();app.dataset.view='home';window.TigreFigures&&TigreFigures.mountAll(app)}
   const t=h&&document.getElementById(h); if(t) t.scrollIntoView(); else if(!h||h==='top') scrollTo(0,0);
