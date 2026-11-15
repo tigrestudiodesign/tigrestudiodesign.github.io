@@ -924,6 +924,8 @@ function home(){
   <p class="intro" style="margin-top:12px">Projects where the craft is the system behind the visuals: scripted 3D illustration and type, AI-built design systems and a cookbook generated from code.</p>
   <div class="cards c2">${vis}</div>
   <h3 class="sub-h">Free Resources</h3>
+  <a class="feature gl-feat" href="#${RS2.id}"><div class="media tr-l"><span class="badge">New</span>${im(RS2.img.hero,'Three slides from Rhino to Stager, volume two of the Rhino and Adobe series')}</div>
+  <div><small>New · Free download · Rhino ⇄ Adobe · Vol. 02</small><h3>Rhino → Stager</h3><p>Volume two of the series: taking Rhino models into Substance 3D Stager to stage and render them, with the bridge glossary, the round trip and the five things that go wrong.</p><span class="go">Get the PDF →</span></div></a>
   <a class="feature gl-feat" href="#${RA.id}"><div class="media tr-l"><span class="badge">New</span>${im(RA.img.hero,'Three slides from Rhino to Illustrator, volume one of the Rhino and Adobe series')}</div>
   <div><small>New · Free download · Rhino ⇄ Adobe · Vol. 01</small><h3>Rhino → Illustrator</h3><p>The first volume of a series on moving work between Rhino and Adobe's tools: a bridge glossary, the full round trip and the five things that go wrong, in ten slides.</p><span class="go">Get the PDF →</span></div></a>
   <a class="feature gl-feat" href="#${GL.id}"><div class="media tr-l"><span class="badge">New</span>${im(GL.img.hero,'Covers of the Rhino Glossary and the Grasshopper Glossary')}</div>
@@ -2160,6 +2162,41 @@ document.addEventListener('click',e=>{
   setTimeout(()=>{try{f.focus();f.contentWindow&&f.contentWindow.focus()}catch(err){}},150)}
  else if(e.target.closest('#gm-x')) gmExit();
 });
+/* ---------- v31: Rhino ⇄ Adobe · Vol. 02 · Rhino → Stager (free PDF) ---------- */
+const RTI=(f,w,h,c)=>['img/rst__'+f+'.webp',w||864,h||1080,c||''];
+const RS2={id:'rhino-to-stager',
+ img:{hero:RTI('hero',1600,1000),row:RTI('row',1600,900),cover:RTI('01')},
+ pdf:'downloads/Rhino-to-Stager-Vol02-Tigre-Studio.pdf',
+ pages:[RTI('02',0,0,'Two kinds of surface: NURBS and mesh'),RTI('03',0,0,'Bridge glossary: in Rhino'),RTI('04',0,0,'Bridge glossary: the handoff'),RTI('05',0,0,'Bridge glossary: in Stager'),RTI('06',0,0,'The round trip: Rhino side'),RTI('07',0,0,'The round trip: Stager side'),RTI('08',0,0,'Five things that go wrong'),RTI('09',0,0,'By the numbers'),RTI('10',0,0,'Next: Rhino → Painter'),RTI('01',0,0,'The cover')]
+};
+function rs2Page(){
+ const pages=RS2.pages.map((p,i)=>`<figure><div class="media ${i%2?'bl':'tr'}">${im(p,p[3])}</div><figcaption>${esc(p[3])}</figcaption></figure>`).join('');
+ return head('product','New')+`<main>
+ <section class="band dark"><div class="wrap case"><p class="num">New · Free Resource / Rhino ⇄ Adobe · Vol. 02</p><h1>Rhino → Stager</h1><p class="meta">A bridge glossary / The round trip / The fixes · LinkedIn carousel and free PDF</p>
+  <p class="note">Rhino models exact NURBS surfaces. Substance 3D Stager renders triangles. This is the guide to getting a model from one to the other so it arrives upright, to scale, smooth and ready for materials.</p>
+  <dl class="facts"><div><dt>Role</dt><dd>Research, writing, design, illustration</dd></div><div><dt>Tools</dt><dd>McNeel &amp; Adobe docs · HTML → PDF · Python</dd></div><div><dt>Output</dt><dd>1 PDF · 10 carousel slides</dd></div><div><dt>Content</dt><dd>12 bridge terms · 7 steps · 5 fixes</dd></div></dl></div></section>
+ <div class="band dark" style="padding-bottom:56px"><div class="wrap"><div class="media tr-l">${im(RS2.img.hero,'Three slides from Rhino to Stager','heroimg')}</div></div></div>
+
+ <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Download The PDF</h2><p class="sh-sub">Free / 10 pages / English</p>
+  <div class="ra-dl"><a class="media tr" href="${RS2.pdf}" download aria-label="Download the Rhino to Stager PDF">${im(RS2.img.cover,'Cover of Rhino to Stager')}</a>
+  <div><h3>Rhino ⇄ Adobe · Vol. 02</h3><p>Twelve terms that matter between Rhino and Substance 3D Stager, the seven-step round trip from model to render, and the fixes for the five most common problems: models lying on their back, the wrong size, faceted curves, black patches and stretched textures. Checked against McNeel's and Adobe's documentation.</p>
+  <a class="btn inv" href="${RS2.pdf}" download>Download PDF ↓</a></div></div>
+  <p class="fine">A direct download, no sign-up. Share it freely; credit Tigre Studio. Not affiliated with McNeel or Adobe; Rhino and Substance 3D Stager are trademarks of their owners.</p>
+ </div></section>
+
+ <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Series</h2><p class="sh-sub">One bridge per volume</p>
+  <div class="cols"><div><h3>Vol. 01 · Illustrator</h3><p>Curves: NURBS to Bézier, Make2D, scale and the artboard. <a href="#rhino-to-illustrator">Read Vol. 01 →</a></p></div>
+  <div><h3>Vol. 02 · Stager</h3><p>Surfaces: NURBS to mesh, units, up-axis, UVs and materials, ready to stage and render.</p></div>
+  <div><h3>Vol. 03 · Painter</h3><p>Next: taking Rhino parts into Substance 3D Painter to texture them, from UVs to exported maps.</p></div></div>
+ </div></section>
+
+ <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Inside The Pages</h2><p class="sh-sub">Black and white / Original diagrams / Tigre stripes</p>
+  <div class="gl-pages ra-pages">${pages}</div>
+ </div></section>
+
+ <section class="statement">${im(RS2.img.row,'Four slides from Rhino to Stager side by side')}<p>Two kinds of surface, <span class="it">one clean handoff.</span></p></section>
+ ${nextLink('product',{id:RA.id,title:'Rhino → Illustrator'})}</main>`+foot();
+}
 /* ---------- v29: Rhino ⇄ Adobe · Vol. 01 · Rhino → Illustrator (free PDF) ---------- */
 const RAI=(f,w,h,c)=>['img/ra__'+f+'.webp',w||864,h||1080,c||''];
 const RA={id:'rhino-to-illustrator',
@@ -2185,7 +2222,7 @@ function raPage(){
  <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Why A Series</h2><p class="sh-sub">One bridge per volume / Glossary, workflow, a finished piece</p>
   <div class="cols"><div><h3>The Gap</h3><p>Plenty of people teach Rhino and plenty teach Illustrator. Almost nobody covers the handoff, where curves change type, scale gets lost and layers go missing.</p></div>
   <div><h3>The Format</h3><p>Each volume is a bridge glossary, a round-trip workflow and the common fixes, built on one 1080 × 1350 template for LinkedIn and exported as a PDF.</p></div>
-  <div><h3>What's Next</h3><p>Vol. 02 takes Rhino models into Substance 3D Stager for product staging and rendering. More bridges follow.</p></div></div>
+  <div><h3>What's Next</h3><p>Vol. 02 takes Rhino models into Substance 3D Stager for product staging and rendering. <a href="#rhino-to-stager">Read Vol. 02 →</a></p></div></div>
  </div></section>
 
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Inside The Pages</h2><p class="sh-sub">Black and white / Original diagrams / Tigre stripes</p>
@@ -2239,6 +2276,7 @@ function route(){
  let i, html=null, title='Henry Ortega · Footwear Innovation & Product Development';
  if((i=GAMES.findIndex(g=>g.id===h))>=0){html=gamePage(i);title=GAMES[i].title+' · Henry Ortega'}
  else if(h===CB.id){html=cookbookPage();title='Fold / Bake · Henry Ortega'}
+ else if(h===RS2.id){html=rs2Page();title='Rhino → Stager · Rhino ⇄ Adobe Vol. 02 · Henry Ortega'}
  else if(h===RA.id){html=raPage();title='Rhino → Illustrator · Rhino ⇄ Adobe Vol. 01 · Henry Ortega'}
  else if(h===GL.id){html=glPage();title='Rhino & Grasshopper Glossaries · Henry Ortega'}
  else if(h===RS.id){html=rsmPage();title='The Rising Sun Museum · Henry Ortega'}
