@@ -437,6 +437,17 @@ button.btn{cursor:pointer}
 .ng-line{font:800 clamp(44px,8vw,120px)/.86 var(--display,inherit);letter-spacing:-.01em;text-transform:uppercase;margin:8px 0 0}
 @media (max-width:800px){.ng-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ng-post,.ng-sq{grid-template-columns:repeat(2,minmax(0,1fr))}.ng-ooh{grid-template-columns:1fr}}
 .ar-hero3d img{display:block;width:100%;height:auto}
+.ar-real figure{margin:0}.ar-real img{display:block;width:100%;height:auto}.ar-real{margin-top:24px}
+.ar-shop{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:56px;padding-top:32px}
+.ar-shop small{font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--blue)}
+.ar-shop h3{font-weight:700;font-size:26px;line-height:1.05;margin:6px 0 10px}.ar-shop p{margin:0 0 28px}
+.ar-menu{list-style:none;margin:8px 0 0;padding:0;border-top:2px solid var(--rule)}
+.ar-menu li{display:grid;grid-template-columns:170px minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--grid,#d9d9d9)}
+.ar-menu b{font-weight:700;font-size:20px}.ar-menu span{font-family:var(--serif);font-style:italic;color:var(--muted)}.ar-menu i{font-style:normal;font-weight:700;font-variant-numeric:tabular-nums}
+.ar-flow{margin-top:40px}
+.rs-steps.ar-flow,.rs-steps.ar-rules{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:900px){.rs-steps.ar-flow,.rs-steps.ar-rules{grid-template-columns:1fr}}
+@media (max-width:900px){.ar-shop{grid-template-columns:1fr;gap:24px}.ar-menu li{grid-template-columns:1fr auto}.ar-menu span{grid-column:1/-1}}
 .ar-3d{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;padding-top:32px}
 .ar-3d figure{margin:0;min-width:0}.ar-3d img{display:block;width:100%;height:auto}
 .ar-3d figcaption{font-family:var(--serif);font-style:italic;color:var(--muted);margin-top:8px}
@@ -1279,12 +1290,60 @@ function arPage(){
  const fig=(r,c,cls='')=>`<figure class="${cls}">${im([r[0],r[1],r[2]],c)}<figcaption>${esc(c)}</figcaption></figure>`;
  const pg=(k,c)=>fig(AR.pg(k),c,'ar-pg');
  return head('brand','New')+`<main>
- <section class="band dark"><div class="wrap case"><p class="num">New · Brand Identity / Self-initiated</p><h1>Arepa.AI</h1><p class="meta">A full brand identity and launch campaign for a Colombian arepa startup · 2D identity, Rhino 9 3D, raytraced campaign</p>
-  <p class="note">Every startup is “powered by AI” now. Arepa.AI is a Colombian arepa counter that leans all the way into the joke: the menu reads like model releases, you order by prompting your mood, and the only thing running on the plancha is masa, butter and queso.</p>
-  <dl class="facts"><div><dt>Role</dt><dd>Naming, identity, mascot, packaging, 3D, campaign art direction</dd></div><div><dt>Deliverables</dt><dd>Launch campaign · 46-page brand book · 400+ files · Rhino models</dd></div><div><dt>Formats</dt><dd>.ai · .svg · .pdf · .ase · .3dm</dd></div><div><dt>Year</dt><dd>2026</dd></div></dl></div></section>
- <div class="band dark" style="padding-bottom:56px"><div class="wrap"><div class="media tr-l ar-hero3d">${im(ARI('ng_hero',1920,1080),'Arepito mid-sprint on a Caribe Blue set: raytraced in Rhino 9 for the Not Generated. launch.','heroimg')}</div></div></div>
+ <section class="band dark"><div class="wrap case"><p class="num">New · Brand Strategy &amp; Identity / Self-initiated</p><h1>Arepa.AI</h1><p class="meta">Strategy, identity, packaging, retail and launch for a Colombian arepa counter on SE Division St, Portland · 2D system, 3D renders, campaign</p>
+  <p class="note">An arepa counter that borrows the name of the moment and keeps the recipe of the last three hundred years. The wink is in the name; everything else is serious: masa ground daily, arepas pressed by hand and griddled to order, Colombian coffee by the cup.</p>
+  <dl class="facts"><div><dt>Role</dt><dd>Strategy, naming, identity, mascot, packaging, 3D, campaign art direction</dd></div><div><dt>Deliverables</dt><dd>Launch campaign · 46-page brand book · 400+ files · Rhino models</dd></div><div><dt>Formats</dt><dd>.ai · .svg · .pdf · .ase · .3dm</dd></div><div><dt>Year</dt><dd>2026</dd></div></dl></div></section>
+ <div class="band dark" style="padding-bottom:56px"><div class="wrap"><div class="media tr-l ar-hero3d">${im(ARI('real_hero',1800,1125),'Arepa.AI takeaway bag, tinto cup and two griddled arepas on a stone counter in front of a Maíz Yellow wall with the round shop sign.','heroimg')}</div></div></div>
 
- <section class="band ng section"><div class="wrap"><p class="eyebrow" style="color:#FFC233">Launch campaign · Art direction + 3D</p><h2 class="sh-title" style="font-size:32px">Not Generated.</h2><p class="sh-sub">Five spots / One line / Raytraced in Rhino 9</p>
+ <section class="band light section"><div class="wrap"><p class="eyebrow">01 · Brand strategy</p><h2 class="sh-title" style="font-size:32px">The Brand Strategy</h2><p class="sh-sub">Positioning / Audience / Pillars / Proof</p>
+  <div class="cb-feature" style="padding-top:24px"><div><p class="intro" style="margin:0"><b>Positioning.</b> For Portland's lunch crowd and its Latin American community, Arepa.AI is the Colombian arepa counter that makes every arepa by hand, to order, in about six minutes, because the best food in a fast city still comes off a plancha you can watch.</p>
+  <p class="intro" style="margin-top:20px"><b>The name.</b> “AI” is the one joke the brand allows itself. It earns attention in a feed full of tech launches, then the product answers it: nothing here is generated. The wink stays in the name and the campaign; the menu, the packaging and the shop speak plainly.</p></div>
+  <div class="stats" style="margin-top:0"><div><b>6 min</b><span>Order to pickup</span></div><div><b>$4.50</b><span>Entry price, Paisa</span></div><div><b>1</b><span>Ink colour on all food packaging</span></div><div><b>3</b><span>Phases to a flagship</span></div></div></div>
+  <div class="pra"><div><small>Audience</small><h3>Weekday Lunch</h3><p>Office and studio workers within ten minutes' walk, who want something hot, honest and fast for under $12.</p></div>
+  <div><small>Audience</small><h3>Colombians Abroad</h3><p>The community that knows what a good arepa tastes like and will tell everyone if it isn't. They set the standard.</p></div>
+  <div><small>Audience</small><h3>Curious Weekenders</h3><p>Food-cart regulars who follow Portland's openings and share what they find. They spread the name.</p></div></div>
+  <div class="pra"><div><small>Pillar</small><h3>Hecho A Mano</h3><p>Masa ground in-house every morning, every arepa pressed by hand. The open plancha is the shop's centrepiece.</p></div>
+  <div><small>Pillar</small><h3>Colombian Origin</h3><p>Regional recipes, named and credited: choclo from the Andes, huevo from the coast, paisa from Antioquia. Coffee from Huila.</p></div>
+  <div><small>Pillar</small><h3>Fast, No Shortcuts</h3><p>Order at the counter or in the app, watch it cook, pick it up. Quick because the menu is short, not because anything is pre-made.</p></div></div>
+ </div></section>
+
+ <section class="band dark section"><div class="wrap"><p class="eyebrow">02 · In the real world</p><h2 class="sh-title" style="font-size:32px">Packaging, Built For Real</h2><p class="sh-sub">Kraft and one ink / Seal sticker / Paper cup / Storefront</p>
+  <p class="intro">The food packaging is deliberately quiet: Caribe Blue on unbleached kraft, one ink, the wordmark and a round Arepito seal that closes the bag. Colour and the full mascot are kept for the cup, the shop sign and the campaign, so the brand reads loud on the street and calm in your hands.</p>
+  <div class="mono ar-real">${fig(ARI('real_bag',1600,1000),'Takeaway bag: unbleached kraft, one-colour Caribe print, folded top closed with an Ají seal sticker.')}</div>
+  <div class="kn-duo ar-real">${fig(ARI('real_cup',1600,1000),'12 oz tinto cup: Masa Cream wrap with a Caribe band and lid; the seal on the back, the wordmark on the front.')}${fig(ARI('real_sign',1800,1000),'Storefront at dusk: lit Caribe fascia, round blade sign, window lettering with the hours, Ají door.')}</div>
+  <p class="fine">Photoreal renders built in 3D from the brand's own vector files and lit like a product shoot. No AI-generated imagery; the models and print files are included in the kit.</p>
+ </div></section>
+
+ <section class="band light section"><div class="wrap"><p class="eyebrow">03 · The shop</p><h2 class="sh-title" style="font-size:32px">Opening Day</h2><p class="sh-sub">Location / Hours / Menu / Order flow / Launch plan</p>
+  <div class="ar-shop">
+   <div><small>Location</small><h3>SE Division St, Portland, OR</h3><p>A 900 sq ft corner unit with an open plancha facing the window, 14 counter seats and a pickup shelf by the door.</p>
+   <small>Hours</small><h3>Tue – Sun · 8am – 3pm</h3><p>Breakfast arepas until 11. Tinto all day. Closed Mondays for the masa.</p></div>
+   <div><small>The menu</small>
+   <ul class="ar-menu">
+    <li><b>Paisa</b><span>Thin, buttered, salted. The everyday arepa of Antioquia.</span><i>$4.50</i></li>
+    <li><b>Boyacense</b><span>Sweet corn, stuffed with melted cuajada.</span><i>$5.75</i></li>
+    <li><b>Choclo</b><span>Fresh sweet-corn arepa, folded over queso campesino.</span><i>$6.50</i></li>
+    <li><b>Arepa de Huevo</b><span>From the Caribbean coast: fried, with a whole egg inside.</span><i>$7.25</i></li>
+    <li><b>Con Todo</b><span>Shredded beef, hogao, avocado, queso, pickled onion.</span><i>$11.00</i></li>
+    <li><b>Tinto</b><span>Colombian drip coffee, Huila, 12 oz.</span><i>$3.00</i></li>
+   </ul></div>
+  </div>
+  <ol class="rs-steps ar-flow"><li><b>01</b><h3>Order</h3><p>At the counter, or ahead in the app by mood: “something cheesy”, “something spicy”.</p></li><li><b>02</b><h3>Plancha</h3><p>Pressed and griddled to order in full view. About six minutes.</p></li><li><b>03</b><h3>Pickup</h3><p>Bagged in kraft, sealed with Arepito, named on the sticker.</p></li></ol>
+  <div class="pra"><div><small>Phase 1 · Spring</small><h3>Pop-Up</h3><p>Saturdays at a farmers market: test the menu, collect the first 1,000 emails.</p></div>
+  <div><small>Phase 2 · Summer</small><h3>The Truck</h3><p>Weekday lunch at two office pods, with app ordering live.</p></div>
+  <div><small>Phase 3 · Autumn</small><h3>Flagship</h3><p>SE Division opens with the “Not Generated.” campaign across Portland.</p></div></div>
+ </div></section>
+
+ <section class="band alt section"><div class="wrap"><p class="eyebrow">04 · System rules</p><h2 class="sh-title" style="font-size:32px">One System, Every Touchpoint</h2><p class="sh-sub">Six rules that keep it one company</p>
+  <ol class="rs-steps ar-rules"><li><b>01</b><h3>The Chip Always Stays</h3><p>“AI” is always set in its rounded tag, never as plain text, in every colourway.</p></li>
+  <li><b>02</b><h3>Food Gets One Ink</h3><p>Bags and wrappers print Caribe on kraft or Masa only. Full colour is for cups, signs and the campaign.</p></li>
+  <li><b>03</b><h3>The Seal Closes Everything</h3><p>The round Arepito seal is the sticker, the sign and the stamp. The full mascot appears only where there's room to play.</p></li>
+  <li><b>04</b><h3>60 / 25 / 10 / 5</h3><p>Masa or kraft ground, Caribe for type and line, Maíz for warmth, Ají only for the one thing you should notice.</p></li>
+  <li><b>05</b><h3>Three Voices</h3><p>Bricolage Grotesque to announce, Space Mono for labels and the menu, DM Sans to explain.</p></li>
+  <li><b>06</b><h3>Plain Menu, Playful Campaign</h3><p>Menu items carry their regional names and plain descriptions. The jokes live in the campaign and the merch.</p></li></ol>
+ </div></section>
+
+ <section class="band ng section"><div class="wrap"><p class="eyebrow" style="color:#FFC233">05 · Launch campaign · Art direction + 3D</p><h2 class="sh-title" style="font-size:32px">Not Generated.</h2><p class="sh-sub">Five spots / One line / Raytraced in Rhino 9</p>
   <p class="intro">Everything is “generated” now. The launch flips the joke in the name: the one thing in your feed a model can’t make is an arepa pressed by hand. Arepito is shot like an athlete and the food like a product drop: one brand colour per set, a hard key light, two coloured rim lights, ingredients in flight and type that takes up half the frame.</p>
   <div class="ng-kv">${fig(AR.kv('run'),'01 · Not generated. Key visual, 16:9.')}</div>
   <div class="ng-grid">${AR.ng.slice(1).map(([n,k,c])=>fig(AR.kv(k),n+' · '+c)).join('')}</div>
@@ -1334,7 +1393,7 @@ function arPage(){
   <div class="ar-3">${AR.tiles.map(([k,c])=>fig(ARI(k,900,900),c)).join('')}</div>
  </div></section>
 
- <section class="band alt section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Merch, Menu &amp; App</h2><p class="sh-sub">The jokes live here, so the food packaging can stay calm</p>
+ <section class="band alt section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Merch, Menu &amp; App</h2><p class="sh-sub">Where the brand gets to play, so the food packaging can stay calm</p>
   <div class="ar-5">${AR.merch.map(([k,c])=>fig(ARI(k,900,900),c)).join('')}</div>
  </div></section>
 
@@ -1358,8 +1417,8 @@ function brandSection(){
  return `<section id="brand" class="band dark section"><div class="wrap">
   <p class="eyebrow">New · Brand Design</p><h2 class="sh-title">Brands, End To End</h2><p class="sh-sub">Naming / Identity / Mascot / Packaging / 3D / Retail</p>
   <p class="intro">The same systems thinking I used for Nike's technical manuals, applied to building a brand: one idea, a strict toolkit, and every touchpoint from the logo to the counter.</p>
-  <a class="feature ar-feat" href="#${AR.id}"><div class="media tr-l"><span class="badge">New</span>${im(AR.kv('run'),'Arepa.AI launch campaign key visual')}</div>
-   <div><small>New · Brand Identity · 2026</small><h3>Arepa.AI</h3><p>A Colombian arepa startup that's “powered by AI” (it isn't). Wordmark, mascot, five-colour palette, patterns, packaging, an ordering app and a full retail concept, then taken into 3D in Rhino 9 and launched with “Not Generated.”, a raytraced campaign of key visuals, posters, social and out-of-home.</p><ul class="tags"><li>Brand identity</li><li>Mascot design</li><li>Packaging</li><li>3D · Rhino 9</li><li>Campaign</li><li>Guidelines</li></ul><span class="go">See the brand →</span></div></a>
+  <a class="feature ar-feat" href="#${AR.id}"><div class="media tr-l"><span class="badge">New</span>${im(ARI('real_hero',1800,1125),'Arepa.AI packaging on a stone counter')}</div>
+   <div><small>New · Brand Identity · 2026</small><h3>Arepa.AI</h3><p>A Colombian arepa counter for Portland, with a name that winks and a recipe that doesn't. Brand strategy, identity, one-ink packaging, an opening-day menu and launch plan, photoreal 3D renders and “Not Generated.”, a campaign of key visuals, posters, social and out-of-home.</p><ul class="tags"><li>Brand strategy</li><li>Brand identity</li><li>Mascot design</li><li>Packaging</li><li>3D · Rhino 9</li><li>Campaign</li><li>Guidelines</li></ul><span class="go">See the brand →</span></div></a>
   <div class="ar-strip">${['stack','bag','cup','monument'].map(k=>`<a href="#${AR.id}" class="media">${im(AR.kv(k),'Arepa.AI campaign key visual')}</a>`).join('')}</div>
  </div></section>`;
 }
