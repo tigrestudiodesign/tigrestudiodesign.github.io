@@ -513,6 +513,34 @@ button.btn{cursor:pointer}
 @media (max-width:520px){.ka-balls{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 /* v21: Knit Nodes */
+.kn-tog{display:inline-flex;gap:4px;padding:4px;border:1px solid #2E3140;border-radius:999px;margin:20px 0 26px}
+.kn-tog button{all:unset;cursor:pointer;font:600 12px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.12em;text-transform:uppercase;padding:8px 16px;border-radius:999px;color:#B9BCC4}
+.kn-tog button[aria-pressed=true]{background:#fff;color:#000}
+.kn-nodes{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:26px 14px;background:radial-gradient(90% 70% at 50% 40%,#23263A,#11131C 75%);padding:28px 18px 24px;border-radius:6px}
+.kn-node{margin:0;min-width:0;text-align:center}
+.kn-node .kn-im{position:relative;aspect-ratio:4/5}
+.kn-node .kn-im img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:opacity .45s}
+.kn-node .kn-im img+img{opacity:0}
+.kn-nodes.is-mat .kn-im img{opacity:0}.kn-nodes.is-mat .kn-im img+img{opacity:1}
+.kn-node h3{margin:6px 0 4px;font-size:14px;text-transform:uppercase;letter-spacing:.02em}
+.kn-node p{margin:0;font:500 11px ui-monospace,Menlo,Consolas,monospace;color:#9CA0AE;letter-spacing:.03em}
+.kn-node p b{color:#fff;font-weight:600}
+.kn-rampbar{display:flex;align-items:center;gap:12px;margin:0 0 18px;font:500 11px ui-monospace,Menlo,Consolas,monospace;color:#9CA0AE;letter-spacing:.06em;text-transform:uppercase}
+.kn-rampbar i{flex:0 1 320px;height:8px;border-radius:4px;background:linear-gradient(90deg,#285AC8 0%,#3CB478 36%,#F0D23C 72%,#F0A030 84%,#DC3228 100%)}
+.kn-bars{list-style:none;margin:28px 0 0;padding:28px 22px;border-radius:6px;background:radial-gradient(90% 90% at 50% 30%,#23263A,#11131C 80%);display:grid;gap:10px;position:relative}
+.kn-bars li{display:grid;grid-template-columns:44px 170px minmax(0,1fr);gap:14px;align-items:center}
+.kn-bars img{width:44px;height:55px;object-fit:contain}
+.kn-bars h4{margin:0;font-size:14px;color:#fff}.kn-bars h4 small{display:block;font:500 10px ui-monospace,Menlo,Consolas,monospace;color:#8E92A0;margin-top:2px}
+.kn-track{position:relative;height:26px;background:#2A2D3B;border-radius:3px}
+.kn-track b{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:3px;transition:width 1.1s cubic-bezier(.2,.7,.2,1)}
+.kn-track span{position:absolute;top:50%;transform:translateY(-50%);font:700 13px Inter,system-ui,sans-serif;color:#fff;padding-left:8px;white-space:nowrap;transition:left 1.1s cubic-bezier(.2,.7,.2,1)}
+.kn-track:after{content:"";position:absolute;left:var(--full);top:-6px;bottom:-6px;border-left:1px dashed rgba(255,255,255,.55)}
+.kn-bars .kn-axis{display:grid;grid-template-columns:44px 170px minmax(0,1fr);gap:14px}.kn-axis span{position:relative;font:500 10px ui-monospace,Menlo,Consolas,monospace;color:#8E92A0}
+.kn-vs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:40px;padding:26px;border-radius:6px;background:radial-gradient(90% 90% at 50% 40%,#23263A,#11131C 80%)}
+.kn-vs figure{margin:0;text-align:center}.kn-vs img{width:100%;height:auto;display:block}
+.kn-vs h3{margin:6px 0 4px;font-size:18px;text-transform:uppercase}.kn-vs p{margin:0;font:500 12px ui-monospace,Menlo,Consolas,monospace;color:#9CA0AE}
+@media (max-width:1000px){.kn-nodes{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:640px){.kn-nodes{grid-template-columns:repeat(2,minmax(0,1fr));padding:16px 8px}.kn-bars{padding:16px 10px}.kn-bars li,.kn-bars .kn-axis{grid-template-columns:34px 92px minmax(0,1fr);gap:8px}.kn-bars img{width:34px;height:42px}.kn-bars h4{font-size:12px}.kn-vs{grid-template-columns:1fr;padding:14px}}
 .kn-lib{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:28px 18px;margin-top:8px}
 .kn-card{margin:0;min-width:0;display:grid;gap:12px;align-content:start}
 .kn-card .kn-sw{position:relative;aspect-ratio:1;overflow:hidden;border-radius:4px;background:#111}
@@ -1028,7 +1056,7 @@ function hkPage(){
  return head('product','New')+`<main>
  <section class="band dark"><div class="wrap case"><p class="num">New · Personal Project / 3D Illustration</p><h1>Better With Friends</h1><p class="meta">Figma × Hello Kitty and Friends, rebuilt as 3D reliefs · Rhino 9 + Python</p>
   <p class="note">Figma's campaign with Sanrio pairs the Figma logo and its multiplayer cursors with Hello Kitty, Keroppi, Badtz-maru and My Melody in a flat, thick-outlined cartoon style. I kept that sticker-sharp ink line from the front and turned the characters into soft, toy-like objects from the side.</p>
-  <dl class="facts"><div><dt>Role</dt><dd>Solo: modelling, scripting, materials, rendering</dd></div><div><dt>Tools</dt><dd>Rhino 9 · Python 3 / RhinoCommon</dd></div><div><dt>Output</dt><dd>3 posters · 11 character builds · 734 objects</dd></div><div><dt>Original 2D art</dt><dd>Figma × Hello Kitty and Friends campaign</dd></div></dl></div></section>
+  <dl class="facts"><div><dt>Role</dt><dd>Solo: modelling, scripting, materials, rendering</dd></div><div><dt>Tools</dt><dd>Rhino 9 · Python 3 / RhinoCommon · Blender Cycles</dd></div><div><dt>Output</dt><dd>3 posters · 11 character builds · 734 objects</dd></div><div><dt>Original 2D art</dt><dd>Figma × Hello Kitty and Friends campaign</dd></div></dl></div></section>
  <div class="band dark" style="padding-bottom:56px"><div class="wrap"><div class="media tr-l">${im(HK.hero,HK.hero[3],'heroimg')}</div></div></div>
 
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Flat Characters, Made Toy-Like</h2><p class="sh-sub">What's new / In numbers</p>
@@ -1078,8 +1106,8 @@ const KN={id:'knit-nodes',
  white:KNI('02_white_lineup',1800,1012,'Material view: the same ten sleeves in white yarn. Stiffer knits pull the node slimmer.'),
  swatches:KNI('03_swatches',1800,1012,'The stitch library: ten 10 × 12 swatches from one parametric loop.'),
  chart:KNI('04_behaviour_chart',1800,1012,'Share of stretch capacity used at the node, from rib (78%) to cable (214%).'),
- details:[KNI('05_detail',1400,1050,'Rib 1×1: alternating knit and purl wales hug the strut.'),KNI('06_detail',1400,1050,'Cable: the crossed panel runs hot. The stiffest knit in the set.'),
-  KNI('07_detail',1400,1050,'Lace eyelet: enlarged loops open into holes as the sleeve stretches.'),KNI('08_detail',1400,1050,'Honeycomb tuck: stretched tuck loops stagger across the rounds.')],
+ details:[KNI('05_detail',1400,1050,'Rib 1×1 in two-ply white yarn: knit wales stand proud, purls sink between them.'),KNI('06_detail',1400,1050,'Cable: the crossings run hot as the sleeve stretches. The stiffest knit in the set.'),
+  KNI('07_detail',1400,1050,'Lace eyelet: yarn-overs open into holes as the sleeve stretches.'),KNI('08_detail',1400,1050,'Honeycomb tuck: held loops stretch tall and stagger across the rounds.')],
  node:KNI('09_node_white',1400,1750,'Rib 1×1 in white yarn, the most compliant sleeve in the study.'),
  vs:KNI('10_rib_vs_cable',1800,1012,'Most compliant against stiffest: rib 1×1 against cable on the same joint.'),
  clay:KNI('11_clay',1800,1012,'Clay pass. Sleeve forms checked before material.'),
@@ -1090,14 +1118,14 @@ const KN={id:'knit-nodes',
   ['Knitting in the round','On the node each row becomes a closed round and the wales run along the strut. Stitches per round are fixed, so they stretch as the sleeve swells, like a real knitted tube pulled over a form.'],
   ['Two sleeves, one node','Each strut gets its own sleeve. Where they meet, yarn that would sit inside the other sleeve is trimmed, so the two read as one X-shaped garment.'],
   ['Behaviour model','Each knit has a relaxed stitch width, a row take-up and a stretch capacity. These set stitches per round, how tightly rows pack, how far the sleeve can bulge, and the colour of every round.'],
-  ['Render pipeline','Per-node tiles in rendered, clay and wire passes, auto-cropped and composited, with labels and the chart set in code.']],
+  ['Render pipeline','The same scripted yarn rendered as strain, white, clay and wire passes, two-ply in the close-ups. Labels, the lineup and the behaviour chart are set in code on the page, not baked into images.']],
  beh:[['Ribs hug the node','1×1 and 2×2 rib stretch 113–125% and still use only about 80% of their capacity.','#285AC8'],
   ['Jersey and chevron sit at the limit','They reach 105% of capacity. They fit, but only just.','#3CB478'],
   ['Lace stretches the most','152% in absolute terms. Rows compress and the eyelets open up.','#F0D23C'],
   ['Cable, seed and slip-stitch brace','At 182–214% of capacity they pull the sleeve slimmer, which suits a joint that needs bracing more than drape.','#DC3228']],
  ramp:[['#285AC8','Relaxed'],['#3CB478','Comfortable'],['#F0D23C','At limit'],['#DC3228','Overstretched']],
  mats:[['#F0EEE8','Yarn · matte white'],['#96989E','Struts · satin grey'],['#D6564A','Swatch · coral'],['#5A5A64','Swatch · slate']],
- fun:['Every knit comes from the same loop equation. Only the rule table changes.','In the cable, the crossing stitches reach three wales sideways in a single row, which is why the legs run diagonal.','Slip-stitch is stiff because of its floats: the straight yarn carried across the stitches can’t stretch.','Garter needs 34 more rounds than jersey to cover the same node.']
+ fun:['Every knit comes from the same loop equation. Only the rule table changes.','In the cable, the crossing stitches reach three wales sideways in a single row, which is why the legs run diagonal.','Slip-stitch is stiff because of its floats: the straight yarn carried across the stitches can’t stretch.','Rib packs the most rounds, 84 against 50 for lace: twenty narrow stitches per round make short loops.']
 };
 
 /* stitch library: renders + charts generated from the same rules */
@@ -1139,23 +1167,45 @@ function knChart(id,col){
 }
 const knLib=()=>`<ul class="kn-legend" aria-label="Chart key"><li><svg viewBox="0 0 10 10"><rect x=".5" y=".5" width="9" height="9" fill="#fff" fill-opacity=".06" stroke="#fff" stroke-opacity=".3"/></svg>Knit</li><li><svg viewBox="0 0 10 10"><rect x=".5" y=".5" width="9" height="9" fill="#fff" fill-opacity=".06" stroke="#fff" stroke-opacity=".3"/><circle cx="5" cy="5" r="1.6" fill="#fff"/></svg>Purl</li><li><svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="3" fill="none" stroke="#fff"/></svg>Yarn-over</li><li><svg viewBox="0 0 10 10"><path d="M2.5 7.5L7.5 2.5" stroke="#fff" stroke-width="1.2"/></svg>Decrease</li><li><svg viewBox="0 0 10 10"><path d="M2.5 3Q5 12 7.5 3" fill="none" stroke="#fff"/></svg>Tuck</li><li><svg viewBox="0 0 10 10"><path d="M2.5 2.5L5 7.5L7.5 2.5" fill="none" stroke="#fff"/></svg>Slip</li><li><svg viewBox="0 0 10 10"><path d="M1 8L9 2" stroke="#3B6FD0" stroke-width="2"/><path d="M1 2L9 8" stroke="#fff"/></svg>Cable cross</li></ul>
  <div class="kn-lib">${KL.map(([id,n,col,rule,read],i)=>`<figure class="kn-card"><div class="kn-sw">${im(['img/kn__lib_'+id+'.webp',900,900],n+' swatch: '+read)}<span class="kn-n">${n2(i)}</span></div><h3>${n}</h3><div class="kn-meta">${knChart(id,col)}<p><b>${esc(rule)}</b>${esc(read)}</p></div></figure>`).join('')}</div>`;
+
+/* knit nodes: lineup, behaviour bars, rib vs cable — all from the same behaviour table */
+const KB={stockinette:[16,84,105,68],garter:[12,130,145,76],rib1:[20,125,78,84],rib2:[20,113,81,84],seed:[12,105,192,62],cable:[16,75,214,68],lace:[12,152,126,50],tuck:[12,91,152,64],slip:[16,55,182,68],chevron:[16,84,105,68]};
+const knN=(id,mode)=>['img/kn__n_'+mode+'_'+id+'.webp',800,1000];
+const knStat=id=>{const[st,sr,cap,rd]=KB[id];return `${st} st/round · ${sr}% stretch · <b>${cap}%</b> of capacity`};
+const knRamp=u=>{const R=[[0,[40,90,200]],[.45,[60,180,120]],[.9,[240,210,60]],[1.05,[240,160,48]],[1.25,[220,50,40]]];for(let i=1;i<R.length;i++)if(u<=R[i][0]){const t=Math.max(0,(u-R[i-1][0])/(R[i][0]-R[i-1][0]));return 'rgb('+R[i-1][1].map((c,k)=>Math.round(c+(R[i][1][k]-c)*t)).join(',')+')'}return 'rgb(220,50,40)'};
+const knNodes=()=>`<div class="kn-tog" role="group" aria-label="View"><button type="button" aria-pressed="true" data-v="strain">Strain</button><button type="button" aria-pressed="false" data-v="mat">Material</button></div>
+ <div class="kn-rampbar"><span>Relaxed</span><i></i><span>At limit</span><span style="color:#DC3228">Overstretched</span></div>
+ <div class="kn-nodes" id="knNodes">${KL.map(([id,n])=>`<figure class="kn-node"><div class="kn-im">${im(knN(id,'strain'),n+' sleeve on the X-joint, coloured by strain')}${im(knN(id,'white'),n+' sleeve on the X-joint in white yarn')}</div><h3>${n}</h3><p>${knStat(id)}</p></figure>`).join('')}</div>`;
+const knBars=()=>{const max=230,rows=KL.slice().sort((a,b)=>KB[a[0]][2]-KB[b[0]][2]);
+ return `<ul class="kn-bars" id="knBars" style="--full:${(100/max*100).toFixed(2)}%">${rows.map(([id,n])=>{const[st,sr,cap,rd]=KB[id],w=(cap/max*100).toFixed(2);
+  return `<li><img src="img/kn__n_strain_${id}.webp" alt="" loading="lazy" width="800" height="1000"><h4>${n}<small>${st} st/round · ${rd} rounds</small></h4><div class="kn-track"><b data-w="${w}%" style="background:linear-gradient(90deg,#285AC8,${knRamp(cap/100)})"></b><span data-l="${w}%" style="left:0">${cap}%</span></div></li>`}).join('')}
+  <li class="kn-axis" aria-hidden="true"><i></i><i></i><span style="height:14px"><span style="position:absolute;left:var(--full);transform:translateX(-50%)">100% = fully extended</span></span></li></ul>`};
+function mountKN(){
+ const g=document.getElementById('knNodes'); if(g){const bs=[...document.querySelectorAll('.kn-tog button')];bs.forEach(b=>b.addEventListener('click',()=>{bs.forEach(x=>x.setAttribute('aria-pressed',x===b));g.classList.toggle('is-mat',b.dataset.v==='mat')}))}
+ const B=document.getElementById('knBars'); if(B){const go=()=>B.querySelectorAll('.kn-track').forEach(t=>{t.querySelector('b').style.width=t.querySelector('b').dataset.w;t.querySelector('span').style.left=t.querySelector('span').dataset.l});
+  if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches){const io=new IntersectionObserver(e=>{if(e[0].isIntersecting){io.disconnect();go()}},{threshold:.3});io.observe(B)}else go()}
+}
 function knPage(){
  const fig=(r,cls='')=>`<figure class="${cls}">${im(r,r[3])}<figcaption>${esc(r[3])}</figcaption></figure>`;
  return head('product','New')+`<main>
  <section class="band dark"><div class="wrap case"><p class="num">New · Personal Study / CMF &amp; Computational Textiles</p><h1>Computational Couture: Knit Nodes</h1><p class="meta">Ten knit structures, one robotic joint · Rhino 9 + Python</p>
   <p class="note">Knit is a structure, not just a surface: the same yarn behaves very differently depending on how its loops interlock. I wanted to see that difference on a real part instead of a flat swatch, so every knit is fitted to the same cuff and has to stretch over the same bulging X-joint.</p>
-  <dl class="facts"><div><dt>Role</dt><dd>Solo: modelling, scripting, behaviour model, rendering</dd></div><div><dt>Tools</dt><dd>Rhino 9 · Python 3 / RhinoCommon</dd></div><div><dt>Output</dt><dd>10 knits · 612 rounds · behaviour chart</dd></div><div><dt>Focus</dt><dd>Material behaviour, textile CMF</dd></div></dl></div></section>
+  <dl class="facts"><div><dt>Role</dt><dd>Solo: modelling, scripting, behaviour model, rendering</dd></div><div><dt>Tools</dt><dd>Rhino 9 · Python 3 / RhinoCommon · Blender Cycles</dd></div><div><dt>Output</dt><dd>10 knits · 692 rounds · behaviour chart</dd></div><div><dt>Focus</dt><dd>Material behaviour, textile CMF</dd></div></dl></div></section>
  <div class="band dark" style="padding-bottom:56px"><div class="wrap"><div class="media tr-l">${im(KN.hero,KN.hero[3],'heroimg')}</div></div></div>
 
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Structure Is A Material Choice</h2><p class="sh-sub">What's new / In numbers</p>
   <div class="cb-feature" style="padding-top:24px"><p class="intro" style="margin:0">A ten-stitch library (jersey, garter, two ribs, seed, cable, lace, tuck, slip-stitch and chevron) generated from one loop equation and knitted in the round onto an X-joint. A behaviour model colours every round by how much of its stretch it is using, and stiffer knits pull the sleeve slimmer.</p>
-  <div class="stats" style="margin-top:0"><div><b>10</b><span>Knit structures</span></div><div><b>612</b><span>Knitted rounds</span></div><div><b>1</b><span>Loop equation</span></div><div><b>0</b><span>Hand-drawn stitches</span></div></div></div>
+  <div class="stats" style="margin-top:0"><div><b>10</b><span>Knit structures</span></div><div><b>692</b><span>Knitted rounds</span></div><div><b>1</b><span>Loop equation</span></div><div><b>0</b><span>Hand-drawn stitches</span></div></div></div>
  </div></section>
 
  <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Stitch Library</h2><p class="sh-sub">Ten structures / One parametric loop / Rules, not drawings</p>
   <p class="intro" style="margin-top:24px">Each stitch is the same loop equation run through a different rule. Knits show their legs, purls show their heads, and the rule decides which, where, and how far a loop stretches. Charts read from the bottom row up.</p>
   ${knLib()}
-  <div class="kn-duo" style="padding-top:48px">${fig(KN.sw)}${fig(KN.white)}</div>
+ </div></section>
+
+ <section class="band dark section" style="padding-top:0"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Ten Knits, One Node</h2><p class="sh-sub">Same X-joint / Same cuff / Colour shows how much stretch the bulge uses</p>
+  <p class="intro" style="margin-top:24px">Each library swatch is knitted in the round onto the same robotic joint. Switch to the material view to see the structures in plain white yarn: stiffer knits pull the sleeve slimmer.</p>
+  ${knNodes()}
  </div></section>
 
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Process</h2><p class="sh-sub">Six steps / One rule table / Every loop generated</p>
@@ -1163,10 +1213,10 @@ function knPage(){
  </div></section>
 
  <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Material Behaviour</h2><p class="sh-sub">How much of each knit's stretch the node uses</p>
-  <div class="mono">${fig(KN.chart)}</div>
+  ${knBars()}
   <ul class="kn-ramp">${KN.ramp.map(([h,l])=>`<li><i style="background:${h}"></i>${l}</li>`).join('')}</ul>
   <div class="kn-beh">${KN.beh.map(([h,t,c])=>`<div style="border-color:${c}"><h3>${esc(h)}</h3><p>${esc(t)}</p></div>`).join('')}</div>
-  <div class="mono">${fig(KN.vs)}</div>
+  <div class="kn-vs"><figure>${im(knN('rib1','strain'),'Rib 1×1 sleeve, coloured by strain')}<h3>Most compliant · Rib 1×1</h3><p>${knStat('rib1')}</p></figure><figure>${im(knN('cable','strain'),'Cable sleeve, coloured by strain')}<h3>Stiffest · Cable</h3><p>${knStat('cable')}</p></figure></div>
  </div></section>
 
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Up Close</h2><p class="sh-sub">Rib / Cable / Lace / Tuck</p>
@@ -1987,7 +2037,7 @@ function rsmPage(){
  return head('product','New')+`<main>
  <section class="band dark"><div class="wrap case"><p class="num">New · Personal Project / 3D Typography</p><h1>The Rising Sun Museum</h1><p class="meta">Four 2D brand-sticker sheets, rebuilt as 3D reliefs and hung in a gallery · Rhino 9</p>
   <p class="note">Rafael Serra's series reimagines Uniqlo × Dragon Ball, Coca-Cola, Vans and Adidas through a Japanese “rising sun” poster language: flat red suns, katakana, waves, koi and checkerboards. I wanted to know what happens when those flat stickers get real thickness, real materials and a little mischief. Each sheet became an extruded relief, and then all four went into a museum.</p>
-  <dl class="facts"><div><dt>Role</dt><dd>Solo: modelling, scripting, materials, rendering</dd></div><div><dt>Tools</dt><dd>Rhino 9 · Python 3 / RhinoCommon</dd></div><div><dt>Output</dt><dd>5 .3dm models · 44 renders</dd></div><div><dt>Original 2D art</dt><dd>Rafael Serra, Porto, Portugal</dd></div></dl></div></section>
+  <dl class="facts"><div><dt>Role</dt><dd>Solo: modelling, scripting, materials, rendering</dd></div><div><dt>Tools</dt><dd>Rhino 9 · Python 3 / RhinoCommon · Blender Cycles</dd></div><div><dt>Output</dt><dd>5 .3dm models · 44 renders</dd></div><div><dt>Original 2D art</dt><dd>Rafael Serra, Porto, Portugal</dd></div></dl></div></section>
  <div class="band dark" style="padding-bottom:56px"><div class="wrap"><div class="media tr-l">${im(RS.hero,RS.hero[3],'heroimg')}</div></div></div>
 
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Flat Stickers, Made Solid</h2><p class="sh-sub">What's new / In numbers</p>
@@ -2421,7 +2471,7 @@ function route(){
  else if(h===KP.id){html=keypadPage();title=KP.title+' · Henry Ortega'}
  else if((i=RH.findIndex(p=>p.id===h))>=0){html=CS[RH[i].id]?casePage(RH,i,'rhino','Rhino Workflow'):galleryPage(RH,i,'rhino','Rhino Workflow');title=RH[i].title+' · Henry Ortega'}
  document.body.classList.remove('gm-lock');
- if(html){app.innerHTML=html;app.dataset.view='project';scrollTo(0,0);mountGame();mountTT();window.TigreFigures&&TigreFigures.mountAll(app)}
+ if(html){app.innerHTML=html;app.dataset.view='project';scrollTo(0,0);mountGame();mountTT();mountKN();window.TigreFigures&&TigreFigures.mountAll(app)}
  else{
   if(app.dataset.view!=='home'){app.innerHTML=home();app.dataset.view='home';window.TigreFigures&&TigreFigures.mountAll(app)}
   const t=h&&document.getElementById(h); if(t) t.scrollIntoView(); else if(!h||h==='top') scrollTo(0,0);
