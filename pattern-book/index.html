@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>Pattern Book · Tigre Studio</title>
+<style>
+@font-face{font-family:"Inter Display";src:url(fonts/InterDisplay-Black.woff2) format("woff2");font-weight:900}
+html,body{margin:0;height:100%;background:#000;color:#fff;font:16px "Helvetica Neue",Helvetica,Arial,sans-serif}
+.g{min-height:100%;display:grid;place-items:center;padding:24px;box-sizing:border-box;background-image:linear-gradient(#ffffff10 1px,transparent 1px),linear-gradient(90deg,#ffffff10 1px,transparent 1px);background-size:48px 48px}
+.b{width:min(420px,100%)}
+.e{font:700 11px sans-serif;letter-spacing:.12em;color:#8c8c8c;text-transform:uppercase}
+h1{font:900 64px/.9 "Inter Display",sans-serif;text-transform:uppercase;margin:12px 0 22px;letter-spacing:-.02em}
+.bar{height:6px;background:linear-gradient(90deg,#4fb3e0,#0a35ff 25%,#7a3cff 50%,#e00000 75%,#ffa800);margin-bottom:26px}
+form{display:flex;border:1px solid #fff;border-top-right-radius:16px;overflow:hidden}
+input{flex:1;background:#000;color:#fff;border:0;padding:14px;font-size:16px;outline:none;min-width:0}
+button{background:#59c0e6;color:#000;border:0;padding:0 20px;font:700 13px sans-serif;letter-spacing:.08em;cursor:pointer}
+p{font:italic 15px Palatino,Georgia,serif;color:#8c8c8c;min-height:1.4em}
+</style></head><body><div class="g"><div class="b">
+<div class="e">Private study edition</div><h1>Pattern<br>Book</h1><div class="bar"></div>
+<form id="f"><input id="pw" type="password" placeholder="Password" autocomplete="current-password" autofocus><button>OPEN →</button></form>
+<p id="m"></p></div></div>
+<script>
+const SALT=Uint8Array.from(atob('M9XKyQmVoopjUwq52k0Gpg=='),c=>c.charCodeAt(0)),ITER=310000;
+async function keyFrom(pw){const k=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']);
+  return crypto.subtle.deriveKey({name:'PBKDF2',salt:SALT,iterations:ITER,hash:'SHA-256'},k,{name:'AES-GCM',length:256},false,['decrypt'])}
+async function dec(key,buf){buf=new Uint8Array(buf);return crypto.subtle.decrypt({name:'AES-GCM',iv:buf.slice(0,12)},key,buf.slice(12))}
+async function open(key){
+  const app=await fetch('app.bin').then(r=>r.arrayBuffer());
+  const html=new TextDecoder().decode(await dec(key,app));
+  const cache={},pend={};window.__ASSET=cache;
+  const load=p=>pend[p]||(pend[p]=fetch(p+'.bin').then(r=>r.arrayBuffer()).then(b=>dec(key,b)).then(d=>cache[p]=URL.createObjectURL(new Blob([d],{type:p.endsWith('.svg')?'image/svg+xml':'image/png'}))));
+  const fix=im=>{const s=im.getAttribute('src')||'';if(s.startsWith('#enc:')){const p=s.slice(5);load(p).then(u=>{if(im.getAttribute('src')===s)im.src=u})}};
+  new MutationObserver(ms=>ms.forEach(m=>{if(m.type==='attributes')fix(m.target);else m.addedNodes.forEach(n=>{if(n.nodeType!==1)return;if(n.tagName==='IMG')fix(n);n.querySelectorAll&&n.querySelectorAll('img').forEach(fix)})}))
+    .observe(document,{subtree:true,childList:true,attributes:true,attributeFilter:['src']});
+  document.open();document.write(html);document.close();
+}
+document.getElementById('f').onsubmit=async e=>{e.preventDefault();const m=document.getElementById('m');m.textContent='Unlocking…';
+  try{const key=await keyFrom(document.getElementById('pw').value);await open(key);try{sessionStorage.setItem('pb-k','1')}catch(_){}}
+  catch(err){m.textContent='Wrong password.'}};
+</script></body></html>
