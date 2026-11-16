@@ -1126,12 +1126,12 @@ const NAV=[['fit','What I Do'],['rules','Rules → Code'],['product','Computatio
 const nav=()=>`<header class="nav band"><div class="wrap"><a class="brand" href="#top">Henry Ortega<span> · Tigre Studio</span></a><nav aria-label="Sections"><ul>${NAV.map(([h,t])=>`<li><a href="#${h}">${t}</a></li>`).join('')}</ul></nav><div class="nav-r">${socials('mini nav-soc')}<a class="nav-cta" href="mailto:${EMAIL}">Email me</a></div></div></header>`;
 
 const BC={id:'basecamp',title:'BASECAMP',
- img:{hero:['img/bc__hero.webp',1800,1440],crop:['img/bc__hero-crop.webp',1600,1156],dial:['img/bc__dial.webp',1400,1400],fb:['img/bc__frontback.webp',1400,1400],
-  exp:['img/bc__exploded.webp',1100,1674],lat:['img/bc__lattice.webp',1400,1400],fbl:['img/bc__frontback-lattice.webp',1400,1400],label:['img/bc__label.webp',950,800]},
- parts:['SOS button','Oak tune / dim dial','Light and radio buttons','AM / WX band slider','Printed faceplate','Main board with the lantern LED array','Shell','Side crank with oak knob','Speaker','Two battery cells','Back plate, 4 × T6 screws'],
- cmf:[['#E2D6B8','Shell · sand'],['#CDBF9E','Faceplate · khaki'],['#FF5A00','Light · orange'],['#EE3414','SOS · red'],['#009EE3','Radio · blue'],['#C4A070','Dial · oak'],['#282624','Crank · rubber'],['#181614','Graphics · ink']]
+ img:{hero:['img/bc2__hero.webp',1800,1440],crop:['img/bc2__hero-crop.webp',1600,1156],front:['img/bc2__front.webp',1600,1300],back:['img/bc2__back.webp',1600,1300],
+  exp:['img/bc2__exploded.webp',1500,1200],dial:['img/bc2__dial.webp',1200,1200],spk:['img/bc2__speaker.webp',1200,1200],top:['img/bc2__top.webp',1200,1200]},
+ parts:['Tune / dim dial, light and radio buttons, band slider','Front Torx T10 screws','Perforated speaker plate','Printed faceplate','Speaker driver','Main board','Shell','Two 18650 cells','Back plate with spec label, 4 × T10','Fold-out crank','Pop-up lantern','SOS button'],
+ cmf:[['#DDD4C2','Shell · sand'],['#222326','Faceplate · graphite'],['#FF5A1F','Signal · orange'],['#E8321A','SOS · red'],['#F1ECE1','Radio · cream'],['#C9CBCD','Knurled aluminium'],['#3A3C40','Crank arm · graphite'],['#1A1A1C','Print · ink']]
 };
-const CARD_BC={id:BC.id,isNew:true,kind:'Industrial Design',title:'BASECAMP',meta:'Emergency radio + lantern concept · Rhino 9 · Grasshopper',imgs:[BC.img.crop]};
+const CARD_BC={id:BC.id,isNew:true,kind:'Industrial Design',title:'BASECAMP',meta:'Emergency radio + lantern · Parametric grille · Python',imgs:[BC.img.crop]};
 const CARD_KN={id:'knit-nodes',isNew:true,kind:'CMF · Computational Textiles',title:'Computational Couture: Knit Nodes',meta:'Ten knit structures on one robotic joint, with a material behaviour model',imgs:[['img/kn__01_hero.webp',1800,1012]]};
 const CARD_KA={id:'knit-curve-atlas',isNew:true,kind:'Pattern · Textile CMF',title:'Knit Curve Atlas',meta:'109 mathematical curves knitted onto spheres, colour-coded by family',imgs:[['img/ka2/card.webp',1800,1012]]};
 const CARD_KP={id:'parametric-keypad',isNew:false,kind:'Parametric Design',title:'Parametric Keypad',meta:'Grasshopper 2 · Blender · Voronoi case, AI launcher keys',imgs:[['img/kp__render.webp',2000,1320]]};
@@ -1156,7 +1156,7 @@ const RULE_TOOLS=[
  {n:'FEATURE-LOCKED GRADING',st:'In development',r:'Some features scale with size; others, like web thickness or a hinge angle, must stay locked.',o:'A full size run where the critical dimensions hold in every size.'}
 ];
 const FEAT=[
- {id:'basecamp',img:['img/bc__hero.webp',1800,1440],k:'New · Industrial Design · Rhino 9 + Grasshopper',t:'BASECAMP Emergency Radio',d:'A hand-crank radio and lantern concept built to be repaired: product architecture, CMF, graphics and a parametric Voronoi back, modeled end to end in Rhino.',tags:['Product architecture','CMF','Computational design','Repairability']},
+ {id:'basecamp',img:['img/bc2__hero.webp',1800,1440],k:'New · Industrial Design · Python + Blender',t:'BASECAMP Emergency Radio',d:'An upright hand-crank radio and pop-up lantern built to be repaired: product architecture, Torx hardware, CMF and a rule-driven speaker grille, all generated from code.',tags:['Product architecture','CMF','Computational design','Repairability']},
  {id:'parametric-keypad',img:['img/kp__render.webp',2000,1320],k:'Computational Design · Grasshopper 2 + Blender',t:'Parametric Keypad',d:'A true 3D Voronoi seeded on the case surface so the grooves wrap every edge seamlessly, with Tarka-style hardware, pad-printed legends and four colorways from one model.',tags:['Grasshopper','Voronoi','CMF','Parametric']},
  {id:'p01',img:null,k:'Nike Running · Upper innovation',t:'Alphafly 4.0',d:'Led upper design and technical documentation to move Atomknit into inline production, partnering with manufacturing teams in Korea.',tags:['Atomknit','Innovation to inline','Factory partnership']},
  {id:'documentation',img:null,k:'Nike · 2018 – 2026',t:'The Technical Manual Library',d:'50+ tech manuals and quick start guides, 5,000+ pages, built on one visual system and handed to factories worldwide with on-site training.',tags:['Information design','Systems','Team leadership'],doc:true}
@@ -1863,50 +1863,49 @@ function bcPage(){
  const I=BC.img;
  const fig=(r,c,cls='')=>`<figure class="${cls}">${im(r,c)}<figcaption>${esc(c)}</figcaption></figure>`;
  return head('product','New')+`<main>
- <section class="band dark"><div class="wrap case"><p class="num">New · Industrial Design / Concept</p><h1>BASECAMP</h1><p class="meta">Emergency radio + lantern · Model BC-01 · Rhino 9 · Grasshopper · Python</p>
-  <p class="note">A hand-crank emergency radio and lantern for camp and power cuts. One dial, two big buttons and a crank you can find in the dark. The back opens with four screws, so it gets repaired, not replaced.</p>
-  <dl class="facts"><div><dt>Role</dt><dd>Concept, industrial design, CMF, graphics</dd></div><div><dt>Tools</dt><dd>Rhino 9 · Grasshopper · Python</dd></div><div><dt>Output</dt><dd>Assembly, exploded view, 2 back options</dd></div><div><dt>Brand</dt><dd>Concept for Patagonia · not affiliated</dd></div></dl></div></section>
- <div class="band dark" style="padding-bottom:56px"><div class="wrap"><div class="media tr-l bc-bg">${im(I.hero,'BASECAMP emergency radio and lantern, three-quarter view','heroimg')}</div></div></div>
+ <section class="band dark"><div class="wrap case"><p class="num">New · Industrial Design / Concept</p><h1>BASECAMP</h1><p class="meta">Emergency radio + lantern · Model BC-01 · Python-scripted geometry · Blender Cycles</p>
+  <p class="note">A hand-crank emergency radio and lantern for camp and power cuts. It stands upright on a shelf, the speaker faces you behind an orange perforated plate, and the lantern pops out of the top. Every fastener is a Torx screw you can reach, so it gets repaired, not replaced.</p>
+  <dl class="facts"><div><dt>Role</dt><dd>Concept, industrial design, CMF, graphics</dd></div><div><dt>Tools</dt><dd>Python · Blender · Cycles</dd></div><div><dt>Output</dt><dd>Assembly, elevations, exploded view, details</dd></div><div><dt>Brand</dt><dd>Tigre Studio original concept</dd></div></dl></div></section>
+ <div class="band dark" style="padding-bottom:56px"><div class="wrap"><div class="media tr-l bc-bg">${im(I.hero,'BASECAMP emergency radio and lantern, three-quarter view with the lantern up','heroimg')}</div></div></div>
 
- <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Design Intent</h2><p class="sh-sub">Use it with one hand / Power it without an outlet / Fix it with a screwdriver</p>
-  <div class="cols"><div><h3>One Hand, In The Dark</h3><p>SOS sits alone at the top. Light and radio get the two biggest buttons, colour-coded orange and blue. One oak dial tunes the radio or dims the light, and an AM / WX slider picks the band.</p></div>
-  <div><h3>Power Without An Outlet</h3><p>A fold-out side crank with an oak knob charges two internal cells. USB-C (5 V, 2 A) charges it at home, three LEDs show charge, and an orange bungee loop hangs it from a tent or a hook.</p></div>
-  <div><h3>Built To Be Repaired</h3><p>The back plate comes off with four T6 screws, and the product says so on its label. Inside, every part is a separate, replaceable piece. Rated IPX4 for rain and splashes.</p></div></div>
+ <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Design Intent</h2><p class="sh-sub">Find it in the dark / Power it without an outlet / Fix it with a screwdriver</p>
+  <div class="cols"><div><h3>Find It In The Dark</h3><p>SOS sits alone on top, in red. Light and radio get the two biggest buttons: orange for light, cream for radio. One knurled dial tunes the radio or dims the light, and a slider picks AM, FM or WX.</p></div>
+  <div><h3>Power Without An Outlet</h3><p>A fold-out crank on the side charges two user-replaceable 18650 cells. USB-C (5 V, 2 A) charges it at home, and three LEDs show the charge. The diffuser lifts 40 mm out of the top and turns the radio into a lantern.</p></div>
+  <div><h3>Built To Be Repaired</h3><p>Eight Torx T10 screws hold the front, four hold the back, and the label says so. Inside, every part is a separate, replaceable piece. Rated IPX4 for rain and splashes.</p></div></div>
  </div></section>
 
- <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Product Architecture</h2><p class="sh-sub">Eleven parts / One stack / Four screws</p>
+ <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Elevations</h2><p class="sh-sub">Front / Back / Every callout is a decision</p>
+  <div class="bc-duo">${fig(I.front,'Front elevation: lantern, SOS, perforated plate, Torx hardware, tune / dim dial, buttons and crank.','bc-bg')}${fig(I.back,'Rear elevation: four T10 screws, USB-C and the spec label printed on the part.','bc-bg')}</div>
+ </div></section>
+
+ <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Product Architecture</h2><p class="sh-sub">Twelve parts / One stack / Screws you can reach</p>
   <div class="bc-arch"><figure class="bc-bg">${im(I.exp,'BASECAMP exploded assembly')}</figure>
-  <div><p class="intro" style="margin-top:0">The exploded view is the spec. Each layer is a real part with its own material: controls on top, the faceplate and main board in the middle, then shell, crank, speaker, cells and the back plate.</p>
+  <div><p class="intro" style="margin-top:0">The exploded view is the spec. Each layer is a real part with its own material, from the controls and the perforated plate at the front, through the board and shell, to the cells and the back plate.</p>
   <ol class="bc-parts">${BC.parts.map((t,i)=>`<li><b>${n2(i)}</b>${esc(t)}</li>`).join('')}</ol></div></div>
  </div></section>
 
- <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Interface &amp; Graphics</h2><p class="sh-sub">Front / Back / Label</p>
-  <div class="bc-duo">${fig(I.dial,'Controls up close: SOS, oak tune / dim dial with a printed scale, charge LEDs and the fold-out crank.','bc-bg')}${fig(I.fb,'Front and back. Speaker grille, spec label and the four T6 screws on the back plate.','bc-bg')}</div>
-  <div class="bc-label">${fig(I.label,'The label carries the product story: model BC-01, USB-C 5 V 2 A, IPX4, “Built to be repaired · 4 × T6 screws”.','bc-bg')}
-  <div><h3>A Graphic Language From 1973</h3><p>The orange, red and blue stripe band and the “1973” tag nod to the brand's founding year and its vintage outdoor graphics. Type is set as real solid geometry, not decals, so every word survives an exploded view or a close-up render.</p></div></div>
- </div></section>
-
- <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">A Parametric Back</h2><p class="sh-sub">Option B / Grasshopper Voronoi lattice</p>
-  <p class="intro">The second back replaces the speaker holes with a Voronoi lattice generated in Grasshopper and baked over an orange base plate. One part becomes the speaker grille, the grip texture and the graphic. Change the seed or the cell count, and the whole back regenerates.</p>
-  <div class="bc-duo">${fig(I.fbl,'Option B: the lattice back, front and rear.','bc-bg')}${fig(I.lat,'Lattice detail: cream cells over the orange plate, with the screws raised through it.','bc-bg')}</div>
+ <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">A Parametric Grille</h2><p class="sh-sub">Rule → code / 150 holes / Ø 2.0 → 1.1 mm</p>
+  <p class="intro">The speaker holes are not a pattern from a library. They follow a rule: 150 holes on a Fermat spiral, 2.0 mm at the centre where the driver needs the most open area, shrinking to 1.1 mm at the edge, where the plate needs strength around the screws. Change the hole count or the size range and the plate regenerates. It is the same method as the Rules → Code tools on my homepage.</p>
+  <div class="bc-duo">${fig(I.spk,'The grille up close: graded holes, the tick ring and the Torx screws.','bc-bg')}${fig(I.dial,'Controls: knurled aluminium dial with a printed scale, charge LEDs, band slider, and the light and radio buttons.','bc-bg')}</div>
  </div></section>
 
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Colour, Material, Finish</h2><p class="sh-sub">Warm neutrals for the body, signal colours for the functions</p>
-  <ul class="bc-cmf">${BC.cmf.map(([h,l])=>`<li><i style="background:${h}"></i><b>${esc(l)}</b><code>${h}</code></li>`).join('')}</ul>
-  <p class="fine">Colour does a job: orange means light, blue means radio, red means SOS. The oak dial and crank knob are the parts your hand goes to first.</p>
+  <div class="bc-label">${fig(I.top,'The pop-up lantern: a frosted diffuser in a knurled aluminium collar, with the SOS button on its own.','bc-bg')}
+  <div><ul class="bc-cmf">${BC.cmf.map(([h,l])=>`<li><i style="background:${h}"></i><b>${esc(l)}</b><code>${h}</code></li>`).join('')}</ul>
+  <p class="fine">Colour does a job: orange means light, red means SOS, and the graphite faceplate makes every printed scale readable. Knurled aluminium marks the parts your fingers turn.</p></div></div>
  </div></section>
 
- <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">How It Was Built</h2><p class="sh-sub">Scripted geometry / Tagged layers / Repeatable renders</p>
-  <div class="cols"><div><h3>A Small Geometry Library</h3><p>Every part comes from a Python library on RhinoCommon: filleted rounded rectangles, capped extrusions, edge fillets, boolean cuts and type set as solid polysurfaces. Change a dimension and the part rebuilds.</p></div>
-  <div><h3>One File, Three Products</h3><p>Parts are tagged by layer and state (Shell, Faceplate, Wood, Rubber, Lattice…), so the same file shows the assembly, the exploded view and the lattice back by switching tags.</p></div>
-  <div><h3>Renders On Rails</h3><p>Cameras and captures are scripted too, so every render can be re-shot after a design change with the same framing. That is how a spec package should behave.</p></div></div>
+ <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">How It Was Built</h2><p class="sh-sub">Scripted geometry / Tagged parts / Repeatable renders</p>
+  <div class="cols"><div><h3>Geometry From Code</h3><p>Every part is generated by a Python script: rounded-rectangle shells, knurled dials, Torx recesses and the graded grille. Change a dimension and the part rebuilds.</p></div>
+  <div><h3>One File, Every View</h3><p>Parts are tagged by group, so the same file produces the assembly, the elevations and the exploded view by changing one number.</p></div>
+  <div><h3>Renders On Rails</h3><p>Cameras, lights and the annotated sheets are scripted too, so every image can be re-shot after a design change with the same framing. That is how a spec package should behave.</p></div></div>
  </div></section>
 
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Why It Matters For Your Team</h2><p class="sh-sub">What this concept proves</p>
   <div class="pra"><div><small>Product</small><h3>Thinking In Parts</h3><p>Architecture, fasteners, serviceability, input specs and an IP rating, decided up front instead of left to engineering.</p></div>
-  <div><small>Brand</small><h3>CMF With A Reason</h3><p>A palette and graphic system that make the product easier to use and unmistakably on-brand.</p></div>
-  <div><small>Process</small><h3>Parametric By Default</h3><p>Scripted, tagged and regenerable geometry, the same discipline I brought to Nike tooling and tech packs.</p></div></div>
-  <p class="fine">BASECAMP is a self-initiated concept. Patagonia is a trademark of Patagonia, Inc.; this project is not affiliated with or endorsed by Patagonia.</p>
+  <div><small>Brand</small><h3>CMF With A Reason</h3><p>A palette and graphic system that make the product easier to use in the dark.</p></div>
+  <div><small>Process</small><h3>Parametric By Default</h3><p>Rule-driven, regenerable geometry, the same discipline I brought to Nike tooling and tech packs.</p></div></div>
+  <p class="fine">BASECAMP is a self-initiated Tigre Studio concept.</p>
  </div></section>
 
  <section class="statement">${im(I.crop,'BASECAMP close-up')}<p>Built to be <span class="it">repaired.</span></p></section>
