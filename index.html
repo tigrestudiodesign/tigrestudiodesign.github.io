@@ -2935,7 +2935,7 @@ function glPage(){
 }
 function route(){
  const h=location.hash.slice(1)==='grimlotch-peak'?'rise':location.hash.slice(1), app=document.getElementById('app');
- let i, html=null, title='Henry Ortega · Footwear Innovation & Product Development';
+ let i, html=null, title='Henry Ortega · Product Development & Design Technology';
  if((i=GAMES.findIndex(g=>g.id===h))>=0){html=gamePage(i);title=GAMES[i].title+' · Henry Ortega'}
  else if(h===CB.id){html=cookbookPage();title='Fold / Bake · Henry Ortega'}
  else if(h===GB.id){html=gbPage();title='Grasshopper, Brick by Brick · Henry Ortega'}
