@@ -555,6 +555,76 @@ button.btn{cursor:pointer}
 .nk-map u{display:inline-block;width:12px;height:12px;border-radius:50%;border:1px solid var(--grid)}
 .nk-mapw{overflow-x:auto}
 @media(max-width:820px){.nk-grid{grid-template-columns:1fr;gap:36px}.nk-did li{grid-template-columns:40px 1fr;font-size:16px}.nk-map{min-width:640px}}
+/* v46: page viewer + light-band buttons + brick pairs */
+.light .btn.inv{background:var(--black);color:var(--white);border:2px solid var(--black);font-style:normal;font-family:var(--sans);font-weight:700;letter-spacing:.02em;padding:10px 20px}
+.light .btn.inv:hover{background:#ff5a1f;color:var(--black);border-color:var(--black)}
+.gl-pages figure img{cursor:zoom-in;transition:transform .2s}.gl-pages figure .media:hover img{transform:scale(1.02)}
+.pv{position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.94);display:none;flex-direction:column;color:#fff;font-family:ui-monospace,"SF Mono",Menlo,monospace;touch-action:pan-y}
+.pv.on{display:flex}
+.pv-bar{display:flex;align-items:center;gap:14px;padding:14px 18px;font-size:12px;text-transform:uppercase;letter-spacing:.08em;border-bottom:1px solid #333}
+.pv-n{background:#ff5a1f;color:#000;padding:4px 8px;font-weight:700}.pv-t{color:#bbb;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pv button{font:700 12px ui-monospace,Menlo,monospace;text-transform:uppercase;letter-spacing:.08em;background:#000;color:#fff;border:1.5px solid #fff;padding:8px 12px;cursor:pointer}
+.pv button:hover,.pv button:focus-visible{background:#ff5a1f;color:#000;outline:none}
+.pv-stage{flex:1;display:flex;align-items:center;justify-content:center;gap:16px;padding:16px;min-height:0;background-image:radial-gradient(#2a2a2a 1px,transparent 1px);background-size:22px 22px}
+.pv-stage img{max-height:100%;max-width:min(100%,900px);height:auto;width:auto;object-fit:contain;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.pv-dots{display:flex;gap:6px;justify-content:center;padding:12px}.pv-dots i{width:18px;height:4px;background:#444}.pv-dots i.on{background:#ff5a1f}
+@media (max-width:700px){.pv-stage .pv-side{display:none}.pv-bar{flex-wrap:wrap}}
+.gb-pairs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px;padding-top:32px;counter-reset:gp}
+.gb-pairs li{list-style:none;display:grid;grid-template-columns:44px minmax(0,1fr) 28px minmax(0,1fr);align-items:baseline;gap:10px;padding:14px 0;border-top:1px solid var(--grid)}
+.gb-pairs li::before{counter-increment:gp;content:counter(gp,decimal-leading-zero);font:700 12px ui-monospace,Menlo,monospace;background:#ff5a1f;color:#000;padding:3px 6px;justify-self:start}
+.gb-pairs .b{font-family:var(--serif);font-style:italic;font-size:20px}.gb-pairs .e{font:700 18px ui-monospace,Menlo,monospace;color:#ff5a1f;text-align:center}
+.gb-pairs .c{font-weight:700;font-size:18px;text-transform:uppercase;letter-spacing:.02em}
+@media (max-width:760px){.gb-pairs{grid-template-columns:1fr}}
+/* v46: live sims */
+.sim{--ink:#1d1d1f;--or:#ff5a1f;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;margin:8px 0 28px;color:var(--ink);background:#ecebe5;background-image:linear-gradient(#d9d7cf 1px,transparent 1px),linear-gradient(90deg,#d9d7cf 1px,transparent 1px);background-size:24px 24px;border:2px solid var(--ink);padding:18px;font-family:var(--mono);touch-action:manipulation;user-select:none;-webkit-user-select:none}
+.sim small,.sim-hd,.sim-pins,.sim-hint,.sim button{text-transform:uppercase;letter-spacing:.06em}
+.sim-hd{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;font-size:12px;border-bottom:2px solid var(--ink);padding-bottom:12px;margin-bottom:18px}
+.sim-hd b{background:var(--or);color:var(--ink);padding:4px 8px;font-size:13px}
+.sim-hd span{color:#5d5d5d}
+.sim-st{margin-left:auto;color:var(--or)!important;font-weight:700}.sim-st.you{color:var(--ink)!important}
+.sim-demo,.sim-snd{font:700 11px var(--mono);background:#f7f6f2;border:2px solid var(--ink);color:var(--ink);padding:5px 9px;cursor:pointer}
+.sim-demo:hover,.sim-snd:hover{background:var(--or)}
+.sim-snd[aria-pressed=true]{background:var(--ink);color:#f7f6f2}
+.sim-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:18px;align-items:stretch}
+.sim-host,.sim-dev{background:#f7f6f2;border:2px solid var(--ink);padding:16px;position:relative}
+.sim-host small,.sim-dev small{display:block;font-size:11px;color:#5d5d5d;margin-bottom:10px}
+.sim-lcd{background:#3f8f4f;border-radius:6px;padding:16px 14px;position:relative;box-shadow:inset 0 0 0 2px #2e6c3b}
+.sim-lcd>i{position:absolute;width:8px;height:8px;border-radius:50%;background:#f7f6f2;top:5px;left:5px}.sim-lcd>i+i{left:auto;right:5px}
+.sim-scr{display:grid;grid-template-columns:repeat(16,1fr);gap:2px;background:#1c1c1c;border:6px solid #1c1c1c;outline:3px solid #111;background:#2f4fd0;padding:8px;box-shadow:inset 0 0 18px rgba(0,0,20,.45)}
+.sim-scr b{font:400 clamp(20px,2.6vw,34px)/1 "VT323",var(--mono);color:#e9efff;text-align:center;background:rgba(255,255,255,.07);text-shadow:0 0 6px rgba(200,215,255,.55);padding:3px 0 1px}
+.sim-led{display:block;overflow:visible}.sim-led .g{filter:blur(5px);transition:opacity .04s}
+.sim-kp{display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between;height:100%}
+.sim-keys{display:flex;gap:10px;flex-wrap:wrap}
+.sim-kc{display:flex;flex-direction:column;align-items:center;gap:4px}
+.sim-btn{cursor:pointer;touch-action:none;transition:transform .05s,box-shadow .05s}
+.sim-cap{width:64px;height:64px;background:#fbfaf7;border:2px solid var(--ink);border-radius:8px;box-shadow:0 5px 0 var(--ink);display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;padding:6px 7px;font:700 15px var(--mono);color:var(--ink)}
+.sim-cap span{font-size:8px;font-weight:400;color:#5d5d5d}
+.sim-cap.sim-or{background:var(--or)}.sim-cap.sim-or span{color:var(--ink)}
+.sim-btn.on{transform:translateY(4px);box-shadow:0 1px 0 var(--ink)}
+.sim-btn:focus-visible,.sim-knob:focus-visible{outline:3px solid var(--or);outline-offset:3px}
+.sim-kr,.sim-bcr{display:flex;flex-direction:column;align-items:center;gap:10px}
+.sim-knob{width:132px;height:132px;cursor:grab;touch-action:none;border-radius:50%}.sim-knob:active{cursor:grabbing}
+.sim-knob svg{width:100%;height:100%;display:block}.sim-scale line{stroke:var(--ink);stroke-width:2}
+.sim-push,.sim-bb,.sim-crank{font:700 12px var(--mono);background:#fbfaf7;color:var(--ink);border:2px solid var(--ink);box-shadow:0 4px 0 var(--ink);padding:9px 12px;border-radius:6px}
+.sim-bb.sim-or{background:var(--or)}
+.sim-bc{display:grid;grid-template-columns:1fr auto;gap:16px;height:100%}
+.sim-bcl{display:flex;flex-direction:column;gap:14px;justify-content:space-between}
+.sim-lan,.sim-chg,.sim-spk{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.sim-lan small,.sim-chg small,.sim-spk small{margin:0 0 0 4px}
+.sim-spk svg{width:54px;height:36px}.sim-spk path[class]{fill:none;stroke:var(--ink);stroke-width:2.5;opacity:.12}
+.sim-spk.on path[class]{animation:simw .45s infinite}.sim-spk.on .w2{animation-delay:.1s}.sim-spk.on .w3{animation-delay:.2s}
+@keyframes simw{0%,100%{opacity:.15}50%{opacity:1}}
+.sim-bbs{display:grid;grid-template-columns:1fr 1fr;gap:12px 10px;width:100%}
+.sim-crank{width:100%;background:var(--ink);color:#f7f6f2;box-shadow:0 4px 0 #000}
+.sim-kl{margin:-4px 0 0!important}
+.sim-pins{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px;font-size:11px}
+.sim-pins span{border:1.5px solid var(--ink);background:#f7f6f2;padding:4px 7px;display:flex;gap:7px;font-variant-numeric:tabular-nums}
+.sim-pins b{color:#5d5d5d;font-weight:400}.sim-pins span.o b{color:var(--or)}.sim-pins span.s{background:var(--ink);color:#f7f6f2}.sim-pins span.s b{color:var(--or)}
+.sim-pins i{font-style:normal;background:var(--or);padding:0 3px}
+.sim-hint{font-size:11px;color:#5d5d5d;margin:12px 0 0}.sim-hint b{color:var(--ink)}
+@media (max-width:900px){.sim-body{grid-template-columns:1fr}.sim{padding:12px}.sim-scr b{font-size:clamp(17px,5.4vw,30px)}}
+@media (max-width:520px){.sim-cap{width:48px;height:52px;padding:5px}.sim-cap span{font-size:7px}.sim-keys{gap:6px;flex-wrap:nowrap}.sim-bc{grid-template-columns:1fr}.sim-knob{width:116px;height:116px}.sim-kp{justify-content:center}}
+@media (prefers-reduced-motion:reduce){.sim-spk.on path[class]{animation:none;opacity:1}.sim-btn{transition:none}}
+
 /* v44: BASECAMP electronics */
 .el-steps{list-style:none;margin:36px 0 40px;padding:0;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border-top:2px solid var(--yellow)}
 .el-steps li{padding:16px 14px 0 0}
@@ -1958,6 +2028,8 @@ function bcPage(){
 
  <section class="band dark section el-sec"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Behaviour, Simulated</h2><p class="sh-sub">Ready / Lantern / Radio FM / Radio WX / SOS / Crank</p>
   <p class="intro">Six states from one loop, captured from the running simulation. The display stands in for what the product would tell you through light and sound; the LEDs and piezo are the parts the product actually has.</p>
+  <p class="intro" style="margin-bottom:18px"><b>Live:</b> the same firmware rules, ported to JavaScript and running right here. It plays a demo on its own; press anything to take over.</p>
+  <div class="sim" data-sim="bc"></div>
   <figure class="el-fig">${im(I.elStates,'Six simulated states of the BASECAMP prototype: ready, lantern, FM radio, WX radio, SOS beacon, crank charging')}<figcaption>06 · LIGHT dims with the dial. RADIO maps the same dial to 87.9–107.9 MHz, 530–1700 kHz or the seven NOAA weather channels. SOS flashes · · · — — — · · · on the lantern. The crank fills the bars.</figcaption></figure>
   <div class="cols" style="padding-top:32px"><div><h3>One Dial, Two Jobs</h3><p>The dial position is read once per loop and given meaning by the mode: brightness when the lantern is on, a station when the radio is on. One physical control, no menu.</p></div>
   <div><h3>A Battery You Can See</h3><p>Every mode draws from a shared battery value. Three LEDs show it in thirds, and while you crank the next bar blinks, so the effort has visible feedback.</p></div>
@@ -2155,6 +2227,8 @@ function keypadPage(){
 
  <section class="band dark section el-sec"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Behaviour, Simulated</h2><p class="sh-sub">Asleep / Wake / Launch / Volume / Scroll / Zoom</p>
   <p class="intro">Six states from one loop, captured from the running simulation. The LEDs are the parts the keypad actually has; the display shows what the computer would receive.</p>
+  <p class="intro" style="margin-bottom:18px"><b>Live:</b> the same firmware rules, ported to JavaScript and running right here. It plays a demo on its own; press anything to take over.</p>
+  <div class="sim" data-sim="kp"></div>
   <figure class="el-fig">${im(I.elStates,'Six simulated states of the keypad prototype: asleep, wake, launch, volume, scroll, zoom')}<figcaption>02 · Asleep, only the power LED breathes. Hold POWER and the keys light in a sweep. Each key sends CTRL+ALT+1 to 4. Push the knob to switch between volume, scroll and zoom.</figcaption></figure>
   <div class="cols" style="padding-top:32px"><div><h3>Hold, Don't Tap</h3><p>The power key needs a 2 second hold to wake or sleep, so a knock in a bag doesn't turn it on. A tap just shows a hint.</p></div>
   <div><h3>One Knob, Three Jobs</h3><p>Pushing the knob cycles volume, scroll and zoom. The mode is shown on the display; in the product it would be a short light pattern on the keys.</p></div>
@@ -2867,7 +2941,11 @@ function gbPage(){
   <div><h3>Then Build</h3><p>Two sliders, a circle, a direction and an extrusion: a first definition anyone can make in two minutes, with the menu path to each piece. <a href="#glossaries">Next: the glossaries →</a></p></div></div>
  </div></section>
 
- <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Inside The Pages</h2><p class="sh-sub">Black and white / Original brick drawings / Tigre stripes</p>
+ <section class="band alt section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The 14 Pairs</h2><p class="sh-sub">Brick on the left / Grasshopper on the right / Read it in ten seconds</p>
+  <ol class="gb-pairs"><li><span class="b">Baseplate</span><span class="e">=</span><span class="c">Canvas</span></li><li><span class="b">Studs + tubes</span><span class="e">=</span><span class="c">Wires</span></li><li><span class="b">2×4 brick</span><span class="e">=</span><span class="c">Component</span></li><li><span class="b">1×1 round</span><span class="e">=</span><span class="c">Parameter</span></li><li><span class="b">Turntable</span><span class="e">=</span><span class="c">Number slider</span></li><li><span class="b">Lever</span><span class="e">=</span><span class="c">Boolean toggle</span></li><li><span class="b">Printed tile</span><span class="e">=</span><span class="c">Panel</span></li><li><span class="b">1×8 plate</span><span class="e">=</span><span class="c">List</span></li><li><span class="b">Numbered bags</span><span class="e">=</span><span class="c">Data tree</span></li><li><span class="b">Bracket</span><span class="e">=</span><span class="c">Flatten + graft</span></li><li><span class="b">Sub-assembly</span><span class="e">=</span><span class="c">Cluster</span></li><li><span class="b">Instructions</span><span class="e">=</span><span class="c">Definition</span></li><li><span class="b">Display shelf</span><span class="e">=</span><span class="c">Bake</span></li><li><span class="b">Won't click</span><span class="e">=</span><span class="c">Orange / red</span></li></ol>
+ </div></section>
+
+ <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Inside The Pages</h2><p class="sh-sub">Black and white / Original brick drawings / Click any page to read it full size</p>
   <div class="gl-pages ra-pages">${pages}</div>
  </div></section>
 
@@ -2983,6 +3061,164 @@ function glPage(){
  <section class="statement">${im(GL.img.row,'Four glossary pages side by side')}<p>Every word, <span class="it">explained once.</span></p></section>
  ${nextLink('product',{id:'fold-bake',title:'Fold / Bake'})}</main>`+foot();
 }
+/* v46: LIVE SIMS. JavaScript ports of the two Arduino firmwares, so the behaviour prototypes run on the page. */
+const SIMQ=matchMedia('(prefers-reduced-motion: reduce)');
+const amap=(x,a,b,c,d)=>Math.trunc((x-a)*(d-c)/(b-a))+c;
+const pad16=s=>(s+' '.repeat(16)).slice(0,16);
+const simLed=(id,c,r=9,gl=c)=>`<svg class="sim-led" viewBox="-20 -20 40 40" width="${r*4}" height="${r*4}" aria-hidden="true"><circle class="g" data-led="${id}" r="19" fill="${gl}" opacity="0"/><circle r="${r}" fill="#2a2a2a" stroke="#1d1d1f" stroke-width="2"/><circle class="c" data-ledc="${id}" r="${r-2}" fill="${c}" opacity=".18"/></svg>`;
+const simKnob=(lbl)=>`<div class="sim-knob" role="slider" tabindex="0" aria-label="${lbl}" aria-valuemin="0" aria-valuemax="1023"><svg viewBox="-60 -60 120 120"><g class="sim-scale">${Array.from({length:28},(_,i)=>{const a=(-135+i*10)*Math.PI/180;return `<line x1="${Math.sin(a)*52}" y1="${-Math.cos(a)*52}" x2="${Math.sin(a)*(i%9?48:44)}" y2="${-Math.cos(a)*(i%9?48:44)}"/>`}).join('')}</g><g class="sim-rot"><circle r="40" fill="#151515"/>${Array.from({length:48},(_,i)=>{const a=i*7.5*Math.PI/180;return `<line x1="${Math.sin(a)*35}" y1="${-Math.cos(a)*35}" x2="${Math.sin(a)*40}" y2="${-Math.cos(a)*40}" stroke="#444" stroke-width="1.6"/>`}).join('')}<circle r="31" fill="#222"/><circle cy="-22" r="4.5" fill="#ff5a1f"/></g></svg></div>`;
+
+function simShell(el,o){
+ el.innerHTML=`<div class="sim-hd"><b>Live Sim</b><span>${o.tag}</span><span class="sim-st" aria-live="polite"></span><button type="button" class="sim-demo">↺ Demo</button></div>
+ <div class="sim-body"><div class="sim-host"><small>${o.lcdTag}</small><div class="sim-lcd"><i></i><i></i><div class="sim-scr" aria-live="off">${'<b></b>'.repeat(32)}</div></div></div><div class="sim-dev">${o.dev}</div></div>
+ <div class="sim-pins"></div><p class="sim-hint">${o.hint}</p>`;
+ const cells=[...el.querySelectorAll('.sim-scr b')], scr=el.querySelector('.sim-scr');
+ const S={down:{},hits:{},knob:o.knob0,demo:!SIMQ.matches,dt:0,t:0,step:0,tw:null};
+ const lcdSet=(a,b)=>{const s=pad16(a)+pad16(b);for(let i=0;i<32;i++)cells[i].textContent=s[i]===' '?' ':s[i];scr.setAttribute('aria-label',(a+' / '+b).replace(/\s+/g,' '))};
+ const led=(id,v)=>{const g=el.querySelector(`[data-led="${id}"]`),c=el.querySelector(`[data-ledc="${id}"]`);if(!g)return;const k=Math.max(0,Math.min(1,v));g.setAttribute('opacity',(k*.75).toFixed(2));c.setAttribute('opacity',(.18+k*.82).toFixed(2))};
+ const kn=el.querySelector('.sim-knob'), rot=el.querySelector('.sim-rot');
+ const setKnob=v=>{S.knob=Math.max(0,Math.min(1023,Math.round(v)));rot.setAttribute('transform',`rotate(${-135+S.knob/1023*270})`);kn.setAttribute('aria-valuenow',S.knob)};
+ setKnob(S.knob);
+ const st=el.querySelector('.sim-st'); const status=()=>{st.textContent=S.demo?'● Demo playing':'● You are driving';st.classList.toggle('you',!S.demo)};
+ const takeOver=()=>{if(S.demo){S.demo=false;S.tw=null;S.rel=null;S.down={};el.querySelectorAll('.sim-btn.on').forEach(b=>b.classList.remove('on'));status()}};
+ // buttons: pressed while held, and every press is latched (like the pin-change interrupt)
+ el.querySelectorAll('.sim-btn').forEach(b=>{const k=b.dataset.k;
+  const dn=e=>{e.preventDefault();takeOver();S.down[k]=true;S.hits[k]=true;b.classList.add('on');b.setPointerCapture&&e.pointerId!=null&&b.setPointerCapture(e.pointerId)};
+  const up=()=>{S.down[k]=false;b.classList.remove('on')};
+  b.addEventListener('pointerdown',dn);['pointerup','pointercancel','lostpointercapture'].forEach(n=>b.addEventListener(n,up));
+  b.addEventListener('keydown',e=>{if((e.key===' '||e.key==='Enter')&&!e.repeat){dn(e)}});b.addEventListener('keyup',e=>{if(e.key===' '||e.key==='Enter')up()});
+  b.addEventListener('contextmenu',e=>e.preventDefault())});
+ // knob: drag around its centre, arrow keys, wheel; a tap without turning presses the knob (if it has a push switch)
+ let drag=null;
+ kn.addEventListener('pointerdown',e=>{e.preventDefault();takeOver();const r=kn.getBoundingClientRect();drag={cx:r.left+r.width/2,cy:r.top+r.height/2,a:null,moved:0};kn.setPointerCapture(e.pointerId)});
+ kn.addEventListener('pointermove',e=>{if(!drag)return;const a=Math.atan2(e.clientX-drag.cx,drag.cy-e.clientY)*180/Math.PI;if(drag.a!==null){let d=a-drag.a;if(d>180)d-=360;if(d<-180)d+=360;drag.moved+=Math.abs(d);setKnob(S.knob+d/270*1023)}drag.a=a});
+ kn.addEventListener('pointerup',()=>{if(drag&&drag.moved<4&&o.knobPush){S.hits[o.knobPush]=true;const b=el.querySelector(`[data-k="${o.knobPush}"]`);b&&(b.classList.add('on'),setTimeout(()=>b.classList.remove('on'),150))}drag=null});
+ kn.addEventListener('keydown',e=>{const d={ArrowUp:40,ArrowRight:40,ArrowDown:-40,ArrowLeft:-40,PageUp:150,PageDown:-150}[e.key];if(d){e.preventDefault();takeOver();setKnob(S.knob+d)}});
+ kn.addEventListener('wheel',e=>{e.preventDefault();takeOver();setKnob(S.knob-Math.sign(e.deltaY)*40)},{passive:false});
+ el.querySelector('.sim-demo').addEventListener('click',()=>{S.demo=true;S.dt=0;S.step=0;S.next=0;S.rel=null;S.tw=null;S.down={};S.hits={};el.querySelectorAll('.sim-btn.on').forEach(b=>b.classList.remove('on'));o.reset(S);status()});
+ // demo timeline: [wait ms, action]. Actions: press k / hold k ms / knob to over ms
+ const btn=k=>el.querySelector(`[data-k="${k}"]`);
+ const act={press:(k)=>{S.hits[k]=true;S.down[k]=true;btn(k).classList.add('on');setTimeout(()=>{if(S.demo){S.down[k]=false;btn(k).classList.remove('on')}},180)},
+  hold:(k,ms)=>{S.hits[k]=true;S.down[k]=true;btn(k).classList.add('on');S.rel={k,at:S.dt+ms}},
+  knob:(v,ms)=>{S.tw={a:S.knob,b:v,t0:S.dt,ms}}};
+ const demoTick=dt=>{S.dt+=dt;
+  if(S.rel&&S.dt>=S.rel.at){S.down[S.rel.k]=false;btn(S.rel.k).classList.remove('on');S.rel=null}
+  if(S.tw){const p=Math.min(1,(S.dt-S.tw.t0)/S.tw.ms),e=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2;setKnob(S.tw.a+(S.tw.b-S.tw.a)*e);if(p>=1)S.tw=null}
+  if(!S.next)S.next=o.script[0][0];
+  while(S.dt>=S.next){const [w,n,...a]=o.script[S.step];act[n](...a);S.step=(S.step+1)%o.script.length;if(S.step===0){S.dt=0;S.next=o.script[0][0];if(o.loopReset)o.reset(S);break}S.next+=o.script[S.step][0]}};
+ // run only while on screen
+ let vis=false,last=0,raf=0;
+ const frame=now=>{if(!el.isConnected)return;const dt=Math.min(50,now-(last||now));last=now;S.t+=dt;if(S.demo)demoTick(dt);o.tick(S,S.t,{lcdSet,led,pins:h=>el.querySelector('.sim-pins').innerHTML=h});raf=vis?requestAnimationFrame(frame):0};
+ if('IntersectionObserver' in window){new IntersectionObserver(e=>{vis=e[0].isIntersecting;if(vis&&!raf){last=0;raf=requestAnimationFrame(frame)}}).observe(el)}else{vis=true;raf=requestAnimationFrame(frame)}
+ o.reset(S);status();
+ return S;
+}
+const pinRow=(rows)=>rows.map(([p,v,c])=>`<span class="${c||''}"><b>${p}</b>${v}</span>`).join('');
+const hit=(S,k)=>{const h=!!S.hits[k];S.hits[k]=false;return h};
+
+/* PARAMETRIC KEYPAD: port of keypad_tinkercad.ino */
+function simKP(el){
+ const keys=[1,2,3,4].map(i=>`<div class="sim-kc">${simLed('k'+i,'#ffffff',7,'#5aa9ff')}<button type="button" class="sim-btn sim-cap" data-k="K${i}" aria-label="Launcher key ${i}"><b>0${i}</b><span>AI.0${i}</span></button></div>`).join('');
+ const o={tag:'Keypad · firmware port · same rules as the Arduino',lcdTag:'Host computer · what USB would send',knob0:520,knobPush:'PUSH',
+  hint:'Hold <b>POWER</b> 2 s to wake · tap a key · drag the knob · tap the knob to switch mode',
+  dev:`<div class="sim-kp"><div class="sim-keys">${keys}<div class="sim-kc">${simLed('pw','#ff5a1f',7)}<button type="button" class="sim-btn sim-cap sim-or" data-k="PWR" aria-label="Power key, hold 2 seconds"><b>⏻</b><span>Hold 2 s</span></button></div></div>
+   <div class="sim-kr">${simKnob('Knob')}<button type="button" class="sim-btn sim-push" data-k="PUSH">Push · Mode</button></div></div>`,
+  script:[[1800,'hold','PWR',2300],[3400,'press','K1'],[1900,'press','K3'],[1900,'knob',980,1400],[1700,'press','PUSH'],[700,'knob',380,1400],[1700,'press','PUSH'],[700,'knob',820,1300],[1700,'press','K4'],[2200,'hold','PWR',2300],[2600,'knob',520,600]],loopReset:true,
+  reset(S){Object.assign(S,{on:false,mode:0,lastPos:-1,flash:[0,0,0,0],pwrDown:0,pwrDone:false,msgUntil:0,msg:['',''],sweep:-1})},
+  tick(S,t,io){
+   const ledsK=[0,0,0,0];let pwmP=255,l1,l2;
+   if(S.sweep>=0){const d=t-S.sweep;
+    if(d<720){for(let i=0;i<4;i++)ledsK[i]=d<360?(i<=Math.floor(d/90)):(i>Math.floor((d-360)/90));
+     ledsK.forEach((v,i)=>io.led('k'+(i+1),v));io.led('pw',1);return}
+    S.sweep=-1}
+   const pwr=!!S.down.PWR; hit(S,'PWR');
+   if(pwr){if(!S.pwrDown)S.pwrDown=t;if(!S.pwrDone&&t-S.pwrDown>2000){S.pwrDone=true;S.on=!S.on;if(S.on){S.sweep=t;S.msg=['KEYPAD ON','READY'];S.msgUntil=t+720+1200;S.lastPos=-1}}}
+   else{if(S.pwrDown&&!S.pwrDone&&S.on){S.msg=['HOLD POWER 2 S','TO SLEEP'];S.msgUntil=t+1200}S.pwrDown=0;S.pwrDone=false}
+   const pos=Math.floor(S.knob*100/1023);
+   if(!S.on){const b=Math.floor(t/8)%512;pwmP=Math.floor(b<256?b/4:(511-b)/4);['K1','K2','K3','K4','PUSH'].forEach(k=>S.hits[k]=false);l1=pwr?'WAKING...':'ASLEEP';l2='HOLD POWER 2 S'}
+   else{
+    for(let i=0;i<4;i++){if(hit(S,'K'+(i+1))){S.msg=[`AI.0${i+1}  LAUNCH`,`> CTRL+ALT+${i+1}`];S.msgUntil=t+1500;S.flash[i]=t+450}ledsK[i]=!(t<S.flash[i]&&Math.floor(t/75)%2)}
+    if(hit(S,'PUSH')){S.mode=(S.mode+1)%3;S.lastPos=-1}
+    if(S.lastPos>=0&&Math.abs(pos-S.lastPos)>=2)S.msgUntil=0;
+    if(S.lastPos<0||Math.abs(pos-S.lastPos)>=2)S.lastPos=pos;
+    if(t<S.msgUntil){[l1,l2]=S.msg}
+    else{const p=S.lastPos,v=Math.trunc((p-50)/5);
+     l1=S.mode===0?`VOL ${String(p).padStart(3)}% `:S.mode===1?`SCROLL ${((v<0?'-':'+')+Math.abs(v)).padStart(3)} `:`ZOOM ${String(50+Math.floor(p*3/2)).padStart(3)}% `;
+     const bars=Math.floor(p/15);let k=0;while(l1.length<16){l1+=k<bars?'#':'.';k++}
+     l2='KNOB: '+['VOL','SCROLL','ZOOM'][S.mode]}}
+   io.lcdSet(l1,l2);ledsK.forEach((v,i)=>io.led('k'+(i+1),v?1:0));io.led('pw',Math.sqrt(pwmP/255));
+   const H=k=>S.down[k]?'<i>0</i>':'1';
+   io.pins(pinRow([['D7',H('K1')],['D6',H('K2')],['D5',H('K3')],['D4',H('K4')],['D3',H('PWR')],['D2',H('PUSH')],['D13–10',ledsK.map(v=>v?1:0).join(''),'o'],['D9 PWM',String(pwmP).padStart(3,'0'),'o'],['A0',String(S.knob).padStart(4,'0')],['State',S.on?['VOL','SCROLL','ZOOM'][S.mode]:'ASLEEP','s']]));
+  }};
+ return simShell(el,o);
+}
+
+/* BASECAMP BC-01: port of basecamp_tinkercad.ino */
+function simBC(el){
+ let ac=null,osc=null,gain=null,sound=false;
+ const tone=f=>{if(!sound||!ac)return;if(f){osc.frequency.setTargetAtTime(f,ac.currentTime,.01);gain.gain.setTargetAtTime(.035,ac.currentTime,.01)}else gain.gain.setTargetAtTime(0,ac.currentTime,.01)};
+ const o={tag:'BASECAMP · firmware port · same rules as the Arduino',lcdTag:'Debug window · 16×2 LCD',knob0:300,
+  hint:'Press <b>LIGHT</b>, <b>RADIO</b> or <b>SOS</b> · turn the dial · <b>BAND</b> cycles AM / FM / WX · hold <b>CRANK</b> to charge',
+  dev:`<div class="sim-bc"><div class="sim-bcl"><div class="sim-lan">${simLed('lan','#fff6dc',16,'#ffc23d')}<small>Lantern · D9</small></div>
+    <div class="sim-chg">${simLed('c0','#ff5a1f',6)}${simLed('c1','#ff5a1f',6)}${simLed('c2','#ff5a1f',6)}<small>Charge · D10–12</small></div>
+    <div class="sim-spk"><svg viewBox="0 0 60 40" aria-hidden="true"><rect x="4" y="13" width="10" height="14" fill="#1d1d1f"/><path d="M14 13 L26 4 L26 36 L14 27Z" fill="#1d1d1f"/><path class="w1" d="M32 13 Q37 20 32 27" /><path class="w2" d="M39 8 Q47 20 39 32"/><path class="w3" d="M46 3 Q57 20 46 37"/></svg><small class="sim-hz">Piezo · D8 · off</small><button type="button" class="sim-snd" aria-pressed="false">Sound off</button></div></div>
+   <div class="sim-bcr">${simKnob('Tune / dim dial')}<small class="sim-kl">Tune / Dim · A0</small>
+    <div class="sim-bbs"><button type="button" class="sim-btn sim-bb" data-k="L">Light</button><button type="button" class="sim-btn sim-bb" data-k="R">Radio</button><button type="button" class="sim-btn sim-bb sim-or" data-k="S">SOS</button><button type="button" class="sim-btn sim-bb" data-k="B">Band</button></div>
+    <button type="button" class="sim-btn sim-crank" data-k="C">⟳ Hold to crank</button></div></div>`,
+  script:[[1700,'press','L'],[500,'knob',1000,1500],[1300,'knob',150,1300],[1500,'press','L'],[600,'press','R'],[500,'knob',820,1600],[1400,'press','B'],[1200,'knob',350,1200],[1200,'press','B'],[1200,'knob',700,1000],[1300,'press','B'],[800,'press','R'],[700,'press','S'],[5200,'press','S'],[900,'hold','C',2600],[3600,'knob',300,500]],
+  loopReset:true,
+  reset(S){Object.assign(S,{lightOn:false,radioOn:false,sosOn:false,bandIx:1,charge:40,tSos:0,sosStep:0,boot:S.t,acc:0})},
+  tick(S,t,io){
+   const SOS=[1,1,1,1,1,3,3,1,3,1,3,3,1,1,1,1,1,7];
+   if(t-S.boot<1200){io.lcdSet('BASECAMP BC-01','TIGRE STUDIO');['L','R','S','B'].forEach(k=>S.hits[k]=false);return}
+   const dial=S.knob,cr=!!S.down.C;
+   if(hit(S,'L'))S.lightOn=!S.lightOn; if(hit(S,'R'))S.radioOn=!S.radioOn;
+   if(hit(S,'S')){S.sosOn=!S.sosOn;S.sosStep=0;S.tSos=t} if(hit(S,'B'))S.bandIx=(S.bandIx+1)%3;
+   S.acc+=t-(S.lt||t);S.lt=t;  // the Arduino loop runs about every 20 ms; step the battery at that rate
+   while(S.acc>=20){S.acc-=20;if(cr)S.charge+=1.5;if(S.lightOn)S.charge-=.03*(dial/1023+.2);if(S.radioOn)S.charge-=.02;if(S.sosOn)S.charge-=.02;S.charge=Math.max(0,Math.min(100,S.charge))}
+   const dead=S.charge<=.5,bars=S.charge>66?3:S.charge>33?2:S.charge>3?1:0;
+   for(let i=0;i<3;i++)io.led('c'+i,(i<bars||(cr&&i===bars&&Math.floor(t/300)%2))?1:0);
+   let lan=0,f=0;
+   if(S.sosOn&&!dead){if(t-S.tSos>SOS[S.sosStep]*150){S.sosStep=(S.sosStep+1)%SOS.length;S.tSos=t}const lit=S.sosStep%2===0;lan=lit?255:0;f=lit?880:0}
+   else{lan=(S.lightOn&&!dead)?amap(dial,0,1023,8,255):0;f=(S.radioOn&&!dead)?200+Math.floor(dial/2):0}
+   io.led('lan',lan/255);tone(f);
+   const spk=el.querySelector('.sim-spk');spk.classList.toggle('on',!!f);el.querySelector('.sim-hz').textContent=f?`Piezo · D8 · ${f} Hz`:'Piezo · D8 · off';
+   const band=['AM','FM','WX'][S.bandIx];let st;
+   if(S.bandIx===0)st=amap(dial,0,1023,530,1700)+' kHz';
+   else if(S.bandIx===2)st=['162.400','162.425','162.450','162.475','162.500','162.525','162.550'][amap(dial,0,1023,0,6)]+' MHz';
+   else{const q=amap(dial,0,1023,879,1079);st=Math.floor(q/10)+'.'+q%10+' MHz'}
+   const l1=dead?'CRANK ME!':S.sosOn?'SOS BEACON ON':S.radioOn?band+' '+st:S.lightOn?`LANTERN ${amap(dial,0,1023,3,100)}%`:'BASECAMP READY';
+   io.lcdSet(l1,`BATT ${Math.trunc(S.charge)}%${cr?' CHARGE':''}`);
+   const H=k=>S.down[k]?'<i>0</i>':'1';
+   io.pins(pinRow([['D2',H('L')],['D3',H('R')],['D4',H('S')],['D5',H('B')],['D7',H('C')],['D9 PWM',String(lan).padStart(3,'0'),'o'],['D10–12',[0,1,2].map(i=>i<bars?1:0).join(''),'o'],['D8',f?f+' Hz':'—','o'],['A0',String(dial).padStart(4,'0')],['Batt',S.charge.toFixed(1)+'%','s']]));
+  }};
+ const S=simShell(el,o);
+ const sb=el.querySelector('.sim-snd');
+ sb.addEventListener('click',()=>{sound=!sound;sb.setAttribute('aria-pressed',sound);sb.textContent=sound?'Sound on':'Sound off';
+  if(sound&&!ac){const A=window.AudioContext||window.webkitAudioContext;if(A){ac=new A();osc=ac.createOscillator();gain=ac.createGain();osc.type='square';gain.gain.value=0;osc.connect(gain).connect(ac.destination);osc.start()}}
+  if(!sound&&gain)gain.gain.setTargetAtTime(0,ac.currentTime,.01)});
+ new MutationObserver((m,obs)=>{if(!el.isConnected){ac&&ac.close();obs.disconnect()}}).observe(document.getElementById('app')||document.body,{childList:true});
+ return S;
+}
+/* v46: page viewer for guide pages */
+function mountPV(){
+ const figs=[...document.querySelectorAll('.gl-pages figure')]; if(!figs.length)return;
+ let pv=document.querySelector('.pv'); if(!pv){pv=document.createElement('div');pv.className='pv';pv.setAttribute('role','dialog');pv.setAttribute('aria-modal','true');pv.setAttribute('aria-label','Page viewer');
+  pv.innerHTML='<div class="pv-bar"><span class="pv-n"></span><span class="pv-t"></span><button type="button" data-a="-1" aria-label="Previous page">← Prev</button><button type="button" data-a="1" aria-label="Next page">Next →</button><button type="button" data-a="x" aria-label="Close viewer">Close ✕</button></div><div class="pv-stage"><img alt=""></div><div class="pv-dots"></div>';document.body.appendChild(pv)}
+ const img=pv.querySelector('img'),n=pv.querySelector('.pv-n'),t=pv.querySelector('.pv-t'),dots=pv.querySelector('.pv-dots');
+ const items=figs.map(f=>{const i=f.querySelector('img');return{src:i.getAttribute('src'),alt:i.alt,cap:(f.querySelector('figcaption')||{}).textContent||i.alt}});
+ let k=0,back=null;
+ const show=j=>{k=(j+items.length)%items.length;const it=items[k];img.src=it.src;img.alt=it.alt;n.textContent=String(k+1).padStart(2,'0')+' / '+String(items.length).padStart(2,'0');t.textContent=it.cap;dots.innerHTML=items.map((_,i)=>`<i class="${i===k?'on':''}"></i>`).join('');[k+1,k-1].forEach(x=>{const p=new Image();p.src=items[(x+items.length)%items.length].src})};
+ const close=()=>{pv.classList.remove('on');document.body.style.overflow='';back&&back.focus()};
+ pv.onclick=e=>{const a=e.target.closest('button')?.dataset.a;if(a==='x')close();else if(a)show(k+ +a);else if(e.target===pv||e.target.classList.contains('pv-stage'))close()};
+ pv.onkeydown=e=>{if(e.key==='Escape')close();if(e.key==='ArrowRight')show(k+1);if(e.key==='ArrowLeft')show(k-1);if(e.key==='Tab'){const b=[...pv.querySelectorAll('button')];if(e.shiftKey&&document.activeElement===b[0]){e.preventDefault();b[b.length-1].focus()}else if(!e.shiftKey&&document.activeElement===b[b.length-1]){e.preventDefault();b[0].focus()}}};
+ let x0=null;pv.ontouchstart=e=>{x0=e.touches[0].clientX};pv.ontouchend=e=>{if(x0===null)return;const d=e.changedTouches[0].clientX-x0;if(Math.abs(d)>50)show(k+(d<0?1:-1));x0=null};
+ figs.forEach((f,i)=>{const m=f.querySelector('.media')||f;m.setAttribute('role','button');m.tabIndex=0;m.setAttribute('aria-label','Open page '+(i+1)+' full size');
+  const go=()=>{back=m;show(i);pv.classList.add('on');document.body.style.overflow='hidden';pv.querySelector('[data-a="x"]').focus()};
+  m.onclick=go;m.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}}});
+}
+function mountSim(){document.querySelectorAll('.sim[data-sim]:not([data-on])').forEach(el=>{el.dataset.on=1;(el.dataset.sim==='kp'?simKP:simBC)(el)})}
+
 function route(){
  const h=location.hash.slice(1)==='grimlotch-peak'?'rise':location.hash.slice(1), app=document.getElementById('app');
  let i, html=null, title='Henry Ortega · Product Development & Design Technology';
@@ -3007,7 +3243,7 @@ function route(){
  else if(h===KP.id){html=keypadPage();title=KP.title+' · Henry Ortega'}
  else if((i=RH.findIndex(p=>p.id===h))>=0){html=CS[RH[i].id]?casePage(RH,i,'rhino','Rhino Workflow'):galleryPage(RH,i,'rhino','Rhino Workflow');title=RH[i].title+' · Henry Ortega'}
  document.body.classList.remove('gm-lock');
- if(html){app.innerHTML=html;app.dataset.view='project';scrollTo(0,0);mountGame();mountTT();mountKN();mountKA();window.TigreFigures&&TigreFigures.mountAll(app)}
+ if(html){app.innerHTML=html;app.dataset.view='project';scrollTo(0,0);mountGame();mountTT();mountKN();mountKA();mountSim();mountPV();window.TigreFigures&&TigreFigures.mountAll(app)}
  else{
   if(app.dataset.view!=='home'){app.innerHTML=home();app.dataset.view='home';window.TigreFigures&&TigreFigures.mountAll(app)}
   const t=h&&document.getElementById(h); if(t) t.scrollIntoView(); else if(!h||h==='top') scrollTo(0,0);
