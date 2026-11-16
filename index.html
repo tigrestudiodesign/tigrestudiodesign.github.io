@@ -555,6 +555,12 @@ button.btn{cursor:pointer}
 .nk-map u{display:inline-block;width:12px;height:12px;border-radius:50%;border:1px solid var(--grid)}
 .nk-mapw{overflow-x:auto}
 @media(max-width:820px){.nk-grid{grid-template-columns:1fr;gap:36px}.nk-did li{grid-template-columns:40px 1fr;font-size:16px}.nk-map{min-width:640px}}
+/* v48: HESTIA */
+.hs-hero{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,6.4fr);gap:20px;align-items:stretch}
+.hs-hero .media{aspect-ratio:auto}.hs-hero .media img{height:100%;object-fit:cover}
+.hs-duo{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding-top:20px}.hs-duo figure,.hs-tall{margin:0}.hs-tall img{max-height:640px;object-fit:cover;object-position:50% 70%}.hs-duo img,.hs-tall img{display:block;width:100%;height:auto}
+.hs-duo figcaption,.hs-tall figcaption{font-family:var(--serif);font-style:italic;color:var(--muted);margin-top:8px}
+@media (max-width:900px){.hs-hero{grid-template-columns:1fr}}
 /* v47: fold / bake interactive */
 .fb{--ink:#1d1d1f;--or:#ff5a1f;--par:#f3ead6;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-family:var(--mono);color:#fff}
 .fb-hd{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:12px;text-transform:uppercase;letter-spacing:.06em;padding-bottom:12px;border-bottom:1px solid #fff;margin-bottom:8px}
@@ -1348,7 +1354,7 @@ function home(){
  const tiles=D.nike.map((p,i)=>`<a class="tile" href="#${p.id}"><div class="media ${i%2?'bl':'tr'}">${im(p.hero,p.title)}</div><small>${esc(p.brand)}</small><h3>${esc(p.title)}</h3><p class="tile-r">${esc(NIKE_ROLE[p.id]||'')}</p></a>`).join('');
  const card=(r,i)=>`<a class="card" href="#${r.id}"><div class="media ${i%2?'bl':'tr'}${r.fit?' paper':''}">${r.isNew?'<span class="badge">New</span>':''}${im(r.imgs[0],r.title)}</div>${r.kind?`<p class="kind">${esc(r.kind)}</p>`:''}<h3>${esc(r.title)}</h3><p>${esc(r.meta)}</p></a>`;
  const prod=[CARD_BC,CARD_WL,CARD_KP].map(card).join('');
- const cmf=[CARD_KN,CARD_KA,{...PICK('nesting-tables'),isNew:false,kind:'CMF · Furniture'}].map(card).join('');
+ const cmf=[CARD_HS,CARD_KN,CARD_KA,{...PICK('nesting-tables'),isNew:false,kind:'CMF · Furniture'}].map(card).join('');
  const vis=[
   {id:'better-with-friends',isNew:true,kind:'3D Illustration',title:'Better With Friends',meta:'Figma × Hello Kitty campaign posters rebuilt as 3D reliefs',imgs:[['img/hk__01_hero.webp',1600,900]]},
   {id:'rising-sun-museum',kind:'3D Typography',title:'The Rising Sun Museum',meta:'Four 2D brand-sticker sheets rebuilt in 3D, scripted in Rhino',imgs:[['img/rs__05_museum_01_overview.webp',1600,900]]},
@@ -1444,6 +1450,64 @@ function home(){
  </main>`+foot();
 }
 
+
+/* ---------- v48: HESTIA (soft-goods CMF for a home humanoid) ---------- */
+const HSI=(f,w,h,c)=>['img/hs__'+f+'.webp',w,h,c||''];
+const HS={id:'hestia',title:'HESTIA',
+ img:{hero:HSI('hero',1200,1500),living:HSI('living',1600,1000),exploded:HSI('exploded',1600,1000),back:HSI('back',1000,1250),knee:HSI('knee',1000,1250),hand:HSI('hand',1000,1250),
+  cmf:HSI('cmf',1600,1180),zones:HSI('zones',1600,1250),flex:HSI('flex',1600,1180),thermal:HSI('thermal',1600,1180)},
+ rules:[['Thermal','Textiles never block airflow. Vents sit behind spacer mesh and perforated knit, with open area sized from the heat load.'],
+  ['Kinematics','Sleeves move with every high-range joint (hip, knee, shoulder, elbow) and never bind, snag or pinch.'],
+  ['Sensors','LiDAR and depth cameras stay clear, behind an open technical weave that light and sound pass through.']]
+};
+const CARD_HS={id:HS.id,isNew:true,kind:'CMF · Soft Goods · Robotics',title:'HESTIA',meta:'A home humanoid in a warm knit skin · Blender · Python',imgs:[['img/hs__hero.webp',1200,1500]]};
+function hsPage(){
+ const I=HS.img;
+ const fig=(r,c,cls='')=>`<figure class="${cls}">${im(r,c)}<figcaption>${esc(c)}</figcaption></figure>`;
+ return head('product','New')+`<main>
+ <section class="band dark"><div class="wrap case"><p class="num">New · Concept Study / CMF · Soft Goods · Robotics</p><h1>HESTIA</h1><p class="meta">Home Ergonomic &amp; Soft Textile Integration Architecture · An industrial biped, dressed for the living room</p>
+  <p class="note">Warehouse humanoids are built for logistics: hard shells, exposed actuators, matte black. HESTIA asks what the same class of bipedal robot needs to wear to live with a family, without blocking its airflow, its joints or its sensors.</p>
+  <dl class="facts"><div><dt>Role</dt><dd>Concept, CMF, soft-goods engineering, 3D, rendering</dd></div><div><dt>Tools</dt><dd>Blender Cycles · Python · NumPy · Matplotlib</dd></div><div><dt>Direction</dt><dd>Warm Minimalist</dd></div><div><dt>Platform</dt><dd>Agility-class biped, ~1.75 m (original design)</dd></div></dl></div></section>
+ <div class="band dark" style="padding-bottom:56px"><div class="wrap"><div class="hs-hero">
+  <div class="media tr-l">${im(I.hero,'HESTIA standing in a warm studio: oatmeal knit skin, slate-moss rib sleeves at every joint, terracotta grip zones, champagne hands, glowing eyes behind a dark sensor weave','heroimg')}</div>
+  <div class="media bl">${im(I.living,'HESTIA in a sunlit Scandinavian living room, carrying folded towels past a boucle sofa')}</div></div></div></div>
+
+ <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Brief</h2><p class="sh-sub">Approachable / Durable / Three rules it cannot break</p>
+  <div class="cb-feature" style="padding-top:24px"><p class="intro" style="margin:0">Make a utility robot feel like furniture and not like machinery, for families, early adopters and assisted-living homes. The skin has to survive pet hair, spills, dust and sun, and every softness decision answers to three engineering rules.</p>
+  <div class="stats" style="margin-top:0"><div><b>6</b><span>Colours, one hot</span></div><div><b>6</b><span>Textile zones</span></div><div><b>40k</b><span>Martindale target</span></div><div><b>10 L/s</b><span>Cooling air, sized</span></div></div></div>
+  <div class="cols" style="padding-top:32px">${HS.rules.map(([h,t])=>`<div><h3>${h}</h3><p>${t}</p></div>`).join('')}</div>
+ </div></section>
+
+ <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">CMF: Warm Minimalist</h2><p class="sh-sub">Living-room neutrals / One hot colour, only where you touch</p>
+  <figure class="el-fig">${im(I.cmf,'Warm Minimalist palette, material matrix with performance targets, and 3D yarn renders of the oatmeal jersey and slate-moss rib')}<figcaption>01 · Oatmeal, birch and slate-moss come from upholstery, not from machines. Terracotta appears only on the forearms, palms and sternum tab: the places a person is invited to hold or guide. Yarn close-ups are real 3D yarn geometry, not a texture.</figcaption></figure>
+ </div></section>
+
+ <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Zone Map</h2><p class="sh-sub">Eight zones / Each one earns its material</p>
+  <div class="el-two"><figure class="el-fig">${im(I.zones,'Zone map of HESTIA with eight callouts: sensor weave, rib flex sleeves, terracotta grip, champagne hands, oatmeal knit, vent mesh, birch knit, slate-moss feet')}<figcaption>02 · Flat-colour zone render with callouts.</figcaption></figure>
+  <div><p class="intro" style="margin-top:0">Every zone is a rule written into the model: the script assigns material by position and surface direction, so moving a vent or widening a grip changes the render, the zone map and the numbers together.</p>
+  <div class="hs-duo">${fig(I.back,'Back: the flank vents and a champagne carry handle that says where to lift.')}${fig(I.hand,'Hand and forearm: terracotta silicone-dot grip, perforated vent knit above the waist rib.')}</div></div></div>
+ </div></section>
+
+ <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Flex Zones</h2><p class="sh-sub">Unfold first / Stretch second</p>
+  <p class="intro">A knee bending 120° asks the outside of a sleeve for 142 mm more fabric. A flat knit would have to stretch 95 %; a rib sleeve with 6–7 mm pleats unfolds that length first and stays under a 30 % strain limit. The same check flagged the shoulder and elbow: the inside of the bend has no room for a pleat stack, so those get an open mesh gusset instead.</p>
+  <div class="el-two" style="padding-top:24px"><figure class="el-fig">${im(I.flex,'Flex-zone sheet: rib pleat section, strain versus knee angle for flat and pleated sleeves, and a joint table with pinch margins')}<figcaption>03 · First-pass geometry from the model's joint radii. FEA and a 10,000-cycle stretch test come next.</figcaption></figure>
+  ${fig(I.knee,'Reverse knee in slate-moss rib: the pleats are the stored length.','hs-tall')}</div>
+ </div></section>
+
+ <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Heat + Sound</h2><p class="sh-sub">The skin insulates / So the vents do the work</p>
+  <figure class="el-fig">${im(I.thermal,'Thermal and acoustic sheet: torso airflow section, passive heat loss with and without textile, fan airflow and vent area, and a sound reduction chart')}<figcaption>04 · The knit and spacer mesh cut passive cooling by more than half, so a quiet fan moves about 10 L/s through flank inlets and a back outlet, sized for under 1.5 m/s at the skin. Mass law puts the soft skin at 15–20 dB of whine reduction at most; a lined labyrinth keeps the vents from leaking it.</figcaption></figure>
+  <p class="fine">All numbers are first-pass hand calculations with stated assumptions (150 W internal load, still air, 2 mm knit over 6 mm spacer mesh), meant to size the design and choose the tests. They are not CFD, FEA or lab results.</p>
+ </div></section>
+
+ <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Under The Skin</h2><p class="sh-sub">Frame / Snap-fit shell / Spacer mesh / Knit</p>
+  <figure class="el-fig">${im(I.exploded,'Exploded chest panel: aluminium frame, white snap-fit shell with champagne snap points, spacer mesh, oatmeal knit skin, beside the full robot')}<figcaption>05 · The knit is a cover, not the structure. It snaps onto a PC-ABS shell over a spacer-mesh air gap, so the skin comes off for washing or a colour change.</figcaption></figure>
+  <div class="cols" style="padding-top:32px"><div><h3>Wash, Don't Wipe</h3><p>Each panel unsnaps. Pet hair and spills go in the machine, not into the joints.</p></div><div><h3>Colour As A Swap</h3><p>The shell never changes. A new season or a new room is a new set of covers.</p></div><div><h3>Next Tests</h3><p>Martindale and TB 117-2013 on the knit, depth and LiDAR return through the weave, torso CFD and a 10,000-cycle sleeve rig.</p></div></div>
+ </div></section>
+
+ <section class="band light section"><div class="wrap"><p class="fine">Unofficial concept study by Tigre Studio. The robot is an original design with the proportions of a commercial bipedal humanoid; it is not affiliated with or endorsed by Agility Robotics or any other company.</p></div></section>
+ <section class="statement">${im(I.living,'HESTIA at home')}<p>Built for the warehouse, <span class="it">dressed for the living room.</span></p></section>
+ ${nextLink('product',{id:BC.id,title:'BASECAMP'})}</main>`+foot();
+}
 /* ---------- v20: Better With Friends (Figma × Hello Kitty in 3D) ---------- */
 const HKI=(f,w,h,c)=>['img/hk__'+f+'.webp',w,h,c];
 const HK={id:'better-with-friends',
@@ -3323,6 +3387,7 @@ function route(){
  else if(h===KA.id){html=kaPage();title='Knit Curve Atlas · Henry Ortega'}
  else if(h===WL.id){html=wlPage();title='World Logos 3D · Henry Ortega'}
  else if(h===KN.id){html=knPage();title='Computational Couture: Knit Nodes · Henry Ortega'}
+ else if(h===HS.id){html=hsPage();title='HESTIA · Henry Ortega'}
  else if(h===HK.id){html=hkPage();title='Better With Friends · Henry Ortega'}
  else if((i=CUR.findIndex(p=>p.id===h))>=0){html=casePage(CUR,i,'product','Product Design');title=CUR[i].title+' · Henry Ortega'}
  else if((i=D.nike.findIndex(p=>p.id===h))>=0){html=nikePage(i);title=D.nike[i].title+' · Henry Ortega'}
