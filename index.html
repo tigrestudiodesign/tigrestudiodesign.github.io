@@ -1246,7 +1246,7 @@ function home(){
   <div class="cards c2">${vis}</div>
   <h3 class="sub-h">Free Resources</h3>
   <a class="feature gl-feat" href="#${GB.id}"><div class="media tr-l"><span class="badge">New</span>${im(GB.img.hero,'Three slides from Grasshopper, Brick by Brick: the cover, baseplate equals canvas, and your first build')}</div>
-  <div><small>New · Free download · Quick start guide</small><h3>Grasshopper, Brick By Brick</h3><p>The basic Grasshopper components explained with LEGO® bricks: baseplate = canvas, studs and tubes = wires, turntable = number slider. Fourteen pairs, a first build and a cheat sheet in eleven slides.</p><span class="go">Get the PDF →</span></div></a>
+  <div><small>New · Free download · English &amp; Español</small><h3>Grasshopper, Brick By Brick</h3><p>The basic Grasshopper components explained with LEGO® bricks: baseplate = canvas, studs and tubes = wires, turntable = number slider. Fourteen pairs, a first build and a cheat sheet in eleven slides.</p><span class="go">Get the PDF →</span></div></a>
   <a class="feature gl-feat" href="#${RS2.id}"><div class="media tr-l"><span class="badge">New</span>${im(RS2.img.hero,'Three slides from Rhino to Stager, volume two of the Rhino and Adobe series')}</div>
   <div><small>New · Free download · Rhino ⇄ Adobe · Vol. 02</small><h3>Rhino → Stager</h3><p>Volume two of the series: taking Rhino models into Substance 3D Stager to stage and render them, with the bridge glossary, the round trip and the five things that go wrong.</p><span class="go">Get the PDF →</span></div></a>
   <a class="feature gl-feat" href="#${RA.id}"><div class="media tr-l"><span class="badge">New</span>${im(RA.img.hero,'Three slides from Rhino to Illustrator, volume one of the Rhino and Adobe series')}</div>
@@ -2706,20 +2706,21 @@ const GBI=(f,w,h,c)=>['img/gb__'+f+'.webp',w||864,h||1080,c||''];
 const GB={id:'grasshopper-brick-by-brick',
  img:{hero:GBI('hero',1600,1000),row:GBI('row',1600,900),cover:GBI('01')},
  pdf:'downloads/Grasshopper-Brick-by-Brick-Tigre-Studio.pdf',
+ pdf_es:'downloads/Grasshopper-Ladrillo-a-Ladrillo-Tigre-Studio.pdf',
  pages:[GBI('02',0,0,'The idea: one rule, endless builds'),GBI('03',0,0,'Baseplate = canvas / Studs + tubes = wires'),GBI('04',0,0,'2×4 brick = component / 1×1 round = parameter'),GBI('05',0,0,'The controls: slider, toggle, panel'),GBI('06',0,0,'1×8 plate = list / Numbered bags = data tree'),GBI('07',0,0,'Bracket = flatten + graft / Sub-assembly = cluster'),GBI('08',0,0,'Instructions = definition / Display shelf = bake'),GBI('09',0,0,'Your first build'),GBI('10',0,0,'Cheat sheet'),GBI('11',0,0,'By the numbers')]
 };
 function gbPage(){
  const pages=GB.pages.map((p,i)=>`<figure><div class="media ${i%2?'bl':'tr'}">${im(p,p[3])}</div><figcaption>${esc(p[3])}</figcaption></figure>`).join('');
  return head('product','New')+`<main>
- <section class="band dark"><div class="wrap case"><p class="num">New · Free Resource / Quick Start Guide</p><h1>Grasshopper, Brick By Brick</h1><p class="meta">The basic components / Explained with LEGO® bricks · LinkedIn carousel and free PDF</p>
+ <section class="band dark"><div class="wrap case"><p class="num">New · Free Resource / Quick Start Guide</p><h1>Grasshopper, Brick By Brick</h1><p class="meta">The basic components / Explained with LEGO® bricks · English &amp; Español · LinkedIn carousel and free PDFs</p>
   <p class="note">Grasshopper is the brick box of industrial designers and architects. This guide pairs each basic component with the brick that works the same way, so the first week makes sense.</p>
-  <dl class="facts"><div><dt>Role</dt><dd>Research, writing, design, illustration</dd></div><div><dt>Tools</dt><dd>McNeel docs · Python · HTML → PDF</dd></div><div><dt>Output</dt><dd>1 PDF · 11 carousel slides</dd></div><div><dt>Content</dt><dd>14 pairs · 1 first build · 1 cheat sheet</dd></div></dl></div></section>
+  <dl class="facts"><div><dt>Role</dt><dd>Research, writing, design, illustration</dd></div><div><dt>Tools</dt><dd>McNeel docs · Python · HTML → PDF</dd></div><div><dt>Output</dt><dd>2 PDFs · 11 slides each</dd></div><div><dt>Content</dt><dd>14 pairs · 1 first build · 1 cheat sheet</dd></div></dl></div></section>
  <div class="band dark" style="padding-bottom:56px"><div class="wrap"><div class="media tr-l">${im(GB.img.hero,'Three slides from Grasshopper, Brick by Brick','heroimg')}</div></div></div>
 
- <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Download The PDF</h2><p class="sh-sub">Free / 11 pages / English</p>
+ <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Download The PDF</h2><p class="sh-sub">Free / 11 pages / English and Spanish</p>
   <div class="ra-dl"><a class="media tr" href="${GB.pdf}" download aria-label="Download the Grasshopper, Brick by Brick PDF">${im(GB.img.cover,'Cover of Grasshopper, Brick by Brick')}</a>
   <div><h3>Quick Start Guide</h3><p>Fourteen Grasshopper basics, each paired with a brick: canvas, wires, components, parameters, sliders, toggles, panels, lists, data trees, flatten and graft, clusters, definitions, bake, and what orange and red mean. Then a four-piece first build and a one-page cheat sheet.</p>
-  <a class="btn inv" href="${GB.pdf}" download>Download PDF ↓</a></div></div>
+  <a class="btn inv" href="${GB.pdf}" download>Download PDF ↓</a> <a class="btn inv" href="${GB.pdf_es}" download lang="es">Descargar en español ↓</a></div></div>
   <p class="fine">A direct download, no sign-up. Share it freely; credit Tigre Studio. LEGO® is a trademark of the LEGO Group of companies, which does not sponsor, authorize or endorse this guide. Rhino® and Grasshopper® are trademarks of Robert McNeel &amp; Associates. All illustrations are original drawings.</p>
  </div></section>
 
