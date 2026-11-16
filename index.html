@@ -521,6 +521,30 @@ button.btn{cursor:pointer}
 .nt-ways em{display:flex;gap:6px;margin-top:4px} .nt-ways em i{width:20px;height:20px;border-radius:4px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.15)}
 @media (max-width:900px){.nt-lib{grid-template-columns:1fr}.nt-cap4{grid-template-columns:repeat(2,1fr)}.nt-ways{grid-template-columns:1fr}.nt-spec td:nth-child(3),.nt-spec th:nth-child(3){display:none}}
 .kp-sp{background:url(img/kp__cmf.webp) no-repeat;background-size:100% auto;width:100%}.kp-sp-mac{aspect-ratio:3600/900;background-position:0 0}.kp-sp-way{aspect-ratio:3600/800;background-position:0 46.154%}.kp-sp-top{aspect-ratio:1400/1050;background-size:257.143% auto;background-position:0 100%}
+/* v41: Nike contribution depth */
+.nk-did{list-style:none;margin:0;padding:0;counter-reset:d;border-top:2px solid var(--rule)}
+.nk-did li{counter-increment:d;display:grid;grid-template-columns:56px 1fr;gap:16px;padding:16px 0;border-bottom:1px solid var(--grid);font-size:17px;line-height:1.45}
+.nk-did li::before{content:counter(d,decimal-leading-zero);font:700 13px var(--mono,monospace);letter-spacing:.08em;color:#FF4D12;padding-top:3px}
+.nk-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:56px;align-items:start}
+.nk-tech{display:grid;gap:0;border-top:2px solid var(--rule)}
+.nk-tech div{padding:14px 0;border-bottom:1px solid var(--grid)}
+.nk-tech b{display:block;font-size:15px;letter-spacing:.02em}
+.nk-tech span{display:block;color:var(--muted);font-size:14px;line-height:1.45;margin-top:4px}
+.nk-h{font:700 12px var(--mono,monospace);letter-spacing:.16em;text-transform:uppercase;margin:0 0 14px}
+.nk-docs{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
+.nk-docs a{display:inline-block;border:1px solid currentColor;padding:6px 10px;font:600 12px var(--mono,monospace);letter-spacing:.06em;text-decoration:none;color:inherit}
+.nk-docs a:hover{background:#FF4D12;border-color:#FF4D12;color:#fff}
+.nk-map{width:100%;border-collapse:collapse;margin-top:28px;font-size:14px}
+.nk-map th{font:600 11px var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase;text-align:center;padding:0 6px 10px;border-bottom:2px solid var(--rule);vertical-align:bottom}
+.nk-map th:first-child{text-align:left}
+.nk-map td{border-bottom:1px solid var(--grid);padding:10px 6px;text-align:center}
+.nk-map td:first-child{text-align:left;font-weight:700}
+.nk-map td:first-child a{color:inherit;text-decoration:none}
+.nk-map td:first-child a:hover{color:#FF4D12}
+.nk-map i{display:inline-block;width:12px;height:12px;border-radius:50%;background:#FF4D12}
+.nk-map u{display:inline-block;width:12px;height:12px;border-radius:50%;border:1px solid var(--grid)}
+.nk-mapw{overflow-x:auto}
+@media(max-width:820px){.nk-grid{grid-template-columns:1fr;gap:36px}.nk-did li{grid-template-columns:40px 1fr;font-size:16px}.nk-map{min-width:640px}}
 /* v37: Knit Curve Atlas specimen book */
 .ka2-th{display:block;width:100%;aspect-ratio:1;background:url(img/ka2/sprite_th.webp) var(--x) var(--y)/1200% 1000% no-repeat;transition:transform .4s cubic-bezier(.2,.7,.2,1)}
 .ka2-vw{display:block;width:100%;aspect-ratio:1;background:url(img/ka2/sprite_view.webp) var(--x) var(--y)/1200% 1000% no-repeat}
@@ -887,6 +911,111 @@ p08:{role:"Developed tech packs for the Nike Motiva.",ov:"A shoe made for walkin
 p09:{role:"Authored the technical documentation and managed the electronics integration specifications for the removable magnetic pod interface. Defined integration parameters for the on-pod controls and the Bluetooth module linking to the Hyperice app, bridging soft-goods strap construction with reliable hardware connectivity.",ov:"A recovery slide that merges low-profile Nike Air Zoom cushioning with Hyperice's targeted heat and vibration technology to help athletes unwind and reduce tension from the ground up.",nw:"A removable, magnetic Hyperslide Pod in the adjustable strap delivers three levels of heat (up to 117°F / 47°C) and three levels of vibration in 15-minute recovery cycles, on a full-length Air Zoom sole, wearable with or without the pod."},
 p10:{role:"Spearheaded the electronics integration documentation and technical specifications for the internal footwear circuitry: routing the power systems, insole-housed battery units and pneumatic-to-thermal hardware connections safely within the shoe's structural architecture.",ov:"A wearable recovery and warm-up tool that prepares feet and ankles for movement by combining advanced heat with dynamic air compression.",nw:"Dual-air Normatec bladders bonded to heating elements deliver warmth and rhythmic massage across the feet, Achilles and ankles, up to 125°F / 52°C and 210 mmHg, controlled on the boot or via Bluetooth in the Hyperice app."}
 };
+const NIKE_DEEP={
+p01:{did:[
+ 'Owned upper design and technical documentation for moving Atomknit from innovation builds into inline production.',
+ 'Wrote the making documentation the Korea factory partners built from: step-by-step method of make, dimensioned design rules and critical-to-quality checks for the knit-and-fuse upper.',
+ 'Turned knitting and fusing process windows into repeatable factory steps and visual inspection standards.',
+ 'Captured each development round (what failed, why, and the fix) so the next season started from a known baseline.'],
+ tech:[['Atomknit','An engineered knit upper heat-fused into a light, low-stretch shell for racing lockdown.'],
+  ['ZoomX foam','Supercritical foam made by nitrogen expansion; ultra-light and highly resilient. Part of my manual library.'],
+  ['Carbon Flyplate + Air Zoom','A full-length plate paired with Air Zoom units; plate-and-bag stockfit is where alignment and pressing rules matter most.']],
+ docs:['ZoomX 3.0'],
+ skills:['Knit upper engineering','Fuse / heat-press process','Factory transition · Korea','Tech manual authoring','Quality standards']},
+p02:{did:[
+ 'Led upper design and documentation for two new upper technologies: Bucket (upper shaping material and technique) and Mithril.',
+ 'Authored the Air Liquid Max tech manual: construction overview, method of make, design rules, defect library and lessons learned.',
+ 'Partnered with manufacturing teams in Korea through sampling to lock the process before inline hand-off.',
+ 'Set the cosmetic and inspection standards that kept the textured print and translucent outsole consistent from sample to production.'],
+ tech:[['Bucket','An upper shaping material and technique that holds a sculpted, seamless form without traditional lasting stress.'],
+  ['Mithril','A high-performance knit yarn technology for durable, lightweight uppers. Documented in its own quick start guide.'],
+  ['Visible Air','Air Max heritage reworked into a new low-profile silhouette; Airsole cosmetics follow their own inspection rules.']],
+ docs:['Air Liquid Max','Mithril Knit'],
+ skills:['Upper design','Material shaping','Print & CMF standards','Tech manual authoring','Factory transition · Korea']},
+p03:{did:[
+ 'Led tech pack design and documentation for the upper and bottom 3D-printing technologies behind the shoe, including Nectar and Siping.',
+ 'Coordinated across manufacturing partners in Korea, Taiwan and Beaverton so printed parts, Air units and assembly lined up.',
+ 'Defined the design rules that make siping manufacturable: sipe depth, spacing and the minimum uncut web that keeps foam from tearing.',
+ 'Built step-by-step process flows and inspection criteria for printed parts so quality held from sample to release.'],
+ tech:[['Project Nectar','Nike\'s 3D-printing platform for footwear; the Air Max 95000 is its first shoe.'],
+  ['Robotic siping','A robot-guided blade cuts flex grooves after stockfitting, letting designers add flexibility without new molds.'],
+  ['Big Bubble Max Air','A large heel Air unit plus a forefoot unit set into a printed structure.']],
+ docs:[],
+ skills:['Additive manufacturing','Design-for-manufacture rules','Multi-site coordination','Tech packs','Process flow design']},
+p04:{did:[
+ 'Led tech pack design and documentation for the bottom-making technologies behind Nike Mind, including metal printing and VIBES.',
+ 'Authored the VIBES tech manual: how the sensory bottom is built, the design rules and the critical-to-quality checks.',
+ 'Worked with manufacturing partners in Korea to take the neuroscience-led concept from early builds to a repeatable process.',
+ 'Translated the science team\'s intent into drawings and cross-sections a factory line could follow.'],
+ tech:[['VIBES','The sensory-node bottom technology behind Nike Mind, built to activate receptors in the feet.'],
+  ['Metal-printed tooling','3D-printed metal used to make complex sole geometry possible.'],
+  ['Mind science platform','Over a decade of research from Nike\'s Mind Science Department.']],
+ docs:['VIBES'],
+ skills:['Bottom-unit engineering','Metal additive tooling','Science-to-factory translation','Tech manual authoring','Cross-section drawing']},
+p05:{did:[
+ 'Led upper yarn technology development and the tech pack design and documentation alongside GOATEK Traction Innovation.',
+ 'Authored the Pickle Juice quick start guide and the ZoomX 3.0 quick start guide covering the trail platform.',
+ 'Transitioned GO-TECH rubber and Mithril yarn into inline production with manufacturing partners in Korea.',
+ 'Documented how the dual-density foam is co-molded, which is where bonding, shrinkage and density control decide quality.'],
+ tech:[['Co-molded dual-density ZoomX','The first co-molded, dual-density supercritical foam platform for trail: firm for stability, soft for protection.'],
+  ['GOATEK outsole','A proprietary traction system for mountain terrain.'],
+  ['Mithril yarn','A durable knit yarn in a trail-tuned Flyknit upper.']],
+ docs:['Pickle Juice (ACG)','ZoomX 3.0','Mithril Knit'],
+ skills:['Yarn & knit development','Foam co-molding','Traction systems','Quick start guides','Factory transition · Korea']},
+p06:{did:[
+ 'Led early-stage tooling and hardware development for Nike\'s first powered footwear system.',
+ 'Worked with the Amplify × Footwear Development team on upper solutions that integrate with the powered hardware.',
+ 'Applied lessons from adaptive and connected footwear to how hardware is packaged and assembled into a shoe.',
+ 'Bridged the hardware and footwear teams so mechanical parts and soft goods were designed to be built together.'],
+ tech:[['Powered assist','A system that augments natural lower-leg and ankle movement for walking and running.'],
+  ['Hardware-to-upper integration','Mounting points, load paths and clearances designed into the upper from the start.'],
+  ['Adaptive footwear know-how','Experience from connected lacing programs, documented in my FitAdapt manual.']],
+ docs:['FitAdapt'],
+ skills:['Tooling development','Hardware integration','Mechanical packaging','Cross-team engineering','Prototyping']},
+p07:{did:[
+ 'Developed the tech packs for Pegasus Premium, part of Nike\'s innovation super-cycle.',
+ 'Documented how the sculpted Air Zoom unit and foams come together, including stockfit and pressing steps.',
+ 'Drew on the ReactX and ZoomX manuals I authored to set foam process and inspection references.',
+ 'Kept design intent intact through sampling: tolerances, alignment marks and cosmetic standards for the visible Air.'],
+ tech:[['Sculpted Air Zoom','An Air Zoom unit contoured to the foot, carrying the runner heel to toe.'],
+  ['ZoomX + ReactX','Two of Nike\'s top foams in one stack: supercritical ZoomX and injected ReactX.'],
+  ['Visible integrated Air','Cosmetic and bonding standards for an exposed, integrated Air unit.']],
+ docs:['ReactX 1.0','ReactX 3.0','ZoomX 3.0'],
+ skills:['Tech packs','Foam & Air stack-up','Stockfit tooling','Tolerance definition','Cosmetic standards']},
+p08:{did:[
+ 'Developed the Motiva tech packs.',
+ 'Turned an insight-led brief (built from interviews with over 1,000 people who walk, jog and run) into documented bottom geometry and build specs.',
+ 'Documented the rocker geometry and half-length cushioning so the smooth, stable transition carried through to production.',
+ 'Connected consumer insight, design features, athlete validation and cost in one product guide.'],
+ tech:[['Rocker geometry','A curved sole that moves the foot from heel to toe with less effort.'],
+  ['Half-length cushioning','Soft cushioning where everyday movers need it most.'],
+  ['Insight-led design','Product requirements written from real walker and jogger feedback.']],
+ docs:[],
+ skills:['Tech packs','Consumer insight to spec','Bottom geometry','Product guides','Validation planning']},
+p09:{did:[
+ 'Authored the technical documentation and managed the electronics integration specifications for the removable magnetic pod.',
+ 'Defined integration parameters for the on-pod controls and the Bluetooth module that links to the Hyperice app.',
+ 'Bridged soft-goods strap construction with reliable hardware connectivity.',
+ 'Documented assembly and inspection so electronics and footwear factories worked to one spec.'],
+ tech:[['Magnetic Hyperslide Pod','Delivers heat and vibration in timed recovery cycles; removable from the strap.'],
+  ['Full-length Air Zoom','A low-profile Air Zoom sole under a recovery slide.'],
+  ['App connectivity','Bluetooth control through the Hyperice app.']],
+ docs:[],
+ skills:['Electronics integration','Hardware specs','Soft goods + hardware','Partner program management','Tech documentation']},
+p10:{did:[
+ 'Led the electronics integration documentation and technical specifications for the boot\'s internal circuitry.',
+ 'Specified power routing, the insole-housed battery units and pneumatic-to-thermal connections inside the shoe\'s structure.',
+ 'Made safe routing of power and hardware part of the build documentation.',
+ 'Kept Nike and Hyperice engineering aligned through one shared specification.'],
+ tech:[['Normatec dual-air compression','Rhythmic air compression across the feet, Achilles and ankles.'],
+  ['Integrated heating','Heating elements bonded to the air bladders.'],
+  ['On-boot + app control','Controls on the boot or over Bluetooth.']],
+ docs:[],
+ skills:['Electronics integration','Power & battery packaging','Pneumatics','Safety documentation','Partner program management']}
+};
+const NIKE_MAP_COLS=['Upper design','Tech packs','Tech manual / QSG','Factory transition','Tooling / hardware','Electronics'];
+const NIKE_MAP={p01:[1,0,1,1,0,0],p02:[1,0,1,1,0,0],p03:[0,1,0,1,0,0],p04:[0,1,1,1,0,0],p05:[1,1,1,1,0,0],p06:[1,0,0,0,1,0],p07:[0,1,0,0,0,0],p08:[0,1,1,0,0,0],p09:[0,0,1,0,0,1],p10:[0,0,1,0,0,1]};
+
 
 const ANAT = ['Technology definition','Athlete benefits','Design requirements','Digital process','Machine & system','Method of making','QC & troubleshooting','Cost & experts'];
 const CAPS = [
@@ -1080,6 +1209,8 @@ function home(){
   <p class="eyebrow">Nike · 2010 – 2026</p><h2 class="sh-title">Ten Programs, Concept To Factory Floor</h2><p class="sh-sub">Running / Sportswear / ACG / Powered footwear · my role on each</p>
   <ul class="steps" style="margin-top:20px;color:var(--muted)"><li>01 Concept</li><li>02 Tooling</li><li>03 Sample</li><li>04 Production</li></ul>
   <div class="tiles">${tiles}</div>
+  <h3 style="margin-top:56px;text-decoration:none">CONTRIBUTION MAP</h3><p class="sh-sub" style="margin-top:6px">What I owned on each program</p>
+  <div class="nk-mapw"><table class="nk-map"><thead><tr><th>Program</th>${NIKE_MAP_COLS.map(c=>`<th>${c}</th>`).join('')}</tr></thead><tbody>${D.nike.map(p=>`<tr><td><a href="#${p.id}">${esc(p.title)}</a></td>${(NIKE_MAP[p.id]||[]).map(v=>`<td>${v?'<i title="Owned"></i>':'<u></u>'}</td>`).join('')}</tr>`).join('')}</tbody></table></div>
   <p class="fine">Product imagery © Nike, shown to illustrate my role on each program. No confidential information is included.</p>
  </div></section>
 
@@ -1773,12 +1904,24 @@ function contact(){
 const gal=(imgs,alt)=>`<div class="gallery">${imgs.map(r=>`<figure><div class="media">${im(r,r[3]||alt)}</div>${r[3]?`<figcaption>${esc(r[3])}</figcaption>`:''}</figure>`).join('')}</div>`;
 const nextLink=(sec,p)=>`<span class="spectrum thin"></span><a class="band dark next" href="#${p.id}"><div class="wrap"><span class="k">Next Project</span><span class="t">${esc(p.title)}</span></div></a>`;
 
+function nikeDeep(id){
+ const d=NIKE_DEEP[id]; if(!d) return '';
+ return `<section class="band light section"><div class="wrap">
+  <p class="eyebrow">My Contribution</p><h2 class="sh-title" style="font-size:clamp(32px,4vw,52px)">WHAT I DID ON THIS PROGRAM</h2>
+  <div class="nk-grid" style="margin-top:28px"><ol class="nk-did">${d.did.map(x=>`<li>${esc(x)}</li>`).join('')}</ol>
+  <div><p class="nk-h">THE TECHNOLOGY UNDER IT</p><div class="nk-tech">${d.tech.map(([n,b])=>`<div><b>${esc(n)}</b><span>${esc(b)}</span></div>`).join('')}</div>
+  ${d.docs.length?`<p class="nk-h" style="margin-top:28px">RELATED MANUALS I AUTHORED</p><ul class="nk-docs">${d.docs.map(n=>`<li><a href="#documentation">${esc(n)}</a></li>`).join('')}</ul>`:''}
+  <p class="nk-h" style="margin-top:28px">SKILLS APPLIED</p><ul class="tags">${d.skills.map(t=>`<li>${esc(t)}</li>`).join('')}</ul></div></div>
+  <p class="fine" style="margin-top:28px">Described at the level of public product information. Process specifics, specifications and partner details stay confidential to Nike.</p>
+ </div></section>`;
+}
 function nikePage(i){
  const p=D.nike[i], t=NIKE_TEXT[p.id], nx=D.nike[(i+1)%D.nike.length];
  return head('nike',n2(i))+`<main>
  <section class="band dark"><div class="wrap case"><p class="num">Selected Work ${n2(i)} / ${esc(p.brand)}</p><h1>${esc(p.title)}</h1><p class="meta">${t.tag||esc(p.brand)}</p></div></section>
  <section class="band dark"><div class="wrap hero-split"><div class="media tr-l">${im(p.hero,p.title)}</div>
   <div><div class="cols" style="grid-template-columns:1fr;gap:32px;padding-top:0"><div><h3>My Role</h3><p>${t.role}</p></div><div><h3>Overview</h3><p>${t.ov}</p></div><div><h3>What's New</h3><p>${t.nw}</p></div></div></div></div></section>
+ ${nikeDeep(p.id)}
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Gallery</h2><p class="sh-sub">${esc(p.title)} · ${p.imgs.length} images</p>${gal(p.imgs,p.title)}</div></section>
  ${nextLink('work',nx)}</main>`+foot();
 }
