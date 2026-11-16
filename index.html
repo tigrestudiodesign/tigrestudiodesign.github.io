@@ -2085,14 +2085,15 @@ function ravenPage(i){
 
 const KP={id:'parametric-keypad',title:'Parametric Keypad',
  meta:'Rhino 9 · Grasshopper 2 · Voronoi texture on a solid case',
- img:{render:['img/kp__render.webp',2000,1320],edges:['img/kp__edges.webp',1351,1223],four:['img/kp__4view.webp',1800,789],top:['img/kp__top-wire.webp',1595,699],gh:['img/kp__gh.webp',902,410],ai:['img/kp__ai.webp',552,492]}};
+ img:{render:['img/kp__render.webp',2000,1320],edges:['img/kp__edges.webp',1351,1223],four:['img/kp__4view.webp',1800,789],top:['img/kp__top-wire.webp',1595,699],gh:['img/kp__gh.webp',902,410],ai:['img/kp__ai.webp',552,492],elBlock:['img/kp__el-block.webp',1600,1060],elStates:['img/kp__el-states.webp',1600,1200],elProto:['img/kp__el-proto.webp',1600,1300],elSch:['img/kp__el-schematic.webp',1315,1156],elCode:['img/kp__el-code.webp',819,1207]}};
 
 function keypadPage(){
  const I=KP.img;
+ const fig=(r,c,cls='')=>`<figure class="${cls}">${im(r,c)}<figcaption>${esc(c)}</figcaption></figure>`;
  return head('product','New')+`<main>
  <section class="band dark"><div class="wrap case"><p class="num">New · Rhino Workflow / Parametric · November 2026</p><h1>${KP.title}</h1><p class="meta">${KP.meta}</p>
   <p class="note">A four-key macropad whose case texture is generated, not modeled. Move a slider and the whole case re-tiles in Voronoi cells, while the key pockets, knob and USB-C port stay clean. The Blender CMF pass turns it into an AI launcher: four pad-printed keys, an orange power key, and cells that wrap every edge without a seam.</p>
-  <dl class="facts"><div><dt>Software</dt><dd>Rhino 9 · Grasshopper 2</dd></div><div><dt>Model</dt><dd>13 solids on 6 layers, in mm</dd></div><div><dt>Texture</dt><dd>~100–120 Voronoi cells, cut as grooves</dd></div><div><dt>Update</dt><dd>About 15 s per slider change</dd></div></dl></div></section>
+  <dl class="facts"><div><dt>Software</dt><dd>Rhino 9 · Grasshopper 2 · Tinkercad Circuits · Arduino</dd></div><div><dt>Model</dt><dd>13 solids on 6 layers, in mm</dd></div><div><dt>Texture</dt><dd>~100–120 Voronoi cells, cut as grooves</dd></div><div><dt>Update</dt><dd>About 15 s per slider change</dd></div></dl></div></section>
  <div class="band dark" style="padding-bottom:56px"><div class="wrap"><div class="media tr-l" style="aspect-ratio:2000/1320;background:#bdbcb8">${im(I.render,'Keypad in the Signal colorway: warm white case wrapped in black Voronoi grooves, four pad-printed launcher keys, an orange power key and a black knurled knob')}</div></div></div>
 
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Brief, Approach, Result</h2><p class="sh-sub">One solid, one definition, any pattern</p>
@@ -2119,6 +2120,55 @@ function keypadPage(){
  </div></section>
 
  ${kpCMF()}
+
+ <section class="band dark section el-sec"><div class="wrap"><p class="num" style="color:var(--yellow)">Electronics · Development</p><h2 class="sh-title" style="font-size:32px">From Case To Working Keypad</h2><p class="sh-sub">Define / Architect / Stand in / Wire / Code / Simulate / Debug</p>
+  <p class="intro">The case says what the keypad should do: four launcher keys, an orange power key and a knurled knob. Before any board is drawn, I wanted to prove that behaviour works. So I designed the electronics in two layers: the real architecture of a USB keypad, and a working prototype of its behaviour in Tinkercad Circuits, with every part of the keypad represented by a stand-in.</p>
+  <ol class="el-steps">
+   <li><b>01</b><h3>Define</h3><p>Write the rules: what each key sends, how the knob changes mode, how the keypad sleeps and wakes.</p></li>
+   <li><b>02</b><h3>Architect</h3><p>Block diagram of the real product: USB-C power and data, controller, inputs, lights.</p></li>
+   <li><b>03</b><h3>Stand In</h3><p>Map every real part to a simulator part that behaves the same way.</p></li>
+   <li><b>04</b><h3>Wire</h3><p>Build the circuit on an Arduino Uno, laid out like the keypad itself.</p></li>
+   <li><b>05</b><h3>Code</h3><p>Firmware in Arduino C++: sleep, wake, launch, three knob modes.</p></li>
+   <li><b>06</b><h3>Simulate</h3><p>Press every key, hold power, push and turn the knob, find what breaks.</p></li>
+   <li><b>07</b><h3>Next</h3><p>A real USB controller, switches and a KiCad board that fits the case.</p></li>
+  </ol>
+  <figure class="el-fig">${im(I.elBlock,'Parametric Keypad system architecture: USB-C, 3.3 V regulator, MCU with native USB, four keys, power key, knurled knob encoder, LEDs, host computer')}<figcaption>01 · The real product. Orange is power, black is signal. One USB-C cable powers the keypad and carries its key presses to the computer as a standard keyboard, so it needs no driver.</figcaption></figure>
+ </div></section>
+
+ <section class="band light section el-sec"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Behaviour Prototype</h2><p class="sh-sub">Every keypad part / One simulator stand-in / Tinkercad Circuits</p>
+  <div class="el-two">
+   <div><p class="intro" style="margin-top:0">A simulator has no USB keyboard output and no rotary encoder, so each part of the keypad gets a stand-in that behaves the same way from the user's side. The display plays the computer: it shows what the keypad would send over USB.</p>
+   <table class="el-map"><thead><tr><th>Product part</th><th>Prototype stand-in</th><th>Pin</th></tr></thead><tbody>
+    <tr><td>4 launcher key switches</td><td>Pushbuttons, internal pull-ups</td><td>D7 · D6 · D5 · D4</td></tr>
+    <tr><td>Orange power key</td><td>Pushbutton, hold 2 s</td><td>D3</td></tr>
+    <tr><td>Knurled knob (rotary encoder)</td><td>250 kΩ potentiometer</td><td>A0</td></tr>
+    <tr><td>Knob push switch</td><td>Pushbutton, cycles modes</td><td>D2</td></tr>
+    <tr><td>Key backlights</td><td>4 white LEDs + 220 Ω</td><td>D13–D10</td></tr>
+    <tr><td>Power LED</td><td>Orange LED on PWM + 220 Ω</td><td>D9</td></tr>
+    <tr><td>USB HID → host computer</td><td>16×2 LCD over I²C</td><td>A4 · A5</td></tr>
+   </tbody></table>
+   <p class="fine">One honest gap: a potentiometer has end stops and an encoder spins forever, so the prototype reads the knob as a position and turns movement into steps, the way the encoder will.</p></div>
+   <figure class="el-fig">${im(I.elProto,'Tinkercad breadboard prototype of the Parametric Keypad with callouts')}<figcaption>03 · The wired prototype, laid out like the keypad: keys in a row, lights above them, knob below. Yellow is an input, black is ground, grey and orange feed the LEDs, blue and purple carry I²C.</figcaption></figure>
+  </div>
+  <div class="bc-duo">${fig(I.elSch,'The schematic Tinkercad generates from the wiring: 6 switches, 5 LEDs, 5 resistors, the knob and the I²C display around the Uno.','bc-bg')}${fig(I.elCode,'Firmware excerpt: hold-to-wake on the power key, the breathing sleep light, launcher keys and knob modes.','bc-bg')}</div>
+ </div></section>
+
+ <section class="band dark section el-sec"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Behaviour, Simulated</h2><p class="sh-sub">Asleep / Wake / Launch / Volume / Scroll / Zoom</p>
+  <p class="intro">Six states from one loop, captured from the running simulation. The LEDs are the parts the keypad actually has; the display shows what the computer would receive.</p>
+  <figure class="el-fig">${im(I.elStates,'Six simulated states of the keypad prototype: asleep, wake, launch, volume, scroll, zoom')}<figcaption>02 · Asleep, only the power LED breathes. Hold POWER and the keys light in a sweep. Each key sends CTRL+ALT+1 to 4. Push the knob to switch between volume, scroll and zoom.</figcaption></figure>
+  <div class="cols" style="padding-top:32px"><div><h3>Hold, Don't Tap</h3><p>The power key needs a 2 second hold to wake or sleep, so a knock in a bag doesn't turn it on. A tap just shows a hint.</p></div>
+  <div><h3>One Knob, Three Jobs</h3><p>Pushing the knob cycles volume, scroll and zoom. The mode is shown on the display; in the product it would be a short light pattern on the keys.</p></div>
+  <div><h3>Keys That Answer</h3><p>Every press blinks that key's light while the shortcut goes out, so you know it registered without looking at the screen.</p></div></div>
+ </div></section>
+
+ <section class="band light section el-sec"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Debug Log</h2><p class="sh-sub">What broke / Why / The fix</p>
+  <ol class="el-log">
+   <li><b>01</b><div><h3>Keys looked unresponsive</h3><p>Pressing a key seemed to do nothing. The press was registered, but the display redraws about a second late in the simulator. Timing the captures to the redraw, and blinking the key's own LED at once, made the response visible.</p></div></li>
+   <li><b>02</b><div><h3>The knob wouldn't turn</h3><p>Dragging the potentiometer in a straight line did nothing in the simulator. It only follows a circular motion, like a real knob, so every test turn was made as an arc around its centre.</p></div></li>
+   <li><b>03</b><div><h3>Lessons carried over</h3><p>Three fixes from the BASECAMP prototype went in from the start: a pin-change interrupt that latches every press, display text in fixed buffers instead of String objects, and no serial port next to the display library.</p></div></li>
+  </ol>
+  <div class="el-next"><small>Next</small><h3>From Behaviour To A Real Board</h3><p>Swap the Uno for a controller with native USB, the potentiometer for a detented encoder and the buttons for hot-swap key switches. Then draw a KiCad board whose outline, key pitch and knob position come straight from the Rhino case, and send real CTRL+ALT shortcuts to the computer.</p></div>
+ </div></section>
  <section class="statement">${im(I.edges,'The original Grasshopper case with its Voronoi grooves')}<p>The same method fits an outsole: a pattern that <span class="it">follows the form, avoids functional zones</span> and changes with a slider instead of a remodel.</p></section>
  ${nextLink('product',CUR[0])}</main>`+foot();
 }
