@@ -1245,6 +1245,8 @@ function home(){
   <p class="intro" style="margin-top:12px">Projects where the craft is the system behind the visuals: scripted 3D illustration and type, AI-built design systems and a cookbook generated from code.</p>
   <div class="cards c2">${vis}</div>
   <h3 class="sub-h">Free Resources</h3>
+  <a class="feature gl-feat" href="#${GB.id}"><div class="media tr-l"><span class="badge">New</span>${im(GB.img.hero,'Three slides from Grasshopper, Brick by Brick: the cover, baseplate equals canvas, and your first build')}</div>
+  <div><small>New · Free download · Quick start guide</small><h3>Grasshopper, Brick By Brick</h3><p>The basic Grasshopper components explained with LEGO® bricks: baseplate = canvas, studs and tubes = wires, turntable = number slider. Fourteen pairs, a first build and a cheat sheet in eleven slides.</p><span class="go">Get the PDF →</span></div></a>
   <a class="feature gl-feat" href="#${RS2.id}"><div class="media tr-l"><span class="badge">New</span>${im(RS2.img.hero,'Three slides from Rhino to Stager, volume two of the Rhino and Adobe series')}</div>
   <div><small>New · Free download · Rhino ⇄ Adobe · Vol. 02</small><h3>Rhino → Stager</h3><p>Volume two of the series: taking Rhino models into Substance 3D Stager to stage and render them, with the bridge glossary, the round trip and the five things that go wrong.</p><span class="go">Get the PDF →</span></div></a>
   <a class="feature gl-feat" href="#${RA.id}"><div class="media tr-l"><span class="badge">New</span>${im(RA.img.hero,'Three slides from Rhino to Illustrator, volume one of the Rhino and Adobe series')}</div>
@@ -2699,6 +2701,41 @@ document.addEventListener('click',e=>{
   setTimeout(()=>{try{f.focus();f.contentWindow&&f.contentWindow.focus()}catch(err){}},150)}
  else if(e.target.closest('#gm-x')) gmExit();
 });
+/* ---------- v32: Grasshopper, Brick by Brick (free PDF) ---------- */
+const GBI=(f,w,h,c)=>['img/gb__'+f+'.webp',w||864,h||1080,c||''];
+const GB={id:'grasshopper-brick-by-brick',
+ img:{hero:GBI('hero',1600,1000),row:GBI('row',1600,900),cover:GBI('01')},
+ pdf:'downloads/Grasshopper-Brick-by-Brick-Tigre-Studio.pdf',
+ pages:[GBI('02',0,0,'The idea: one rule, endless builds'),GBI('03',0,0,'Baseplate = canvas / Studs + tubes = wires'),GBI('04',0,0,'2×4 brick = component / 1×1 round = parameter'),GBI('05',0,0,'The controls: slider, toggle, panel'),GBI('06',0,0,'1×8 plate = list / Numbered bags = data tree'),GBI('07',0,0,'Bracket = flatten + graft / Sub-assembly = cluster'),GBI('08',0,0,'Instructions = definition / Display shelf = bake'),GBI('09',0,0,'Your first build'),GBI('10',0,0,'Cheat sheet'),GBI('11',0,0,'By the numbers')]
+};
+function gbPage(){
+ const pages=GB.pages.map((p,i)=>`<figure><div class="media ${i%2?'bl':'tr'}">${im(p,p[3])}</div><figcaption>${esc(p[3])}</figcaption></figure>`).join('');
+ return head('product','New')+`<main>
+ <section class="band dark"><div class="wrap case"><p class="num">New · Free Resource / Quick Start Guide</p><h1>Grasshopper, Brick By Brick</h1><p class="meta">The basic components / Explained with LEGO® bricks · LinkedIn carousel and free PDF</p>
+  <p class="note">Grasshopper is the brick box of industrial designers and architects. This guide pairs each basic component with the brick that works the same way, so the first week makes sense.</p>
+  <dl class="facts"><div><dt>Role</dt><dd>Research, writing, design, illustration</dd></div><div><dt>Tools</dt><dd>McNeel docs · Python · HTML → PDF</dd></div><div><dt>Output</dt><dd>1 PDF · 11 carousel slides</dd></div><div><dt>Content</dt><dd>14 pairs · 1 first build · 1 cheat sheet</dd></div></dl></div></section>
+ <div class="band dark" style="padding-bottom:56px"><div class="wrap"><div class="media tr-l">${im(GB.img.hero,'Three slides from Grasshopper, Brick by Brick','heroimg')}</div></div></div>
+
+ <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Download The PDF</h2><p class="sh-sub">Free / 11 pages / English</p>
+  <div class="ra-dl"><a class="media tr" href="${GB.pdf}" download aria-label="Download the Grasshopper, Brick by Brick PDF">${im(GB.img.cover,'Cover of Grasshopper, Brick by Brick')}</a>
+  <div><h3>Quick Start Guide</h3><p>Fourteen Grasshopper basics, each paired with a brick: canvas, wires, components, parameters, sliders, toggles, panels, lists, data trees, flatten and graft, clusters, definitions, bake, and what orange and red mean. Then a four-piece first build and a one-page cheat sheet.</p>
+  <a class="btn inv" href="${GB.pdf}" download>Download PDF ↓</a></div></div>
+  <p class="fine">A direct download, no sign-up. Share it freely; credit Tigre Studio. LEGO® is a trademark of the LEGO Group of companies, which does not sponsor, authorize or endorse this guide. Rhino® and Grasshopper® are trademarks of Robert McNeel &amp; Associates. All illustrations are original drawings.</p>
+ </div></section>
+
+ <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Why Bricks</h2><p class="sh-sub">One rule / Every piece connects / Change one, the model rebuilds</p>
+  <div class="cols"><div><h3>The Same Rule</h3><p>Bricks click because every piece has studs on top and tubes underneath. Grasshopper components click because every one has inputs on the left and outputs on the right.</p></div>
+  <div><h3>Fourteen Pairs</h3><p>Each pair is drawn twice on the same dot grid: the brick in isometric, the component as it sits on the canvas. Every Grasshopper fact is checked against the primer and McNeel's forum.</p></div>
+  <div><h3>Then Build</h3><p>Two sliders, a circle, a direction and an extrusion: a first definition anyone can make in two minutes, with the menu path to each piece. <a href="#glossaries">Next: the glossaries →</a></p></div></div>
+ </div></section>
+
+ <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Inside The Pages</h2><p class="sh-sub">Black and white / Original brick drawings / Tigre stripes</p>
+  <div class="gl-pages ra-pages">${pages}</div>
+ </div></section>
+
+ <section class="statement">${im(GB.img.row,'Four slides from Grasshopper, Brick by Brick side by side')}<p>Every component, <span class="it">one brick at a time.</span></p></section>
+ ${nextLink('product',{id:GL.id,title:'Rhino & Grasshopper Glossaries'})}</main>`+foot();
+}
 /* ---------- v31: Rhino ⇄ Adobe · Vol. 02 · Rhino → Stager (free PDF) ---------- */
 const RTI=(f,w,h,c)=>['img/rst__'+f+'.webp',w||864,h||1080,c||''];
 const RS2={id:'rhino-to-stager',
@@ -2813,6 +2850,7 @@ function route(){
  let i, html=null, title='Henry Ortega · Footwear Innovation & Product Development';
  if((i=GAMES.findIndex(g=>g.id===h))>=0){html=gamePage(i);title=GAMES[i].title+' · Henry Ortega'}
  else if(h===CB.id){html=cookbookPage();title='Fold / Bake · Henry Ortega'}
+ else if(h===GB.id){html=gbPage();title='Grasshopper, Brick by Brick · Henry Ortega'}
  else if(h===RS2.id){html=rs2Page();title='Rhino → Stager · Rhino ⇄ Adobe Vol. 02 · Henry Ortega'}
  else if(h===RA.id){html=raPage();title='Rhino → Illustrator · Rhino ⇄ Adobe Vol. 01 · Henry Ortega'}
  else if(h===GL.id){html=glPage();title='Rhino & Grasshopper Glossaries · Henry Ortega'}
