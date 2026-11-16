@@ -555,6 +555,55 @@ button.btn{cursor:pointer}
 .nk-map u{display:inline-block;width:12px;height:12px;border-radius:50%;border:1px solid var(--grid)}
 .nk-mapw{overflow-x:auto}
 @media(max-width:820px){.nk-grid{grid-template-columns:1fr;gap:36px}.nk-did li{grid-template-columns:40px 1fr;font-size:16px}.nk-map{min-width:640px}}
+/* v47: fold / bake interactive */
+.fb{--ink:#1d1d1f;--or:#ff5a1f;--par:#f3ead6;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-family:var(--mono);color:#fff}
+.fb-hd{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:12px;text-transform:uppercase;letter-spacing:.06em;padding-bottom:12px;border-bottom:1px solid #fff;margin-bottom:8px}
+.fb-hd b{background:var(--or);color:#000;padding:4px 8px;font-size:13px}.fb-hd span{color:#a8a8a8}
+.fb-st{margin-left:auto;color:var(--or)!important;font-weight:700}.fb-st.you{color:#fff!important}
+.fb-stage{perspective:2200px;perspective-origin:50% 0%;padding:4% 3% 2%;background:#141414;background-image:radial-gradient(#2c2c2c 1px,transparent 1px);background-size:22px 22px;border-radius:0 28px 0 0}
+.fb-sheet{position:relative;aspect-ratio:1800/1273;display:flex;transform-style:preserve-3d;transform:rotateX(26deg);transform-origin:50% 100%;transition:transform 1s cubic-bezier(.2,.7,.2,1)}
+.fb-col{position:relative;width:50%;height:100%;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.fb-bot,.fb-f,.fb-b{position:absolute;left:0;width:100%;height:50%;background-color:var(--par);background-size:200% 200%;background-blend-mode:multiply;transition:filter 2.5s}
+.fb-bot{bottom:0;box-shadow:0 30px 40px rgba(0,0,0,.45)}
+.fb-l .fb-bot{background-position:0 100%}.fb-r .fb-bot{background-position:100% 100%}
+.fb-flap{position:absolute;left:0;top:0;width:100%;height:50%;transform-style:preserve-3d;transform-origin:50% 100%;transition:transform 1.25s cubic-bezier(.55,0,.25,1)}
+.fb-f,.fb-b{top:0;height:100%;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.fb-l .fb-f{background-position:0 0}.fb-r .fb-f{background-position:100% 0}
+.fb-b{transform:rotateX(180deg);background-color:#efe3c6}
+.fb-l .fb-b{background-position:0 0}.fb-r .fb-b{background-position:100% 0}
+.fb-b::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(120,90,40,.28),rgba(239,227,198,.55) 18%,rgba(239,227,198,.62) 85%,rgba(255,250,235,.7))}
+.fb-bot::after{content:"";position:absolute;inset:3%;border:3px dashed var(--or);opacity:0;transition:opacity .4s}
+.fb.is-lay:not(.is-fold) .fb-bot::after{opacity:1;animation:fbp 1s infinite}
+@keyframes fbp{50%{opacity:.25}}
+.fb.is-fold .fb-flap{transform:rotateX(-180deg) translateZ(-1px)}
+.fb.is-split .fb-l{transform:translateX(-4%)}.fb.is-split .fb-r{transform:translateX(4%)}
+.fb-crimp{position:absolute;inset:0;width:100%;height:100%;overflow:visible;z-index:2}
+.fb-crimp .ce{fill:none;stroke:#b07a3c;stroke-width:9;stroke-dasharray:2 6;vector-effect:non-scaling-stroke;stroke-linecap:round;opacity:0;transition:opacity .5s}
+.fb.is-crimp .ce-b{opacity:1}.fb.is-crimp .fb-l .ce-l,.fb.is-crimp .fb-r .ce-r{opacity:1;transition-delay:.25s}
+.fb.is-crimp.is-split .fb-l .ce-r,.fb.is-crimp.is-split .fb-r .ce-l{opacity:1;transition-delay:.5s}
+.fb.is-bake .fb-bot,.fb.is-bake .fb-b{filter:sepia(.25) brightness(.95) contrast(1.04)}
+.fb.is-done .fb-bot,.fb.is-done .fb-b{filter:sepia(.5) hue-rotate(-12deg) saturate(1.25) brightness(.86) contrast(1.06)}
+.fb.is-bake .fb-flap{transform:rotateX(-180deg) translateZ(-1px) scaleY(1.02)}
+.fb.is-fold .fb-sheet{transform:translateY(-30%) rotateX(34deg)}
+.fb-steam{position:absolute;left:0;right:0;bottom:40%;height:40%;pointer-events:none;transform:translateZ(40px)}
+.fb-steam i{position:absolute;bottom:0;width:9%;aspect-ratio:1;border-radius:50%;background:radial-gradient(rgba(255,255,255,.7),rgba(255,255,255,0) 60%);opacity:0;filter:blur(2px)}
+.fb-steam i:nth-child(1){left:12%}.fb-steam i:nth-child(2){left:30%;animation-delay:.6s!important}.fb-steam i:nth-child(3){left:48%;animation-delay:1.1s!important}.fb-steam i:nth-child(4){left:66%;animation-delay:.3s!important}.fb-steam i:nth-child(5){left:82%;animation-delay:.9s!important}
+.fb.is-bake:not(.is-done) .fb-steam i{animation:fbs 1.8s ease-out infinite}
+@keyframes fbs{0%{transform:translateY(0) scale(.5);opacity:0}30%{opacity:.9}100%{transform:translateY(-160%) scale(1.6);opacity:0}}
+.fb-ui{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px 20px;padding-top:18px;align-items:start}
+.fb-steps{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
+.fb button{font:700 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;background:#000;color:#fff;border:1.5px solid #fff;padding:9px 12px;cursor:pointer;display:inline-flex;gap:8px;align-items:center}
+.fb button b{color:var(--or)}
+.fb-steps button.on{background:var(--or);color:#000;border-color:var(--or)}.fb-steps button.on b{color:#000}
+.fb button:hover{border-color:var(--or)}.fb button:focus-visible{outline:3px solid var(--or);outline-offset:2px}
+.fb-reset{color:#a8a8a8!important}
+.fb-ov{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}
+.fb-ov button{font-size:11px;padding:7px 10px;border-color:#555}.fb-ov button[aria-checked=true]{background:#fff;color:#000;border-color:#fff}
+.fb-read{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid #333}
+.fb-read div{padding:12px 12px 0 0}.fb-read small{display:block;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#8c8c8c;margin-bottom:4px}
+.fb-read b{font-size:15px;font-variant-numeric:tabular-nums}.fb-read .r-m{color:var(--or);font-size:22px}
+@media (max-width:900px){.fb-ui{grid-template-columns:1fr}.fb-ov{justify-content:flex-start}.fb-read{grid-template-columns:1fr 1fr;gap:4px}.fb-sheet{transform:rotateX(18deg)}.fb.is-fold .fb-sheet{transform:translateY(-30%) rotateX(24deg)}}
+@media (prefers-reduced-motion:reduce){.fb-sheet,.fb-col,.fb-flap,.fb-bot,.fb-f,.fb-b{transition:none}.fb-steam{display:none}.fb.is-lay .fb-bot::after{animation:none}}
 /* v46: page viewer + light-band buttons + brick pairs */
 .light .btn.inv{background:var(--black);color:var(--white);border:2px solid var(--black);font-style:normal;font-family:var(--sans);font-weight:700;letter-spacing:.02em;padding:10px 20px}
 .light .btn.inv:hover{background:#ff5a1f;color:var(--black);border-color:var(--black)}
@@ -2667,7 +2716,7 @@ function cookbookPage(){
  <section class="band dark"><div class="wrap case"><p class="num">Personal Project / Cookbook</p><h1>Fold / Bake</h1><p class="meta">A real-scale parchment cookbook · Chapter 1: Colombia</p>
   <p class="note">Every page is a cooking sheet. Lay each ingredient on its true-size outline, fold the page over the food, crimp the edges and bake. The drawing is the measurement.</p>
   <dl class="facts"><div><dt>Role</dt><dd>Concept, writing, illustration, code</dd></div><div><dt>Tools</dt><dd>Python · Illustrator · Rhino</dd></div><div><dt>Output</dt><dd>A3 sheets · SVG, PDF, DXF</dd></div><div><dt>Status</dt><dd>Chapter 1 drafted · kitchen testing next</dd></div></dl></div></section>
- <div class="band dark" style="padding-bottom:56px"><div class="wrap"><div class="media paper tr-l">${im(I.co01,'Pescado al Coco recipe sheet','heroimg')}</div></div></div>
+ <div class="band dark" style="padding-bottom:56px"><div class="wrap">${fbHTML(I.co01[0])}<noscript><div class="media paper tr-l">${im(I.co01,'Pescado al Coco recipe sheet','heroimg')}</div></noscript></div></div>
 
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Why A Cookbook</h2><p class="sh-sub">The idea / The reason / The connection</p>
   <div class="cols"><div><h3>The Idea</h3><p>A cookbook you cook on. Each recipe is printed on baking parchment with the ingredients drawn at their real size, so the page shows exactly how much to use and where it goes.</p></div>
@@ -3200,6 +3249,46 @@ function simBC(el){
  new MutationObserver((m,obs)=>{if(!el.isConnected){ac&&ac.close();obs.disconnect()}}).observe(document.getElementById('app')||document.body,{childList:true});
  return S;
 }
+/* v47: FOLD / BAKE interactive sheet. The real CO-01 sheet, cut into four flaps at its fold line (y 50%) and cut line (x 50%). */
+const FB_OV=[
+ {k:'full',n:'Full-size oven',t:'200 °C · 400 °F',m:18,split:false,note:'Whole sheet, one pouch'},
+ {k:'fan',n:'Fan / convection',t:'180 °C · 360 °F',m:18,split:false,note:'20 °C lower, same time'},
+ {k:'toast',n:'Toaster oven',t:'200 °C · 400 °F',m:18,split:true,note:'Cut in half · check early'},
+ {k:'air',n:'Air-fryer oven',t:'180 °C · 360 °F',m:14,split:true,note:'Cut in half · ~20 % less time'},
+ {k:'alt',n:'High altitude',t:'200 °C · 400 °F',m:23,split:false,note:'Above 2,000 m · add 5 min'}];
+const FB_ST=[['Lay','Set each ingredient on its true-size outline'],['Fold','Bring the recipe half down over the food'],['Crimp','Small, tight, overlapping folds on every open edge'],['Bake','Into the oven until the fish reads 63 °C']];
+function fbHTML(src){
+ const col=s=>`<div class="fb-col fb-${s}"><div class="fb-bot" style="background-image:url('${src}')"></div>
+   <div class="fb-flap"><div class="fb-f" style="background-image:url('${src}')"></div><div class="fb-b" style="background-image:url('${src}')"><svg class="fb-crimp" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path class="ce ce-l" d="M2.5 3 L2.5 97"/><path class="ce ce-r" d="M97.5 3 L97.5 97"/><path class="ce ce-b" d="M2 97 L98 97"/></svg></div></div></div>`;
+ return `<div class="fb" data-fb><div class="fb-hd"><b>Try The Fold</b><span>CO-01 · Pescado al Coco · real sheet, real fold</span><span class="fb-st" aria-live="polite"></span></div>
+ <div class="fb-stage"><div class="fb-sheet">${col('l')}${col('r')}<div class="fb-steam" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div></div></div>
+ <div class="fb-ui"><ol class="fb-steps">${FB_ST.map(([a,b],i)=>`<li><button type="button" data-s="${i}"><b>0${i+1}</b>${a}</button></li>`).join('')}<li><button type="button" data-s="r" class="fb-reset">↺ Open</button></li></ol>
+  <div class="fb-ov" role="radiogroup" aria-label="Oven">${FB_OV.map((o,i)=>`<button type="button" role="radio" aria-checked="${i?'false':'true'}" data-o="${i}">${o.n}</button>`).join('')}</div>
+  <div class="fb-read"><div><small>Oven</small><b class="r-t"></b></div><div><small>Timer</small><b class="r-m">--:--</b></div><div><small>Pouches</small><b class="r-p"></b></div><div><small>Step</small><b class="r-s"></b></div></div></div></div>`;
+}
+function mountFB(){
+ document.querySelectorAll('[data-fb]:not([data-on])').forEach(el=>{el.dataset.on=1;
+  const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let step=-1,ov=0,timer=0,auto=!RM,user=false,tm=[];
+  const $=q=>el.querySelector(q), st=$('.fb-st');
+  const later=(f,ms)=>tm.push(setTimeout(f,ms)); const stopDemo=()=>{tm.forEach(clearTimeout);tm=[]}; const clear=()=>cancelAnimationFrame(timer);
+  const read=()=>{const o=FB_OV[ov];$('.r-t').textContent=o.t;$('.r-p').textContent=o.split?'2 · half sheet each':'1 · whole sheet';$('.r-s').textContent=step<0?'Open sheet':FB_ST[step][0]+' · '+FB_ST[step][1];
+   el.querySelectorAll('.fb-ov button').forEach((b,i)=>b.setAttribute('aria-checked',i===ov));
+   el.querySelectorAll('.fb-steps [data-s]').forEach(b=>b.classList.toggle('on',+b.dataset.s<=step));
+   st.textContent=user?'● You are folding':'● Playing';st.classList.toggle('you',user)};
+  const set=s=>{clear();step=s;el.classList.toggle('is-lay',s>=0);el.classList.toggle('is-fold',s>=1);el.classList.toggle('is-crimp',s>=2);el.classList.toggle('is-bake',s>=3);el.classList.toggle('is-split',FB_OV[ov].split&&s>=0);
+   $('.r-m').textContent=s>=3?String(FB_OV[ov].m).padStart(2,'0')+':00':'--:--';
+   if(s===3){const total=FB_OV[ov].m*60,dur=RM?0:4200,t0=performance.now();const tick=now=>{const p=dur?Math.min(1,(now-t0)/dur):1,left=Math.round(total*(1-p));$('.r-m').textContent=String(Math.floor(left/60)).padStart(2,'0')+':'+String(left%60).padStart(2,'0');if(p<1)timer=requestAnimationFrame(tick);else{$('.r-m').textContent='Done';el.classList.add('is-done');$('.r-s').textContent='Done · 63 °C / 145 °F inside, the fish flakes'}};el.classList.remove('is-done');timer=requestAnimationFrame(tick)}else el.classList.remove('is-done');
+   read()};
+  const play=()=>{if(!auto)return;stopDemo();set(-1);later(()=>set(0),900);later(()=>set(1),2300);later(()=>set(2),3900);later(()=>set(3),5600);later(()=>{if(auto){ov=(ov+1)%FB_OV.length;play()}},12000)};
+  const take=()=>{if(!user){user=true;auto=false;stopDemo()}};
+  el.querySelectorAll('.fb-steps [data-s]').forEach(b=>b.addEventListener('click',()=>{take();set(b.dataset.s==='r'?-1:+b.dataset.s)}));
+  el.querySelectorAll('.fb-ov button').forEach(b=>b.addEventListener('click',()=>{take();ov=+b.dataset.o;set(Math.max(step,0))}));
+  el.querySelector('.fb-ov').addEventListener('keydown',e=>{const d={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1}[e.key];if(d){e.preventDefault();take();ov=(ov+d+FB_OV.length)%FB_OV.length;set(Math.max(step,0));el.querySelectorAll('.fb-ov button')[ov].focus()}});
+  set(-1);
+  if('IntersectionObserver' in window&&auto){let started=false;new IntersectionObserver(e=>{if(e[0].isIntersecting&&!started){started=true;play()}},{threshold:.35}).observe(el)}
+ });
+}
 /* v46: page viewer for guide pages */
 function mountPV(){
  const figs=[...document.querySelectorAll('.gl-pages figure')]; if(!figs.length)return;
@@ -3243,7 +3332,7 @@ function route(){
  else if(h===KP.id){html=keypadPage();title=KP.title+' · Henry Ortega'}
  else if((i=RH.findIndex(p=>p.id===h))>=0){html=CS[RH[i].id]?casePage(RH,i,'rhino','Rhino Workflow'):galleryPage(RH,i,'rhino','Rhino Workflow');title=RH[i].title+' · Henry Ortega'}
  document.body.classList.remove('gm-lock');
- if(html){app.innerHTML=html;app.dataset.view='project';scrollTo(0,0);mountGame();mountTT();mountKN();mountKA();mountSim();mountPV();window.TigreFigures&&TigreFigures.mountAll(app)}
+ if(html){app.innerHTML=html;app.dataset.view='project';scrollTo(0,0);mountGame();mountTT();mountKN();mountKA();mountSim();mountPV();mountFB();window.TigreFigures&&TigreFigures.mountAll(app)}
  else{
   if(app.dataset.view!=='home'){app.innerHTML=home();app.dataset.view='home';window.TigreFigures&&TigreFigures.mountAll(app)}
   const t=h&&document.getElementById(h); if(t) t.scrollIntoView(); else if(!h||h==='top') scrollTo(0,0);
