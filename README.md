@@ -1,5 +1,5 @@
 # Tigre Studio — Portfolio
 
-Computational graphic design by Henry Ortega. Rhino + Grasshopper for brand, pattern & product.
+Henry Ortega: product development & technical program leader, design technologist and technical documentation lead. Concept to factory, and the tools behind it.
 
 Live site: https://tigrestudiodesign.github.io
