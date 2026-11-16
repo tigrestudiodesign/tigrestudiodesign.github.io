@@ -50,7 +50,7 @@ a{color:inherit}
 .hero .sub{font:italic clamp(18px,2vw,26px)/1.25 var(--font-serif);max-width:34ch;margin:22px 0 0}
 .stats{display:flex;flex-wrap:wrap;gap:16px 56px;margin:56px 0 40px;padding-top:20px;border-top:1px solid #333}
 .stat b{display:block;font:900 clamp(40px,5vw,64px)/.95 var(--font-head)}
-.stat span{font:italic 15px var(--font-serif);color:#bdbdbd}
+.stat span{font:italic 15px var(--font-serif);color:#bdbdbd;overflow-wrap:anywhere}
 .datalines{height:46px;display:block;width:100%;margin-bottom:0}
 
 /* layout */
@@ -187,16 +187,23 @@ footer .stripe-rule{height:14px}
 .chnav .l{font:700 11px var(--font-sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted)}
 .chnav .t{font:900 clamp(28px,4vw,56px)/.95 var(--font-head);text-transform:uppercase}
 .chnav span.empty{background:var(--ground)}
-.chapters{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,220px),1fr));gap:1px;background:#333;border:1px solid #333;margin:40px 0 48px}
-.chapters a{background:#000;color:#fff;text-decoration:none;padding:18px 16px 20px;display:grid;gap:6px;position:relative}
+.chapters{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:0;margin:40px 0 48px;padding:0 1px 1px 0;background:#000;outline:1px solid #333;outline-offset:-1px}
+.chapters a{background:#000;color:#fff;text-decoration:none;padding:18px 16px 18px;display:grid;grid-template-rows:auto auto auto 1fr auto;gap:6px;position:relative;border:1px solid #333;margin:0 -1px -1px 0;min-width:0;container-type:inline-size;transition:background .15s}
 .chapters a:hover{background:#111}
-.chapters a[aria-current="true"]{background:#fff;color:#000}
+.chapters a[aria-current="true"]{background:#fff;color:#000;border-color:#fff;z-index:1}
 .chapters a[aria-current="true"] .cm{color:#595959}
-.chapters .cn{font:700 11px var(--font-sans);letter-spacing:.1em;color:var(--spectrum-sky)}
+.chapters a[aria-current="true"] .bar{background:#d9d9d9}
+.chapters a[aria-current="true"] .bar i{background:var(--spectrum-blue)}
+.chapters .cn{font:700 11px var(--font-sans);letter-spacing:.1em;color:var(--spectrum-sky);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .chapters a[aria-current="true"] .cn{color:var(--spectrum-blue)}
-.chapters .ct{font:900 26px/1 var(--font-head);text-transform:uppercase}
+.chapters .ct{font:900 min(26px,10.5cqi)/1 var(--font-head);text-transform:uppercase;overflow-wrap:anywhere;min-width:0}
 .chapters .cm{font:italic 14px var(--font-serif);color:#8c8c8c}
-.chapters .bar{height:3px;background:#333;margin-top:8px}
+.chapters .bar{height:3px;background:#333;margin-top:8px;align-self:end}
+.chapters a.soon{background:repeating-linear-gradient(135deg,#000 0 10px,#0a0a0a 10px 20px);cursor:default;grid-template-rows:auto auto 1fr}
+.chapters a.soon:hover{background:repeating-linear-gradient(135deg,#000 0 10px,#0a0a0a 10px 20px)}
+.chapters a.soon .ct{color:#444}
+.chapters a.soon .cn{color:#595959}
+.chapters a.soon .cm{align-self:end}
 .chapters .bar i{display:block;height:100%;background:var(--spectrum-sky)}
 .chapters a.soon{pointer-events:none;color:#555}
 .chapters a.soon .ct{color:#555}
@@ -327,7 +334,12 @@ footer .stripe-rule{height:14px}
   .top .crumbs,.top .chsel{display:none}
   .viewsw button[data-view=scan]{font-size:0}.viewsw button[data-view=scan]::after{content:'SCAN';font-size:11px}
   .logo .wm{display:none}
-  .stats{gap:14px 28px}
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px}
+  .stat span{display:block;line-height:1.25}
+  .chapters{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .chapters a{padding:14px 12px}
+  .chapters a.soon:nth-child(odd){grid-column:1/-1}
+  .chapters .cm{font-size:13px}
   .plate{padding:10px}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
@@ -423,7 +435,7 @@ footer .stripe-rule{height:14px}
  </div></div>
 <script>
 (function(){
-const SALT=Uint8Array.from(atob('1NwrnLHbu7vPk1O3rOAUWg=='),c=>c.charCodeAt(0)),ITER=310000;
+const SALT=Uint8Array.from(atob('PrjE6Eq8Qft1fuAHAB1FxA=='),c=>c.charCodeAt(0)),ITER=310000;
 const gate=document.getElementById('gate'),msg=document.getElementById('gm');
 document.documentElement.style.overflow='hidden';
 const dec=(key,buf)=>{buf=new Uint8Array(buf);return crypto.subtle.decrypt({name:'AES-GCM',iv:buf.slice(0,12)},key,buf.slice(12))};
@@ -444,7 +456,7 @@ async function unlock(key){const code=new TextDecoder().decode(await dec(key,awa
   gate.remove();document.documentElement.style.overflow='';}
 async function derive(pw){const k=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']);
   return crypto.subtle.deriveKey({name:'PBKDF2',salt:SALT,iterations:ITER,hash:'SHA-256'},k,{name:'AES-GCM',length:256},true,['decrypt'])}
-const KS='pb-key-'+'1NwrnLHbu7vPk1O3rOAUWg=='.slice(0,8);
+const KS='pb-key-'+'PrjE6Eq8Qft1fuAHAB1FxA=='.slice(0,8);
 (async()=>{try{const raw=sessionStorage.getItem(KS);if(raw){const k=await crypto.subtle.importKey('raw',Uint8Array.from(atob(raw),c=>c.charCodeAt(0)),'AES-GCM',true,['decrypt']);await unlock(k);return}}catch(e){}
   document.getElementById('gpw').focus()})();
 document.getElementById('gf').onsubmit=async e=>{e.preventDefault();msg.textContent='Unlocking…';
