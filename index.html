@@ -545,6 +545,28 @@ button.btn{cursor:pointer}
 .nk-map u{display:inline-block;width:12px;height:12px;border-radius:50%;border:1px solid var(--grid)}
 .nk-mapw{overflow-x:auto}
 @media(max-width:820px){.nk-grid{grid-template-columns:1fr;gap:36px}.nk-did li{grid-template-columns:40px 1fr;font-size:16px}.nk-map{min-width:640px}}
+/* v44: BASECAMP electronics */
+.el-steps{list-style:none;margin:36px 0 40px;padding:0;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border-top:2px solid var(--yellow)}
+.el-steps li{padding:16px 14px 0 0}
+.el-steps b{display:inline-block;font-family:ui-monospace,Menlo,monospace;font-size:12px;background:var(--yellow);color:#111;padding:3px 7px;margin-bottom:10px}
+.el-steps h3{margin:0 0 6px;font-size:17px;text-transform:uppercase;letter-spacing:.02em}
+.el-steps p{margin:0;font-size:14px;line-height:1.45;opacity:.8}
+.el-fig{margin:0}.el-fig img{display:block;width:100%;height:auto}
+.el-fig figcaption{font-family:var(--serif);font-style:italic;color:var(--muted);margin-top:10px}
+.el-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:48px;align-items:start;padding-top:28px}
+.el-map{width:100%;border-collapse:collapse;margin-top:20px;font-size:15px}
+.el-map th{text-align:left;font-family:ui-monospace,Menlo,monospace;font-size:11px;text-transform:uppercase;letter-spacing:.06em;border-bottom:2px solid var(--rule);padding:8px 8px 8px 0}
+.el-map td{border-bottom:1px solid var(--grid);padding:9px 8px 9px 0;vertical-align:top}
+.el-map td:last-child{font-family:ui-monospace,Menlo,monospace;font-size:13px;white-space:nowrap}
+.el-log{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 48px}
+.el-log li{display:flex;gap:16px;border-top:2px solid var(--rule);padding-top:16px}
+.el-log b{font-family:ui-monospace,Menlo,monospace;font-size:13px;background:var(--yellow);color:#111;height:22px;padding:2px 7px}
+.el-log h3{margin:0 0 6px;font-size:20px;text-transform:uppercase}
+.el-log p{margin:0;font-size:16px;max-width:60ch}
+.el-next{margin-top:44px;padding:24px 28px;border:2px solid var(--rule);border-left:10px solid var(--yellow)}
+.el-next small{font-family:ui-monospace,Menlo,monospace;text-transform:uppercase;letter-spacing:.08em;font-size:11px}
+.el-next h3{margin:6px 0 8px;font-size:24px;text-transform:uppercase}.el-next p{margin:0;max-width:80ch}
+@media(max-width:980px){.el-steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px}.el-two,.el-log{grid-template-columns:1fr}}
 /* v42: Rules -> Code */
 .rl-sec{background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:32px 32px}
 .rl-intro{max-width:760px}
@@ -1127,7 +1149,8 @@ const nav=()=>`<header class="nav band"><div class="wrap"><a class="brand" href=
 
 const BC={id:'basecamp',title:'BASECAMP',
  img:{hero:['img/bc2__hero.webp',1800,1440],crop:['img/bc2__hero-crop.webp',1600,1156],front:['img/bc2__front.webp',1600,1300],back:['img/bc2__back.webp',1600,1300],
-  exp:['img/bc2__exploded.webp',1500,1200],dial:['img/bc2__dial.webp',1200,1200],spk:['img/bc2__speaker.webp',1200,1200],top:['img/bc2__top.webp',1200,1200]},
+  exp:['img/bc2__exploded.webp',1500,1200],dial:['img/bc2__dial.webp',1200,1200],spk:['img/bc2__speaker.webp',1200,1200],top:['img/bc2__top.webp',1200,1200],
+  elBlock:['img/bc2__el-block.webp',1600,1060],elStates:['img/bc2__el-states.webp',1600,1180],elProto:['img/bc2__el-proto.webp',1600,1340],elSch:['img/bc2__el-schematic.webp',1315,1156],elCode:['img/bc2__el-code.webp',819,1207]},
  parts:['Tune / dim dial, light and radio buttons, band slider','Front Torx T10 screws','Perforated speaker plate','Printed faceplate','Speaker driver','Main board','Shell','Two 18650 cells','Back plate with spec label, 4 × T10','Fold-out crank','Pop-up lantern','SOS button'],
  cmf:[['#DDD4C2','Shell · sand'],['#222326','Faceplate · graphite'],['#FF5A1F','Signal · orange'],['#E8321A','SOS · red'],['#F1ECE1','Radio · cream'],['#C9CBCD','Knurled aluminium'],['#3A3C40','Crank arm · graphite'],['#1A1A1C','Print · ink']]
 };
@@ -1867,7 +1890,7 @@ function bcPage(){
  return head('product','New')+`<main>
  <section class="band dark"><div class="wrap case"><p class="num">New · Industrial Design / Concept</p><h1>BASECAMP</h1><p class="meta">Emergency radio + lantern · Model BC-01 · Python-scripted geometry · Blender Cycles</p>
   <p class="note">A hand-crank emergency radio and lantern for camp and power cuts. It stands upright on a shelf, the speaker faces you behind an orange perforated plate, and the lantern pops out of the top. Every fastener is a Torx screw you can reach, so it gets repaired, not replaced.</p>
-  <dl class="facts"><div><dt>Role</dt><dd>Concept, industrial design, CMF, graphics</dd></div><div><dt>Tools</dt><dd>Python · Blender · Cycles</dd></div><div><dt>Output</dt><dd>Assembly, elevations, exploded view, details</dd></div><div><dt>Brand</dt><dd>Tigre Studio original concept</dd></div></dl></div></section>
+  <dl class="facts"><div><dt>Role</dt><dd>Concept, industrial design, CMF, graphics</dd></div><div><dt>Tools</dt><dd>Python · Blender · Cycles · Tinkercad Circuits · Arduino</dd></div><div><dt>Output</dt><dd>Assembly, elevations, exploded view, electronics architecture, working behaviour prototype</dd></div><div><dt>Brand</dt><dd>Tigre Studio original concept</dd></div></dl></div></section>
  <div class="band dark" style="padding-bottom:56px"><div class="wrap"><div class="media tr-l bc-bg">${im(I.hero,'BASECAMP emergency radio and lantern, three-quarter view with the lantern up','heroimg')}</div></div></div>
 
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Design Intent</h2><p class="sh-sub">Find it in the dark / Power it without an outlet / Fix it with a screwdriver</p>
@@ -1886,6 +1909,57 @@ function bcPage(){
   <ol class="bc-parts">${BC.parts.map((t,i)=>`<li><b>${n2(i)}</b>${esc(t)}</li>`).join('')}</ol></div></div>
  </div></section>
 
+
+ <section class="band dark section el-sec"><div class="wrap"><p class="num" style="color:var(--yellow)">Electronics · Development</p><h2 class="sh-title" style="font-size:32px">From Block Diagram To Working Behaviour</h2><p class="sh-sub">Define / Architect / Stand in / Wire / Code / Simulate / Debug</p>
+  <p class="intro">An industrial design is only half a product. Before any board is drawn, I want to know that the controls behave the way the form promises: one dial that tunes or dims, a crank that visibly charges, an SOS you can trigger in the dark. So I designed the electronics in two layers: the real architecture of the product, and a working prototype of its behaviour in Tinkercad Circuits, with every part of the product represented by a stand-in.</p>
+  <ol class="el-steps">
+   <li><b>01</b><h3>Define</h3><p>Write the rules: what each control does in each mode, how the battery drains and charges, the SOS timing.</p></li>
+   <li><b>02</b><h3>Architect</h3><p>Block diagram of the real product: power path, radio, lantern driver, controller.</p></li>
+   <li><b>03</b><h3>Stand In</h3><p>Map every real part to a simulator part that behaves the same way.</p></li>
+   <li><b>04</b><h3>Wire</h3><p>Build the circuit on an Arduino Uno, colour-coded by function.</p></li>
+   <li><b>05</b><h3>Code</h3><p>Firmware in Arduino C++: one loop, six states.</p></li>
+   <li><b>06</b><h3>Simulate</h3><p>Run it, press every button, turn the dial, find what breaks.</p></li>
+   <li><b>07</b><h3>Next</h3><p>Real parts, a KiCad board shaped by the shell, a power budget.</p></li>
+  </ol>
+  <figure class="el-fig">${im(I.elBlock,'BASECAMP system architecture block diagram: crank and USB-C power, charger, cells, rails, MCU, radio, amplifier, lantern driver, SOS')}<figcaption>02 · The real product. Orange is power, black is signal. The crank and USB-C feed one charger; a quiet regulator keeps switching noise out of the radio.</figcaption></figure>
+ </div></section>
+
+ <section class="band light section el-sec"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Behaviour Prototype</h2><p class="sh-sub">Every product part / One simulator stand-in / Tinkercad Circuits</p>
+  <div class="el-two">
+   <div><p class="intro" style="margin-top:0">A simulator does not have a hand crank or a weather-band radio chip, so each part of the product gets a stand-in that behaves the same way from the user's side. The table is the contract between the prototype and the product.</p>
+   <table class="el-map"><thead><tr><th>Product part</th><th>Prototype stand-in</th><th>Pin</th></tr></thead><tbody>
+    <tr><td>TUNE / DIM dial (rotary encoder)</td><td>250 kΩ potentiometer</td><td>A0</td></tr>
+    <tr><td>LIGHT · RADIO · SOS buttons</td><td>Pushbuttons, internal pull-ups</td><td>D2 · D3 · D4</td></tr>
+    <tr><td>AM / FM / WX slider</td><td>BAND button, cycles the three bands</td><td>D5</td></tr>
+    <tr><td>Hand crank + charger</td><td>CRANK button, hold to charge</td><td>D7</td></tr>
+    <tr><td>Radio IC + amp + speaker</td><td>Piezo, pitch follows the dial</td><td>D8</td></tr>
+    <tr><td>Lantern LED driver</td><td>White LED on PWM + 220 Ω</td><td>D9</td></tr>
+    <tr><td>Fuel gauge → 3 charge LEDs</td><td>3 orange LEDs + 220 Ω</td><td>D10–D12</td></tr>
+    <tr><td>(debug window)</td><td>16×2 LCD over I²C</td><td>A4 · A5</td></tr>
+   </tbody></table>
+   <p class="fine">Two honest gaps: the simulator's slide switch has only two positions, so the three-band slider became a button, and its DC motor cannot be turned by hand, so the crank became a hold-to-charge button.</p></div>
+   <figure class="el-fig">${im(I.elProto,'Tinkercad breadboard prototype of BASECAMP with callouts')}<figcaption>04 · The wired prototype. Yellow is an input, black is ground, red is 5 V, orange and grey feed the LEDs, blue and purple carry I²C to the display.</figcaption></figure>
+  </div>
+  <div class="bc-duo">${fig(I.elSch,'The schematic Tinkercad generates from the wiring: 5 switches, 4 LEDs, 4 resistors, the dial, the piezo and the I²C display around the Uno.','bc-bg')}${fig(I.elCode,'Firmware excerpt: a pin-change interrupt catches every press, and the display text is built in fixed buffers.','bc-bg')}</div>
+ </div></section>
+
+ <section class="band dark section el-sec"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Behaviour, Simulated</h2><p class="sh-sub">Ready / Lantern / Radio FM / Radio WX / SOS / Crank</p>
+  <p class="intro">Six states from one loop, captured from the running simulation. The display stands in for what the product would tell you through light and sound; the LEDs and piezo are the parts the product actually has.</p>
+  <figure class="el-fig">${im(I.elStates,'Six simulated states of the BASECAMP prototype: ready, lantern, FM radio, WX radio, SOS beacon, crank charging')}<figcaption>06 · LIGHT dims with the dial. RADIO maps the same dial to 87.9–107.9 MHz, 530–1700 kHz or the seven NOAA weather channels. SOS flashes · · · — — — · · · on the lantern. The crank fills the bars.</figcaption></figure>
+  <div class="cols" style="padding-top:32px"><div><h3>One Dial, Two Jobs</h3><p>The dial position is read once per loop and given meaning by the mode: brightness when the lantern is on, a station when the radio is on. One physical control, no menu.</p></div>
+  <div><h3>A Battery You Can See</h3><p>Every mode draws from a shared battery value. Three LEDs show it in thirds, and while you crank the next bar blinks, so the effort has visible feedback.</p></div>
+  <div><h3>SOS Without Thinking</h3><p>SOS overrides everything else and plays the international pattern at 150 ms units on the lantern and buzzer until you press it again.</p></div></div>
+ </div></section>
+
+ <section class="band light section el-sec"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Debug Log</h2><p class="sh-sub">What broke / Why / The fix</p>
+  <ol class="el-log">
+   <li><b>01</b><div><h3>Wires drawn, nothing connected</h3><p>The first build ran but nothing lit. The wires existed on screen but the connections between them were never registered as electrical nets. Rebuilding the circuit through the editor's own change history fixed the netlist.</p></div></li>
+   <li><b>02</b><div><h3>"Invalid header file"</h3><p>The compiler rejected the sketch with an error that pointed nowhere. Compiling cut-down versions narrowed it to one line: starting the serial port alongside the display library. Removing the unused serial line fixed it.</p></div></li>
+   <li><b>03</b><div><h3>Quick presses were missed</h3><p>The display is slow to redraw, and a short click could happen between two reads of the button. A pin-change interrupt now latches every press the moment it happens, and the main loop collects them.</p></div></li>
+   <li><b>04</b><div><h3>Frozen after a minute</h3><p>Building display text with String objects slowly fragmented the Uno's 2 KB of memory until the program stalled. The text is now built in fixed buffers, and the display only redraws a line when it changes.</p></div></li>
+  </ol>
+  <div class="el-next"><small>Next</small><h3>From Behaviour To A Real Board</h3><p>Pick the real parts (receiver IC, charger, LED driver, encoder), write the power budget, then draw the schematic and a KiCad board whose outline comes straight from the BASECAMP shell geometry, with the encoder and buttons exactly where the industrial design puts them.</p></div>
+ </div></section>
  <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">A Parametric Grille</h2><p class="sh-sub">Rule → code / 150 holes / Ø 2.0 → 1.1 mm</p>
   <p class="intro">The speaker holes are not a pattern from a library. They follow a rule: 150 holes on a Fermat spiral, 2.0 mm at the centre where the driver needs the most open area, shrinking to 1.1 mm at the edge, where the plate needs strength around the screws. Change the hole count or the size range and the plate regenerates. It is the same method as the Rules → Code tools on my homepage.</p>
   <div class="bc-duo">${fig(I.spk,'The grille up close: graded holes, the tick ring and the Torx screws.','bc-bg')}${fig(I.dial,'Controls: knurled aluminium dial with a printed scale, charge LEDs, band slider, and the light and radio buttons.','bc-bg')}</div>
