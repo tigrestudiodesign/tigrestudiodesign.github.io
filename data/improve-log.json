@@ -166,5 +166,17 @@
    "index.html",
    "img/kh__*.webp"
   ]
+ },
+ {
+  "date": "2026-11-17",
+  "project": "basecamp-manual",
+  "change": "New method study 'How I write a tech manual': a 12-page BASECAMP BC-01 technology manual in Henry's 8-chapter format, drawn from the CAD model (clay + line renders, projected callouts, speaker-plate rule drawn from the model's formula), with flip-through viewer, page anatomy pins, before/after, system sheet, process timeline and PDF. Feature added to the Documentation section. Non-public Nike program names removed from captions, timeline and project text.",
+  "files": [
+   "index.html",
+   "img/bm__*.webp",
+   "downloads/BASECAMP-BC01-Technology-Manual-Tigre-Studio.pdf",
+   "tools/basecamp_manual*.py",
+   "tools/build_artifact.py"
+  ]
  }
 ]

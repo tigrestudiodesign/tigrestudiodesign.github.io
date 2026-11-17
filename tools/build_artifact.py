@@ -13,7 +13,7 @@ n=0;sz=0
 # static paths
 for f in sorted(set(re.findall(r"img/[\w\-]+\.(?:webp|png|jpg|svg)",s))):
     if f in have or not os.path.exists(f): continue
-    if f=='img/og-card.jpg': continue
+    if f=='img/og-card.jpg' or f.startswith('img/bm__') or f.startswith('img/kh__'): continue
     b='data:%s;base64,%s'%(mime[f.rsplit('.',1)[1]],base64.b64encode(open(f,'rb').read()).decode())
     s=s.replace("'%s'"%f,"'%s'"%b).replace('"%s"'%f,'"%s"'%b); n+=1; sz+=len(b)
 # dynamic helpers like GBI('02') -> 'img/gb__'+f+'.webp': provide a lookup map for missing files of that prefix
@@ -30,15 +30,31 @@ if khm:
     from PIL import Image
     import io
     def small(f):  # artifact-only copy: the index.html cap is 16 MiB, so embed lighter versions
-        im=Image.open(f).convert('RGB');mx=1400 if 'timelapse' in f else 1100 if 'gh_steps' in f else 1200
+        im=Image.open(f).convert('RGB');mx=1200 if 'timelapse' in f else 900 if 'gh_steps' in f else 1050
         if im.width>mx: im=im.resize((mx,round(im.height*mx/im.width)),Image.LANCZOS)
-        bb=io.BytesIO();im.save(bb,'WEBP',quality=68,method=6);return bb.getvalue()
+        bb=io.BytesIO();im.save(bb,'WEBP',quality=62,method=6);return bb.getvalue()
     m={os.path.basename(f)[:-5]:'data:image/webp;base64,'+base64.b64encode(small(f)).decode() for f in khm}
     a="const R=(f,w=1920,h=1080)=>['img/'+f+'.webp',w,h];"
     assert a in s,'KH R()'
     s=s.replace(a,"const KHM=%s;const R=(f,w=1920,h=1080)=>[KHM[f]||'img/'+f+'.webp',w,h];"%json.dumps(m),1); n+=len(m); sz+=sum(map(len,m.values()))
     # full-size canvas links open on the live site
     s=s.replace('<a href="img/kh__gh_sun.webp"','<a href="'+LIVE+'img/kh__gh_sun.webp"').replace('<a href="img/kh__gh_steps.webp"','<a href="'+LIVE+'img/kh__gh_steps.webp"')
+    for k,v in m.items(): s=s.replace("'img/%s.webp'"%k,"'%s'"%v)
+# BASECAMP manual pages: BMP(n) -> 'img/bm__pNN.webp' (lighter copies, artifact only)
+bmm=[f for f in sorted(glob.glob('img/bm__p*.webp')) if f not in have]
+if bmm:
+    from PIL import Image
+    import io
+    def bsmall(f):
+        im=Image.open(f).convert('RGB');mx=1300 if '_2x' in f else 1100
+        if im.width>mx: im=im.resize((mx,round(im.height*mx/im.width)),Image.LANCZOS)
+        bb=io.BytesIO();im.save(bb,'WEBP',quality=66,method=6);return 'data:image/webp;base64,'+base64.b64encode(bb.getvalue()).decode()
+    m={os.path.basename(f)[5:-5]:bsmall(f) for f in bmm if '_2x' not in f}
+    a="const BMP=n=>['img/bm__p'+String(n).padStart(2,'0')+'.webp',1600,1000];"
+    assert a in s,'BMP'
+    s=s.replace(a,"const BMPM=%s;const BMP=n=>[BMPM[String(n).padStart(2,'0')]||'img/bm__p'+String(n).padStart(2,'0')+'.webp',1600,1000];"%json.dumps(m),1)
+    if 'img/bm__p05_2x.webp' in bmm: s=s.replace("'img/bm__p05_2x.webp'","'%s'"%bsmall('img/bm__p05_2x.webp'))
+    n+=len(bmm); sz+=sum(map(len,m.values()))
 # brand-book spreads built as TSP(n)
 tsm=[f for f in sorted(glob.glob('img/ts__p*.webp')) if f not in have]
 if tsm:
