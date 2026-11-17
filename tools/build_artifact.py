@@ -31,6 +31,10 @@ if tsm:
     a="const TSP=n=>['img/ts__p'+String(n).padStart(2,'0')+'.webp',1600,900];"
     assert a in s
     s=s.replace(a,"const TSPM=%s;\nconst TSP=n=>[TSPM[n]||'img/ts__p'+String(n).padStart(2,'0')+'.webp',1600,900];"%json.dumps(m),1); n+=len(m); sz+=sum(map(len,m.values()))
+# fonts the artifact lacks -> data URIs
+for f in sorted(set(re.findall(r'url\((fonts/[^)]+\.woff2)\)',s))):
+    if f not in have and os.path.exists(f):
+        s=s.replace('url(%s)'%f,'url(data:font/woff2;base64,%s)'%base64.b64encode(open(f,'rb').read()).decode())
 # downloads -> live site, opened in a new tab (the artifact viewer blocks downloads)
 s=re.sub(r"'(downloads/[^']+\.pdf)'",lambda m:"'"+LIVE+m.group(1)+"'",s)
 s=re.sub(r'(href="\$\{[A-Za-z_.]+\}") download',r'\1 target="_blank" rel="noopener"',s)
