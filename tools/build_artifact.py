@@ -35,6 +35,8 @@ if tsm:
 for f in sorted(set(re.findall(r'url\((fonts/[^)]+\.woff2)\)',s))):
     if f not in have and os.path.exists(f):
         s=s.replace('url(%s)'%f,'url(data:font/woff2;base64,%s)'%base64.b64encode(open(f,'rb').read()).decode())
+# videos -> live site (not inlined)
+s=re.sub(r'"(img/[^"]+\.mp4)"',lambda m:'"'+LIVE+m.group(1)+'"',s)
 # downloads -> live site, opened in a new tab (the artifact viewer blocks downloads)
 s=re.sub(r"'(downloads/[^']+\.pdf)'",lambda m:"'"+LIVE+m.group(1)+"'",s)
 s=re.sub(r'(href="\$\{[A-Za-z_.]+\}") download',r'\1 target="_blank" rel="noopener"',s)
