@@ -566,6 +566,8 @@ button.btn{cursor:pointer}
 .ts-ex figcaption{font-family:var(--serif);font-style:italic;color:var(--muted);margin-top:8px}.ts-ex figcaption b{font-family:var(--sans);font-style:normal;text-transform:uppercase;color:var(--white);margin-right:8px}
 .gl-pages.ts-pages{grid-template-columns:repeat(5,minmax(0,1fr))}.ts-pages .media{aspect-ratio:16/9}
 .ts-feat{margin-bottom:48px}.ts-dl{grid-template-columns:minmax(0,560px) minmax(0,1fr)}.ts-dl .media{aspect-ratio:16/9}
+/* v63: bigger tap areas on touch screens without changing the look */
+@media (pointer:coarse),(max-width:600px){.social a,.wrap.rh>a,.wrap.foot a[href="#top"],.v19h .name,header a{position:relative}.social a::after,.wrap.rh>a::after,.wrap.foot a[href="#top"]::after{content:"";position:absolute;inset:-12px -8px}}@media (max-width:900px){.ts-dl{grid-template-columns:minmax(0,1fr);gap:24px}}
 @media (max-width:900px){.ts-ex{grid-template-columns:1fr}.gl-pages.ts-pages{grid-template-columns:repeat(2,minmax(0,1fr))}}
 /* v50: F1 */
 .f1-set{display:grid;gap:24px;padding-top:28px}.f1-set figure{margin:0}.f1-set img{display:block;width:100%;height:auto}.f1-set figcaption{font-family:var(--serif);font-style:italic;color:var(--muted);margin-top:8px}
@@ -1347,7 +1349,7 @@ const RES = {
   ['Jan 2010 – Dec 2010','Nike iD (Contract)','Color & Customization Engineer',['Built 3D CAD models and translated design intent into color, material and finish (CMF) specs.','Led rapid prototyping and sample QA.']]
  ],
  skills:[['Program & Product Development',[['Technical Program Management',1],['New Product Introduction (NPI)',1],['Design for Manufacturing'],['Contract Manufacturing'],['Prototyping'],['Tooling Development']]],['Design Technology & AI',[['Rhino / Grasshopper',1],['Generative AI Workflows',1],['Parametric Design'],['ComfyUI'],['KeyShot · V-Ray']]],['Documentation & Communication',[['Technical Documentation',1],['Technical Specifications'],['Exploded Views & Cross-Sections'],['Adobe Creative Cloud'],['Figma']]],['Materials & Leadership',[['Materials & Soft Goods',1],['CMF Specifications'],['Cross-functional Leadership'],['Smartsheet · Airtable'],['Global Teams (US, Korea, Taiwan)']]]],
- certs:[['Mar 2026','Grasshopper 3D Masterclass','Cademy · 12 hours, live','http://cademy.xyz/certificate?certificateID=H1nZ5wD8Q7'],['Mar 2026','KeyShot 3D Masterclass','Cademy · 12 hours, live','http://cademy.xyz/certificate?certificateID=L8fR2mY6T4'],['Feb 2026','Rhinoceros 3D Masterclass','Cademy · 12 hours, live','http://cademy.xyz/certificate?certificateID=X5dN9kR2P8']],
+ certs:[['Mar 2026','Grasshopper 3D Masterclass','Cademy · 12 hours, live','https://www.cademy.xyz/certificate?certificateID=X5dN9kR2P8'],['Mar 2026','KeyShot 3D Masterclass','Cademy · 12 hours, live','https://www.cademy.xyz/certificate?certificateID=H1nZ5wD8Q7'],['Feb 2026','Rhinoceros 3D Masterclass','Cademy · 12 hours, live','https://www.cademy.xyz/certificate?certificateID=L8fR2mY6T4']],
  edu:[['2005','Associate of Science in Graphic Design','The Art Institute of Fort Lauderdale'],['2009','One-Year Certificate in Multimedia','Portland Community College'],['In progress','Master in Parametric Design','Controlmad']]
 };
 const EMAIL='ortegatohenry@gmail.com', PHONE='971.217.0821', LI='https://www.linkedin.com/in/henryortega';
@@ -1550,7 +1552,7 @@ function home(){
    <div class="ctas"><a class="btn inv" href="mailto:${EMAIL}">Email me</a><a class="btn" href="downloads/Henry-Ortega-Resume.pdf" download>Download résumé (PDF)</a><a class="btn" href="#selected">Selected work</a><a class="btn" href="${LI}" target="_blank" rel="noopener">LinkedIn</a></div>
    <div class="hero-soc"><span>Follow</span>${socials()}</div>
   </div>
-  <div class="v19h-m" aria-hidden="true"><a class="media tr-l a" href="#p10" tabindex="-1">${im(heroImgs[0],'')}</a><a class="media bl b" href="#basecamp" tabindex="-1">${im(heroImgs[1],'')}</a><a class="media tr c" href="#parametric-keypad" tabindex="-1">${im(heroImgs[2],'')}</a></div>
+  <div class="v19h-m" aria-hidden="true"><a class="media tr-l a" href="#hestia-knit-nodes" tabindex="-1">${im(heroImgs[0],'')}</a><a class="media bl b" href="#p11" tabindex="-1">${im(heroImgs[1],'')}</a><a class="media tr c" href="#basecamp" tabindex="-1">${im(heroImgs[2],'')}</a></div>
   <div class="stats v19s"><div><b>16+</b><span>Years concept to production</span></div><div><b>10</b><span>Years technical program management</span></div><div><b>50+</b><span>Tech manuals · 5,000+ pages</span></div><div><b>9</b><span>Years leading teams</span></div></div>
  </div>${lines()}</section>
  <span class="spectrum thin"></span>
@@ -1973,7 +1975,7 @@ const knBars=()=>{const max=230,rows=KL.slice().sort((a,b)=>KB[a[0]][2]-KB[b[0]]
   <li class="kn-axis" aria-hidden="true"><i></i><i></i><span style="height:14px"><span style="position:absolute;left:var(--full);transform:translateX(-50%)">100% = fully extended</span></span></li></ul>`};
 function mountKN(){
  const g=document.getElementById('knNodes'); if(g){const bs=[...document.querySelectorAll('.kn-tog button')];bs.forEach(b=>b.addEventListener('click',()=>{bs.forEach(x=>x.setAttribute('aria-pressed',x===b));g.classList.toggle('is-mat',b.dataset.v==='mat')}))}
- const B=document.getElementById('knBars'); if(B){const go=()=>B.querySelectorAll('.kn-track').forEach(t=>{t.querySelector('b').style.width=t.querySelector('b').dataset.w;t.querySelector('span').style.left=t.querySelector('span').dataset.l});
+ const B=document.getElementById('knBars'); if(B){const go=()=>B.querySelectorAll('.kn-track').forEach(t=>{t.querySelector('b').style.width=t.querySelector('b').dataset.w;t.querySelector('span').style.left='min('+t.querySelector('span').dataset.l+', calc(100% - 52px))'});
   if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches){const io=new IntersectionObserver(e=>{if(e[0].isIntersecting){io.disconnect();go()}},{threshold:.3});io.observe(B)}else go()}
 }
 function knPage(){
@@ -2965,7 +2967,8 @@ function casePage(list,i,sec,label){
 }
 
 /* ---------- Standard Play (AI design systems) ---------- */
-const SP_SITE='https://claude.ai/artifact/3SAiqmTET4fVgHRfba4U7k';
+// The live Standard Play site is a private claude.ai artifact (read: owner). Put its URL back here once it is shared publicly.
+const SP_SITE='';
 const HORIZON=`<svg viewBox="0 0 200 120" preserveAspectRatio="none" aria-hidden="true"><g stroke="#2EF2D0" stroke-width=".8" fill="none" opacity=".75"><path d="M0 38H200M0 46H200M0 58H200M0 76H200M0 100H200"/>${Array.from({length:13},(_,i)=>`<path d="M100 30L${-140+i*40} 120"/>`).join('')}</g><path d="M0 30H200" stroke="#2EF2D0" stroke-width="1.6"/></svg>`;
 const TAPES=[
  {id:'t120',title:'T-120',name:'VHS Store',era:'Vol. 01 · 1980s video rental',font:'Unbounded,sans-serif',size:'27cqw',bg:'#0B0A10',fg:'#F6ECC6',acc:'#FF1F8F',jp:'高品質デザイン',spine:'SIDE A · 標準再生',shadow:'-.8cqw 0 rgba(255,31,143,.75),.8cqw 0 rgba(63,230,204,.75)',
@@ -3005,7 +3008,7 @@ function spSection(){
   <p class="intro">A public library of design systems named like tapes. I pick the reference, set the direction and review every screen; Claude turns that direction into Figma variables, styles and components. Five systems so far, each from a different era of hardware I love.</p>
   <div class="stats sp-stats"><div><b>5</b><span>Design systems</span></div><div><b>240</b><span>Figma variables</span></div><div><b>35</b><span>Component sets</span></div><div><b>46</b><span>Original icons</span></div></div>
   <div class="tiles sp-tiles">${tiles}</div>
-  <div class="sp-links"><a class="btn inv" href="#standard-play">Read the case study</a><a class="btn inv" href="${SP_SITE}" target="_blank" rel="noopener">Visit Standard Play</a></div>
+  <div class="sp-links"><a class="btn inv" href="#standard-play">Read the case study</a>${SP_SITE?`<a class="btn inv" href="${SP_SITE}" target="_blank" rel="noopener">Visit Standard Play</a>`:''}</div>
  </div></section>`;
 }
 
@@ -3045,7 +3048,7 @@ function spPage(){
  </div></section>
  <section class="band alt section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">What's Next</h2><p class="sh-sub">From free library to product</p>
   <div class="cols"><div><h3>Liner Notes</h3><p>A short process page for every tape: the reference, the decisions and where I overruled the AI.</p></div><div><h3>Pro Editions</h3><p>Templates, code kits and an expanded Telltales set as paid upgrades. The free tapes stay free.</p></div><div><h3>Custom Tapes</h3><p>The same process for studios and brands: their references, my direction, a finished Figma library.</p></div></div>
-  <div class="sp-links"><a class="btn" href="${SP_SITE}" target="_blank" rel="noopener" style="background:var(--black)">Visit Standard Play</a></div>
+  ${SP_SITE?`<div class="sp-links"><a class="btn" href="${SP_SITE}" target="_blank" rel="noopener" style="background:var(--black)">Visit Standard Play</a></div>`:''}
  </div></section>
  ${nextLink('rhino',nx)}</main>`+foot();
 }
@@ -3867,6 +3870,9 @@ function route(){
  document.title=title;
 }
 document.addEventListener('click',e=>{const b=e.target.closest('.copy');if(!b)return;const v=b.dataset.copy;try{navigator.clipboard.writeText(v).then(()=>{b.textContent='Copied'},()=>{b.textContent='Select text'})}catch(_){b.textContent='Select text'}});
+// in-page anchors on project pages (e.g. Figures tabs): scroll within the page instead of routing away
+document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(!a||e.defaultPrevented||e.metaKey||e.ctrlKey)return;const app=document.getElementById('app');if(app.dataset.view!=='project')return;
+ const id=a.getAttribute('href').slice(1),sm=matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth';if(id==='top'){e.preventDefault();scrollTo({top:0,behavior:sm});return}const t=id&&app.querySelector('#'+CSS.escape(id));if(!t)return;e.preventDefault();t.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'})});
 addEventListener('hashchange',route); route();
 </script>
 

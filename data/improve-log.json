@@ -147,5 +147,15 @@
   "files": [
    "index.html"
   ]
+ },
+ {
+  "date": "2026-11-17",
+  "project": "site-wide",
+  "change": "Full link/UI audit (51 routes, desktop + phone). Fixed: homepage hero pictures opened the wrong projects (HESTIA x Knit Nodes -> Nike p10, Tuned Air -> BASECAMP, BASECAMP -> Keypad); Cademy certificate links were rotated (each opened another course's certificate) and now use https; 'Back to top' on project pages dumped visitors on the homepage; Index of Figures tabs did the same; Standard Play 'Visit' buttons pointed to a private claude.ai page (hidden until it is shared); brand-book download block and Knit Nodes stretch labels overflowed on phones; bigger tap areas for footer icons and back links. Added tools/site_audit.py.",
+  "files": [
+   "index.html",
+   "tools/site_audit.py",
+   "tools/IMPROVE.md"
+  ]
  }
 ]
