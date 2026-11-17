@@ -89,5 +89,10 @@
   "date": "2026-11-16",
   "project": "hestia-knit-nodes",
   "change": "New combined project: Knit Nodes behaviour model + HESTIA joint calc joined by a Python selection engine (85% rule, gussets); pipeline diagram, interactive 11x10 selection matrix, spec from JSON, HESTIA rendered in the selected knits from the Knit Nodes swatches."
+ },
+ {
+  "date": "2026-11-16",
+  "project": "site",
+  "change": "HESTIA x Knit Nodes made the lead CMF project: grouped homepage feature with its two source studies, cross-link banners on HESTIA and Knit Nodes, next-links into the combined page; Knit Nodes tool corrected to Rhino + Python."
  }
 ]

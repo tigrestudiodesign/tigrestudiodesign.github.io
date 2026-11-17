@@ -1138,6 +1138,12 @@ a:focus-visible{outline-color:var(--or)}
 .hk-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:28px}.hk-grid figure{margin:0}.hk-grid img{display:block;width:100%;height:auto}.hk-grid figcaption{font-family:var(--serif);font-style:italic;color:var(--muted);margin-top:8px}
 .hk-spec{width:100%;border-collapse:collapse;margin-top:24px;font-size:15px}.hk-spec th{font:11px var(--mono);text-transform:uppercase;letter-spacing:.06em;text-align:left;border-bottom:2px solid currentColor;padding:8px}.hk-spec td{padding:10px 8px;border-bottom:1px solid rgba(255,255,255,.15);vertical-align:top}.hk-spec td:first-child{font-weight:700}.hk-spec i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:-1px}
 @media (max-width:900px){.hk-two{grid-template-columns:1fr}.hk-plus{font-size:40px}.hk-grid{grid-template-columns:1fr}.hk-spec td:last-child{display:none}}
+/* v58: HESTIA x Knit Nodes grouping */
+.hk-group{display:grid;grid-template-columns:1.6fr 1fr;gap:28px;margin:28px 0 36px;padding:24px;border:1px solid rgba(0,0,0,.14);background-image:linear-gradient(rgba(0,0,0,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.04) 1px,transparent 1px);background-size:24px 24px}
+.hk-g-main{display:block;text-decoration:none;color:inherit}.hk-g-main .media{position:relative;overflow:hidden}.hk-g-main img{display:block;width:100%;height:auto}.hk-g-main h3{font-family:var(--head);text-transform:uppercase;font-size:34px;margin:6px 0}.hk-g-main p{margin:0}
+.hk-g-side{display:grid;gap:18px;align-content:start}.hk-g-side .card h3{font-size:18px}.hk-g-lab{font:11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:#FF5A1F;margin:0}
+.hk-ban{background:#FF5A1F}.hk-ban a{display:flex;gap:18px;align-items:center;padding:14px 16px;text-decoration:none;color:#0B0B0C}.hk-ban b{font:700 12px var(--mono);letter-spacing:.08em;white-space:nowrap}.hk-ban span{font-family:var(--serif);font-style:italic}.hk-ban i{margin-left:auto;font-style:normal;font-size:22px}
+@media (max-width:900px){.hk-group{grid-template-columns:1fr;padding:14px}.hk-ban a{flex-wrap:wrap;gap:6px}}
 </style>
 
 <div id="app"></div>
@@ -1428,7 +1434,7 @@ function home(){
  const tiles=D.nike.map((p,i)=>`<a class="tile" href="#${p.id}"><div class="media ${i%2?'bl':'tr'}">${im(p.hero,p.title)}</div><small>${esc(p.brand)}</small><h3>${esc(p.title)}</h3><p class="tile-r">${esc(NIKE_ROLE[p.id]||'')}</p></a>`).join('');
  const card=(r,i)=>`<a class="card" href="#${r.id}"><div class="media ${i%2?'bl':'tr'}${r.fit?' paper':''}">${r.isNew?'<span class="badge">New</span>':''}${im(r.imgs[0],r.title)}</div>${r.kind?`<p class="kind">${esc(r.kind)}</p>`:''}<h3>${esc(r.title)}</h3><p>${esc(r.meta)}</p></a>`;
  const prod=[CARD_BC,{...PICK('trenza-alpargata'),isNew:true,meta:'Muisca CMF study · 3 editions'},{...PICK('electric-guitar'),isNew:true,kind:'Product Modeling',meta:'Launch set · 4 finishes · 230 parts'},{...PICK('penny-loafer'),isNew:true,kind:'Footwear · CMF',meta:'Rhino model, Blender Cycles render · 3 colourways'},{...PICK('f1-car'),isNew:true,meta:'Team-launch set · original Tigre livery'},CARD_WL,CARD_KP].map(card).join('');
- const cmf=[CARD_HKN,CARD_HS,CARD_KN,CARD_KA,{...PICK('nesting-tables'),isNew:false,kind:'CMF · Furniture'}].map(card).join('');
+ const cmf=[CARD_KA,{...PICK('nesting-tables'),isNew:false,kind:'CMF · Furniture'}].map(card).join('');
  const vis=[
   {id:'better-with-friends',isNew:true,kind:'3D Illustration',title:'Better With Friends',meta:'Figma × Hello Kitty campaign posters rebuilt as 3D reliefs',imgs:[['img/hk__01_hero.webp',1600,900]]},
   {id:'rising-sun-museum',kind:'3D Typography',title:'The Rising Sun Museum',meta:'Four 2D brand-sticker sheets rebuilt in 3D, scripted in Rhino',imgs:[['img/rs__05_museum_01_overview.webp',1600,900]]},
@@ -1475,6 +1481,8 @@ function home(){
   <div class="cards">${prod}</div>
   <h3 class="sub-h">CMF &amp; Materials</h3>
   <p class="intro" style="margin-top:12px">Studies in how structure, pattern and colour live inside a material: knit constructions, knitted graphics and finish palettes.</p>
+  <div class="hk-group"><a class="hk-g-main" href="#hestia-knit-nodes"><div class="media tr-l"><span class="badge">New</span><img src="img/hk__hero.webp" alt="HESTIA dressed in the knits the selection engine picked" loading="lazy" width="1600" height="1000"></div><p class="kind">CMF · Program Integration · Lead project</p><h3>HESTIA × Knit Nodes</h3><p>Two studies joined by one selection engine: Rhino + Python knit behaviour, HESTIA joint demands, Blender renders and a live matrix, all from one data file.</p></a>
+  <div class="hk-g-side"><p class="hk-g-lab">The two studies it joins</p>${[CARD_HS,CARD_KN].map(card).join('')}</div></div>
   <div class="cards">${cmf}</div>
   <h3 class="sub-h">Visual Communication &amp; Systems</h3>
   <p class="intro" style="margin-top:12px">Projects where the craft is the system behind the visuals: scripted 3D illustration and type, AI-built design systems and a cookbook generated from code.</p>
@@ -1539,7 +1547,7 @@ const CARD_HS={id:HS.id,isNew:true,kind:'CMF · Soft Goods · Robotics',title:'H
 /* v57: HESTIA x Knit Nodes: two studies joined by one selection engine */
 const HKN={id:'hestia-knit-nodes',sel:[["Hip", 100, "flex", "rib1", null, "Densest closed knit under the 85 % line: 84 rounds per sleeve.", 4, 12], ["Knee", 95, "flex", "rib1", null, "Densest closed knit under the 85 % line: 84 rounds per sleeve.", 14, 13], ["Ankle", 52, "flex", "rib1", null, "Densest closed knit under the 85 % line: 84 rounds per sleeve.", 27, 8], ["Shoulder", 131, "flex", "rib1", "lace", "Pleat stack needs 45 mm but the inside of the bend has 12 mm: rib pleats outside, open lace gusset inside.", -33, 11], ["Elbow", 111, "flex", "rib1", "lace", "Pleat stack needs 38 mm but the inside of the bend has 30 mm: rib pleats outside, open lace gusset inside.", -8, 10], ["Waist twist", 40, "flex", "rib1", null, "Densest closed knit under the 85 % line: 84 rounds per sleeve.", null, null], ["Torso", 15, "cover", "stockinette", null, "Low strain: the smoothest face and lowest bulk win.", null, null], ["Shin", 10, "brace", "slip", null, "Wants the least stretch: floats lock the fabric so the shin cover holds its shape.", null, null], ["Flank vent", 15, "open", "lace", null, "Only the eyelet structure opens holes as it stretches: airflow through the knit.", null, null], ["Forearm grip", 20, "grip", "seed", null, "Pebbled all over and lies flat with no curl: a surface for silicone dots.", null, null], ["Sensor band", 5, "open-fine", "lace", null, "Lace at double gauge: light and sound pass, the sensor stays hidden.", null, null]],
  names:{stockinette:'Stockinette',garter:'Garter',rib1:'Rib 1×1',rib2:'Rib 2×2',seed:'Seed',cable:'Cable',lace:'Lace',tuck:'Tuck',slip:'Slip-stitch',chevron:'Chevron'},
- flow:[['Grasshopper','Knit Nodes','One loop equation, ten stitch rules','loop · rule table'],
+ flow:[['Rhino + Python','Knit Nodes','One loop equation, ten stitch rules','loop · rule table'],
   ['Python','Behaviour model','Stretch, capacity and rounds for each knit','KB table · 10 × 4'],
   ['Python','HESTIA joint calc','Flex demand and pinch margin at every joint','calc.json · 5 joints'],
   ['Python','Selection engine','85 % rule, gussets, jobs per zone','knit_select.json'],
@@ -1573,18 +1581,18 @@ function hknPage(){
  return head('product','New')+`<main>
  <section class="band dark"><div class="wrap case"><p class="num">New · CMF / Program Integration</p><h1>HESTIA × KNIT NODES</h1><p class="meta">Two studies, one selection engine · every zone wears the knit the data picks</p>
   <p class="note">Knit Nodes measured how ten knit structures stretch on a robotic joint. HESTIA calculated how much every joint of a home humanoid asks of its skin. This project joins them: one Python engine reads both, applies an 85 % rule, and dresses the robot zone by zone, in the render and on this page.</p>
-  <dl class="facts"><div><dt>Programs</dt><dd>Grasshopper · Python · Blender · Web</dd></div><div><dt>Zones</dt><dd>${S.length} zones × 10 knits = ${S.length*10} checks</dd></div><div><dt>Rule</dt><dd>≤ 85 % of a knit's stretch on a moving joint</dd></div><div><dt>Outcome</dt><dd>5 knits, 2 lace gussets, 0 overstretched zones</dd></div></dl></div></section>
+  <dl class="facts"><div><dt>Programs</dt><dd>Rhino · Python · Blender · Web</dd></div><div><dt>Zones</dt><dd>${S.length} zones × 10 knits = ${S.length*10} checks</dd></div><div><dt>Rule</dt><dd>≤ 85 % of a knit's stretch on a moving joint</dd></div><div><dt>Outcome</dt><dd>5 knits, 2 lace gussets, 0 overstretched zones</dd></div></dl></div></section>
  <div class="band dark" style="padding-bottom:56px"><div class="wrap"><div class="media tr-l">${im(['img/hk__hero.webp',1600,1000],'HESTIA dressed in the knits the engine picked: stockinette torso, rib 1×1 at every joint, slip-stitch shins, lace vents and seed grips','heroimg')}</div></div></div>
 
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Two Studies, One System</h2><p class="sh-sub">What each one brought / What neither could answer alone</p>
-  <div class="hk-two"><a class="hk-src" href="#knit-nodes"><img src="img/kn__01_hero.webp" alt="" loading="lazy" width="1800" height="1012"><small>STUDY 01 · KNIT NODES</small><h3>How far each knit can stretch</h3><p>Ten structures from one loop equation in Grasshopper, each with a measured stretch, capacity and round count on a robotic X-joint.</p></a>
+  <div class="hk-two"><a class="hk-src" href="#knit-nodes"><img src="img/kn__01_hero.webp" alt="" loading="lazy" width="1800" height="1012"><small>STUDY 01 · KNIT NODES</small><h3>How far each knit can stretch</h3><p>Ten structures from one loop equation, scripted in Rhino with Python, each with a measured stretch, capacity and round count on a robotic X-joint.</p></a>
   <div class="hk-plus">+</div>
   <a class="hk-src" href="#hestia"><img src="img/hs2__reveal.webp" alt="" loading="lazy" width="1920" height="1080"><small>STUDY 02 · HESTIA</small><h3>How far each joint pulls</h3><p>Flex demand, pleat count and pinch margin at hip, knee, ankle, shoulder and elbow, from the robot's joint radii and range of motion.</p></a></div>
  </div></section>
 
- <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Pipeline</h2><p class="sh-sub">Four programs / One data trail / No hand-copied numbers</p>
+ <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Pipeline</h2><p class="sh-sub">Four programs / Six steps / One data trail / No hand-copied numbers</p>
   ${hknFlow()}
-  <p class="intro" style="margin-top:24px">Each step writes a file the next step reads. Change a stitch in Grasshopper or a joint angle in the HESTIA calc, run the engine, and the render, the spec and this matrix all update together. That is the point of the project: integration, not illustration.</p>
+  <p class="intro" style="margin-top:24px">Each step writes a file the next step reads. Change a stitch rule in the Knit Nodes script or a joint angle in the HESTIA calc, run the engine, and the render, the spec and this matrix all update together. That is the point of the project: integration, not illustration.</p>
  </div></section>
 
  <section class="band dark section" style="padding-top:0"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Selection Matrix</h2><p class="sh-sub">${S.length} zones × 10 knits / Each cell: % of that knit's stretch the zone would use</p>
@@ -1613,6 +1621,7 @@ function hsPage(){
  <section class="band dark"><div class="wrap case"><p class="num">New · Concept Study / CMF · Soft Goods · Robotics</p><h1>HESTIA</h1><p class="meta">Home Ergonomic &amp; Soft Textile Integration Architecture · An industrial biped, dressed for the living room</p>
   <p class="note">Warehouse humanoids are built for logistics: hard shells, exposed actuators, matte black. HESTIA asks what the same class of bipedal robot needs to wear to live with a family, without blocking its airflow, its joints or its sensors.</p>
   <dl class="facts"><div><dt>Role</dt><dd>Concept, CMF, soft-goods engineering, 3D, rendering</dd></div><div><dt>Tools</dt><dd>Blender Cycles · Python · NumPy · Matplotlib</dd></div><div><dt>Direction</dt><dd>Warm Minimalist</dd></div><div><dt>Platform</dt><dd>Home humanoid, ~1.75 m (original design)</dd></div></dl></div></section>
+<div class="hk-ban"><div class="wrap"><a href="#hestia-knit-nodes"><b>THIS STUDY FEEDS HESTIA × KNIT NODES</b><span>Its joint demands meet the Knit Nodes behaviour model, and the engine picks a knit for every zone.</span><i>→</i></a></div></div>
  <div class="band dark" style="padding-bottom:56px"><div class="wrap"><div class="media tr-l">${im(['img/hs2__reveal.webp',1920,1080],'HESTIA on a black glass charging dock in a dark launch studio, warm and cool rim light, oatmeal knit skin, slate-moss rib joints, terracotta grip zones, black glass visor','heroimg')}</div></div></div>
  <section class="band dark section" style="padding-top:0"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Launch Set</h2><p class="sh-sub">Visor / Grip / Three colourways</p>
   <div class="hs-launch"><figure class="hs-l1">${im(['img/hs2__hero2.webp',1600,1000],'HESTIA three-quarter view on the dock')}<figcaption>Three-quarter: humanoid legs with a full thigh, defined knee and calf, every joint in slate-moss rib.</figcaption></figure>
@@ -1656,7 +1665,7 @@ function hsPage(){
 
  <section class="band light section"><div class="wrap"><p class="fine">Unofficial concept study by Tigre Studio. The robot is an original design with the proportions of a commercial bipedal humanoid; it is not affiliated with or endorsed by Agility Robotics or any other company.</p></div></section>
  <section class="statement">${im(['img/hs2__living.webp',1600,1000],'HESTIA at home')}<p>Built for the warehouse, <span class="it">dressed for the living room.</span></p></section>
- ${nextLink('product',{id:BC.id,title:'BASECAMP'})}</main>`+foot();
+ ${nextLink('product',{id:'hestia-knit-nodes',title:'HESTIA × Knit Nodes'})}</main>`+foot();
 }
 
 /* ---------- v51: Tigre Studio brand book ---------- */
@@ -1881,6 +1890,7 @@ function knPage(){
  <section class="band dark"><div class="wrap case"><p class="num">New · Personal Study / CMF &amp; Computational Textiles</p><h1>Computational Couture: Knit Nodes</h1><p class="meta">Ten knit structures, one robotic joint · Rhino 9 + Python</p>
   <p class="note">Knit is a structure, not just a surface: the same yarn behaves very differently depending on how its loops interlock. I wanted to see that difference on a real part instead of a flat swatch, so every knit is fitted to the same cuff and has to stretch over the same bulging X-joint.</p>
   <dl class="facts"><div><dt>Role</dt><dd>Solo: modelling, scripting, behaviour model, rendering</dd></div><div><dt>Tools</dt><dd>Rhino 9 · Python 3 / RhinoCommon · Blender Cycles</dd></div><div><dt>Output</dt><dd>10 knits · 692 rounds · behaviour chart</dd></div><div><dt>Focus</dt><dd>Material behaviour, textile CMF</dd></div></dl></div></section>
+<div class="hk-ban"><div class="wrap"><a href="#hestia-knit-nodes"><b>THIS STUDY FEEDS HESTIA × KNIT NODES</b><span>Its stretch and capacity numbers dress HESTIA, the home humanoid, zone by zone.</span><i>→</i></a></div></div>
  <div class="band dark" style="padding-bottom:56px"><div class="wrap"><div class="media tr-l">${im(KN.hero,KN.hero[3],'heroimg')}</div></div></div>
 
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Structure Is A Material Choice</h2><p class="sh-sub">What's new / In numbers</p>
@@ -1934,7 +1944,7 @@ function knPage(){
  </div></section>
 
  <section class="statement">${im(KN.details[1],'Cable knit close-up')}<p>Knit is a <span class="it">structure.</span></p></section>
- ${nextLink('product',{id:'knit-curve-atlas',title:'Knit Curve Atlas'})}</main>`+foot();
+ ${nextLink('product',{id:'hestia-knit-nodes',title:'HESTIA × Knit Nodes'})}</main>`+foot();
 }
 
 /* ---------- v26: World Logos 3D ---------- */
