@@ -24,6 +24,15 @@ for pre,helper in (('gb','GBI'),('hs','HSI')):
         a="const %s=(f,w,h,c)=>['img/%s__'+f+'.webp',"%(helper,pre)
         assert a in s,helper
         s=s.replace(a,"const %sM=%s;\nconst %s=(f,w,h,c)=>[%sM[f]||'img/%s__'+f+'.webp',"%(helper,json.dumps(m),helper,helper,pre),1); n+=len(m); sz+=sum(map(len,m.values()))
+# Kinetic Hexagon page builds paths as R('kh__name') -> 'img/kh__name.webp': embed the ones the artifact lacks
+khm=[f for f in sorted(glob.glob('img/kh__*.webp')) if f not in have]
+if khm:
+    m={os.path.basename(f)[:-5]:'data:image/webp;base64,'+base64.b64encode(open(f,'rb').read()).decode() for f in khm}
+    a="const R=(f,w=1920,h=1080)=>['img/'+f+'.webp',w,h];"
+    assert a in s,'KH R()'
+    s=s.replace(a,"const KHM=%s;const R=(f,w=1920,h=1080)=>[KHM[f]||'img/'+f+'.webp',w,h];"%json.dumps(m),1); n+=len(m); sz+=sum(map(len,m.values()))
+    # full-size canvas links open on the live site
+    s=s.replace('<a href="img/kh__gh_sun.webp"','<a href="'+LIVE+'img/kh__gh_sun.webp"').replace('<a href="img/kh__gh_steps.webp"','<a href="'+LIVE+'img/kh__gh_steps.webp"')
 # brand-book spreads built as TSP(n)
 tsm=[f for f in sorted(glob.glob('img/ts__p*.webp')) if f not in have]
 if tsm:
