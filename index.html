@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><title>Henry Ortega · Product Development &amp; Design Technology</title><meta name="description" content="Henry Ortega: hardware product development and technical program leader, design technologist (Rhino, Grasshopper, GenAI) and technical documentation lead. 16 years at Nike, concept to factory. Remote (US) or Portland, OR.">
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><title>Henry Ortega · CMF, Soft Goods &amp; Design Technology</title><meta name="description" content="Henry Ortega: CMF and soft goods for hardware, design technologist (Rhino, Grasshopper, Python, Blender) and technical program leader. 16 years at Nike, concept to factory, ending with Nike Tuned Air. Remote (US) or Portland, OR.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tigrestudiodesign.github.io/">
 <meta property="og:title" content="Henry Ortega · Product Development & Design Technology">
@@ -1147,6 +1147,9 @@ a:focus-visible{outline-color:var(--or)}
 /* v59: Nike Tuned Air */
 .ta-films{display:grid;grid-template-columns:2.2fr 1fr .78fr;gap:16px;align-items:start;margin-top:24px}.ta-films figure{margin:0;overflow:hidden;background:#000}.ta-films video{display:block;width:100%;height:100%;object-fit:cover}
 @media (max-width:900px){.ta-films{grid-template-columns:1fr}}
+/* v60: employer pass */
+.sel6{display:grid;grid-template-columns:repeat(4,1fr);gap:28px 24px;margin-top:28px}.sel-c{display:block;text-decoration:none;color:inherit}.sel-c.big{grid-column:span 2}.sel-c .media{overflow:hidden;aspect-ratio:16/10}.sel-c .media img{width:100%;height:100%;object-fit:cover;transition:transform .5s}.sel-c:hover .media img{transform:scale(1.03)}.sel-c h3{font-family:var(--head);text-transform:uppercase;margin:6px 0 4px;font-size:20px}.sel-c.big h3{font-size:28px}.sel-c p{margin:0}.sel-o{font:11px var(--mono);letter-spacing:.04em;text-transform:uppercase;color:#FF5A1F;margin-top:6px!important}
+@media (max-width:900px){.sel6{grid-template-columns:1fr 1fr}.sel-c.big{grid-column:span 2}}@media (max-width:560px){.sel6{grid-template-columns:1fr}.sel-c.big{grid-column:auto}}
 </style>
 
 <div id="app"></div>
@@ -1323,7 +1326,7 @@ const socials=(cls='')=>`<ul class="social ${cls}">${SOCIAL.map(([n,h,u,i])=>`<l
 
 const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
 const n2=i=>String(i+1).padStart(2,'0');
-const im=(r,alt,cls='')=>`<img src="${r[0]}" width="${r[1]}" height="${r[2]}" alt="${esc(alt)}" class="${cls}" decoding="async">`;
+const im=(r,alt,cls='')=>`<img src="${r[0]}" width="${r[1]}" height="${r[2]}" alt="${esc(alt)}" class="${cls}" decoding="async"${cls==='heroimg'?' fetchpriority="high"':' loading="lazy"'}>`;
 const slug=s=>s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 const S3 = D.s3.map(s=>({...s,id:'studio-'+slug(s.title)}));
 const NEW = [{"id": "fold-bake", "title": "Fold / Bake", "meta": "Printable parchment cookbook · 13 recipes, A3", "note": "A cookbook where every page is a cooking sheet. Print it on baking parchment, lay each ingredient on its true-size outline, fold the page over the food, crimp the edges and bake. The drawing shows exactly how much to use: no scales, no measuring cups, and it works in a full oven, a fan oven, a toaster oven or an air fryer.", "tags": ["Vector illustration", "Illustrator + Rhino", "True-scale templates", "Editorial layout", "First chapter: Colombia"], "imgs": [["img/new__fb-colombia-cover.webp", 1600, 1132, "Chapter opener: Colombia, five parchment recipes"], ["img/new__fb-pescado.webp", 1600, 1132, "CO-01 Pescado al Coco: recipe, oven guide and true-size outlines on one sheet"], ["img/new__fb-shrimp-detail.webp", 1600, 566, "Shrimp, Corn & Chorizo: every ingredient drawn at true size"], ["img/new__fb-intro.webp", 1600, 1132, "How the book works: lay food on the outlines, fold, crimp, bake"], ["img/new__fb-chorizo.webp", 1600, 1132, "CO-03 Chorizo con Papa Criolla"], ["img/new__fb-salmon.webp", 1600, 1132, "No. 01 Lemon-Dill Salmon"], ["img/new__fb-pear.webp", 1600, 1132, "No. 07 Honey Pear & Walnut: dessert from the same fold"], ["img/new__fb-maduro.webp", 1600, 1132, "CO-05 Maduro con Queso y Bocadillo"]]}, ...D.new];
@@ -1373,7 +1376,7 @@ const foot=()=>`<div class="band dark rel stripey foot-b"><img class="stripes" s
 const head=(sec,num)=>`<div class="band dark"><div class="wrap rh"><a href="#${sec}" style="text-decoration:none">← Back to portfolio</a><span class="hide-s" style="display:inline-flex;align-items:center"><svg class="tmark" viewBox="0 0 24 28" aria-hidden="true"><path d="M0 0H20.75A3.25 3.25 0 0 1 24 3.25V7H15.75V28H8.25V7H0Z"/></svg>Tigre Studio · Henry Ortega</span><span class="hide-s">Hardware Programs · Design Technology · Technical Documentation</span><span class="num">${num}</span></div></div>`;
 
 /* ---------- v19: recruiter-first home, BASECAMP ---------- */
-const NAV=[['fit','What I Do'],['rules','Rules → Code'],['product','Computational'],['work','Case Studies'],['nike','Nike'],['documentation','Documentation'],['brand','Brand'],['resume','Résumé'],['contact','Contact']];
+const NAV=[['selected','Work'],['fit','What I Do'],['rules','Rules → Code'],['product','Computational'],['work','Case Studies'],['nike','Nike'],['documentation','Documentation'],['brand','Brand'],['resume','Résumé'],['contact','Contact']];
 const nav=()=>`<header class="nav band"><div class="wrap"><a class="brand" href="#top"><svg class="tmark" viewBox="0 0 24 28" aria-hidden="true"><path d="M0 0H20.75A3.25 3.25 0 0 1 24 3.25V7H15.75V28H8.25V7H0Z"/></svg>Henry Ortega<span> · Tigre Studio</span></a><nav aria-label="Sections"><ul>${NAV.map(([h,t])=>`<li><a href="#${h}">${t}</a></li>`).join('')}</ul></nav><div class="nav-r">${socials('mini nav-soc')}<a class="nav-cta" href="mailto:${EMAIL}">Email me</a></div></div></header>`;
 
 const BC={id:'basecamp',title:'BASECAMP',
@@ -1442,16 +1445,22 @@ function figuresPage(){
  ${G.map(g=>`<section id="fg-${g.toLowerCase()}" class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:40px">${g}</h2><div class="fg-grid">${L.filter(f=>f.g===g).map(f=>figCard(f,L.indexOf(f),L.indexOf(f)+1)).join('')}</div></div></section>`).join('')}
  ${nextLink('figures',{id:'knit-nodes',title:'Computational Couture: Knit Nodes'})}</main>`+foot();
 }
+const SEL6=[
+ ['hestia-knit-nodes',['img/hk__hero.webp',1600,1000],'HESTIA × Knit Nodes','CMF · Robotics · Program integration','Two studies joined by one selection engine: every zone of a home humanoid wears the knit the data picks.','Rhino · Python · Blender · 11 zones × 10 knits'],
+ ['p11',['img/ta__key1.webp',2000,1333],'Nike Tuned Air','Nike · My last program','Technical manuals for two of the first Tuned Air programs, a new digital method of making Nike Air.','Announced Nov 2026 · Air development time down 70% (Nike)'],
+ ['trenza-alpargata',['img/tz__r_hero_tumbaga.webp',1700,1040],'Trenza Alpargata · Muisca','Footwear CMF','A luxury alpargata with colour, material and pattern drawn from the Muisca of Colombia.','3 editions · original pattern system · factory CMF spec'],
+ ['p10',null,'Nike × Hyperice Hyperboot','Nike · Powered hardware','Electronics integration documentation for a heated, air-compression boot built with Hyperice.','Battery, heating and pneumatics inside a shoe'],
+ ['nesting-tables',['img/nt2__hero.webp',2000,1240],'Nesting Tables','Furniture CMF','Three tables that lock into one block; colour, material and finish tell them apart.','13 finishes · 7 material families · 3 colourways'],
+ ['basecamp',['img/bc2__hero.webp',1800,1440],'BASECAMP Emergency Radio','Industrial design · Python + Blender','A hand-crank radio and lantern built to be repaired, with a rule-driven speaker grille.','Product architecture · Torx hardware · CMF']];
 function home(){
  const NK=id=>D.nike.find(p=>p.id===id);
  const href=id=>'#'+id;
+ SEL6.forEach(x=>{if(!x[1]){const n=NK(x[0]);x[1]=n?n.hero:['img/hk__hero.webp',1600,1000]}});
  const tiles=D.nike.map((p,i)=>`<a class="tile" href="#${p.id}"><div class="media ${i%2?'bl':'tr'}">${im(p.hero,p.title)}</div><small>${esc(p.brand)}</small><h3>${esc(p.title)}</h3><p class="tile-r">${esc(NIKE_ROLE[p.id]||'')}</p></a>`).join('');
  const card=(r,i)=>`<a class="card" href="#${r.id}"><div class="media ${i%2?'bl':'tr'}${r.fit?' paper':''}">${r.isNew?'<span class="badge">New</span>':''}${im(r.imgs[0],r.title)}</div>${r.kind?`<p class="kind">${esc(r.kind)}</p>`:''}<h3>${esc(r.title)}</h3><p>${esc(r.meta)}</p></a>`;
  const prod=[CARD_BC,{...PICK('trenza-alpargata'),isNew:true,meta:'Muisca CMF study · 3 editions'},{...PICK('electric-guitar'),isNew:true,kind:'Product Modeling',meta:'Launch set · 4 finishes · 230 parts'},{...PICK('penny-loafer'),isNew:true,kind:'Footwear · CMF',meta:'Rhino model, Blender Cycles render · 3 colourways'},{...PICK('f1-car'),isNew:true,meta:'Team-launch set · original Tigre livery'},CARD_WL,CARD_KP].map(card).join('');
  const cmf=[CARD_KA,{...PICK('nesting-tables'),isNew:false,kind:'CMF · Furniture'}].map(card).join('');
  const vis=[
-  {id:'better-with-friends',isNew:true,kind:'3D Illustration',title:'Better With Friends',meta:'Figma × Hello Kitty campaign posters rebuilt as 3D reliefs',imgs:[['img/hk__01_hero.webp',1600,900]]},
-  {id:'rising-sun-museum',kind:'3D Typography',title:'The Rising Sun Museum',meta:'Four 2D brand-sticker sheets rebuilt in 3D, scripted in Rhino',imgs:[['img/rs__05_museum_01_overview.webp',1600,900]]},
   {id:'standard-play',kind:'AI Design Systems',title:'Standard Play',meta:'Five Figma design systems I directed, built with Claude',sp:true},
   {id:'fold-bake',kind:'Editorial System',title:'Fold / Bake',meta:'A true-scale parchment cookbook generated from code',imgs:[['img/cb__co01.webp',1800,1273]],fit:true}
  ].map((r,i)=>r.sp?`<a class="card" href="#${r.id}"><div class="media ${i%2?'bl':'tr'}">${sleeve(TAPES[0])}</div><p class="kind">${r.kind}</p><h3>${r.title}</h3><p>${r.meta}</p></a>`:card(r,i)).join('');
@@ -1459,21 +1468,26 @@ function home(){
   const media=f.doc?`<div class="media ${i%2?'bl-l':'tr-l'} fr-doc"><div class="pages">${CAPS.slice(0,4).map(c=>sil(c.p[0][0])).join('')}</div></div>`:`<div class="media ${i%2?'bl-l':'tr-l'}">${f.id==='basecamp'?'<span class="badge">New</span>':''}${im(img,f.t)}</div>`;
   return `<a class="fr${i%2?' rev':''}" href="${href(f.id)}">${media}<div class="fr-t"><p class="fr-k">${esc(f.k)}</p><h3>${esc(f.t)}</h3><p>${esc(f.d)}</p><ul class="tags">${f.tags.map(t=>`<li>${esc(t)}</li>`).join('')}</ul><span class="go">Read the case study →</span></div></a>`}).join('');
  const lane=l=>`<div class="lane"><p class="lane-k">${l.k}</p><h3>${esc(l.t)}</h3><p class="lane-b">${esc(l.b)}</p><ul class="lane-p">${l.pts.map(p=>`<li>${esc(p)}</li>`).join('')}</ul><p class="lane-e">See it in</p><div class="lane-l">${l.ev.map(([id,t])=>`<a href="#${id}">${esc(t)} →</a>`).join('')}</div></div>`;
- const heroImgs=[NK('p10').hero,BC.img.crop,KP.img.render];
+ const heroImgs=[['img/hk__hero.webp',1600,1000],NK('p11').hero,BC.img.crop];
  return nav()+`<main id="top">
  <section class="band dark rel stripey"><img class="stripes" src="img/stripe-hero.webp" alt="" aria-hidden="true"><div class="wrap hero v19h">
   <div class="v19h-t">
-   <p class="avail">Available now · Remote (US) or Portland, OR · Full-time or contract</p>
+   <p class="avail">Available now · Open to CMF · Soft goods · Design technology · Hardware programs · Remote (US) or Portland, OR · Full-time or contract</p>
    <h1 class="name">Henry Ortega</h1>
-   <p class="role">Product Development &amp; Technical Program Leader · Design Technologist</p>
-   <p class="lead">I take physical products from first concept to mass production, and I build the tools and documentation that let teams do it faster. 16 years at Nike leading new product introductions, technical transfer with contract manufacturers in Asia, powered hardware with Hyperice, and the documentation system factories worldwide built from. Now bringing it to hardware, wearables, robotics and design-technology teams.</p>
-   <div class="ctas"><a class="btn inv" href="mailto:${EMAIL}">Email me</a><a class="btn" href="#resume">Résumé</a><a class="btn" href="${LI}" target="_blank" rel="noopener">LinkedIn</a></div>
+   <p class="role">CMF &amp; Soft Goods for Hardware · Design Technologist · Technical Program Leader</p>
+   <p class="lead">I decide what products are made of and make sure factories can build it. 16 years at Nike taking footwear and powered hardware from concept to mass production: Nike × Hyperice, technical transfer with tier-1 factories in Asia, and the manuals behind 50+ launches, ending with Nike Tuned Air. Today I design CMF and soft goods for hardware and robotics, modelled and rendered in Rhino, Grasshopper, Python and Blender.</p>
+   <div class="ctas"><a class="btn inv" href="mailto:${EMAIL}">Email me</a><a class="btn" href="downloads/Henry-Ortega-Resume.pdf" download>Download résumé (PDF)</a><a class="btn" href="#selected">Selected work</a><a class="btn" href="${LI}" target="_blank" rel="noopener">LinkedIn</a></div>
    <div class="hero-soc"><span>Follow</span>${socials()}</div>
   </div>
   <div class="v19h-m" aria-hidden="true"><a class="media tr-l a" href="#p10" tabindex="-1">${im(heroImgs[0],'')}</a><a class="media bl b" href="#basecamp" tabindex="-1">${im(heroImgs[1],'')}</a><a class="media tr c" href="#parametric-keypad" tabindex="-1">${im(heroImgs[2],'')}</a></div>
   <div class="stats v19s"><div><b>16+</b><span>Years concept to production</span></div><div><b>10</b><span>Years technical program management</span></div><div><b>50+</b><span>Tech manuals · 5,000+ pages</span></div><div><b>9</b><span>Years leading teams</span></div></div>
  </div>${lines()}</section>
  <span class="spectrum thin"></span>
+
+ <section id="selected" class="band light section"><div class="wrap">
+  <p class="eyebrow">Selected Work · Start here</p><h2 class="sh-title">SIX PROJECTS, TWO MINUTES</h2><p class="sh-sub">The fastest way to see what I do / Nike programs and Tigre Studio studies</p>
+  <div class="sel6">${SEL6.map((x,i)=>`<a class="sel-c${i<2?' big':''}" href="#${x[0]}"><div class="media ${i%2?'bl':'tr'}">${im(x[1],x[2])}</div><p class="kind">${x[3]}</p><h3>${esc(x[2])}</h3><p>${esc(x[4])}</p><p class="sel-o">${esc(x[5])}</p></a>`).join('')}</div>
+ </div></section>
 
  <section id="fit" class="band light section"><div class="wrap">
   <p class="eyebrow">What I Do · For hiring teams</p><h2 class="sh-title">Four Ways I Can Help Your Team</h2><p class="sh-sub">Hardware programs &amp; NPI / Design technology / Technical documentation / Soft goods &amp; materials</p>

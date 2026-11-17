@@ -99,5 +99,10 @@
   "date": "2026-11-16",
   "project": "nike-tuned-air",
   "change": "Added Nike Tuned Air (announced Nov 16, 2026) to the Nike stack as Selected Work 01: role (tech manuals for two first programs), public tech overview, three launch films, key images and gallery from the Nike newsroom bundle."
+ },
+ {
+  "date": "2026-11-16",
+  "project": "site",
+  "change": "Employer pass: CMF/soft-goods positioning in hero and meta, Open-to line, downloadable r\u00e9sum\u00e9 PDF, Selected Work (6 projects) at the top with outcome lines, Work nav item, fan-IP studies removed from the homepage, lazy-loaded images."
  }
 ]
