@@ -24,6 +24,13 @@ for pre,helper in (('gb','GBI'),('hs','HSI')):
         a="const %s=(f,w,h,c)=>['img/%s__'+f+'.webp',"%(helper,pre)
         assert a in s,helper
         s=s.replace(a,"const %sM=%s;\nconst %s=(f,w,h,c)=>[%sM[f]||'img/%s__'+f+'.webp',"%(helper,json.dumps(m),helper,helper,pre),1); n+=len(m); sz+=sum(map(len,m.values()))
+# brand-book spreads built as TSP(n)
+tsm=[f for f in sorted(glob.glob('img/ts__p*.webp')) if f not in have]
+if tsm:
+    m={str(int(os.path.basename(f)[5:7])):'data:image/webp;base64,'+base64.b64encode(open(f,'rb').read()).decode() for f in tsm}
+    a="const TSP=n=>['img/ts__p'+String(n).padStart(2,'0')+'.webp',1600,900];"
+    assert a in s
+    s=s.replace(a,"const TSPM=%s;\nconst TSP=n=>[TSPM[n]||'img/ts__p'+String(n).padStart(2,'0')+'.webp',1600,900];"%json.dumps(m),1); n+=len(m); sz+=sum(map(len,m.values()))
 # downloads -> live site, opened in a new tab (the artifact viewer blocks downloads)
 s=re.sub(r"'(downloads/[^']+\.pdf)'",lambda m:"'"+LIVE+m.group(1)+"'",s)
 s=re.sub(r'(href="\$\{[A-Za-z_.]+\}") download',r'\1 target="_blank" rel="noopener"',s)

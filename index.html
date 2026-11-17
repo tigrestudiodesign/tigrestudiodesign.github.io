@@ -1526,7 +1526,7 @@ function hsPage(){
 const TSP=n=>['img/ts__p'+String(n).padStart(2,'0')+'.webp',1600,900];
 const TS={id:'tigre-studio-brand',title:'Tigre Studio',pdf:'downloads/Tigre-Studio-Brand-Book.pdf',
  caps:['Cover','Contents','Section 01 · Strategy','The why: insight, opportunity, objective','Positioning and services','Pillars and tone of voice','Messaging hierarchy','Section 02 · Direction','The mark','Construction: the 24 × 28 grid','Lockups','The stripe','Colour','Typography','Type in use','Graphic devices','Imagery','Motion','Section 03 · Production','Applications matrix','Mechanicals: business card','Materials palette','Don’t','Section 04 · Executions','The machined mark','Stationery','Studio sign','Packaging','Social','Back cover'],
- ex:[['ex_mark','TS-01 · The Machined Mark','Black anodised aluminium on a knurled orange dial: the logo as a part you could hold.'],['ex_stationery','Stationery','Cards, letterhead and seal stickers. Ink flood, warm stock, one orange.'],['ex_sign','Studio Sign','A lit T over its stripe: the brand as the light in the room.'],['ex_pack','Packaging','The mailer for every guide and sample: ink box, stripe seal, knurled dial.']]};
+ ex:[['img/ts__ex_mark.webp','TS-01 · The Machined Mark','Black anodised aluminium on a knurled orange dial: the logo as a part you could hold.'],['img/ts__ex_stationery.webp','Stationery','Cards, letterhead and seal stickers. Ink flood, warm stock, one orange.'],['img/ts__ex_sign.webp','Studio Sign','A lit T over its stripe: the brand as the light in the room.'],['img/ts__ex_pack.webp','Packaging','The mailer for every guide and sample: ink box, stripe seal, knurled dial.']]};
 const CARD_TS={id:TS.id,isNew:true,kind:'Brand Identity · Brand Book',title:'Tigre Studio',meta:'A 30-page brand book: strategy, direction, production, executions',imgs:[['img/ts__ex_mark.webp',1920,1080]]};
 function tsPage(){
  const fig=(r,c,cls='')=>`<figure class="${cls}">${im(r,c)}<figcaption>${esc(c)}</figcaption></figure>`;
@@ -1561,7 +1561,7 @@ function tsPage(){
  </div></section>
 
  <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">04 · Executions</h2><p class="sh-sub">Rendered from real geometry / No generated images</p>
-  <div class="ts-ex">${TS.ex.map(([f,t,c],i)=>`<figure class="${i?'':'w'}">${im(['img/ts__'+f+'.webp',1920,1080],t)}<figcaption><b>${esc(t)}</b> ${esc(c)}</figcaption></figure>`).join('')}</div>
+  <div class="ts-ex">${TS.ex.map(([f,t,c],i)=>`<figure class="${i?'':'w'}">${im([f,1920,1080],t)}<figcaption><b>${esc(t)}</b> ${esc(c)}</figcaption></figure>`).join('')}</div>
  </div></section>
 
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Every Page</h2><p class="sh-sub">30 spreads / Click any page to read it full size</p>
