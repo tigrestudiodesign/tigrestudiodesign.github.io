@@ -1,0 +1,8 @@
+[
+ {"date":"2026-11-16","project":"basecamp / parametric-keypad","change":"Live firmware simulators in the browser","files":["index.html"]},
+ {"date":"2026-11-16","project":"grasshopper-brick-by-brick","change":"Fixed artifact images, page viewer, 14 pairs list, visible download buttons","files":["index.html"]},
+ {"date":"2026-11-16","project":"fold-bake","change":"Interactive fold / crimp / bake hero with oven picker","files":["index.html"]},
+ {"date":"2026-11-16","project":"hestia","change":"New project; rebuilt living-room render","files":["index.html","img/hs__*"]},
+ {"date":"2026-11-16","project":"penny-loafer","change":"Re-rendered from Rhino file: hero, exploded tech pack, 3 colourways; homepage card","files":["index.html","img/lf__r_*"]},
+ {"date":"2026-11-16","project":"f1-car","change":"Team-launch render set in original Tigre livery, sponsor decals removed","files":["index.html","img/f1__r_*"]}
+]

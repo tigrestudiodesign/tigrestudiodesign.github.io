@@ -555,6 +555,8 @@ button.btn{cursor:pointer}
 .nk-map u{display:inline-block;width:12px;height:12px;border-radius:50%;border:1px solid var(--grid)}
 .nk-mapw{overflow-x:auto}
 @media(max-width:820px){.nk-grid{grid-template-columns:1fr;gap:36px}.nk-did li{grid-template-columns:40px 1fr;font-size:16px}.nk-map{min-width:640px}}
+/* v50: F1 */
+.f1-set{display:grid;gap:24px;padding-top:28px}.f1-set figure{margin:0}.f1-set img{display:block;width:100%;height:auto}.f1-set figcaption{font-family:var(--serif);font-style:italic;color:var(--muted);margin-top:8px}
 /* v49: penny loafer */
 .lf-bom{list-style:none;margin:0;padding:0;align-self:center}.lf-bom li{display:grid;grid-template-columns:44px 140px 1fr;gap:12px;align-items:baseline;padding:14px 0;border-top:1px solid var(--grid)}
 .lf-bom b{font:700 12px ui-monospace,Menlo,monospace;background:#ff5a1f;color:#000;padding:3px 6px;justify-self:start}.lf-bom span{font-weight:700;text-transform:uppercase;letter-spacing:.03em}.lf-bom em{font-family:var(--serif);color:var(--muted)}
@@ -1251,11 +1253,11 @@ const NEWRH=[
   facts:[['Course','Master in Parametric Design · Unit 1'],['Parts','Upper, strap, piping, heel tab, stitching, footbed, outsole'],['Output','Left + right pair, one material per part'],['Software','Rhino 9 (model) · Blender Cycles (render)']],
   tags:['Footwear','NURBS surfacing','Material per part','Four-view checks'],
   imgs:[['img/lf__r_hero.webp',1600,1100,'Your pair in cognac full-grain leather, suede footbed, blue heel tab and rubber outsole, rendered in Blender Cycles from the original Rhino file'],['img/lf__r_heel.webp',1400,1000,'Heel view: the contrast heel tab and piped collar'],['img/lf__r_detail.webp',1200,1200,'Close-up: pebble grain, the strap edge and the four side stitches'],['img/lf__r_top.webp',1200,1400,'Top view: moc-toe outline, saddle strap and penny slot'],['img/lf__wire.webp',1800,790,'The Rhino file in four wireframe views: isocurves follow the last shape'],['img/lf__r_hero_bone.webp',1600,1100,'Same file, Bone colourway: one material swap per part']]},
- {id:'f1-car',isNew:true,fit:true,kind:'Automotive',title:'F1 Car Study',meta:'Automotive surfacing · Rhino 9 · 60 surfaces, 113 polysurfaces',
-  note:'A current-generation F1 car built from top, side and front views: nose and front wing, halo, sidepods, floor, rear wing and wheels, with the livery split into its own parts and materials. Checked in wireframe and edge-shaded views before the final render.',
-  facts:[['Course','Master in Parametric Design · Unit 1'],['Geometry','60 surfaces · 113 polysurfaces · 88 meshes'],['Livery','Applied as separate parts and materials'],['Software','Rhino 9 · Rendered display']],
+ {id:'f1-car',isNew:true,kind:'Automotive',title:'F1 Car Study',meta:'Automotive surfacing · Rhino 9 · Blender Cycles · original Tigre livery',
+  note:'A current-generation F1 car built from top, side and front views: nose and front wing, halo, sidepods, floor, rear wing and wheels. The Rhino file is rendered here as a team-launch set in an original Tigre Studio livery, with every material assigned by part.',
+  facts:[['Course','Master in Parametric Design · Unit 1'],['Geometry','261 objects · 60 surfaces · 113 polysurfaces'],['Livery','Original Tigre Studio livery, one material per part'],['Software','Rhino 9 (model) · Blender Cycles (render)']],
   tags:['Automotive','Class-A style surfacing','Livery & materials','Wireframe checks'],
-  imgs:[['img/f1__hero.webp',1800,616,'Rendered three-quarter view'],['img/f1__side.webp',1556,404,'Side elevation'],['img/f1__4view.webp',1800,790,'Rendered top, perspective, side and rear views'],['img/f1__top-wire.webp',1800,658,'Top wireframe: wing elements, suspension and sidepod surfaces'],['img/f1__edges.webp',1800,790,'Edge-shaded check: every surface boundary visible'],['img/f1__wire.webp',1800,790,'Wireframe in four views']]},
+  imgs:[['img/f1__r_hero.webp',2000,1100,'Launch hero: hot-orange nose and engine cover, graphite sidepods, clear-coated carbon wings'],['img/f1__r_front.webp',1600,1000,'Head-on: front wing elements, nose and halo'],['img/f1__r_rear.webp',1600,900,'Rear three-quarter: beam wing, rain light and diffuser'],['img/f1__r_detail.webp',1600,1000,'Cockpit: carbon halo, helmet and camera pod'],['img/f1__top-wire.webp',1800,658,'The Rhino file, top wireframe: wing elements, suspension and sidepod surfaces'],['img/f1__edges.webp',1800,790,'Edge-shaded check in Rhino: every surface boundary visible']]},
  {id:'nesting-tables',isNew:true,kind:'Furniture & CMF',title:'Nesting Tables',meta:'Furniture & CMF · Rhino 9 · Blender · 3 tables, 7 material families',
   note:'Three side tables that lock together into one block. Each has its own color story and its own leg material: glazed tile, fluted lacquer, recycled plastic, terrazzo. The set was modeled in Rhino, then materialized as a full CMF proposal, with every surface given a real material, finish and color reference.',
   facts:[['Pieces','3 tables, one block in plan'],['Materials','7 families, 13 finishes'],['Colorways','Pastel, Stone, Night'],['Software','Rhino 9 · Blender Cycles']],
@@ -2447,11 +2449,17 @@ const CS={
   skills:['Footwear modeling','NURBS surfacing','Part breakdown','CMF','Four-view checks'],
   st:['One part, one material:','the same breakdown','a tech pack uses.']},
  'f1-car':{sub:'Hundreds of parts that read as one form',
-  b:['A Car Built From Three Views','Model a current-generation F1 car from top, side and front references, with the livery as part of the model rather than a decal.'],
-  a:['Surfaces First, Then Livery','The body was built as surfaces and polysurfaces: nose and front wing, halo, sidepods, floor, rear wing and wheels. The livery was split into its own parts and materials, then every boundary was checked in wireframe and edge-shaded views.'],
-  r:['261 Objects, One Car','60 surfaces, 113 polysurfaces and 88 meshes, rendered from top, perspective, side and rear.'],
-  show:['F1 bodywork is all compound curvature and tight intersections, the same kind of geometry as midsoles, plates and multi-part tooling.','Keeping 261 objects organized, named and on the right materials is the discipline a factory-ready file needs.'],
-  skills:['Complex surfacing','Intersecting parts','Livery & materials','Edge and wireframe checks'],
+  extra:()=>`<section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Launch Set</h2><p class="sh-sub">Side / Top / Clay</p>
+   <div class="f1-set"><figure>${im(['img/f1__r_side.webp',2000,760],'Side elevation in the Tigre livery')}<figcaption>Side elevation: the orange runs nose to cockpit, graphite takes the sidepods and engine cover.</figcaption></figure>
+   <figure>${im(['img/f1__r_top.webp',2000,960],'Top view in the Tigre livery')}<figcaption>Plan view: wing elements, suspension wishbones and the sidepod undercut.</figcaption></figure></div>
+   <div class="duo" style="padding-top:24px"><figure>${im(['img/f1__r_clay.webp',1600,900],'Clay render of the surfaces')}<figcaption>Clay pass: no paint, only surfaces. This is the Rhino work itself.</figcaption></figure>
+   <figure>${im(['img/f1__r_hero_bone.webp',1600,880],'Second livery: bone with orange accents')}<figcaption>Second livery, same file: bone primary, graphite secondary, orange accents. A material swap, not a remodel.</figcaption></figure></div>
+  </div></section>`,
+  b:['A Car Built From Three Views','Model a current-generation F1 car from top, side and front references, with every livery panel as its own part, not a decal.'],
+  a:['Surfaces First, Then Livery','The body was built as surfaces and polysurfaces: nose and front wing, halo, sidepods, floor, rear wing and wheels. Livery panels were split into their own parts, so colour is assigned by part, then every boundary was checked in wireframe and edge-shaded views.'],
+  r:['A Team-Launch Set','The Rhino file went into Blender Cycles as-is: a dark launch studio, clear-coated carbon, metallic paint and two original liveries, from hero, front, rear, side, plan and cockpit.'],
+  show:['F1 bodywork is all compound curvature and tight intersections, the same kind of geometry as midsoles, plates and multi-part tooling.','Keeping 261 objects organized, named and on the right materials is the discipline a factory-ready file needs, and it is why a new livery takes minutes.'],
+  skills:['Complex surfacing','Intersecting parts','Livery & CMF','Studio rendering','Edge and wireframe checks'],
   st:['261 objects that read as','one continuous form','.']},
  'nesting-tables':{sub:'Color, material and finish as identity',
   b:['Three Tables, One Block','Design three side tables that lock together into a single block in plan, yet read as three separate pieces.'],
