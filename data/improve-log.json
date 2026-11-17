@@ -157,5 +157,14 @@
    "tools/site_audit.py",
    "tools/IMPROVE.md"
   ]
+ },
+ {
+  "date": "2026-11-17",
+  "project": "kinetic-hexagon-facade",
+  "change": "New case study from Henry's Controlmad Reactive Wall assignment (Drive): 11 Rhino Cycles renders, 8-step process, time triptych and time-lapse, Noir Champagne edition, both Grasshopper canvases, plus a live browser demo that reruns the definition's sun -> dot product -> fold logic with a time-of-day slider. Card added first in the product row.",
+  "files": [
+   "index.html",
+   "img/kh__*.webp"
+  ]
  }
 ]
