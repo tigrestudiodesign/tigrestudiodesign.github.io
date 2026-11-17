@@ -139,5 +139,13 @@
   "files": [
    "index.html"
   ]
+ },
+ {
+  "date": "2026-11-17",
+  "project": "hestia-knit-nodes",
+  "change": "Mobile fix (Henry's iPhone report): THE PIPELINE rebuilt from an SVG with embedded HTML text, which Safari drew on top of the paragraph, into HTML cards: six across with arrows on desktop, a vertical chain on phones. Matrix gets a sticky zone column and a swipe hint; the colour legend stacks cleanly; the spec table no longer breaks words or shows an empty WHY header; no horizontal overflow at 390 px.",
+  "files": [
+   "index.html"
+  ]
  }
 ]
