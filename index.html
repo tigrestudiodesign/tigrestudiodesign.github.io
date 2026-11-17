@@ -3579,7 +3579,7 @@ const simLed=(id,c,r=9,gl=c)=>`<svg class="sim-led" viewBox="-20 -20 40 40" widt
 const simKnob=(lbl)=>`<div class="sim-knob" role="slider" tabindex="0" aria-label="${lbl}" aria-valuemin="0" aria-valuemax="1023"><svg viewBox="-60 -60 120 120"><g class="sim-scale">${Array.from({length:28},(_,i)=>{const a=(-135+i*10)*Math.PI/180;return `<line x1="${Math.sin(a)*52}" y1="${-Math.cos(a)*52}" x2="${Math.sin(a)*(i%9?48:44)}" y2="${-Math.cos(a)*(i%9?48:44)}"/>`}).join('')}</g><g class="sim-rot"><circle r="40" fill="#151515"/>${Array.from({length:48},(_,i)=>{const a=i*7.5*Math.PI/180;return `<line x1="${Math.sin(a)*35}" y1="${-Math.cos(a)*35}" x2="${Math.sin(a)*40}" y2="${-Math.cos(a)*40}" stroke="#444" stroke-width="1.6"/>`}).join('')}<circle r="31" fill="#222"/><circle cy="-22" r="4.5" fill="#ff5a1f"/></g></svg></div>`;
 
 function simShell(el,o){
- el.innerHTML=`<div class="sim-hd"><b>Live Sim</b><span>${o.tag}</span><span class="sim-st" aria-live="polite"></span><button type="button" class="sim-demo">↺ Demo</button></div>
+ el.innerHTML=`<div class="sim-hd"><b>Live Sim</b><span>${o.tag}</span><span class="sim-st" aria-live="polite"></span>${o.hd||''}<button type="button" class="sim-demo">↺ Demo</button></div>
  <div class="sim-body"><div class="sim-host"><small>${o.lcdTag}</small><div class="sim-lcd"><i></i><i></i><div class="sim-scr" aria-live="off">${'<b></b>'.repeat(32)}</div></div></div><div class="sim-dev">${o.dev}</div></div>
  <div class="sim-pins"></div><p class="sim-hint">${o.hint}</p>`;
  const cells=[...el.querySelectorAll('.sim-scr b')], scr=el.querySelector('.sim-scr');
@@ -3587,14 +3587,14 @@ function simShell(el,o){
  const lcdSet=(a,b)=>{const s=pad16(a)+pad16(b);for(let i=0;i<32;i++)cells[i].textContent=s[i]===' '?' ':s[i];scr.setAttribute('aria-label',(a+' / '+b).replace(/\s+/g,' '))};
  const led=(id,v)=>{const g=el.querySelector(`[data-led="${id}"]`),c=el.querySelector(`[data-ledc="${id}"]`);if(!g)return;const k=Math.max(0,Math.min(1,v));g.setAttribute('opacity',(k*.75).toFixed(2));c.setAttribute('opacity',(.18+k*.82).toFixed(2))};
  const kn=el.querySelector('.sim-knob'), rot=el.querySelector('.sim-rot');
- const setKnob=v=>{S.knob=Math.max(0,Math.min(1023,Math.round(v)));rot.setAttribute('transform',`rotate(${-135+S.knob/1023*270})`);kn.setAttribute('aria-valuenow',S.knob)};
+ const setKnob=v=>{const pv=S.knob;S.knob=Math.max(0,Math.min(1023,Math.round(v)));o.onKnob&&pv!=null&&o.onKnob(pv,S.knob);rot.setAttribute('transform',`rotate(${-135+S.knob/1023*270})`);kn.setAttribute('aria-valuenow',S.knob)};
  setKnob(S.knob);
  const st=el.querySelector('.sim-st'); const status=()=>{st.textContent=S.demo?'● Demo playing':'● You are driving';st.classList.toggle('you',!S.demo)};
  const takeOver=()=>{if(S.demo){S.demo=false;S.tw=null;S.rel=null;S.down={};el.querySelectorAll('.sim-btn.on').forEach(b=>b.classList.remove('on'));status()}};
  // buttons: pressed while held, and every press is latched (like the pin-change interrupt)
  el.querySelectorAll('.sim-btn').forEach(b=>{const k=b.dataset.k;
-  const dn=e=>{e.preventDefault();takeOver();S.down[k]=true;S.hits[k]=true;b.classList.add('on');b.setPointerCapture&&e.pointerId!=null&&b.setPointerCapture(e.pointerId)};
-  const up=()=>{S.down[k]=false;b.classList.remove('on')};
+  const dn=e=>{e.preventDefault();takeOver();o.sfx&&!S.down[k]&&o.sfx(k,1,true);S.down[k]=true;S.hits[k]=true;b.classList.add('on');b.setPointerCapture&&e.pointerId!=null&&b.setPointerCapture(e.pointerId)};
+  const up=()=>{o.sfx&&S.down[k]&&o.sfx(k,0,true);S.down[k]=false;b.classList.remove('on')};
   b.addEventListener('pointerdown',dn);['pointerup','pointercancel','lostpointercapture'].forEach(n=>b.addEventListener(n,up));
   b.addEventListener('keydown',e=>{if((e.key===' '||e.key==='Enter')&&!e.repeat){dn(e)}});b.addEventListener('keyup',e=>{if(e.key===' '||e.key==='Enter')up()});
   b.addEventListener('contextmenu',e=>e.preventDefault())});
@@ -3602,17 +3602,17 @@ function simShell(el,o){
  let drag=null;
  kn.addEventListener('pointerdown',e=>{e.preventDefault();takeOver();const r=kn.getBoundingClientRect();drag={cx:r.left+r.width/2,cy:r.top+r.height/2,a:null,moved:0};kn.setPointerCapture(e.pointerId)});
  kn.addEventListener('pointermove',e=>{if(!drag)return;const a=Math.atan2(e.clientX-drag.cx,drag.cy-e.clientY)*180/Math.PI;if(drag.a!==null){let d=a-drag.a;if(d>180)d-=360;if(d<-180)d+=360;drag.moved+=Math.abs(d);setKnob(S.knob+d/270*1023)}drag.a=a});
- kn.addEventListener('pointerup',()=>{if(drag&&drag.moved<4&&o.knobPush){S.hits[o.knobPush]=true;const b=el.querySelector(`[data-k="${o.knobPush}"]`);b&&(b.classList.add('on'),setTimeout(()=>b.classList.remove('on'),150))}drag=null});
+ kn.addEventListener('pointerup',()=>{if(drag&&drag.moved<4&&o.knobPush){S.hits[o.knobPush]=true;o.sfx&&(o.sfx(o.knobPush,1,true),setTimeout(()=>o.sfx(o.knobPush,0,true),90));const b=el.querySelector(`[data-k="${o.knobPush}"]`);b&&(b.classList.add('on'),setTimeout(()=>b.classList.remove('on'),150))}drag=null});
  kn.addEventListener('keydown',e=>{const d={ArrowUp:40,ArrowRight:40,ArrowDown:-40,ArrowLeft:-40,PageUp:150,PageDown:-150}[e.key];if(d){e.preventDefault();takeOver();setKnob(S.knob+d)}});
  kn.addEventListener('wheel',e=>{e.preventDefault();takeOver();setKnob(S.knob-Math.sign(e.deltaY)*40)},{passive:false});
  el.querySelector('.sim-demo').addEventListener('click',()=>{S.demo=true;S.dt=0;S.step=0;S.next=0;S.rel=null;S.tw=null;S.down={};S.hits={};el.querySelectorAll('.sim-btn.on').forEach(b=>b.classList.remove('on'));o.reset(S);status()});
  // demo timeline: [wait ms, action]. Actions: press k / hold k ms / knob to over ms
  const btn=k=>el.querySelector(`[data-k="${k}"]`);
- const act={press:(k)=>{S.hits[k]=true;S.down[k]=true;btn(k).classList.add('on');setTimeout(()=>{if(S.demo){S.down[k]=false;btn(k).classList.remove('on')}},180)},
-  hold:(k,ms)=>{S.hits[k]=true;S.down[k]=true;btn(k).classList.add('on');S.rel={k,at:S.dt+ms}},
+ const act={press:(k)=>{o.sfx&&o.sfx(k,1);S.hits[k]=true;S.down[k]=true;btn(k).classList.add('on');setTimeout(()=>{if(S.demo){o.sfx&&o.sfx(k,0);S.down[k]=false;btn(k).classList.remove('on')}},180)},
+  hold:(k,ms)=>{o.sfx&&o.sfx(k,1);S.hits[k]=true;S.down[k]=true;btn(k).classList.add('on');S.rel={k,at:S.dt+ms}},
   knob:(v,ms)=>{S.tw={a:S.knob,b:v,t0:S.dt,ms}}};
  const demoTick=dt=>{S.dt+=dt;
-  if(S.rel&&S.dt>=S.rel.at){S.down[S.rel.k]=false;btn(S.rel.k).classList.remove('on');S.rel=null}
+  if(S.rel&&S.dt>=S.rel.at){o.sfx&&o.sfx(S.rel.k,0);S.down[S.rel.k]=false;btn(S.rel.k).classList.remove('on');S.rel=null}
   if(S.tw){const p=Math.min(1,(S.dt-S.tw.t0)/S.tw.ms),e=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2;setKnob(S.tw.a+(S.tw.b-S.tw.a)*e);if(p>=1)S.tw=null}
   if(!S.next)S.next=o.script[0][0];
   while(S.dt>=S.next){const [w,n,...a]=o.script[S.step];act[n](...a);S.step=(S.step+1)%o.script.length;if(S.step===0){S.dt=0;S.next=o.script[0][0];if(o.loopReset)o.reset(S);break}S.next+=o.script[S.step][0]}};
@@ -3626,11 +3626,60 @@ function simShell(el,o){
 const pinRow=(rows)=>rows.map(([p,v,c])=>`<span class="${c||''}"><b>${p}</b>${v}</span>`).join('');
 const hit=(S,k)=>{const h=!!S.hits[k];S.hits[k]=false;return h};
 
+/* Mechanical switch sounds, synthesized live (no samples): clicky switch = click-jacket snap at actuation,
+   bottom-out thock into the plate, softer upstroke clack on release. Encoder = detent ticks. */
+function switchSfx(){
+ let ac=null,bus=null,nz=null,on=true,heard=false;
+ const make=()=>{if(ac)return ac;const A=window.AudioContext||window.webkitAudioContext;if(!A)return null;
+  try{navigator.audioSession&&(navigator.audioSession.type='playback')}catch(e){}
+  ac=new A();const comp=ac.createDynamicsCompressor();comp.threshold.value=-14;comp.ratio.value=6;
+  const plate=ac.createBiquadFilter();plate.type='peaking';plate.frequency.value=1150;plate.Q.value=2.2;plate.gain.value=5;  // case/plate resonance
+  bus=ac.createGain();bus.gain.value=.9;bus.connect(plate).connect(comp).connect(ac.destination);
+  nz=ac.createBuffer(1,ac.sampleRate*.25,ac.sampleRate);const d=nz.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;
+  return ac};
+ const burst=(t,{f,q=1,type='bandpass',dur,peak,att=.0006})=>{const s=ac.createBufferSource();s.buffer=nz;s.playbackRate.value=.8+Math.random()*.4;
+  const fl=ac.createBiquadFilter();fl.type=type;fl.frequency.value=f;fl.Q.value=q;const g=ac.createGain();
+  g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(peak,t+att);g.gain.exponentialRampToValueAtTime(.0001,t+dur);
+  s.connect(fl).connect(g).connect(bus);s.start(t,Math.random()*.15);s.stop(t+dur+.02)};
+ const body=(t,f0,dur,peak)=>{const o=ac.createOscillator(),g=ac.createGain();o.type='triangle';
+  o.frequency.setValueAtTime(f0*1.6,t);o.frequency.exponentialRampToValueAtTime(f0,t+.012);
+  g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(peak,t+.001);g.gain.exponentialRampToValueAtTime(.0001,t+dur);o.connect(g).connect(bus);o.start(t);o.stop(t+dur+.02)};
+ const ping=(t,f,dur,peak)=>{const o=ac.createOscillator(),g=ac.createGain();o.type='sine';o.frequency.value=f;
+  g.gain.setValueAtTime(peak,t);g.gain.exponentialRampToValueAtTime(.0001,t+dur);o.connect(g).connect(bus);o.start(t);o.stop(t+dur+.01)};
+ const r=(a)=>1+(Math.random()*2-1)*a;
+ const api={
+  get on(){return on},
+  // call from a user gesture: creates / resumes the audio context
+  wake(){if(!on)return;const c=make();if(c&&c.state!=='running')c.resume();heard=true},
+  set(v){on=v;if(v)api.wake();else if(ac)ac.suspend()},
+  // kind: 'key' launcher keycap · 'big' power key · 'push' encoder push switch
+  down(kind){if(!on||!heard||!ac||ac.state==='closed')return;const t=ac.currentTime+.003;
+   if(kind==='push'){burst(t,{f:3200*r(.1),q:2.5,dur:.012,peak:.35});body(t+.004,520*r(.05),.025,.12);return}
+   const big=kind==='big';
+   burst(t,{f:(big?3600:4300)*r(.08),q:3,dur:.010,peak:big?.55:.6});                 // click jacket snap
+   ping(t,(big?2900:3500)*r(.04),.018,.05);                                           // spring/stem ping
+   const tb=t+(big?.016:.011)*r(.15);                                                 // bottom-out after the rest of the travel
+   burst(tb,{f:big?520:900,type:'lowpass',q:.7,dur:big?.07:.045,peak:big?.75:.55});    // keycap into plate
+   body(tb,(big?150:235)*r(.05),big?.09:.055,big?.32:.22);                             // case thock
+   if(big)burst(tb+.006,{f:2100,q:6,dur:.03,peak:.08})},                               // stabiliser rattle
+  up(kind){if(!on||!heard||!ac||ac.state==='closed')return;const t=ac.currentTime+.003,big=kind==='big';
+   if(kind==='push'){burst(t,{f:2600,q:2,dur:.008,peak:.16});return}
+   burst(t,{f:(big?3000:3800)*r(.08),q:3,dur:.008,peak:big?.25:.28});                 // jacket resets
+   burst(t+.009*r(.2),{f:big?700:1200,type:'lowpass',dur:.03,peak:big?.3:.22});       // stem tops out
+   body(t+.009,(big?190:300)*r(.05),.03,.08)},
+  tick(){if(!on||!heard||!ac||ac.state==='closed')return;const t=ac.currentTime+.002;burst(t,{f:5200*r(.1),q:4,dur:.006,peak:.22});ping(t,2400*r(.05),.008,.03)},
+  close(){ac&&ac.close();ac=null}};
+ return api}
+
 /* PARAMETRIC KEYPAD: port of keypad_tinkercad.ino */
 function simKP(el){
+ const fx=switchSfx(),kind=k=>k==='PWR'?'big':k==='PUSH'?'push':'key';
  const keys=[1,2,3,4].map(i=>`<div class="sim-kc">${simLed('k'+i,'#ffffff',7,'#5aa9ff')}<button type="button" class="sim-btn sim-cap" data-k="K${i}" aria-label="Launcher key ${i}"><b>0${i}</b><span>AI.0${i}</span></button></div>`).join('');
  const o={tag:'Keypad · firmware port · same rules as the Arduino',lcdTag:'Host computer · what USB would send',knob0:520,knobPush:'PUSH',
-  hint:'Hold <b>POWER</b> 2 s to wake · tap a key · drag the knob · tap the knob to switch mode',
+  hint:'Hold <b>POWER</b> 2 s to wake · tap a key · drag the knob · tap the knob to switch mode · sound: synthesized clicky switches, plate thock and encoder detents',
+  hd:'<button type="button" class="sim-snd" aria-pressed="true">🔊 Clicks on</button>',
+  sfx(k,d,user){if(user)fx.wake();d?fx.down(kind(k)):fx.up(kind(k))},
+  onKnob(a,b){const n=x=>Math.floor(x/1023*30);if(n(a)!==n(b))fx.tick()},
   dev:`<div class="sim-kp"><div class="sim-keys">${keys}<div class="sim-kc">${simLed('pw','#ff5a1f',7)}<button type="button" class="sim-btn sim-cap sim-or" data-k="PWR" aria-label="Power key, hold 2 seconds"><b>⏻</b><span>Hold 2 s</span></button></div></div>
    <div class="sim-kr">${simKnob('Knob')}<button type="button" class="sim-btn sim-push" data-k="PUSH">Push · Mode</button></div></div>`,
   script:[[1800,'hold','PWR',2300],[3400,'press','K1'],[1900,'press','K3'],[1900,'knob',980,1400],[1700,'press','PUSH'],[700,'knob',380,1400],[1700,'press','PUSH'],[700,'knob',820,1300],[1700,'press','K4'],[2200,'hold','PWR',2300],[2600,'knob',520,600]],loopReset:true,
@@ -3660,7 +3709,11 @@ function simKP(el){
    const H=k=>S.down[k]?'<i>0</i>':'1';
    io.pins(pinRow([['D7',H('K1')],['D6',H('K2')],['D5',H('K3')],['D4',H('K4')],['D3',H('PWR')],['D2',H('PUSH')],['D13–10',ledsK.map(v=>v?1:0).join(''),'o'],['D9 PWM',String(pwmP).padStart(3,'0'),'o'],['A0',String(S.knob).padStart(4,'0')],['State',S.on?['VOL','SCROLL','ZOOM'][S.mode]:'ASLEEP','s']]));
   }};
- return simShell(el,o);
+ const S=simShell(el,o),sb=el.querySelector('.sim-snd');
+ sb.addEventListener('click',()=>{fx.set(!fx.on);sb.setAttribute('aria-pressed',fx.on);sb.textContent=fx.on?'🔊 Clicks on':'🔇 Clicks off'});
+ el.addEventListener('pointerdown',()=>fx.wake(),{capture:true});
+ new MutationObserver((m,obs)=>{if(!el.isConnected){fx.close();obs.disconnect()}}).observe(document.getElementById('app')||document.body,{childList:true});
+ return S;
 }
 
 /* BASECAMP BC-01: port of basecamp_tinkercad.ino */
