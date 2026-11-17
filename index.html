@@ -1083,6 +1083,23 @@ button.btn{cursor:pointer}
 .pl .dk{fill:#000}
 .pl .fb{fill:#0036f9}.pl .fk{fill:#000}.pl .fbs{fill:#0036f9}
 .pl .lb{font:700 11px "Helvetica Neue",Helvetica,Arial,sans-serif;letter-spacing:.04em;fill:#000}
+
+/* v52 · Tigre brand layer: tokens from the Tigre Studio brand book */
+@font-face{font-family:"JetBrains Mono";src:url(fonts/JetBrainsMono-400.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"JetBrains Mono";src:url(fonts/JetBrainsMono-700.woff2) format("woff2");font-weight:700;font-display:swap}
+:root{--or:#FF5A1F;--yellow:#FF5A1F;--ink:#0B0B0C;--paper:#F2EEE6;--mono:"JetBrains Mono",ui-monospace,Menlo,monospace}
+.spectrum{height:6px;background:linear-gradient(90deg,#58BFE6,#2D7BEF 10%,#0138F8 20%,#81176C 30%,#E92100 40%,#FCA000 50%,#EE4100 60%,#A30F47 70%,#1C2FDA 80%,#226BF1 90%,#4DAEE8)}
+.dark{background-color:var(--ink)}
+.band.dark:not(.stripey){background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:24px 24px}
+.eyebrow,.kind,.rh,.case .num,.foot>span,.badge,.tag,dt{font-family:var(--mono);letter-spacing:.04em}
+.eyebrow,.kind,.rh{text-transform:uppercase;font-size:11px}
+.badge{background:var(--or);color:#fff}
+.tmark{display:inline-block;width:.86em;height:1em;vertical-align:-.12em;margin-right:.45em;fill:var(--or);flex:none}
+.brand{display:inline-flex;align-items:center;white-space:nowrap}.brand span{margin-left:.3em}
+.foot b{display:inline-flex;align-items:center;font-family:var(--display);text-transform:uppercase;letter-spacing:.02em}
+.rh .num{color:var(--or)}
+a:focus-visible{outline-color:var(--or)}
+::selection{background:var(--or);color:#fff}
 </style>
 
 <div id="app"></div>
@@ -1288,12 +1305,12 @@ const PATH=[
 const sheet=r=>`<div class="sheet"><p class="sheet-k">Rhino · ${r.caps.length} ${/view/.test(r.meta)?'views':'steps'}</p><ol>${r.caps.map((c,j)=>`<li><b>${n2(j)}</b>${esc(c.replace(/^\d+ · /,''))}</li>`).join('')}</ol><ul class="sheet-t">${r.tags.map(t=>`<li>${esc(t)}</li>`).join('')}</ul></div>`;
 const lines=()=>`<svg class="lines" viewBox="0 0 1440 140" preserveAspectRatio="none" aria-hidden="true"><polyline fill="none" stroke="#0036f9" stroke-width="1" points="0,110 220,96 420,128 640,70 860,100 1080,60 1300,92 1440,80"/><polyline fill="none" stroke="#e50000" stroke-width="1" points="420,128 520,104 640,70"/><polyline fill="none" stroke="#333333" stroke-width="1" points="0,70 180,120 360,60 560,118 760,84 980,130 1200,74 1440,112"/></svg>`;
 
-const foot=()=>`<div class="band dark rel stripey foot-b"><img class="stripes" src="img/stripe-band.webp" alt="" aria-hidden="true"><div class="wrap foot"><b>Tigre Studio</b>${socials('mini')}<span>Henry Mauricio Ortega Vera · Portland, OR · Portfolio 2027 · v27</span><a href="#top">Back to top</a></div></div><span class="spectrum"></span>`;
-const head=(sec,num)=>`<div class="band dark"><div class="wrap rh"><a href="#${sec}" style="text-decoration:none">← Back to portfolio</a><span class="hide-s">Henry Ortega · Portfolio</span><span class="hide-s">Hardware Programs · Design Technology · Technical Documentation</span><span class="num">${num}</span></div></div>`;
+const foot=()=>`<div class="band dark rel stripey foot-b"><img class="stripes" src="img/stripe-band.webp" alt="" aria-hidden="true"><div class="wrap foot"><b><svg class="tmark" viewBox="0 0 24 28" aria-hidden="true"><path d="M0 0H20.75A3.25 3.25 0 0 1 24 3.25V7H15.75V28H8.25V7H0Z"/></svg>Tigre Studio</b>${socials('mini')}<span>Henry Mauricio Ortega Vera · Portland, OR · Portfolio 2027 · v52</span><a href="#top">Back to top</a></div></div><span class="spectrum"></span>`;
+const head=(sec,num)=>`<div class="band dark"><div class="wrap rh"><a href="#${sec}" style="text-decoration:none">← Back to portfolio</a><span class="hide-s" style="display:inline-flex;align-items:center"><svg class="tmark" viewBox="0 0 24 28" aria-hidden="true"><path d="M0 0H20.75A3.25 3.25 0 0 1 24 3.25V7H15.75V28H8.25V7H0Z"/></svg>Tigre Studio · Henry Ortega</span><span class="hide-s">Hardware Programs · Design Technology · Technical Documentation</span><span class="num">${num}</span></div></div>`;
 
 /* ---------- v19: recruiter-first home, BASECAMP ---------- */
 const NAV=[['fit','What I Do'],['rules','Rules → Code'],['product','Computational'],['work','Case Studies'],['nike','Nike'],['documentation','Documentation'],['brand','Brand'],['resume','Résumé'],['contact','Contact']];
-const nav=()=>`<header class="nav band"><div class="wrap"><a class="brand" href="#top">Henry Ortega<span> · Tigre Studio</span></a><nav aria-label="Sections"><ul>${NAV.map(([h,t])=>`<li><a href="#${h}">${t}</a></li>`).join('')}</ul></nav><div class="nav-r">${socials('mini nav-soc')}<a class="nav-cta" href="mailto:${EMAIL}">Email me</a></div></div></header>`;
+const nav=()=>`<header class="nav band"><div class="wrap"><a class="brand" href="#top"><svg class="tmark" viewBox="0 0 24 28" aria-hidden="true"><path d="M0 0H20.75A3.25 3.25 0 0 1 24 3.25V7H15.75V28H8.25V7H0Z"/></svg>Henry Ortega<span> · Tigre Studio</span></a><nav aria-label="Sections"><ul>${NAV.map(([h,t])=>`<li><a href="#${h}">${t}</a></li>`).join('')}</ul></nav><div class="nav-r">${socials('mini nav-soc')}<a class="nav-cta" href="mailto:${EMAIL}">Email me</a></div></div></header>`;
 
 const BC={id:'basecamp',title:'BASECAMP',
  img:{hero:['img/bc2__hero.webp',1800,1440],crop:['img/bc2__hero-crop.webp',1600,1156],front:['img/bc2__front.webp',1600,1300],back:['img/bc2__back.webp',1600,1300],

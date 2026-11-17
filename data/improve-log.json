@@ -59,5 +59,10 @@
    "img/ts__*",
    "downloads/Tigre-Studio-Brand-Book.pdf"
   ]
+ },
+ {
+  "date": "2026-11-16",
+  "project": "site",
+  "change": "v52 brand layer: Tigre T mark in nav, case headers and footer; Tigre Orange accent; mirrored spectrum stripe; JetBrains Mono micro-labels; grid backdrop on dark bands."
  }
 ]
