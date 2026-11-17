@@ -1125,6 +1125,9 @@ a:focus-visible{outline-color:var(--or)}
 .nt-mac{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:24px}.nt-mac figure{margin:0;grid-column:span 2}.nt-mac figure:nth-child(4),.nt-mac figure:nth-child(5){grid-column:span 3}.nt-mac img{display:block;width:100%;height:auto}.nt-mac figcaption{font:italic 15px var(--serif);color:#aaa;margin-top:8px}.nt-mac b{display:block;font:600 11px var(--mono,monospace);letter-spacing:.12em;color:#FF5A1F;margin-bottom:2px;font-style:normal}
 .nt-ways3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}.nt-ways3 figure{margin:0}.nt-ways3 img{display:block;width:100%;height:auto}
 @media (max-width:900px){.nt-mac{grid-template-columns:1fr}.nt-mac figure,.nt-mac figure:nth-child(4),.nt-mac figure:nth-child(5){grid-column:auto}.nt-ways3{grid-template-columns:1fr}}
+/* v56: HESTIA launch set */
+.hs-launch{display:grid;grid-template-columns:1.4fr 1fr;grid-template-rows:auto auto;gap:20px;margin-top:24px}.hs-launch figure{margin:0}.hs-launch .hs-l1{grid-row:span 2}.hs-launch img{display:block;width:100%;height:auto;object-fit:cover}.hs-launch figcaption{font-family:var(--serif);font-style:italic;color:var(--muted);margin-top:8px}
+@media (max-width:900px){.hs-launch{grid-template-columns:1fr}.hs-launch .hs-l1{grid-row:auto}}
 </style>
 
 <div id="app"></div>
@@ -1521,17 +1524,22 @@ const HS={id:'hestia',title:'HESTIA',
   ['Kinematics','Sleeves move with every high-range joint (hip, knee, shoulder, elbow) and never bind, snag or pinch.'],
   ['Sensors','LiDAR and depth cameras stay clear, behind an open technical weave that light and sound pass through.']]
 };
-const CARD_HS={id:HS.id,isNew:true,kind:'CMF · Soft Goods · Robotics',title:'HESTIA',meta:'A home humanoid in a warm knit skin · Blender · Python',imgs:[['img/hs__hero.webp',1200,1500]]};
+const CARD_HS={id:HS.id,isNew:true,kind:'CMF · Soft Goods · Robotics',title:'HESTIA',meta:'A home humanoid in a warm knit skin · launch set · 3 colourways',imgs:[['img/hs2__reveal.webp',1920,1080]]};
 function hsPage(){
  const I=HS.img;
  const fig=(r,c,cls='')=>`<figure class="${cls}">${im(r,c)}<figcaption>${esc(c)}</figcaption></figure>`;
  return head('product','New')+`<main>
  <section class="band dark"><div class="wrap case"><p class="num">New · Concept Study / CMF · Soft Goods · Robotics</p><h1>HESTIA</h1><p class="meta">Home Ergonomic &amp; Soft Textile Integration Architecture · An industrial biped, dressed for the living room</p>
   <p class="note">Warehouse humanoids are built for logistics: hard shells, exposed actuators, matte black. HESTIA asks what the same class of bipedal robot needs to wear to live with a family, without blocking its airflow, its joints or its sensors.</p>
-  <dl class="facts"><div><dt>Role</dt><dd>Concept, CMF, soft-goods engineering, 3D, rendering</dd></div><div><dt>Tools</dt><dd>Blender Cycles · Python · NumPy · Matplotlib</dd></div><div><dt>Direction</dt><dd>Warm Minimalist</dd></div><div><dt>Platform</dt><dd>Agility-class biped, ~1.75 m (original design)</dd></div></dl></div></section>
- <div class="band dark" style="padding-bottom:56px"><div class="wrap"><div class="hs-hero">
-  <div class="media tr-l">${im(I.hero,'HESTIA standing in a warm studio: oatmeal knit skin, slate-moss rib sleeves at every joint, terracotta grip zones, champagne hands, glowing eyes behind a dark sensor weave','heroimg')}</div>
-  <div class="media bl">${im(I.living,'HESTIA in a sunlit Scandinavian living room, carrying folded towels past a boucle sofa')}</div></div></div></div>
+  <dl class="facts"><div><dt>Role</dt><dd>Concept, CMF, soft-goods engineering, 3D, rendering</dd></div><div><dt>Tools</dt><dd>Blender Cycles · Python · NumPy · Matplotlib</dd></div><div><dt>Direction</dt><dd>Warm Minimalist</dd></div><div><dt>Platform</dt><dd>Home humanoid, ~1.75 m (original design)</dd></div></dl></div></section>
+ <div class="band dark" style="padding-bottom:56px"><div class="wrap"><div class="media tr-l">${im(['img/hs2__reveal.webp',1920,1080],'HESTIA on a black glass charging dock in a dark launch studio, warm and cool rim light, oatmeal knit skin, slate-moss rib joints, terracotta grip zones, black glass visor','heroimg')}</div></div></div>
+ <section class="band dark section" style="padding-top:0"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Launch Set</h2><p class="sh-sub">Visor / Grip / Three colourways</p>
+  <div class="hs-launch"><figure class="hs-l1">${im(['img/hs2__hero2.webp',1600,1000],'HESTIA three-quarter view on the dock')}<figcaption>Three-quarter: humanoid legs with a full thigh, defined knee and calf, every joint in slate-moss rib.</figcaption></figure>
+  <figure>${im(['img/hs2__face.webp',1400,1000],'Close-up of the black glass visor and warm light-strip eyes')}<figcaption>The face: a black glass visor over the sensors, two warm light strips for eyes. Cameras see out; people see someone looking back.</figcaption></figure>
+  <figure>${im(['img/hs2__grip.webp',1200,1000],'Forearm grip zone close-up')}<figcaption>Forearm: terracotta silicone-dot knit where you hold or guide, heathered oatmeal jersey, champagne anodised hand.</figcaption></figure></div>
+  <figure class="el-fig" style="margin-top:24px">${im(['img/hs2__trio.webp',1920,1000],'HESTIA in Sand, Warm and Graphite colourways on three docks')}<figcaption>Sand, Warm and Graphite: same patterns and the same shell, three covers for three kinds of home. Terracotta and champagne stay constant so every HESTIA is read the same way: hold here, lift here.</figcaption></figure>
+  <figure class="el-fig" style="margin-top:24px">${im(['img/hs2__living.webp',1600,1000],'HESTIA in a sunlit living room carrying folded towels')}<figcaption>At home: carrying folded towels past a bouclé sofa.</figcaption></figure>
+ </div></section>
 
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Brief</h2><p class="sh-sub">Approachable / Durable / Three rules it cannot break</p>
   <div class="cb-feature" style="padding-top:24px"><p class="intro" style="margin:0">Make a utility robot feel like furniture and not like machinery, for families, early adopters and assisted-living homes. The skin has to survive pet hair, spills, dust and sun, and every softness decision answers to three engineering rules.</p>
@@ -1546,13 +1554,13 @@ function hsPage(){
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Zone Map</h2><p class="sh-sub">Eight zones / Each one earns its material</p>
   <div class="el-two"><figure class="el-fig">${im(I.zones,'Zone map of HESTIA with eight callouts: sensor weave, rib flex sleeves, terracotta grip, champagne hands, oatmeal knit, vent mesh, birch knit, slate-moss feet')}<figcaption>02 · Flat-colour zone render with callouts.</figcaption></figure>
   <div><p class="intro" style="margin-top:0">Every zone is a rule written into the model: the script assigns material by position and surface direction, so moving a vent or widening a grip changes the render, the zone map and the numbers together.</p>
-  <div class="hs-duo">${fig(I.back,'Back: the flank vents and a champagne carry handle that says where to lift.')}${fig(I.hand,'Hand and forearm: terracotta silicone-dot grip, perforated vent knit above the waist rib.')}</div></div></div>
+  <div class="hs-duo">${fig(['img/hs2__back.webp',1000,1250],'Back: the flank vents and a champagne carry handle that says where to lift.')}${fig(I.hand,'Hand and forearm: terracotta silicone-dot grip, perforated vent knit above the waist rib.')}</div></div></div>
  </div></section>
 
  <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Flex Zones</h2><p class="sh-sub">Unfold first / Stretch second</p>
   <p class="intro">A knee bending 120° asks the outside of a sleeve for 142 mm more fabric. A flat knit would have to stretch 95 %; a rib sleeve with 6–7 mm pleats unfolds that length first and stays under a 30 % strain limit. The same check flagged the shoulder and elbow: the inside of the bend has no room for a pleat stack, so those get an open mesh gusset instead.</p>
   <div class="el-two" style="padding-top:24px"><figure class="el-fig">${im(I.flex,'Flex-zone sheet: rib pleat section, strain versus knee angle for flat and pleated sleeves, and a joint table with pinch margins')}<figcaption>03 · First-pass geometry from the model's joint radii. FEA and a 10,000-cycle stretch test come next.</figcaption></figure>
-  ${fig(I.knee,'Reverse knee in slate-moss rib: the pleats are the stored length.','hs-tall')}</div>
+  ${fig(['img/hs2__knee.webp',1000,1250],'Knee in slate-moss rib: the pleats are the stored length.','hs-tall')}</div>
  </div></section>
 
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Heat + Sound</h2><p class="sh-sub">The skin insulates / So the vents do the work</p>
@@ -1566,7 +1574,7 @@ function hsPage(){
  </div></section>
 
  <section class="band light section"><div class="wrap"><p class="fine">Unofficial concept study by Tigre Studio. The robot is an original design with the proportions of a commercial bipedal humanoid; it is not affiliated with or endorsed by Agility Robotics or any other company.</p></div></section>
- <section class="statement">${im(I.living,'HESTIA at home')}<p>Built for the warehouse, <span class="it">dressed for the living room.</span></p></section>
+ <section class="statement">${im(['img/hs2__living.webp',1600,1000],'HESTIA at home')}<p>Built for the warehouse, <span class="it">dressed for the living room.</span></p></section>
  ${nextLink('product',{id:BC.id,title:'BASECAMP'})}</main>`+foot();
 }
 
