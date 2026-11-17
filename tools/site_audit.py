@@ -1,5 +1,14 @@
 """Site-wide audit: crawls every route at 1440 and 390 px and reports JS errors, failed requests, broken images, horizontal overflow and dead links.
 Usage: python3 -m http.server 8791 & python3 tools/site_audit.py   (writes /tmp/site_audit.json and prints a summary)"""
+import subprocess,time,socket,atexit,os
+def _up():
+    k=socket.socket()
+    try:k.connect(('127.0.0.1',8791));k.close();return
+    except Exception:pass
+    pr=subprocess.Popen(['python3','-m','http.server','8791'],cwd=os.path.dirname(os.path.dirname(os.path.abspath(__file__))),stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
+    atexit.register(pr.kill);time.sleep(1)
+_up()
+
 import json,re,sys
 from playwright.sync_api import sync_playwright
 B='http://localhost:8791/'
