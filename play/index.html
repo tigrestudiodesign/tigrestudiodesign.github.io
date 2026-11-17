@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Henry Ortega · Built for Play</title>
+<meta name="description" content="Henry Ortega's application page for the Creative Play Lead role: games, prototypes and a bricks-first way of thinking.">
+<meta name="robots" content="noindex">
+<style>
+@font-face{font-family:"Inter Display";src:url(../fonts/InterDisplay-Black.woff2) format("woff2");font-weight:900;font-display:swap}
+@font-face{font-family:"Inter Display";src:url(../fonts/InterDisplay-Bold.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"JetBrains Mono";src:url(../fonts/JetBrainsMono-400.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"JetBrains Mono";src:url(../fonts/JetBrainsMono-700.woff2) format("woff2");font-weight:700;font-display:swap}
+:root{
+  --paper:#F4F1EA;--ink:#111214;--mute:#5d5f66;--line:#d9d4c8;
+  --or:#FF5A1F;--red:#D7261E;--yel:#F7B500;--blu:#1E5BD8;--grn:#1F9D55;--wht:#FFFFFF;--blk:#1B1C1F;
+  --card:#ffffff;--grid:rgba(17,18,20,.06);
+  --sans:"Inter Display",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;--mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#121316;--ink:#F2EFE8;--mute:#a3a6ad;--line:#2b2d33;--card:#1a1c20;--grid:rgba(255,255,255,.05)}}
+:root[data-theme="dark"]{--paper:#121316;--ink:#F2EFE8;--mute:#a3a6ad;--line:#2b2d33;--card:#1a1c20;--grid:rgba(255,255,255,.05)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-weight:700;line-height:1.45;-webkit-font-smoothing:antialiased;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+@media(min-width:720px){.wrap{padding:0 32px}}
+.mono{font-family:var(--mono);font-weight:400;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+h1,h2,h3{font-weight:900;text-transform:uppercase;letter-spacing:-.02em;line-height:.95}
+h1{font-size:clamp(44px,9vw,112px)}
+h2{font-size:clamp(32px,5.4vw,64px);margin:8px 0 18px}
+h3{font-size:20px;letter-spacing:-.01em;line-height:1.05}
+p{font-weight:700;color:var(--mute);max-width:62ch}
+p b,p strong{color:var(--ink)}
+section{padding:72px 0;border-top:2px solid var(--ink)}
+.tag{display:inline-flex;gap:8px;align-items:center;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;border:1.5px solid var(--ink);padding:5px 9px;border-radius:999px;background:var(--card)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--or)}
+
+/* top bar */
+.bar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(8px);border-bottom:2px solid var(--ink)}
+.bar .wrap{display:flex;justify-content:space-between;align-items:center;height:52px;gap:12px}
+.bar b{font-weight:900;letter-spacing:.02em}
+.bar nav{display:flex;gap:16px}
+.bar nav a{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;text-decoration:none;color:var(--mute)}
+.bar nav a:hover{color:var(--or)}
+@media(max-width:720px){.bar nav{display:none}}
+
+/* bricks */
+.brick{--c:var(--red);--w:4;position:relative;height:44px;width:calc(var(--w)*34px);background:var(--c);border-radius:4px;
+  box-shadow:inset 0 -6px 0 rgba(0,0,0,.18),inset 0 2px 0 rgba(255,255,255,.25);color:#fff;display:flex;align-items:center;padding:0 12px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;font-weight:700;white-space:nowrap}
+.brick::before{content:"";position:absolute;left:5px;right:5px;top:-9px;height:10px;
+  background:radial-gradient(circle at 12px 5px,var(--c) 0 9px,transparent 9.5px) 0 0/34px 10px repeat-x;filter:brightness(1.06)}
+.brick.y{--c:var(--yel);color:#1b1c1f}.brick.b{--c:var(--blu)}.brick.g{--c:var(--grn)}.brick.o{--c:var(--or)}.brick.k{--c:var(--blk)}.brick.w{--c:#fff;color:#1b1c1f;box-shadow:inset 0 -6px 0 rgba(0,0,0,.08),0 0 0 1.5px #1b1c1f}
+
+/* hero */
+.hero{padding:56px 0 64px;border-top:none}
+.hero-grid{display:grid;gap:40px;align-items:end}
+@media(min-width:900px){.hero-grid{grid-template-columns:1.25fr 1fr}}
+.hero h1 span{color:var(--or)}
+.hero p.lead{font-size:clamp(17px,2vw,21px);margin-top:22px;color:var(--ink);max-width:40ch}
+.hero .meta{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}
+.tower{display:flex;flex-direction:column-reverse;align-items:flex-start;gap:12px;padding:20px 0 0}
+.tower .brick{opacity:0;transform:translateY(-80px);animation:drop .55s cubic-bezier(.3,1.5,.5,1) forwards}
+@keyframes drop{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.tower .brick{animation:none;opacity:1;transform:none}}
+.base{height:14px;width:min(100%,420px);background:var(--grn);border-radius:3px;box-shadow:inset 0 -4px 0 rgba(0,0,0,.2)}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 18px;border:2px solid var(--ink);border-radius:8px;font-weight:900;text-transform:uppercase;font-size:14px;letter-spacing:.02em;text-decoration:none;background:var(--card);box-shadow:4px 4px 0 var(--ink);transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+.btn.hot{background:var(--or);color:#fff;border-color:var(--ink)}
+
+/* brief match */
+.match{display:grid;gap:18px;margin-top:28px}
+@media(min-width:760px){.match{grid-template-columns:1fr 1fr}}
+@media(min-width:1080px){.match{grid-template-columns:1fr 1fr 1fr}}
+.m{background:var(--card);border:2px solid var(--ink);border-radius:10px;padding:20px 18px 18px;position:relative;margin-top:12px}
+.m::before{content:"";position:absolute;left:14px;top:-11px;width:120px;height:11px;
+  background:radial-gradient(circle at 13px 6px,var(--c,var(--or)) 0 8px,transparent 8.5px) 0 0/30px 11px repeat-x}
+.m .k{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--c,var(--or));margin-bottom:8px;font-weight:700}
+.m h3{margin-bottom:10px}
+.m p{font-size:15px}
+.m .proof{margin-top:12px;padding-top:12px;border-top:1.5px dashed var(--line);font-size:14px;color:var(--ink)}
+
+/* builder */
+.builder{display:grid;gap:24px;margin-top:24px}
+@media(min-width:900px){.builder{grid-template-columns:1fr 300px}}
+.plate{--n:16;display:grid;grid-template-columns:repeat(var(--n),1fr);gap:0;background:var(--grn);padding:10px;border-radius:10px;border:2px solid var(--ink);box-shadow:inset 0 -6px 0 rgba(0,0,0,.18);touch-action:manipulation;user-select:none}
+.cell{aspect-ratio:1;display:grid;place-items:center;cursor:pointer;position:relative}
+.cell::after{content:"";width:58%;height:58%;border-radius:50%;background:rgba(255,255,255,.18);box-shadow:inset 0 -2px 0 rgba(0,0,0,.2)}
+.cell.on{background:var(--c);border-radius:3px;box-shadow:inset 0 -3px 0 rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.3)}
+.cell.on::after{background:var(--c);filter:brightness(1.12);box-shadow:0 1px 0 rgba(0,0,0,.25)}
+.cell.pop{animation:pop .22s ease-out}
+@keyframes pop{0%{transform:scale(1.35)}100%{transform:scale(1)}}
+.tools{display:flex;flex-direction:column;gap:14px}
+.sw{display:flex;gap:8px;flex-wrap:wrap}
+.sw button{width:40px;height:40px;border-radius:8px;border:2px solid var(--ink);background:var(--c);cursor:pointer}
+.sw button[aria-pressed="true"]{outline:3px solid var(--or);outline-offset:2px}
+.tools .btn{justify-content:center}
+.count{font-family:var(--mono);font-size:12px;color:var(--mute)}
+
+/* projects */
+.grid{display:grid;gap:18px;margin-top:26px}
+@media(min-width:700px){.grid{grid-template-columns:1fr 1fr}}
+@media(min-width:1060px){.grid.three{grid-template-columns:1fr 1fr 1fr}}
+.card{background:var(--card);border:2px solid var(--ink);border-radius:10px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .15s,box-shadow .15s}
+.card:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--ink)}
+.card .img{aspect-ratio:16/10;background:#222 center/cover no-repeat;border-bottom:2px solid var(--ink);position:relative}
+.card .img .play{position:absolute;right:12px;bottom:12px;background:var(--or);color:#fff;font-family:var(--mono);font-size:11px;padding:6px 10px;border-radius:6px;border:1.5px solid #111;letter-spacing:.06em}
+.card .body{padding:16px 16px 18px}
+.card .body .mono{margin-bottom:6px}
+.card .body p{font-size:14px;margin-top:8px}
+.card.tall .img{aspect-ratio:4/3;background-size:contain;background-color:#ece8df}
+
+/* booklet steps */
+.steps{counter-reset:s;display:grid;gap:16px;margin-top:26px}
+@media(min-width:900px){.steps{grid-template-columns:repeat(3,1fr)}}
+.step{background:var(--card);border:2px solid var(--ink);border-radius:10px;padding:18px;position:relative}
+.step::before{counter-increment:s;content:counter(s);position:absolute;top:-16px;left:16px;width:34px;height:34px;border-radius:50%;background:var(--ink);color:var(--paper);display:grid;place-items:center;font-weight:900}
+.step h3{margin:10px 0 8px}
+.step p{font-size:15px}
+.step .need{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px}
+.step .need span{font-family:var(--mono);font-size:10px;text-transform:uppercase;border:1.5px solid var(--ink);border-radius:4px;padding:3px 6px;letter-spacing:.05em}
+
+/* timeline tower */
+.tl{display:grid;gap:10px;margin-top:22px}
+.tl .row{display:grid;grid-template-columns:110px 1fr;gap:14px;align-items:center}
+@media(max-width:600px){.tl .row{grid-template-columns:1fr}}
+.tl .yr{font-family:var(--mono);font-size:12px;color:var(--mute)}
+.tl .brick{width:auto;max-width:100%;white-space:normal;height:auto;min-height:44px;padding:10px 14px;line-height:1.25;font-size:12px}
+
+.honest{display:grid;gap:18px;margin-top:22px}
+@media(min-width:860px){.honest{grid-template-columns:1fr 1fr}}
+.box{border:2px dashed var(--ink);border-radius:10px;padding:18px;background:var(--card)}
+.box h3{margin-bottom:10px}
+.box ul{padding-left:18px;color:var(--mute);font-weight:700}
+.box li{margin:6px 0}
+
+footer{border-top:2px solid var(--ink);padding:56px 0 80px}
+footer .big{font-size:clamp(34px,6vw,76px);font-weight:900;text-transform:uppercase;line-height:.95;letter-spacing:-.02em}
+footer .big span{color:var(--or)}
+.fine{margin-top:28px;font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.04em;max-width:80ch}
+.theme{background:none;border:1.5px solid var(--ink);border-radius:999px;font-family:var(--mono);font-size:11px;padding:4px 10px;cursor:pointer;color:var(--ink)}
+</style>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+  <b>HENRY ORTEGA <span class="mono" style="margin-left:6px">/ BUILT FOR PLAY</span></b>
+  <nav><a href="#brief">The brief</a><a href="#build">Build</a><a href="#games">Games</a><a href="#making">Making</a><a href="#plan">First 90 days</a><a href="#hello">Say hi</a></nav>
+  <button class="theme" id="theme" aria-label="Toggle theme">◐</button>
+</div></header>
+
+<main>
+<section class="hero"><div class="wrap hero-grid">
+  <div>
+    <div class="meta"><span class="tag"><span class="dot"></span>Application · Creative Play Lead</span><span class="tag">Play Discovery Team · Billund</span></div>
+    <h1>I think<br>through<br><span>making.</span></h1>
+    <p class="lead">Sixteen years turning strange ideas into things you can hold at Nike. Now I invent games, playful hardware and a brick-based way to teach code. This page is my answer to "show us how you think and invent."</p>
+    <div class="cta"><a class="btn hot" href="#build">Play with me ↓</a><a class="btn" href="mailto:ortegatohenry@gmail.com?subject=Creative%20Play%20Lead%20%E2%80%94%20let%27s%20talk">Email Henry</a><a class="btn" href="../downloads/Henry-Ortega-Resume.pdf" target="_blank" rel="noopener">Resume</a></div>
+  </div>
+  <div>
+    <div class="tower" aria-label="A stack of bricks summarising Henry's background">
+      <div class="base"></div>
+      <div class="brick k" style="--w:9;animation-delay:.05s">16 years · Nike innovation</div>
+      <div class="brick b" style="--w:8;animation-delay:.25s">US · Korea · Taiwan teams</div>
+      <div class="brick y" style="--w:7;animation-delay:.45s">6 playable games</div>
+      <div class="brick" style="--w:6;animation-delay:.65s">1 brick-based guide</div>
+      <div class="brick g" style="--w:5;animation-delay:.85s">3 working prototypes</div>
+      <div class="brick o" style="--w:4;animation-delay:1.05s">∞ curiosity</div>
+    </div>
+  </div>
+</div></section>
+
+<section id="brief"><div class="wrap">
+  <p class="mono">01 · Reading the brief brick by brick</p>
+  <h2>Your six asks.<br>My six answers.</h2>
+  <p>Each card is one responsibility from the posting, with the work that answers it.</p>
+  <div class="match">
+    <div class="m" style="--c:var(--red)"><div class="k">Envision breakthrough play</div><h3>Odd ideas, taken seriously</h3><p>At Nike Innovation my job was the idea nobody had made yet: knit you could print on, shoes printed from data, a sensory sole for the mind.</p><div class="proof">Nike Milestone Award (2014) for a pad-printing breakthrough on knit.</div></div>
+    <div class="m" style="--c:var(--blu)"><div class="k">Lead multidisciplinary teams</div><h3>Design, engineering, factory, one table</h3><p>I led and mentored a documentation team across the US, South Korea and Taiwan, and ran hardware programs with mechanical, electrical and software teams.</p><div class="proof">Nike × Hyperice Hyperboot and Air Zoom Hyperslide: I wrote the manuals factories built from.</div></div>
+    <div class="m" style="--c:var(--yel)"><div class="k">Storytelling &amp; transparency</div><h3>Make the complex obvious</h3><p>My career was visual manuals: turning engineering into pictures anyone on a line can follow. Same skill, different audience: a 9-year-old or a VP.</p><div class="proof">Years of visual manuals for products brought to market; a free Grasshopper guide told entirely through bricks.</div></div>
+    <div class="m" style="--c:var(--grn)"><div class="k">Hybrid ideation</div><h3>Hands first, code second</h3><p>I prototype physically and digitally: material trials and tooling in factories, then behaviour prototypes in code and AI pipelines that cut concept time in half.</p><div class="proof">BASECAMP and the parametric keypad: simulated circuits and firmware before any PCB.</div></div>
+    <div class="m" style="--c:var(--or)"><div class="k">Kids' voice</div><h3>Designed for small players</h3><p>Two of my games teach: Spell Climb says a word out loud and rewards spelling with avatar gear; Decimal Voyage turns a math chapter into a sea voyage.</p><div class="proof">Honest note: I haven't run formal co-creation research. I'd love to learn it from your team.</div></div>
+    <div class="m" style="--c:var(--blk)"><div class="k">Playful culture</div><h3>Share everything, in two languages</h3><p>I publish free learning guides and glossaries in English and Spanish, and I build in public on my studio site.</p><div class="proof">Grasshopper, Brick by Brick / Ladrillo a Ladrillo.</div></div>
+  </div>
+</div></section>
+
+<section id="build"><div class="wrap">
+  <p class="mono">02 · Your turn</p>
+  <h2>Build something.<br>Then send it to me.</h2>
+  <p>A tiny baseplate. Pick a colour, tap the studs. Hit <b>Surprise me</b> to see what I built, or <b>Copy link</b> to share yours. It's how I'd start any workshop: hands on the material in the first minute.</p>
+  <div class="builder">
+    <div class="plate" id="plate" role="grid" aria-label="Baseplate. Tap a stud to place a brick."></div>
+    <div class="tools">
+      <div class="sw" id="sw" role="group" aria-label="Brick colour"></div>
+      <div class="count" id="count">0 bricks placed</div>
+      <button class="btn hot" id="surprise">Surprise me</button>
+      <button class="btn" id="share">Copy link to my build</button>
+      <button class="btn" id="clear">Clear plate</button>
+      <p class="mono" id="msg" aria-live="polite"></p>
+    </div>
+  </div>
+</div></section>
+
+<section id="games"><div class="wrap">
+  <p class="mono">03 · Playable proof</p>
+  <h2>Six games.<br>All playable now.</h2>
+  <p>Each one started as a single question about play. I wrote the story, designed the systems and directed the art, building with Claude in HTML5 Canvas. They run in any browser, with keys or touch.</p>
+  <div class="grid three">
+    <a class="card" href="../games/rise.html" target="_blank" rel="noopener"><div class="img" style="background-image:url(../img/gp__boss.webp)"><span class="play">▶ PLAY</span></div><div class="body"><div class="mono">Climbing adventure</div><h3>Rise</h3><p>What if a skeleton was your coach? Train with Bob, shop his Trading Post, climb five zones.</p></div></a>
+    <a class="card" href="../games/biscuits-journey.html" target="_blank" rel="noopener"><div class="img" style="background-image:url(../img/bj__rocks.webp)"><span class="play">▶ PLAY</span></div><div class="body"><div class="mono">Story platformer</div><h3>Biscuit's Journey</h3><p>What if a dog had to read trail blazes to find its human after an avalanche?</p></div></a>
+    <a class="card" href="../games/summit-claws.html" target="_blank" rel="noopener"><div class="img" style="background-image:url(../img/sc__hero.webp)"><span class="play">▶ PLAY</span></div><div class="body"><div class="mono">Climbing action</div><h3>Summit Claws</h3><p>Pick any of eight wild animals, make it yours, climb to a Yeti.</p></div></a>
+    <a class="card" href="../games/ocean-hunter.html" target="_blank" rel="noopener"><div class="img" style="background-image:url(../img/oh__play.webp)"><span class="play">▶ PLAY</span></div><div class="body"><div class="mono">Arcade survival</div><h3>Ocean Hunter</h3><p>Grow from young shark to apex predator, one upgrade at a time.</p></div></a>
+    <a class="card" href="../games/spell-climb.html" target="_blank" rel="noopener"><div class="img" style="background-image:url(../img/spc__hero.webp)"><span class="play">▶ PLAY</span></div><div class="body"><div class="mono">Learning · spelling</div><h3>Spell Climb</h3><p>Hear a word, spell it, earn coins, dress your avatar. The words you miss come back.</p></div></a>
+    <a class="card" href="../games/decimal-voyage.html" target="_blank" rel="noopener"><div class="img" style="background-image:url(../img/dv__map.webp)"><span class="play">▶ PLAY</span></div><div class="body"><div class="mono">Learning · math</div><h3>Decimal Voyage</h3><p>Five islands, one per decimals lesson, ending at a long-division board.</p></div></a>
+  </div>
+</div></section>
+
+<section id="making"><div class="wrap">
+  <p class="mono">04 · Thinking through making</p>
+  <h2>Prototypes over<br>polished slides.</h2>
+  <p>You asked to see how I invent, not just the results. Each of these has the messy middle on its page: block diagrams, Grasshopper graphs, failed states.</p>
+  <div class="grid three">
+    <a class="card" href="../#grasshopper-brick-by-brick"><div class="img" style="background-image:url(../img/gb__hero.webp)"></div><div class="body"><div class="mono">Learning design</div><h3>Grasshopper, Brick by Brick</h3><p>Visual programming explained with bricks: a baseplate is the canvas, studs and tubes are wires, a 2×4 is a component.</p></div></a>
+    <a class="card" href="../#basecamp"><div class="img" style="background-image:url(../img/bc2__hero.webp)"></div><div class="body"><div class="mono">Hardware · behaviour prototype</div><h3>BASECAMP</h3><p>A repairable emergency radio-lantern: architecture, simulated circuit, firmware, then form.</p></div></a>
+    <a class="card tall" href="../#sy-5000"><div class="img" style="background-image:url(../img/sy__b.webp)"></div><div class="body"><div class="mono">Interaction · audio</div><h3>TIGRE SY-5000</h3><p>A 5,000-sound synthesizer for iPhone, with knobs that feel like hardware.</p></div></a>
+    <a class="card" href="../#parametric-keypad"><div class="img" style="background-image:url(../img/kp__render.webp)"></div><div class="body"><div class="mono">Parametric · electronics</div><h3>Parametric Keypad</h3><p>A Voronoi-textured macro pad generated in Grasshopper, with working key logic.</p></div></a>
+    <a class="card" href="../#kinetic-hexagon-facade"><div class="img" style="background-image:url(../img/kh__01_hero.webp)"></div><div class="body"><div class="mono">Kinetic · Grasshopper</div><h3>Kinetic Hexagon Facade</h3><p>An origami wall whose flaps fold toward the sun. There's a live demo on the page.</p></div></a>
+    <a class="card tall" href="../#hestia"><div class="img" style="background-image:url(../img/hs__hero.webp)"></div><div class="body"><div class="mono">Robot soft goods · CMF</div><h3>HESTIA</h3><p>What would a home robot wear so a family wants to hug it? A textile skin concept.</p></div></a>
+  </div>
+</div></section>
+
+<section id="nike"><div class="wrap">
+  <p class="mono">05 · The foundation</p>
+  <h2>Sixteen years,<br>stacked.</h2>
+  <div class="tl">
+    <div class="row"><span class="yr">2026 →</span><div class="brick o">Tigre Studio · founder. Games, prototypes, guides, AI pipelines</div></div>
+    <div class="row"><span class="yr">2024–2026</span><div class="brick k">Nike Future Product &amp; Innovation Systems. 3D-printed and sensory footwear tech packs, high-risk platforms</div></div>
+    <div class="row"><span class="yr">2019–2024</span><div class="brick b">Product Innovation Manager. Concept to launch, prototyping sprints, Hyperice powered products</div></div>
+    <div class="row"><span class="yr">2017–2019</span><div class="brick g">Nike NXT. Built a documentation system and the US–Korea–Taiwan team behind it</div></div>
+    <div class="row"><span class="yr">2014–2017</span><div class="brick y">Taichung, Taiwan. Lived inside the factories, scaled four new platforms</div></div>
+    <div class="row"><span class="yr">2010–2014</span><div class="brick">Nike Air &amp; Nike iD. Invented making processes; Milestone Award 2014</div></div>
+  </div>
+</div></section>
+
+<section id="plan"><div class="wrap">
+  <p class="mono">06 · Instruction booklet</p>
+  <h2>My first 90 days<br>in the Lab.</h2>
+  <p>A starting build, to be rebuilt the moment I meet the team and the kids.</p>
+  <div class="steps">
+    <div class="step"><h3>Sort the pieces</h3><p>Days 1–30. Sit in on play sessions, learn how the Lab co-creates with children, and map the team's projects, tools and taste. Run one "make it in an afternoon" jam to see how everyone thinks.</p><div class="need"><span>Listen</span><span>Play</span><span>Map</span></div></div>
+    <div class="step"><h3>Build the base</h3><p>Days 31–60. Set up a rapid-prototype rhythm: weekly physical + digital builds, AI-assisted ideation where it speeds things up, and simple one-page stories that share progress early.</p><div class="need"><span>Prototype</span><span>Story</span><span>Share</span></div></div>
+    <div class="step"><h3>Stack something new</h3><p>Days 61–90. Take one strange question to a tangible concept tested with kids, and document the method so the next team can build on it, the way I'd write a manual.</p><div class="need"><span>Test</span><span>Document</span><span>Repeat</span></div></div>
+  </div>
+</div></section>
+
+<section id="honest"><div class="wrap">
+  <p class="mono">07 · The honest bricks</p>
+  <h2>What I bring.<br>What I'll learn.</h2>
+  <div class="honest">
+    <div class="box"><h3>Bring</h3><ul><li>Hands-on invention, from factory floor to browser</li><li>Leading creative and technical people across cultures</li><li>Visual storytelling that makes complex ideas simple</li><li>Fluency in 3D, parametric design and generative AI</li><li>English and Spanish</li></ul></div>
+    <div class="box"><h3>Learn</h3><ul><li>I haven't worked inside a toy company yet</li><li>Formal co-creation research with children</li><li>Life in Billund. I'm ready to relocate</li></ul></div>
+  </div>
+</div></section>
+</main>
+
+<footer id="hello"><div class="wrap">
+  <p class="mono">08 · Click</p>
+  <div class="big">Let's build the<br>next way to <span>play.</span></div>
+  <div class="cta"><a class="btn hot" href="mailto:ortegatohenry@gmail.com?subject=Creative%20Play%20Lead%20%E2%80%94%20let%27s%20talk">ortegatohenry@gmail.com</a><a class="btn" href="tel:+19712170821">+1 971 217 0821</a><a class="btn" href="https://www.linkedin.com/in/henryortega/" target="_blank" rel="noopener">LinkedIn</a><a class="btn" href="../">Full portfolio</a></div>
+  <p class="fine">Made by Henry Ortega · Tigre Studio, as part of an application to the Creative Play Lead role. Independent page: not affiliated with or endorsed by the LEGO Group. LEGO is a trademark of the LEGO Group. All bricks here are drawn generically in CSS.</p>
+</div></footer>
+
+<script>
+(function(){
+  // theme toggle
+  var root=document.documentElement,tb=document.getElementById('theme');
+  try{var t=localStorage.getItem('play-theme');if(t)root.setAttribute('data-theme',t)}catch(e){}
+  tb.addEventListener('click',function(){var dark=root.getAttribute('data-theme')==='dark'||(!root.getAttribute('data-theme')&&matchMedia('(prefers-color-scheme: dark)').matches);var n=dark?'light':'dark';root.setAttribute('data-theme',n);try{localStorage.setItem('play-theme',n)}catch(e){}});
+
+  // baseplate builder
+  var COLS=16,ROWS=10,C=['#D7261E','#F7B500','#1E5BD8','#FFFFFF','#1B1C1F','#FF5A1F'],cur=0;
+  var plate=document.getElementById('plate'),sw=document.getElementById('sw'),count=document.getElementById('count'),msg=document.getElementById('msg');
+  var state=new Array(COLS*ROWS).fill(-1);
+  C.forEach(function(c,i){var b=document.createElement('button');b.style.setProperty('--c',c);b.setAttribute('aria-label','Colour '+(i+1));b.setAttribute('aria-pressed',i===0);b.onclick=function(){cur=i;[].forEach.call(sw.children,function(x,j){x.setAttribute('aria-pressed',j===i)})};sw.appendChild(b)});
+  var cells=[];
+  for(var i=0;i<COLS*ROWS;i++){(function(i){var d=document.createElement('div');d.className='cell';d.setAttribute('role','gridcell');d.tabIndex=0;d.onclick=function(){toggle(i)};d.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle(i)}};plate.appendChild(d);cells.push(d)})(i)}
+  function paint(i,pop){var d=cells[i],v=state[i];if(v<0){d.classList.remove('on');d.style.removeProperty('--c')}else{d.classList.add('on');d.style.setProperty('--c',C[v]);if(pop){d.classList.remove('pop');void d.offsetWidth;d.classList.add('pop')}}}
+  function upd(){var n=state.filter(function(v){return v>=0}).length;count.textContent=n+(n===1?' brick':' bricks')+' placed'}
+  function toggle(i){state[i]=state[i]===cur?-1:cur;paint(i,true);upd()}
+  // "HI" made of bricks, plus a little sun
+  var HI=["................","..##..##.###....","..##..##..#.....","..######..#...oo","..##..##..#...oo","..##..##.###....","................","yyyyyyyyyyyyyyyy","bbbbbbbbbbbbbbbb","................"];
+  var MAP={'#':0,'o':5,'y':1,'b':2};
+  document.getElementById('surprise').onclick=function(){state.fill(-1);cells.forEach(function(_,i){paint(i)});var k=0;HI.forEach(function(r,y){r.split('').forEach(function(ch,x){if(MAP[ch]!=null){var i=y*COLS+x;setTimeout(function(){state[i]=MAP[ch];paint(i,true);upd()},k++*14)}})});msg.textContent='Hi from Beaverton.'};
+  document.getElementById('clear').onclick=function(){state.fill(-1);cells.forEach(function(_,i){paint(i)});upd();msg.textContent=''};
+  function enc(){return state.map(function(v){return v<0?'.':String(v)}).join('')}
+  document.getElementById('share').onclick=function(){var u=location.origin+location.pathname+'#b='+enc();try{history.replaceState(null,'','#b='+enc())}catch(e){}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(u).then(function(){msg.textContent='Link copied. Send it to ortegatohenry@gmail.com'},function(){msg.textContent='Copy this: '+u})}else{msg.textContent='Copy this: '+u}};
+  var m=location.hash.match(/#b=([.0-5]{160})/);if(m){m[1].split('').forEach(function(ch,i){state[i]=ch==='.'?-1:+ch;paint(i)});upd();msg.textContent='Someone built this for you.'}
+})();
+</script>
+</body>
+</html>
