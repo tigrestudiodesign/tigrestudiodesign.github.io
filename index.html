@@ -1121,6 +1121,10 @@ a:focus-visible{outline-color:var(--or)}
 .tz-spec{width:100%;border-collapse:collapse;margin-top:28px;font-size:15px}.tz-spec th{font:11px var(--mono);text-transform:uppercase;letter-spacing:.06em;text-align:left;padding:8px;border-bottom:2px solid currentColor}.tz-spec td{padding:10px 8px;border-bottom:1px solid rgba(0,0,0,.14);vertical-align:top}.tz-spec td:first-child{font-weight:700}
 @media (max-width:900px){.tz-ref{grid-template-columns:1fr 1fr}.tz-pat,.tz-ed{grid-template-columns:1fr}.tz-spec{font-size:13px}}
 @media (max-width:560px){.tz-ref{grid-template-columns:1fr}}
+/* v55: nesting tables CMF */
+.nt-mac{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:24px}.nt-mac figure{margin:0;grid-column:span 2}.nt-mac figure:nth-child(4),.nt-mac figure:nth-child(5){grid-column:span 3}.nt-mac img{display:block;width:100%;height:auto}.nt-mac figcaption{font:italic 15px var(--serif);color:#aaa;margin-top:8px}.nt-mac b{display:block;font:600 11px var(--mono,monospace);letter-spacing:.12em;color:#FF5A1F;margin-bottom:2px;font-style:normal}
+.nt-ways3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}.nt-ways3 figure{margin:0}.nt-ways3 img{display:block;width:100%;height:auto}
+@media (max-width:900px){.nt-mac{grid-template-columns:1fr}.nt-mac figure,.nt-mac figure:nth-child(4),.nt-mac figure:nth-child(5){grid-column:auto}.nt-ways3{grid-template-columns:1fr}}
 </style>
 
 <div id="app"></div>
@@ -1312,7 +1316,7 @@ const NEWRH=[
   note:'Three side tables that lock together into one block. Each has its own color story and its own leg material: glazed tile, fluted lacquer, recycled plastic, terrazzo. The set was modeled in Rhino, then materialized as a full CMF proposal, with every surface given a real material, finish and color reference.',
   facts:[['Pieces','3 tables, one block in plan'],['Materials','7 families, 13 finishes'],['Colorways','Pastel, Stone, Night'],['Software','Rhino 9 · Blender Cycles']],
   tags:['Furniture','CMF','Color blocking','Materialization'],
-  imgs:[['img/nt__hero.webp',2000,1240,'CMF proposal: linoleum tops, glazed tile, fluted lacquer, recycled HDPE and terrazzo'],['img/tb__hero.webp',1600,996,'The Rhino model: color blocks before materials'],['img/tb__4view.webp',1800,769,'Plan, perspective and elevations']]}
+  imgs:[['img/nt2__hero.webp',2000,1240,'Pastel set in window light: linoleum tops on birch ply, handmade-look glazed tile, recycled HDPE, terrazzo and lacquer'],['img/nt2__apart.webp',1800,1116,'Pulled apart: three tables, each with its own leg material'],['img/tb__hero.webp',1600,996,'The Rhino model: color blocks before materials'],['img/tb__4view.webp',1800,769,'Plan, perspective and elevations']]}
 ];
 const RH = [...NEWRH, ...D.rh.filter(r=>r.imgs.length)].map(r=>({...r,id:r.id||slug(r.title)}));
 const ALL3D = [...NEW,...S3];
@@ -2505,33 +2509,32 @@ function kpCMF(){
 
 /* ---------- Nesting Tables CMF ---------- */
 const NT_SPEC=[
- ['Lilac top','Furniture linoleum on 30 mm birch ply','Matte','#D6D1DC'],
- ['Sage top','Furniture linoleum on 30 mm birch ply','Matte','#C3DCC2'],
- ['Yellow top','Furniture linoleum on 30 mm birch ply','Matte','#EFCF4E'],
+ ['Lilac top','Furniture linoleum on 30 mm birch ply','Matte, marbled linseed','#D6D1DC'],
+ ['Sage top','Furniture linoleum on 30 mm birch ply','Matte, marbled linseed','#C3DCC2'],
+ ['Yellow top','Furniture linoleum on 30 mm birch ply','Matte, marbled linseed','#EFCF4E'],
  ['Top inlays','Linoleum, CNC-cut, set flush','Matte','#1F3A8A'],
- ['Top edges','Exposed birch ply layers','Clear oil','#D9C49C'],
- ['Tiled leg','Glazed ceramic tile, 7 × 6 cm, grey grout','Gloss glaze','#DCD77C'],
- ['Orange leg','Recycled HDPE sheet, cream fleck','Satin','#D9822B'],
- ['Blue leg','Recycled HDPE, radiused end','Satin','#2A5D8F'],
+ ['Top edges','Exposed 1.5 mm birch veneers','Clear oil','#D9C49C'],
+ ['Tiled leg','Glazed ceramic tile, 7 × 6 cm, sanded grout','Gloss glaze, tile-to-tile tone shift, pooled edges','#DCD77C'],
+ ['Orange leg','Recycled HDPE sheet, three-tone angular fleck','Satin, swirled','#D9822B'],
+ ['Blue leg','Recycled HDPE, radiused end, three-tone fleck','Satin, swirled','#2A5D8F'],
  ['Navy edge strip','Lacquered MDF','Satin lacquer','#1F3A8A'],
  ['Red leg','Lacquered MDF','High-gloss lacquer','#C23A2E'],
  ['Fluted leg','Fluted MDF, 11 flutes','Satin lacquer','#D9A7AA'],
- ['Cream post','Cast terrazzo, green aggregate','Honed, sealed','#ECE2C2'],
+ ['Cream post','Cast terrazzo: green, marble, terracotta and grey aggregate','Honed, sealed','#ECE2C2'],
  ['Green stripe','Lacquered MDF','Gloss lacquer','#2F8A5E']];
-const NT_WAYS=[['Pastel','img/nt__hero.webp','The launch set: soft tops, saturated legs',['#D6D1DC','#C3DCC2','#EFCF4E','#2A5D8F','#C23A2E','#D9A7AA']],
- ['Stone','img/nt__stone.webp','One tonal family: travertine, putty and graphite',['#D8D4CC','#C9C4B8','#E4DDCF','#5B5650','#3A3A38','#CFC7BA']],
- ['Night','img/nt__night.webp','Dark tops with brass and vermilion accents',['#2C2A36','#24302C','#3A3326','#C9A54A','#C4532E','#4A3236']]];
+const NT_WAYS=[['Pastel','img/nt2__hero.webp','The launch set: soft tops, saturated legs',['#D6D1DC','#C3DCC2','#EFCF4E','#2A5D8F','#C23A2E','#D9A7AA']],
+ ['Stone','img/nt2__stone.webp','One tonal family: travertine, putty and graphite',['#D8D4CC','#C9C4B8','#E4DDCF','#5B5650','#3A3A38','#CFC7BA']],
+ ['Night','img/nt2__night.webp','Dark tops with brass and vermilion accents',['#2C2A36','#24302C','#3A3326','#C9A54A','#C4532E','#4A3236']]];
 function ntCMF(){
- const macro=['Glazed tile: gloss glaze over a matte grout line','Fluted MDF in satin lacquer: light runs down every flute','Linoleum top on birch ply: the ply layers stay visible at the edge','Recycled HDPE: a cream fleck through the blue, radiused end'];
- return `<section class="band light section nt"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Material Library</h2><p class="sh-sub">Thirteen finishes, seven material families</p>
-  <div class="nt-lib"><figure>${im(['img/nt__chips.webp',1800,1350],'Material chips')}<figcaption>Material chips, rendered from the same shaders as the tables</figcaption></figure>
+ const macro=[['img/nt2__m_tile.webp','Glazed tile: every tile a slightly different tone, glaze pooling at the edges'],['img/nt2__m_terr.webp','Terrazzo: four aggregates in two sizes, honed and sealed'],['img/nt2__m_blue.webp','Recycled HDPE: angular three-tone fleck through a swirled blue'],['img/nt2__m_top.webp','Linoleum on birch ply: marbled top, 1.5 mm veneers at the edge'],['img/nt2__m_flute.webp','Fluted MDF in satin lacquer: light runs down every flute']];
+ return `<section class="band light section nt"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Material Library</h2><p class="sh-sub">Thirteen finishes, seven material families, staged in window light</p>
+  <div class="nt-lib"><figure>${im(['img/nt2__chips.webp',1600,1120],'Material chips')}<figcaption>Material chips on limewash plaster, rendered from the same shaders as the tables</figcaption></figure>
   <table class="nt-spec"><thead><tr><th>Part</th><th>Material</th><th>Finish</th><th>Color</th></tr></thead><tbody>${NT_SPEC.map(([a,b,c,d])=>`<tr><td>${a}</td><td>${b}</td><td>${c}</td><td><i style="background:${d}"></i>${d}</td></tr>`).join('')}</tbody></table></div>
  </div></section>
  <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Close-Ups</h2><p class="sh-sub">How each finish reads up close</p>
-  <figure class="nt-strip">${im(['img/nt__macros.webp',3672,900],'Material close-ups')}</figure>
-  <div class="nt-cap4">${macro.map((c,i)=>`<p><b>0${i+1}</b>${c}</p>`).join('')}</div></div></section>
+  <div class="nt-mac">${macro.map(([f,c],i)=>`<figure>${im([f,1100,880],c)}<figcaption><b>0${i+1}</b>${c}</figcaption></figure>`).join('')}</div></div></section>
  <section class="band alt section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Colorways</h2><p class="sh-sub">One file, three color and material stories</p>
-  <figure class="nt-strip">${im(['img/nt__ways.webp',3648,744],'Pastel, Stone and Night colorways')}</figure>
+  <div class="nt-ways3">${NT_WAYS.map(([n,f])=>`<figure>${im([f,1600,992],n+' colorway')}</figure>`).join('')}</div>
   <div class="nt-ways">${NT_WAYS.map(([n,s,d,sw])=>`<div><b>${n.toUpperCase()}</b><span>${d}</span><em>${sw.map(c=>`<i style="background:${c}"></i>`).join('')}</em></div>`).join('')}</div></div></section>`;
 }
 const CS={
@@ -2610,7 +2613,7 @@ const CS={
   st:['261 objects that read as','one continuous form','.']},
  'nesting-tables':{sub:'Color, material and finish as identity',
   b:['Three Tables, One Block','Design three side tables that lock together into a single block in plan, yet read as three separate pieces.'],
-  a:['Color First, Then Real Materials','Each table got its own color story in Rhino. Then every surface was given a real material: furniture linoleum tops on birch ply, glazed tile, fluted lacquered MDF, speckled recycled HDPE and cast terrazzo, rendered in Blender.'],
+  a:['Color First, Then Real Materials','Each table got its own color story in Rhino. Then every surface got a material built the way the real one is made: marbled linoleum over 1.5 mm birch veneers, tile glaze that shifts tone tile to tile, recycled HDPE with angular three-tone fleck, four-aggregate terrazzo, satin and gloss lacquer. Staged like a catalog shoot: limewash plaster room, hard window light.'],
   r:['A CMF Proposal, Three Colorways','Thirteen finishes across seven material families, each with a color reference and finish spec, plus two alternate colorways from the same file. Together they make one table; apart, each is clearly its own.'],
   extra:ntCMF,
   show:['This is CMF work: deciding what each color, texture and finish has to communicate.','It is the same decision-making as a footwear colorway or material callout, applied to furniture.'],
