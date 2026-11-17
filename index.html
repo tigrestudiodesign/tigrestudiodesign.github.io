@@ -396,6 +396,12 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .gm-play{display:grid;grid-template-columns:minmax(0,520px) minmax(0,1fr);gap:48px;align-items:start;padding-top:32px}
 .gm-frame{display:block;width:100%;height:min(86vh,860px);min-height:560px;border:0;background:#1b1530;border-top-right-radius:24px}
 .gm-play h3{font-weight:700;font-size:24px;margin:0 0 12px}
+.gmp h3{text-transform:uppercase;letter-spacing:.01em}
+.gm-rig{display:block;margin-top:32px;border:1px solid rgba(242,238,230,.14);background:#0B0B0C;line-height:0}
+.gm-rig img{width:100%;height:auto}
+.gm-rig:focus-visible{outline:2px solid #FF5A1F;outline-offset:4px}
+.gm-rig-note{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.02em;color:var(--muted-d,#9a9a9a);margin-top:14px}
+.gm-rig-note a{color:#FF5A1F;text-transform:uppercase;letter-spacing:.06em}
 .gm-play p{margin:0 0 14px;max-width:46ch}
 .gm-keys{list-style:none;margin:0 0 24px;padding:0;border-top:2px solid var(--rule)}
 .gm-keys li{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid var(--grid);padding:9px 0}
@@ -3221,6 +3227,7 @@ const GAMES=[
   sub:'One character / Eight animals / One mountain',
   bar:[['Any Animal, One Climb','A simple game about a character climbing a mountain and fighting foes along the way, where the player can be any wild animal they like.'],['One Rig, Swappable Parts','Every animal is drawn in code from the same body, legs and head, with swappable ears, snout, tail and markings. Changing the animal swaps parts; changing the fur recolors them. It works like a parametric model with a few inputs.'],['Each Animal Plays Differently','Each animal has its own speed, jump, claw power and health, plus one perk, so choosing an animal is a gameplay choice as well as a look.']],
   shotsSub:'Character select / Rock face / Ice / Summit',
+  rig:{img:['img/sc__rig.webp',2400,2790,'Spec sheet: the eight animals drawn by the same rig with their part settings and stats, then a sweep that changes one input at a time: ears, tail, snout, markings, gear, size and twelve furs'],sub:'Five part slots / Twelve furs / Four gear / One function',note:'Drawn live by the game\'s own drawAnimal() and captured from the canvas. Script: tools/summit_claws_rig.js',full:'https://tigrestudiodesign.github.io/img/sc__rig.webp'},
   shots:[['img/sc__menu.webp',640,1068,'Character select: animal, fur, markings and gear'],['img/sc__rock.webp',640,1068,'Rock face: a tiger swipes at a charging ram'],['img/sc__snow.webp',640,1068,'Ice: a red fox in a scarf near the top'],['img/sc__boss.webp',640,1068,'Summit: a snow leopard faces the Yeti']],
   lists:[['Eight Animals','Every animal has one perk',[['Pack sprint','Gray Wolf','Fastest runner on the mountain'],['Thick hide','Grizzly','Hardest hits, most health'],['Quick claws','Red Fox','Attacks recover twice as fast'],['Sure-footed','Mountain Goat','Double jump'],['Ghost of the peaks','Snow Leopard','Double jump, highest leap'],['Wide swipe','Tiger','Longest claw reach'],['Pounce','Lynx','Landing on a foe hits for double'],['Stubborn','Honey Badger','Fully heals at every camp']]],
    ['The Mountain','Five stages / Three camps / One boss',[['1,350 m','Forest trail','Snakes on grassy ledges'],['Camp I','Rock face','Rams that lower their heads and charge'],['Camp II','Snow line','Hawks circling between ledges'],['Camp III','Ice','Slippery footing on every ledge'],['4,810 m','Summit','The Yeti: snowballs and ground slams']],'Ledges are laid out fresh each climb, so no two runs are the same. A side rail shows how far you are from the next camp, and every camp flag turns gold once you reach it.']],
@@ -3344,7 +3351,7 @@ function gamePage(i){
    <p class="muted">${esc(g.tip)}</p>
    <div class="ctas"><button type="button" class="btn inv gm-fs" id="gm-fs">Play full screen</button></div></div>`;
  const frame=`<div class="gm-box" id="gm-box"><iframe class="gm-frame${tall?'':' wide'}" id="gm-frame" data-game="${g.play}" title="${esc(g.title)}, playable game" allow="autoplay; fullscreen"></iframe><p class="gm-msg" id="gm-msg">Loading ${esc(g.title)}…</p><button type="button" class="gm-x" id="gm-x">Exit full screen</button></div>`;
- return head('top','GM')+`<main>
+ return head('top','GM')+`<main class="gmp">
  <section class="band dark"><div class="wrap case"><p class="num">Personal Project / Browser Game</p><h1>${esc(g.title)}</h1><p class="meta">${esc(g.meta)}</p>
   <p class="note">${esc(g.note)}</p>
   <dl class="facts">${g.facts.map(([t,d])=>`<div><dt>${t}</dt><dd>${esc(d)}</dd></div>`).join('')}</dl></div></section>
@@ -3356,6 +3363,11 @@ function gamePage(i){
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Brief, Approach, Result</h2><p class="sh-sub">${esc(g.sub)}</p>
   <div class="pra">${['Brief','Approach','Result'].map((k,j)=>`<div><small>${k}</small><h3>${esc(g.bar[j][0])}</h3><p>${esc(g.bar[j][1])}</p></div>`).join('')}</div>
  </div></section>
+
+ ${g.rig?`<section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Rig</h2><p class="sh-sub">${esc(g.rig.sub)}</p>
+  <a class="gm-rig" href="${g.rig.full}" target="_blank" rel="noopener" aria-label="Open the rig spec sheet full size">${im(g.rig.img,g.rig.img[3])}</a>
+  <p class="gm-rig-note"><span>${esc(g.rig.note)}</span><a href="${g.rig.full}" target="_blank" rel="noopener">Open full size ↗</a></p>
+ </div></section>`:''}
 
  <section class="band alt section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Screens</h2><p class="sh-sub">${esc(g.shotsSub)}</p>
   <div class="${tall?'gm-shots':'duo gm-duo'}">${g.shots.map(shot).join('')}</div>

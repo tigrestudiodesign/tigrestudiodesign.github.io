@@ -114,5 +114,17 @@
   "date": "2026-11-16",
   "title": "SY-5000 hardware proof (Tinkercad)",
   "detail": "Arduino Uno version of the SY-5000 with wiring diagram, electrical check and downloadable sketch; fixed Six Engines grid overflowing on phones."
+ },
+ {
+  "date": "2026-11-17",
+  "project": "summit-claws",
+  "change": "New THE RIG section: a full-width spec sheet drawn by the game's own drawAnimal() (eight animals with part settings, fur and normalised stats, plus a one-input-at-a-time sweep of ears, tail, snout, markings, gear, size and 12 furs), tap to open full size. Restored the missing Ice screen (img/sc__snow.webp had been deleted, leaving a blank tile) by capturing a red fox in a scarf on the ice band from live gameplay. Game-page sub-headers now in caps.",
+  "files": [
+   "index.html",
+   "img/sc__rig.webp",
+   "img/sc__snow.webp",
+   "tools/summit_claws_rig.js",
+   "data/improve-log.json"
+  ]
  }
 ]
