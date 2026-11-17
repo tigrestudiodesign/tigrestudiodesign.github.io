@@ -2661,9 +2661,9 @@ const CS={
     <text x="1160" y="160" text-anchor="end" fill="#FF5A1F">SADDLES</text><text x="40" y="160">NUT</text></svg>`;
    const rows=[1,2,3,5,7,12,17,21].map(n=>`<tr><td>${String(n).padStart(2,'0')}</td><td>${d(n).toFixed(2)}</td><td>${(L-M[n-1]).toFixed(2)}</td><td>${Math.abs(d(n)-(L-M[n-1])).toFixed(2)}</td></tr>`).join('');
    const sad=[['E6',11.2],['A5',9.9],['D4',8.6],['G3',10.6],['B2',8.9],['E1',7.0]];
-   const fin=[['sunburst','3-Tone Burst','#B4380B','Graded burst, tinted by distance from the body edge'],['orange','Tigre Orange','#E8400A','Metallic orange, parchment guard'],['ice','Ice Blue','#9CC9D6','Metallic pale blue, parchment guard'],['ink','Ink Black','#101012','Gloss black, white guard']];
+   const fin=[['img/eg__front_sunburst.webp','3-Tone Burst','#B4380B','Graded burst, tinted by distance from the body edge'],['img/eg__front_orange.webp','Tigre Orange','#E8400A','Metallic orange, parchment guard'],['img/eg__front_ice.webp','Ice Blue','#9CC9D6','Metallic pale blue, parchment guard'],['img/eg__front_ink.webp','Ink Black','#101012','Gloss black, white guard']];
    return `<section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Finish Range</h2><p class="sh-sub">Four finishes / one file / material swaps only</p>
-    <div class="eg-fin">${fin.map(([k,n,c,t])=>`<figure>${im(['img/eg__front_'+k+'.webp',1800,810],n+' finish, front elevation')}<figcaption><span class="sw" style="background:${c}"></span><b>${n}</b> ${t}</figcaption></figure>`).join('')}</div>
+    <div class="eg-fin">${fin.map(([k,n,c,t])=>`<figure>${im([k,1800,810],n+' finish, front elevation')}<figcaption><span class="sw" style="background:${c}"></span><b>${n}</b> ${t}</figcaption></figure>`).join('')}</div>
    </div></section>
    <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Math Of The Neck</h2><p class="sh-sub">Every fret placed by equal temperament, then checked against the model</p>
     ${svg}
