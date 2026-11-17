@@ -27,7 +27,13 @@ for pre,helper in (('gb','GBI'),('hs','HSI')):
 # Kinetic Hexagon page builds paths as R('kh__name') -> 'img/kh__name.webp': embed the ones the artifact lacks
 khm=[f for f in sorted(glob.glob('img/kh__*.webp')) if f not in have]
 if khm:
-    m={os.path.basename(f)[:-5]:'data:image/webp;base64,'+base64.b64encode(open(f,'rb').read()).decode() for f in khm}
+    from PIL import Image
+    import io
+    def small(f):  # artifact-only copy: the index.html cap is 16 MiB, so embed lighter versions
+        im=Image.open(f).convert('RGB');mx=1400 if 'timelapse' in f else 1100 if 'gh_steps' in f else 1200
+        if im.width>mx: im=im.resize((mx,round(im.height*mx/im.width)),Image.LANCZOS)
+        bb=io.BytesIO();im.save(bb,'WEBP',quality=68,method=6);return bb.getvalue()
+    m={os.path.basename(f)[:-5]:'data:image/webp;base64,'+base64.b64encode(small(f)).decode() for f in khm}
     a="const R=(f,w=1920,h=1080)=>['img/'+f+'.webp',w,h];"
     assert a in s,'KH R()'
     s=s.replace(a,"const KHM=%s;const R=(f,w=1920,h=1080)=>[KHM[f]||'img/'+f+'.webp',w,h];"%json.dumps(m),1); n+=len(m); sz+=sum(map(len,m.values()))
