@@ -1154,6 +1154,9 @@ a:focus-visible{outline-color:var(--or)}
 .sy-trio{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.sy-ph{margin:0}.sy-ph img{display:block;width:100%;height:auto;border-radius:22px;box-shadow:0 0 0 8px #1b1c1e,0 0 0 9px #3a3b3e}.sy-ph figcaption{font-family:var(--serif);font-style:italic;color:var(--muted);margin-top:18px}
 .card .media img[src*="sy__a"]{object-fit:cover;object-position:top}
 @media (max-width:900px){.sy-trio{grid-template-columns:1fr}}
+.sy-eng{grid-template-columns:repeat(3,1fr)}@media (max-width:900px){.sy-eng{grid-template-columns:1fr}}
+.sy-wire img{width:100%!important;height:auto!important;aspect-ratio:1600/1120;object-fit:contain}
+.sy-wire img{width:100%!important;height:auto!important;aspect-ratio:1600/1120;object-fit:contain}
 </style>
 
 <div id="app"></div>
@@ -1474,12 +1477,19 @@ function syPage(){
   <div><small>Result</small><h3>A Real Instrument</h3><p>Multitouch keys with glide, a drum mode, a 16-step loop player, drive, chorus, tempo-synced delay and reverb, and a live oscilloscope. It runs offline and installs to the Home Screen.</p></div></div>
  </div></section>
  <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Six Engines</h2><p class="sh-sub">How the 5,000 sounds are made</p>
-  <div class="cols" style="grid-template-columns:repeat(3,1fr)">${eng.map(([h,t])=>`<div><h3>${h}</h3><p>${t}</p></div>`).join('')}</div></div></section>
+  <div class="cols sy-eng">${eng.map(([h,t])=>`<div><h3>${h}</h3><p>${t}</p></div>`).join('')}</div></div></section>
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Interface</h2><p class="sh-sub">Grasshopper logic / pocket-hardware touch</p>
   <div class="cols"><div><h3>Patch As A Graph</h3><p>The screen shows the patch as Grasshopper components wired in order (OSC → FLT → AMP → FX), each showing its live value, with a scope underneath.</p></div>
   <div><h3>Four Encoders</h3><p>Blue, green, white and orange knurled knobs, one page per stage. The page changes with the engine: an FM patch shows ratio and index, a drum kit shows tune and decay.</p></div>
   <div><h3>Number Sliders</h3><p>Secondary controls are Grasshopper number sliders: grey capsule, label left, value right, drag anywhere on the track.</p></div></div>
   <p class="fine" style="margin-top:24px">On iPhone: open it in Safari, tap Share → Add to Home Screen, and turn the ringer switch on or plug in headphones. All sounds are synthesized; no samples or loops are taken from other instruments or packs.</p>
+ </div></section>
+ <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">HARDWARE PROOF · TINKERCAD</h2><p class="sh-sub">The same instrument on an Arduino Uno, checked before any parts are bought</p>
+  <figure class="sy-wire" style="margin:0">${im(['img/sy__wiring.webp',1600,1120],'SY-5000 Arduino Uno wiring: eight keys, mode button, four pots, piezo and LED')}<figcaption class="fine" style="margin-top:10px">Eight keys on D2–D9 with internal pull-ups, MODE on D10, piezo on D11, LED with 220 Ω on D13, four 10 kΩ pots on A0–A3 for octave, vibrato, decay and tempo.</figcaption></figure>
+  <div class="cols" style="margin-top:28px"><div><h3>Three Modes</h3><p>PLAY, ARP and DRUM, the same three ways of playing as the phone version, cycled with one button.</p></div>
+  <div><h3>Electrical Check</h3><p>Worst single pin 14 mA against a 20 mA recommended limit; about 22 mA for the whole circuit, well inside USB power.</p></div>
+  <div><h3>Fits The Chip</h3><p>The sketch compiles with no warnings: 9.6 kB of 32 kB flash and 344 B of 2 kB RAM.</p></div></div>
+  <div class="ctas" style="margin-top:24px"><a class="btn inv" href="https://tigrestudiodesign.github.io/downloads/SY5000_Tinkercad.ino" download>Download the sketch (.ino)</a></div>
  </div></section>
  ${nextLink('product',{id:'hestia-knit-nodes',title:'HESTIA × Knit Nodes'})}</main>`+foot();
 }
