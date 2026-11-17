@@ -69,5 +69,10 @@
   "date": "2026-11-16",
   "project": "electric-guitar",
   "change": "Rebuilt as a client-grade launch set from Henry's Rhino file: Cycles hero, four finishes, hardware macros, clay pass, exploded assembly with BOM, front/back elevations, fret-math and saddle-compensation sections. No logos."
+ },
+ {
+  "date": "2026-11-16",
+  "project": "trenza-alpargata",
+  "change": "Full Muisca CMF study: research (manta, spindle whorl, tumbaga, living communities; mola credited to the Guna), original pattern system, 3D alpargata built on the loafer last with braided fique midsole, three editions (Manta, Tumbaga, Paramo), CMF spec table, exploded build."
  }
 ]

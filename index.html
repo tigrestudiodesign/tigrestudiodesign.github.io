@@ -1111,6 +1111,16 @@ a:focus-visible{outline-color:var(--or)}
 .eg-sad{display:grid;gap:8px;max-width:720px}.eg-sad div{position:relative;display:flex;justify-content:space-between;align-items:center;padding:8px 12px;font:13px var(--mono);border:1px solid rgba(0,0,0,.18)}.eg-sad span{position:absolute;left:0;top:0;bottom:0;background:#FF5A1F;opacity:.85;z-index:0}.eg-sad b,.eg-sad i{position:relative;z-index:1;font-style:normal}
 .eg-bom{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px 28px;margin:32px 0 0}.eg-bom div{border-top:1px solid rgba(255,255,255,.3);padding-top:10px}.eg-bom dt{display:flex;justify-content:space-between;font:12px var(--mono);text-transform:uppercase;letter-spacing:.06em}.eg-bom dt b{color:#FF5A1F;font-size:20px}.eg-bom dd{margin:6px 0 0;color:var(--muted)}
 @media (max-width:760px){.eg-fin,.eg-math{grid-template-columns:1fr}.eg-fret{font-size:16px}}
+/* v54: trenza alpargata muisca */
+.tz-ref{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:28px}.tz-ref small{font:12px var(--mono);color:#FF5A1F}.tz-ref h3{font-family:var(--head);text-transform:uppercase;font-size:20px;margin:6px 0 8px}.tz-ref p{margin:0;color:var(--muted)}
+.tz-note{margin:36px 0 0;padding:18px 20px;border:1px solid rgba(255,255,255,.25);max-width:900px}.tz-note b{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#FF5A1F}
+.tz-pat{display:grid;grid-template-columns:1fr 1.3fr;gap:36px;margin-top:28px;align-items:start}.tz-pat figure{margin:0}.tz-pat img{display:block;width:100%;height:auto}.tz-pat figcaption{margin-top:10px}.tz-pat figcaption b,.tz-ed figcaption b{font:12px var(--mono);letter-spacing:.06em;display:block;margin-bottom:4px}
+.tz-faja{display:grid;gap:18px}
+.tz-ed{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:28px}.tz-ed figure{margin:0}.tz-ed img{display:block;width:100%;height:auto}.tz-ed figcaption{margin-top:10px}.tz-ed em{display:block;color:var(--muted);font-family:var(--serif)}
+.tz-chips{display:flex;gap:6px;margin:6px 0}.tz-chips i{width:18px;height:18px;border-radius:50%;box-shadow:0 0 0 1px rgba(255,255,255,.3)}
+.tz-spec{width:100%;border-collapse:collapse;margin-top:28px;font-size:15px}.tz-spec th{font:11px var(--mono);text-transform:uppercase;letter-spacing:.06em;text-align:left;padding:8px;border-bottom:2px solid currentColor}.tz-spec td{padding:10px 8px;border-bottom:1px solid rgba(0,0,0,.14);vertical-align:top}.tz-spec td:first-child{font-weight:700}
+@media (max-width:900px){.tz-ref{grid-template-columns:1fr 1fr}.tz-pat,.tz-ed{grid-template-columns:1fr}.tz-spec{font-size:13px}}
+@media (max-width:560px){.tz-ref{grid-template-columns:1fr}}
 </style>
 
 <div id="app"></div>
@@ -1287,11 +1297,12 @@ const NEWRH=[
   facts:[['Course','Master in Parametric Design · Unit 1'],['Parts','Upper, strap, piping, heel tab, stitching, footbed, outsole'],['Output','Left + right pair, one material per part'],['Software','Rhino 9 (model) · Blender Cycles (render)']],
   tags:['Footwear','NURBS surfacing','Material per part','Four-view checks'],
   imgs:[['img/lf__r_hero.webp',1600,1100,'Your pair in cognac full-grain leather, suede footbed, blue heel tab and rubber outsole, rendered in Blender Cycles from the original Rhino file'],['img/lf__r_heel.webp',1400,1000,'Heel view: the contrast heel tab and piped collar'],['img/lf__r_detail.webp',1200,1200,'Close-up: pebble grain, the strap edge and the four side stitches'],['img/lf__r_top.webp',1200,1400,'Top view: moc-toe outline, saddle strap and penny slot'],['img/lf__wire.webp',1800,790,'The Rhino file in four wireframe views: isocurves follow the last shape'],['img/lf__r_hero_bone.webp',1600,1100,'Same file, Bone colourway: one material swap per part'],['img/lf__sk_hero.webp',1600,1120,'Pencil pass: the Rhino pair redrawn as a working hand sketch'],['img/tz__00_loafer.webp',2400,1500,'Sketch sheet: what the loafer passes on to the Trenza alpargata (keep the last and moc-toe line, drop the saddle strap, swap the outsole)']]},
- {id:'trenza-alpargata',isNew:true,kind:'Footwear · Concept',title:'Trenza Alpargata',meta:'Concept sketching · Huarache × Colombian alpargata · 7 sheets',
-  note:'A concept that starts from the penny loafer last and turns it into a huarache-style Colombian alpargata: woven leather straps over a braided fique sole, a canvas toe cap, a woven heel cup and a caña flecha zig-zag band. Seven hand-style sheets take it from ideation to build and CMF.',
-  facts:[['Start','Penny Loafer last (Rhino)'],['Sheets','Ideation, lateral, top, outsole, build, CMF'],['Materials','Fique, crudo canvas, veg-tan leather, rubber, caña flecha'],['Status','Concept · sketch phase']],
-  tags:['Footwear','Concept sketching','Colombian craft','CMF','Build breakdown'],
-  imgs:[['img/tz__02_side.webp',2400,1500,'Lateral view: huarache woven straps over a braided fique midsole, canvas toe cap, woven heel cup and a caña flecha zig-zag band'],['img/tz__01_ideas.webp',2400,1500,'Ideation: six directions, from open back to heel cup; B goes forward'],['img/tz__03_top.webp',2400,1500,'Top view: over-under weave, canvas toe cap and woven heel cup'],['img/tz__04_bottom.webp',2400,1500,'Outsole: coiled fique braid with rubber heel and forefoot pods'],['img/tz__05_explode.webp',2400,1500,'Build: five parts, each one a single material'],['img/tz__06_cmf.webp',2400,1500,'CMF: fique, crudo canvas, café leather, carbón rubber, caña flecha, Tigre orange'],['img/tz__00_loafer.webp',2400,1500,'Where it started: the penny loafer, redrawn as a pencil pass']]},
+ {id:'trenza-alpargata',isNew:true,kind:'Footwear · CMF',title:'Trenza Alpargata · Muisca',meta:'Footwear CMF study · Muisca craft · 3 editions · Blender Cycles',
+  note:'A full CMF study that takes my Rhino loafer last and rebuilds it as a Colombian alpargata, with its colour, material and pattern language drawn from the Muisca of the Altiplano Cundiboyacense: painted cotton mantas, the spindle whorl and tumbaga goldwork. Three editions, rendered from one file.',
+  facts:[['Last','Penny Loafer (Rhino)'],['Reference','Muisca manta, spindle whorl, tumbaga'],['Editions','Manta · Tumbaga · Páramo'],['Output','Pattern system, CMF spec, Cycles renders']],
+  tags:['Footwear','CMF','Pattern design','Colombian craft','Rendering'],
+  imgs:[['img/tz__r_hero_manta.webp',1700,1040,'MANTA edition: painted cotton toe and heel, woven tobacco leather, faja strap, tumbaga piping on a braided fique sole'],['img/tz__r_side_manta.webp',1800,900,'Lateral: the braid runs in two rows, capped by a woven band at the lip'],['img/tz__r_sole_manta.webp',1500,940,'Braided fique sidewall: herringbone strands, rubber footing, faja band'],['img/tz__r_strap_manta.webp',1500,940,'The faja strap, over-under leather weave and the gold thread piping'],['img/tz__r_top_manta.webp',1600,1000,'Top view of the pair'],['img/tz__r_strap_tumbaga.webp',1500,940,'TUMBAGA edition: black ground, gold paint, oxblood accents']]},
+
  {id:'f1-car',isNew:true,kind:'Automotive',title:'F1 Car Study',meta:'Automotive surfacing · Rhino 9 · Blender Cycles · original Tigre livery',
   note:'A current-generation F1 car built from top, side and front views: nose and front wing, halo, sidepods, floor, rear wing and wheels. The Rhino file is rendered here as a team-launch set in an original Tigre Studio livery, with every material assigned by part.',
   facts:[['Course','Master in Parametric Design · Unit 1'],['Geometry','261 objects · 60 surfaces · 113 polysurfaces'],['Livery','Original Tigre Studio livery, one material per part'],['Software','Rhino 9 (model) · Blender Cycles (render)']],
@@ -2524,13 +2535,52 @@ function ntCMF(){
   <div class="nt-ways">${NT_WAYS.map(([n,s,d,sw])=>`<div><b>${n.toUpperCase()}</b><span>${d}</span><em>${sw.map(c=>`<i style="background:${c}"></i>`).join('')}</em></div>`).join('')}</div></div></section>`;
 }
 const CS={
- 'trenza-alpargata':{sub:'From a penny loafer to a woven Colombian alpargata',
-  b:['A Loafer Last, A New Shoe','Start from the penny loafer I modeled in Rhino and push it toward a huarache-style Colombian alpargata, keeping the last and the moc-toe line.'],
-  a:['Weave Over Fibre','Huarache over-under leather straps replace the saddle strap. A canvas toe cap keeps the alpargata look. The sole is braided fique with rubber pods at the heel and forefoot, edged with a caña flecha zig-zag band after the sombrero vueltiao.'],
-  r:['Ready For A Model','Seven sheets carry it from six ideation directions to a lateral, top, outsole, build breakdown and CMF. The next step is to model direction B in Rhino on the loafer last.'],
-  show:['The alpargata is a Colombian staple and the huarache weave is a Latin American classic. This puts both on one last, using materials Colombian craft workshops already work with.','Each sheet answers one question a factory would ask: what it looks like, what it is made of, and how the parts stack.'],
-  skills:['Concept sketching','Footwear design','CMF','Build breakdown','Material sourcing'],
-  st:['Same last,','a new shoe,','Colombian materials.']},
+ 'trenza-alpargata':{sub:'Moncler-level finish, Muisca roots',
+  extra:()=>{
+   const ED=[['manta','MANTA','img/tz__faja_manta.webp','img/tz__r_hero_manta.webp','Algodón crudo ground, tierra and índigo paint, achiote accents, tobacco weave',['#E8DDC6','#4A2E1E','#23305E','#A8391C','#7A4320','#C9A04A']],
+             ['tumbaga','TUMBAGA','img/tz__faja_tumbaga.webp','img/tz__r_hero_tumbaga.webp','Black ground painted in gold, oxblood accents, black weave: the goldwork edition',['#17140F','#C9A04A','#6E1F1A','#8C6A2E','#141210','#D8B25A']],
+             ['paramo','PÁRAMO','img/tz__faja_paramo.webp','img/tz__r_hero_paramo.webp','Moss ground from the high páramo, crudo paint, índigo and ochre, bone weave',['#3C4631','#E6DCC4','#1E2A4E','#C08A3A','#D6C7AA','#C9A04A']]];
+   const REF=[['The Manta','Painted cotton mantas were cloth, currency and ceremony for the Muisca. Surviving pieces carry alternating geometric panels in brown and blue: rhomboids, spirals and triangles, woven on vertical looms.'],
+              ['The Spindle Whorl','The volante de huso spun the cotton for every manta. Its incised geometry, read in rings around a centre, is where the squared spiral and the nested rhombus in this pattern come from.'],
+              ['Tumbaga','Muisca goldsmiths cast gold, copper and silver alloys by lost wax, outlining their figures in thin cast threads. That thread is the gold piping here; the hammered heel tab nods to their two-tone gilded surfaces.'],
+              ['Still Living','Muisca communities in Bosa, Cota, Suba, Chía and Sesquilé keep the language alive: rhomboids, spirals and triangles still mark the facades of their houses.']];
+   const SPEC=[['Toe cap + heel','Painted cotton manta, plain weave','Hand-painted, fixed pigment, matte','Crudo / Black / Moss'],
+               ['Vamp','Over-under woven leather straps, 10 mm','Veg-tan, aniline, light wax','Tobacco / Black / Bone'],
+               ['Strap','Faja, warp-faced woven band','Cotton with gold lurex edge','Edition palette'],
+               ['Piping','Tumbaga-tone cord','Brushed gold PVD','Gold, all editions'],
+               ['Heel tab','Cast brass','Hammered, gold PVD','Gold, all editions'],
+               ['Lip band','Woven faja band, 8.5 mm','Bound over the braid','Edition palette'],
+               ['Midsole','Braided fique, two rows, 26 mm','Natural, hand-stitched spiral','Natural fique'],
+               ['Outsole','Vulcanised rubber, 4.5 mm','Fine texture','Carbón / Black / Moss'],
+               ['Lining','Cotton twill','Brushed','Crudo / Tobacco / Crudo']];
+   return `<section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Reference</h2><p class="sh-sub">The Muisca of the Altiplano Cundiboyacense, Colombia</p>
+    <div class="tz-ref">${REF.map(([h,t],i)=>`<div><small>${String(i+1).padStart(2,'0')}</small><h3>${h}</h3><p>${t}</p></div>`).join('')}</div>
+    <p class="tz-note"><b>A note on molas.</b> The bright layered mola is Guna craft, from the Caribbean coast of Panama and Colombia, not Muisca. It stays out of this study so each culture keeps its own credit. <b>On the pattern.</b> Every motif here was drawn new from the Muisca vocabulary, not copied from any object. A production version would be co-designed with, credited to and paid to a Muisca weaving community.</p>
+   </div></section>
+   <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Pattern System</h2><p class="sh-sub">Two motifs, two scales, one rule: paint on cotton, weave on the strap</p>
+    <div class="tz-pat"><figure>${im(['img/tz__pat_manta.webp',900,900],'Manta tile: alternating panels of nested rhombi and squared spirals')}<figcaption><b>MANTA TILE · 90 MM REPEAT</b> Alternating panels like the surviving mantas: nested rhombus, squared spiral, painted corner triangles, a double-ruled frame. Drawn with a hand wobble so it reads painted, not printed.</figcaption></figure>
+     <div class="tz-faja">${ED.map(([k,n,fj])=>`<figure>${im([fj,1600,250],n+' faja band')}<figcaption><b>FAJA · ${n}</b></figcaption></figure>`).join('')}
+      <p>The faja is the woven belt: a terraced diamond chain between ruled edges, with a gold thread on each side. It wraps the strap and caps the braided sole at 8.5 mm.</p></div></div>
+   </div></section>
+   <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Three Editions</h2><p class="sh-sub">One last / one pattern system / three palettes</p>
+    <div class="tz-ed">${ED.map(([k,n,fj,hr,t,c])=>`<figure>${im([hr,1700,1040],n+' edition hero')}<figcaption><b>${n}</b><span class="tz-chips">${c.map(x=>`<i style="background:${x}"></i>`).join('')}</span><em>${t}</em></figcaption></figure>`).join('')}</div>
+    <div class="f1-set"><figure>${im(['img/tz__r_trio_manta.webp',1800,1000],'The three editions on one stage')}<figcaption>Páramo, Manta and Tumbaga, the same file with three material sets.</figcaption></figure></div>
+   </div></section>
+   <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The CMF Spec</h2><p class="sh-sub">Part by part, as a factory would read it</p>
+    <table class="tz-spec"><thead><tr><th>Part</th><th>Material</th><th>Finish</th><th>Colour (Manta / Tumbaga / Páramo)</th></tr></thead><tbody>${SPEC.map(r=>`<tr>${r.map(x=>`<td>${x}</td>`).join('')}</tr>`).join('')}</tbody></table>
+   </div></section>
+   <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Build</h2><p class="sh-sub">Seven parts, lifted in build order</p>
+    <div class="duo"><figure>${im(['img/tz__r_exploded_manta.webp',1500,1100],'Exploded alpargata')}<figcaption>Sole unit, lining, upper, heel tab, piping, faja strap and stitches. The loafer last stays; a 26 mm braided fique midsole goes under it.</figcaption></figure>
+    <figure>${im(['img/tz__r_side_tumbaga.webp',1800,900],'Tumbaga lateral')}<figcaption>Tumbaga lateral: the gold paint picks up the piping.</figcaption></figure></div>
+    <div class="duo" style="padding-top:24px"><figure>${im(['img/tz__r_side_paramo.webp',1800,900],'Páramo lateral')}<figcaption>Páramo lateral: moss ground, bone weave.</figcaption></figure>
+    <figure>${im(['img/tz__02_side.webp',2400,1500],'Original sketch, lateral')}<figcaption>Where it started: the lateral sketch from the concept phase.</figcaption></figure></div>
+   </div></section>`},
+  b:['Luxury Finish, Indigenous Roots','Take the Trenza Alpargata from sketches to a full CMF study at the level of a luxury house, with its language drawn from the Muisca of Colombia.'],
+  a:['Research, Then Pattern, Then Material','Read the Muisca through their mantas, spindle whorls and tumbaga goldwork. Draw an original pattern system from that vocabulary. Rebuild the loafer last as an alpargata with a braided fique midsole, and assign every part a material, finish and colour.'],
+  r:['Three Editions From One File','Manta, Tumbaga and Páramo, rendered in Blender Cycles with procedural weave, braid and gold, plus a factory-style CMF spec and an exploded build.'],
+  show:['CMF is a system, not a swatch: one pattern language and one material plan that hold across three palettes.','The cultural research is part of the spec. Knowing what is Muisca and what is not, and planning to credit and pay the community, is the difference between inspiration and appropriation.'],
+  skills:['CMF','Pattern design','Footwear','Cultural research','Rendering'],
+  st:['One last,','three editions,','Muisca roots.']},
  'penny-loafer':{sub:'A classic shoe, built part by part',
   extra:()=>`<section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Built Like A Tech Pack</h2><p class="sh-sub">Seven parts / One material each / Straight from the Rhino layers</p>
    <div class="el-two"><figure class="el-fig">${im(['img/lf__r_exploded.webp',1200,1500],'Exploded loafer: outsole, suede footbed, leather upper, blue heel tab, piping, saddle strap and stitches, lifted apart in order')}<figcaption>Exploded in build order. Every part is a layer in the original Rhino file, so the render reads like a bill of materials.</figcaption></figure>
