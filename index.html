@@ -555,6 +555,11 @@ button.btn{cursor:pointer}
 .nk-map u{display:inline-block;width:12px;height:12px;border-radius:50%;border:1px solid var(--grid)}
 .nk-mapw{overflow-x:auto}
 @media(max-width:820px){.nk-grid{grid-template-columns:1fr;gap:36px}.nk-did li{grid-template-columns:40px 1fr;font-size:16px}.nk-map{min-width:640px}}
+/* v49: penny loafer */
+.lf-bom{list-style:none;margin:0;padding:0;align-self:center}.lf-bom li{display:grid;grid-template-columns:44px 140px 1fr;gap:12px;align-items:baseline;padding:14px 0;border-top:1px solid var(--grid)}
+.lf-bom b{font:700 12px ui-monospace,Menlo,monospace;background:#ff5a1f;color:#000;padding:3px 6px;justify-self:start}.lf-bom span{font-weight:700;text-transform:uppercase;letter-spacing:.03em}.lf-bom em{font-family:var(--serif);color:var(--muted)}
+.lf-cw{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;padding-top:28px}@media (max-width:900px){.lf-cw{grid-template-columns:1fr}}.lf-cw figure{margin:0}.lf-cw img{display:block;width:100%;height:auto}
+.lf-cw figcaption{font-family:var(--serif);font-style:italic;color:var(--muted);margin-top:6px}.lf-cw figcaption b{font-family:var(--sans);font-style:normal;text-transform:uppercase;color:var(--black);margin-right:8px}
 /* v48: HESTIA */
 .hs-hero{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,6.4fr);gap:20px;align-items:stretch}
 .hs-hero .media{aspect-ratio:auto}.hs-hero .media img{height:100%;object-fit:cover}
@@ -1241,11 +1246,11 @@ const S3 = D.s3.map(s=>({...s,id:'studio-'+slug(s.title)}));
 const NEW = [{"id": "fold-bake", "title": "Fold / Bake", "meta": "Printable parchment cookbook · 13 recipes, A3", "note": "A cookbook where every page is a cooking sheet. Print it on baking parchment, lay each ingredient on its true-size outline, fold the page over the food, crimp the edges and bake. The drawing shows exactly how much to use: no scales, no measuring cups, and it works in a full oven, a fan oven, a toaster oven or an air fryer.", "tags": ["Vector illustration", "Illustrator + Rhino", "True-scale templates", "Editorial layout", "First chapter: Colombia"], "imgs": [["img/new__fb-colombia-cover.webp", 1600, 1132, "Chapter opener: Colombia, five parchment recipes"], ["img/new__fb-pescado.webp", 1600, 1132, "CO-01 Pescado al Coco: recipe, oven guide and true-size outlines on one sheet"], ["img/new__fb-shrimp-detail.webp", 1600, 566, "Shrimp, Corn & Chorizo: every ingredient drawn at true size"], ["img/new__fb-intro.webp", 1600, 1132, "How the book works: lay food on the outlines, fold, crimp, bake"], ["img/new__fb-chorizo.webp", 1600, 1132, "CO-03 Chorizo con Papa Criolla"], ["img/new__fb-salmon.webp", 1600, 1132, "No. 01 Lemon-Dill Salmon"], ["img/new__fb-pear.webp", 1600, 1132, "No. 07 Honey Pear & Walnut: dessert from the same fold"], ["img/new__fb-maduro.webp", 1600, 1132, "CO-05 Maduro con Queso y Bocadillo"]]}, ...D.new];
 
 const NEWRH=[
- {id:'penny-loafer',isNew:true,kind:'Footwear',title:'Penny Loafer',meta:'Footwear surfacing · Rhino 9 · 7 materials',
+ {id:'penny-loafer',isNew:true,kind:'Footwear',title:'Penny Loafer',meta:'Footwear surfacing · Rhino 9 · Blender Cycles · 3 colourways',
   note:'A left and right pair of penny loafers modeled in Rhino: moc-toe upper with raised piping, a saddle strap with its penny slot, side stitch details, a padded footbed, a contrast heel tab and a flat rubber outsole.',
-  facts:[['Course','Master in Parametric Design · Unit 1'],['Parts','Upper, strap, piping, heel tab, stitching, footbed, outsole'],['Output','Left + right pair, one material per part'],['Software','Rhino 9 · Rendered display']],
+  facts:[['Course','Master in Parametric Design · Unit 1'],['Parts','Upper, strap, piping, heel tab, stitching, footbed, outsole'],['Output','Left + right pair, one material per part'],['Software','Rhino 9 (model) · Blender Cycles (render)']],
   tags:['Footwear','NURBS surfacing','Material per part','Four-view checks'],
-  imgs:[['img/lf__hero.webp',1600,1120,'Rendered pair: brown upper, tan footbed, blue heel tab'],['img/lf__top.webp',883,678,'Top view: moc-toe outline, strap and penny slot'],['img/lf__side.webp',884,346,'Side profile: strap height, stitch details and outsole'],['img/lf__heel.webp',769,307,'Heel view: contrast heel tab and collar shape'],['img/lf__wire.webp',1800,790,'Wireframe in four views: isocurves follow the last shape'],['img/lf__mixed.webp',1800,790,'Wireframe checks next to the rendered perspective']]},
+  imgs:[['img/lf__r_hero.webp',1600,1100,'Your pair in cognac full-grain leather, suede footbed, blue heel tab and rubber outsole, rendered in Blender Cycles from the original Rhino file'],['img/lf__r_heel.webp',1400,1000,'Heel view: the contrast heel tab and piped collar'],['img/lf__r_detail.webp',1200,1200,'Close-up: pebble grain, the strap edge and the four side stitches'],['img/lf__r_top.webp',1200,1400,'Top view: moc-toe outline, saddle strap and penny slot'],['img/lf__wire.webp',1800,790,'The Rhino file in four wireframe views: isocurves follow the last shape'],['img/lf__r_hero_bone.webp',1600,1100,'Same file, Bone colourway: one material swap per part']]},
  {id:'f1-car',isNew:true,fit:true,kind:'Automotive',title:'F1 Car Study',meta:'Automotive surfacing · Rhino 9 · 60 surfaces, 113 polysurfaces',
   note:'A current-generation F1 car built from top, side and front views: nose and front wing, halo, sidepods, floor, rear wing and wheels, with the livery split into its own parts and materials. Checked in wireframe and edge-shaded views before the final render.',
   facts:[['Course','Master in Parametric Design · Unit 1'],['Geometry','60 surfaces · 113 polysurfaces · 88 meshes'],['Livery','Applied as separate parts and materials'],['Software','Rhino 9 · Rendered display']],
@@ -2428,9 +2433,16 @@ function ntCMF(){
 }
 const CS={
  'penny-loafer':{sub:'A classic shoe, built part by part',
+  extra:()=>`<section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Built Like A Tech Pack</h2><p class="sh-sub">Seven parts / One material each / Straight from the Rhino layers</p>
+   <div class="el-two"><figure class="el-fig">${im(['img/lf__r_exploded.webp',1200,1500],'Exploded loafer: outsole, suede footbed, leather upper, blue heel tab, piping, saddle strap and stitches, lifted apart in order')}<figcaption>Exploded in build order. Every part is a layer in the original Rhino file, so the render reads like a bill of materials.</figcaption></figure>
+   <ol class="lf-bom">${[['Outsole','Rubber, 9 mm, flat'],['Footbed','Suede, padded'],['Upper','Full-grain leather, moc-toe'],['Heel tab','Contrast leather'],['Piping','Rolled leather, raised'],['Strap','Saddle strap, penny slot'],['Stitching','Waxed thread, 4 per side']].map(([a,b],i)=>`<li><b>${n2(i)}</b><span>${a}</span><em>${b}</em></li>`).join('')}</ol></div>
+  </div></section>
+  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Three Colourways</h2><p class="sh-sub">Same geometry / New materials / No remodel</p>
+   <div class="lf-cw">${[['cognac','Cognac','Cognac leather · blue tab · black rubber'],['oxblood','Oxblood','Oxblood leather · champagne tab · gum rubber'],['bone','Bone','Bone leather · terracotta tab · charcoal rubber']].map(([k,n,d])=>`<figure>${im(['img/lf__r_side_'+k+'.webp',1600,700],n+' colourway, side profile')}<figcaption><b>${n}</b> ${d}</figcaption></figure>`).join('')}</div>
+  </div></section>`,
   b:['A Shoe Built Like A Tech Pack','Model a full pair of penny loafers in Rhino as separate, nameable parts: upper, strap, piping, heel tab, stitching, footbed and outsole.'],
   a:['Surfaces That Follow The Shoe','The upper wraps the shoe shape, with isocurves running along it in the wireframe. The saddle strap sits over the vamp with its penny slot, piping traces the moc-toe seam, and stitch details run along the sides.'],
-  r:['Ready For Colorways','Every part carries its own material, so a new colorway is a material swap, not a remodel. The pair was checked in top, front, side and perspective views.'],
+  r:['Ready For Colorways','Every part carries its own material, so a new colorway is a material swap, not a remodel. The Rhino file went into Blender Cycles as-is and came out in three colourways.'],
   show:['For 16 years I wrote the specs that turned footwear designs into factory parts. This is the same breakdown, but I drew the parts myself.','A model split this way maps straight onto a bill of materials and a colorway sheet: one part, one material, one callout.'],
   skills:['Footwear modeling','NURBS surfacing','Part breakdown','CMF','Four-view checks'],
   st:['One part, one material:','the same breakdown','a tech pack uses.']},
