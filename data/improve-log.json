@@ -64,5 +64,10 @@
   "date": "2026-11-16",
   "project": "site",
   "change": "v52 brand layer: Tigre T mark in nav, case headers and footer; Tigre Orange accent; mirrored spectrum stripe; JetBrains Mono micro-labels; grid backdrop on dark bands."
+ },
+ {
+  "date": "2026-11-16",
+  "project": "electric-guitar",
+  "change": "Rebuilt as a client-grade launch set from Henry's Rhino file: Cycles hero, four finishes, hardware macros, clay pass, exploded assembly with BOM, front/back elevations, fret-math and saddle-compensation sections. No logos."
  }
 ]
