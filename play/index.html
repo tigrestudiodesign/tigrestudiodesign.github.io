@@ -142,14 +142,69 @@ footer .big{font-size:clamp(34px,6vw,76px);font-weight:900;text-transform:upperc
 footer .big span{color:var(--or)}
 .fine{margin-top:28px;font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.04em;max-width:80ch}
 .theme{background:none;border:1.5px solid var(--ink);border-radius:999px;font-family:var(--mono);font-size:11px;padding:4px 10px;cursor:pointer;color:var(--ink)}
+
+/* v2 additions */
+.stepno{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--ink);color:var(--paper);font-weight:700;margin-right:8px;font-size:11px;letter-spacing:0}
+.studbar{display:flex;gap:4px;padding:0 16px 6px;max-width:1180px;margin:0 auto}
+@media(min-width:720px){.studbar{padding:0 32px 6px}}
+.studbar i{flex:1;height:6px;border-radius:3px;background:var(--line);transition:background .2s}
+.studbar i.on{background:var(--or)}
+.studbar i.on:nth-child(4n+1){background:var(--red)}.studbar i.on:nth-child(4n+2){background:var(--yel)}.studbar i.on:nth-child(4n+3){background:var(--blu)}
+.herocv{position:relative;aspect-ratio:1.35;width:100%}
+.herocv canvas{width:100%;height:100%;display:block;cursor:pointer}
+.herocv .hint{position:absolute;right:0;top:0}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:6px}
+@media(max-width:560px){.facts{grid-template-columns:repeat(2,1fr)}}
+.fact{background:var(--card);border:2px solid var(--ink);border-radius:8px;padding:10px 10px 9px;position:relative;margin-top:8px}
+.fact::before{content:"";position:absolute;left:8px;top:-8px;width:52px;height:8px;background:radial-gradient(circle at 7px 5px,var(--ink) 0 5px,transparent 5.5px) 0 0/16px 8px repeat-x}
+.fact b{display:block;font-size:30px;font-weight:900;line-height:1}
+.fact span{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.04em;color:var(--mute);font-weight:400}
+.stage{position:relative;background:var(--card);border:2px solid var(--ink);border-radius:12px;overflow:hidden;
+  background-image:radial-gradient(circle,var(--grid) 1.5px,transparent 2px);background-size:18px 18px}
+.stage canvas{display:block;width:100%;aspect-ratio:1.25;touch-action:manipulation}
+@media(max-width:600px){.stage canvas{aspect-ratio:.95}.stagebar{position:static;padding:10px 10px 0}}
+.stagebar{position:absolute;left:10px;top:10px;display:flex;gap:6px;flex-wrap:wrap}
+.chip{font-family:var(--mono);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;border:2px solid var(--ink);border-radius:8px;background:var(--card);color:var(--ink);padding:8px 10px;cursor:pointer;box-shadow:2px 2px 0 var(--ink)}
+.chip:active{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.bsw{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+.bsw button{aspect-ratio:1;border-radius:8px;border:2px solid var(--ink);background:var(--c);cursor:pointer;position:relative;box-shadow:inset 0 -4px 0 rgba(0,0,0,.2)}
+.bsw button::after{content:"";position:absolute;left:30%;top:22%;width:40%;height:40%;border-radius:50%;background:var(--c);box-shadow:0 2px 0 rgba(0,0,0,.25),inset 0 2px 0 rgba(255,255,255,.35)}
+.bsw button[aria-pressed="true"]{outline:3px solid var(--or);outline-offset:2px}
+.sizes{display:flex;flex-wrap:wrap;gap:6px}
+.tl-h{margin-top:4px}
+.booklet{margin-top:26px}
+.bk-page{background:#fff;color:#111214;border:2px solid var(--ink);border-radius:12px;padding:20px;display:grid;gap:14px;
+  background-image:linear-gradient(135deg,#E9F2FF 0 22%,#fff 22%);position:relative}
+@media(min-width:900px){.bk-page{grid-template-columns:360px 1fr;grid-template-rows:auto auto auto 1fr;grid-template-areas:"head cv" "parts cv" "prog cv" "nav cv";padding:28px;align-items:start}
+  .bk-head{grid-area:head}.bk-parts{grid-area:parts}.bk-page canvas{grid-area:cv}.bk-prog{grid-area:prog}.bk-nav{grid-area:nav}}
+.bk-head{display:flex;gap:14px;align-items:flex-start}
+.bk-n{font-size:64px;font-weight:900;line-height:.85;color:#111214;min-width:52px}
+.bk-head h3{font-size:22px;margin:4px 0 8px;color:#111214}
+.bk-head p{color:#4a4d55;font-size:15px}
+.bk-parts{border:2px solid #111214;border-radius:10px;padding:12px;background:#F4F8FF;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.bk-parts .pt{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;font-weight:700;color:#111214}
+.bk-parts .pt b{display:inline-block;width:calc(var(--w)*9px + 8px);height:calc(var(--d)*6px + 10px);background:var(--c);border-radius:3px;box-shadow:inset 0 -3px 0 rgba(0,0,0,.25),0 0 0 1.5px #111214}
+.bk-parts em{flex-basis:100%;font-style:normal;font-family:var(--mono);font-size:11px;text-transform:uppercase;color:#5d5f66;letter-spacing:.04em}
+.bk-page canvas{width:100%;aspect-ratio:1.05;min-height:300px;display:block}
+.bk-prog{display:flex;gap:6px}.bk-prog i{flex:1;height:8px;border-radius:4px;background:#d9dde6}.bk-prog i.on{background:#111214}
+.bk-nav{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-start;align-self:start}
+.bk-nav .btn:disabled{opacity:.35;pointer-events:none}
+.bk-page .btn{background:#fff;color:#111214;border-color:#111214;box-shadow:4px 4px 0 #111214}.bk-page .btn.hot{background:var(--or);color:#fff}
+.snapin{opacity:0;transform:translateY(-26px)}
+.snapin.in{animation:snapdown .45s cubic-bezier(.3,1.6,.5,1) forwards}
+@keyframes snapdown{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.snapin{opacity:1;transform:none}}
+i.cf{position:fixed;width:12px;height:8px;border-radius:2px;z-index:99;pointer-events:none;box-shadow:inset 0 -2px 0 rgba(0,0,0,.25)}
+.card.snapin:hover{transform:translate(-3px,-3px)}
 </style>
 </head>
 <body>
 <header class="bar"><div class="wrap">
   <b>HENRY ORTEGA <span class="mono" style="margin-left:6px">/ BUILT FOR PLAY</span></b>
-  <nav><a href="#brief">The brief</a><a href="#build">Build</a><a href="#games">Games</a><a href="#making">Making</a><a href="#plan">First 90 days</a><a href="#hello">Say hi</a></nav>
+  <nav><a href="#brief">The brief</a><a href="#build">Build</a><a href="#booklet-s">Booklet</a><a href="#games">Games</a><a href="#making">Making</a><a href="#plan">First 90 days</a><a href="#hello">Say hi</a></nav>
   <button class="theme" id="theme" aria-label="Toggle theme">◐</button>
-</div></header>
+</div><div class="studbar" id="studbar" aria-hidden="true"></div></header>
 
 <main>
 <section class="hero"><div class="wrap hero-grid">
@@ -160,79 +215,96 @@ footer .big span{color:var(--or)}
     <div class="cta"><a class="btn hot" href="#build">Play with me ↓</a><a class="btn" href="mailto:ortegatohenry@gmail.com?subject=Creative%20Play%20Lead%20%E2%80%94%20let%27s%20talk">Email Henry</a><a class="btn" href="../downloads/Henry-Ortega-Resume.pdf" target="_blank" rel="noopener">Resume</a></div>
   </div>
   <div>
-    <div class="tower" aria-label="A stack of bricks summarising Henry's background">
-      <div class="base"></div>
-      <div class="brick k" style="--w:9;animation-delay:.05s">16 years · Nike innovation</div>
-      <div class="brick b" style="--w:8;animation-delay:.25s">US · Korea · Taiwan teams</div>
-      <div class="brick y" style="--w:7;animation-delay:.45s">6 playable games</div>
-      <div class="brick" style="--w:6;animation-delay:.65s">1 brick-based guide</div>
-      <div class="brick g" style="--w:5;animation-delay:.85s">3 working prototypes</div>
-      <div class="brick o" style="--w:4;animation-delay:1.05s">∞ curiosity</div>
-    </div>
+    <div class="herocv"><canvas id="heroCv" aria-label="The word PLAY built from bricks. Click to knock it down and watch it rebuild."></canvas><span class="mono hint">Click the bricks ↺</span></div>
+    <div class="facts">
+      <div class="fact snapin"><b>16</b><span>years at Nike innovation</span></div>
+      <div class="fact snapin"><b>6</b><span>playable games</span></div>
+      <div class="fact snapin"><b>3</b><span>working prototypes</span></div>
+      <div class="fact snapin"><b>1</b><span>guide that teaches code with bricks</span></div>
+    </div></div>
   </div>
 </div></section>
 
 <section id="brief"><div class="wrap">
-  <p class="mono">01 · Reading the brief brick by brick</p>
+  <p class="mono"><span class="stepno">1</span>Reading the brief brick by brick</p>
   <h2>Your six asks.<br>My six answers.</h2>
   <p>Each card is one responsibility from the posting, with the work that answers it.</p>
   <div class="match">
-    <div class="m" style="--c:var(--red)"><div class="k">Envision breakthrough play</div><h3>Odd ideas, taken seriously</h3><p>At Nike Innovation my job was the idea nobody had made yet: knit you could print on, shoes printed from data, a sensory sole for the mind.</p><div class="proof">Nike Milestone Award (2014) for a pad-printing breakthrough on knit.</div></div>
-    <div class="m" style="--c:var(--blu)"><div class="k">Lead multidisciplinary teams</div><h3>Design, engineering, factory, one table</h3><p>I led and mentored a documentation team across the US, South Korea and Taiwan, and ran hardware programs with mechanical, electrical and software teams.</p><div class="proof">Nike × Hyperice Hyperboot and Air Zoom Hyperslide: I wrote the manuals factories built from.</div></div>
-    <div class="m" style="--c:var(--yel)"><div class="k">Storytelling &amp; transparency</div><h3>Make the complex obvious</h3><p>My career was visual manuals: turning engineering into pictures anyone on a line can follow. Same skill, different audience: a 9-year-old or a VP.</p><div class="proof">Years of visual manuals for products brought to market; a free Grasshopper guide told entirely through bricks.</div></div>
-    <div class="m" style="--c:var(--grn)"><div class="k">Hybrid ideation</div><h3>Hands first, code second</h3><p>I prototype physically and digitally: material trials and tooling in factories, then behaviour prototypes in code and AI pipelines that cut concept time in half.</p><div class="proof">BASECAMP and the parametric keypad: simulated circuits and firmware before any PCB.</div></div>
-    <div class="m" style="--c:var(--or)"><div class="k">Kids' voice</div><h3>Designed for small players</h3><p>Two of my games teach: Spell Climb says a word out loud and rewards spelling with avatar gear; Decimal Voyage turns a math chapter into a sea voyage.</p><div class="proof">Honest note: I haven't run formal co-creation research. I'd love to learn it from your team.</div></div>
-    <div class="m" style="--c:var(--blk)"><div class="k">Playful culture</div><h3>Share everything, in two languages</h3><p>I publish free learning guides and glossaries in English and Spanish, and I build in public on my studio site.</p><div class="proof">Grasshopper, Brick by Brick / Ladrillo a Ladrillo.</div></div>
+    <div class="m snapin" style="--c:var(--red)"><div class="k">Envision breakthrough play</div><h3>Odd ideas, taken seriously</h3><p>At Nike Innovation my job was the idea nobody had made yet: knit you could print on, shoes printed from data, a sensory sole for the mind.</p><div class="proof">Nike Milestone Award (2014) for a pad-printing breakthrough on knit.</div></div>
+    <div class="m snapin" style="--c:var(--blu)"><div class="k">Lead multidisciplinary teams</div><h3>Design, engineering, factory, one table</h3><p>I led and mentored a documentation team across the US, South Korea and Taiwan, and ran hardware programs with mechanical, electrical and software teams.</p><div class="proof">Nike × Hyperice Hyperboot and Air Zoom Hyperslide: I wrote the manuals factories built from.</div></div>
+    <div class="m snapin" style="--c:var(--yel)"><div class="k">Storytelling &amp; transparency</div><h3>Make the complex obvious</h3><p>My career was visual manuals: turning engineering into pictures anyone on a line can follow. Same skill, different audience: a 9-year-old or a VP.</p><div class="proof">Years of visual manuals for products brought to market; a free Grasshopper guide told entirely through bricks.</div></div>
+    <div class="m snapin" style="--c:var(--grn)"><div class="k">Hybrid ideation</div><h3>Hands first, code second</h3><p>I prototype physically and digitally: material trials and tooling in factories, then behaviour prototypes in code and AI pipelines that cut concept time in half.</p><div class="proof">BASECAMP and the parametric keypad: simulated circuits and firmware before any PCB.</div></div>
+    <div class="m snapin" style="--c:var(--or)"><div class="k">Kids' voice</div><h3>Designed for small players</h3><p>Two of my games teach: Spell Climb says a word out loud and rewards spelling with avatar gear; Decimal Voyage turns a math chapter into a sea voyage.</p><div class="proof">Honest note: I haven't run formal co-creation research. I'd love to learn it from your team.</div></div>
+    <div class="m snapin" style="--c:var(--blk)"><div class="k">Playful culture</div><h3>Share everything, in two languages</h3><p>I publish free learning guides and glossaries in English and Spanish, and I build in public on my studio site.</p><div class="proof">Grasshopper, Brick by Brick / Ladrillo a Ladrillo.</div></div>
   </div>
 </div></section>
 
 <section id="build"><div class="wrap">
-  <p class="mono">02 · Your turn</p>
+  <p class="mono"><span class="stepno">2</span>Your turn</p>
   <h2>Build something.<br>Then send it to me.</h2>
-  <p>A tiny baseplate. Pick a colour, tap the studs. Hit <b>Surprise me</b> to see what I built, or <b>Copy link</b> to share yours. It's how I'd start any workshop: hands on the material in the first minute.</p>
-  <div class="builder">
-    <div class="plate" id="plate" role="grid" aria-label="Baseplate. Tap a stud to place a brick."></div>
+  <p>A real stacking baseplate. Pick a colour and a brick, tap to snap it on, stack as high as you like. Turn the plate to see your build from all sides. I started you off with a tiger cub. <b>Copy link</b> sends me your build.</p>
+  <div class="builder" id="builder">
+    <div class="stage"><canvas aria-label="Isometric baseplate. Tap to place a brick on the column under your finger."></canvas>
+      <div class="stagebar"><button class="chip bview" title="Turn the plate">↻ Turn plate</button><button class="chip bundo">↶ Undo</button><button class="chip bsound" aria-pressed="true">Sound on</button></div></div>
     <div class="tools">
-      <div class="sw" id="sw" role="group" aria-label="Brick colour"></div>
-      <div class="count" id="count">0 bricks placed</div>
-      <button class="btn hot" id="surprise">Surprise me</button>
-      <button class="btn" id="share">Copy link to my build</button>
-      <button class="btn" id="clear">Clear plate</button>
-      <p class="mono" id="msg" aria-live="polite"></p>
+      <div class="tl-h mono">Colour</div><div class="bsw" role="group" aria-label="Brick colour"></div>
+      <div class="tl-h mono">Brick</div>
+      <div class="sizes"><button class="chip" data-size="1x1">1×1</button><button class="chip" data-size="2x1" aria-pressed="true">2×1</button><button class="chip" data-size="2x2">2×2</button><button class="chip" data-size="4x2">4×2</button><button class="chip brot">⟲ Rotate</button><button class="chip berase" aria-pressed="false">✕ Remove</button></div>
+      <div class="tl-h mono">Ideas</div>
+      <div class="sizes"><button class="chip" data-pre="tiger" data-msg="A tiger cub: Tigre Studio's mascot, more or less.">Tiger</button><button class="chip" data-pre="rocket" data-msg="3, 2, 1…">Rocket</button><button class="chip" data-pre="house" data-msg="Home is where the bricks are.">House</button></div>
+      <div class="bcount count"></div>
+      <button class="btn hot bshare">Copy link to my build</button>
+      <button class="btn bclear">Clear plate</button>
+      <p class="mono bmsg" aria-live="polite"></p>
+    </div>
+  </div>
+</div></section>
+
+<section id="booklet-s"><div class="wrap">
+  <p class="mono"><span class="stepno">3</span>Instruction booklet</p>
+  <h2>How Henry<br>was built.</h2>
+  <p>Seven steps, one model. Every step adds the bricks from one chapter of my career.</p>
+  <div class="booklet" id="booklet">
+    <div class="bk-page">
+      <div class="bk-head"><span class="bk-n">1</span><div><h3 class="bk-t"></h3><p class="bk-d"></p></div></div>
+      <div class="bk-parts"></div>
+      <canvas aria-label="The model so far"></canvas>
+      <div class="bk-prog" aria-hidden="true"></div>
+      <div class="bk-nav"><button class="btn bk-prev">← Back</button><button class="btn hot bk-next">Next step →</button></div>
     </div>
   </div>
 </div></section>
 
 <section id="games"><div class="wrap">
-  <p class="mono">03 · Playable proof</p>
+  <p class="mono"><span class="stepno">4</span>Playable proof</p>
   <h2>Six games.<br>All playable now.</h2>
   <p>Each one started as a single question about play. I wrote the story, designed the systems and directed the art, building with Claude in HTML5 Canvas. They run in any browser, with keys or touch.</p>
   <div class="grid three">
-    <a class="card" href="../games/rise.html" target="_blank" rel="noopener"><div class="img" style="background-image:url(../img/gp__boss.webp)"><span class="play">▶ PLAY</span></div><div class="body"><div class="mono">Climbing adventure</div><h3>Rise</h3><p>What if a skeleton was your coach? Train with Bob, shop his Trading Post, climb five zones.</p></div></a>
-    <a class="card" href="../games/biscuits-journey.html" target="_blank" rel="noopener"><div class="img" style="background-image:url(../img/bj__rocks.webp)"><span class="play">▶ PLAY</span></div><div class="body"><div class="mono">Story platformer</div><h3>Biscuit's Journey</h3><p>What if a dog had to read trail blazes to find its human after an avalanche?</p></div></a>
-    <a class="card" href="../games/summit-claws.html" target="_blank" rel="noopener"><div class="img" style="background-image:url(../img/sc__hero.webp)"><span class="play">▶ PLAY</span></div><div class="body"><div class="mono">Climbing action</div><h3>Summit Claws</h3><p>Pick any of eight wild animals, make it yours, climb to a Yeti.</p></div></a>
-    <a class="card" href="../games/ocean-hunter.html" target="_blank" rel="noopener"><div class="img" style="background-image:url(../img/oh__play.webp)"><span class="play">▶ PLAY</span></div><div class="body"><div class="mono">Arcade survival</div><h3>Ocean Hunter</h3><p>Grow from young shark to apex predator, one upgrade at a time.</p></div></a>
-    <a class="card" href="../games/spell-climb.html" target="_blank" rel="noopener"><div class="img" style="background-image:url(../img/spc__hero.webp)"><span class="play">▶ PLAY</span></div><div class="body"><div class="mono">Learning · spelling</div><h3>Spell Climb</h3><p>Hear a word, spell it, earn coins, dress your avatar. The words you miss come back.</p></div></a>
-    <a class="card" href="../games/decimal-voyage.html" target="_blank" rel="noopener"><div class="img" style="background-image:url(../img/dv__map.webp)"><span class="play">▶ PLAY</span></div><div class="body"><div class="mono">Learning · math</div><h3>Decimal Voyage</h3><p>Five islands, one per decimals lesson, ending at a long-division board.</p></div></a>
+    <a class="card snapin" href="../games/rise.html" target="_blank" rel="noopener"><div class="img" style="background-image:url(../img/gp__boss.webp)"><span class="play">▶ PLAY</span></div><div class="body"><div class="mono">Climbing adventure</div><h3>Rise</h3><p>What if a skeleton was your coach? Train with Bob, shop his Trading Post, climb five zones.</p></div></a>
+    <a class="card snapin" href="../games/biscuits-journey.html" target="_blank" rel="noopener"><div class="img" style="background-image:url(../img/bj__rocks.webp)"><span class="play">▶ PLAY</span></div><div class="body"><div class="mono">Story platformer</div><h3>Biscuit's Journey</h3><p>What if a dog had to read trail blazes to find its human after an avalanche?</p></div></a>
+    <a class="card snapin" href="../games/summit-claws.html" target="_blank" rel="noopener"><div class="img" style="background-image:url(../img/sc__hero.webp)"><span class="play">▶ PLAY</span></div><div class="body"><div class="mono">Climbing action</div><h3>Summit Claws</h3><p>Pick any of eight wild animals, make it yours, climb to a Yeti.</p></div></a>
+    <a class="card snapin" href="../games/ocean-hunter.html" target="_blank" rel="noopener"><div class="img" style="background-image:url(../img/oh__play.webp)"><span class="play">▶ PLAY</span></div><div class="body"><div class="mono">Arcade survival</div><h3>Ocean Hunter</h3><p>Grow from young shark to apex predator, one upgrade at a time.</p></div></a>
+    <a class="card snapin" href="../games/spell-climb.html" target="_blank" rel="noopener"><div class="img" style="background-image:url(../img/spc__hero.webp)"><span class="play">▶ PLAY</span></div><div class="body"><div class="mono">Learning · spelling</div><h3>Spell Climb</h3><p>Hear a word, spell it, earn coins, dress your avatar. The words you miss come back.</p></div></a>
+    <a class="card snapin" href="../games/decimal-voyage.html" target="_blank" rel="noopener"><div class="img" style="background-image:url(../img/dv__map.webp)"><span class="play">▶ PLAY</span></div><div class="body"><div class="mono">Learning · math</div><h3>Decimal Voyage</h3><p>Five islands, one per decimals lesson, ending at a long-division board.</p></div></a>
   </div>
 </div></section>
 
 <section id="making"><div class="wrap">
-  <p class="mono">04 · Thinking through making</p>
+  <p class="mono"><span class="stepno">5</span>Thinking through making</p>
   <h2>Prototypes over<br>polished slides.</h2>
   <p>You asked to see how I invent, not just the results. Each of these has the messy middle on its page: block diagrams, Grasshopper graphs, failed states.</p>
   <div class="grid three">
-    <a class="card" href="../#grasshopper-brick-by-brick"><div class="img" style="background-image:url(../img/gb__hero.webp)"></div><div class="body"><div class="mono">Learning design</div><h3>Grasshopper, Brick by Brick</h3><p>Visual programming explained with bricks: a baseplate is the canvas, studs and tubes are wires, a 2×4 is a component.</p></div></a>
-    <a class="card" href="../#basecamp"><div class="img" style="background-image:url(../img/bc2__hero.webp)"></div><div class="body"><div class="mono">Hardware · behaviour prototype</div><h3>BASECAMP</h3><p>A repairable emergency radio-lantern: architecture, simulated circuit, firmware, then form.</p></div></a>
-    <a class="card tall" href="../#sy-5000"><div class="img" style="background-image:url(../img/sy__b.webp)"></div><div class="body"><div class="mono">Interaction · audio</div><h3>TIGRE SY-5000</h3><p>A 5,000-sound synthesizer for iPhone, with knobs that feel like hardware.</p></div></a>
-    <a class="card" href="../#parametric-keypad"><div class="img" style="background-image:url(../img/kp__render.webp)"></div><div class="body"><div class="mono">Parametric · electronics</div><h3>Parametric Keypad</h3><p>A Voronoi-textured macro pad generated in Grasshopper, with working key logic.</p></div></a>
-    <a class="card" href="../#kinetic-hexagon-facade"><div class="img" style="background-image:url(../img/kh__01_hero.webp)"></div><div class="body"><div class="mono">Kinetic · Grasshopper</div><h3>Kinetic Hexagon Facade</h3><p>An origami wall whose flaps fold toward the sun. There's a live demo on the page.</p></div></a>
-    <a class="card tall" href="../#hestia"><div class="img" style="background-image:url(../img/hs__hero.webp)"></div><div class="body"><div class="mono">Robot soft goods · CMF</div><h3>HESTIA</h3><p>What would a home robot wear so a family wants to hug it? A textile skin concept.</p></div></a>
+    <a class="card snapin" href="../#grasshopper-brick-by-brick"><div class="img" style="background-image:url(../img/gb__hero.webp)"></div><div class="body"><div class="mono">Learning design</div><h3>Grasshopper, Brick by Brick</h3><p>Visual programming explained with bricks: a baseplate is the canvas, studs and tubes are wires, a 2×4 is a component.</p></div></a>
+    <a class="card snapin" href="../#basecamp"><div class="img" style="background-image:url(../img/bc2__hero.webp)"></div><div class="body"><div class="mono">Hardware · behaviour prototype</div><h3>BASECAMP</h3><p>A repairable emergency radio-lantern: architecture, simulated circuit, firmware, then form.</p></div></a>
+    <a class="card tall snapin" href="../#sy-5000"><div class="img" style="background-image:url(../img/sy__b.webp)"></div><div class="body"><div class="mono">Interaction · audio</div><h3>TIGRE SY-5000</h3><p>A 5,000-sound synthesizer for iPhone, with knobs that feel like hardware.</p></div></a>
+    <a class="card snapin" href="../#parametric-keypad"><div class="img" style="background-image:url(../img/kp__render.webp)"></div><div class="body"><div class="mono">Parametric · electronics</div><h3>Parametric Keypad</h3><p>A Voronoi-textured macro pad generated in Grasshopper, with working key logic.</p></div></a>
+    <a class="card snapin" href="../#kinetic-hexagon-facade"><div class="img" style="background-image:url(../img/kh__01_hero.webp)"></div><div class="body"><div class="mono">Kinetic · Grasshopper</div><h3>Kinetic Hexagon Facade</h3><p>An origami wall whose flaps fold toward the sun. There's a live demo on the page.</p></div></a>
+    <a class="card tall snapin" href="../#hestia"><div class="img" style="background-image:url(../img/hs__hero.webp)"></div><div class="body"><div class="mono">Robot soft goods · CMF</div><h3>HESTIA</h3><p>What would a home robot wear so a family wants to hug it? A textile skin concept.</p></div></a>
   </div>
 </div></section>
 
 <section id="nike"><div class="wrap">
-  <p class="mono">05 · The foundation</p>
+  <p class="mono"><span class="stepno">6</span>The foundation</p>
   <h2>Sixteen years,<br>stacked.</h2>
   <div class="tl">
     <div class="row"><span class="yr">2026 →</span><div class="brick o">Tigre Studio · founder. Games, prototypes, guides, AI pipelines</div></div>
@@ -245,18 +317,18 @@ footer .big span{color:var(--or)}
 </div></section>
 
 <section id="plan"><div class="wrap">
-  <p class="mono">06 · Instruction booklet</p>
+  <p class="mono"><span class="stepno">7</span>The plan</p>
   <h2>My first 90 days<br>in the Lab.</h2>
   <p>A starting build, to be rebuilt the moment I meet the team and the kids.</p>
   <div class="steps">
-    <div class="step"><h3>Sort the pieces</h3><p>Days 1–30. Sit in on play sessions, learn how the Lab co-creates with children, and map the team's projects, tools and taste. Run one "make it in an afternoon" jam to see how everyone thinks.</p><div class="need"><span>Listen</span><span>Play</span><span>Map</span></div></div>
-    <div class="step"><h3>Build the base</h3><p>Days 31–60. Set up a rapid-prototype rhythm: weekly physical + digital builds, AI-assisted ideation where it speeds things up, and simple one-page stories that share progress early.</p><div class="need"><span>Prototype</span><span>Story</span><span>Share</span></div></div>
-    <div class="step"><h3>Stack something new</h3><p>Days 61–90. Take one strange question to a tangible concept tested with kids, and document the method so the next team can build on it, the way I'd write a manual.</p><div class="need"><span>Test</span><span>Document</span><span>Repeat</span></div></div>
+    <div class="step snapin"><h3>Sort the pieces</h3><p>Days 1–30. Sit in on play sessions, learn how the Lab co-creates with children, and map the team's projects, tools and taste. Run one "make it in an afternoon" jam to see how everyone thinks.</p><div class="need"><span>Listen</span><span>Play</span><span>Map</span></div></div>
+    <div class="step snapin"><h3>Build the base</h3><p>Days 31–60. Set up a rapid-prototype rhythm: weekly physical + digital builds, AI-assisted ideation where it speeds things up, and simple one-page stories that share progress early.</p><div class="need"><span>Prototype</span><span>Story</span><span>Share</span></div></div>
+    <div class="step snapin"><h3>Stack something new</h3><p>Days 61–90. Take one strange question to a tangible concept tested with kids, and document the method so the next team can build on it, the way I'd write a manual.</p><div class="need"><span>Test</span><span>Document</span><span>Repeat</span></div></div>
   </div>
 </div></section>
 
 <section id="honest"><div class="wrap">
-  <p class="mono">07 · The honest bricks</p>
+  <p class="mono"><span class="stepno">8</span>The honest bricks</p>
   <h2>What I bring.<br>What I'll learn.</h2>
   <div class="honest">
     <div class="box"><h3>Bring</h3><ul><li>Hands-on invention, from factory floor to browser</li><li>Leading creative and technical people across cultures</li><li>Visual storytelling that makes complex ideas simple</li><li>Fluency in 3D, parametric design and generative AI</li><li>English and Spanish</li></ul></div>
@@ -266,7 +338,7 @@ footer .big span{color:var(--or)}
 </main>
 
 <footer id="hello"><div class="wrap">
-  <p class="mono">08 · Click</p>
+  <p class="mono"><span class="stepno">9</span>Click</p>
   <div class="big">Let's build the<br>next way to <span>play.</span></div>
   <div class="cta"><a class="btn hot" href="mailto:ortegatohenry@gmail.com?subject=Creative%20Play%20Lead%20%E2%80%94%20let%27s%20talk">ortegatohenry@gmail.com</a><a class="btn" href="tel:+19712170821">+1 971 217 0821</a><a class="btn" href="https://www.linkedin.com/in/henryortega/" target="_blank" rel="noopener">LinkedIn</a><a class="btn" href="../">Full portfolio</a></div>
   <p class="fine">Made by Henry Ortega · Tigre Studio, as part of an application to the Creative Play Lead role. Independent page: not affiliated with or endorsed by the LEGO Group. LEGO is a trademark of the LEGO Group. All bricks here are drawn generically in CSS.</p>
@@ -279,26 +351,8 @@ footer .big span{color:var(--or)}
   try{var t=localStorage.getItem('play-theme');if(t)root.setAttribute('data-theme',t)}catch(e){}
   tb.addEventListener('click',function(){var dark=root.getAttribute('data-theme')==='dark'||(!root.getAttribute('data-theme')&&matchMedia('(prefers-color-scheme: dark)').matches);var n=dark?'light':'dark';root.setAttribute('data-theme',n);try{localStorage.setItem('play-theme',n)}catch(e){}});
 
-  // baseplate builder
-  var COLS=16,ROWS=10,C=['#D7261E','#F7B500','#1E5BD8','#FFFFFF','#1B1C1F','#FF5A1F'],cur=0;
-  var plate=document.getElementById('plate'),sw=document.getElementById('sw'),count=document.getElementById('count'),msg=document.getElementById('msg');
-  var state=new Array(COLS*ROWS).fill(-1);
-  C.forEach(function(c,i){var b=document.createElement('button');b.style.setProperty('--c',c);b.setAttribute('aria-label','Colour '+(i+1));b.setAttribute('aria-pressed',i===0);b.onclick=function(){cur=i;[].forEach.call(sw.children,function(x,j){x.setAttribute('aria-pressed',j===i)})};sw.appendChild(b)});
-  var cells=[];
-  for(var i=0;i<COLS*ROWS;i++){(function(i){var d=document.createElement('div');d.className='cell';d.setAttribute('role','gridcell');d.tabIndex=0;d.onclick=function(){toggle(i)};d.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle(i)}};plate.appendChild(d);cells.push(d)})(i)}
-  function paint(i,pop){var d=cells[i],v=state[i];if(v<0){d.classList.remove('on');d.style.removeProperty('--c')}else{d.classList.add('on');d.style.setProperty('--c',C[v]);if(pop){d.classList.remove('pop');void d.offsetWidth;d.classList.add('pop')}}}
-  function upd(){var n=state.filter(function(v){return v>=0}).length;count.textContent=n+(n===1?' brick':' bricks')+' placed'}
-  function toggle(i){state[i]=state[i]===cur?-1:cur;paint(i,true);upd()}
-  // "HI" made of bricks, plus a little sun
-  var HI=["................","..##..##.###....","..##..##..#.....","..######..#...oo","..##..##..#...oo","..##..##.###....","................","yyyyyyyyyyyyyyyy","bbbbbbbbbbbbbbbb","................"];
-  var MAP={'#':0,'o':5,'y':1,'b':2};
-  document.getElementById('surprise').onclick=function(){state.fill(-1);cells.forEach(function(_,i){paint(i)});var k=0;HI.forEach(function(r,y){r.split('').forEach(function(ch,x){if(MAP[ch]!=null){var i=y*COLS+x;setTimeout(function(){state[i]=MAP[ch];paint(i,true);upd()},k++*14)}})});msg.textContent='Hi from Beaverton.'};
-  document.getElementById('clear').onclick=function(){state.fill(-1);cells.forEach(function(_,i){paint(i)});upd();msg.textContent=''};
-  function enc(){return state.map(function(v){return v<0?'.':String(v)}).join('')}
-  document.getElementById('share').onclick=function(){var u=location.origin+location.pathname+'#b='+enc();try{history.replaceState(null,'','#b='+enc())}catch(e){}
-    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(u).then(function(){msg.textContent='Link copied. Send it to ortegatohenry@gmail.com'},function(){msg.textContent='Copy this: '+u})}else{msg.textContent='Copy this: '+u}};
-  var m=location.hash.match(/#b=([.0-5]{160})/);if(m){m[1].split('').forEach(function(ch,i){state[i]=ch==='.'?-1:+ch;paint(i)});upd();msg.textContent='Someone built this for you.'}
 })();
 </script>
+<script src="bricks.js"></script>
 </body>
 </html>
