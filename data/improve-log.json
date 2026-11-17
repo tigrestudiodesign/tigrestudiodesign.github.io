@@ -84,5 +84,10 @@
   "date": "2026-11-16",
   "project": "hestia",
   "change": "Launch-level pass: humanoid legs (thigh, knee, calf, ankle) replace the reverse-knee legs; black glass visor with light-strip eyes; heathered knit; dark launch stage with glass dock and lit ring; new reveal, 3/4, face, grip, living, back, knee and Sand/Warm/Graphite colourway renders."
+ },
+ {
+  "date": "2026-11-16",
+  "project": "hestia-knit-nodes",
+  "change": "New combined project: Knit Nodes behaviour model + HESTIA joint calc joined by a Python selection engine (85% rule, gussets); pipeline diagram, interactive 11x10 selection matrix, spec from JSON, HESTIA rendered in the selected knits from the Knit Nodes swatches."
  }
 ]

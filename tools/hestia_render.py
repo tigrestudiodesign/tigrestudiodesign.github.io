@@ -97,6 +97,27 @@ def plain(name, col, rough=0.5, metal=0.0, sheen=0.0, coat=0.0, aniso=0.0):
     if aniso: b.inputs['Anisotropic'].default_value = aniso
     return m
 
+KLIB = '/home/claude/tigrestudiodesign.github.io/img/kn__lib_%s.webp'
+def imgknit(name, col, stitch, tile=0.07, bump=0.7, rough=0.85, sheen=0.45):
+    """knit structure from the Knit Nodes library: the rendered swatch drives tone and relief"""
+    m, nt, b = node_mat(name)
+    tc = nt.nodes.new('ShaderNodeTexCoord'); mp = nt.nodes.new('ShaderNodeMapping'); mp.inputs['Scale'].default_value = (1 / tile,) * 3
+    nt.links.new(tc.outputs['Object'], mp.inputs['Vector'])
+    t = nt.nodes.new('ShaderNodeTexImage'); t.image = bpy.data.images.load(KLIB % stitch, check_existing=True)
+    t.image.colorspace_settings.name = 'Non-Color'; t.projection = 'BOX'; t.projection_blend = 0.3; t.extension = 'MIRROR'
+    nt.links.new(mp.outputs['Vector'], t.inputs['Vector'])
+    bw = nt.nodes.new('ShaderNodeRGBToBW'); nt.links.new(t.outputs['Color'], bw.inputs['Color'])
+    rr = nt.nodes.new('ShaderNodeMapRange'); rr.inputs['From Min'].default_value = 0.08; rr.inputs['From Max'].default_value = 0.75
+    rr.inputs['To Min'].default_value = 0.3; rr.inputs['To Max'].default_value = 1.0; nt.links.new(bw.outputs['Val'], rr.inputs['Value'])
+    mul = nt.nodes.new('ShaderNodeMix'); mul.data_type = 'RGBA'; mul.blend_type = 'MULTIPLY'; mul.inputs['Factor'].default_value = 1.0
+    mul.inputs[6].default_value = hexc(col)
+    cc = nt.nodes.new('ShaderNodeCombineColor'); [nt.links.new(rr.outputs[0], cc.inputs[i]) for i in range(3)]
+    nt.links.new(cc.outputs[0], mul.inputs[7]); nt.links.new(mul.outputs[2], b.inputs['Base Color'])
+    b.inputs['Roughness'].default_value = rough; b.inputs['Sheen Weight'].default_value = sheen; b.inputs['Sheen Roughness'].default_value = 0.5
+    bp = nt.nodes.new('ShaderNodeBump'); bp.inputs['Strength'].default_value = bump; bp.inputs['Distance'].default_value = 0.0025
+    nt.links.new(bw.outputs['Val'], bp.inputs['Height']); nt.links.new(bp.outputs['Normal'], b.inputs['Normal'])
+    return m
+
 def lt(h, k=1.12):
     h = h.lstrip('#'); return '#' + ''.join('%02X' % min(255, int(int(h[i:i+2], 16) * k + 6)) for i in (0, 2, 4))
 
@@ -119,7 +140,15 @@ else:
             weave=knit_mat('sensor weave', P['weave'], '#353636', rough=0.45, sheen=0.9, bump=0.15, gauge=320),
             shell=plain('PC-ABS shell', P['shell'], rough=0.35, coat=0.3),
             frame=plain('frame', P['frame'], rough=0.45, metal=0.6))
-        M['vent_z'] = M['vent']; return M
+        M['vent_z'] = M['vent']; M['gusset'] = M['vent']
+        if os.environ.get('KNITMAP'):
+            # Knit Nodes selection applied to HESTIA zones (see knit_select.py)
+            M.update(oat=imgknit('stockinette jersey', P['oat2'], 'stockinette'), moss=imgknit('rib 1x1', lt(P['moss'], 1.05), 'rib1', tile=0.06, bump=0.9),
+                     birch=imgknit('slip-stitch float', P['birch'], 'slip', tile=0.075), vent=imgknit('lace eyelet vent', P['birch'], 'lace', tile=0.06, bump=0.9),
+                     terra=imgknit('seed grip', P['terra'], 'seed', tile=0.045, bump=1.0, rough=0.6), weave=imgknit('lace sensor weave', P['weave'], 'lace', tile=0.03, rough=0.5, sheen=0.9),
+                     gusset=imgknit('lace gusset', lt(P['moss'], 1.25), 'lace', tile=0.05, bump=0.9))
+            M['vent_z'] = M['vent']
+        return M
     M = mkM()
 
 
@@ -322,6 +351,9 @@ def robot(off=(0, 0, 0), explode=0.0):
             if POSE == 'carry':
                 if z < 1.11 and c[1] - o[1] < -0.06 and n[2] < 0.3: return 'terra'
             elif 0.86 < z < 1.02 and (n[0] * -sgn > 0.2 or n[1] < -0.5): return 'terra'
+            if os.environ.get('KNITMAP') and POSE == 'stand':
+                if z > 1.24 and n[0] * -sgn > 0.3: return 'gusset'          # shoulder: pleat stack has no room inside, open lace gusset
+                if 1.02 < z < 1.15 and n[1] < -0.45: return 'gusset'      # inner elbow: same rule, smaller
             return None
         parts.append(tube('arm%d' % sgn, ctrl, prof, zones, ring=40, n=200, rib=(0.0105, 0.13)))
         # hand: soft mitten paddle, champagne back, terracotta palm, separate thumb
@@ -574,12 +606,17 @@ def launch_stage(dock=True):
             bpy.context.object.data.materials.append(rm)
 
 DOCKS = [0.0]
-if SHOT in ('reveal', 'hero2', 'face', 'grip'):
+if SHOT in ('reveal', 'hero2', 'face', 'grip', 'kneeK', 'shoulderK', 'torsoK'):
     robot(); launch_stage(dock=SHOT != 'face')
     if SHOT == 'reveal': cam((0.0, -4.3, 0.7), (0.0, 0, 0.92), 42)
     if SHOT == 'hero2':  cam((2.1, -3.2, 0.62), (0.05, 0, 0.9), 38)
     if SHOT == 'face':
         c = cam((0.5, -1.0, 1.7), (0.0, -0.03, 1.56), 75); c.data.dof.use_dof = True; c.data.dof.focus_distance = 1.1; c.data.dof.aperture_fstop = 2.8
+    def dofcam(loc, look, lens, f=3.2):
+        c = cam(loc, look, lens); c.data.dof.use_dof = True; c.data.dof.focus_distance = (Vector(look) - Vector(loc)).length; c.data.dof.aperture_fstop = f
+    if SHOT == 'kneeK':     dofcam((0.62, -0.78, 0.6), (0.1, -0.02, 0.5), 75)
+    if SHOT == 'shoulderK': dofcam((0.02, -0.78, 1.36), (0.2, -0.01, 1.29), 70)
+    if SHOT == 'torsoK':    dofcam((0.35, -0.85, 1.25), (0.0, -0.1, 1.18), 85)
     if SHOT == 'grip':
         c = cam((0.75, -0.62, 1.0), (0.25, -0.06, 0.94), 80); c.data.dof.use_dof = True; c.data.dof.focus_distance = 0.86; c.data.dof.aperture_fstop = 3.2
 if SHOT == 'trio':

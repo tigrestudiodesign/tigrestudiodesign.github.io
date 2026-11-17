@@ -1,0 +1,309 @@
+{
+ "limit": 0.85,
+ "knits": {
+  "stockinette": [
+   16,
+   84,
+   105,
+   68
+  ],
+  "garter": [
+   12,
+   130,
+   145,
+   76
+  ],
+  "rib1": [
+   20,
+   125,
+   78,
+   84
+  ],
+  "rib2": [
+   20,
+   113,
+   81,
+   84
+  ],
+  "seed": [
+   12,
+   105,
+   192,
+   62
+  ],
+  "cable": [
+   16,
+   75,
+   214,
+   68
+  ],
+  "lace": [
+   12,
+   152,
+   126,
+   50
+  ],
+  "tuck": [
+   12,
+   91,
+   152,
+   64
+  ],
+  "slip": [
+   16,
+   55,
+   182,
+   68
+  ],
+  "chevron": [
+   16,
+   84,
+   105,
+   68
+  ]
+ },
+ "zones": [
+  {
+   "zone": "Hip",
+   "demand": 100,
+   "job": "flex",
+   "util": {
+    "stockinette": 119,
+    "garter": 77,
+    "rib1": 80,
+    "rib2": 88,
+    "seed": 95,
+    "cable": 133,
+    "lace": 66,
+    "tuck": 110,
+    "slip": 182,
+    "chevron": 119
+   },
+   "pick": "rib1",
+   "gusset": null,
+   "note": "Densest closed knit under the 85 % line: 84 rounds per sleeve.",
+   "pinch": 4,
+   "pleats": 12
+  },
+  {
+   "zone": "Knee",
+   "demand": 95,
+   "job": "flex",
+   "util": {
+    "stockinette": 113,
+    "garter": 73,
+    "rib1": 76,
+    "rib2": 84,
+    "seed": 90,
+    "cable": 127,
+    "lace": 62,
+    "tuck": 104,
+    "slip": 173,
+    "chevron": 113
+   },
+   "pick": "rib1",
+   "gusset": null,
+   "note": "Densest closed knit under the 85 % line: 84 rounds per sleeve.",
+   "pinch": 14,
+   "pleats": 13
+  },
+  {
+   "zone": "Ankle",
+   "demand": 52,
+   "job": "flex",
+   "util": {
+    "stockinette": 62,
+    "garter": 40,
+    "rib1": 42,
+    "rib2": 46,
+    "seed": 50,
+    "cable": 69,
+    "lace": 34,
+    "tuck": 57,
+    "slip": 95,
+    "chevron": 62
+   },
+   "pick": "rib1",
+   "gusset": null,
+   "note": "Densest closed knit under the 85 % line: 84 rounds per sleeve.",
+   "pinch": 27,
+   "pleats": 8
+  },
+  {
+   "zone": "Shoulder",
+   "demand": 131,
+   "job": "flex",
+   "util": {
+    "stockinette": 156,
+    "garter": 101,
+    "rib1": 105,
+    "rib2": 116,
+    "seed": 125,
+    "cable": 175,
+    "lace": 86,
+    "tuck": 144,
+    "slip": 238,
+    "chevron": 156
+   },
+   "pick": "rib1",
+   "gusset": "lace",
+   "note": "Pleat stack needs 45 mm but the inside of the bend has 12 mm: rib pleats outside, open lace gusset inside.",
+   "pinch": -33,
+   "pleats": 11
+  },
+  {
+   "zone": "Elbow",
+   "demand": 111,
+   "job": "flex",
+   "util": {
+    "stockinette": 132,
+    "garter": 85,
+    "rib1": 89,
+    "rib2": 98,
+    "seed": 106,
+    "cable": 148,
+    "lace": 73,
+    "tuck": 122,
+    "slip": 202,
+    "chevron": 132
+   },
+   "pick": "rib1",
+   "gusset": "lace",
+   "note": "Pleat stack needs 38 mm but the inside of the bend has 30 mm: rib pleats outside, open lace gusset inside.",
+   "pinch": -8,
+   "pleats": 10
+  },
+  {
+   "zone": "Waist twist",
+   "demand": 40,
+   "job": "flex",
+   "util": {
+    "stockinette": 48,
+    "garter": 31,
+    "rib1": 32,
+    "rib2": 35,
+    "seed": 38,
+    "cable": 53,
+    "lace": 26,
+    "tuck": 44,
+    "slip": 73,
+    "chevron": 48
+   },
+   "pick": "rib1",
+   "gusset": null,
+   "note": "Densest closed knit under the 85 % line: 84 rounds per sleeve.",
+   "pinch": null,
+   "pleats": null
+  },
+  {
+   "zone": "Torso",
+   "demand": 15,
+   "job": "cover",
+   "util": {
+    "stockinette": 18,
+    "garter": 12,
+    "rib1": 12,
+    "rib2": 13,
+    "seed": 14,
+    "cable": 20,
+    "lace": 10,
+    "tuck": 16,
+    "slip": 27,
+    "chevron": 18
+   },
+   "pick": "stockinette",
+   "gusset": null,
+   "note": "Low strain: the smoothest face and lowest bulk win.",
+   "pinch": null,
+   "pleats": null
+  },
+  {
+   "zone": "Shin",
+   "demand": 10,
+   "job": "brace",
+   "util": {
+    "stockinette": 12,
+    "garter": 8,
+    "rib1": 8,
+    "rib2": 9,
+    "seed": 10,
+    "cable": 13,
+    "lace": 7,
+    "tuck": 11,
+    "slip": 18,
+    "chevron": 12
+   },
+   "pick": "slip",
+   "gusset": null,
+   "note": "Wants the least stretch: floats lock the fabric so the shin cover holds its shape.",
+   "pinch": null,
+   "pleats": null
+  },
+  {
+   "zone": "Flank vent",
+   "demand": 15,
+   "job": "open",
+   "util": {
+    "stockinette": 18,
+    "garter": 12,
+    "rib1": 12,
+    "rib2": 13,
+    "seed": 14,
+    "cable": 20,
+    "lace": 10,
+    "tuck": 16,
+    "slip": 27,
+    "chevron": 18
+   },
+   "pick": "lace",
+   "gusset": null,
+   "note": "Only the eyelet structure opens holes as it stretches: airflow through the knit.",
+   "pinch": null,
+   "pleats": null
+  },
+  {
+   "zone": "Forearm grip",
+   "demand": 20,
+   "job": "grip",
+   "util": {
+    "stockinette": 24,
+    "garter": 15,
+    "rib1": 16,
+    "rib2": 18,
+    "seed": 19,
+    "cable": 27,
+    "lace": 13,
+    "tuck": 22,
+    "slip": 36,
+    "chevron": 24
+   },
+   "pick": "seed",
+   "gusset": null,
+   "note": "Pebbled all over and lies flat with no curl: a surface for silicone dots.",
+   "pinch": null,
+   "pleats": null
+  },
+  {
+   "zone": "Sensor band",
+   "demand": 5,
+   "job": "open-fine",
+   "util": {
+    "stockinette": 6,
+    "garter": 4,
+    "rib1": 4,
+    "rib2": 4,
+    "seed": 5,
+    "cable": 7,
+    "lace": 3,
+    "tuck": 5,
+    "slip": 9,
+    "chevron": 6
+   },
+   "pick": "lace",
+   "gusset": null,
+   "note": "Lace at double gauge: light and sound pass, the sensor stays hidden.",
+   "pinch": null,
+   "pleats": null
+  }
+ ]
+}
