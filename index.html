@@ -1150,6 +1150,10 @@ a:focus-visible{outline-color:var(--or)}
 /* v60: employer pass */
 .sel6{display:grid;grid-template-columns:repeat(4,1fr);gap:28px 24px;margin-top:28px}.sel-c{display:block;text-decoration:none;color:inherit}.sel-c.big{grid-column:span 2}.sel-c .media{overflow:hidden;aspect-ratio:16/10}.sel-c .media img{width:100%;height:100%;object-fit:cover;transition:transform .5s}.sel-c:hover .media img{transform:scale(1.03)}.sel-c h3{font-family:var(--head);text-transform:uppercase;margin:6px 0 4px;font-size:20px}.sel-c.big h3{font-size:28px}.sel-c p{margin:0}.sel-o{font:11px var(--mono);letter-spacing:.04em;text-transform:uppercase;color:#FF5A1F;margin-top:6px!important}
 @media (max-width:900px){.sel6{grid-template-columns:1fr 1fr}.sel-c.big{grid-column:span 2}}@media (max-width:560px){.sel6{grid-template-columns:1fr}.sel-c.big{grid-column:auto}}
+/* v61: SY-5000 */
+.sy-trio{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.sy-ph{margin:0}.sy-ph img{display:block;width:100%;height:auto;border-radius:22px;box-shadow:0 0 0 8px #1b1c1e,0 0 0 9px #3a3b3e}.sy-ph figcaption{font-family:var(--serif);font-style:italic;color:var(--muted);margin-top:18px}
+.card .media img[src*="sy__a"]{object-fit:cover;object-position:top}
+@media (max-width:900px){.sy-trio{grid-template-columns:1fr}}
 </style>
 
 <div id="app"></div>
@@ -1446,6 +1450,40 @@ function figuresPage(){
  ${G.map(g=>`<section id="fg-${g.toLowerCase()}" class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:40px">${g}</h2><div class="fg-grid">${L.filter(f=>f.g===g).map(f=>figCard(f,L.indexOf(f),L.indexOf(f)+1)).join('')}</div></div></section>`).join('')}
  ${nextLink('figures',{id:'knit-nodes',title:'Computational Couture: Knit Nodes'})}</main>`+foot();
 }
+
+/* v61: SY-5000 synthesizer */
+const SY={id:'sy-5000'};
+const CARD_SY={id:'sy-5000',isNew:true,kind:'Product · Interaction · Audio',title:'TIGRE SY-5000',meta:'A 5,000-sound synthesizer for iPhone, built in code',imgs:[['img/sy__a.webp',1206,2622]]};
+function syPage(){
+ const eng=[['Virtual analog','Two oscillators, sub, noise, unison and a resonant 24 dB filter with its own envelope: Minimoog basses, Juno pads, Prophet brass, Reese and Hoover.'],
+  ['2-operator FM','A modulator driving a carrier with a decaying index: the 80s FM e-piano, slap bass and tubular bells.'],
+  ['Acid','One oscillator, a screaming resonant filter, accent and slide: the 303-style line.'],
+  ['Ensemble','Detuned saws through a three-phase chorus: string machines and choirs.'],
+  ['Drawbar organ','Nine sine drawbars and percussion: tonewheel, combo and house organ.'],
+  ['Drum machine','Eight synthesized voices in five kits: CR-78, 808, LinnDrum, 909 and breakbeat.']];
+ const fig=(f,c)=>`<figure class="sy-ph">${im([f,1206,2622],c)}<figcaption>${esc(c)}</figcaption></figure>`;
+ return head('product','New')+`<main>
+ <section class="band dark"><div class="wrap case"><p class="num">New · Product / Interaction / Audio</p><h1>TIGRE SY-5000</h1><p class="meta">5,000 sounds from the 70s, 80s and 90s · one interface · your iPhone</p>
+  <p class="note">A digital synthesizer that lives in the browser and installs on an iPhone like an app. Every sound is synthesized live, the way the original machines made them, behind one interface that borrows Grasshopper's components and sliders and the hardware feel of a pocket synth.</p>
+  <dl class="facts"><div><dt>Sounds</dt><dd>5,000 patches · 50 archetypes × 100</dd></div><div><dt>Engines</dt><dd>6 · analog, FM, acid, ensemble, organ, drums</dd></div><div><dt>Loops</dt><dd>9 era loops · 16-step sequencer</dd></div><div><dt>Built with</dt><dd>Web Audio API · JavaScript · no samples</dd></div></dl>
+  <div class="ctas" style="margin-top:28px"><a class="btn inv" href="https://tigrestudiodesign.github.io/synth/" target="_blank" rel="noopener">Play it now →</a></div></div></section>
+ <section class="band dark" style="padding-bottom:56px"><div class="wrap"><div class="sy-trio">${fig('img/sy__a.webp','FM e-piano, 80s: the screen draws the patch as Grasshopper components wired in signal order.')}${fig('img/sy__b.webp','Reese bass, 90s: four colour-coded encoders, Grasshopper number sliders below.')}${fig('img/sy__c.webp','909 kit with the 90s House loop running: steps, pads and the drum keyboard.')}</div></div></div>
+ <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Brief, Approach, Result</h2><p class="sh-sub">One instrument / three decades / a phone in your hand</p>
+  <div class="pra"><div><small>Brief</small><h3>Three Decades In One Interface</h3><p>The best sounds of the 70s, 80s and 90s, 5,000 variations, played from a single interface on an iPhone 17.</p></div>
+  <div><small>Approach</small><h3>Synthesize, Don't Sample</h3><p>Instead of copying recordings, each sound is rebuilt from how the original machine worked. 50 archetypes, each with 100 variations generated from a seeded random walk over its parameters, so the library is 5,000 sounds and zero megabytes.</p></div>
+  <div><small>Result</small><h3>A Real Instrument</h3><p>Multitouch keys with glide, a drum mode, a 16-step loop player, drive, chorus, tempo-synced delay and reverb, and a live oscilloscope. It runs offline and installs to the Home Screen.</p></div></div>
+ </div></section>
+ <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Six Engines</h2><p class="sh-sub">How the 5,000 sounds are made</p>
+  <div class="cols" style="grid-template-columns:repeat(3,1fr)">${eng.map(([h,t])=>`<div><h3>${h}</h3><p>${t}</p></div>`).join('')}</div></div></section>
+ <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Interface</h2><p class="sh-sub">Grasshopper logic / pocket-hardware touch</p>
+  <div class="cols"><div><h3>Patch As A Graph</h3><p>The screen shows the patch as Grasshopper components wired in order (OSC → FLT → AMP → FX), each showing its live value, with a scope underneath.</p></div>
+  <div><h3>Four Encoders</h3><p>Blue, green, white and orange knurled knobs, one page per stage. The page changes with the engine: an FM patch shows ratio and index, a drum kit shows tune and decay.</p></div>
+  <div><h3>Number Sliders</h3><p>Secondary controls are Grasshopper number sliders: grey capsule, label left, value right, drag anywhere on the track.</p></div></div>
+  <p class="fine" style="margin-top:24px">On iPhone: open it in Safari, tap Share → Add to Home Screen, and turn the ringer switch on or plug in headphones. All sounds are synthesized; no samples or loops are taken from other instruments or packs.</p>
+ </div></section>
+ ${nextLink('product',{id:'hestia-knit-nodes',title:'HESTIA × Knit Nodes'})}</main>`+foot();
+}
+
 const SEL6=[
  ['hestia-knit-nodes',['img/hk__hero.webp',1600,1000],'HESTIA × Knit Nodes','CMF · Robotics · Program integration','Two studies joined by one selection engine: every zone of a home humanoid wears the knit the data picks.','Rhino · Python · Blender · 11 zones × 10 knits'],
  ['p11',['img/ta__key1.webp',2000,1333],'Nike Tuned Air','Nike · My last program','Technical manuals and tech packs for two of the first Tuned Air programs, a new digital method of making Nike Air.','Announced Nov 2026 · Air development time down 70% (Nike)'],
@@ -1459,7 +1497,7 @@ function home(){
  SEL6.forEach(x=>{if(!x[1]){const n=NK(x[0]);x[1]=n?n.hero:['img/hk__hero.webp',1600,1000]}});
  const tiles=D.nike.map((p,i)=>`<a class="tile" href="#${p.id}"><div class="media ${i%2?'bl':'tr'}">${im(p.hero,p.title)}</div><small>${esc(p.brand)}</small><h3>${esc(p.title)}</h3><p class="tile-r">${esc(NIKE_ROLE[p.id]||'')}</p></a>`).join('');
  const card=(r,i)=>`<a class="card" href="#${r.id}"><div class="media ${i%2?'bl':'tr'}${r.fit?' paper':''}">${r.isNew?'<span class="badge">New</span>':''}${im(r.imgs[0],r.title)}</div>${r.kind?`<p class="kind">${esc(r.kind)}</p>`:''}<h3>${esc(r.title)}</h3><p>${esc(r.meta)}</p></a>`;
- const prod=[CARD_BC,{...PICK('trenza-alpargata'),isNew:true,meta:'Muisca CMF study · 3 editions'},{...PICK('electric-guitar'),isNew:true,kind:'Product Modeling',meta:'Launch set · 4 finishes · 230 parts'},{...PICK('penny-loafer'),isNew:true,kind:'Footwear · CMF',meta:'Rhino model, Blender Cycles render · 3 colourways'},{...PICK('f1-car'),isNew:true,meta:'Team-launch set · original Tigre livery'},CARD_WL,CARD_KP].map(card).join('');
+ const prod=[CARD_SY,CARD_BC,{...PICK('trenza-alpargata'),isNew:true,meta:'Muisca CMF study · 3 editions'},{...PICK('electric-guitar'),isNew:true,kind:'Product Modeling',meta:'Launch set · 4 finishes · 230 parts'},{...PICK('penny-loafer'),isNew:true,kind:'Footwear · CMF',meta:'Rhino model, Blender Cycles render · 3 colourways'},{...PICK('f1-car'),isNew:true,meta:'Team-launch set · original Tigre livery'},CARD_WL,CARD_KP].map(card).join('');
  const cmf=[CARD_KA,{...PICK('nesting-tables'),isNew:false,kind:'CMF · Furniture'}].map(card).join('');
  const vis=[
   {id:'standard-play',kind:'AI Design Systems',title:'Standard Play',meta:'Five Figma design systems I directed, built with Claude',sp:true},
@@ -3726,6 +3764,7 @@ function route(){
  else if(h===WL.id){html=wlPage();title='World Logos 3D · Henry Ortega'}
  else if(h===KN.id){html=knPage();title='Computational Couture: Knit Nodes · Henry Ortega'}
  else if(h===HS.id){html=hsPage();title='HESTIA · Henry Ortega'}
+ else if(h===SY.id){html=syPage();title='TIGRE SY-5000 · Henry Ortega'}
  else if(h===HKN.id){html=hknPage();title='HESTIA × Knit Nodes · Henry Ortega'}
  else if(h===HK.id){html=hkPage();title='Better With Friends · Henry Ortega'}
  else if((i=CUR.findIndex(p=>p.id===h))>=0){html=casePage(CUR,i,'product','Product Design');title=CUR[i].title+' · Henry Ortega'}

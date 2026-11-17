@@ -104,5 +104,10 @@
   "date": "2026-11-16",
   "project": "site",
   "change": "Employer pass: CMF/soft-goods positioning in hero and meta, Open-to line, downloadable r\u00e9sum\u00e9 PDF, Selected Work (6 projects) at the top with outcome lines, Work nav item, fan-IP studies removed from the homepage, lazy-loaded images."
+ },
+ {
+  "date": "2026-11-16",
+  "project": "sy-5000",
+  "change": "New project: TIGRE SY-5000, a Web Audio synthesizer for iPhone (PWA at /synth/): 5,000 patches from 50 era archetypes, 6 engines, drum kits, 9 loops, Grasshopper-graph OLED and TE-style encoders; case-study page and homepage card."
  }
 ]
