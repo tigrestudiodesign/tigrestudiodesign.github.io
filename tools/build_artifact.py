@@ -45,6 +45,9 @@ s=re.sub(r'"(img/[^"]+\.mp4)"',lambda m:'"'+LIVE+m.group(1)+'"',s)
 # downloads -> live site, opened in a new tab (the artifact viewer blocks downloads)
 s=re.sub(r"'(downloads/[^']+\.pdf)'",lambda m:"'"+LIVE+m.group(1)+"'",s)
 s=re.sub(r'(href="\$\{[A-Za-z_.]+\}") download',r'\1 target="_blank" rel="noopener"',s)
+# any remaining download attribute (the viewer ignores it): open the file from the live site in a new tab instead
+s=re.sub(r'(<a\b[^>]*?)\sdownload(?=[\s>])(?![^>]*target=)',r'\1 target="_blank" rel="noopener"',s)
+s=re.sub(r'(<a\b[^>]*?)\sdownload(?=[\s>])',r'\1',s)
 out=sys.argv[2] if len(sys.argv)>2 else 'artifact-index.html'
 os.makedirs(os.path.dirname(os.path.abspath(out)),exist_ok=True); open(out,'w').write(s)
 print('inlined',n,'bytes',sz,'total',len(s))
