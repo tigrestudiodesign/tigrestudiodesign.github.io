@@ -1358,7 +1358,7 @@ function home(){
  const href=id=>'#'+id;
  const tiles=D.nike.map((p,i)=>`<a class="tile" href="#${p.id}"><div class="media ${i%2?'bl':'tr'}">${im(p.hero,p.title)}</div><small>${esc(p.brand)}</small><h3>${esc(p.title)}</h3><p class="tile-r">${esc(NIKE_ROLE[p.id]||'')}</p></a>`).join('');
  const card=(r,i)=>`<a class="card" href="#${r.id}"><div class="media ${i%2?'bl':'tr'}${r.fit?' paper':''}">${r.isNew?'<span class="badge">New</span>':''}${im(r.imgs[0],r.title)}</div>${r.kind?`<p class="kind">${esc(r.kind)}</p>`:''}<h3>${esc(r.title)}</h3><p>${esc(r.meta)}</p></a>`;
- const prod=[CARD_BC,CARD_WL,CARD_KP].map(card).join('');
+ const prod=[CARD_BC,{...PICK('penny-loafer'),isNew:true,kind:'Footwear · CMF',meta:'Rhino model, Blender Cycles render · 3 colourways'},CARD_WL,CARD_KP].map(card).join('');
  const cmf=[CARD_HS,CARD_KN,CARD_KA,{...PICK('nesting-tables'),isNew:false,kind:'CMF · Furniture'}].map(card).join('');
  const vis=[
   {id:'better-with-friends',isNew:true,kind:'3D Illustration',title:'Better With Friends',meta:'Figma × Hello Kitty campaign posters rebuilt as 3D reliefs',imgs:[['img/hk__01_hero.webp',1600,900]]},
