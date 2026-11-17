@@ -36,6 +36,10 @@ for f in sorted(set(re.findall(r'url\((fonts/[^)]+\.woff2)\)',s))):
     if f not in have and os.path.exists(f):
         s=s.replace('url(%s)'%f,'url(data:font/woff2;base64,%s)'%base64.b64encode(open(f,'rb').read()).decode())
 s=re.sub(r'href="(downloads/[^"]+\.pdf)" download',lambda m:'href="'+LIVE+m.group(1)+'" target="_blank" rel="noopener"',s)
+# Tuned Air films: the artifact viewer may block video from another site, so show the poster and open the film on the live site
+s=s.replace('<video class="ta-v" src="${f}" poster="${f.replace(\'film\',\'poster\').replace(\'.mp4\',\'.webp\')}" width="${w}" height="${h}" muted loop playsinline autoplay preload="auto" aria-label="${esc(c)}"></video>',
+ '<a class="ta-pl" href="'+LIVE+'#p11" target="_blank" rel="noopener"><img src="${f.replace(\'film\',\'poster\').replace(\'.mp4\',\'.webp\')}" width="${w}" height="${h}" alt="${esc(c)}"><span>▶ Play film</span></a>')
+s=s.replace('.ta-films video{','.ta-pl{position:relative;display:block}.ta-pl img{display:block;width:100%;height:100%;object-fit:cover}.ta-pl span{position:absolute;left:12px;bottom:12px;background:#FF5A1F;color:#0B0B0C;font:700 12px var(--mono);padding:6px 10px;letter-spacing:.06em}.ta-films video{')
 # videos -> live site (not inlined)
 s=re.sub(r'"(img/[^"]+\.mp4)"',lambda m:'"'+LIVE+m.group(1)+'"',s)
 # downloads -> live site, opened in a new tab (the artifact viewer blocks downloads)

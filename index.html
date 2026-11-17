@@ -2464,6 +2464,8 @@ function nikeDeep(id){
   <p class="fine" style="margin-top:28px">Described at the level of public product information. Process specifics, specifications and partner details stay confidential to Nike.</p>
  </div></section>`;
 }
+function mountTA(){document.querySelectorAll('video.ta-v').forEach(v=>{v.muted=true;v.defaultMuted=true;v.playsInline=true;v.setAttribute('muted','');const go=()=>{const p=v.play();if(p&&p.catch)p.catch(()=>{v.controls=true})};
+ if('IntersectionObserver' in window){new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)go();else v.pause()}),{threshold:.2}).observe(v)}else go();v.addEventListener('error',()=>{v.controls=true})})}
 function nikePage(i){
  const p=D.nike[i], t=NIKE_TEXT[p.id], nx=D.nike[(i+1)%D.nike.length];
  return head('nike',n2(i))+`<main>
@@ -2471,7 +2473,7 @@ function nikePage(i){
  <section class="band dark"><div class="wrap hero-split"><div class="media tr-l">${im(p.hero,p.title)}</div>
   <div><div class="cols" style="grid-template-columns:1fr;gap:32px;padding-top:0"><div><h3>My Role</h3><p>${t.role}</p></div><div><h3>Overview</h3><p>${t.ov}</p></div><div><h3>What's New</h3><p>${t.nw}</p></div></div></div></div></section>
  ${nikeDeep(p.id)}
- ${p.films?`<section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Films</h2><p class="sh-sub">Nike's launch films · World of Athletes</p><div class="ta-films">${p.films.map(([f,w,h,c])=>`<figure style="aspect-ratio:${w}/${h}"><video src="${f}" width="${w}" height="${h}" muted loop playsinline autoplay preload="metadata" aria-label="${esc(c)}"></video></figure>`).join('')}</div><p class="fine" style="margin-top:16px">Films and images: NIKE, Inc. newsroom, used to show the program I documented.</p></div></section>`:''}
+ ${p.films?`<section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Films</h2><p class="sh-sub">Nike's launch films · World of Athletes</p><div class="ta-films">${p.films.map(([f,w,h,c])=>`<figure style="aspect-ratio:${w}/${h}"><video class="ta-v" src="${f}" poster="${f.replace('film','poster').replace('.mp4','.webp')}" width="${w}" height="${h}" muted loop playsinline autoplay preload="auto" aria-label="${esc(c)}"></video></figure>`).join('')}</div><p class="fine" style="margin-top:16px">Films and images: NIKE, Inc. newsroom, used to show the program I documented.</p></div></section>`:''}
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Gallery</h2><p class="sh-sub">${esc(p.title)} · ${p.imgs.length} images</p>${gal(p.imgs,p.title)}</div></section>
  ${nextLink('work',nx)}</main>`+foot();
 }
@@ -3734,7 +3736,7 @@ function route(){
  else if(h===KP.id){html=keypadPage();title=KP.title+' · Henry Ortega'}
  else if((i=RH.findIndex(p=>p.id===h))>=0){html=CS[RH[i].id]?casePage(RH,i,'rhino','Rhino Workflow'):galleryPage(RH,i,'rhino','Rhino Workflow');title=RH[i].title+' · Henry Ortega'}
  document.body.classList.remove('gm-lock');
- if(html){app.innerHTML=html;app.dataset.view='project';scrollTo(0,0);mountGame();mountTT();mountKN();mountHKN();mountKA();mountSim();mountPV();mountFB();window.TigreFigures&&TigreFigures.mountAll(app)}
+ if(html){app.innerHTML=html;app.dataset.view='project';scrollTo(0,0);mountGame();mountTT();mountKN();mountHKN();mountTA();mountKA();mountSim();mountPV();mountFB();window.TigreFigures&&TigreFigures.mountAll(app)}
  else{
   if(app.dataset.view!=='home'){app.innerHTML=home();app.dataset.view='home';window.TigreFigures&&TigreFigures.mountAll(app)}
   const t=h&&document.getElementById(h); if(t) t.scrollIntoView(); else if(!h||h==='top') scrollTo(0,0);
