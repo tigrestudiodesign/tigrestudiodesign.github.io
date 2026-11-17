@@ -112,8 +112,13 @@
  },
  {
   "date": "2026-11-16",
-  "title": "SY-5000 hardware proof (Tinkercad)",
-  "detail": "Arduino Uno version of the SY-5000 with wiring diagram, electrical check and downloadable sketch; fixed Six Engines grid overflowing on phones."
+  "project": "sy-5000",
+  "change": "Arduino Uno version of the SY-5000 with wiring diagram, electrical check and downloadable sketch; fixed Six Engines grid overflowing on phones.",
+  "files": [
+   "index.html",
+   "img/sy__wiring.webp",
+   "downloads/SY5000_Tinkercad.ino"
+  ]
  },
  {
   "date": "2026-11-17",
