@@ -11,7 +11,7 @@ Live: https://tigrestudiodesign.github.io/ · Mirror: claude.ai artifact `847d3d
 - Henry signs in to sites himself; never enter passwords.
 
 ## One run = one finished improvement
-1. Read `data/improve-log.json`; pick the project improved least recently (rotate through every page in the router).
+1. Serve the repo and run `python3 tools/visible_projects.py` (Henry, Nov 17 2026: only improve what is actually on the site). Pick ONLY from that list: pages a visitor reaches from the homepage or the top menu. Never work on pages reachable only by direct link (the games, unlinked studies, old pages). From the list, prefer pages shown on the homepage (Selected Work first), then the rest; among those, take the one improved least recently in `data/improve-log.json`. Nike pages (p01–p11): layout, copy and Henry's own role only; nothing Nike-proprietary.
 2. Make ONE meaningful improvement that a visitor would notice: better renders (Blender Cycles via `python3 -c "import bpy"`; Henry's Rhino files can be read with `rhino3dm` when staged from his Mac), a clearer layout, an interactive demo, tighter copy, fixing anything broken or empty, mobile polish.
 3. Verify: serve locally (`python3 -m http.server`), screenshot desktop 1440 and mobile 390 with Playwright (`/usr/bin/google-chrome`), check zero console errors and zero 404s, and look at the screenshots.
 4. Deploy: commit (reuse the last commit's author: `E=$(git log -1 --format=%ae)` with GIT_AUTHOR_*/GIT_COMMITTER_* env), `git fetch && git rebase origin/main`, push. Then artifact: `python3 tools/build_artifact.py tools/artifact_files.json /abs/out/index.html` and publish_files index.html to the artifact (base_version from get_artifact, shared_live "public").
