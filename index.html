@@ -559,6 +559,49 @@ button.btn{cursor:pointer}
 .nk-docs{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
 .nk-docs a{display:inline-block;border:1px solid currentColor;padding:6px 10px;font:600 12px var(--mono,monospace);letter-spacing:.06em;text-decoration:none;color:inherit}
 .nk-docs a:hover{background:#FF4D12;border-color:#FF4D12;color:#fff}
+/* v53: Hyperboot system map (public level) */
+.hb-map{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 44px;margin-top:8px;padding:28px 0;border-bottom:1px solid rgba(255,255,255,.14)}
+.hb-pair{display:grid;gap:44px;position:relative}
+.hb-n{all:unset;box-sizing:border-box;cursor:pointer;position:relative;display:flex;flex-direction:column;gap:8px;padding:16px;min-height:150px;background:#0B0B0C;color:#F2EEE6;border:1px solid rgba(255,255,255,.22);transition:border-color .2s,opacity .2s}
+.hb-n:focus-visible{outline:2px solid #FF5A1F;outline-offset:3px}
+.hb-n .k{display:flex;justify-content:space-between;font:700 11px var(--mono,monospace);letter-spacing:.14em;color:#FF5A1F}
+.hb-n .k i{font-style:normal;color:rgba(255,255,255,.45)}
+.hb-n b{font-size:20px;letter-spacing:.06em}
+.hb-n>span:not(.k){font-size:14px;line-height:1.45;color:rgba(255,255,255,.72)}
+.hb-n em{margin-top:auto;font:600 11px var(--mono,monospace);font-style:normal;letter-spacing:.1em;color:#F2EEE6;border-top:1px dashed rgba(255,255,255,.22);padding-top:8px}
+.hb-n.out{background:#F2EEE6;color:#0B0B0C;border-color:#F2EEE6}.hb-n.out>span:not(.k){color:#3b3b3b}.hb-n.out em{color:#0B0B0C;border-color:rgba(0,0,0,.25)}.hb-n.out .k i{color:#595959}
+.hb-c{align-self:center}
+.hb-c>.hb-n::after,.hb-pair>.hb-n::after{content:'';position:absolute;left:100%;top:50%;width:22px;height:2px;background:#FF5A1F}
+.hb-pair>.hb-n::before{content:'';position:absolute;right:100%;top:50%;width:22px;height:2px;background:#FF5A1F}
+.hb-pair::before,.hb-pair::after{content:'';position:absolute;top:25%;bottom:25%;width:2px;background:#FF5A1F}
+.hb-pair::before{left:-22px}.hb-pair::after{right:-22px}
+.hb-c.last>.hb-n::after{display:none}
+.hb-c.last>.hb-n::before{content:'';position:absolute;right:100%;top:50%;width:22px;height:2px;background:#FF5A1F}
+.hb-bond{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font:700 10px var(--mono,monospace);letter-spacing:.16em;color:#0B0B0C;background:#FF5A1F;padding:4px 8px;white-space:nowrap;z-index:1}
+.hb-map.sel .hb-n{opacity:.32}.hb-map.sel .hb-n.on{opacity:1;border-color:#FF5A1F;box-shadow:0 0 0 1px #FF5A1F}
+.hb-if{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.hb-if li{box-sizing:border-box;cursor:pointer;display:block;padding:14px 14px 16px;border:1px solid rgba(255,255,255,.18);transition:opacity .2s,border-color .2s,background .2s}
+.hb-if li:focus-visible{outline:2px solid #FF5A1F;outline-offset:3px}
+.hb-if b{display:block;font:700 11px var(--mono,monospace);letter-spacing:.14em;color:#FF5A1F}
+.hb-if h3{font-size:16px;letter-spacing:.06em;margin:8px 0 6px;text-decoration:none}
+.hb-if p{margin:0;font-size:14px;line-height:1.45;color:rgba(255,255,255,.72)}
+.hb-if.sel li{opacity:.32}.hb-if.sel li.on{opacity:1;border-color:#FF5A1F;background:rgba(255,90,31,.08)}
+.hb-hint{font:600 11px var(--mono,monospace);letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);margin:18px 0 0}
+.hb-hint b{color:#FF5A1F}
+.nk-galh{font:700 12px var(--mono,monospace);letter-spacing:.16em;text-transform:uppercase;margin:40px 0 14px;display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--grid);padding-bottom:8px}
+.nk-galh i{font-style:normal;color:var(--muted)}
+@media (max-width:900px){.hb-if{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:760px){
+.hb-map{grid-template-columns:1fr;gap:30px 0}
+.hb-pair{grid-template-columns:1fr 1fr;gap:12px;padding-bottom:0}
+.hb-pair::before,.hb-pair::after,.hb-c.last>.hb-n::before,.hb-pair>.hb-n::after,.hb-pair>.hb-n::before{display:none}
+.hb-c:not(.last)>.hb-n::after{left:50%;top:100%;width:2px;height:30px}
+.hb-pair::after{display:block;right:auto;left:50%;top:100%;bottom:auto;width:2px;height:30px}
+.hb-n{min-height:0}
+.hb-pair .hb-n b{font-size:17px}
+.hb-bond{top:-15px;transform:translate(-50%,-50%)}
+.hb-if{grid-template-columns:1fr}
+}
 .nk-map{width:100%;border-collapse:collapse;margin-top:28px;font-size:14px}
 .nk-map th{font:600 11px var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase;text-align:center;padding:0 6px 10px;border-bottom:2px solid var(--rule);vertical-align:bottom}
 .nk-map th:first-child{text-align:left}
@@ -1429,6 +1472,51 @@ p10:{did:[
  docs:[],
  skills:['Electronics integration','Power & battery packaging','Pneumatics','Safety documentation','Partner program management']}
 };
+const NIKE_SYS={p10:{
+ nodes:{control:['S.01','CONTROL','On-boot buttons, or the Hyperice app over Bluetooth.','INPUT · BOOT OR APP'],
+  power:['S.02','POWER','Battery units housed in the insole, feeding both heat and air.','SOURCE · INSOLE-HOUSED'],
+  air:['S.03','AIR','Normatec dual-air bladders for rhythmic compression.','UP TO 210 mmHg'],
+  heat:['S.04','HEAT','Heating elements bonded to the air bladders.','UP TO 125°F / 52°C'],
+  body:['OUT','THE ATHLETE','Warmth and massage across the feet, Achilles and ankles, before or after movement.','WARM-UP · RECOVERY']},
+ ifs:[['I.01','POWER ROUTING','How power travels from the insole battery to the controls, heaters and air system.','power control heat air'],
+  ['I.02','PNEUMATIC TO THERMAL','Where heating elements meet the air bladders, so heat and compression work as one layer.','air heat'],
+  ['I.03','HOUSED IN THE SHOE','How every part sits safely inside the shoe\'s structure, and what the build must make room for.','power control air heat'],
+  ['I.04','ONE SHARED SPEC','Nike and Hyperice engineering building from the same specification.','control power air heat body']]},
+ gal:{p10:[['The boot',0,6],['The vest · same partnership',6,13]]}};
+function hbTap(el){
+ const sec=el.closest('.hb-sec'),map=sec.querySelector('.hb-map'),ifs=sec.querySelector('.hb-if');
+ const was=el.classList.contains('on')&&el.getAttribute('aria-pressed')==='true';
+ sec.querySelectorAll('.on').forEach(x=>x.classList.remove('on'));
+ sec.querySelectorAll('[aria-pressed]').forEach(x=>x.setAttribute('aria-pressed','false'));
+ map.classList.remove('sel');ifs.classList.remove('sel');
+ if(was)return;
+ el.classList.add('on');el.setAttribute('aria-pressed','true');
+ if(el.dataset.n){const n=el.dataset.n;
+  ifs.querySelectorAll('li').forEach(li=>{if(li.dataset.s.split(' ').includes(n))li.classList.add('on')})}
+ else{el.dataset.s.split(' ').forEach(n=>{const x=map.querySelector('[data-n="'+n+'"]');if(x)x.classList.add('on')})}
+ map.classList.add('sel');ifs.classList.add('sel');
+}
+function nikeSys(id){
+ const d=NIKE_SYS[id]; if(!d||!d.nodes) return '';
+ const N=(k,cls='')=>{const [t,h,b,sp]=d.nodes[k];return `<button type="button" class="hb-n ${cls}" data-n="${k}" aria-pressed="false" onclick="hbTap(this)"><span class="k">${t}<i>${k==='body'?'OUTPUT':'SYSTEM'}</i></span><b>${h}</b><span>${esc(b)}</span><em>${esc(sp)}</em></button>`};
+ return `<section class="band dark section hb-sec"><div class="wrap">
+  <p class="eyebrow">System Map · Public level</p><h2 class="sh-title" style="font-size:clamp(32px,4vw,52px)">FOUR SYSTEMS, ONE BOOT</h2>
+  <p class="sh-sub">What my integration documentation had to route, house and connect inside the shoe</p>
+  <div class="hb-map" role="group" aria-label="Hyperboot system map">
+   <div class="hb-c">${N('control')}</div><div class="hb-c">${N('power')}</div>
+   <div class="hb-pair">${N('air')}<span class="hb-bond">BONDED</span>${N('heat')}</div>
+   <div class="hb-c last">${N('body','out')}</div>
+  </div>
+  <p class="nk-h" style="margin-top:36px">WHERE MY DOCUMENTATION SAT · THE INTERFACES</p>
+  <ul class="hb-if">${d.ifs.map(([t,h,b,s])=>`<li role="button" tabindex="0" aria-pressed="false" data-s="${s}" onclick="hbTap(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();hbTap(this)}"><b>${t}</b><h3>${h}</h3><p>${esc(b)}</p></li>`).join('')}</ul>
+  <p class="hb-hint"><b>TAP</b> A SYSTEM OR AN INTERFACE TO TRACE WHAT IT TOUCHES</p>
+  <p class="fine" style="margin-top:20px;color:rgba(255,255,255,.55)">Block-level map drawn from public product information (Nike, Hyperice). No circuit, part, supplier or test detail.</p>
+ </div></section>`;
+}
+function nikeGal(p){
+ const g=(NIKE_SYS.gal||{})[p.id]; if(!g) return gal(p.imgs,p.title);
+ return g.map(([h,a,b])=>`<p class="nk-galh"><span>${esc(h)}</span><i>${String(b-a).padStart(2,'0')} images</i></p>${gal(p.imgs.slice(a,b),p.title+' · '+h)}`).join('');
+}
 const NIKE_MAP_COLS=['Upper design','Tech packs','Tech manual / QSG','Factory transition','Tooling / hardware','Electronics'];
 const NIKE_MAP={p11:[0,1,1,1,0,0],p01:[1,0,1,1,0,0],p02:[1,0,1,1,0,0],p03:[0,1,0,1,0,0],p04:[0,1,1,1,0,0],p05:[1,1,1,1,0,0],p06:[1,0,0,0,1,0],p07:[0,1,0,0,0,0],p08:[0,1,1,0,0,0],p09:[0,0,1,0,0,1],p10:[0,0,1,0,0,1]};
 
@@ -2982,9 +3070,10 @@ function nikePage(i){
  <section class="band dark"><div class="wrap case"><p class="num">Selected Work ${n2(i)} / ${esc(p.brand)}</p><h1>${esc(p.title)}</h1><p class="meta">${t.tag||esc(p.brand)}</p></div></section>
  <section class="band dark"><div class="wrap hero-split"><div class="media tr-l">${im(p.hero,p.title)}</div>
   <div><div class="cols" style="grid-template-columns:1fr;gap:32px;padding-top:0"><div><h3>My Role</h3><p>${t.role}</p></div><div><h3>Overview</h3><p>${t.ov}</p></div><div><h3>What's New</h3><p>${t.nw}</p></div></div></div></div></section>
+ ${nikeSys(p.id)}
  ${nikeDeep(p.id)}
  ${p.films?`<section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Films</h2><p class="sh-sub">Nike's launch films · World of Athletes</p><div class="ta-films">${p.films.map(([f,w,h,c,po])=>`<figure style="aspect-ratio:${w}/${h}"><video class="ta-v" src="${f}" poster="${po}" width="${w}" height="${h}" muted loop playsinline autoplay preload="auto" aria-label="${esc(c)}"></video></figure>`).join('')}</div><p class="fine" style="margin-top:16px">Films and images: NIKE, Inc. newsroom, used to show the program I documented.</p></div></section>`:''}
- <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Gallery</h2><p class="sh-sub">${esc(p.title)} · ${p.imgs.length} images</p>${gal(p.imgs,p.title)}</div></section>
+ <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Gallery</h2><p class="sh-sub">${esc(p.title)} · ${p.imgs.length} images</p>${nikeGal(p)}</div></section>
  ${nextLink('work',nx)}</main>`+foot();
 }
 function galleryPage(list,i,sec,label){

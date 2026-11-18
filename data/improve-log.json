@@ -208,5 +208,14 @@
    "tools/pneuma_model.py",
    "tools/pneuma_render.py"
   ]
+ },
+ {
+  "date": "2026-11-18",
+  "project": "p10",
+  "change": "New FOUR SYSTEMS, ONE BOOT section: tappable public-level system map (control, power, air, heat to the athlete) plus the four interfaces Henry's integration documentation covered; gallery split into the boot and the vest with counts.",
+  "files": [
+   "index.html",
+   "data/improve-log.json"
+  ]
  }
 ]
