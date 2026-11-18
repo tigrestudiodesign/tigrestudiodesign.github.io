@@ -19,8 +19,10 @@ Live: https://tigrestudiodesign.github.io/ · Mirror: claude.ai artifact `847d3d
 
 - Artifact images: tools/build_artifact.py only embeds image paths it can find. If a page builds paths in code (like R('kh__x') or GBI('02')), add a lookup map for that prefix in build_artifact.py, or the images will be blank in the artifact.
 
-## Artifact size (read before adding images)
-The artifact's index.html is ~16.75 MB of a 16.78 MB hard cap, and the artifact already holds its max file count.
-New images must NOT be inlined: give them a prefix covered by PK_RE in tools/build_artifact.py (ff__, cn__, ml__, mlr__)
-or add a new prefix there, and render them through im(). They then ship inside data/media_pack.json.
-After building, check the printed total stays under 16777216.
+## Space rules (read before adding images or pages)
+- Artifact: run `python3 tools/build_artifact.py /home/claude/out/art2`, then publish every path in out/art2/files.json
+  with publish_files (mode "replace"; split into calls under 60 MB). index.html carries no images: each page gets one
+  b/<page>.json image bundle sized to 2x how wide each image is drawn. Never inline images into index.html again.
+- After adding or changing a page's images, run `python3 tools/image_map.py` first (about 25 min) so the new page gets its own bundle.
+- New images: webp, at most 2560 px on the long side for photos/renders, under 1.5 MB. Keep masters (PNG renders, originals) in Google Drive, never in this repo.
+- Before every push: `python3 tools/size_report.py /home/claude/out/art2` must say "All within budget."
