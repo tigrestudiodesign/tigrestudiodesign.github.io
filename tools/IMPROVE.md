@@ -18,3 +18,9 @@ Live: https://tigrestudiodesign.github.io/ · Mirror: claude.ai artifact `847d3d
 5. Append `{date, project, change, files}` to `data/improve-log.json` in the same commit.
 
 - Artifact images: tools/build_artifact.py only embeds image paths it can find. If a page builds paths in code (like R('kh__x') or GBI('02')), add a lookup map for that prefix in build_artifact.py, or the images will be blank in the artifact.
+
+## Artifact size (read before adding images)
+The artifact's index.html is ~16.75 MB of a 16.78 MB hard cap, and the artifact already holds its max file count.
+New images must NOT be inlined: give them a prefix covered by PK_RE in tools/build_artifact.py (ff__, cn__, ml__, mlr__)
+or add a new prefix there, and render them through im(). They then ship inside data/media_pack.json.
+After building, check the printed total stays under 16777216.
