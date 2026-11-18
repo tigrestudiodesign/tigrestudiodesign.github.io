@@ -4113,6 +4113,7 @@ function mountPV(){
 function mountSim(){document.querySelectorAll('.sim[data-sim]:not([data-on])').forEach(el=>{el.dataset.on=1;(el.dataset.sim==='kp'?simKP:simBC)(el)})}
 
 function route(){
+ if(location.hash==='#factory-floor-2013')history.replaceState(null,'','#factory-floor');
  const h=location.hash.slice(1)==='grimlotch-peak'?'rise':location.hash.slice(1), app=document.getElementById('app');
  let i, html=null, title='Henry Ortega · Product Development & Design Technology';
  if((i=GAMES.findIndex(g=>g.id===h))>=0){html=gamePage(i);title=GAMES[i].title+' · Henry Ortega'}
@@ -4155,7 +4156,6 @@ document.addEventListener('click',e=>{const b=e.target.closest('.copy');if(!b)re
 // in-page anchors on project pages (e.g. Figures tabs): scroll within the page instead of routing away
 document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(!a||e.defaultPrevented||e.metaKey||e.ctrlKey)return;const app=document.getElementById('app');if(app.dataset.view!=='project')return;
  const id=a.getAttribute('href').slice(1),sm=matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth';if(id==='top'){e.preventDefault();scrollTo({top:0,behavior:sm});return}const t=id&&app.querySelector('#'+CSS.escape(id));if(!t)return;e.preventDefault();t.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'})});
-if(location.hash==='#factory-floor-2013')history.replaceState(null,'','#factory-floor');
 addEventListener('hashchange',route); route();
 </script>
 

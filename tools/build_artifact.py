@@ -81,5 +81,18 @@ s=re.sub(r'(href="\$\{[A-Za-z_.]+\}") download',r'\1 target="_blank" rel="noopen
 s=re.sub(r'(<a\b[^>]*?)\sdownload(?=[\s>])(?![^>]*target=)',r'\1 target="_blank" rel="noopener"',s)
 s=re.sub(r'(<a\b[^>]*?)\sdownload(?=[\s>])',r'\1',s)
 out=sys.argv[2] if len(sys.argv)>2 else 'artifact-index.html'
+# Media pack: the artifact holds at most 512 files, so photo/CMF/material-library images ship in ONE json
+# (data/media_pack.json, path -> data URI) that im() fills in on demand. Cross-site images are blocked in the viewer.
+import glob as _g
+PK_RE=r'^img\/(ff__|cn__|ml__|mlr__)'
+pack={}
+for f in sorted(_g.glob('img/ff__*.webp')+_g.glob('img/cn__*.webp')+_g.glob('img/ml__*.webp')+_g.glob('img/mlr__*.webp')):
+    pack[f]='data:image/webp;base64,'+base64.b64encode(open(f,'rb').read()).decode()
+_od=os.path.join(os.path.dirname(os.path.abspath(out)),'data'); os.makedirs(_od,exist_ok=True)
+json.dump(pack,open(os.path.join(_od,'media_pack.json'),'w'),separators=(',',':'))
+_im_old="const im=(r,alt,cls='')=>`<img src=\"${r[0]}\""
+assert _im_old in s, 'im() signature changed'
+_pk="const PKR=/"+PK_RE+"/;let PKM=null,PKP=null;const pkLoad=()=>PKP||(PKP=fetch('data/media_pack.json').then(r=>r.json()).then(j=>{PKM=j;document.querySelectorAll('img[data-pk]').forEach(e=>{const v=PKM[e.dataset.pk];if(v){e.src=v;e.removeAttribute('data-pk')}})}).catch(()=>{}));new MutationObserver(()=>{if(document.querySelector('img[data-pk]')){if(PKM)document.querySelectorAll('img[data-pk]').forEach(e=>{const v=PKM[e.dataset.pk];if(v){e.src=v;e.removeAttribute('data-pk')}});else pkLoad()}}).observe(document.documentElement,{childList:true,subtree:true});\n"
+s=s.replace(_im_old,_pk+"const im=(r,alt,cls='')=>`<img ${PKR.test(r[0])?(PKM&&PKM[r[0]]?'src=\"'+PKM[r[0]]+'\"':'data-pk=\"'+r[0]+'\" src=\"data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==\"'):'src=\"'+r[0]+'\"'}",1)
 os.makedirs(os.path.dirname(os.path.abspath(out)),exist_ok=True); open(out,'w').write(s)
 print('inlined',n,'bytes',sz,'total',len(s))
