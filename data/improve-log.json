@@ -196,5 +196,17 @@
    "index.html",
    "img/ff__*.webp"
   ]
+ },
+ {
+  "date": "2026-11-17",
+  "project": "pneuma",
+  "change": "New concept study PNEUMA: a soft textile hand for HESTIA adapted from the Soft Robotics Toolkit (knit textile actuator + fluidic control board). Python bend/wrap/tip-force model, three technical sheets (bend model, parametric flat pattern, control loop + grip sequence), four Blender Cycles renders driven by the model, and a live pressure/knit demo. Feature added under CMF & Materials after HESTIA × Knit Nodes.",
+  "files": [
+   "index.html",
+   "img/pn__*.webp",
+   "data/pneuma.json",
+   "tools/pneuma_model.py",
+   "tools/pneuma_render.py"
+  ]
  }
 ]

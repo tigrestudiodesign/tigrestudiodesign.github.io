@@ -1240,6 +1240,28 @@ a:focus-visible{outline-color:var(--or)}
 .hk-g-side{display:grid;gap:18px;align-content:start}.hk-g-side .card h3{font-size:18px}.hk-g-lab{font:11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:#FF5A1F;margin:0}
 .hk-ban{background:#FF5A1F}.hk-ban a{display:flex;gap:18px;align-items:center;padding:14px 16px;text-decoration:none;color:#0B0B0C}.hk-ban b{font:700 12px var(--mono);letter-spacing:.08em;white-space:nowrap}.hk-ban span{font-family:var(--serif);font-style:italic}.hk-ban i{margin-left:auto;font-style:normal;font-size:22px}
 @media (max-width:900px){.hk-group{grid-template-columns:1fr;padding:14px}.hk-ban a{flex-wrap:wrap;gap:6px}}
+/* v59: PNEUMA */
+.pn-skills{list-style:none;padding:0;margin:28px 0 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.pn-skills li{border-top:2px solid var(--rule);padding-top:14px}
+.pn-skills h3{margin:6px 0 12px;font-size:20px}
+.pn-skills p{margin:0 0 12px;font-size:15px;line-height:1.5}
+.pn-n{font:700 12px var(--mono);letter-spacing:.1em;color:#FF5A1F}
+.pn-k{font:700 11px var(--mono)!important;letter-spacing:.1em;color:var(--muted);margin:14px 0 4px!important}
+.pn-demo{margin-top:24px;border:1.5px solid var(--rule);padding:16px;background:#F6F3EC}
+.pn-svg{width:100%;max-width:760px;height:auto;display:block;margin:0 auto}
+.pn-ctl{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:14px}.pn-ctl label{font:700 11px var(--mono);letter-spacing:.1em}
+.pn-ctl input{flex:1 1 220px;accent-color:#FF5A1F;min-height:32px}.pn-o{font:700 20px var(--mono);color:#FF5A1F;min-width:6ch}
+.pn-kn{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.pn-kn button{font:700 12px var(--mono);letter-spacing:.04em;background:transparent;color:#1B1B1C;border:1.5px solid #1B1B1C;border-radius:999px;padding:9px 14px;cursor:pointer;min-height:40px}
+.pn-kn button[aria-pressed="true"]{background:#FF5A1F;border-color:#FF5A1F}
+.pn-read{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:16px 0 0}
+.pn-read div{border-top:2px solid #1B1B1C;padding-top:8px}.pn-read dt{font:700 11px var(--mono);letter-spacing:.1em;color:#6E6A64}.pn-read dd{margin:4px 0 0;font:700 22px var(--mono)}
+.pn-layers{list-style:none;padding:0;margin:0;display:grid;gap:18px}.pn-layers li{border-top:2px solid var(--rule);padding-top:10px}
+.pn-layers b{display:block;font:700 13px var(--mono);letter-spacing:.08em;margin-bottom:4px}.pn-layers span{font-size:15px;line-height:1.5}
+.pn-steps{list-style:none;padding:0;margin:28px 0 0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+.pn-steps li{border-top:2px solid var(--rule);padding-top:10px;font-size:14px;line-height:1.45}.pn-steps b{display:block;font:700 12px var(--mono);color:#FF5A1F;margin-bottom:4px}
+@media (max-width:900px){.pn-skills{grid-template-columns:repeat(2,minmax(0,1fr))}.pn-steps{grid-template-columns:repeat(2,minmax(0,1fr))}.pn-read{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.pn-skills,.pn-steps{grid-template-columns:1fr}}
 /* v59: Nike Tuned Air */
 .ta-films{display:grid;grid-template-columns:2.2fr 1fr .78fr;gap:16px;align-items:start;margin-top:24px}.ta-films figure{margin:0;overflow:hidden;background:#000}.ta-films video{display:block;width:100%;height:100%;object-fit:cover}
 @media (max-width:900px){.ta-films{grid-template-columns:1fr}}
@@ -1860,6 +1882,8 @@ function home(){
   <p class="intro" style="margin-top:12px">Studies in how structure, pattern and colour live inside a material: knit constructions, knitted graphics and finish palettes.</p>
   <div class="hk-group"><a class="hk-g-main" href="#hestia-knit-nodes"><div class="media tr-l"><span class="badge">New</span><img src="img/hk__hero.webp" alt="HESTIA dressed in the knits the selection engine picked" loading="lazy" width="1600" height="1000"></div><p class="kind">CMF · Program Integration · Lead project</p><h3>HESTIA × Knit Nodes</h3><p>Two studies joined by one selection engine: Rhino + Python knit behaviour, HESTIA joint demands, Blender renders and a live matrix, all from one data file.</p></a>
   <div class="hk-g-side"><p class="hk-g-lab">The two studies it joins</p>${[CARD_HS,CARD_KN].map(card).join('')}</div></div>
+  <a class="feature gl-feat" href="#${PN.id}"><div class="media tr-l"><span class="badge">New</span>${im(PN.img.hero,'PNEUMA, a soft textile hand, wrapped around a mug')}</div>
+  <div><small>New · Soft Robotics · Soft Goods · Built for HESTIA</small><h3>PNEUMA</h3><p>A soft textile hand adapted from the Soft Robotics Toolkit: knit fingers over heat-sealed bladders, a Python bend model, a parametric flat pattern and a cut-down control board. Drag the pressure and watch a finger curl.</p><span class="go">See the study →</span></div></a>
   <div class="cards">${cmf}</div>
   <h3 class="sub-h">Visual Communication &amp; Systems</h3>
   <p class="intro" style="margin-top:12px">Projects where the craft is the system behind the visuals: scripted 3D illustration and type, AI-built design systems and a cookbook generated from code.</p>
@@ -2038,6 +2062,105 @@ function hsPage(){
  <section class="band light section"><div class="wrap"><p class="fine">Unofficial concept study by Tigre Studio. The robot is an original design with the proportions of a commercial bipedal humanoid; it is not affiliated with or endorsed by Agility Robotics or any other company.</p></div></section>
  <section class="statement">${im(['img/hs2__living.webp',1600,1000],'HESTIA at home')}<p>Built for the warehouse, <span class="it">dressed for the living room.</span></p></section>
  ${nextLink('product',{id:'hestia-knit-nodes',title:'HESTIA × Knit Nodes'})}</main>`+foot();
+}
+
+/* ---------- v59: PNEUMA (soft textile hand for HESTIA, adapted from the Soft Robotics Toolkit) ---------- */
+const PN={id:'pneuma',title:'PNEUMA',
+ img:{hero:['img/pn__hero.webp',1920,1080],top:['img/pn__top.webp',1600,1000],seq:['img/pn__sequence.webp',1920,800],exploded:['img/pn__exploded.webp',1600,1000],
+  model:['img/pn__model.webp',1600,1180],pattern:['img/pn__pattern.webp',1600,1180],control:['img/pn__control.webp',1600,1180]},
+ knits:[['Light jersey',0.55,0.65],['Power mesh',0.80,0.60],['Spacer rib',1.30,0.50]],
+ skills:[['Design','A one-way-stretch knit on top and a woven that will not stretch below. The fabric, not a motor, decides which way the finger moves.','Picked a power mesh for the top: stiff enough to stop over-bending, soft enough to wrap a mug before 80 kPa.'],
+  ['Fabrication','No moulds and no casting: a sewing machine and an impulse sealer. Seal a bladder, sew a pocket, slide one into the other.','Turned the toolkit template into a parametric pattern: 15 cut parts and 5 grip prints per hand, from one finger table.'],
+  ['Modeling','Predict the bend before building: the woven layer is the neutral axis, so the knit\'s strain over the pouch height sets the curve.','Wrote the bend, wrap-pressure and tip-force model in Python. It drives the sheets, the renders and the demo below.'],
+  ['Control','The toolkit board: pump, solenoid valves, pressure sensors and an Arduino running PWM.','Cut it down to fit a forearm: an accumulator for fast grips, two inlet and two exhaust valves, normally open so power-off means open hand.']]
+};
+const CARD_PN={id:PN.id,isNew:true,kind:'Soft Robotics · Soft Goods',title:'PNEUMA',meta:'A soft textile hand for HESTIA · adapted from the Soft Robotics Toolkit',imgs:[PN.img.hero]};
+
+function pnPage(){
+ const I=PN.img;
+ return head('product','New')+`<main>
+ <section class="band dark"><div class="wrap case"><p class="num">New · Concept Study / Soft Robotics · Soft Goods</p><h1>PNEUMA</h1><p class="meta">A soft textile hand for HESTIA · Adapted from the Soft Robotics Toolkit</p>
+  <p class="note">HESTIA wears knit everywhere except its hands. PNEUMA asks what happens if the hand is soft goods too. I studied the open-source <a href="https://softroboticstoolkit.com/" target="_blank" rel="noopener">Soft Robotics Toolkit</a> from Harvard's Biodesign Lab and adapted its knit textile actuator into a five-finger hand: a pocket of one-way-stretch knit over a woven base, with a heat-sealed bladder inside. Air goes in, the knit grows, the finger curls.</p>
+  <dl class="facts"><div><dt>Role</dt><dd>Concept, soft-goods engineering, modeling, 3D, rendering</dd></div><div><dt>Tools</dt><dd>Python · NumPy · Matplotlib · Blender Cycles</dd></div><div><dt>Method</dt><dd>Soft Robotics Toolkit: design, fabrication, modeling, control</dd></div><div><dt>Status</dt><dd>Hypothetical · first-pass hand calculations</dd></div></dl></div></section>
+ <div class="hk-ban"><div class="wrap"><a href="#hestia"><b>BUILT FOR HESTIA</b><span>The home humanoid in a knit skin: same palette, same rib wrist, now with hands that are soft goods too.</span><i>→</i></a></div></div>
+ <div class="band dark" style="padding-bottom:56px"><div class="wrap"><div class="media tr-l">${im(I.hero,'PNEUMA, a soft textile hand, wrapped around a white mug on a dark launch stage: four knit fingers and a thumb in oatmeal knit with slate-moss edge binding, a champagne palm and a HESTIA forearm','heroimg')}</div></div></div>
+
+ <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Brief</h2><p class="sh-sub">Soft enough to hold a mug / Simple enough to sew</p>
+  <div class="cb-feature" style="padding-top:24px"><p class="intro" style="margin:0">A home robot's hand touches people, pets and things that break. Rigid fingers need force sensing to be safe; a fabric finger is safe because it gives. The goal: a hand that wraps an 80 mm mug, holds it full, lets go when the power drops, and can be made with the same tools as a sneaker upper.</p>
+  <div class="stats" style="margin-top:0"><div><b>5</b><span>Textile fingers</span></div><div><b>60</b><span>kPa to wrap a mug</span></div><div><b>1.8×</b><span>Hold margin, full mug</span></div><div><b>15</b><span>Cut parts per hand</span></div></div></div>
+ </div></section>
+
+ <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">What I Took From The Toolkit</h2><p class="sh-sub">Four skills / One hand</p>
+  <ol class="pn-skills">${PN.skills.map(([h,t,a],i)=>`<li><span class="pn-n">0${i+1}</span><h3>${h.toUpperCase()}</h3><p class="pn-k">THE TOOLKIT</p><p>${t}</p><p class="pn-k">MY ADAPTATION</p><p>${a}</p></li>`).join('')}</ol>
+ </div></section>
+
+ <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Air In, Finger Curls</h2><p class="sh-sub">Drag the pressure / Swap the knit</p>
+  <p class="intro">This is the bend model running live: the index finger (92 mm, 14 mm pouch) at any pressure up to the 80 kPa limit. The dashed circle is the mug. Try the light jersey: it wraps early, then curls past the mug. The spacer rib never gets there.</p>
+  <div class="pn-demo"><svg class="pn-svg" viewBox="110 20 470 360" role="img" aria-label="Side view of a textile finger bending as pressure rises"></svg>
+  <div class="pn-ctl"><label for="pn-p">PRESSURE</label><input id="pn-p" type="range" min="0" max="80" step="1" value="45"><output class="pn-o" for="pn-p">45 kPa</output></div>
+  <div class="pn-kn" role="group" aria-label="Top knit">${PN.knits.map(([n],i)=>`<button type="button" data-k="${i}" aria-pressed="${i===1}">${n}</button>`).join('')}</div>
+  <dl class="pn-read"><div><dt>BEND</dt><dd id="pn-th">–</dd></div><div><dt>KNIT STRAIN</dt><dd id="pn-e">–</dd></div><div><dt>TIP FORCE</dt><dd id="pn-f">–</dd></div><div><dt>MUG</dt><dd id="pn-s">–</dd></div></dl></div>
+  <figure class="el-fig" style="margin-top:28px">${im(I.seq,'The same index finger rendered at 0, 20, 45 and 70 kPa, each on a champagne test stand with its air line')}<figcaption>The same finger at 0, 20, 45 and 70 kPa. Each render takes its curve from the model, so this is a picture of the numbers, not a pose.</figcaption></figure>
+ </div></section>
+
+ <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Finger</h2><p class="sh-sub">Four layers / One seam</p>
+  <div class="el-two"><figure class="el-fig">${im(I.exploded,'Exploded textile finger: oatmeal power-mesh knit top, amber TPU bladder with a champagne inlet barb and air line, grey woven base, terracotta silicone-dot grip print')}<figcaption>Exploded index finger, top to bottom.</figcaption></figure>
+  <div><ol class="pn-layers"><li><b>KNIT TOP</b><span>Power mesh, wales running along the finger. It is the only layer that grows, so it sets the bend.</span></li>
+  <li><b>TPU BLADDER</b><span>Two plies of TPU-coated nylon, heat-sealed with a 4 mm margin. It holds the air; the fabric takes the load.</span></li>
+  <li><b>WOVEN BASE</b><span>210D nylon that does not stretch: the neutral axis the finger curls around.</span></li>
+  <li><b>GRIP PRINT</b><span>Terracotta silicone dots, the HESTIA colour for "hold here", printed on the palm side only.</span></li></ol>
+  <p class="fine">Slate-moss binding covers the sewn edge, the same rib as HESTIA's joints. The inlet barb sits in the champagne palm, where all five air lines meet.</p></div></div>
+ </div></section>
+
+ <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Modeling</h2><p class="sh-sub">Predict the bend / Then pick the knit</p>
+  <figure class="el-fig">${im(I.model,'Bend model sheet: finger cross-section with layer callouts, bend versus pressure for three knits with the mug wrap line, and a finger table with wrap pressure and tip force')}<figcaption>01 · Power mesh wraps every finger around the mug at 58–63 kPa and keeps 17 kPa in reserve for squeeze. At 70 kPa the five tips push 8.9 N: with silicone dots, 1.8× what a full 450 g mug needs.</figcaption></figure>
+ </div></section>
+
+ <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Fabrication</h2><p class="sh-sub">A pattern, not a mould</p>
+  <figure class="el-fig">${im(I.pattern,'Flat pattern sheet: knit tops, woven bases, TPU bladders and grip prints for five fingers, with stretch direction, grain line, heat-seal and sew lines')}<figcaption>02 · The nest comes from the same finger table as the model. Change a finger's length and the knit top, base, bladder and print all regenerate, with their seal and sew lines. This is a footwear pattern room skill, pointed at a robot.</figcaption></figure>
+  <ol class="pn-steps"><li><b>01</b><span>Cut knit, woven and TPU from the nest.</span></li><li><b>02</b><span>Heat-seal the bladder, TPU face to face, 150 °C, 15 s.</span></li><li><b>03</b><span>Sew knit to woven inside out, 6 mm seam, then turn.</span></li><li><b>04</b><span>Slide the bladder in and fit the inlet barb.</span></li><li><b>05</b><span>Bind the edge in slate-moss rib and clamp into the palm.</span></li></ol>
+ </div></section>
+
+ <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Control</h2><p class="sh-sub">Pre-shape / Wrap / Squeeze / Hold / Vent</p>
+  <figure class="el-fig">${im(I.control,'Control sheet: pneumatic loop from pump and accumulator through inlet and exhaust valves to fingers and thumb with pressure feedback to an Arduino, and a grip sequence chart')}<figcaption>03 · A 0.4 L accumulator gives a full grip without waiting for the pump, and drops only to 111 kPa. Exhaust valves are normally open: if HESTIA loses power, the hand opens.</figcaption></figure>
+ </div></section>
+
+ <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Grip</h2><p class="sh-sub">Fingers one way / Thumb the other</p>
+  <div class="el-two"><figure class="el-fig">${im(I.top,'Top view of PNEUMA holding a mug of coffee: four knit fingers wrap from the curved champagne palm, HESTIA forearm behind')}<figcaption>The palm is curved to fit the mug. Four fingers leave one end and wrap around the front. The thumb leaves the other end and closes from behind, out of view.</figcaption></figure>
+  <div class="cols" style="grid-template-columns:1fr;gap:28px;padding-top:0"><div><h3>Why It Is Safe</h3><p>Fabric gives. At hold pressure no fingertip pushes harder than 3 N, and losing power vents every pocket.</p></div><div><h3>Why It Fits HESTIA</h3><p>Same oatmeal knit, slate-moss rib and terracotta "hold here" grip. The hand is a cover over a bladder, so it washes and swaps like the rest of the skin.</p></div><div><h3>Next Tests</h3><p>Tensile-test the power mesh, burst-test the seals past 200 kPa, and cycle one finger 10,000 grips on the toolkit's control board.</p></div></div></div>
+ </div></section>
+
+ <section class="band light section"><div class="wrap"><p class="fine">Hypothetical concept study by Tigre Studio. The actuator method is adapted from the open-source <a href="https://softroboticstoolkit.com/textile-actuators/design" target="_blank" rel="noopener">knit textile actuator</a> and <a href="https://softroboticstoolkit.com/book/control-board" target="_blank" rel="noopener">fluidic control board</a> documented on the Soft Robotics Toolkit (Harvard Biodesign Lab). Not affiliated with or endorsed by Harvard or the toolkit's authors. All numbers are first-pass hand calculations with stated assumptions, meant to size the design and choose the tests. They are not FEA or lab results.</p></div></section>
+ <section class="statement">${im(I.top,'PNEUMA holding a mug')}<p>Air in, <span class="it">hand closed.</span></p></section>
+ ${nextLink('product',{id:HS.id,title:'HESTIA'})}</main>`+foot();
+}
+
+function mountPN(){
+ const svg=document.querySelector('.pn-svg');if(!svg||svg.dataset.on)return;svg.dataset.on=1;
+ const rng=document.getElementById('pn-p'),out=document.querySelector('.pn-o'),btns=[...document.querySelectorAll('.pn-kn button')];
+ const L=92,W=22,H=14,R=40,S=3.0,X0=250,Y0=110;let ki=1;
+ svg.innerHTML=`<rect width="800" height="400" fill="#F6F3EC"/><g class="pn-grid"></g><circle cx="${X0}" cy="${Y0+R*S}" r="${R*S}" fill="none" stroke="#1B1B1C" stroke-width="1.2" stroke-dasharray="6 6"/><text x="${X0}" y="${Y0+R*S+6}" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="12" fill="#6E6A64">80 mm MUG</text><rect x="${X0-56}" y="${Y0-H*S-14}" width="56" height="${H*S+20}" rx="6" fill="#B49C74"/><path class="pn-fing" fill="#C8B898" stroke="#5E6555" stroke-width="2"/><path class="pn-base" fill="none" stroke="#B65A3A" stroke-width="5" stroke-linecap="round"/><text x="126" y="44" font-family="JetBrains Mono,monospace" font-size="12" fill="#1B1B1C" font-weight="700">INDEX FINGER · SIDE VIEW</text>`;
+ const g=svg.querySelector('.pn-grid');let gl='';for(let x=0;x<=800;x+=20)gl+=`<line x1="${x}" y1="0" x2="${x}" y2="400" stroke="#DCD7CC" stroke-width=".6"/>`;for(let y=0;y<=400;y+=20)gl+=`<line x1="0" y1="${y}" x2="800" y2="${y}" stroke="#DCD7CC" stroke-width=".6"/>`;g.innerHTML=gl;
+ const fing=svg.querySelector('.pn-fing'),base=svg.querySelector('.pn-base');
+ const eps=(p,k,em)=>{const N=p/1000*H/2;return em*(1-Math.exp(-N/(k*em)))};
+ const pWrap=(k,em)=>{const e=H/R;return e>=em?Infinity:-k*em*Math.log(1-e/em)*2/H*1000};
+ function draw(){
+  const p=+rng.value,[name,k,em]=PN.knits[ki],e=eps(p,k,em),kap=e/H,th=L*kap;
+  // centreline = woven layer (palm side, toward the mug); dorsal offset h away from the centre of curvature
+  const pt=(s,v)=>{let x,y,nx,ny;if(kap<1e-6){x=s;y=0;nx=0;ny=-1}else{x=Math.sin(kap*s)/kap;y=(1-Math.cos(kap*s))/kap;nx=Math.sin(kap*s);ny=-Math.cos(kap*s)}return[X0+(x+nx*v)*S,Y0+(y+ny*v)*S]};
+  const n=60,top=[],bot=[];for(let i=0;i<=n;i++){const s=L*i/n,hs=H*(1-0.1*s/L)*(s>L-9?Math.sqrt(Math.max(0,1-((s-(L-9))/9)**2)):1);top.push(pt(s,Math.max(hs,0.6)));bot.push(pt(s,0))}
+  const f=a=>a.map(q=>q[0].toFixed(1)+' '+q[1].toFixed(1));
+  fing.setAttribute('d','M'+f(bot).join(' L')+' L'+f(top.reverse()).join(' L')+' Z');base.setAttribute('d','M'+f(bot).join(' L'));
+  const F=p/1000*W*H*H/2/L,pw=pWrap(k,em);
+  out.textContent=p+' kPa';
+  document.getElementById('pn-th').textContent=Math.round(th*180/Math.PI)+'°';
+  document.getElementById('pn-e').textContent=Math.round(e*100)+' %';
+  document.getElementById('pn-f').textContent=F.toFixed(2)+' N';
+  document.getElementById('pn-s').textContent=!isFinite(pw)||pw>80?'Never wraps':p>=pw?(p>pw+12?'Over-wrapped':'Wrapped'):'Wraps at '+Math.round(pw)+' kPa';
+ }
+ rng.addEventListener('input',draw);
+ btns.forEach(b=>b.addEventListener('click',()=>{ki=+b.dataset.k;btns.forEach(x=>x.setAttribute('aria-pressed',x===b));draw()}));
+ draw();
 }
 
 /* ---------- v51: Tigre Studio brand book ---------- */
@@ -4136,6 +4259,7 @@ function route(){
  else if(h===FF.id){html=ffPage();title='From The Factory Floor · Henry Ortega'}
  else if(h===BM.id){html=bmPage();title='How I Write A Tech Manual · BASECAMP Study · Henry Ortega'}
  else if(h===HKN.id){html=hknPage();title='HESTIA × Knit Nodes · Henry Ortega'}
+ else if(h===PN.id){html=pnPage();title='PNEUMA · Soft Textile Hand · Henry Ortega'}
  else if(h===HK.id){html=hkPage();title='Better With Friends · Henry Ortega'}
  else if((i=CUR.findIndex(p=>p.id===h))>=0){html=casePage(CUR,i,'product','Product Design');title=CUR[i].title+' · Henry Ortega'}
  else if((i=D.nike.findIndex(p=>p.id===h))>=0){html=nikePage(i);title=D.nike[i].title+' · Henry Ortega'}
@@ -4145,7 +4269,7 @@ function route(){
  else if(h===KP.id){html=keypadPage();title=KP.title+' · Henry Ortega'}
  else if((i=RH.findIndex(p=>p.id===h))>=0){html=CS[RH[i].id]?casePage(RH,i,'rhino','Rhino Workflow'):galleryPage(RH,i,'rhino','Rhino Workflow');title=RH[i].title+' · Henry Ortega'}
  document.body.classList.remove('gm-lock');
- if(html){app.innerHTML=html;app.dataset.view='project';scrollTo(0,0);mountGame();mountTT();mountKN();mountHKN();mountTA();mountKH();mountBM();mountKA();mountSim();mountPV();mountFB();window.TigreFigures&&TigreFigures.mountAll(app)}
+ if(html){app.innerHTML=html;app.dataset.view='project';scrollTo(0,0);mountGame();mountTT();mountKN();mountHKN();mountPN();mountTA();mountKH();mountBM();mountKA();mountSim();mountPV();mountFB();window.TigreFigures&&TigreFigures.mountAll(app)}
  else{
   if(app.dataset.view!=='home'){app.innerHTML=home();app.dataset.view='home';window.TigreFigures&&TigreFigures.mountAll(app)}
   const t=h&&document.getElementById(h); if(t) t.scrollIntoView(); else if(!h||h==='top') scrollTo(0,0);
