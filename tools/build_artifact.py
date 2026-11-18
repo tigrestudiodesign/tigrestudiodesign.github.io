@@ -13,7 +13,7 @@ n=0;sz=0
 # static paths
 for f in sorted(set(re.findall(r"img/[\w\-]+\.(?:webp|png|jpg|svg)",s))):
     if f in have or not os.path.exists(f): continue
-    if f=='img/og-card.jpg' or f.startswith('img/bm__') or f.startswith('img/kh__') or f.startswith('img/ff__') or f.startswith('img/cn__'): continue
+    if f=='img/og-card.jpg' or f.startswith('img/bm__') or f.startswith('img/kh__') or f.startswith('img/ff__') or f.startswith('img/cn__') or f.startswith('img/ml'): continue
     b='data:%s;base64,%s'%(mime[f.rsplit('.',1)[1]],base64.b64encode(open(f,'rb').read()).decode())
     s=s.replace("'%s'"%f,"'%s'"%b).replace('"%s"'%f,'"%s"'%b); n+=1; sz+=len(b)
 # dynamic helpers like GBI('02') -> 'img/gb__'+f+'.webp': provide a lookup map for missing files of that prefix
@@ -55,8 +55,7 @@ if bmm:
     s=s.replace(a,"const BMPM=%s;const BMP=n=>[BMPM[String(n).padStart(2,'0')]||'img/bm__p'+String(n).padStart(2,'0')+'.webp',1600,1000];"%json.dumps(m),1)
     if 'img/bm__p05_2x.webp' in bmm: s=s.replace("'img/bm__p05_2x.webp'","'%s'"%bsmall('img/bm__p05_2x.webp'))
     n+=len(bmm); sz+=sum(map(len,m.values()))
-# new photo/CMF pages: point their images at the live site (artifact size cap)
-s=re.sub(r"(['\"])img/(ff__|cn__)",lambda m:m.group(1)+LIVE+'img/'+m.group(2),s)
+# ff__/cn__/ml__/mlr__ images are NOT inlined: publish them as separate artifact files (see tools/artifact_extra_files.txt); cross-site images are blocked in the artifact viewer
 # brand-book spreads built as TSP(n)
 tsm=[f for f in sorted(glob.glob('img/ts__p*.webp')) if f not in have]
 if tsm:
