@@ -201,6 +201,15 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
 /* contact */
 .contact{padding-block:88px}
+.ct-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,340px);gap:48px;align-items:end}
+.ct-me{margin:0;position:relative;border:1px solid rgba(255,255,255,.18);padding:10px;background:rgba(11,11,12,.6)}
+.ct-me::before,.ct-me::after{content:"";position:absolute;width:18px;height:18px;border:2px solid #FF5A1F}
+.ct-me::before{top:-2px;left:-2px;border-right:0;border-bottom:0}.ct-me::after{bottom:-2px;right:-2px;border-left:0;border-top:0}
+.ct-me img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}
+.ct-me figcaption{display:grid;gap:2px;margin-top:10px;font:500 10px/1.5 var(--mono);letter-spacing:.08em;color:rgba(255,255,255,.62)}
+.ct-me figcaption b{color:#fff;font-weight:700;font-size:11px}
+@media(max-width:760px){.ct-grid{grid-template-columns:1fr;gap:32px}.ct-me{max-width:300px}}
+
 .contact h2{font-weight:700;font-size:clamp(56px,10vw,150px);line-height:.9;letter-spacing:-.03em;margin:0 0 16px}
 .copy{background:none;border:1px solid var(--grid-d);color:var(--white);font:inherit;font-size:12px;padding:3px 10px;cursor:pointer;margin-left:10px}
 
@@ -601,6 +610,17 @@ button.btn{cursor:pointer}
 .ff-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:220px;grid-auto-flow:dense;gap:10px;margin-top:28px}
 .ff-f{margin:0;overflow:hidden;border-radius:4px;background:#222}.ff-f img{width:100%;height:100%;object-fit:cover;display:block}.ff-big{grid-column:span 2;grid-row:span 2}
 @media (max-width:900px){.ff-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:160px}}
+
+/* v68 material library */
+.ml-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px 24px;margin-top:32px}
+.ml-card h3{font-size:18px;margin:6px 0 6px}.ml-card p{margin:0;font-size:14px;line-height:1.45}
+.ml-img{position:relative}.ml-img>img{width:100%;height:auto;display:block;border-radius:6px}
+.ml-ref{position:absolute;right:10px;bottom:10px;margin:0;width:32%;background:#0B0B0C;padding:4px;border-radius:4px;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.ml-ref img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;display:block;border-radius:2px}.ml-ref figcaption{font:700 9px var(--mono);letter-spacing:.1em;color:#FF5A1F;margin:3px 0 0 2px}
+.ml-n{font:700 11px var(--mono)!important;letter-spacing:.1em;color:#FF5A1F;margin:12px 0 0!important}
+@media (max-width:900px){.ml-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 14px}.ml-card h3{font-size:15px}}
+@media (max-width:520px){.ml-grid{grid-template-columns:minmax(0,1fr)}}
+
 /* v65 BASECAMP manual study */
 .bm-feat{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px;align-items:center;margin:40px 0;color:inherit;text-decoration:none;border:1.5px solid rgba(242,238,230,.25);border-radius:8px;padding:20px}
 .bm-feat:hover{border-color:#FF5A1F}.ff-feat{border-color:rgba(11,11,12,.2)}.ff-feat h3{color:inherit}.bm-feat img{width:100%;height:auto;display:block}.bm-feat small{font:700 11px var(--mono);letter-spacing:.1em;color:#FF5A1F}.bm-feat h3{font-size:28px;margin:8px 0 10px}.bm-feat .go{font:700 12px var(--mono);color:#FF5A1F}
@@ -1621,12 +1641,12 @@ function cmfnPage(){
  const card=(p,i)=>`<section class="band ${i%2?'dark':'light'} section cn-sec"><div class="wrap">
   <p class="ff-n">${String(i+1).padStart(2,'0')} / ${String(CMFN_D.length).padStart(2,'0')} · <a href="#${p.pid}">My role on this program →</a></p><h2 class="sh-title" style="font-size:36px">${p.t.toUpperCase()}</h2><p class="ff-d">${esc(p.role)}</p>
   <div class="cn-grid"><div class="cn-photo">${im([p.img,p.w,p.h],p.t+': product photo')}${p.z.map((z,j)=>`<span class="cn-pin" style="left:${z[0]*100}%;top:${z[1]*100}%" title="${esc(z[2])}">${j+1}</span>`).join('')}</div>
-   <div class="cn-side">${im(['img/cn__'+p.k+'.webp',1600,640],p.t+': colour swatch plaques')}
+   <div class="cn-side">${im(['img/cn__'+p.k+'.webp',1600,1000],p.t+': each colour rebuilt as a physical material sample')}
     <table class="cn-t"><thead><tr><th>#</th><th>Colour</th><th>Zone</th><th>Material</th><th>Finish</th></tr></thead><tbody>${p.z.map((z,j)=>`<tr><td>${j+1}</td><td><i style="background:${z[6]}"></i><b>${esc(z[2])}</b><small>${z[6]} · L*${z[7][0]} a*${z[7][1]} b*${z[7][2]}</small></td><td>${esc(z[3])}</td><td>${esc(z[4])}</td><td>${esc(z[5])}</td></tr>`).join('')}</tbody></table></div></div></div></section>`;
  return head('nike','New')+`<main>
  <section class="band dark"><div class="wrap case"><p class="num">New · CMF study · Released product</p><h1>READING THE PRODUCT</h1><p class="meta">Colour, material and finish, broken down from six released Nike products I worked on</p>
   <p class="note">A CMF designer has to look at a finished product and name every decision in it: which colour, on which part, in which material, with which finish. Here I take six released products from my Nike programs, sample each colour from the official product photography, and document it the way a CMF spec goes to a factory: zone, material, finish and a measured colour value.</p>
-  <dl class="facts"><div><dt>Products</dt><dd>6 released Nike styles</dd></div><div><dt>Colours documented</dt><dd>${CMFN_D.reduce((a,p)=>a+p.z.length,0)}</dd></div><div><dt>Method</dt><dd>Sampled from photos · sRGB and CIELAB</dd></div><div><dt>Swatches</dt><dd>Rendered from the sampled values</dd></div></dl></div></section>
+  <dl class="facts"><div><dt>Products</dt><dd>6 released Nike styles</dd></div><div><dt>Colours documented</dt><dd>${CMFN_D.reduce((a,p)=>a+p.z.length,0)}</dd></div><div><dt>Method</dt><dd>Sampled from photos · sRGB and CIELAB</dd></div><div><dt>Swatches</dt><dd>Physical samples modelled in Blender, colour-matched to the sampled values</dd></div></dl></div></section>
  <section class="band dark" style="padding-top:0"><div class="wrap"><figure class="kh-f">${im(['img/cn__fan.webp',2000,1240],'Swatch fan of every colour sampled from the six products')}<figcaption>Every colour in this study as a swatch fan, rendered from the sampled values and checked back against them after rendering.</figcaption></figure></div></section>
  ${CMFN_D.map(card).join('')}
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">HOW TO READ THESE NUMBERS</h2>
@@ -1634,7 +1654,7 @@ function cmfnPage(){
   <div><h3>Why CIELAB</h3><p>Hex codes are for screens. CIELAB describes colour the way factories compare it: lightness (L*), red to green (a*) and yellow to blue (b*). It is the space where colour differences (ΔE) are measured against a standard.</p></div>
   <div><h3>Material, From The Public Record</h3><p>Material names come from Nike's own announcements of each product, and the zones and finishes are what the photos show. Nothing here comes from internal documents.</p></div></div>
   <p class="fine" style="margin-top:28px">Product photography © Nike, shown to illustrate my work on each program. Colour values are my own measurements from those photos.</p>
-  <div class="ctas" style="margin-top:20px"><a class="btn" href="#factory-floor">From the factory floor</a><a class="btn" href="#nike">All Nike work</a></div></div></section>
+  <div class="ctas" style="margin-top:20px"><a class="btn" href="#material-library">Material library</a><a class="btn" href="#factory-floor">From the factory floor</a><a class="btn" href="#nike">All Nike work</a></div></div></section>
  ${nextLink('nike',{id:'factory-floor',title:'From The Factory Floor'})}</main>`+foot();
 }
 
@@ -1656,6 +1676,29 @@ function ffPage(){
   <div><h3>Standards Make It Repeatable</h3><p>The tech manuals and quality standards I wrote for 16 years were for exactly these lines: one clear standard, so every factory makes the same decision.</p></div></div>
   <div class="ctas" style="margin-top:28px"><a class="btn" href="#nike-cmf-reads">Reading the product: Nike CMF</a><a class="btn" href="#basecamp-manual">How I write a tech manual</a><a class="btn" href="#nike">All Nike work</a></div></div></section>
  ${nextLink('nike',{id:'basecamp-manual',title:'How I Write A Tech Manual'})}</main>`+foot();
+}
+
+
+/* MATERIAL LIBRARY: materials read from Henry's prototype photos, rebuilt as physical samples in Blender */
+const ML={id:'material-library'};
+const ML_D=[{"k": "pink_knit", "g": "Knit", "rw": 736, "rh": 556, "name": "Engineered knit · bound edge", "note": "Hot pink knit body finished with a volt yarn binding"}, {"k": "blue_knit", "g": "Knit", "rw": 1000, "rh": 290, "name": "Sock knit · heather rows", "note": "Fine-gauge tubular knit with heathered courses"}, {"k": "sculpt_knit", "g": "Knit", "rw": 436, "rh": 336, "name": "3D sculpted knit", "note": "Raised red maze relief knitted over a white base"}, {"k": "iri_knit", "g": "Knit", "rw": 626, "rh": 469, "name": "Knit with fused yarn net", "note": "Pale lime knit with a raised purple diamond net fused on top"}, {"k": "melange", "g": "Knit", "rw": 536, "rh": 152, "name": "Melange knit", "note": "Black-and-white melange yarn knit"}, {"k": "pastel_knit", "g": "Knit", "rw": 485, "rh": 156, "name": "Gradient knit", "note": "Space-dyed pastel knit: pink to butter to lilac, with purple float lines"}, {"k": "white_rib", "g": "Knit", "rw": 614, "rh": 262, "name": "Ladder rib knit", "note": "White corded knit with open ladders showing a blue underlay"}, {"k": "black_perf", "g": "Film", "rw": 774, "rh": 260, "name": "Perforated film · graded", "note": "Black film with a perforation pattern that grows across the panel"}, {"k": "grey_lattice", "g": "Printed", "rw": 552, "rh": 230, "name": "3D-printed lattice", "note": "Printed hex lattice with open cells and raised nodes"}, {"k": "carbon", "g": "Plate", "rw": 222, "rh": 244, "name": "Carbon fibre plate", "note": "2 × 2 twill carbon, clear-coated"}, {"k": "trans_sole", "g": "Rubber", "rw": 919, "rh": 555, "name": "Translucent outsole over knit", "note": "Lavender translucent rubber with a wave lug pattern, knit visible beneath"}, {"k": "pink_sole", "g": "Rubber", "rw": 222, "rh": 222, "name": "Rubber outsole · dimple field", "note": "Coral rubber with a graduated dimple field and a recessed panel"}, {"k": "volt_wave", "g": "Rubber", "rw": 614, "rh": 422, "name": "Rubber with wave inlays", "note": "Warm grey rubber with glossy volt wave inlays"}, {"k": "green_trac", "g": "Rubber", "rw": 444, "rh": 167, "name": "Traction rubber · cell lugs", "note": "Green rubber with raised cell-shaped traction lugs"}, {"k": "black_sole", "g": "Rubber", "rw": 820, "rh": 556, "name": "Two-tone rubber", "note": "Black rubber with inset white rectangular lugs"}];
+const CARD_ML={id:ML.id,isNew:true,kind:'CMF · Material library',title:'Material Library',meta:'15 materials from my prototype work, rebuilt as physical samples in Blender',imgs:[['img/ml__board.webp',2000,1240]]};
+function mlPage(){
+ const grp=[...new Set(ML_D.map(m=>m.g))];
+ return head('product','New')+`<main>
+ <section class="band dark"><div class="wrap case"><p class="num">New · CMF · Material library</p><h1>MATERIAL LIBRARY</h1><p class="meta">Knits, rubbers, films and plates from my prototype work, rebuilt as physical samples</p>
+  <p class="note">Over the last few years I photographed hundreds of early prototypes on the studio turntable. The products stay private, but the materials are the part a CMF team cares about. For each one I cropped the material out of my own photo, read its structure, colour and finish, and rebuilt it as a 50 mm physical sample in Blender: real displaced geometry for every stitch, lug and pocket, rendered under one studio light so the samples compare honestly.</p>
+  <dl class="facts"><div><dt>Samples</dt><dd>${ML_D.length} materials</dd></div><div><dt>Families</dt><dd>${grp.join(' · ')}</dd></div><div><dt>Built with</dt><dd>Python height and colour maps · Blender Cycles</dd></div><div><dt>Source</dt><dd>My own prototype photos, material only</dd></div></dl></div></section>
+ <section class="band dark" style="padding-top:0"><div class="wrap"><figure class="kh-f">${im(['img/ml__board.webp',2000,1240],'All fifteen rebuilt material samples laid out on a gridded board')}<figcaption>The full library on one board. Each sample is 50 × 50 mm.</figcaption></figure></div></section>
+ <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">THE SAMPLES</h2><p class="sh-sub">Rebuilt sample, with the crop from my photo it was read from</p>
+  <div class="ml-grid">${ML_D.map((m,i)=>`<article class="ml-card"><div class="ml-img">${im(['img/ml__'+m.k+'.webp',1600,1600],m.name+': rebuilt material sample')}<figure class="ml-ref">${im(['img/mlr__'+m.k+'.webp',m.rw,m.rh],'Crop of the material from my prototype photo')}<figcaption>PHOTO CROP</figcaption></figure></div>
+   <p class="ml-n">${String(i+1).padStart(2,'0')} · ${esc(m.g.toUpperCase())}</p><h3>${esc(m.name.toUpperCase())}</h3><p>${esc(m.note)}</p></article>`).join('')}</div></div></section>
+ <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">HOW THEY WERE BUILT</h2>
+  <div class="cols"><div><h3>Read</h3><p>Crop the material out of the prototype photo, so nothing of the shoe shows. Measure the repeat: stitch gauge, lug pitch, pocket size. Sample the colours. The crops are small, so each one is enlarged with a super-resolution model; the rebuild carries the full detail.</p></div>
+  <div><h3>Rebuild</h3><p>Write each material as a pair of maps in Python: a height map for the structure and a colour map for yarns, inlays and prints. Open structures get a cut-out map, so you see the floor through the holes.</p></div>
+  <div><h3>Render</h3><p>Displace a finely divided sheet with the height map in Blender, give it thickness and the right finish (matte knit, gloss inlay, clear-coated plate, translucent rubber) and render every sample under the same studio light.</p></div></div>
+  <div class="ctas" style="margin-top:28px"><a class="btn inv" href="#nike-cmf-reads">Reading the product: Nike CMF</a><a class="btn inv" href="#factory-floor">From the factory floor</a></div></div></section>
+ ${nextLink('product',{id:'nike-cmf-reads',title:'Reading The Product: Nike CMF'})}</main>`+foot();
 }
 
 /* BASECAMP TECH MANUAL STUDY: Henry's manual method shown on his own product */
@@ -1830,7 +1873,7 @@ function home(){
  const tiles=D.nike.map((p,i)=>`<a class="tile" href="#${p.id}"><div class="media ${i%2?'bl':'tr'}">${im(p.hero,p.title)}</div><small>${esc(p.brand)}</small><h3>${esc(p.title)}</h3><p class="tile-r">${esc(NIKE_ROLE[p.id]||'')}</p></a>`).join('');
  const card=(r,i)=>`<a class="card" href="#${r.id}"><div class="media ${i%2?'bl':'tr'}${r.fit?' paper':''}">${r.isNew?'<span class="badge">New</span>':''}${im(r.imgs[0],r.title)}</div>${r.kind?`<p class="kind">${esc(r.kind)}</p>`:''}<h3>${esc(r.title)}</h3><p>${esc(r.meta)}</p></a>`;
  const prod=[CARD_KH,CARD_SY,CARD_BC,{...PICK('trenza-alpargata'),isNew:true,meta:'Muisca CMF study · 3 editions'},{...PICK('electric-guitar'),isNew:true,kind:'Product Modeling',meta:'Launch set · 4 finishes · 230 parts'},{...PICK('penny-loafer'),isNew:true,kind:'Footwear · CMF',meta:'Rhino model, Blender Cycles render · 3 colourways'},{...PICK('f1-car'),isNew:true,meta:'Team-launch set · original Tigre livery'},CARD_WL,CARD_KP].map(card).join('');
- const cmf=[CARD_CMFN,CARD_KA,{...PICK('nesting-tables'),isNew:false,kind:'CMF · Furniture'}].map(card).join('');
+ const cmf=[CARD_ML,CARD_CMFN,CARD_KA,{...PICK('nesting-tables'),isNew:false,kind:'CMF · Furniture'}].map(card).join('');
  const vis=[
   {id:'standard-play',kind:'AI Design Systems',title:'Standard Play',meta:'Five Figma design systems I directed, built with Claude',sp:true},
   {id:'fold-bake',kind:'Editorial System',title:'Fold / Bake',meta:'A true-scale parchment cookbook generated from code',imgs:[['img/cb__co01.webp',1800,1273]],fit:true}
@@ -2910,9 +2953,10 @@ function resume(){
 }
 function contact(){
  return `<section id="contact" class="band dark contact rel stripey"><img class="stripes" src="img/stripe-hero.webp" alt="" aria-hidden="true"><div class="wrap">
-  <p class="eyebrow">Contact</p><h2>Let's Talk</h2><p class="intro" style="margin-top:0">Tell me a little about what you need and I'll get back to you.</p>
+  <div class="ct-grid"><div><p class="eyebrow">Contact</p><h2>Let's Talk</h2><p class="intro" style="margin-top:0">Tell me a little about what you need and I'll get back to you.</p>
   <ul class="contact-list" style="max-width:640px;margin-top:32px"><li><span>Email</span><span>${EMAIL}<button class="copy" data-copy="${EMAIL}">Copy</button></span></li><li><span>Phone</span><span>${PHONE}<button class="copy" data-copy="${PHONE}">Copy</button></span></li><li><span>LinkedIn</span><span><a href="${LI}" target="_blank" rel="noopener">linkedin.com/in/henryortega</a></span></li></ul>
-  <p class="eyebrow" style="margin-top:40px">Follow Tigre Studio</p>${socials()}
+  <p class="eyebrow" style="margin-top:40px">Follow Tigre Studio</p>${socials()}</div>
+  <figure class="ct-me"><img src="img/henry-portrait.webp" width="800" height="1000" alt="Henry Mauricio Ortega" loading="lazy" decoding="async"><figcaption><b>HENRY MAURICIO ORTEGA</b><span>CMF · SOFT GOODS · DESIGN TECHNOLOGY</span><span>PORTLAND, OR · EN / ES</span></figcaption></figure></div>
  </div></section>`;
 }
 
@@ -4257,6 +4301,7 @@ function route(){
  else if(h===KH.id){html=khPage();title='Kinetic Hexagon Facade · Henry Ortega'}
  else if(h===CMFN.id){html=cmfnPage();title='Reading The Product: Nike CMF · Henry Ortega'}
  else if(h===FF.id){html=ffPage();title='From The Factory Floor · Henry Ortega'}
+ else if(h===ML.id){html=mlPage();title='Material Library · Henry Ortega'}
  else if(h===BM.id){html=bmPage();title='How I Write A Tech Manual · BASECAMP Study · Henry Ortega'}
  else if(h===HKN.id){html=hknPage();title='HESTIA × Knit Nodes · Henry Ortega'}
  else if(h===PN.id){html=pnPage();title='PNEUMA · Soft Textile Hand · Henry Ortega'}
