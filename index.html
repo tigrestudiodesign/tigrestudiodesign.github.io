@@ -597,9 +597,13 @@ button.btn{cursor:pointer}
 .cn-t i{display:inline-block;width:22px;height:22px;border-radius:3px;vertical-align:middle;margin-right:8px;border:1px solid rgba(128,128,128,.5)}.cn-t b{vertical-align:middle}.cn-t small{display:block;opacity:.7;margin:4px 0 0 30px}
 .cn-crops{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}.cn-crops figure{margin:0}.cn-crops img{width:100%;height:auto;display:block;border-radius:4px}.cn-crops figcaption{font:11px var(--mono);opacity:.7;margin-top:6px}
 @media (max-width:900px){.cn-grid{grid-template-columns:minmax(0,1fr)}.cn-t{font-size:11px}.cn-t th:nth-child(5),.cn-t td:nth-child(5){display:none}}
+/* v66 factory floor */
+.ff-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:220px;grid-auto-flow:dense;gap:10px;margin-top:28px}
+.ff-f{margin:0;overflow:hidden;border-radius:4px;background:#222}.ff-f img{width:100%;height:100%;object-fit:cover;display:block}.ff-big{grid-column:span 2;grid-row:span 2}
+@media (max-width:900px){.ff-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:160px}}
 /* v65 BASECAMP manual study */
 .bm-feat{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px;align-items:center;margin:40px 0;color:inherit;text-decoration:none;border:1.5px solid rgba(242,238,230,.25);border-radius:8px;padding:20px}
-.bm-feat:hover{border-color:#FF5A1F}.bm-feat img{width:100%;height:auto;display:block}.bm-feat small{font:700 11px var(--mono);letter-spacing:.1em;color:#FF5A1F}.bm-feat h3{font-size:28px;margin:8px 0 10px}.bm-feat .go{font:700 12px var(--mono);color:#FF5A1F}
+.bm-feat:hover{border-color:#FF5A1F}.ff-feat{border-color:rgba(11,11,12,.2)}.ff-feat h3{color:inherit}.bm-feat img{width:100%;height:auto;display:block}.bm-feat small{font:700 11px var(--mono);letter-spacing:.1em;color:#FF5A1F}.bm-feat h3{font-size:28px;margin:8px 0 10px}.bm-feat .go{font:700 12px var(--mono);color:#FF5A1F}
 .bm-flip{margin-top:28px;outline:none}.bm-stage{position:relative;aspect-ratio:16/10;background:#0B0B0C;border-radius:6px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.18)}
 .bm-pg{position:absolute;inset:0;margin:0;opacity:0;transition:opacity .25s;pointer-events:none}.bm-pg.on{opacity:1;pointer-events:auto}.bm-pg img{width:100%;height:100%;display:block}
 .bm-ctl{display:flex;align-items:center;gap:16px;margin-top:14px}.bm-ctl button{font:700 18px var(--mono);width:48px;height:48px;border-radius:50%;border:1.5px solid #0B0B0C;background:#F2EEE6;cursor:pointer}.bm-ctl button:hover{background:#FF5A1F}
@@ -1608,7 +1612,27 @@ function cmfnPage(){
   <div><h3>Why CIELAB</h3><p>Hex codes are for screens. CIELAB describes colour the way factories compare it: lightness (L*), red to green (a*) and yellow to blue (b*). It is the space where colour differences (ΔE) are measured against a standard.</p></div>
   <div><h3>Material, From The Public Record</h3><p>Material names come from Nike's own announcements of each product, and the zones and finishes are what the photos show. Nothing here comes from internal documents.</p></div></div>
   <p class="fine" style="margin-top:28px">Product photography © Nike, shown to illustrate my work on each program. Colour values are my own measurements from those photos.</p>
-  <div class="ctas" style="margin-top:20px"><a class="btn" href="#nike">All Nike work</a><a class="btn" href="#basecamp-manual">How I write a tech manual</a></div></div></section>
+  <div class="ctas" style="margin-top:20px"><a class="btn" href="#factory-floor-2013">From the factory floor · 2013</a><a class="btn" href="#nike">All Nike work</a></div></div></section>
+ ${nextLink('nike',{id:'factory-floor-2013',title:'From The Factory Floor · 2013'})}</main>`+foot();
+}
+
+/* FACTORY FLOOR 2013: Henry's own photos of released product in production */
+const FF={id:'factory-floor-2013'};
+const FF_CH=[["CUT & PATTERN", "Every upper starts flat. Patterns are marked on the cutting board, panels are cut to them, and colour is decided panel by panel before anything is stitched.", [["img/ff__013.webp", 1024, 768], ["img/ff__014.webp", 480, 360], ["img/ff__045.webp", 480, 360], ["img/ff__031.webp", 768, 1024], ["img/ff__058.webp", 768, 1024]]], ["FLYKNIT ON THE MACHINE", "Flyknit uppers came off the machine as one piece: yarn colour, stitch density and the Swoosh knitted in, not stitched on. Colour here is a yarn decision, made long before the factory.", [["img/ff__081.webp", 480, 360], ["img/ff__083.webp", 1024, 768], ["img/ff__082.webp", 480, 360], ["img/ff__084.webp", 360, 480], ["img/ff__087.webp", 480, 360], ["img/ff__088.webp", 1086, 724], ["img/ff__057.webp", 480, 360], ["img/ff__086.webp", 480, 360], ["img/ff__056.webp", 1024, 660]]], ["COMPONENTS & COLOUR MATCH", "A pair is dozens of parts from different suppliers. Every one has to land on the same colour standard: knit uppers, foam, rubber, laces and prints, side by side on the line.", [["img/ff__051.webp", 1024, 768], ["img/ff__052.webp", 1024, 768], ["img/ff__023.webp", 1024, 768], ["img/ff__027.webp", 360, 480], ["img/ff__061.webp", 360, 540], ["img/ff__060.webp", 540, 360], ["img/ff__062.webp", 540, 360], ["img/ff__063.webp", 360, 540], ["img/ff__069.webp", 540, 360]]], ["LASTING & ASSEMBLY", "Uppers are pulled over the last, the bottom is cemented and pressed, and the shoe takes its final shape. This is where a material choice proves whether it can be made at speed.", [["img/ff__070.webp", 540, 360], ["img/ff__071.webp", 540, 360], ["img/ff__072.webp", 540, 360], ["img/ff__073.webp", 540, 360], ["img/ff__074.webp", 1086, 724], ["img/ff__044.webp", 360, 480], ["img/ff__068.webp", 540, 360], ["img/ff__064.webp", 480, 360], ["img/ff__009.webp", 360, 480], ["img/ff__010.webp", 768, 1024], ["img/ff__012.webp", 360, 480], ["img/ff__002.webp", 360, 480], ["img/ff__008.webp", 480, 360]]], ["CHECKING THE WORK", "Before a pair ships it is checked against the standard. Under UV light, primer and cement show where they were applied, so overspray and missed bonding are visible at a glance.", [["img/ff__020.webp", 360, 360], ["img/ff__021.webp", 480, 360], ["img/ff__053.webp", 480, 360], ["img/ff__059.webp", 768, 1024], ["img/ff__077.webp", 1086, 724]]]];
+const CARD_FF={id:FF.id,isNew:true,kind:'Footwear · Production · CMF',title:'From The Factory Floor · 2013',meta:'My own photos from the factory line: where colour and material decisions get made real',imgs:[["img/ff__081.webp", 480, 360]]};
+function ffPage(){
+ return head('nike','New')+`<main>
+ <section class="band dark"><div class="wrap case"><p class="num">New · Footwear production · Photo essay</p><h1>FROM THE FACTORY FLOOR · 2013</h1><p class="meta">My own photos from the factory line in Asia · released product only</p>
+  <p class="note">Colour and material choices are made in the studio, but they succeed or fail on the factory line. In 2013 I worked on the factory floor alongside the teams turning designs into production. These are my photos from that year: pattern panels on the cutting board, Flyknit coming off the machine, colour-matched components, lasting and the final check. Every product shown has been on sale for more than a decade.</p>
+  <dl class="facts"><div><dt>Year</dt><dd>2013</dd></div><div><dt>Where</dt><dd>Footwear factories in Asia</dd></div><div><dt>Product</dt><dd>Released running, football and basketball styles</dd></div><div><dt>Photos</dt><dd>Mine, taken on the line</dd></div></dl></div></section>
+ <section class="band dark" style="padding-top:0"><div class="wrap"><figure class="kh-f">${im(FF_CH[1][2][1],'Flyknit upper on the knitting machine')}<figcaption>A Flyknit upper still on the machine: colour, texture and Swoosh are all knitted in one pass.</figcaption></figure></div></section>
+ ${FF_CH.map(([t,d,ims],k)=>`<section class="band ${k%2?'dark':'light'} section"><div class="wrap"><p class="ff-n">${String(k+1).padStart(2,'0')} / ${String(FF_CH.length).padStart(2,'0')}</p><h2 class="sh-title" style="font-size:32px">${t}</h2><p class="ff-d">${d}</p>
+  <div class="ff-grid">${ims.map((r,j)=>`<figure class="ff-f${j===0?' ff-big':''}">${im(r,t+' · photo '+(j+1))}</figure>`).join('')}</div></div></section>`).join('')}
+ <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">WHY THIS MATTERS FOR CMF</h2>
+  <div class="cols"><div><h3>Colour Is A Supply Chain</h3><p>One colour on a spec sheet becomes yarn, foam, rubber, ink and thread from different suppliers. I have stood at the line where they have to match.</p></div>
+  <div><h3>Materials Have To Run</h3><p>A finish that looks right in a render still has to survive cutting, cementing, pressing and lasting at speed. I know which choices make that easy and which make it hard.</p></div>
+  <div><h3>Standards Make It Repeatable</h3><p>The tech manuals and quality standards I wrote for 16 years were for exactly these lines: one clear standard, so every factory makes the same decision.</p></div></div>
+  <div class="ctas" style="margin-top:28px"><a class="btn" href="#nike-cmf-reads">Reading the product: Nike CMF</a><a class="btn" href="#basecamp-manual">How I write a tech manual</a><a class="btn" href="#nike">All Nike work</a></div></div></section>
  ${nextLink('nike',{id:'basecamp-manual',title:'How I Write A Tech Manual'})}</main>`+foot();
 }
 
@@ -1860,6 +1884,7 @@ function home(){
   <p class="eyebrow">Nike · 2010 – 2026</p><h2 class="sh-title">Ten Programs, Concept To Factory Floor</h2><p class="sh-sub">Ten product programs, including powered hardware with Hyperice · my role on each</p>
   <ul class="steps" style="margin-top:20px;color:var(--muted)"><li>01 Concept</li><li>02 Tooling</li><li>03 Sample</li><li>04 Production</li></ul>
   <div class="tiles">${tiles}</div>
+  <a class="bm-feat ff-feat" href="#${FF.id}"><div class="media"><span class="badge">New</span>${im(FF_CH[1][2][0],'Flyknit upper on the knitting machine, 2013')}</div><div><small>New · Photo essay · My own photos</small><h3>FROM THE FACTORY FLOOR · 2013</h3><p>Pattern panels on the cutting board, Flyknit coming off the machine, colour-matched components and the final check: where colour and material decisions get made real.</p><span class="go">Open the photo essay →</span></div></a>
   <h3 style="margin-top:56px;text-decoration:none">CONTRIBUTION MAP</h3><p class="sh-sub" style="margin-top:6px">What I owned on each program</p>
   <div class="nk-mapw"><table class="nk-map"><thead><tr><th>Program</th>${NIKE_MAP_COLS.map(c=>`<th>${c}</th>`).join('')}</tr></thead><tbody>${D.nike.map(p=>`<tr><td><a href="#${p.id}">${esc(p.title)}</a></td>${(NIKE_MAP[p.id]||[]).map(v=>`<td>${v?'<i title="Owned"></i>':'<u></u>'}</td>`).join('')}</tr>`).join('')}</tbody></table></div>
   <p class="fine">Product imagery © Nike, shown to illustrate my role on each program. No confidential information is included.</p>
@@ -4107,6 +4132,7 @@ function route(){
  else if(h===SY.id){html=syPage();title='TIGRE SY-5000 · Henry Ortega'}
  else if(h===KH.id){html=khPage();title='Kinetic Hexagon Facade · Henry Ortega'}
  else if(h===CMFN.id){html=cmfnPage();title='Reading The Product: Nike CMF · Henry Ortega'}
+ else if(h===FF.id){html=ffPage();title='From The Factory Floor · 2013 · Henry Ortega'}
  else if(h===BM.id){html=bmPage();title='How I Write A Tech Manual · BASECAMP Study · Henry Ortega'}
  else if(h===HKN.id){html=hknPage();title='HESTIA × Knit Nodes · Henry Ortega'}
  else if(h===HK.id){html=hkPage();title='Better With Friends · Henry Ortega'}

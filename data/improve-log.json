@@ -178,5 +178,23 @@
    "tools/basecamp_manual*.py",
    "tools/build_artifact.py"
   ]
+ },
+ {
+  "date": "2026-11-17",
+  "project": "nike-cmf-reads",
+  "change": "New CMF study: six released Nike products from Henry's programs broken into colour (sampled hex + CIELAB), zone, material and finish, with rendered calibrated swatch plaques and a 27-colour swatch fan. Added first in the homepage CMF row.",
+  "files": [
+   "index.html",
+   "img/cn__*.webp"
+  ]
+ },
+ {
+  "date": "2026-11-17",
+  "project": "factory-floor-2013",
+  "change": "New photo essay from Henry's own 2013 factory photos of released product: cut & pattern, Flyknit, colour match, lasting, checking. Feature in the Nike section.",
+  "files": [
+   "index.html",
+   "img/ff__*.webp"
+  ]
  }
 ]
