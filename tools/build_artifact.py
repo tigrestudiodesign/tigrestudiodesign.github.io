@@ -13,7 +13,7 @@ n=0;sz=0
 # static paths
 for f in sorted(set(re.findall(r"img/[\w\-]+\.(?:webp|png|jpg|svg)",s))):
     if f in have or not os.path.exists(f): continue
-    if f=='img/og-card.jpg' or f.startswith('img/bm__') or f.startswith('img/kh__') or f.startswith('img/ff__') or f.startswith('img/cn__') or f.startswith('img/ml'): continue
+    if f=='img/og-card.jpg' or f.startswith('img/bm__') or f.startswith('img/kh__') or f.startswith('img/ff__') or f.startswith('img/cn__') or f.startswith('img/ml') or f=='img/henry-portrait.webp': continue
     b='data:%s;base64,%s'%(mime[f.rsplit('.',1)[1]],base64.b64encode(open(f,'rb').read()).decode())
     s=s.replace("'%s'"%f,"'%s'"%b).replace('"%s"'%f,'"%s"'%b); n+=1; sz+=len(b)
 # dynamic helpers like GBI('02') -> 'img/gb__'+f+'.webp': provide a lookup map for missing files of that prefix
@@ -84,9 +84,9 @@ out=sys.argv[2] if len(sys.argv)>2 else 'artifact-index.html'
 # Media pack: the artifact holds at most 512 files, so photo/CMF/material-library images ship in ONE json
 # (data/media_pack.json, path -> data URI) that im() fills in on demand. Cross-site images are blocked in the viewer.
 import glob as _g
-PK_RE=r'^img\/(ff__|cn__|ml__|mlr__)'
+PK_RE=r'^img\/(ff__|cn__|ml__|mlr__|henry-portrait)'
 pack={}
-for f in sorted(_g.glob('img/ff__*.webp')+_g.glob('img/cn__*.webp')+_g.glob('img/ml__*.webp')+_g.glob('img/mlr__*.webp')):
+for f in sorted(_g.glob('img/ff__*.webp')+_g.glob('img/cn__*.webp')+_g.glob('img/ml__*.webp')+_g.glob('img/mlr__*.webp')+['img/henry-portrait.webp']):
     pack[f]='data:image/webp;base64,'+base64.b64encode(open(f,'rb').read()).decode()
 _od=os.path.join(os.path.dirname(os.path.abspath(out)),'data'); os.makedirs(_od,exist_ok=True)
 json.dump(pack,open(os.path.join(_od,'media_pack.json'),'w'),separators=(',',':'))
