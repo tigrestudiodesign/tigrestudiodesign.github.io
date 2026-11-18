@@ -2020,6 +2020,8 @@ function home(){
   <p class="intro" style="margin-top:12px">Projects where the craft is the system behind the visuals: scripted 3D illustration and type, AI-built design systems and a cookbook generated from code.</p>
   <div class="cards c2">${vis}</div>
   <h3 class="sub-h">Free Resources</h3>
+  <a class="feature gl-feat" href="#${GB2.id}"><div class="media tr-l"><span class="badge">New</span>${im(GB2.img.hero,'Three slides from The Sorting Tray: the cover, graft flatten and simplify, and loft each pair')}</div>
+  <div><small>New · Free download · Brick by Brick Vol. 02</small><h3>The Sorting Tray</h3><p>Data matching and data trees explained with LEGO® bricks: Longest List = reuse the last brick, paths = bag labels, Graft = one brick per bag. Twelve pairs, a first build and a cheat sheet.</p><span class="go">Get the PDF →</span></div></a>
   <a class="feature gl-feat" href="#${GB.id}"><div class="media tr-l"><span class="badge">New</span>${im(GB.img.hero,'Three slides from Grasshopper, Brick by Brick: the cover, baseplate equals canvas, and your first build')}</div>
   <div><small>New · Free download · English &amp; Español</small><h3>Grasshopper, Brick By Brick</h3><p>The basic Grasshopper components explained with LEGO® bricks: baseplate = canvas, studs and tubes = wires, turntable = number slider. Fourteen pairs, a first build and a cheat sheet in eleven slides.</p><span class="go">Get the PDF →</span></div></a>
   <a class="feature gl-feat" href="#${RS2.id}"><div class="media tr-l"><span class="badge">New</span>${im(RS2.img.hero,'Three slides from Rhino to Stager, volume two of the Rhino and Adobe series')}</div>
@@ -3968,6 +3970,35 @@ document.addEventListener('click',e=>{
   setTimeout(()=>{try{f.focus();f.contentWindow&&f.contentWindow.focus()}catch(err){}},150)}
  else if(e.target.closest('#gm-x')) gmExit();
 });
+/* ---------- v33: Brick by Brick Vol. 02 · The Sorting Tray (free PDF) ---------- */
+const GB2I=(f,w,h,c)=>['img/gb2__'+f+'.webp',w||864,h||1080,c||''];
+const GB2={id:'brick-by-brick-sorting-tray',
+ img:{hero:GB2I('hero',1600,1000),row:GB2I('row',1600,900),cover:GB2I('01')},
+ pdf:'downloads/Grasshopper-Brick-by-Brick-Vol02-Sorting-Tray-Tigre-Studio.pdf',
+ pages:[GB2I('02',0,0,'The problem: wrong result? Check the bags'),GB2I('03',0,0,'Two rows = data matching / Last brick again = Longest List'),GB2I('04',0,0,'Bag labels = paths / Bag with bag = branch matching'),GB2I('05',0,0,'Re-pack: graft, flatten, simplify'),GB2I('06',0,0,'Two bags in one = Merge / New labels = Path Mapper'),GB2I('07',0,0,'Empty bag out = Clean Tree / Look inside = Param Viewer'),GB2I('08',0,0,'The everyday recipe: loft each pair'),GB2I('09',0,0,'Same bricks, two trays'),GB2I('10',0,0,'Cheat sheet'),GB2I('11',0,0,'By the numbers')]
+};
+function gb2Page(){
+ const pages=GB2.pages.map((p,i)=>`<figure><div class="media ${i%2?'bl':'tr'}">${im(p,p[3])}</div><figcaption>${esc(p[3])}</figcaption></figure>`).join('');
+ return head('product','New')+`<main>
+ <section class="band dark"><div class="wrap case"><p class="num">New · Free Resource / Brick By Brick · Vol. 02</p><h1>The Sorting Tray</h1><p class="meta">Data matching and data trees / Explained with LEGO® bricks · LinkedIn carousel and free PDF</p>
+  <p class="note">Most beginner bugs in Grasshopper aren't geometry, they're data. This volume shows how Grasshopper lines up bricks, packs them in numbered bags, and how to re-pack them when they're wrong.</p>
+  <dl class="facts"><div><dt>Role</dt><dd>Research, writing, design, illustration</dd></div><div><dt>Tools</dt><dd>McNeel docs · Python · HTML → PDF</dd></div><div><dt>Output</dt><dd>1 PDF · 11 carousel slides</dd></div><div><dt>Content</dt><dd>12 pairs · 1 recipe · 1 first build</dd></div></dl></div></section>
+ <div class="band dark" style="padding-bottom:56px"><div class="wrap"><div class="media tr-l">${im(GB2.img.hero,'Three slides from The Sorting Tray','heroimg')}</div></div></div>
+
+ <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Download The PDF</h2><p class="sh-sub">Free / 11 pages / English</p>
+  <div class="ra-dl"><a class="media tr" href="${GB2.pdf}" download aria-label="Download The Sorting Tray PDF">${im(GB2.img.cover,'Cover of The Sorting Tray')}</a>
+  <div><h3>Brick By Brick · Vol. 02</h3><p>Twelve data ideas, each paired with a brick: data matching, Longest List, paths, indices, branch matching, Graft, Flatten, Simplify, Merge, Path Mapper, Clean Tree and Param Viewer. Then the everyday recipe, loft each pair, and a first build that shows one set of points in two different trays.</p>
+  <a class="btn inv" href="${GB2.pdf}" download>Download PDF ↓</a></div></div>
+  <p class="fine">A direct download, no sign-up. Share it freely; credit Tigre Studio. LEGO® is a trademark of the LEGO Group of companies, which does not sponsor, authorize or endorse this guide. Rhino® and Grasshopper® are trademarks of Robert McNeel &amp; Associates. All illustrations are original drawings.</p>
+ </div></section>
+
+ <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Inside The Pages</h2><p class="sh-sub">Bags, labels, trays / Original brick drawings / Tigre stripes</p>
+  <div class="gl-pages ra-pages">${pages}</div>
+ </div></section>
+
+ <section class="statement">${im(GB2.img.row,'Four slides from The Sorting Tray side by side')}<p>Same bricks, <span class="it">the right bags.</span></p></section>
+ ${nextLink('product',{id:GB.id,title:'Brick By Brick · Vol. 01'})}</main>`+foot();
+}
 /* ---------- v32: Grasshopper, Brick by Brick (free PDF) ---------- */
 const GBI=(f,w,h,c)=>['img/gb__'+f+'.webp',w||864,h||1080,c||''];
 const GB={id:'grasshopper-brick-by-brick',
@@ -4006,7 +4037,7 @@ function gbPage(){
  </div></section>
 
  <section class="statement">${im(GB.img.row,'Four slides from Grasshopper, Brick by Brick side by side')}<p>Every component, <span class="it">one brick at a time.</span></p></section>
- ${nextLink('product',{id:GL.id,title:'Rhino & Grasshopper Glossaries'})}</main>`+foot();
+ ${nextLink('product',{id:GB2.id,title:'Brick By Brick · Vol. 02'})}</main>`+foot();
 }
 /* ---------- v31: Rhino ⇄ Adobe · Vol. 02 · Rhino → Stager (free PDF) ---------- */
 const RTI=(f,w,h,c)=>['img/rst__'+f+'.webp',w||864,h||1080,c||''];
@@ -4374,6 +4405,7 @@ function route(){
  let i, html=null, title='Henry Ortega · Product Development & Design Technology';
  if((i=GAMES.findIndex(g=>g.id===h))>=0){html=gamePage(i);title=GAMES[i].title+' · Henry Ortega'}
  else if(h===CB.id){html=cookbookPage();title='Fold / Bake · Henry Ortega'}
+ else if(h===GB2.id){html=gb2Page();title='The Sorting Tray · Brick by Brick Vol. 02 · Henry Ortega'}
  else if(h===GB.id){html=gbPage();title='Grasshopper, Brick by Brick · Henry Ortega'}
  else if(h===RS2.id){html=rs2Page();title='Rhino → Stager · Rhino ⇄ Adobe Vol. 02 · Henry Ortega'}
  else if(h===RA.id){html=raPage();title='Rhino → Illustrator · Rhino ⇄ Adobe Vol. 01 · Henry Ortega'}
