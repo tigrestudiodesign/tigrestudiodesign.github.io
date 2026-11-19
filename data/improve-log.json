@@ -217,5 +217,14 @@
    "index.html",
    "data/improve-log.json"
   ]
+ },
+ {
+  "date": "2026-11-19",
+  "project": "p11",
+  "change": "New HOW I DOCUMENT A NEW WAY OF MAKING section: tappable eight-chapter manual anatomy (Henry's own format, generic, keyboard tabs) mapped to the four parts of his Tuned Air role, Nike's public prototype-time figures as a 21-vs-3-day block chart, a public timeline (Aug 2026 delivered, Nov 16 announced, late 2027 runners) and a link to the publishable BASECAMP manual. Films row now equal height on desktop and mobile; Nike page headers MY ROLE / OVERVIEW / WHAT'S NEW set in caps.",
+  "files": [
+   "index.html",
+   "data/improve-log.json"
+  ]
  }
 ]

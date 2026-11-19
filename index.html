@@ -1326,8 +1326,8 @@ a:focus-visible{outline-color:var(--or)}
 @media (max-width:900px){.pn-skills{grid-template-columns:repeat(2,minmax(0,1fr))}.pn-steps{grid-template-columns:repeat(2,minmax(0,1fr))}.pn-read{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:560px){.pn-skills,.pn-steps{grid-template-columns:1fr}}
 /* v59: Nike Tuned Air */
-.ta-films{display:grid;grid-template-columns:2.2fr 1fr .78fr;gap:16px;align-items:start;margin-top:24px}.ta-films figure{margin:0;overflow:hidden;background:#000}.ta-films video{display:block;width:100%;height:100%;object-fit:cover}
-@media (max-width:900px){.ta-films{grid-template-columns:1fr}}
+.ta-films{display:grid;grid-template-columns:1.778fr .8fr .5625fr;gap:16px;align-items:start;margin-top:24px}.ta-films figure{margin:0;overflow:hidden;background:#000}.ta-films video{display:block;width:100%;height:100%;object-fit:cover}
+@media (max-width:900px){.ta-films{grid-template-columns:.8fr .5625fr}.ta-films figure:first-child{grid-column:1/-1}}
 /* v60: employer pass */
 .sel6{display:grid;grid-template-columns:repeat(4,1fr);gap:28px 24px;margin-top:28px}.sel-c{display:block;text-decoration:none;color:inherit}.sel-c.big{grid-column:span 2}.sel-c .media{overflow:hidden;aspect-ratio:16/10}.sel-c .media img{width:100%;height:100%;object-fit:cover;transition:transform .5s}.sel-c:hover .media img{transform:scale(1.03)}.sel-c h3{font-family:var(--head);text-transform:uppercase;margin:6px 0 4px;font-size:20px}.sel-c.big h3{font-size:28px}.sel-c p{margin:0}.sel-o{font:11px var(--mono);letter-spacing:.04em;text-transform:uppercase;color:#FF5A1F;margin-top:6px!important}
 @media (max-width:900px){.sel6{grid-template-columns:1fr 1fr}.sel-c.big{grid-column:span 2}}@media (max-width:560px){.sel6{grid-template-columns:1fr}.sel-c.big{grid-column:auto}}
@@ -1338,6 +1338,35 @@ a:focus-visible{outline-color:var(--or)}
 .sy-eng{grid-template-columns:repeat(3,1fr)}@media (max-width:900px){.sy-eng{grid-template-columns:1fr}}
 .sy-wire img{width:100%!important;height:auto!important;aspect-ratio:1600/1120;object-fit:contain}
 .sy-wire img{width:100%!important;height:auto!important;aspect-ratio:1600/1120;object-fit:contain}
+/* v62: Tuned Air manual method */
+.tm{--or:#FF5A1F;--pp:#F2EEE6;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;background-color:#0B0B0C;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:24px 24px}
+.tm .tm-lead{max-width:760px;color:rgba(242,238,230,.82);font-size:18px;line-height:1.5;margin:18px 0 0}
+.tm-board{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:32px;margin-top:40px;align-items:stretch}
+.tm-spine{display:flex;flex-direction:column;gap:6px;margin:0;padding:0;list-style:none}
+.tm-ch{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:12px;width:100%;padding:12px 14px;border:1px solid rgba(242,238,230,.2);color:var(--pp);font:600 13px var(--mono);letter-spacing:.06em;text-transform:uppercase;background:repeating-linear-gradient(90deg,rgba(242,238,230,.06) 0 2px,transparent 2px 6px) left/40px 100% no-repeat,#111113;transition:border-color .2s,background-color .2s}
+.tm-ch b{color:var(--or);font-weight:700}.tm-ch i{font-style:normal;font-size:10px;letter-spacing:.14em;color:rgba(242,238,230,.5)}
+.tm-ch:hover{border-color:rgba(242,238,230,.5)}.tm-ch:focus-visible{outline:2px solid var(--or);outline-offset:2px}
+.tm-ch[aria-selected="true"]{border-color:var(--or);background-color:#1a120e;box-shadow:inset 4px 0 0 var(--or)}
+.tm-pane{position:relative;border:1px solid rgba(242,238,230,.25);padding:28px 28px 24px;background:#0B0B0C;display:flex;flex-direction:column;gap:18px}
+.tm-pane:before,.tm-pane:after{content:"";position:absolute;width:14px;height:14px;border:2px solid var(--or)}.tm-pane:before{top:-2px;left:-2px;border-right:0;border-bottom:0}.tm-pane:after{bottom:-2px;right:-2px;border-left:0;border-top:0}
+.tm-k{font:700 11px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--or);margin:0}
+.tm-pane h3{font-family:var(--head,var(--sans));text-transform:uppercase;font-size:clamp(26px,3vw,40px);line-height:1;margin:0;color:var(--pp)}
+.tm-q{font-family:var(--serif);font-style:italic;font-size:22px;line-height:1.3;margin:0;color:var(--pp)}
+.tm-dl{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:0}.tm-dl div{border-top:1px solid rgba(242,238,230,.2);padding-top:10px}
+.tm-dl dt{font:700 10px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:rgba(242,238,230,.55);margin-bottom:6px}.tm-dl dd{margin:0;color:var(--pp);line-height:1.45}
+.tm-pil{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:auto}.tm-pil span{font:700 9.5px var(--mono);letter-spacing:.1em;text-transform:uppercase;padding:8px 6px 0;border-top:4px solid rgba(242,238,230,.18);color:rgba(242,238,230,.45)}.tm-pil span.on{border-color:var(--or);color:var(--pp)}
+.tm-stats{display:grid;grid-template-columns:1.4fr 1fr;gap:32px;margin-top:56px}
+.tm-bar{font:600 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--pp)}
+.tm-row{display:grid;grid-template-columns:110px 1fr;align-items:center;gap:12px;margin-top:12px}.tm-row u{display:block;height:22px;background:repeating-linear-gradient(90deg,rgba(242,238,230,.75) 0 calc(100%/21 - 3px),transparent calc(100%/21 - 3px) calc(100%/21));text-decoration:none}
+.tm-row.f u{width:calc(300%/21);background:repeating-linear-gradient(90deg,var(--or) 0 calc(100%/3 - 3px),transparent calc(100%/3 - 3px) calc(100%/3))}
+.tm-big{font-family:var(--head,var(--sans));font-size:clamp(56px,8vw,112px);line-height:.9;color:var(--or);margin:0}
+.tm-tl{display:grid;grid-template-columns:repeat(3,1fr);margin:56px 0 0;padding:0;list-style:none;border-top:2px solid var(--pp)}
+.tm-tl li{position:relative;padding:18px 16px 0 0}.tm-tl li:before{content:"";position:absolute;top:-8px;left:0;width:14px;height:14px;background:#0B0B0C;border:2px solid var(--pp);border-radius:50%}.tm-tl li.me:before{background:var(--or);border-color:var(--or)}
+.tm-tl b{display:block;font:700 12px var(--mono);letter-spacing:.14em;color:var(--or)}.tm-tl span{display:block;color:var(--pp);margin-top:6px;line-height:1.4}
+.tm-cta{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;margin-top:56px;padding:24px 28px;border:1px solid var(--or);color:var(--pp);text-decoration:none;transition:background-color .2s}
+.tm-cta:hover{background:#1a120e}.tm-cta b{display:block;font-family:var(--head,var(--sans));text-transform:uppercase;font-size:clamp(22px,2.4vw,32px);line-height:1.05}.tm-cta span{display:block;margin-top:8px;color:rgba(242,238,230,.75)}.tm-cta em{font:700 13px var(--mono);letter-spacing:.14em;font-style:normal;color:var(--or);white-space:nowrap}
+@media (max-width:900px){.tm-board,.tm-stats{grid-template-columns:1fr}.tm-tl{grid-template-columns:1fr;border-top:0;border-left:2px solid var(--pp);gap:22px}.tm-tl li{padding:0 0 0 22px}.tm-tl li:before{top:2px;left:-8px}.tm-cta{grid-template-columns:1fr}}
+@media (max-width:560px){.tm-dl{grid-template-columns:1fr}.tm-pane{padding:22px 18px}.tm-pil span{font-size:8px;letter-spacing:.04em}.tm-row{grid-template-columns:84px 1fr}}
 </style>
 
 <div id="app"></div>
@@ -1511,6 +1540,34 @@ function nikeSys(id){
   <ul class="hb-if">${d.ifs.map(([t,h,b,s])=>`<li role="button" tabindex="0" aria-pressed="false" data-s="${s}" onclick="hbTap(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();hbTap(this)}"><b>${t}</b><h3>${h}</h3><p>${esc(b)}</p></li>`).join('')}</ul>
   <p class="hb-hint"><b>TAP</b> A SYSTEM OR AN INTERFACE TO TRACE WHAT IT TOUCHES</p>
   <p class="fine" style="margin-top:20px;color:rgba(255,255,255,.55)">Block-level map drawn from public product information (Nike, Hyperice). No circuit, part, supplier or test detail.</p>
+ </div></section>`;
+}
+const TA_CH=[
+ ['Technology definition','What is this method, on one page, and what is it not?','Everyone, first','Every team invents its own name for the same thing',0],
+ ['Athlete benefits','What should the athlete feel, and why does the method deliver it?','Designers, product, development','Design trades away the very thing the method exists for',0],
+ ['Design requirements','What can a designer draw that the factory can still build?','Designers, developers','Beautiful files that cannot be made',1],
+ ['Digital process','How does a design file become the data the build runs on?','Digital design, developers','The file and the part drift apart, version by version',2],
+ ['Machine & system','Which equipment, settings and hand-offs are involved?','Factory engineering, maintenance','Line knowledge lives in one person\'s head',2],
+ ['Method of making','What happens at each station, and in what order?','Operators, factory engineers','Each line builds it a slightly different way',2],
+ ['QC & troubleshooting','What does good look like, and what do I do when it is not?','Quality teams, factory teams','Two factories judge the same defect two ways',3],
+ ['Cost & experts','What drives cost, and who do I call?','Development, sourcing','Questions stall for weeks waiting on the right person']];
+TA_CH[7][4]=3;
+const TA_PIL=['Overview','Design rules','Method of make','Quality checks'];
+function taPane(i){const [t,q,r,m,p]=TA_CH[i];return `<p class="tm-k">Chapter ${n2(i)} / 08</p><h3>${esc(t)}</h3><p class="tm-q">${esc(q)}</p><dl class="tm-dl"><div><dt>Read by</dt><dd>${esc(r)}</dd></div><div><dt>Without it</dt><dd>${esc(m)}</dd></div></dl><div class="tm-pil" aria-label="Part of the manual">${TA_PIL.map((x,j)=>`<span class="${j===p?'on':''}">${x}</span>`).join('')}</div>`}
+function taPick(el){const sec=el.closest('.tm'),i=+el.dataset.i;sec.querySelectorAll('.tm-ch').forEach(b=>{const on=b===el;b.setAttribute('aria-selected',on);b.tabIndex=on?0:-1});sec.querySelector('.tm-pane').innerHTML=taPane(i)}
+function taKey(e){const k=e.key,el=e.currentTarget,all=[...el.closest('.tm-spine').querySelectorAll('.tm-ch')],i=all.indexOf(el);let j=-1;if(k==='ArrowDown'||k==='ArrowRight')j=(i+1)%all.length;else if(k==='ArrowUp'||k==='ArrowLeft')j=(i+all.length-1)%all.length;else if(k==='Home')j=0;else if(k==='End')j=all.length-1;if(j<0)return;e.preventDefault();all[j].focus();taPick(all[j])}
+function taMethod(){
+ return `<section class="band section tm"><div class="wrap">
+  <p class="eyebrow" style="color:#FF5A1F">Method · Public level</p><h2 class="sh-title" style="font-size:clamp(32px,4vw,52px);color:#F2EEE6">HOW I DOCUMENT A NEW WAY OF MAKING</h2>
+  <p class="tm-lead">A faster method only pays off if every factory builds it the same way. On a new platform, the first programs set the baseline the rest copy, so I write the manual in the same eight chapters every time: from what the technology is, to who to call when something goes wrong.</p>
+  <div class="tm-board"><ol class="tm-spine" role="tablist" aria-label="The eight chapters of a technology manual">${TA_CH.map((c,i)=>`<li role="presentation"><button type="button" class="tm-ch" role="tab" data-i="${i}" aria-selected="${i===0}" tabindex="${i===0?0:-1}" aria-controls="tm-pane" onclick="taPick(this)" onkeydown="taKey(event)"><b>${n2(i)}</b>${esc(c[0])}<i>${TA_PIL[c[4]]}</i></button></li>`).join('')}</ol>
+  <div class="tm-pane" id="tm-pane" role="tabpanel" aria-live="polite">${taPane(0)}</div></div>
+  <div class="tm-stats"><div><p class="tm-k">Prototype time · reported by Nike</p>
+   <div class="tm-bar"><div class="tm-row"><span>Before</span><u role="img" aria-label="21 days"></u></div><div class="tm-row f"><span>Tuned Air</span><u role="img" aria-label="3 days"></u></div><p style="margin:10px 0 0;color:rgba(242,238,230,.55);font-size:10px;letter-spacing:.14em">ONE BLOCK = ONE DAY · 3 WEEKS → 3 DAYS</p></div></div>
+   <div><p class="tm-k">Air development time</p><p class="tm-big">−70%</p><p style="margin:8px 0 0;color:rgba(242,238,230,.75)">Nike's figure for the platform. Speed like this is why the manual has to exist before the second program starts.</p></div></div>
+  <ol class="tm-tl"><li class="me"><b>AUG 2026</b><span>Manuals and tech packs for two of the first programs delivered: my last work at Nike.</span></li><li><b>NOV 16, 2026</b><span>Nike announces Tuned Air.</span></li><li><b>LATE 2027</b><span>First Tuned Air product set to reach runners.</span></li></ol>
+  <a class="tm-cta" href="#basecamp-manual"><div><b>See the method on a manual I can publish</b><span>The Nike manuals stay confidential, so I rebuilt the same eight-chapter format for a product of my own: BASECAMP BC-01, all 12 pages.</span></div><em>OPEN THE MANUAL →</em></a>
+  <p class="fine" style="margin-top:24px;color:rgba(242,238,230,.55)">My own manual structure, shown generically. Nothing here describes Nike process, specifications or partners; figures and dates are from Nike's public announcement.</p>
  </div></section>`;
 }
 function nikeGal(p){
@@ -3071,9 +3128,10 @@ function nikePage(i){
  return head('nike',n2(i))+`<main>
  <section class="band dark"><div class="wrap case"><p class="num">Selected Work ${n2(i)} / ${esc(p.brand)}</p><h1>${esc(p.title)}</h1><p class="meta">${t.tag||esc(p.brand)}</p></div></section>
  <section class="band dark"><div class="wrap hero-split"><div class="media tr-l">${im(p.hero,p.title)}</div>
-  <div><div class="cols" style="grid-template-columns:1fr;gap:32px;padding-top:0"><div><h3>My Role</h3><p>${t.role}</p></div><div><h3>Overview</h3><p>${t.ov}</p></div><div><h3>What's New</h3><p>${t.nw}</p></div></div></div></div></section>
+  <div><div class="cols" style="grid-template-columns:1fr;gap:32px;padding-top:0"><div><h3>MY ROLE</h3><p>${t.role}</p></div><div><h3>OVERVIEW</h3><p>${t.ov}</p></div><div><h3>WHAT'S NEW</h3><p>${t.nw}</p></div></div></div></div></section>
  ${nikeSys(p.id)}
  ${nikeDeep(p.id)}
+ ${p.id==='p11'?taMethod():''}
  ${p.films?`<section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Films</h2><p class="sh-sub">Nike's launch films · World of Athletes</p><div class="ta-films">${p.films.map(([f,w,h,c,po])=>`<figure style="aspect-ratio:${w}/${h}"><video class="ta-v" src="${f}" poster="${po}" width="${w}" height="${h}" muted loop playsinline autoplay preload="auto" aria-label="${esc(c)}"></video></figure>`).join('')}</div><p class="fine" style="margin-top:16px">Films and images: NIKE, Inc. newsroom, used to show the program I documented.</p></div></section>`:''}
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Gallery</h2><p class="sh-sub">${esc(p.title)} · ${p.imgs.length} images</p>${nikeGal(p)}</div></section>
  ${nextLink('work',nx)}</main>`+foot();
