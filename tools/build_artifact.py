@@ -113,7 +113,9 @@ i = s.find('<script>')
 assert i > 0
 s = s[:i + 8] + LOADER + s[i + 8:]
 s = s.replace('</body>', '<script>document.querySelectorAll("img[data-pk]").forEach(pkFill)</script></body>', 1)
-open(OUT + '/index.html', 'w').write(s)
+_ix = OUT + '/index.html'
+if os.path.islink(_ix): os.remove(_ix)
+open(_ix, 'w').write(s)
 
 # ---------- the artifact's file list ----------
 files = ['index.html'] + sorted(n for b in BUN.values() for n in b['f'])
@@ -121,7 +123,9 @@ for f in sorted(set(re.findall(r'url\((fonts/[^)]+)\)', s)) | css | {'data/ka_at
     if os.path.exists(f):
         os.makedirs(os.path.dirname(OUT + '/' + f) or OUT, exist_ok=True)
         if f != 'index.html':
-            open(OUT + '/' + f, 'wb').write(open(f, 'rb').read())
+            dst = OUT + '/' + f
+            if os.path.islink(dst) or os.path.exists(dst): os.remove(dst)   # never write through a symlink into the repo
+            open(dst, 'wb').write(open(f, 'rb').read())
         files.append(f)
 json.dump(files, open(OUT + '/files.json', 'w'), indent=0)
 tot = sum(os.path.getsize(OUT + '/' + f) for f in files)
