@@ -605,6 +605,74 @@ def launch_stage(dock=True):
             bpy.ops.mesh.primitive_torus_add(major_radius=0.40, minor_radius=0.0035, location=(x0, -0.04, 0.031), major_segments=160, minor_segments=12)
             bpy.context.object.data.materials.append(rm)
 
+if SHOT == 'exploded2':
+    # chest skin stack pulled straight out of the torso along its own axis: frame -> snap-fit shell -> spacer mesh -> knit skin
+    if os.environ.get('STAGE', 'dark') == 'dark':
+        DOCKS = [0.0]; launch_stage(dock=True)
+        area('layerkey', (-1.6, -2.2, 2.0), (0, -0.75, 1.2), 1.6, float(os.environ.get('LK', '160')), '#FFF2E2')
+        area('layerrim', (1.2, -0.6, 1.9), (0, -0.8, 1.2), 0.3, 220, '#FFD9A8', sy=1.6)
+        area('layertop', (0, -1.3, 2.9), (0, -1.3, 1.2), 2.4, float(os.environ.get('LT', '120')), '#FFFFFF', sy=0.6)
+    else:
+        world('#E9E4DA', 0.14); sw = cyc('#CFC6B8'); sw.rotation_euler[2] = math.radians(float(os.environ.get('SWR', '-71'))); sw.location = (0.6, -0.2, 0)
+        area('key', (-2.4, -2.0, 3.0), (0, -0.5, 1.0), 2.8, 700, '#FFF0DC')
+        area('fill', (2.4, -2.6, 1.0), (0, -0.5, 1.0), 3.0, 90, '#EEF2FF')
+        area('rim', (1.2, 2.2, 2.6), (0, -0.3, 1.2), 1.4, 520, '#FFE2C0')
+    def tp(t):
+        w = lerpk(t, [(0, 0.15), (0.25, 0.165), (0.62, 0.205), (0.86, 0.2), (1, 0.16)])
+        d = lerpk(t, [(0, 0.115), (0.4, 0.13), (0.75, 0.14), (1, 0.12)])
+        k = rounded(t, 0.14, 0.35); return (w * (0.6 + 0.4 * k) if t > 0.8 or t < 0.2 else w, d * k)
+    import bmesh
+    GAP = float(os.environ.get('GAP', '0.21')); Y0 = float(os.environ.get('Y0', '-0.36'))
+    layers = [('frame', 0.9, 'frame', False), ('shell', 0.95, 'shell', False), ('mesh', 0.985, 'vent', False), ('skin', 1.0, 'oat', True)]
+    for i, (nm, sc_, mat, rib) in enumerate(layers):
+        dy = Y0 - GAP * i
+        dz = float(os.environ.get('RISE', '0.05')) * i
+        ob = tube(nm, [(0, dy, 0.99 + dz), (0, dy, 1.2 + dz), (0, dy, 1.45 + dz)], lambda t, sc_=sc_: tuple(np.array(tp(t)) * sc_), [(0, 1, mat, rib)],
+                  ring=(28 if nm == 'frame' else 72), n=(14 if nm == 'frame' else 120), expo=2.6, rib=(0.075, 0.035))
+        me = ob.data; bm = bmesh.new(); bm.from_mesh(me)
+        cy = dy - float(os.environ.get('CUT', '0.035'))   # clean straight cut edge: bisect, then drop the back half
+        bmesh.ops.bisect_plane(bm, geom=bm.verts[:] + bm.edges[:] + bm.faces[:], plane_co=Vector((0, cy, 0)), plane_no=Vector((0, 1, 0)), clear_outer=True)
+        ROT = math.radians(float(os.environ.get('ROT', '-30')) * (0.55 + 0.15 * i))
+        from mathutils import Matrix
+        bmesh.ops.rotate(bm, verts=bm.verts, cent=Vector((0, dy, 1.2 + dz)), matrix=Matrix.Rotation(ROT, 3, 'Z'))
+        bm.to_mesh(me); bm.free()
+        if nm == 'frame':   # structural cage: open lattice, not a solid plate
+            wf = ob.modifiers.new('w', 'WIREFRAME'); wf.thickness = 0.009; wf.use_even_offset = True; wf.use_boundary = True
+            ss = ob.modifiers.new('sub', 'SUBSURF'); ss.levels = 1; ss.render_levels = 2
+        else:
+            sol = ob.modifiers.new('s', 'SOLIDIFY'); sol.thickness = {'shell': 0.005, 'mesh': 0.012, 'skin': 0.006}[nm]; sol.offset = 1
+        bv = ob.modifiers.new('b', 'BEVEL'); bv.width = 0.0015; bv.segments = 2; bv.limit_method = 'ANGLE'
+        if nm == 'frame':
+            ob.data.materials.clear(); ob.data.materials.append(M['frame'])
+        if nm == 'shell':
+            for sx in (-0.095, 0.095):
+                for sz in (1.07, 1.2, 1.33):
+                    px, py = sx, -0.121; ca, sa = math.cos(ROT), math.sin(ROT)
+                    bpy.ops.mesh.primitive_uv_sphere_add(radius=0.009, location=(px * ca - py * sa, dy + px * sa + py * ca, sz + dz)); bpy.context.object.data.materials.append(M['champ']); bpy.ops.object.shade_smooth()
+    # micro-type tags: number + layer name in hot orange, facing the camera
+    if os.environ.get('TAGS', '1') == '1':
+        CAMLOC = Vector(tuple(float(v) for v in os.environ.get('CAM', '-2.35,-2.75,1.42').split(',')))
+        fnt = bpy.data.fonts.load('/home/claude/hestia/JBM700.ttf')
+        om = plain('tag', '#FF5A1F', 0.5); ob_ = om.node_tree.nodes['Principled BSDF']
+        ob_.inputs['Emission Color'].default_value = hexc('#FF5A1F'); ob_.inputs['Emission Strength'].default_value = 2.2
+        wm = plain('tagw', '#F2EEE6', 0.5); wb_ = wm.node_tree.nodes['Principled BSDF']
+        wb_.inputs['Emission Color'].default_value = hexc('#F2EEE6'); wb_.inputs['Emission Strength'].default_value = 1.2
+        names = ['FRAME', 'SNAP SHELL', 'SPACER MESH', 'KNIT SKIN']
+        subs = ['ALUMINIUM CAGE', 'PC-ABS · SNAP-FIT', 'BREATHABLE AIR GAP', 'OATMEAL KNIT · WASHABLE']
+        for i, nm in enumerate(names):
+            dy = Y0 - GAP * i; p0 = Vector((0, dy, 1.56 + float(os.environ.get('RISE', '0.05')) * i))
+            for txt, mat, sz, oz in (('%02d  %s' % (i + 1, nm), om, 0.034, 0.0), (subs[i], wm, 0.022, -0.04)):
+                cu = bpy.data.curves.new('t', 'FONT'); cu.body = txt; cu.font = fnt; cu.size = sz; cu.align_x = 'CENTER'
+                t = bpy.data.objects.new('tag', cu); bpy.context.collection.objects.link(t); t.data.materials.append(mat)
+                t.location = p0 + Vector((0, 0, oz))
+                d = CAMLOC - t.location; d.z = 0
+                t.rotation_euler = (math.radians(90), 0, math.atan2(d.y, d.x) + math.radians(90))
+            bpy.ops.mesh.primitive_cylinder_add(radius=0.0012, depth=0.07, vertices=8, location=(p0.x, p0.y, p0.z - 0.095)); bpy.context.object.data.materials.append(om)
+    robot()
+    c = cam(tuple(float(v) for v in os.environ.get('CAM', '-2.35,-2.75,1.42').split(',')), tuple(float(v) for v in os.environ.get('LOOK', '0.05,-0.58,1.1').split(',')), float(os.environ.get('LENS', '48')))
+    c.data.dof.use_dof = True; c.data.dof.focus_distance = (Vector(c.location) - Vector((0, -1.1, 1.2))).length; c.data.dof.aperture_fstop = float(os.environ.get('FST', '11'))
+    sc.view_settings.exposure = float(os.environ.get('EXPO', '-0.3'))
+
 DOCKS = [0.0]
 if SHOT in ('reveal', 'hero2', 'face', 'grip', 'kneeK', 'shoulderK', 'torsoK'):
     robot(); launch_stage(dock=SHOT != 'face')
