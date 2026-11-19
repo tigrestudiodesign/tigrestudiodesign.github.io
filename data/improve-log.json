@@ -280,5 +280,23 @@
    "index.html",
    "data/improve-log.json"
   ]
+ },
+ {
+  "date": "2026-11-19",
+  "project": "p07",
+  "change": "Henry confirmed he authored the Pegasus Premium tech manual: role, contribution list and role chips updated; added the HOW I DOCUMENTED A SCULPTED AIR UNIT method section with a flat-vs-sculpted Air Zoom profile schematic, Nike's '1st sculpted visible Air Zoom unit' claim, Jan 2025 timeline and newsroom link. Internal program name kept off the site.",
+  "files": [
+   "index.html",
+   "data/improve-log.json"
+  ]
+ },
+ {
+  "date": "2026-11-19",
+  "project": "p08",
+  "change": "Henry confirmed he authored the Motiva tech manual: role, contribution list and role chips updated; added the HOW I DOCUMENTED AN EASIER RIDE method section with Nike's 1,000+ interviews block chart, 13-minute-mile figure, Apr/May 2023 timeline and newsroom link. Internal program name kept off the site.",
+  "files": [
+   "index.html",
+   "data/improve-log.json"
+  ]
  }
 ]
