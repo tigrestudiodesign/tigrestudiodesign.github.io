@@ -226,5 +226,59 @@
    "index.html",
    "data/improve-log.json"
   ]
+ },
+ {
+  "date": "2026-11-19",
+  "project": "p01",
+  "change": "Added the HOW I DOCUMENTED method section (requested by Henry after the Tuned Air version): eight-chapter manual anatomy with KEY chapters and 'on this program' notes at public level, Alphafly 4 figures and dates from Nike's newsroom release as block chart + headline number, timeline and link to the BASECAMP manual. Section is now data-driven (TA_M) for all Nike manual programs.",
+  "files": [
+   "index.html",
+   "data/improve-log.json"
+  ]
+ },
+ {
+  "date": "2026-11-19",
+  "project": "p02",
+  "change": "Added the HOW I DOCUMENTED method section (requested by Henry after the Tuned Air version): eight-chapter manual anatomy with KEY chapters and 'on this program' notes at public level, Air Liquid Max figures and dates from Nike's newsroom release as block chart + headline number, timeline and link to the BASECAMP manual. Section is now data-driven (TA_M) for all Nike manual programs.",
+  "files": [
+   "index.html",
+   "data/improve-log.json"
+  ]
+ },
+ {
+  "date": "2026-11-19",
+  "project": "p04",
+  "change": "Added the HOW I DOCUMENTED method section (requested by Henry after the Tuned Air version): eight-chapter manual anatomy with KEY chapters and 'on this program' notes at public level, Nike Mind figures and dates from Nike's newsroom release as block chart + headline number, timeline and link to the BASECAMP manual. Section is now data-driven (TA_M) for all Nike manual programs.",
+  "files": [
+   "index.html",
+   "data/improve-log.json"
+  ]
+ },
+ {
+  "date": "2026-11-19",
+  "project": "p05",
+  "change": "Added the HOW I DOCUMENTED method section (requested by Henry after the Tuned Air version): eight-chapter manual anatomy with KEY chapters and 'on this program' notes at public level, ACG Ultrafly figures and dates from Nike's newsroom release as block chart + headline number, timeline and link to the BASECAMP manual. Section is now data-driven (TA_M) for all Nike manual programs.",
+  "files": [
+   "index.html",
+   "data/improve-log.json"
+  ]
+ },
+ {
+  "date": "2026-11-19",
+  "project": "p09",
+  "change": "Added the HOW I DOCUMENTED method section (requested by Henry after the Tuned Air version): eight-chapter manual anatomy with KEY chapters and 'on this program' notes at public level, Air Zoom Hyperslide figures and dates from Nike's newsroom release as block chart + headline number, timeline and link to the BASECAMP manual. Section is now data-driven (TA_M) for all Nike manual programs.",
+  "files": [
+   "index.html",
+   "data/improve-log.json"
+  ]
+ },
+ {
+  "date": "2026-11-19",
+  "project": "p10",
+  "change": "Added the HOW I DOCUMENTED method section (requested by Henry after the Tuned Air version): eight-chapter manual anatomy with KEY chapters and 'on this program' notes at public level, Hyperboot figures and dates from Nike's newsroom release as block chart + headline number, timeline and link to the BASECAMP manual. Section is now data-driven (TA_M) for all Nike manual programs.",
+  "files": [
+   "index.html",
+   "data/improve-log.json"
+  ]
  }
 ]

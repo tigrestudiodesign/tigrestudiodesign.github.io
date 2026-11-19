@@ -1357,8 +1357,10 @@ a:focus-visible{outline-color:var(--or)}
 .tm-pil{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:auto}.tm-pil span{font:700 9.5px var(--mono);letter-spacing:.1em;text-transform:uppercase;padding:8px 6px 0;border-top:4px solid rgba(242,238,230,.18);color:rgba(242,238,230,.45)}.tm-pil span.on{border-color:var(--or);color:var(--pp)}
 .tm-stats{display:grid;grid-template-columns:1.4fr 1fr;gap:32px;margin-top:56px}
 .tm-bar{font:600 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--pp)}
-.tm-row{display:grid;grid-template-columns:110px 1fr;align-items:center;gap:12px;margin-top:12px}.tm-row u{display:block;height:22px;background:repeating-linear-gradient(90deg,rgba(242,238,230,.75) 0 calc(100%/21 - 3px),transparent calc(100%/21 - 3px) calc(100%/21));text-decoration:none}
-.tm-row.f u{width:calc(300%/21);background:repeating-linear-gradient(90deg,var(--or) 0 calc(100%/3 - 3px),transparent calc(100%/3 - 3px) calc(100%/3))}
+.tm-row{display:grid;grid-template-columns:110px 1fr;align-items:center;gap:12px;margin-top:12px}.tm-row u{display:block;height:22px;text-decoration:none;background:repeating-linear-gradient(90deg,rgba(242,238,230,.75) 0 calc(100%/var(--n) - 3px),transparent calc(100%/var(--n) - 3px) calc(100%/var(--n)))}
+.tm-row.f u{background:repeating-linear-gradient(90deg,var(--or) 0 calc(100%/var(--n) - 3px),transparent calc(100%/var(--n) - 3px) calc(100%/var(--n)))}
+.tm-ch.hl i{color:var(--or)}.tm-hint{font:700 10px var(--mono);letter-spacing:.14em;color:rgba(242,238,230,.55);margin:14px 0 0}.tm-hint b{color:var(--or)}
+.tm-on{margin:0;padding:12px 14px;border-left:3px solid var(--or);background:#1a120e;color:var(--pp);line-height:1.45}.tm-on b{display:block;font:700 10px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--or);margin-bottom:4px}
 .tm-big{font-family:var(--head,var(--sans));font-size:clamp(56px,8vw,112px);line-height:.9;color:var(--or);margin:0}
 .tm-tl{display:grid;grid-template-columns:repeat(3,1fr);margin:56px 0 0;padding:0;list-style:none;border-top:2px solid var(--pp)}
 .tm-tl li{position:relative;padding:18px 16px 0 0}.tm-tl li:before{content:"";position:absolute;top:-8px;left:0;width:14px;height:14px;background:#0B0B0C;border:2px solid var(--pp);border-radius:50%}.tm-tl li.me:before{background:var(--or);border-color:var(--or)}
@@ -1553,21 +1555,66 @@ const TA_CH=[
  ['Cost & experts','What drives cost, and who do I call?','Development, sourcing','Questions stall for weeks waiting on the right person']];
 TA_CH[7][4]=3;
 const TA_PIL=['Overview','Design rules','Method of make','Quality checks'];
-function taPane(i){const [t,q,r,m,p]=TA_CH[i];return `<p class="tm-k">Chapter ${n2(i)} / 08</p><h3>${esc(t)}</h3><p class="tm-q">${esc(q)}</p><dl class="tm-dl"><div><dt>Read by</dt><dd>${esc(r)}</dd></div><div><dt>Without it</dt><dd>${esc(m)}</dd></div></dl><div class="tm-pil" aria-label="Part of the manual">${TA_PIL.map((x,j)=>`<span class="${j===p?'on':''}">${x}</span>`).join('')}</div>`}
-function taPick(el){const sec=el.closest('.tm'),i=+el.dataset.i;sec.querySelectorAll('.tm-ch').forEach(b=>{const on=b===el;b.setAttribute('aria-selected',on);b.tabIndex=on?0:-1});sec.querySelector('.tm-pane').innerHTML=taPane(i)}
+const TA_M={
+ p11:{h:'HOW I DOCUMENT A NEW WAY OF MAKING',lead:'A faster method only pays off if every factory builds it the same way. On a new platform, the first programs set the baseline the rest copy, so I write the manual in the same eight chapters every time: from what the technology is, to who to call when something goes wrong.',
+  bars:{k:'Prototype time · reported by Nike',rows:[['Before',21,21,0],['Tuned Air',3,21,1]],cap:'ONE BLOCK = ONE DAY · 3 WEEKS → 3 DAYS'},
+  big:{k:'Air development time',v:'−70%',b:"Nike's figure for the platform. Speed like this is why the manual has to exist before the second program starts."},
+  tl:[['AUG 2026','Manuals and tech packs for two of the first programs delivered: my last work at Nike.',1],['NOV 16, 2026','Nike announces Tuned Air.'],['LATE 2027','First Tuned Air product set to reach runners.']]},
+ p01:{h:'HOW I DOCUMENTED A FASTER ALPHAFLY',lead:'An innovation upper only matters on race day if the inline pair matches the one athletes tested. My documentation carried the Atomknit upper from innovation builds to inline production, written with our manufacturing partners in Korea.',
+  hl:{2:'Upper design rules that hold from innovation build to inline pair.',5:'Method of making for the Atomknit upper, written with factory teams in Korea.',6:'Checks so every inline pair matches the build athletes tested.'},
+  bars:{k:'Weight · men\'s 8.5 · reported by Nike',rows:[['Alphafly 3',20,20,0],['Alphafly 4',19,20,1]],cap:'ONE BLOCK = 5% · 5% LIGHTER THAN ITS PREDECESSOR'},
+  big:{k:'Energy return vs predecessor',v:'+10%',b:"Nike's figure, from ZoomX LT foam, updated Air Zoom units and an Atomknit upper working together."},
+  tl:[['BEFORE LAUNCH','Upper design and technical documentation for the move to inline.',1],['SEP 17, 2026','Nike announces Alphafly 4; early limited release.'],['OCT 29, 2026','Broader availability at nike.com and retail.']],
+  src:['https://about.nike.com/en/newsroom/releases/'+'nike-alphafly-4-helps-more-runners-go-the-distance-with-speed-and-confidence','Sep 17, 2026']},
+ p02:{h:'HOW I DOCUMENTED A NEW AIR MAX UPPER',lead:'A low-profile upper with a new shaping material and a performance knit yarn is easy to sample once and hard to build the same way a million times. The tech manual set the rules that let it scale.',
+  hl:{2:'Shaping rules for a new upper material, drawn so designers can design to them.',3:'From print file to shaped upper, one step at a time.',5:'Method of making, written with manufacturing partners in Korea.'},
+  bars:{k:'Built into the upper · reported by Nike',rows:[['Air Max heritage',4,4,0],['Print layers',3,4,1]],cap:'FOUR DECADES OF AIR MAX · THREE-LAYER TEXTURED PRINTING'},
+  big:{k:'Textured printing',v:'3 LAYERS',b:'Printed at various heights to build the upper\'s texture, per Nike.'},
+  tl:[['BEFORE LAUNCH','Upper design and tech manual for the move to inline.',1],['MAR 10, 2026','Nike announces the Air Liquid Max.'],['MAR 26, 2026','Available on SNKRS and at select retail partners.']],
+  src:['https://about.nike.com/en/newsroom/releases/'+'nike-air-liquid-max-merges-superior-comfort-and-air-max-heritage','Mar 10, 2026']},
+ p04:{h:'HOW I DOCUMENTED A SHOE FOR THE MIND',lead:'Nike\'s first neuroscience-based footwear asks a bottom unit to do something new. My tech manual and tech packs turned that bottom-making technology into something a factory can repeat.',
+  hl:{2:'Design rules for a sensory bottom unit, at a level a designer can draw to.',5:'Method of making for the bottom unit, written with factory teams in Korea.',6:'Checks so every pair reads the same underfoot.'},
+  bars:{k:'Independent foam nodes per shoe · reported by Nike',rows:[['Nike Mind',22,22,1]],cap:'ONE BLOCK = ONE NODE · 22 PER SHOE'},
+  big:{k:'In the making',v:'10+ YRS',b:'An engineering and manufacturing challenge over a decade in the making, per Nike.'},
+  tl:[['BEFORE LAUNCH','Sensory bottom tech manual and tech packs for the move to inline.',1],['OCT 23, 2025','Nike debuts Mind 001 and Mind 002.'],['JAN 2026','Both silhouettes available.']],
+  src:['https://about.nike.com/en-GB/newsroom/releases/nike-debuts-its-first-neuroscience-based-footwear-to-help-athletes-feel-calm-focused-and-present','Oct 23, 2025']},
+ p05:{h:'HOW I DOCUMENTED A TRAIL SUPER SHOE',lead:'For a performance knit yarn, the factory needs a short document first. I wrote the quick start guide: the same eight chapters cut down to what a line needs on day one, with the full tech pack behind it.',
+  hl:{0:'The quick start guide: the yarn technology on one page.',5:'Method of making for a trail-tuned Flyknit upper yarn, with factory teams in Korea.',6:'Checks that keep the upper consistent pair to pair.'},
+  bars:{k:'Rounds of testing · reported by Nike',rows:[['ACG Ultrafly',13,13,1]],cap:'ONE BLOCK = ONE ROUND · 13 ROUNDS'},
+  big:{k:'Wear-tested',v:'30,000+ MI',b:'Across seven countries and 25 US states, over more than two years of development, per Nike.'},
+  tl:[['BEFORE LAUNCH','Yarn technology, tech packs and the quick start guide.',1],['AUG 24, 2025','Nike unveils the ACG Ultrafly.'],['SPRING 2026','Available at nike.com and select retail partners.']],
+  src:['https://about.nike.com/en-GB/newsroom/releases/nike-unleashes-the-acg-ultrafly-a-trail-tuned-super-shoe-built-for-athletes-who-choose-wild','Aug 24, 2025']},
+ p09:{h:'HOW I DOCUMENTED A POWERED SLIDE',lead:'A slide with a removable, powered pod is two products that have to meet at one interface. My documentation defined how the strap and the pod come together, so soft goods and hardware are built to the same spec.',
+  hl:{2:'Integration rules between the soft-goods strap and the pod.',4:'The magnetic pod interface, on-pod controls and Bluetooth link, at integration level.',6:'Checks that the pod seats, connects and works every time.'},
+  bars:{k:'Pod settings · reported by Nike',rows:[['Heat',3,3,1],['Vibration',3,3,0]],cap:'UP TO 117°F / 47°C · THREE LEVELS EACH'},
+  big:{k:'Recovery cycle',v:'15 MIN',b:'Each heat and vibration session runs in a 15-minute cycle, per Nike.'},
+  tl:[['BEFORE LAUNCH','Technical documentation and electronics integration specs for the pod.',1],['JUL 27, 2026','Nike and Hyperice debut the Air Zoom Hyperslide.'],['SEP 29, 2026','Available in select markets.']],
+  src:['https://about.nike.com/en/newsroom/releases/'+'nike-and-hyperice-debut-the-nike-air-zoom-hyperslide-an-innovative-recovery-slide-for-all-athletes','Jul 27, 2026']},
+ p10:{h:'HOW I DOCUMENTED A POWERED BOOT',lead:'Batteries, air and heat inside a shoe need a document that every team reads the same way. My integration documentation set where each system lives and how it connects safely within the boot.',
+  hl:{2:'Integration rules that keep hardware safe within the boot\'s structure.',4:'Power, insole batteries and air-to-heat connections, documented at integration level.',6:'Checks before a boot leaves the line.'},
+  bars:{k:'Inside the boot · reported by Nike',rows:[['Air bladders',2,3,0],['Batteries',2,3,0],['Levels each',3,3,1]],cap:'DUAL AIR BLADDERS · ONE BATTERY PER INSOLE · THREE LEVELS'},
+  big:{k:'Heat × pressure',v:'3 × 3',b:'Three levels of warmth and three of air compression, per Nike.'},
+  tl:[['BEFORE LAUNCH','Electronics integration documentation and technical specifications.',1],['APR 17, 2025','Nike and Hyperice announce the Hyperboot.'],['MAY 17, 2025','On sale in North America.']],
+  src:['https://about.nike.com/ja/newsroom/releases/the-hyperboot-by-nike-x-hyperice-revolutionizes-warm-up-and-recovery-for-all-athletes','Apr 17, 2025']}
+};
+function taPane(i,id){const [t,q,r,m,p]=TA_CH[i],o=((TA_M[id]||{}).hl||{})[i];return `<p class="tm-k">Chapter ${n2(i)} / 08</p><h3>${esc(t)}</h3><p class="tm-q">${esc(q)}</p><dl class="tm-dl"><div><dt>Read by</dt><dd>${esc(r)}</dd></div><div><dt>Without it</dt><dd>${esc(m)}</dd></div></dl>${o?`<p class="tm-on"><b>On this program</b>${esc(o)}</p>`:''}<div class="tm-pil" aria-label="Part of the manual">${TA_PIL.map((x,j)=>`<span class="${j===p?'on':''}">${x}</span>`).join('')}</div>`}
+function taPick(el){const sec=el.closest('.tm'),i=+el.dataset.i;sec.querySelectorAll('.tm-ch').forEach(b=>{const on=b===el;b.setAttribute('aria-selected',on);b.tabIndex=on?0:-1});sec.querySelector('.tm-pane').innerHTML=taPane(i,sec.dataset.p)}
 function taKey(e){const k=e.key,el=e.currentTarget,all=[...el.closest('.tm-spine').querySelectorAll('.tm-ch')],i=all.indexOf(el);let j=-1;if(k==='ArrowDown'||k==='ArrowRight')j=(i+1)%all.length;else if(k==='ArrowUp'||k==='ArrowLeft')j=(i+all.length-1)%all.length;else if(k==='Home')j=0;else if(k==='End')j=all.length-1;if(j<0)return;e.preventDefault();all[j].focus();taPick(all[j])}
-function taMethod(){
- return `<section class="band section tm"><div class="wrap">
-  <p class="eyebrow" style="color:#FF5A1F">Method · Public level</p><h2 class="sh-title" style="font-size:clamp(32px,4vw,52px);color:#F2EEE6">HOW I DOCUMENT A NEW WAY OF MAKING</h2>
-  <p class="tm-lead">A faster method only pays off if every factory builds it the same way. On a new platform, the first programs set the baseline the rest copy, so I write the manual in the same eight chapters every time: from what the technology is, to who to call when something goes wrong.</p>
-  <div class="tm-board"><ol class="tm-spine" role="tablist" aria-label="The eight chapters of a technology manual">${TA_CH.map((c,i)=>`<li role="presentation"><button type="button" class="tm-ch" role="tab" data-i="${i}" aria-selected="${i===0}" tabindex="${i===0?0:-1}" aria-controls="tm-pane" onclick="taPick(this)" onkeydown="taKey(event)"><b>${n2(i)}</b>${esc(c[0])}<i>${TA_PIL[c[4]]}</i></button></li>`).join('')}</ol>
-  <div class="tm-pane" id="tm-pane" role="tabpanel" aria-live="polite">${taPane(0)}</div></div>
-  <div class="tm-stats"><div><p class="tm-k">Prototype time · reported by Nike</p>
-   <div class="tm-bar"><div class="tm-row"><span>Before</span><u role="img" aria-label="21 days"></u></div><div class="tm-row f"><span>Tuned Air</span><u role="img" aria-label="3 days"></u></div><p style="margin:10px 0 0;color:rgba(242,238,230,.55);font-size:10px;letter-spacing:.14em">ONE BLOCK = ONE DAY · 3 WEEKS → 3 DAYS</p></div></div>
-   <div><p class="tm-k">Air development time</p><p class="tm-big">−70%</p><p style="margin:8px 0 0;color:rgba(242,238,230,.75)">Nike's figure for the platform. Speed like this is why the manual has to exist before the second program starts.</p></div></div>
-  <ol class="tm-tl"><li class="me"><b>AUG 2026</b><span>Manuals and tech packs for two of the first programs delivered: my last work at Nike.</span></li><li><b>NOV 16, 2026</b><span>Nike announces Tuned Air.</span></li><li><b>LATE 2027</b><span>First Tuned Air product set to reach runners.</span></li></ol>
+function taMethod(id){
+ const M=TA_M[id]; if(!M) return '';
+ const hl=M.hl||{}, s0=Object.keys(hl).length?+Object.keys(hl)[0]:0;
+ return `<section class="band section tm" data-p="${id}"><div class="wrap">
+  <p class="eyebrow" style="color:#FF5A1F">Method · Public level</p><h2 class="sh-title" style="font-size:clamp(32px,4vw,52px);color:#F2EEE6">${M.h}</h2>
+  <p class="tm-lead">${esc(M.lead)}</p>
+  <div class="tm-board"><ol class="tm-spine" role="tablist" aria-label="The eight chapters of a technology manual">${TA_CH.map((c,i)=>`<li role="presentation"><button type="button" class="tm-ch${hl[i]?' hl':''}" role="tab" data-i="${i}" aria-selected="${i===s0}" tabindex="${i===s0?0:-1}" aria-controls="tm-pane-${id}" onclick="taPick(this)" onkeydown="taKey(event)"><b>${n2(i)}</b>${esc(c[0])}<i>${hl[i]?'KEY · ':''}${TA_PIL[c[4]]}</i></button></li>`).join('')}</ol>
+  <div class="tm-pane" id="tm-pane-${id}" role="tabpanel" aria-live="polite">${taPane(s0,id)}</div></div>
+  ${Object.keys(hl).length?`<p class="tm-hint"><b>KEY</b> = WHERE THIS PROGRAM'S DOCUMENTATION CARRIED THE MOST WEIGHT</p>`:''}
+  <div class="tm-stats"><div><p class="tm-k">${esc(M.bars.k)}</p>
+   <div class="tm-bar">${M.bars.rows.map(([l,n,mx,f])=>`<div class="tm-row${f?' f':''}"><span>${esc(l)}</span><u role="img" aria-label="${n}" style="--n:${n};width:${(n/mx*100).toFixed(3)}%"></u></div>`).join('')}<p style="margin:10px 0 0;color:rgba(242,238,230,.55);font-size:10px;letter-spacing:.14em">${M.bars.cap}</p></div></div>
+   <div><p class="tm-k">${esc(M.big.k)}</p><p class="tm-big">${M.big.v}</p><p style="margin:8px 0 0;color:rgba(242,238,230,.75)">${esc(M.big.b)}</p></div></div>
+  <ol class="tm-tl">${M.tl.map(([d,t,me])=>`<li${me?' class="me"':''}><b>${d}</b><span>${esc(t)}</span></li>`).join('')}</ol>
   <a class="tm-cta" href="#basecamp-manual"><div><b>See the method on a manual I can publish</b><span>The Nike manuals stay confidential, so I rebuilt the same eight-chapter format for a product of my own: BASECAMP BC-01, all 12 pages.</span></div><em>OPEN THE MANUAL →</em></a>
-  <p class="fine" style="margin-top:24px;color:rgba(242,238,230,.55)">My own manual structure, shown generically. Nothing here describes Nike process, specifications or partners; figures and dates are from Nike's public announcement.</p>
+  <p class="fine" style="margin-top:24px;color:rgba(242,238,230,.55)">My own manual structure, shown generically. Nothing here describes Nike process, specifications or partners; figures and dates are from Nike's public announcement${M.src?` (<a href="${M.src[0]}" target="_blank" rel="noopener" style="color:inherit">Nike newsroom, ${M.src[1]}</a>)`:''}.</p>
  </div></section>`;
 }
 function nikeGal(p){
@@ -3131,7 +3178,7 @@ function nikePage(i){
   <div><div class="cols" style="grid-template-columns:1fr;gap:32px;padding-top:0"><div><h3>MY ROLE</h3><p>${t.role}</p></div><div><h3>OVERVIEW</h3><p>${t.ov}</p></div><div><h3>WHAT'S NEW</h3><p>${t.nw}</p></div></div></div></div></section>
  ${nikeSys(p.id)}
  ${nikeDeep(p.id)}
- ${p.id==='p11'?taMethod():''}
+ ${taMethod(p.id)}
  ${p.films?`<section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Films</h2><p class="sh-sub">Nike's launch films · World of Athletes</p><div class="ta-films">${p.films.map(([f,w,h,c,po])=>`<figure style="aspect-ratio:${w}/${h}"><video class="ta-v" src="${f}" poster="${po}" width="${w}" height="${h}" muted loop playsinline autoplay preload="auto" aria-label="${esc(c)}"></video></figure>`).join('')}</div><p class="fine" style="margin-top:16px">Films and images: NIKE, Inc. newsroom, used to show the program I documented.</p></div></section>`:''}
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Gallery</h2><p class="sh-sub">${esc(p.title)} · ${p.imgs.length} images</p>${nikeGal(p)}</div></section>
  ${nextLink('work',nx)}</main>`+foot();
