@@ -1369,6 +1369,16 @@ a:focus-visible{outline-color:var(--or)}
 .tm-cta:hover{background:#1a120e}.tm-cta b{display:block;font-family:var(--head,var(--sans));text-transform:uppercase;font-size:clamp(22px,2.4vw,32px);line-height:1.05}.tm-cta span{display:block;margin-top:8px;color:rgba(242,238,230,.75)}.tm-cta em{font:700 13px var(--mono);letter-spacing:.14em;font-style:normal;color:var(--or);white-space:nowrap}
 @media (max-width:900px){.tm-board,.tm-stats{grid-template-columns:1fr}.tm-tl{grid-template-columns:1fr;border-top:0;border-left:2px solid var(--pp);gap:22px}.tm-tl li{padding:0 0 0 22px}.tm-tl li:before{top:2px;left:-8px}.tm-cta{grid-template-columns:1fr}}
 @media (max-width:560px){.tm-dl{grid-template-columns:1fr}.tm-pane{padding:22px 18px}.tm-pil span{font-size:8px;letter-spacing:.04em}.tm-row{grid-template-columns:84px 1fr}}
+/* v63: PNEUMA open/closed */
+.pn-ab-st{position:relative}.pn-ab-i.c{position:absolute;inset:0;opacity:0;transition:opacity .45s}.pn-ab[data-s="closed"] .pn-ab-i.c{opacity:1}.pn-ab-i .media,.pn-ab-i img{display:block;width:100%;height:auto}
+.pn-ab-b{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px}.pn-ab-b button{all:unset;box-sizing:border-box;cursor:pointer;padding:10px 12px;border:1px solid rgba(242,238,230,.25);font:600 11px ui-monospace,Menlo,monospace;letter-spacing:.1em;color:#F2EEE6;background:#111113}
+.pn-ab-b button b{display:block;font-size:18px;letter-spacing:.02em;color:#FF5A1F;margin-bottom:2px}.pn-ab-b button[aria-pressed="true"]{border-color:#FF5A1F;box-shadow:inset 4px 0 0 #FF5A1F;background:#1a120e}.pn-ab-b button:focus-visible{outline:2px solid #FF5A1F;outline-offset:2px}
+/* v63: SY-5000 HW-01 */
+.sy-hw-hero{margin:28px 0 0}.sy-hw-hero img,.sy-hw-ex img{display:block;width:100%;height:auto}
+.sy-hw-f{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:20px 0 0}.sy-hw-f div{border-top:2px solid #0B0B0C;padding-top:8px}.sy-hw-f dt{font:700 10px ui-monospace,Menlo,monospace;letter-spacing:.16em;text-transform:uppercase;color:#FF5A1F}.sy-hw-f dd{margin:4px 0 0;font-weight:600}
+.sy-hw-ex{display:grid;grid-template-columns:1.5fr 1fr;gap:32px;margin-top:40px;align-items:center}.sy-hw-ex figure{margin:0}
+.sy-hw-l{list-style:none;margin:0;padding:0;display:grid;gap:14px}.sy-hw-l li{display:grid;grid-template-columns:36px 1fr;gap:10px;border-top:1px solid rgba(11,11,12,.2);padding-top:10px}.sy-hw-l b{font:700 12px ui-monospace,Menlo,monospace;color:#FF5A1F}.sy-hw-l h3{font-size:15px;margin:0 0 4px;letter-spacing:.02em}.sy-hw-l p{margin:0;font-size:14px;line-height:1.45}
+@media (max-width:900px){.sy-hw-ex{grid-template-columns:1fr}.sy-hw-f{grid-template-columns:1fr 1fr}}
 </style>
 
 <div id="app"></div>
@@ -1609,6 +1619,7 @@ const TA_M={
   tl:[['BEFORE LAUNCH','Electronics integration documentation and technical specifications.',1],['APR 17, 2025','Nike and Hyperice announce the Hyperboot.'],['MAY 17, 2025','On sale in North America.']],
   src:['https://about.nike.com/ja/newsroom/releases/the-hyperboot-by-nike-x-hyperice-revolutionizes-warm-up-and-recovery-for-all-athletes','Apr 17, 2025']}
 };
+function pnAB(b,st){const f=b.closest('.pn-ab');f.dataset.s=st;f.querySelectorAll('.pn-ab-b button').forEach(x=>x.setAttribute('aria-pressed',x===b))}
 function taPane(i,id){const [t,q,r,m,p]=TA_CH[i],o=((TA_M[id]||{}).hl||{})[i];return `<p class="tm-k">Chapter ${n2(i)} / 08</p><h3>${esc(t)}</h3><p class="tm-q">${esc(q)}</p><dl class="tm-dl"><div><dt>Read by</dt><dd>${esc(r)}</dd></div><div><dt>Without it</dt><dd>${esc(m)}</dd></div></dl>${o?`<p class="tm-on"><b>On this program</b>${esc(o)}</p>`:''}<div class="tm-pil" aria-label="Part of the manual">${TA_PIL.map((x,j)=>`<span class="${j===p?'on':''}">${x}</span>`).join('')}</div>`}
 function taPick(el){const sec=el.closest('.tm'),i=+el.dataset.i;sec.querySelectorAll('.tm-ch').forEach(b=>{const on=b===el;b.setAttribute('aria-selected',on);b.tabIndex=on?0:-1});sec.querySelector('.tm-pane').innerHTML=taPane(i,sec.dataset.p)}
 function taKey(e){const k=e.key,el=e.currentTarget,all=[...el.closest('.tm-spine').querySelectorAll('.tm-ch')],i=all.indexOf(el);let j=-1;if(k==='ArrowDown'||k==='ArrowRight')j=(i+1)%all.length;else if(k==='ArrowUp'||k==='ArrowLeft')j=(i+all.length-1)%all.length;else if(k==='Home')j=0;else if(k==='End')j=all.length-1;if(j<0)return;e.preventDefault();all[j].focus();taPick(all[j])}
@@ -1824,24 +1835,31 @@ function syPage(){
   <div class="ctas" style="margin-top:28px"><a class="btn inv" href="https://tigrestudiodesign.github.io/synth/" target="_blank" rel="noopener">Play it now →</a></div></div></section>
  <section class="band dark" style="padding-bottom:56px"><div class="wrap"><div class="sy-trio">${fig('img/sy__a.webp','FM e-piano, 80s: the screen draws the patch as Grasshopper components wired in signal order.')}${fig('img/sy__b.webp','Reese bass, 90s: four colour-coded encoders, Grasshopper number sliders below.')}${fig('img/sy__c.webp','909 kit with the 90s House loop running: steps, pads and the drum keyboard.')}</div></div></div>
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Brief, Approach, Result</h2><p class="sh-sub">One instrument / three decades / a phone in your hand</p>
-  <div class="pra"><div><small>Brief</small><h3>Three Decades In One Interface</h3><p>The best sounds of the 70s, 80s and 90s, 5,000 variations, played from a single interface on an iPhone 17.</p></div>
-  <div><small>Approach</small><h3>Synthesize, Don't Sample</h3><p>Instead of copying recordings, each sound is rebuilt from how the original machine worked. 50 archetypes, each with 100 variations generated from a seeded random walk over its parameters, so the library is 5,000 sounds and zero megabytes.</p></div>
-  <div><small>Result</small><h3>A Real Instrument</h3><p>Multitouch keys with glide, a drum mode, a 16-step loop player, drive, chorus, tempo-synced delay and reverb, and a live oscilloscope. It runs offline and installs to the Home Screen.</p></div></div>
+  <div class="pra"><div><small>Brief</small><h3>THREE DECADES IN ONE INTERFACE</h3><p>The best sounds of the 70s, 80s and 90s, 5,000 variations, played from a single interface on an iPhone 17.</p></div>
+  <div><small>Approach</small><h3>SYNTHESIZE, DON'T SAMPLE</h3><p>Instead of copying recordings, each sound is rebuilt from how the original machine worked. 50 archetypes, each with 100 variations generated from a seeded random walk over its parameters, so the library is 5,000 sounds and zero megabytes.</p></div>
+  <div><small>Result</small><h3>A REAL INSTRUMENT</h3><p>Multitouch keys with glide, a drum mode, a 16-step loop player, drive, chorus, tempo-synced delay and reverb, and a live oscilloscope. It runs offline and installs to the Home Screen.</p></div></div>
  </div></section>
  <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Six Engines</h2><p class="sh-sub">How the 5,000 sounds are made</p>
-  <div class="cols sy-eng">${eng.map(([h,t])=>`<div><h3>${h}</h3><p>${t}</p></div>`).join('')}</div></div></section>
+  <div class="cols sy-eng">${eng.map(([h,t])=>`<div><h3>${h.toUpperCase()}</h3><p>${t}</p></div>`).join('')}</div></div></section>
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Interface</h2><p class="sh-sub">Grasshopper logic / pocket-hardware touch</p>
-  <div class="cols"><div><h3>Patch As A Graph</h3><p>The screen shows the patch as Grasshopper components wired in order (OSC → FLT → AMP → FX), each showing its live value, with a scope underneath.</p></div>
-  <div><h3>Four Encoders</h3><p>Blue, green, white and orange knurled knobs, one page per stage. The page changes with the engine: an FM patch shows ratio and index, a drum kit shows tune and decay.</p></div>
-  <div><h3>Number Sliders</h3><p>Secondary controls are Grasshopper number sliders: grey capsule, label left, value right, drag anywhere on the track.</p></div></div>
+  <div class="cols"><div><h3>PATCH AS A GRAPH</h3><p>The screen shows the patch as Grasshopper components wired in order (OSC → FLT → AMP → FX), each showing its live value, with a scope underneath.</p></div>
+  <div><h3>FOUR ENCODERS</h3><p>Blue, green, white and orange knurled knobs, one page per stage. The page changes with the engine: an FM patch shows ratio and index, a drum kit shows tune and decay.</p></div>
+  <div><h3>NUMBER SLIDERS</h3><p>Secondary controls are Grasshopper number sliders: grey capsule, label left, value right, drag anywhere on the track.</p></div></div>
   <p class="fine" style="margin-top:24px">On iPhone: open it in Safari, tap Share → Add to Home Screen, and turn the ringer switch on or plug in headphones. All sounds are synthesized; no samples or loops are taken from other instruments or packs.</p>
  </div></section>
  <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">HARDWARE PROOF · TINKERCAD</h2><p class="sh-sub">The same instrument on an Arduino Uno, checked before any parts are bought</p>
   <figure class="sy-wire" style="margin:0">${im(['img/sy__wiring.webp',1600,1120],'SY-5000 Arduino Uno wiring: eight keys, mode button, four pots, piezo and LED')}<figcaption class="fine" style="margin-top:10px">Eight keys on D2–D9 with internal pull-ups, MODE on D10, piezo on D11, LED with 220 Ω on D13, four 10 kΩ pots on A0–A3 for octave, vibrato, decay and tempo.</figcaption></figure>
-  <div class="cols" style="margin-top:28px"><div><h3>Three Modes</h3><p>PLAY, ARP and DRUM, the same three ways of playing as the phone version, cycled with one button.</p></div>
-  <div><h3>Electrical Check</h3><p>Worst single pin 14 mA against a 20 mA recommended limit; about 22 mA for the whole circuit, well inside USB power.</p></div>
-  <div><h3>Fits The Chip</h3><p>The sketch compiles with no warnings: 9.6 kB of 32 kB flash and 344 B of 2 kB RAM.</p></div></div>
+  <div class="cols" style="margin-top:28px"><div><h3>THREE MODES</h3><p>PLAY, ARP and DRUM, the same three ways of playing as the phone version, cycled with one button.</p></div>
+  <div><h3>ELECTRICAL CHECK</h3><p>Worst single pin 14 mA against a 20 mA recommended limit; about 22 mA for the whole circuit, well inside USB power.</p></div>
+  <div><h3>FITS THE CHIP</h3><p>The sketch compiles with no warnings: 9.6 kB of 32 kB flash and 344 B of 2 kB RAM.</p></div></div>
   <div class="ctas" style="margin-top:24px"><a class="btn inv" href="https://tigrestudiodesign.github.io/downloads/SY5000_Tinkercad.ino" download>Download the sketch (.ino)</a></div>
+ </div></section>
+ <section class="band light section sy-hw"><div class="wrap"><p class="eyebrow">Concept enclosure · Blender Cycles</p><h2 class="sh-title" style="font-size:clamp(32px,4vw,52px)">HW-01 · THE BOX AROUND THE CIRCUIT</h2><p class="sh-sub">Every part placed from the wiring sheet above</p>
+  <figure class="sy-hw-hero">${im(['img/sy__hw_hero.webp',2000,1250],'SY-5000 HW-01 concept enclosure: paper shell on an ink tray with an orange split line, eight keys with orange C keys, four knurled knobs in blue, green, white and orange, MODE button, LED and piezo grille')}</figure>
+  <dl class="sy-hw-f"><div><dt>Body</dt><dd>168 × 96 × 26 mm</dd></div><div><dt>Controls</dt><dd>8 keys · 4 knurled knobs · MODE</dd></div><div><dt>Inside</dt><dd>Arduino Uno R3 · 68.6 × 53.4 mm</dd></div><div><dt>Power</dt><dd>USB · about 22 mA</dd></div></dl>
+  <div class="sy-hw-ex"><figure>${im(['img/sy__hw_exploded.webp',2000,1250],'Exploded SY-5000 HW-01: the lid lifted and slid back, four pots and the piezo below it, a perfboard of eight tact switches, the Arduino Uno and the ink tray')}</figure>
+  <ol class="sy-hw-l">${[['Lid','Paper shell, knobs and keys. The knobs keep the phone version\'s colours: octave, vibrato, decay, tempo.'],['Pots · A0–A3','Four 10 kΩ pots, one under each knob.'],['Piezo · D11','Under the grille, top left. The LED (D13) and MODE (D10) sit below it.'],['Keys · D2–D9','Eight 12 mm tact switches on one perfboard, with internal pull-ups, so no resistors.'],['Arduino Uno R3','Drawn at its real footprint, USB at the back edge for power and the sketch.'],['Tray','Ink tray with an orange split line, the Tigre accent where the two halves meet.']].map(([h,t],i)=>`<li><b>${String(i+1).padStart(2,'0')}</b><div><h3>${h.toUpperCase()}</h3><p>${t}</p></div></li>`).join('')}</ol></div>
+  <p class="fine" style="margin-top:20px">A concept enclosure, modelled in Blender around the Tinkercad circuit and rendered in Cycles. Not yet printed or built; the next step is a 3D-printed shell sized to these parts.</p>
  </div></section>
  ${nextLink('product',{id:'hestia-knit-nodes',title:'HESTIA × Knit Nodes'})}</main>`+foot();
 }
@@ -2325,7 +2343,7 @@ function hsPage(){
 
 /* ---------- v59: PNEUMA (soft textile hand for HESTIA, adapted from the Soft Robotics Toolkit) ---------- */
 const PN={id:'pneuma',title:'PNEUMA',
- img:{hero:['img/pn__hero.webp',1920,1080],top:['img/pn__top.webp',1600,1000],seq:['img/pn__sequence.webp',1920,800],exploded:['img/pn__exploded.webp',1600,1000],
+ img:{hero:['img/pn__hero.webp',1920,1080],top:['img/pn__top.webp',1600,1000],topOpen:['img/pn__top_open.webp',1600,1000],seq:['img/pn__sequence.webp',1920,800],exploded:['img/pn__exploded.webp',1600,1000],
   model:['img/pn__model.webp',1600,1180],pattern:['img/pn__pattern.webp',1600,1180],control:['img/pn__control.webp',1600,1180]},
  knits:[['Light jersey',0.55,0.65],['Power mesh',0.80,0.60],['Spacer rib',1.30,0.50]],
  skills:[['Design','A one-way-stretch knit on top and a woven that will not stretch below. The fabric, not a motor, decides which way the finger moves.','Picked a power mesh for the top: stiff enough to stop over-bending, soft enough to wrap a mug before 80 kPa.'],
@@ -2385,11 +2403,13 @@ function pnPage(){
  </div></section>
 
  <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Grip</h2><p class="sh-sub">Fingers one way / Thumb the other</p>
-  <div class="el-two"><figure class="el-fig">${im(I.top,'Top view of PNEUMA holding a mug of coffee: four knit fingers wrap from the curved champagne palm, HESTIA forearm behind')}<figcaption>The palm is curved to fit the mug. Four fingers leave one end and wrap around the front. The thumb leaves the other end and closes from behind, out of view.</figcaption></figure>
-  <div class="cols" style="grid-template-columns:1fr;gap:28px;padding-top:0"><div><h3>Why It Is Safe</h3><p>Fabric gives. At hold pressure no fingertip pushes harder than 3 N, and losing power vents every pocket.</p></div><div><h3>Why It Fits HESTIA</h3><p>Same oatmeal knit, slate-moss rib and terracotta "hold here" grip. The hand is a cover over a bladder, so it washes and swaps like the rest of the skin.</p></div><div><h3>Next Tests</h3><p>Tensile-test the power mesh, burst-test the seals past 200 kPa, and cycle one finger 10,000 grips on the toolkit's control board.</p></div></div></div>
+  <div class="el-two"><figure class="el-fig pn-ab" data-s="open"><div class="pn-ab-st"><div class="pn-ab-i o">${im(I.topOpen,'Top view of PNEUMA at 20 kPa: the five knit fingers pre-shaped into an open curl, the palm 30 mm short of the mug')}</div><div class="pn-ab-i c">${im(I.top,'Top view of PNEUMA holding a mug of coffee at 70 kPa: four knit fingers wrap from the curved champagne palm, HESTIA forearm behind')}</div></div>
+   <div class="pn-ab-b" role="group" aria-label="Pressure state"><button type="button" aria-pressed="true" onclick="pnAB(this,'open')"><b>20 kPa</b>AIR OUT · PRE-SHAPE</button><button type="button" aria-pressed="false" onclick="pnAB(this,'closed')"><b>70 kPa</b>AIR IN · HOLD</button></div>
+   <figcaption class="pn-ab-cap">Same camera, same model. At 20 kPa every finger takes the curl the bend model predicts and the hand reaches; at 70 kPa four fingers wrap the front and the thumb closes from behind, out of view.</figcaption></figure>
+  <div class="cols" style="grid-template-columns:1fr;gap:28px;padding-top:0"><div><h3>WHY IT IS SAFE</h3><p>Fabric gives. At hold pressure no fingertip pushes harder than 3 N, and losing power vents every pocket.</p></div><div><h3>WHY IT FITS HESTIA</h3><p>Same oatmeal knit, slate-moss rib and terracotta "hold here" grip. The hand is a cover over a bladder, so it washes and swaps like the rest of the skin.</p></div><div><h3>NEXT TESTS</h3><p>Tensile-test the power mesh, burst-test the seals past 200 kPa, and cycle one finger 10,000 grips on the toolkit's control board.</p></div></div></div>
+  <p class="fine" style="margin-top:40px;max-width:760px;color:rgba(255,255,255,.55)">Hypothetical concept study by Tigre Studio. The actuator method is adapted from the open-source <a href="https://softroboticstoolkit.com/textile-actuators/design" target="_blank" rel="noopener">knit textile actuator</a> and <a href="https://softroboticstoolkit.com/book/control-board" target="_blank" rel="noopener">fluidic control board</a> documented on the Soft Robotics Toolkit (Harvard Biodesign Lab). Not affiliated with or endorsed by Harvard or the toolkit's authors. All numbers are first-pass hand calculations with stated assumptions, meant to size the design and choose the tests. They are not FEA or lab results.</p>
  </div></section>
 
- <section class="band light section"><div class="wrap"><p class="fine">Hypothetical concept study by Tigre Studio. The actuator method is adapted from the open-source <a href="https://softroboticstoolkit.com/textile-actuators/design" target="_blank" rel="noopener">knit textile actuator</a> and <a href="https://softroboticstoolkit.com/book/control-board" target="_blank" rel="noopener">fluidic control board</a> documented on the Soft Robotics Toolkit (Harvard Biodesign Lab). Not affiliated with or endorsed by Harvard or the toolkit's authors. All numbers are first-pass hand calculations with stated assumptions, meant to size the design and choose the tests. They are not FEA or lab results.</p></div></section>
  <section class="statement">${im(I.top,'PNEUMA holding a mug')}<p>Air in, <span class="it">hand closed.</span></p></section>
  ${nextLink('product',{id:HS.id,title:'HESTIA'})}</main>`+foot();
 }

@@ -361,6 +361,8 @@
 "img/sy__b.webp": 1074,
 "img/sy__c.webp": 1074,
 "img/sy__wiring.webp": 2880,
+"img/sy__hw_hero.webp": 2880,
+"img/sy__hw_exploded.webp": 1690,
 "img/stripe-band.webp": 3840
 },
 "electric-guitar": {
@@ -445,6 +447,7 @@
 "img/pn__model.webp": 2880,
 "img/pn__pattern.webp": 2880,
 "img/pn__control.webp": 2880,
+"img/pn__top_open.webp": 1295,
 "img/pn__top.webp": 3840,
 "img/stripe-band.webp": 3840
 },
@@ -1282,6 +1285,7 @@
 "img/pn__pattern.webp": 1600,
 "img/pn__sequence.webp": 1920,
 "img/pn__top.webp": 1600,
+"img/pn__top_open.webp": 1295,
 "img/ra__01.webp": 864,
 "img/ra__02.webp": 864,
 "img/ra__03.webp": 864,
@@ -1317,6 +1321,8 @@
 "img/sy__a.webp": 1074,
 "img/sy__b.webp": 1074,
 "img/sy__c.webp": 1074,
+"img/sy__hw_exploded.webp": 1690,
+"img/sy__hw_hero.webp": 2000,
 "img/sy__wiring.webp": 1600,
 "img/ta__00.webp": 1074,
 "img/ta__02.webp": 1074,

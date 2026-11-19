@@ -298,5 +298,30 @@
    "index.html",
    "data/improve-log.json"
   ]
+ },
+ {
+  "date": "2026-11-19",
+  "project": "pneuma",
+  "change": "New 20 kPa pre-shape render (same camera as the hold shot, finger curl from the bend model, hand 30 mm short of the mug) and an AIR OUT / AIR IN toggle in THE GRIP, so the page shows the hand open and closed instead of one image twice. Grip headers set in caps; the lone fine-print band folded into the grip section.",
+  "files": [
+   "index.html",
+   "img/pn__top_open.webp",
+   "tools/pneuma_render.py",
+   "tools/image_map.json",
+   "data/improve-log.json"
+  ]
+ },
+ {
+  "date": "2026-11-19",
+  "project": "sy-5000",
+  "change": "New HW-01 concept enclosure section: Blender Cycles hero and exploded renders built around the Tinkercad circuit (paper shell, ink tray with orange split line, knurled knobs in the phone version's colours, 8 keys, Uno at its real footprint, pots, piezo, tact board), spec row and numbered parts list mapped to the pins. All SY-5000 headers set in caps.",
+  "files": [
+   "index.html",
+   "img/sy__hw_hero.webp",
+   "img/sy__hw_exploded.webp",
+   "tools/sy5000_hw_render.py",
+   "tools/image_map.json",
+   "data/improve-log.json"
+  ]
  }
 ]

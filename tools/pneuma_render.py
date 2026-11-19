@@ -2,7 +2,7 @@
 Every finger is built from the bend model in tools/pneuma_model.py (data/pneuma.json):
 constant curvature, woven layer on the palm side, power-mesh knit over a TPU bladder.
 usage: python3 tools/pneuma_render.py <shot> <out.png> [res_x] [res_y] [spp]
-shots: hero, open, sequence, exploded
+shots: hero, top, top_open, sequence, exploded
 """
 import sys, math, os, json
 import numpy as np
@@ -344,6 +344,13 @@ if SHOT == 'hero':
     cam((0.21, -0.40, 0.2), (-0.01, -0.005, 0.058), 62, fstop=5.6)
 if SHOT == 'top':
     hand(MOD['p_hold'], wrap=True); mug(); launch_stage()
+    cam((0.06, -0.2, 0.43), (-0.03, 0.0, 0.05), 50, fstop=8)
+if SHOT == 'top_open':
+    # same camera as 'top'
+    # pre-shape: 20 kPa from the model, hand drawn back 30 mm so the mug is in reach, not yet held
+    before = set(bpy.data.objects); hand(20, wrap=False)
+    for ob in set(bpy.data.objects) - before: ob.location.x -= 0.03
+    mug(); launch_stage()
     cam((0.06, -0.2, 0.43), (-0.03, 0.0, 0.05), 50, fstop=8)
 if SHOT == 'sequence':
     paper_sweep(s=0.5)
