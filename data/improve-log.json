@@ -323,5 +323,39 @@
    "tools/image_map.json",
    "data/improve-log.json"
   ]
+ },
+ {
+  "date": "2026-11-20",
+  "project": "nike-cmf-reads",
+  "change": "Henry asked for industry-grade CMF renders. All six product sample sets and the fan deck re-rendered with tools/cmf_render.py: material built by class from CMFN_D (real yarn knit, open knit, hex mesh, raised/faded print dots, chrome badge with strip-light reflections, clear and gloss TPU Air pillows, foam with a cut-open cell section, stepped colour plaques with hang hole, pin, node and rib reliefs), Khronos PBR Neutral colour, one key/strip/rim/reflection-card studio on the Tigre grid, mono-numbered tags. Fan deck: 27 printed cards on a Chicago screw, each in its finish.",
+  "files": [
+   "index.html",
+   "img/cn__*.webp",
+   "tools/cmf_render.py",
+   "tools/image_map.json",
+   "data/improve-log.json"
+  ]
+ },
+ {
+  "date": "2026-11-20",
+  "project": "hestia",
+  "change": "New Warm Minimalist material board above the CMF sheet: oatmeal jersey, birch spacer mesh, slate-moss 1x1 rib, terracotta knit with silicone grip dots, champagne anodised aluminium with diamond-cut chamfer, graphite sensor weave in a frame; all yarn and weave as real geometry.",
+  "files": [
+   "index.html",
+   "img/hs__board.webp",
+   "tools/cmf_render.py",
+   "data/improve-log.json"
+  ]
+ },
+ {
+  "date": "2026-11-20",
+  "project": "material-library",
+  "change": "All 15 samples and the board re-rendered with tools/ml_render.py on the same material system: knits as interlocking yarn (bound edge, heather rows, sculpted maze cords, fused net, melange, space-dyed gradient, ladder rib), twill carbon with anisotropic tows under clear coat, printed hex lattice with nodes, graded perforated film, clear outsole over knit, dimple, wave-inlay, hex-cell lug and two-tone rubbers. Method copy updated to match.",
+  "files": [
+   "index.html",
+   "img/ml__*.webp",
+   "tools/ml_render.py",
+   "data/improve-log.json"
+  ]
  }
 ]
