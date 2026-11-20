@@ -357,5 +357,14 @@
    "tools/ml_render.py",
    "data/improve-log.json"
   ]
+ },
+ {
+  "date": "2026-11-20",
+  "project": "basecamp",
+  "change": "New LIVE RULE speaker-grille generator in A PARAMETRIC GRILLE: the 66 mm plate redrawn from the same Fermat-spiral rule as the Blender script (150 holes, Ø 2.0 → 1.1 mm). Sliders for hole count and centre/edge Ø regenerate the plate with live open area, thinnest web and field Ø, and a check that rejects layouts where holes merge. Desktop and 390 px verified.",
+  "files": [
+   "index.html",
+   "data/improve-log.json"
+  ]
  }
 ]

@@ -788,6 +788,24 @@ button.btn{cursor:pointer}
 @media (max-width:760px){.gb-pairs{grid-template-columns:1fr}}
 /* v46: live sims */
 .sim{--ink:#1d1d1f;--or:#ff5a1f;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;margin:8px 0 28px;color:var(--ink);background:#ecebe5;background-image:linear-gradient(#d9d7cf 1px,transparent 1px),linear-gradient(90deg,#d9d7cf 1px,transparent 1px);background-size:24px 24px;border:2px solid var(--ink);padding:18px;font-family:var(--mono);touch-action:manipulation;user-select:none;-webkit-user-select:none}
+.grl{--ink:#1d1d1f;--or:#ff5a1f;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;margin:28px 0 8px;color:var(--ink);background:#ecebe5;background-image:linear-gradient(#d9d7cf 1px,transparent 1px),linear-gradient(90deg,#d9d7cf 1px,transparent 1px);background-size:24px 24px;border:2px solid var(--ink);padding:18px;font-family:var(--mono)}
+.grl-hd{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;font-size:12px;text-transform:uppercase;letter-spacing:.06em;border-bottom:2px solid var(--ink);padding-bottom:12px;margin-bottom:18px}
+.grl-hd b{background:var(--or);padding:4px 8px;font-size:13px}.grl-hd span{color:#5d5d5d}
+.grl-hd button{margin-left:auto;font:700 11px var(--mono);text-transform:uppercase;letter-spacing:.06em;background:#f7f6f2;border:2px solid var(--ink);color:var(--ink);padding:5px 9px;cursor:pointer}.grl-hd button:hover{background:var(--or)}
+.grl-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+.grl-plate,.grl-ctl{background:#f7f6f2;border:2px solid var(--ink);padding:16px;min-width:0}
+.grl-plate svg{display:block;width:100%;max-width:440px;height:auto;margin:0 auto}
+.grl-plate small,.grl-ctl small{display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#5d5d5d;margin-bottom:10px}
+.grl-ctl label{display:grid;grid-template-columns:1fr auto;gap:4px 10px;align-items:baseline;font-size:12px;text-transform:uppercase;letter-spacing:.06em;margin:0 0 14px}
+.grl-ctl label output{font-weight:700;font-size:14px}
+.grl-ctl input[type=range]{grid-column:1/-1;width:100%;accent-color:var(--or);margin:0}
+.grl-ro{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;border-top:2px solid var(--ink);margin-top:6px}
+.grl-ro div{padding:10px 0 8px;border-bottom:1px solid #cfccc3}.grl-ro div:nth-child(odd){padding-right:10px;border-right:1px solid #cfccc3}.grl-ro div:nth-child(even){padding-left:10px}
+.grl-ro dt{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#5d5d5d}.grl-ro dd{margin:2px 0 0;font-size:20px;font-weight:700}
+.grl-chk{margin:14px 0 0;padding:10px 12px;font-size:12px;letter-spacing:.04em;text-transform:uppercase;border:2px solid var(--ink);background:#fff}
+.grl-chk.bad{background:#E8321A;color:#fff;border-color:#E8321A}
+.grl-ft{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#5d5d5d;margin:14px 0 0}
+@media (max-width:760px){.grl{padding:12px}.grl-body{grid-template-columns:1fr}.grl-hd button{margin-left:0}}
 .sim small,.sim-hd,.sim-pins,.sim-hint,.sim button{text-transform:uppercase;letter-spacing:.06em}
 .sim-hd{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;font-size:12px;border-bottom:2px solid var(--ink);padding-bottom:12px;margin-bottom:18px}
 .sim-hd b{background:var(--or);color:var(--ink);padding:4px 8px;font-size:13px}
@@ -3146,8 +3164,9 @@ function bcPage(){
   </ol>
   <div class="el-next"><small>Next</small><h3>From Behaviour To A Real Board</h3><p>Pick the real parts (receiver IC, charger, LED driver, encoder), write the power budget, then draw the schematic and a KiCad board whose outline comes straight from the BASECAMP shell geometry, with the encoder and buttons exactly where the industrial design puts them.</p></div>
  </div></section>
- <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">A Parametric Grille</h2><p class="sh-sub">Rule → code / 150 holes / Ø 2.0 → 1.1 mm</p>
-  <p class="intro">The speaker holes are not a pattern from a library. They follow a rule: 150 holes on a Fermat spiral, 2.0 mm at the centre where the driver needs the most open area, shrinking to 1.1 mm at the edge, where the plate needs strength around the screws. Change the hole count or the size range and the plate regenerates. It is the same method as the Rules → Code tools on my homepage.</p>
+ <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">A Parametric Grille</h2><p class="sh-sub">Rule → code / 150 holes / Ø 2.0 → 1.1 mm / Try it below</p>
+  <p class="intro">The speaker holes are not a pattern from a library. They follow a rule: 150 holes on a Fermat spiral, 2.0 mm at the centre where the driver needs the most open area, shrinking to 1.1 mm at the edge, where the plate needs strength around the screws. Change the hole count or the size range and the plate regenerates. It is the same method as the Rules → Code tools on my homepage. The generator below runs the same rule as the Blender script that cut the rendered plate.</p>
+  <div class="grl" data-grl></div>
   <div class="bc-duo">${fig(I.spk,'The grille up close: graded holes, the tick ring and the Torx screws.','bc-bg')}${fig(I.dial,'Controls: knurled aluminium dial with a printed scale, charge LEDs, band slider, and the light and radio buttons.','bc-bg')}</div>
  </div></section>
 
@@ -4547,6 +4566,33 @@ function mountPV(){
   const go=()=>{back=m;show(i);pv.classList.add('on');document.body.style.overflow='hidden';pv.querySelector('[data-a="x"]').focus()};
   m.onclick=go;m.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}}});
 }
+/* BASECAMP grille: same rule as tools/basecamp_manual_renders.py (Fermat spiral, golden angle, Ø linear in radius) */
+function mountGrille(){document.querySelectorAll('.grl[data-grl]:not([data-on])').forEach(el=>{el.dataset.on=1;
+ const D={n:150,c:2.0,e:1.1},RF=17.2,PL=66,RC=8,G=Math.PI*(3-Math.sqrt(5));
+ const sl=(k,l,mn,mx,st,u)=>`<label>${l}<output data-o="${k}"></output><input type="range" data-k="${k}" min="${mn}" max="${mx}" step="${st}" aria-label="${l}"></label>`;
+ el.innerHTML=`<div class="grl-hd"><b>LIVE RULE</b><span>SPEAKER PLATE · 66 × 66 × 2.2 MM · FERMAT SPIRAL · GOLDEN ANGLE 137.5°</span><button type="button" data-r>↺ BC-01 VALUES</button></div>
+ <div class="grl-body"><div class="grl-plate"><small>PLATE · TOP VIEW · 1 SQUARE = 5 MM</small><svg viewBox="-36 -36 72 72" role="img" aria-label="Speaker plate hole pattern generated from the current rule"></svg></div>
+ <div class="grl-ctl"><small>THE RULE · CHANGE AN INPUT, THE PLATE REGENERATES</small>${sl('n','HOLE COUNT',40,320,2)}${sl('c','Ø AT CENTRE · MM',1.0,3.0,0.1)}${sl('e','Ø AT EDGE · MM',0.6,2.6,0.1)}
+ <dl class="grl-ro"><div><dt>OPEN AREA</dt><dd data-v="oa"></dd></div><div><dt>OF THE HOLE FIELD</dt><dd data-v="pc"></dd></div><div><dt>THINNEST WEB</dt><dd data-v="w"></dd></div><div><dt>HOLE FIELD Ø</dt><dd data-v="f"></dd></div></dl>
+ <p class="grl-chk" data-v="chk" role="status"></p></div></div>
+ <p class="grl-ft">Web = plastic left between two neighbouring holes. Dashed ring on the plate: the closest pair, red when they merge.</p>`;
+ const svg=el.querySelector('svg'),V=k=>el.querySelector(`[data-v="${k}"]`),S={...D};
+ let grid='';for(let x=-35;x<=35;x+=5)grid+=`<path d="M${x} -36V36M-36 ${x}H36" stroke="#d9d7cf" stroke-width=".15"/>`;
+ const rr=`<rect x="${-PL/2}" y="${-PL/2}" width="${PL}" height="${PL}" rx="${RC}" fill="#FF5A1F" stroke="#1d1d1f" stroke-width=".35"/>`;
+ const scr=[[-1,-1],[1,-1],[-1,1],[1,1]].map(([a,b])=>{const x=a*(PL/2-5),y=b*(PL/2-5);return `<circle cx="${x}" cy="${y}" r="2.7" fill="#C9CBCD" stroke="#1d1d1f" stroke-width=".25"/><path d="M${x-1} ${y}h2M${x} ${y-1}v2" stroke="#1d1d1f" stroke-width=".45"/>`}).join('');
+ const draw=()=>{const P=[];for(let i=0;i<S.n;i++){const r=RF*Math.sqrt((i+.5)/S.n),a=i*G,t=r/RF;P.push([r*Math.cos(a),r*Math.sin(a),(S.c+(S.e-S.c)*t)/2])}
+  let w=1e9,pa=0,pb=0;for(let i=0;i<P.length;i++)for(let j=i+1;j<P.length;j++){const d=Math.hypot(P[i][0]-P[j][0],P[i][1]-P[j][1])-P[i][2]-P[j][2];if(d<w){w=d;pa=i;pb=j}}
+  const oa=P.reduce((s,p)=>s+Math.PI*p[2]*p[2],0),FR=RF+S.e/2;
+  let tick='';for(let k=0;k<60;k++){const a=k*Math.PI/30,r1=FR+2.2,r2=r1+(k%5?0.9:1.8);tick+=`<path d="M${(r1*Math.cos(a)).toFixed(2)} ${(r1*Math.sin(a)).toFixed(2)}L${(r2*Math.cos(a)).toFixed(2)} ${(r2*Math.sin(a)).toFixed(2)}" stroke="#1d1d1f" stroke-width=".2"/>`}
+  const holes=P.map((p,i)=>`<circle cx="${p[0].toFixed(2)}" cy="${p[1].toFixed(2)}" r="${p[2].toFixed(2)}" fill="${w<=0&&(i===pa||i===pb)?'#E8321A':'#1d1d1f'}"/>`).join('');
+  const A=P[pa],B=P[pb],hl=`<circle cx="${((A[0]+B[0])/2).toFixed(2)}" cy="${((A[1]+B[1])/2).toFixed(2)}" r="${(Math.hypot(A[0]-B[0],A[1]-B[1])/2+A[2]+1.2).toFixed(2)}" fill="none" stroke="${w<=0?'#E8321A':'#fff'}" stroke-width=".5" stroke-dasharray="1 .7"/>`;
+  svg.innerHTML=grid+rr+tick+`<circle r="${FR.toFixed(2)}" fill="none" stroke="#1d1d1f" stroke-width=".15" stroke-dasharray=".8 .8"/>`+holes+hl+scr;
+  el.querySelectorAll('[data-o]').forEach(o=>{const k=o.dataset.o;o.textContent=k==='n'?S.n:S[k].toFixed(1)});
+  V('oa').textContent=oa.toFixed(0)+' mm²';V('pc').textContent=(100*oa/(Math.PI*FR*FR)).toFixed(1)+' %';V('w').textContent=(w>0?w.toFixed(2):'0.00')+' mm';V('f').textContent=(2*FR).toFixed(1)+' mm';
+  const c=V('chk');c.classList.toggle('bad',w<=0);c.textContent=w<=0?'✕ REJECTED · TWO HOLES MERGE · LOWER THE COUNT OR THE Ø':(S.c<S.e?'✓ CUTS CLEAN · NOTE: EDGE HOLES NOW BIGGER THAN CENTRE, THE OPPOSITE OF THE RULE':'✓ CUTS CLEAN · BIG HOLES WHERE THE DRIVER MOVES AIR, SMALL WHERE THE PLATE NEEDS STRENGTH')};
+ el.querySelectorAll('input[data-k]').forEach(i=>{const k=i.dataset.k;i.value=S[k];i.oninput=()=>{S[k]=+i.value;draw()}});
+ el.querySelector('[data-r]').onclick=()=>{Object.assign(S,D);el.querySelectorAll('input[data-k]').forEach(i=>i.value=S[i.dataset.k]);draw()};
+ draw()})}
 function mountSim(){document.querySelectorAll('.sim[data-sim]:not([data-on])').forEach(el=>{el.dataset.on=1;(el.dataset.sim==='kp'?simKP:simBC)(el)})}
 
 function route(){
@@ -4585,7 +4631,7 @@ function route(){
  else if(h===KP.id){html=keypadPage();title=KP.title+' · Henry Ortega'}
  else if((i=RH.findIndex(p=>p.id===h))>=0){html=CS[RH[i].id]?casePage(RH,i,'rhino','Rhino Workflow'):galleryPage(RH,i,'rhino','Rhino Workflow');title=RH[i].title+' · Henry Ortega'}
  document.body.classList.remove('gm-lock');
- if(html){app.innerHTML=html;app.dataset.view='project';scrollTo(0,0);mountGame();mountTT();mountKN();mountHKN();mountPN();mountTA();mountKH();mountBM();mountKA();mountSim();mountPV();mountFB();window.TigreFigures&&TigreFigures.mountAll(app)}
+ if(html){app.innerHTML=html;app.dataset.view='project';scrollTo(0,0);mountGame();mountTT();mountKN();mountHKN();mountPN();mountTA();mountKH();mountBM();mountKA();mountSim();mountGrille();mountPV();mountFB();window.TigreFigures&&TigreFigures.mountAll(app)}
  else{
   if(app.dataset.view!=='home'){app.innerHTML=home();app.dataset.view='home';window.TigreFigures&&TigreFigures.mountAll(app)}
   const t=h&&document.getElementById(h); if(t) t.scrollIntoView(); else if(!h||h==='top') scrollTo(0,0);
