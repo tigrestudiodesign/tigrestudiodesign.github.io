@@ -1306,6 +1306,27 @@ a:focus-visible{outline-color:var(--or)}
 .tz-ed{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:28px}.tz-ed figure{margin:0}.tz-ed img{display:block;width:100%;height:auto}.tz-ed figcaption{margin-top:10px}.tz-ed em{display:block;color:var(--muted);font-family:var(--serif)}
 .tz-chips{display:flex;gap:6px;margin:6px 0}.tz-chips i{width:18px;height:18px;border-radius:50%;box-shadow:0 0 0 1px rgba(255,255,255,.3)}
 .tz-spec{width:100%;border-collapse:collapse;margin-top:28px;font-size:15px}.tz-spec th{font:11px var(--mono);text-transform:uppercase;letter-spacing:.06em;text-align:left;padding:8px;border-bottom:2px solid currentColor}.tz-spec td{padding:10px 8px;border-bottom:1px solid rgba(0,0,0,.14);vertical-align:top}.tz-spec td:first-child{font-weight:700}
+.tz-sk{display:grid;grid-template-columns:minmax(0,2.2fr) minmax(0,1fr);gap:24px 28px;margin-top:28px;outline:none}
+.tz-sk-stage{position:relative;aspect-ratio:8/5;background:#F2EEE6;border:1px solid rgba(11,11,12,.18);overflow:hidden}
+.tz-sk-pg{position:absolute;inset:0;margin:0;opacity:0;transition:opacity .35s}.tz-sk-pg.on{opacity:1}.tz-sk-pg img{width:100%;height:100%;object-fit:contain;display:block}
+.tz-sk-side{display:flex;flex-direction:column;border-top:2px solid #0B0B0C;padding-top:14px;min-width:0}
+.tz-sk-n{font:700 12px var(--mono);letter-spacing:.12em;margin:0;color:var(--muted)}.tz-sk-n b{color:#FF5A1F;font-size:28px;letter-spacing:0;margin-right:4px}
+.tz-sk-t{font-family:var(--head);text-transform:uppercase;font-size:26px;margin:6px 0 8px}.tz-sk-d{margin:0 0 14px;font-size:15px;line-height:1.45}
+.tz-sk-k{margin:0;display:grid;grid-template-columns:auto 1fr;border-top:1px solid rgba(11,11,12,.2)}.tz-sk-k dt,.tz-sk-k dd{margin:0;padding:8px 0;border-bottom:1px solid rgba(11,11,12,.2)}
+.tz-sk-k dt{font:700 10.5px/1.6 var(--mono);letter-spacing:.12em;color:#FF5A1F;padding-right:14px}.tz-sk-k dd{font-size:14px}
+.tz-sk-nav{display:flex;gap:10px;margin-top:auto;padding-top:18px}.tz-sk-nav button{font:700 18px var(--mono);width:48px;height:48px;border-radius:50%;border:1.5px solid #0B0B0C;background:transparent;cursor:pointer;color:#0B0B0C}.tz-sk-nav button:hover,.tz-sk-nav button:focus-visible{background:#FF5A1F}
+.tz-sk-th{grid-column:1/-1;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px}
+.tz-sk-th button{padding:0;border:1px solid rgba(11,11,12,.2);background:#F2EEE6;cursor:pointer;text-align:left;color:#0B0B0C;opacity:.62;transition:opacity .2s,border-color .2s}
+.tz-sk-th button.on,.tz-sk-th button:hover{opacity:1;border-color:#FF5A1F}.tz-sk-th button.on{box-shadow:inset 0 -3px 0 #FF5A1F}
+.tz-sk-th img{display:block;width:100%;height:auto;aspect-ratio:8/5;object-fit:cover}.tz-sk-th span{display:block;font:600 9.5px/1.3 var(--mono);letter-spacing:.08em;padding:6px 7px 8px}.tz-sk-th b{color:#FF5A1F}
+.tz-sk-h{font:700 12px var(--mono);letter-spacing:.16em;margin:44px 0 6px}
+.tz-sk-diff td:first-child{font-weight:700}.tz-sk-diff td:nth-child(2){color:var(--muted);text-decoration:line-through;text-decoration-color:rgba(255,90,31,.7)}.tz-sk-ar{color:#FF5A1F;font-family:var(--mono);margin-right:8px}
+.tz-sk-foot{max-width:760px;margin:18px 0 0;font:italic 17px/1.45 var(--serif)}
+.tz-build{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);grid-template-rows:auto auto;gap:16px;margin-top:28px}.tz-build figure{margin:0;min-width:0}.tz-build img{display:block;width:100%;height:auto}
+.tz-b-ex{grid-row:span 2}.tz-b-ex img{height:100%!important;object-fit:cover}
+.tz-b-cap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:14px}.tz-b-cap p{margin:0;color:var(--muted);font-size:14px;line-height:1.45}.tz-b-cap b{display:block;font:700 11px var(--mono);letter-spacing:.12em;color:#FF5A1F;margin-bottom:4px}
+@media (max-width:900px){.tz-sk{grid-template-columns:1fr}.tz-sk-th{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px}.tz-sk-th button{flex:0 0 128px;scroll-snap-align:start}.tz-sk-nav{margin-top:4px}
+ .tz-build{grid-template-columns:1fr}.tz-b-ex{grid-row:auto}.tz-b-ex img{height:auto!important}.tz-b-cap{grid-template-columns:1fr;gap:10px}.tz-sk-diff{font-size:13px}}
 @media (max-width:900px){.tz-ref{grid-template-columns:1fr 1fr}.tz-pat,.tz-ed{grid-template-columns:1fr}.tz-spec{font-size:13px}}
 @media (max-width:560px){.tz-ref{grid-template-columns:1fr}}
 /* v55: nesting tables CMF */
@@ -2054,6 +2075,19 @@ function bmPage(){
   <ol class="bm-tl">${tl.map(([t,d],i)=>`<li><span>${String(i+1).padStart(2,'0')}</span><b>${t.toUpperCase()}</b><p>${d}</p></li>`).join('')}</ol>
   <div class="ctas" style="margin-top:36px"><a class="btn" href="${BM.pdf}" download>Download the manual (PDF)</a><a class="btn" href="#documentation">See the 50+ Nike manuals</a><a class="btn" href="#basecamp">The BASECAMP product</a></div></div></section>
  ${nextLink('documentation',{id:'basecamp',title:'BASECAMP'})}</main>`+foot();
+}
+function mountTZ(){
+ const root=document.querySelector('.tz-sk');if(!root||root.dataset.on||!window.TZ_SK)return;root.dataset.on=1;
+ const SK=window.TZ_SK,pgs=[...root.querySelectorAll('.tz-sk-pg')],th=[...root.querySelectorAll('.tz-sk-th button')];let i=0;
+ const n=root.querySelector('.tz-sk-n'),t=root.querySelector('.tz-sk-t'),d=root.querySelector('.tz-sk-d'),k=root.querySelector('.tz-sk-k');
+ const go=(j,f)=>{i=(j+pgs.length)%pgs.length;pgs.forEach((p,x)=>{p.classList.toggle('on',x===i);p.setAttribute('aria-hidden',x===i?'false':'true')});
+  th.forEach((b,x)=>{b.classList.toggle('on',x===i);b.setAttribute('aria-selected',x===i)});
+  const s=SK[i];n.innerHTML='<b>'+s[0]+'</b> / 06';t.textContent=s[1];d.textContent=s[3];k.innerHTML=s[4].map(([a,b])=>'<dt>'+esc(a)+'</dt><dd>'+esc(b)+'</dd>').join('');
+  if(f){const st=root.querySelector('.tz-sk-th');const b=th[i];st.scrollTo({left:b.offsetLeft-st.offsetLeft-8,behavior:'smooth'})}};
+ root.querySelector('.tz-sk-prev').onclick=()=>go(i-1,1);root.querySelector('.tz-sk-next').onclick=()=>go(i+1,1);th.forEach((b,j)=>b.onclick=()=>go(j,1));
+ root.tabIndex=0;root.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){go(i+1,1);e.preventDefault()}if(e.key==='ArrowLeft'){go(i-1,1);e.preventDefault()}});
+ let x0=null;const st=root.querySelector('.tz-sk-stage');st.addEventListener('touchstart',e=>x0=e.touches[0].clientX,{passive:true});st.addEventListener('touchend',e=>{if(x0==null)return;const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)go(i+(dx<0?1:-1),1);x0=null});
+ go(0);
 }
 function mountBM(){
  const root=document.querySelector('.bm-flip');if(!root||root.dataset.on)return;root.dataset.on=1;
@@ -3513,10 +3547,29 @@ const CS={
                ['Midsole','Braided fique, two rows, 26 mm','Natural, hand-stitched spiral','Natural fique'],
                ['Outsole','Vulcanised rubber, 4.5 mm','Fine texture','Carbón / Black / Moss'],
                ['Lining','Cotton twill','Brushed','Crudo / Tobacco / Crudo']];
+   const SK=[['00','PENCIL PASS','img/tz__00_loafer.webp','Starting point: my Rhino penny loafer, redrawn as working sketches.',[['KEEP','Last shape and the moc-toe line'],['DROP','Saddle strap, replaced by woven straps'],['SWAP','Leather outsole to braided fique and rubber']]],
+             ['01','IDEATION','img/tz__01_ideas.webp','Six directions on the same last: open back, heel cup, low toe, tall toe cap, more straps.',[['CHOSE','B: heel cup, 5 straps'],['WHY','Holds the heel without a stiff counter'],['PASSED','A, C, D, E, F']]],
+             ['02','LATERAL','img/tz__02_side.webp','The profile, called out part by part, with the ball line at 62% of the length.',[['UPPER','Over-under veg-tan straps'],['EDGE','Caña flecha zig-zag band'],['BASE','Fique braid on 4 mm rubber']]],
+             ['03','TOP VIEW','img/tz__03_top.webp','Strap weave and toe cap layout, seen from above.',[['WEAVE','7 mm leather strips at 45°'],['TOE','Canvas cap keeps the alpargata line'],['REVEAL','6 mm of fique all round']]],
+             ['04','OUTSOLE','img/tz__04_bottom.webp','A coiled fique braid, protected only where it wears.',[['WAIST','Braid left exposed'],['FOREFOOT','Rubber pod, chevron tread'],['HEEL','Rubber pod']]],
+             ['05','BUILD','img/tz__05_explode.webp','Five parts, each one a single material: upper, footbed, fique midsole, edge band, outsole.',[['PARTS','5 in the sketch'],['RULE','One part, one material'],['NEXT','Becomes the exploded render']]],
+             ['06','FIRST CMF','img/tz__06_cmf.webp','The first palette: Colombian craft fibres and one Tigre orange accent.',[['FIBRE','Fique, caña flecha'],['COLOUR','Crudo, café, carbón'],['ACCENT','Tigre orange stitch']]]];
+   const SKD=[['Vamp strips','7 mm leather at 45°','10 mm over-under veg-tan'],['Edge band','Caña flecha zig-zag braid','Woven faja band, 8.5 mm'],['Toe cap','Crudo canvas','Hand-painted cotton manta'],['Accent','Tigre orange stitch','Tumbaga piping, gold PVD'],['Outsole','Rubber pods, 4 mm','Vulcanised rubber, 4.5 mm'],['Parts','5','7: adds the cast heel tab and piping'],['Palettes','1','3 editions']];
+   const SKS=`<section class="band alt section tz-sk-band"><div class="wrap"><h2 class="sh-title" style="font-size:32px">From Sketch To Spec</h2><p class="sh-sub">Seven sheets, drawn before a single render</p>
+    <div class="tz-sk" aria-roledescription="carousel"><div class="tz-sk-stage">${SK.map(([n,t,f,d],i)=>`<figure class="tz-sk-pg${i?'':' on'}" aria-hidden="${i?'true':'false'}">${im([f,2400,1500],'Sketch sheet '+n+', '+t.toLowerCase()+': '+d)}</figure>`).join('')}</div>
+     <aside class="tz-sk-side"><p class="tz-sk-n"><b>00</b> / 06</p><h3 class="tz-sk-t">PENCIL PASS</h3><p class="tz-sk-d"></p><dl class="tz-sk-k"></dl>
+      <div class="tz-sk-nav"><button type="button" class="tz-sk-prev" aria-label="Previous sheet">←</button><button type="button" class="tz-sk-next" aria-label="Next sheet">→</button></div></aside>
+     <div class="tz-sk-th" role="tablist" aria-label="Sketch sheets">${SK.map(([n,t,f],i)=>`<button type="button" role="tab" aria-selected="${i?'false':'true'}" class="${i?'':'on'}">${im([f,2400,1500],'')}<span><b>${n}</b> ${t}</span></button>`).join('')}</div></div>
+    <h3 class="tz-sk-h">WHAT MOVED BETWEEN SKETCH AND SPEC</h3>
+    <table class="tbl tz-sk-diff"><thead><tr><th>Part</th><th>Sketch, sheet 02–06</th><th>Final CMF spec</th></tr></thead><tbody>${SKD.map(([a,b,c])=>`<tr><td>${a}</td><td>${b}</td><td><span class="tz-sk-ar">→</span>${c}</td></tr>`).join('')}</tbody></table>
+    <p class="tz-sk-foot">The research came after these sheets. Reading the Muisca turned the edge band into a faja, the canvas into a painted manta and the orange into tumbaga gold. The last, the strap count and the heel cup stayed.</p>
+   </div></section>`;
+   window.TZ_SK=SK;
    return `<section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Reference</h2><p class="sh-sub">The Muisca of the Altiplano Cundiboyacense, Colombia</p>
     <div class="tz-ref">${REF.map(([h,t],i)=>`<div><small>${String(i+1).padStart(2,'0')}</small><h3>${h}</h3><p>${t}</p></div>`).join('')}</div>
     <p class="tz-note"><b>A note on molas.</b> The bright layered mola is Guna craft, from the Caribbean coast of Panama and Colombia, not Muisca. It stays out of this study so each culture keeps its own credit. <b>On the pattern.</b> Every motif here was drawn new from the Muisca vocabulary, not copied from any object. A production version would be co-designed with, credited to and paid to a Muisca weaving community.</p>
    </div></section>
+   ${SKS}
    <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Pattern System</h2><p class="sh-sub">Two motifs, two scales, one rule: paint on cotton, weave on the strap</p>
     <div class="tz-pat"><figure>${im(['img/tz__pat_manta.webp',900,900],'Manta tile: alternating panels of nested rhombi and squared spirals')}<figcaption><b>MANTA TILE · 90 MM REPEAT</b> Alternating panels like the surviving mantas: nested rhombus, squared spiral, painted corner triangles, a double-ruled frame. Drawn with a hand wobble so it reads painted, not printed.</figcaption></figure>
      <div class="tz-faja">${ED.map(([k,n,fj])=>`<figure>${im([fj,1600,250],n+' faja band')}<figcaption><b>FAJA · ${n}</b></figcaption></figure>`).join('')}
@@ -3530,10 +3583,10 @@ const CS={
     <table class="tbl tz-spec"><thead><tr><th>Part</th><th>Material</th><th>Finish</th><th>Colour (Manta / Tumbaga / Páramo)</th></tr></thead><tbody>${SPEC.map(r=>`<tr>${r.map(x=>`<td>${x}</td>`).join('')}</tr>`).join('')}</tbody></table>
    </div></section>
    <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Build</h2><p class="sh-sub">Seven parts, lifted in build order</p>
-    <div class="duo"><figure>${im(['img/tz__r_exploded_manta.webp',1500,1100],'Exploded alpargata')}<figcaption>Sole unit, lining, upper, heel tab, piping, faja strap and stitches. The loafer last stays; a 26 mm braided fique midsole goes under it.</figcaption></figure>
-    <figure>${im(['img/tz__r_side_tumbaga.webp',1800,900],'Tumbaga lateral')}<figcaption>Tumbaga lateral: the gold paint picks up the piping.</figcaption></figure></div>
-    <div class="duo" style="padding-top:24px"><figure>${im(['img/tz__r_side_paramo.webp',1800,900],'Páramo lateral')}<figcaption>Páramo lateral: moss ground, bone weave.</figcaption></figure>
-    <figure>${im(['img/tz__02_side.webp',2400,1500],'Original sketch, lateral')}<figcaption>Where it started: the lateral sketch from the concept phase.</figcaption></figure></div>
+    <div class="tz-build"><figure class="tz-b-ex">${im(['img/tz__r_exploded_manta.webp',1500,1100],'Exploded alpargata: sole unit, lining, upper, heel tab, piping, faja strap and stitches lifted in build order')}</figure>
+     <figure>${im(['img/tz__r_side_tumbaga.webp',1800,900],'Tumbaga edition, lateral view')}</figure>
+     <figure>${im(['img/tz__r_side_paramo.webp',1800,900],'Páramo edition, lateral view')}</figure></div>
+    <div class="tz-b-cap"><p><b>01 · EXPLODED</b> Sole unit, lining, upper, heel tab, piping, faja strap and stitches. The loafer last stays; a 26 mm braided fique midsole goes under it.</p><p><b>02 · TUMBAGA</b> The gold paint picks up the piping.</p><p><b>03 · PÁRAMO</b> Moss ground, bone weave.</p></div>
    </div></section>`},
   b:['Luxury Finish, Indigenous Roots','Take the Trenza Alpargata from sketches to a full CMF study at the level of a luxury house, with its language drawn from the Muisca of Colombia.'],
   a:['Research, Then Pattern, Then Material','Read the Muisca through their mantas, spindle whorls and tumbaga goldwork. Draw an original pattern system from that vocabulary. Rebuild the loafer last as an alpargata with a braided fique midsole, and assign every part a material, finish and colour.'],
@@ -4687,7 +4740,7 @@ function route(){
  else if(h===KP.id){html=keypadPage();title=KP.title+' · Henry Ortega'}
  else if((i=RH.findIndex(p=>p.id===h))>=0){html=CS[RH[i].id]?casePage(RH,i,'rhino','Rhino Workflow'):galleryPage(RH,i,'rhino','Rhino Workflow');title=RH[i].title+' · Henry Ortega'}
  document.body.classList.remove('gm-lock');
- if(html){app.innerHTML=html;app.dataset.view='project';scrollTo(0,0);mountGame();mountTT();mountKN();mountHKN();mountPN();mountTA();mountKH();mountBM();mountKA();mountSim();mountGrille();mountPV();mountFB();window.TigreFigures&&TigreFigures.mountAll(app)}
+ if(html){app.innerHTML=html;app.dataset.view='project';scrollTo(0,0);mountGame();mountTT();mountKN();mountHKN();mountPN();mountTA();mountKH();mountBM();mountTZ();mountKA();mountSim();mountGrille();mountPV();mountFB();window.TigreFigures&&TigreFigures.mountAll(app)}
  else{
   if(app.dataset.view!=='home'){app.innerHTML=home();app.dataset.view='home';window.TigreFigures&&TigreFigures.mountAll(app)}
   const t=h&&document.getElementById(h); if(t) t.scrollIntoView(); else if(!h||h==='top') scrollTo(0,0);

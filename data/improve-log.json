@@ -366,5 +366,15 @@
    "index.html",
    "data/improve-log.json"
   ]
+ },
+ {
+  "date": "2026-11-21",
+  "project": "trenza-alpargata",
+  "change": "New FROM SKETCH TO SPEC section: Henry's seven concept sheets (pencil pass, ideation, lateral, top, outsole, build, first CMF) in a stepper with thumbnails, arrows, keys and swipe, each with its KEEP/DROP/CHOSE decisions, plus a WHAT MOVED table comparing the sketch callouts to the final CMF spec. THE BUILD regridded: exploded view beside the two laterals with one caption row, no more uneven columns.",
+  "files": [
+   "index.html",
+   "tools/image_map.json",
+   "data/improve-log.json"
+  ]
  }
 ]
