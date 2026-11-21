@@ -1306,8 +1306,32 @@ a:focus-visible{outline-color:var(--or)}
  .hk-flow li:not(:last-child)::before{right:auto;left:20px;top:auto;bottom:-19px;border:5px solid transparent;border-top:6px solid #FF5A1F;border-bottom:0}
  .hk-join{display:none}.hk-flow li.join .hk-io::after{content:' · THE JOIN'}}
 .hk-two{display:grid;grid-template-columns:1fr 60px 1fr;gap:20px;align-items:center;margin-top:28px}.hk-src{display:block;text-decoration:none;color:inherit;border:1px solid rgba(0,0,0,.15);padding:14px}.hk-src img{display:block;width:100%;height:220px;object-fit:cover}.hk-src small{display:block;font:11px var(--mono);letter-spacing:.08em;color:#FF5A1F;margin:12px 0 4px}.hk-src h3{font-family:var(--head);text-transform:uppercase;margin:0 0 6px}.hk-src p{margin:0}.hk-plus{font:900 64px var(--display);color:#FF5A1F;text-align:center}
-.hk-mx-wrap{overflow-x:auto;margin-top:24px;max-width:100%;min-width:0;-webkit-overflow-scrolling:touch}.hk-mx tr>th:first-child{position:sticky;left:0;z-index:2;background:#0B0B0C}@media (max-width:900px){.hk-mx-wrap::before{content:"SWIPE THE MATRIX →";display:block;font:700 11px var(--mono);letter-spacing:.08em;color:#FF5A1F;margin-bottom:8px;position:sticky;left:0}.hk-mx{min-width:760px}}.hk-mx{border-collapse:separate;border-spacing:3px;width:100%;min-width:900px;font:12px var(--mono)}.hk-mx th{font-weight:700;text-align:left;font-size:11px;letter-spacing:.04em;text-transform:uppercase;padding:4px 6px;vertical-align:bottom}.hk-mx th small{display:block;opacity:.6;font-weight:400}.hk-mx td{background:var(--c);height:34px;text-align:center;color:#0B0B0C;position:relative;opacity:.55;transition:opacity .2s}.hk-mx td span{font-weight:700}.hk-mx .hk-d0{background:none;color:inherit;opacity:1}
-.hk-mx tr.on td,.hk-mx td.is-pick,.hk-mx td.is-gus{opacity:1}.hk-mx td.is-pick{outline:3px solid #FF5A1F;outline-offset:-3px}.hk-mx td.is-gus{outline:3px dashed #F2EEE6;outline-offset:-3px}.hk-mx tbody tr{cursor:pointer}.hk-mx tbody tr.on th{color:#FF5A1F}
+.hk-mx-wrap{overflow-x:auto;margin-top:28px;max-width:100%;min-width:0;-webkit-overflow-scrolling:touch;border-top:1px solid rgba(242,238,230,.25)}
+@media (max-width:900px){.hk-mx-wrap::before{content:"SWIPE THE MATRIX →";display:block;font:700 11px var(--mono);letter-spacing:.08em;color:#FF5A1F;margin:8px 0;position:sticky;left:0}}
+.hk-mx{border-collapse:separate;border-spacing:0;width:100%;min-width:1040px;font:12px/1 var(--mono);font-variant-numeric:tabular-nums;color:#F2EEE6}
+.hk-mx th,.hk-mx td{padding:0 10px;height:36px;border-bottom:1px solid rgba(242,238,230,.08)}
+.hk-mx thead th{height:auto;padding:14px 10px 12px;font-weight:700;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;text-align:right;vertical-align:bottom;border-bottom:1px solid rgba(242,238,230,.35);white-space:nowrap}
+.hk-mx th small{display:block;margin-top:5px;font-weight:400;font-size:10px;letter-spacing:.04em;text-transform:none;opacity:.55}
+.hk-mx .hm-z{text-align:left;position:sticky;left:0;z-index:2;background:#0B0B0C;min-width:128px;font-weight:700;font-size:11px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.hk-mx tbody .hm-z small{display:inline;margin:0 0 0 8px;font-size:10px;text-transform:uppercase;opacity:.45;letter-spacing:.08em}
+.hk-mx .hm-dm{min-width:120px;text-align:left;position:relative}.hk-mx thead .hm-dm{text-align:left}
+.hk-mx td.hm-dm span{position:relative;z-index:1;font-weight:700}.hk-mx td.hm-dm i{position:absolute;left:10px;bottom:9px;height:3px;background:#FF5A1F;max-width:calc(100% - 20px)}
+.hk-mx td.hm-dm span{display:inline-block;margin-bottom:6px}
+.hk-mx td{text-align:right;transition:background-color .15s}
+.hk-mx td.hm-ok{background:rgba(242,238,230,var(--a))}
+.hk-mx td.hm-lim{background:#B8862E;color:#0B0B0C;font-weight:700}
+.hk-mx td.hm-ov{color:rgba(220,50,40,.85);background:repeating-linear-gradient(135deg,rgba(220,50,40,.10) 0 4px,transparent 4px 9px)}
+.hk-mx td.is-pick{background:#FF5A1F;color:#0B0B0C;font-weight:700;box-shadow:inset 0 0 0 2px #FF5A1F}
+.hk-mx td.is-gus{box-shadow:inset 0 0 0 2px #0B0B0C,inset 0 0 0 3px #F2EEE6;color:#F2EEE6;font-weight:700}
+.hk-mx .hm-sel{text-align:left;min-width:150px;border-left:1px solid rgba(242,238,230,.35);white-space:nowrap}.hk-mx thead .hm-sel{text-align:left}
+.hk-mx td.hm-sel b{color:#FF5A1F}.hk-mx td.hm-sel small{display:block;margin-top:3px;font-size:10px;opacity:.6}
+.hk-mx tr.hm-grp th{height:30px;padding-top:14px;text-align:left;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#FF5A1F;font-weight:700;border-bottom:1px solid rgba(255,90,31,.35);position:sticky;left:0;background:#0B0B0C}
+.hk-mx tbody tr[data-r]{cursor:pointer}.hk-mx tbody tr[data-r]:hover th,.hk-mx tbody tr.on th{color:#FF5A1F}
+.hk-mx tbody tr.on td,.hk-mx tbody tr.on th{border-bottom-color:rgba(255,90,31,.6)}
+.hm-key{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:14px;font:10.5px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:rgba(242,238,230,.75)}.hm-key span{display:flex;align-items:center;gap:8px}.hm-key em{font-style:normal;text-transform:none;opacity:.6}
+.hm-key b{display:inline-block;width:22px;height:12px}.hm-key .k-ok{background:linear-gradient(90deg,rgba(242,238,230,.06),rgba(242,238,230,.27))}.hm-key .k-lim{background:#B8862E}.hm-key .k-ov{background:repeating-linear-gradient(135deg,rgba(220,50,40,.5) 0 3px,transparent 3px 6px);outline:1px solid rgba(220,50,40,.5)}.hm-key .k-pick{background:#FF5A1F}.hm-key .k-gus{box-shadow:inset 0 0 0 1px #F2EEE6}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (max-width:700px){.hk-mx .hm-z{min-width:96px;padding:0 8px;font-size:10px}.hk-mx tbody .hm-z small{display:none}.hk-mx .hm-dm{min-width:64px}.hk-mx th,.hk-mx td{padding:0 7px}.hk-mx{min-width:960px}}
 .hk-note{margin-top:16px;min-height:64px;font-size:18px}.hk-note span{display:block;font-family:var(--serif);font-style:italic;opacity:.75;margin-top:4px}
 .hk-ramp em{font-style:normal;margin-left:auto;display:flex;gap:8px;align-items:center}.hk-ramp em b{display:inline-block;width:16px;height:12px;border:3px solid #FF5A1F}.hk-ramp em .hk-k2{border:3px dashed #F2EEE6}@media (max-width:600px){.hk-ramp{flex-wrap:wrap;gap:8px 14px}.hk-ramp i{order:-1;flex:1 1 100%}.hk-ramp em{margin-left:0;flex-basis:100%;margin-top:4px}}
 .hk-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:28px}.hk-grid figure{margin:0}.hk-grid img{display:block;width:100%;height:auto}.hk-grid figcaption{font-family:var(--serif);font-style:italic;color:var(--muted);margin-top:8px}
@@ -2259,16 +2283,20 @@ function hknFlow(){
  return `<ol class="hk-flow" aria-label="Pipeline from Knit Nodes to this page">${HKN.flow.map(([prog,t,d,io],i)=>`<li class="${i===3?'join':''}"><span class="hk-p">${String(i+1).padStart(2,'0')} · ${prog.toUpperCase()}</span><b class="hk-t">${t.toUpperCase()}</b><p class="hk-d">${d}</p><span class="hk-io">${io}</span></li>`).join('')}</ol>
  <p class="hk-join">▲ THE JOIN: BOTH STUDIES FEED ONE RULE</p>`}
 function hknMatrix(){
- const K=Object.keys(KB);
- return `<div class="hk-mx-wrap"><table class="hk-mx"><thead><tr><th>Zone</th><th>Demand</th>${K.map(k=>`<th>${HKN.names[k]}<small>${KB[k][1]}%</small></th>`).join('')}</tr></thead><tbody>
- ${HKN.sel.map(([z,d,job,pick,gus,note],r)=>`<tr data-r="${r}"><th>${z}<small>${job}</small></th><td class="hk-d0">${d}%</td>${K.map(k=>{const u=hknUtil(d,k),on=k===pick,g=k===gus;
-  return `<td class="${on?'is-pick':''}${g?' is-gus':''}" style="--c:${knRamp(u/100)}" title="${HKN.names[k]}: ${u}% of its stretch"><span>${u}</span></td>`}).join('')}</tr>`).join('')}</tbody></table></div>
+ const K=Object.keys(KB), band=u=>u>100?'ov':u>85?'lim':'ok';
+ const cell=(u,on,g)=>{const b=band(u),a=b==='ok'?(0.05+0.22*u/85).toFixed(3):0;
+  return `<td class="hm-${b}${on?' is-pick':''}${g?' is-gus':''}" style="--a:${a}" title="${u}% of its rated stretch${b==='ov'?' · overstretched':b==='lim'?' · above the 85 % rule':''}">${u}</td>`};
+ let last='';
+ return `<div class="hk-mx-wrap"><table class="hk-mx"><caption class="sr-only">Share of each knit's rated stretch used by each HESTIA zone</caption>
+ <thead><tr><th scope="col" class="hm-z">Zone<small>Job</small></th><th scope="col" class="hm-dm">Demand<small>Stretch asked</small></th>${K.map(k=>`<th scope="col">${HKN.names[k]}<small>Rated ${KB[k][1]}%</small></th>`).join('')}<th scope="col" class="hm-sel">Selected<small>Knit · use</small></th></tr></thead><tbody>
+ ${HKN.sel.map(([z,d,job,pick,gus],r)=>{const grp=job==='flex'?'Flex joints':'Cover · brace · grip · open',sep=grp!==last;last=grp;
+  return `${sep?`<tr class="hm-grp"><th colspan="${K.length+3}">${grp}</th></tr>`:''}<tr data-r="${r}"><th scope="row" class="hm-z">${z}<small>${job}</small></th><td class="hm-dm"><span>${d}%</span><i style="width:${Math.min(100,d/1.5)}%"></i></td>${K.map(k=>cell(hknUtil(d,k),k===pick,k===gus)).join('')}<td class="hm-sel"><b>${HKN.names[pick]}</b> ${hknUtil(d,pick)}%${gus?`<small>+ ${HKN.names[gus]} gusset</small>`:''}</td></tr>`}).join('')}</tbody></table></div>
  <div class="hk-note" id="hkNote" aria-live="polite"></div>
- <div class="kn-rampbar hk-ramp"><span>Relaxed</span><i></i><span>At limit</span><span style="color:#DC3228">Overstretched</span><em><b class="hk-k1"></b>Chosen knit <b class="hk-k2"></b>Lace gusset</em></div>`}
+ <div class="hm-key"><span><b class="k-ok"></b>Within the 85 % rule <em>(darker = more relaxed)</em></span><span><b class="k-lim"></b>85–100 % · at limit</span><span><b class="k-ov"></b>Over 100 % · overstretched</span><span><b class="k-pick"></b>Chosen knit</span><span><b class="k-gus"></b>Lace gusset</span></div>`}
 function mountHKN(){const t=document.querySelector('.hk-mx');if(!t)return;const n=document.getElementById('hkNote');
- const show=r=>{const[z,d,job,pick,gus,note,pinch,pl]=HKN.sel[r];t.querySelectorAll('tbody tr').forEach((x,i)=>x.classList.toggle('on',i===r));
+ const show=r=>{const[z,d,job,pick,gus,note,pinch,pl]=HKN.sel[r];t.querySelectorAll('tbody tr[data-r]').forEach((x,i)=>x.classList.toggle('on',i===r));
   n.innerHTML=`<b>${z.toUpperCase()}</b> needs ${d}% → <b>${HKN.names[pick]}</b> at ${hknUtil(d,pick)}% of its stretch${gus?` + <b>${HKN.names[gus]} gusset</b>`:''}${pl?` · ${pl} pleats`:''}${pinch!=null?` · pinch margin ${pinch} mm`:''}<span>${note}</span>`};
- t.querySelectorAll('tbody tr').forEach((x,i)=>{x.addEventListener('click',()=>show(i));x.addEventListener('mouseenter',()=>show(i))});show(3)}
+ t.querySelectorAll('tbody tr[data-r]').forEach((x,i)=>{x.addEventListener('click',()=>show(i));x.addEventListener('mouseenter',()=>show(i))});show(3)}
 function hknPage(){
  const S=HKN.sel, fig=(f,w,h,c)=>`<figure>${im([f,w,h],c)}<figcaption>${esc(c)}</figcaption></figure>`;
  return head('product','New')+`<main>
@@ -2288,7 +2316,7 @@ function hknPage(){
   <p class="intro" style="margin-top:24px">Each step writes a file the next step reads. Change a stitch rule in the Knit Nodes script or a joint angle in the HESTIA calc, run the engine, and the render, the spec and this matrix all update together. That is the point of the project: integration, not illustration.</p>
  </div></section>
 
- <section class="band dark section" style="padding-top:0"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Selection Matrix</h2><p class="sh-sub">${S.length} zones × 10 knits / Each cell: % of that knit's stretch the zone would use</p>
+ <section class="band dark section" style="padding-top:0"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Selection Matrix</h2><p class="sh-sub">${S.length} zones × 10 knits / Each cell: % of a knit's rated stretch the zone would use / Rule: densest closed knit at or under 85 %</p>
   ${hknMatrix()}
  </div></section>
 
