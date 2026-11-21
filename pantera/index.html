@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PANTERA · Pattern Case Study</title>
+<meta name="description" content="PANTERA: a basketball boot pattern engineered in code on a 3D last. Frank Jones's double standard in 17 steps, 11 parts at size, 19/19 checks, girth within 0.4 %. A Tigre Studio case study by Henry Ortega.">
+<link rel="canonical" href="https://tigrestudiodesign.github.io/pantera/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Tigre Studio">
+<meta property="og:url" content="https://tigrestudiodesign.github.io/pantera/">
+<meta property="og:title" content="PANTERA · Basketball boot pattern, engineered in code">
+<meta property="og:description" content="Frank Jones's hand method run end to end on a 3D last: double standard, 11 parts at size, 19/19 checks, girth within 0.4 %. Tech pack and paper test kit included.">
+<meta property="og:image" content="https://tigrestudiodesign.github.io/pantera/img/og-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="PANTERA by Tigre Studio: the pattern painted onto the GARRA TS-27 V2 last, with 19/19 checks, 0.4 % girth error, 11 parts at 1:1">
+<meta name="author" content="Henry Ortega">
+<meta name="twitter:card" content="summary_large_image">
+
+<style>
+/* VOICE: a studio case study — technical, confident, the pattern itself is the hero.
+   IDEA: a pattern engineer's master standard, pinned up next to the last it was cut from.
+   PICTURE: the boot on its last; the double standard drawn step by step; every part at size.
+   COLOUR and TYPE: Tigre Studio — black/white bands, spectrum blue (inside) + red (outside), stripes in hero and footer;
+   Inter Display Black caps headlines, Palatino Italic conversation, Helvetica Neue information.
+   LAYOUT: running header, black hero, alternating white bands, black stripe footer. */
+@font-face{font-family:"Inter Display";src:url(fonts/InterDisplay-Black.woff2) format("woff2");font-weight:900;font-display:swap}
+@font-face{font-family:"Inter Display";src:url(fonts/InterDisplay-Bold.woff2) format("woff2");font-weight:700;font-display:swap}
+:root{color-scheme:light;--black:#000;--white:#fff;--muted:#595959;--muted-d:#8c8c8c;--grid:#d9d9d9;--alt:#f2f2f2;
+--yellow:#ffb000;--red:#e50000;--blue:#0036f9;--sky:#59c0e6;
+--s-sky:#4fb3e0;--s-blue:#0a35ff;--s-vio:#7a3cff;--s-red:#e50000;--s-amb:#ffb000;
+--head:"Inter Display","Inter",Helvetica,Arial,sans-serif;--sans:"Helvetica Neue",Helvetica,Inter,Arial,sans-serif;--serif:Palatino,"Palatino Linotype","Book Antiqua",Georgia,serif;
+--cut:28px;--side:clamp(16px,4vw,64px)}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:72px;scroll-behavior:smooth}
+body{margin:0;background:var(--white);color:var(--black);font:16px/1.55 var(--sans);overflow-x:clip}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.dark :focus-visible{outline-color:var(--sky)}
+.wrap{max-width:1440px;margin:0 auto;padding:0 var(--side)}
+.band{padding:clamp(48px,7vw,112px) 0}
+.dark{background:var(--black);color:var(--white)}
+.alt{background:var(--alt)}
+.spectrum{display:block;height:3px;background:linear-gradient(90deg,var(--sky) 0%,var(--blue) 20%,var(--red) 36.5%,var(--yellow) 50%,var(--red) 63.5%,var(--blue) 80%,var(--sky) 100%)}
+.stripe-rule{display:block;height:6px;width:180px;background:linear-gradient(90deg,var(--s-sky),var(--s-blue) 25%,var(--s-vio) 50%,var(--s-red) 75%,var(--s-amb))}
+.caps{font-family:var(--head);font-weight:900;text-transform:uppercase;line-height:.95;letter-spacing:-.01em;margin:0}
+.it{font-family:var(--serif);font-style:italic}
+.label{font:700 12px/1.2 var(--sans);text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.dark .label{color:var(--muted-d)}
+/* header */
+header{position:sticky;top:0;z-index:20;background:var(--black);color:var(--white)}
+.hd{display:flex;align-items:center;gap:24px;height:60px;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;font:900 15px/1 var(--head);text-transform:uppercase;white-space:nowrap}
+.logo svg{width:30px;height:30px;flex:none}
+nav.scroll{display:flex;gap:22px;overflow-x:auto;scrollbar-width:none}
+nav.scroll a{font:italic 16px/1 var(--serif);color:var(--muted-d);text-decoration:none;white-space:nowrap;padding:12px 0}
+nav.scroll a:hover,nav.scroll a.on{color:var(--white)}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--white);color:var(--black);font:italic 16px/1.2 var(--serif);padding:9px 22px;border:1px solid var(--white);text-decoration:none;white-space:nowrap;cursor:pointer}
+.btn:hover{background:var(--blue);color:var(--white)}
+/* hero */
+.hero{position:relative;isolation:isolate;overflow:hidden;background:var(--black);color:var(--white)}
+.hero .field{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:right top;z-index:-1;opacity:.9;pointer-events:none}
+.hero-in{padding-top:clamp(36px,5vw,80px);padding-bottom:clamp(40px,5vw,72px)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(24px,4vw,64px);align-items:end;margin-top:clamp(24px,3vw,40px)}
+.kick{font:italic clamp(20px,2.2vw,30px)/1.15 var(--serif);margin:0 0 18px;color:var(--white)}
+.display{font-family:var(--head);font-weight:900;text-transform:uppercase;font-size:clamp(64px,15vw,240px);line-height:.86;letter-spacing:-.02em;margin:0;white-space:nowrap;display:inline-block}
+.hero .sub{font:italic 19px/1.35 var(--serif);margin:0;color:#d9d9d9;max-width:34ch}
+.hero .intro{font-size:17px;line-height:1.5;margin:26px 0 0;max-width:44ch;color:#e9e9e9}
+.plate{margin:0;background:#fff;border-top-right-radius:var(--cut);overflow:hidden;display:flex;flex-direction:column}
+.plate img{display:block;width:100%;height:auto;aspect-ratio:1760/902;object-fit:contain;padding:12px 16px 0}
+.plate .tag{display:block;padding:10px 16px 14px;border-top:1px solid var(--grid);font:700 11px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--black)}
+/* numbers */
+.nums{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;border-top:1px solid var(--black)}
+.num{padding:22px 18px 6px 0;border-right:1px solid var(--grid)}
+.num:last-child{border-right:0}
+.num b{display:block;font:900 clamp(40px,4.6vw,72px)/.9 var(--head);letter-spacing:-.02em}
+.num span{display:block;font:italic 16px/1.3 var(--serif);color:var(--muted);margin-top:10px}
+/* sections */
+.sh{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(24px,4vw,64px);align-items:end;margin-bottom:clamp(28px,4vw,56px)}
+.sh h2{font-size:clamp(40px,6vw,96px)}
+.sh p.it{font-size:clamp(19px,1.8vw,24px);line-height:1.25;margin:0;padding-bottom:14px;border-bottom:1px solid currentColor}
+.cols{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(24px,4vw,64px);align-items:start}
+.copy p{margin:0 0 16px;max-width:62ch;font-size:17px}
+.copy h3{font:900 22px/1 var(--head);text-transform:uppercase;margin:28px 0 10px}
+.fig{position:relative;background:var(--white);border:1px solid var(--grid);overflow:hidden}
+.fig.tr{border-top-right-radius:var(--cut)}.fig.bl{border-bottom-left-radius:var(--cut)}
+.fig svg{display:block;width:100%;height:auto}
+svg path,svg line{stroke-linejoin:round;stroke-linecap:round}
+.legend{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:12px;font:700 12px/1 var(--sans);text-transform:uppercase;letter-spacing:.04em}
+.legend i{display:inline-block;width:22px;height:2px;vertical-align:middle;margin-right:8px;background:currentColor}
+.tog{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.tog button{min-height:44px;padding:0 16px;font:700 13px/1 var(--sans);text-transform:uppercase;letter-spacing:.03em;border:1px solid var(--black);background:var(--white);color:var(--black);cursor:pointer}
+.tog button[aria-pressed=true]{background:var(--black);color:var(--white)}
+/* stepper */
+.stepper{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;margin:16px 0 8px}
+.stepper button{width:44px;height:44px;border:1px solid var(--black);background:var(--white);font:900 18px/1 var(--head);cursor:pointer}
+input[type=range]{width:100%;accent-color:var(--blue);height:44px}
+.stepbox{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:baseline;border-top:1px solid var(--black);padding-top:14px;min-height:96px}
+.why{font:16px/1.45 var(--sans)!important;color:var(--black)!important;margin-top:10px!important;padding-left:12px;border-left:3px solid var(--blue)}
+.why .label{margin-right:6px}
+.turnbar{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;min-height:44px;margin-top:10px;font:italic 18px/1.3 var(--serif)}
+.btn2{min-height:44px;padding:0 18px;border:1px solid #000;background:#000;color:#fff;font:700 13px/1 var(--sans);text-transform:uppercase;letter-spacing:.03em;cursor:pointer}
+.tog .tturn{border-color:var(--blue);color:var(--blue)}.tog .tturn[aria-pressed=true]{background:var(--blue);color:#fff}
+#stdwrap.turning{outline:2px solid var(--blue);outline-offset:-2px;cursor:crosshair}
+.stepbox b{font:900 44px/1 var(--head)}
+.stepbox h4{font:900 20px/1.05 var(--head);text-transform:uppercase;margin:0 0 6px}
+.stepbox p{margin:0;font:italic 17px/1.35 var(--serif);color:var(--muted)}
+/* parts */
+.parts{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:28px}
+.part{margin:0;cursor:zoom-in;background:none;border:0;padding:0;text-align:left;color:inherit;font:inherit}
+.part .pl{background:var(--white);border:1px solid var(--grid);aspect-ratio:8/5;display:block;position:relative}
+.part:nth-child(odd) .pl{border-top-right-radius:var(--cut)}
+.part:nth-child(even) .pl{border-bottom-left-radius:var(--cut)}
+.part svg{position:absolute;inset:8px;width:calc(100% - 16px);height:calc(100% - 16px)}
+.part .n{display:block;margin-top:12px}
+.part .t{display:block;font:900 20px/1 var(--head);text-transform:uppercase;margin-top:4px}
+.part .m{display:block;font:italic 15px/1.3 var(--serif);color:var(--muted);margin-top:4px}
+/* lightbox */
+dialog{border:0;padding:0;max-width:min(1200px,94vw);width:94vw;background:var(--white)}
+dialog::backdrop{background:rgba(0,0,0,.8)}
+.lb{display:grid;grid-template-columns:minmax(0,1fr) 300px}
+.lb .draw{padding:20px;border-right:1px solid var(--grid)}
+.lb .side{padding:22px}
+.lb .side h3{font:900 30px/1 var(--head);text-transform:uppercase;margin:6px 0 14px}
+.kv{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 14px;margin:0;font-size:14px}
+.kv dt{font:700 11px/1.6 var(--sans);text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.kv dd{margin:0;font-weight:700}
+.close{position:absolute;right:10px;top:10px;width:44px;height:44px;border:0;background:var(--black);color:var(--white);font:900 20px/1 var(--head);cursor:pointer}
+/* turntable */
+.tt{background:var(--white);border-bottom-left-radius:var(--cut);cursor:grab;touch-action:pan-y;user-select:none;position:relative}
+.tt img{display:block;width:100%;height:auto;pointer-events:none}
+.tt .hint{position:absolute;left:16px;top:14px;font:italic 15px/1 var(--serif);color:var(--muted)}
+/* checks */
+.ck{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,64px)}
+table{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+th{font:700 10.5px/1.2 var(--sans);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);text-align:left;padding:10px 10px 8px;border-bottom:1px solid var(--black);white-space:nowrap}
+td{padding:9px 10px;border-bottom:1px solid #e6e6e6;vertical-align:baseline}
+td.r,th.r{text-align:right;white-space:nowrap}
+.spec{border-top:3px solid var(--black);margin-top:10px}
+.spec caption{caption-side:top;text-align:left;padding:0 0 10px;font:900 18px/1.1 var(--head);text-transform:uppercase}
+.spec caption small{display:block;font:italic 15px/1.35 var(--serif);text-transform:none;color:var(--muted);margin-top:4px}
+.spec tbody tr:hover td{background:#f6f8ff}
+.spec tr.grp td{padding:16px 10px 6px;border-bottom:1px solid var(--black);font:700 10.5px/1 var(--sans);text-transform:uppercase;letter-spacing:.06em;color:var(--black);background:none}
+.spec td.st{font:900 13px/1 var(--head);color:var(--muted);width:34px}
+.spec td.u{color:var(--muted);font-size:12px;padding-left:0;width:24px}
+.spec td.dv{color:var(--muted)}
+.spec td.dv.nz{color:var(--black)}
+.chip{display:inline-block;min-width:44px;padding:4px 7px;font:700 10.5px/1 var(--sans);letter-spacing:.05em;text-align:center;border:1px solid var(--blue);color:var(--blue)}
+.chip.bad{border-color:var(--red);color:var(--red)}
+.spec tfoot td{border-bottom:0;border-top:3px solid var(--black);padding-top:12px;font-weight:700}
+.mini{display:inline-block;width:72px;height:8px;background:#ececec;vertical-align:middle;margin-left:10px;position:relative}
+.mini i{position:absolute;left:0;top:0;bottom:0;background:var(--blue)}
+.dark .spec{border-top-color:#fff}
+div.scroll{overflow-x:auto;max-width:100%}
+@media(max-width:600px){#ckt th:nth-child(5),#ckt td:nth-child(5),#ckt th:nth-child(7),#ckt td:nth-child(7),
+ #stnt th:nth-child(2),#stnt td:nth-child(2),#stnt th:nth-child(6),#stnt td:nth-child(6),#stnt th:nth-child(7),#stnt td:nth-child(7){display:none}
+ .spec th,.spec td{padding-left:6px;padding-right:6px}.chip{min-width:0}}
+.ok{color:var(--blue);font-weight:700}
+.bar{display:grid;grid-template-columns:120px minmax(0,1fr) 74px;gap:12px;align-items:center;padding:9px 10px;border-bottom:1px solid #e6e6e6;font-size:14px;font-variant-numeric:tabular-nums}
+#girth{border-top:1px solid var(--black)}
+.bar .tr{position:relative;height:28px;background:linear-gradient(90deg,transparent calc(50% - .5px),var(--black) calc(50% - .5px),var(--black) calc(50% + .5px),transparent calc(50% + .5px))}
+.bar .tr i{position:absolute;top:6px;height:16px;background:var(--blue)}
+.bar .tr i.neg{background:var(--red)}
+.pvb{display:block;width:100%;padding:0;margin:0 0 6px;border:1px solid var(--grid);background:#f2f2f2;cursor:zoom-in;position:relative;aspect-ratio:4/3;overflow:hidden}
+.pvb img{width:100%;height:100%;object-fit:contain;display:block}
+.pvb span{position:absolute;right:0;bottom:0;background:#000;color:#fff;font:700 11px/1 var(--sans);text-transform:uppercase;letter-spacing:.04em;padding:8px 10px}
+.pvb:hover span,.pvb:focus-visible span{background:var(--blue)}
+#pvd{max-width:min(1400px,96vw);width:96vw;max-height:94vh;padding:0;border:0;background:#fff}
+#pvd::backdrop{background:rgba(0,0,0,.72)}
+#pvd .h{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 16px;background:#000;color:#fff;position:sticky;top:0}
+#pvd .h b{font:900 16px/1.1 var(--head);text-transform:uppercase}
+#pvd .h button{min-width:44px;min-height:44px;background:#fff;color:#000;border:0;font:900 22px/1 var(--head);cursor:pointer}
+#pvd img{display:block;width:100%;height:auto}
+.tl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,48px);border-top:2px solid #000;padding-top:24px}
+.tl h3{margin:0 0 8px}.tl p{margin:0}
+.cta{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;margin-top:36px;padding:22px 24px;background:#000;color:#fff}
+.cta p{margin:0;flex:1 1 320px;font:italic 19px/1.35 var(--serif)}
+.cta a{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border:1px solid #fff;background:#fff;color:#000;font:700 13px/1 var(--sans);text-transform:uppercase;letter-spacing:.03em;text-decoration:none}
+.cta a.o{background:#000;color:#fff}.cta a:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+@media(max-width:900px){.tl{grid-template-columns:minmax(0,1fr)}}
+.lessons{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:0 40px;counter-reset:l}
+.lessons li{counter-increment:l;display:grid;grid-template-columns:56px minmax(0,1fr);gap:10px;padding:20px 0;border-top:1px solid #000}
+.lessons li::before{content:counter(l,decimal-leading-zero);font:900 30px/1 var(--head);color:var(--red)}
+.lessons b{font:900 19px/1.1 var(--head);text-transform:uppercase;display:block;margin-bottom:6px}
+.lessons span{color:#333}
+.dlgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+.dlc{border:1px solid #000;padding:20px 20px 18px;display:flex;flex-direction:column;gap:8px;background:#fff;position:relative}
+.dlc.rec{border-color:var(--red);box-shadow:inset 0 4px 0 var(--red)}
+.dlc h4{font:900 20px/1.05 var(--head);text-transform:uppercase;margin:0}
+.dlc p{margin:0;color:#444;font-size:15px}
+.dlc .meta{font:700 11px/1.3 var(--sans);text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.dlc .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;padding-top:10px}
+.dlc a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border:1px solid #000;background:#000;color:#fff;font:700 12px/1 var(--sans);text-transform:uppercase;letter-spacing:.03em;text-decoration:none}
+.dlc a.o{background:#fff;color:#000}
+.dlc a:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+.dlh{display:flex;align-items:baseline;gap:14px;margin:36px 0 14px}
+.dlh h3{margin:0}
+.next{list-style:none;margin:0;padding:0;counter-reset:n}
+.next li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;padding:16px 0;border-bottom:1px solid #333}
+.next li::before{content:"+";font:900 24px/1 var(--head);color:var(--sky)}
+.next b{font:900 19px/1.1 var(--head);text-transform:uppercase;display:block;margin-bottom:4px}
+.next span{color:#cfcfcf}
+footer{position:relative;isolation:isolate;overflow:hidden;background:var(--black);color:var(--white)}
+footer .field{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1;opacity:.55}
+.fgrid{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:end;padding-top:clamp(48px,6vw,96px);padding-bottom:32px}
+.fgrid .caps{font-size:clamp(48px,8vw,120px)}
+.small{font-size:13px;color:var(--muted-d)}
+.vsw{display:flex;border:1px solid #fff;flex:none}
+nav.scroll{flex:1 1 0}
+nav.scroll a{flex:none}
+.vsw button{min-width:52px;min-height:40px;border:0;background:#000;color:#fff;font:900 15px/1 var(--head);cursor:pointer}
+.vsw button[aria-pressed=true]{background:#fff;color:#000}
+.v2grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin-top:8px}
+.v2grid figure{margin:0}.v2grid .fig svg{height:300px}
+.v2grid figcaption{margin-top:10px}
+.chg{list-style:none;margin:0;padding:0;border-top:1px solid #000}
+.chg li{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) minmax(0,2.4fr);gap:16px;padding:16px 0;border-bottom:1px solid var(--grid);align-items:baseline}
+.chg b{font:900 19px/1.05 var(--head);text-transform:uppercase}
+.chg .d{font:900 26px/1 var(--head);color:var(--blue);white-space:nowrap}
+@media(max-width:900px){.v2grid{grid-template-columns:minmax(0,1fr)}.chg li{grid-template-columns:minmax(0,1fr) auto}.chg li span:last-child{grid-column:1/-1}}
+@media(max-width:900px){
+ .hero-grid,.sh,.cols,.ck{grid-template-columns:minmax(0,1fr)}
+ .nums{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .num{border-right:0;border-bottom:1px solid var(--grid)}
+ .lb{grid-template-columns:minmax(0,1fr)}.lb .draw{border-right:0;border-bottom:1px solid var(--grid)}
+}
+@media(max-width:600px){.lt{display:none}.hd{gap:10px}.vsw button{min-width:40px}nav.scroll{gap:14px}.hero .field{opacity:.35;object-position:70% top}.sh h2{font-size:clamp(36px,11vw,56px)}.fgrid{grid-template-columns:minmax(0,1fr)}.bar{grid-template-columns:80px minmax(0,1fr) 60px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header>
+ <div class="wrap hd">
+  <a class="logo" href="#top" aria-label="Tigre Studio, back to top"><svg viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" fill="#000"/><path d="M6 8h27a5 5 0 0 1 5 5v5H27v20h-10V18H6z" fill="#fff"/><rect x="6" y="40" width="32" height="2" fill="url(#sp)"/><defs><linearGradient id="sp"><stop offset="0" stop-color="#59c0e6"/><stop offset=".2" stop-color="#0036f9"/><stop offset=".37" stop-color="#e50000"/><stop offset=".5" stop-color="#ffb000"/><stop offset=".63" stop-color="#e50000"/><stop offset=".8" stop-color="#0036f9"/><stop offset="1" stop-color="#59c0e6"/></linearGradient></defs></svg><span class="lt">Henry Ortega · Tigre Studio</span></a>
+  <nav class="scroll" aria-label="Sections">
+   <a href="#summary">Summary</a><a href="#idea">The idea</a><a href="#taping">Taping</a><a href="#standard">Standard</a><a href="#parts">Parts</a><a href="#last">On the last</a><a href="#v2">V2 last</a><a href="#checks">Checks</a><a href="#lessons">Lessons</a><a href="#files">Files</a>
+  </nav>
+  <div class="vsw" role="group" aria-label="Last version"><button data-v="1" aria-pressed="false">V1</button><button data-v="2" aria-pressed="true">V2</button></div>
+ </div>
+</header>
+
+<section class="hero" id="top">
+ <img class="field" src="img/stripes.webp" alt="">
+ <div class="wrap hero-in">
+  <p class="kick">Pattern engineering case study</p>
+  <h1 class="display" id="fit">PANTERA</h1>
+  <span class="stripe-rule" style="margin-top:20px;display:block"></span>
+  <div class="hero-grid">
+   <div>
+    <p class="sub">Basketball boot BB-01 / Double standard / Eleven parts at size</p>
+    <p class="intro">A panther is all spring and sudden turns, which is what a high-top has to survive. PANTERA is a basketball boot pattern engineered on the TIGRE GARRA TS-27 last: the last taped in code, the standard drafted by the book, every part cut at size, then wrapped back onto the last to prove it fits.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:28px"><a class="btn" href="#standard">Draft the standard →</a><a class="btn" href="#summary">In 30 seconds ↓</a></div>
+   </div>
+   <figure class="plate"><img id="heroimg" src="img/v2/hero.webp" alt="PANTERA pattern pieces painted onto the GARRA TS-27 last, outside view: dark mudguard and counter, red side flash and back facing, grey collars" width="1760" height="902"><figcaption class="tag">Outside view · the pattern on the <span class="vtag">GARRA TS-27 V2</span></figcaption></figure>
+  </div>
+ </div>
+ <span class="spectrum"></span>
+</section>
+
+<section class="band">
+ <div class="wrap">
+  <div class="nums" id="nums">
+   <div class="num"><b>11</b><span>parts drawn at actual size</span></div>
+   <div class="num"><b>17</b><span>steps of the book's basketball method</span></div>
+   <div class="num"><b>2</b><span>sides on one standard, inside and outside</span></div>
+   <div class="num"><b id="gmax">0.8%</b><span>largest girth error, pattern vs last</span></div>
+   <div class="num"><b id="corn">89 → 0</b><span>sharp corners after radiusing</span></div>
+  </div>
+ </div>
+</section>
+
+<section class="band" id="summary">
+ <div class="wrap">
+  <div class="sh"><h2 class="caps">IN 30 SECONDS</h2><p class="it">The brief / The work / The proof</p></div>
+  <div class="tl">
+   <div><h3 class="caps">THE BRIEF</h3><p>Take a pattern engineer's hand method, Frank Jones's basketball boot standard, and run it end to end in code on a 3D last, without losing a single rule of the craft.</p></div>
+   <div><h3 class="caps">THE WORK</h3><p>Digital taping of the GARRA TS-27 last, a double standard in 17 steps, 11 parts cut at size with 2 mm radii, a reworked V2 last for a basketball forefoot, and the pattern wrapped back onto the last in 3D.</p></div>
+   <div><h3 class="caps">THE PROOF</h3><p>All 19 of the book's measurements within tolerance. Pattern girth within 0.4 % of the last on V2. Every part delivered as a tech pack, Rhino 9 and DXF files, and a printable paper test kit.</p></div>
+  </div>
+  <div class="cta"><p>Hiring for design technology, pattern engineering or technical documentation? This is how I work.</p>
+   <a href="https://www.linkedin.com/in/henryortega/" target="_blank" rel="noopener">LinkedIn →</a><a class="o" href="https://tigrestudiodesign.github.io/" target="_blank" rel="noopener">Portfolio →</a><a class="o" href="#files">The files ↓</a></div>
+ </div>
+</section>
+
+<section class="band alt" id="idea">
+ <div class="wrap">
+  <div class="sh"><h2 class="caps">THE IDEA</h2><p class="it">Hand method / Computational tools / Same rules</p></div>
+  <div class="cols">
+   <div class="copy">
+    <h3>THE TEST</h3>
+    <p>Can a pattern engineer's hand method run end to end in code, and still produce a pattern a factory could cut?</p>
+    <h3>THE RULES</h3>
+    <p>The method is Frank Jones's basketball boot standard from <span class="it">Pattern Cutting</span>: mean forme on the inside forme, a bisected crease line, the toe sprung down, then the style lines by the numbers.</p>
+   </div>
+   <div class="copy">
+    <p>By hand, a pattern starts with masking tape on a last. The tape is peeled off, flattened into a forme, and everything else is drawn on paper. Here the last is a 3D model, the TIGRE GARRA TS-27, so every one of those steps became geometry: the taping is a flattening, the standard is a script, and the parts are cut from it by boolean operations.</p>
+    <p>The payoff is the last step. Because every point on the flat pattern still knows where it came from on the last, the whole standard can be wrapped back onto the last in 3D. That turns "does it fit?" from a feeling into a measurement.</p>
+    <p class="it" style="font-size:19px;color:var(--muted)">GARRA TS-27 last, UK 8 / US 9 sample size · Rhino 9 files + Python · a study, not a production pattern.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="band" id="taping">
+ <div class="wrap">
+  <div class="sh"><h2 class="caps">DIGITAL TAPING</h2><p class="it">Split the last / Unfold each half / Spring the outside onto the inside</p></div>
+  <div class="cols">
+   <div class="copy">
+    <p>The last is cut on its centre line, from the back of the heel to the toe point. The bottom and the flat top are dropped, which leaves exactly what tape would cover.</p>
+    <p>Each half is unfolded with an as-rigid-as-possible flattening: the shape that stretches the surface least, the way tape behaves when it is peeled flat.</p>
+    <p>Sports shoes take their spring from the <b>inside</b> forme, so the outside forme is laid on it at the back and cone, then its toe is sprung down <b id="spr">2.3°</b> to follow.</p>
+    <h3>HOW CLOSE</h3>
+    <p id="flat"></p>
+   </div>
+   <div>
+    <div class="tog" role="group" aria-label="Formes to show">
+     <button aria-pressed="true" data-f="inside">Inside</button><button aria-pressed="true" data-f="outside">Outside</button><button aria-pressed="true" data-f="mean">Mean feather</button>
+    </div>
+    <div class="fig tr"><svg id="formes" role="img" aria-label="Inside and outside formes of the last, flattened and overlaid, with the mean feather line"></svg></div>
+    <div class="legend"><span style="color:var(--blue)"><i></i>Inside forme</span><span style="color:var(--red)"><i></i>Outside forme, sprung</span><span><i style="background:repeating-linear-gradient(90deg,#000 0 5px,transparent 5px 8px)"></i>Mean feather line</span></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="band alt" id="standard">
+ <div class="wrap">
+  <div class="sh"><h2 class="caps">THE DOUBLE STANDARD</h2><p class="it">Seventeen steps / Why each one matters / Then try it yourself</p></div>
+  <div class="tog" role="group" aria-label="Layers to show">
+   <button id="turn" aria-pressed="false" class="tturn">Your turn ✎</button>
+   <button aria-pressed="true" data-l="out">Outside lines</button><button aria-pressed="true" data-l="in">Inside lines</button><button aria-pressed="true" data-l="construction">Construction</button><button aria-pressed="true" data-l="tongue">Tongue</button>
+  </div>
+  <div class="fig bl" id="stdwrap"><svg id="std" role="img" aria-label="The PANTERA double standard, drawn up to the selected step"></svg></div>
+  <div class="stepper">
+   <button id="prev" aria-label="Previous step">−</button>
+   <input id="step" type="range" min="1" max="17" value="17" aria-label="Step of the method">
+   <button id="next" aria-label="Next step">+</button>
+  </div>
+  <div class="stepbox" aria-live="polite"><b id="sn">17</b><div><h4 id="st"></h4><p id="sd"></p><p class="why"><span class="label">Why it matters</span> <span id="sw"></span></p></div></div>
+  <div class="turnbar" aria-live="polite"><span id="prompt"></span><button id="reveal" class="btn2" hidden>Show me</button><span id="score" class="label"></span></div>
+  <div class="legend"><span style="color:var(--red)"><i></i>Outside: feather, lasting edge, mudguard</span><span style="color:var(--blue)"><i></i>Inside: feather, lasting edge, mudguard</span><span><i></i>Style lines</span><span style="color:#9a9a9a"><i></i>Construction</span><span style="color:var(--yellow)"><i></i>Tongue</span></div>
+ </div>
+</section>
+
+<section class="band" id="parts">
+ <div class="wrap">
+  <div class="sh"><h2 class="caps">ELEVEN PARTS AT SIZE</h2><p class="it">Cut lines / Folds / Notches / Eyelets / Open any part</p></div>
+  <div class="parts" id="partgrid"></div>
+  <p class="it" style="color:var(--muted);margin-top:24px">Fold parts are opened: the outside half in red, the inside half mirrored in blue. Every cut line carries 2 mm radii, inside and outside corners alike.</p>
+ </div>
+</section>
+
+<dialog id="pvd" aria-labelledby="pvt"><div class="h"><b id="pvt"></b><button id="pvx" aria-label="Close preview">×</button></div><img id="pvi" alt=""></dialog>
+
+<dialog id="dlg" aria-labelledby="dt">
+ <button class="close" id="dx" aria-label="Close">×</button>
+ <div class="lb"><div class="draw"><svg id="big" role="img" aria-label="Selected part, drawn large"></svg></div>
+  <div class="side"><span class="label" id="dc"></span><h3 id="dt"></h3><dl class="kv" id="dkv"></dl><p class="it" id="dn" style="color:var(--muted);margin-top:16px"></p></div></div>
+</dialog>
+
+<section class="band dark" id="last">
+ <div class="wrap">
+  <div class="sh"><h2 class="caps">BACK ON THE LAST</h2><p class="it">Every line wrapped onto the last / Drag to turn it</p></div>
+  <div class="cols">
+   <div class="copy">
+    <p>Each point of the standard is found inside the flattened forme and carried back to 3D with the same triangle weights, outside lines onto the outside, inside lines onto the inside.</p>
+    <p>The last is then painted by part: mudguard and counter dark, quarter and vamp pale, side flash and back facing red. Misplaced lines show up immediately as a seam in the wrong place.</p>
+    <p style="color:var(--muted-d)">On GARRA TS-27 V1 the collar rose above the last, which ended at 137.6 mm. V2 runs to 162 mm, so the whole leg is now on real surface. Switch V1 / V2 to compare.</p>
+   </div>
+   <div>
+    <div class="tt" id="tt" tabindex="0" role="slider" aria-label="Rotate the last" aria-valuemin="0" aria-valuemax="350" aria-valuenow="0"><img id="tti" src="img/tt00.webp" alt="The last turning, painted with the PANTERA pattern pieces" width="900" height="520"><span class="hint">Drag or use the arrow keys</span></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+
+<section class="band" id="v2">
+ <div class="wrap">
+  <div class="sh"><h2 class="caps">V2 · GARRA TS-27, REWORKED</h2><p class="it">Leg to the collar + 10 / A basketball forefoot / Same pattern rules</p></div>
+  <div class="cols">
+   <div class="copy">
+    <p>A pattern can only be as good as its last. The last is the TIGRE GARRA TS-27, a Tigre Studio basketball last (garra is Spanish for claw). V1 proved the method; V2 fixes the two things V1 could not prove or did not give a player.</p>
+    <p>Everything behind the joint, the heel, seat, waist and instep, stays exactly as on V1, so the heel grip and the fit that already worked are kept.</p>
+    <p>Then the whole pattern was run again from the new last: re-taped, re-drafted, re-cut, re-wrapped and re-checked. Use the <b>V1 / V2</b> switch in the header to compare every section of the page.</p>
+   </div>
+   <ul class="chg" id="chg"></ul>
+  </div>
+  <div class="v2grid">
+   <figure><div class="fig tr"><svg id="cmpSide" role="img" aria-label="Side profile, V1 against V2: the leg extended to 162 mm"></svg></div><figcaption class="label">Side · leg to 162 mm, collar line dashed</figcaption></figure>
+   <figure><div class="fig"><svg id="cmpTop" role="img" aria-label="Top view, V1 against V2: wider at the ball"></svg></div><figcaption class="label">Top · wider at the joint, heel untouched</figcaption></figure>
+   <figure><div class="fig bl"><svg id="cmpBall" role="img" aria-label="Section through the ball, V1 against V2"></svg></div><figcaption class="label">Ball section · on the joint line</figcaption></figure>
+  </div>
+  <div class="legend"><span style="color:#9a9a9a"><i style="background:repeating-linear-gradient(90deg,#9a9a9a 0 5px,transparent 5px 8px)"></i>GARRA TS-27 V1</span><span style="color:var(--blue)"><i></i>GARRA TS-27 V2</span></div>
+  <div class="scroll" style="margin-top:40px;max-width:860px"><table class="spec" id="stnt"><caption>Last measurements · V1 → V2<small>Girth round the full last, square to its length. Heel and instep held; the forefoot opened up.</small></caption>
+   <thead><tr><th>Station</th><th class="r">% length</th><th class="r">V1</th><th class="r">V2</th><th class="r">Change</th><th class="r">%</th><th>Scale 0–6 mm</th></tr></thead><tbody id="stn"></tbody><tfoot><tr><td colspan="7" id="stf"></td></tr></tfoot></table></div>
+ </div>
+</section>
+
+<section class="band" id="checks">
+ <div class="wrap">
+  <div class="sh"><h2 class="caps">DOES IT FIT?</h2><p class="it">The book's numbers, measured back / Girths, last against pattern</p></div>
+  <div class="ck">
+   <div class="scroll"><table class="spec" id="ckt"><caption>Spec check · the standard<small>Every number in the book's method, measured back off the drawn standard.</small></caption>
+    <thead><tr><th>Step</th><th>Measurement</th><th class="r">Spec</th><th class="r">Drawn</th><th></th><th class="r">Δ</th><th class="r">Tol ±</th><th class="r">Status</th></tr></thead><tbody id="cks"></tbody><tfoot><tr><td colspan="8" id="ckf"></td></tr></tfoot></table></div>
+   <div><table class="spec" style="margin-bottom:0"><caption>Girth fit · pattern vs last<small>Upper girth, inside + outside, from the feather line to the centre line.</small></caption></table>
+    <div id="girth" style="margin-top:0"></div>
+    <p class="it" style="color:var(--muted);margin-top:16px">The flat pattern holds the last's real girth at every station. The bar shows the difference at ±1 % full scale.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="band alt" id="lessons">
+ <div class="wrap">
+  <div class="sh"><h2 class="caps">WHAT THE CLEAN-UP TAUGHT ME</h2><p class="it">Drawing rules / Cutting rules / Printing rules</p></div>
+  <p class="it" style="max-width:820px;margin:0 0 28px;font-size:19px">Once the pattern fitted, a line-by-line scan of every drawing found lines that floated, steps on the cut edge and seams in the wrong place. The geometry was right; the drawing was not. These rules fixed it, and none of them changed a single number in the fit.</p>
+  <ol class="lessons">
+   <li><div><b>A line ends on what it meets</b><span>Every style line starts and stops on the edge it really meets: the eyelet facing runs from the mudguard edge to the T–X line. A line that floats in mid-air reads as a mistake, even when the cut is right.</span></div></li>
+   <li><div><b>Hidden lines are dashed</b><span>What sits under another part is construction, not style: the vamp edge under the mudguard, the crease above V1 where the throat is open. Solid means you will see it on the shoe.</span></div></li>
+   <li><div><b>Close the outline</b><span>The lasting allowance closes on the toe front and the back line, and the lacing edge closes onto V1, exactly as the cut outline does. An open end on the standard is an open question for the cutter.</span></div></li>
+   <li><div><b>No sharp corners</b><span>2 mm radii on every cut line, inside and outside. Spikes and slivers narrower than 4 mm go, and notches are snapped onto the rounded edge.</span></div></li>
+   <li><div><b>Blend the fold</b><span>Where the outside and inside halves meet on the fold, the two lasting edges are different lengths and leave a step. It is closed locally, only at the lasting end, so the throat is never touched.</span></div></li>
+   <li><div><b>Underlays go under</b><span>Stacking order follows the 8 mm underlays: collar upper under collar lower, collars under the quarter, back facing on top. Get it wrong and the wrong colour shows on the last.</span></div></li>
+   <li><div><b>Draw seams only where they show</b><span>On the 3D last a line is drawn only where the part on one side differs from the part on the other. The zig-zag under the side flash simply disappears, as it would on the shoe.</span></div></li>
+   <li><div><b>One part, one page</b><span>Nesting by outline, not by box, at any angle: on 11 × 17 all thirteen parts print whole on three sheets. On Letter only the vamp and quarter split, with a tape tab and matching ticks.</span></div></li>
+   <li><div><b>Paper before leather</b><span>A code-checked pattern is still only a draft. The mock-up kit turns it into a one-evening paper test on a printed last, with a checklist and a photo log for the result.</span></div></li>
+  </ol>
+ </div>
+</section>
+
+<section class="band" id="files">
+ <div class="wrap">
+  <div class="sh"><h2 class="caps">THE FILES</h2><p class="it">Print it / Cut it / Tape it to a last</p></div>
+  <p class="it" style="max-width:820px;margin:0 0 8px;font-size:19px">Print at 100 % / actual size and measure the 50 mm square before cutting anything. DXF and Rhino 9 files of every part are available on request.</p>
+  <div class="dlh"><h3 class="caps">V2 · GARRA TS-27 V2</h3><span class="label">Recommended</span></div>
+  <div class="dlgrid"><div class="dlc rec"><button class="pvb" type="button" data-pv="img/pv/BB-01_V2_PaperMockup_Kit_11x17_pages.webp" data-t="Paper mock-up kit · V2 · 7 pages"><img src="img/pv/BB-01_V2_PaperMockup_Kit_11x17_thumb.webp" alt="Paper mock-up kit, V2: first look" loading="lazy"><span>See all 7 pages</span></button><span class="meta">V2 · 11 × 17: 3 part sheets, every part whole · Letter: 6 sheets</span><h4>Paper mock-up kit</h4><p>Print, cut and tape the pattern onto the last before any leather is cut. How-to, scale check, every part at 1:1, fit checklist and photo log.</p><div class="row"><a class="" href="files/BB-01_V2_PaperMockup_Kit_11x17.pdf" data-dl="BB-01_V2_PaperMockup_Kit_11x17.pdf">11 × 17 ↓</a><a class="o" href="files/BB-01_V2_PaperMockup_Kit_Letter.pdf" data-dl="BB-01_V2_PaperMockup_Kit_Letter.pdf">Letter ↓</a></div></div><div class="dlc"><button class="pvb" type="button" data-pv="img/pv/BB-01_V2_TechPack_PartsAtSize_pages.webp" data-t="Tech pack · parts at size · V2 · 15 pages"><img src="img/pv/BB-01_V2_TechPack_PartsAtSize_thumb.webp" alt="Tech pack · parts at size, V2: first look" loading="lazy"><span>See all 15 pages</span></button><span class="meta">V2 · 15 pages · A3 landscape · 1.1 MB</span><h4>Tech pack · parts at size</h4><p>Bill of parts, the double standard and all eleven parts at 1:1 with cut lines, folds, notches, eyelets and the spec check.</p><div class="row"><a class="" href="files/BB-01_V2_TechPack_PartsAtSize.pdf" data-dl="BB-01_V2_TechPack_PartsAtSize.pdf">Download PDF ↓</a></div></div><div class="dlc"><button class="pvb" type="button" data-pv="img/pv/BB-01_V2_Pattern_Review_pages.webp" data-t="Pattern review · V2 · 5 pages"><img src="img/pv/BB-01_V2_Pattern_Review_thumb.webp" alt="Pattern review, V2: first look" loading="lazy"><span>See all 5 pages</span></button><span class="meta">V2 · 5 pages · A3 landscape · 1 MB</span><h4>Pattern review</h4><p>The study in five sheets: the pattern on the last, the formes, the double standard, the parts and the checks.</p><div class="row"><a class="" href="files/BB-01_V2_Pattern_Review.pdf" data-dl="BB-01_V2_Pattern_Review.pdf">Download PDF ↓</a></div></div><div class="dlc"><button class="pvb" type="button" data-pv="img/pv/BB-01_V2_Patterns_1to1_A3_pages.webp" data-t="Patterns 1:1 · A3 · V2 · 8 pages"><img src="img/pv/BB-01_V2_Patterns_1to1_A3_thumb.webp" alt="Patterns 1:1 · A3, V2: first look" loading="lazy"><span>See all 8 pages</span></button><span class="meta">V2 · 8 pages · A3 · 70 KB</span><h4>Patterns 1:1 · A3</h4><p>The standard and the parts plotted at full size on A3, ready to trace or cut in card.</p><div class="row"><a class="" href="files/BB-01_V2_Patterns_1to1_A3.pdf" data-dl="BB-01_V2_Patterns_1to1_A3.pdf">Download PDF ↓</a></div></div></div>
+  <p class="label" id="dlmsg" aria-live="polite" style="margin-top:14px"></p>
+  <div class="dlh"><h3 class="caps">V1 · GARRA TS-27</h3><span class="label">The first run</span></div>
+  <div class="dlgrid"><div class="dlc"><button class="pvb" type="button" data-pv="img/pv/BB-01_PaperMockup_Kit_11x17_pages.webp" data-t="Paper mock-up kit · V1 · 7 pages"><img src="img/pv/BB-01_PaperMockup_Kit_11x17_thumb.webp" alt="Paper mock-up kit, V1: first look" loading="lazy"><span>See all 7 pages</span></button><span class="meta">V1 · 11 × 17: 3 part sheets, every part whole · Letter: 6 sheets</span><h4>Paper mock-up kit</h4><p>Print, cut and tape the pattern onto the last before any leather is cut. How-to, scale check, every part at 1:1, fit checklist and photo log.</p><div class="row"><a class="" href="files/BB-01_PaperMockup_Kit_11x17.pdf" data-dl="BB-01_PaperMockup_Kit_11x17.pdf">11 × 17 ↓</a><a class="o" href="files/BB-01_PaperMockup_Kit_Letter.pdf" data-dl="BB-01_PaperMockup_Kit_Letter.pdf">Letter ↓</a></div></div><div class="dlc"><button class="pvb" type="button" data-pv="img/pv/BB-01_TechPack_PartsAtSize_pages.webp" data-t="Tech pack · parts at size · V1 · 15 pages"><img src="img/pv/BB-01_TechPack_PartsAtSize_thumb.webp" alt="Tech pack · parts at size, V1: first look" loading="lazy"><span>See all 15 pages</span></button><span class="meta">V1 · 15 pages · A3 landscape · 1.1 MB</span><h4>Tech pack · parts at size</h4><p>Bill of parts, the double standard and all eleven parts at 1:1 with cut lines, folds, notches, eyelets and the spec check.</p><div class="row"><a class="" href="files/BB-01_TechPack_PartsAtSize.pdf" data-dl="BB-01_TechPack_PartsAtSize.pdf">Download PDF ↓</a></div></div><div class="dlc"><button class="pvb" type="button" data-pv="img/pv/BB-01_Pattern_Review_pages.webp" data-t="Pattern review · V1 · 5 pages"><img src="img/pv/BB-01_Pattern_Review_thumb.webp" alt="Pattern review, V1: first look" loading="lazy"><span>See all 5 pages</span></button><span class="meta">V1 · 5 pages · A3 landscape · 1 MB</span><h4>Pattern review</h4><p>The study in five sheets: the pattern on the last, the formes, the double standard, the parts and the checks.</p><div class="row"><a class="" href="files/BB-01_Pattern_Review.pdf" data-dl="BB-01_Pattern_Review.pdf">Download PDF ↓</a></div></div><div class="dlc"><button class="pvb" type="button" data-pv="img/pv/BB-01_Patterns_1to1_A3_pages.webp" data-t="Patterns 1:1 · A3 · V1 · 8 pages"><img src="img/pv/BB-01_Patterns_1to1_A3_thumb.webp" alt="Patterns 1:1 · A3, V1: first look" loading="lazy"><span>See all 8 pages</span></button><span class="meta">V1 · 8 pages · A3 · 70 KB</span><h4>Patterns 1:1 · A3</h4><p>The standard and the parts plotted at full size on A3, ready to trace or cut in card.</p><div class="row"><a class="" href="files/BB-01_Patterns_1to1_A3.pdf" data-dl="BB-01_Patterns_1to1_A3.pdf">Download PDF ↓</a></div></div></div>
+ </div>
+</section>
+
+<section class="band dark" id="next-steps">
+ <div class="wrap">
+  <div class="sh"><h2 class="caps">WHAT I'D TEST NEXT</h2><p class="it">Paper test / Linings / Grading</p></div>
+  <ul class="next">
+   <li><div><b>Toe spring</b><span>The toe drops about 7 mm onto the crease line, an 8° pivot. If the vamp pleats in toe lasting, take some out.</span></div></li>
+   <li><div><b>Mudguard height</b><span>The book's 30 mm is for its own example last. With V2's extra toe room, tape-test it on the real last before cutting.</span></div></li>
+   <li><div><b>The back</b><span>A straight back line suits ankle height. Now the V2 last carries the full leg, a curved back that follows the ankle is the next thing to try.</span></div></li>
+   <li><div><b>The paper test</b><span>Run the mock-up kit on a 3D-printed GARRA TS-27 V2, photograph the five views and feed every misfit back into the standard.</span></div></li><li><div><b>Linings, insole, grading</b><span>Quarter, vamp and collar linings, the insole from the last bottom, then the pattern graded from UK 6 to 12.</span></div></li>
+  </ul>
+ </div>
+</section>
+
+<footer>
+ <img class="field" src="img/stripes.webp" alt="">
+ <div class="wrap fgrid">
+  <div><p class="kick">Computational / Graphic / Design</p><h2 class="caps">TIGRE STUDIO</h2>
+   <p class="small" style="margin-top:18px">PANTERA BB-01 · pattern engineering case study by Henry Ortega · method after Frank Jones, <span class="it">Pattern Cutting</span> · TIGRE GARRA TS-27 last, UK 8 / US 9 · 2026</p></div>
+  <div style="display:flex;flex-wrap:wrap;gap:12px"><a class="btn" href="https://www.linkedin.com/in/henryortega/" target="_blank" rel="noopener">LinkedIn →</a><a class="btn" href="https://tigrestudiodesign.github.io/" target="_blank" rel="noopener">Portfolio →</a><a class="btn" href="#top">Back to the top ↑</a></div>
+ </div>
+ <span class="spectrum"></span>
+</footer>
+
+<script>
+{
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const RED='#e50000',BLUE='#0036f9',YEL='#ffb000',GREY='#a5a5a5',INK='#000';
+const STEPS=[
+ ['Base line and pitch','J on the base line, the seat S on the 11.5 mm heel pitch.'],
+ ['Base line and pitch','The mean forme drawn round, J and S marked.'],
+ ['Reference points','CP 55 up the back · V 210 from CP · V¹ 10 forward · I 70 up the cone · T 12 above I.'],
+ ['Heel lines','Long heel S–I; a short heel line 8° above it, same length; M at its middle.'],
+ ['Vertical through M','Square to the base line, it meets the feather line at X.'],
+ ['Top of the leg','130 mm up from X, then 60 back and 54 forward.'],
+ ['Lacing line','Off the cone by 6 mm at V, blending to 10 mm at I: room to lace up.'],
+ ['Back line','From the top of the leg straight to S; counter fold 1 mm in at CP, 3 mm out at S.'],
+ ['Crease line and toe spring','The bisector of two lines from I′; the toe is pivoted down onto it.'],
+ ['T to X','The line from T to X; F is 29 mm down it.'],
+ ['Mudguard, inside and outside','25 mm up the toe, 30 deep, a 12 mm dip, rising into a 30 mm facing.'],
+ ['Throat','From V¹ square to the crease, 15 mm down.'],
+ ['Quarter and top line','A 5 mm dip at F; the top line rises 6 mm over the vertical.'],
+ ['Zig-zag seam and counter','The seam 15 mm in front of T–X; the outside counter from CP to 128 mm along the feather.'],
+ ['Collar and back facing','A two-part collar 38 mm behind the leg edge; the back facing 35 mm in, 16 deep.'],
+ ['Side flash and eyelets','Flash over the zig-zag seam, eyelet facing 20 mm from the edge, eyelets 9 mm in.'],
+ ['Lasting edge and tongue','15 mm lasting, inside and outside; the tongue 152 mm from V, 57 wide.']];
+const BY={base:1,pitch:1,feather_mean:2,forme_back:2,forme_top:2,front_centre_raw:2,long_heel:4,short_heel:4,vertical:5,top_line:13,
+ cone:7,lacing_edge:7,leg_front:7,back_line:8,counter_fold:8,crease_a:9,crease_b:9,crease:9,crease_open:9,toe_front:9,front_centre_sprung:9,tongue_fold:17,
+ T_X:10,mudguard_out:11,mudguard_in:11,mud_back_out:11,mud_back_in:11,throat:12,vamp_top:12,quarter_dip:13,zigzag:14,counter:14,
+ collar_front:15,collar_lower:15,collar_split:15,back_facing:15,flash_front:16,flash_back:16,eyelet_facing:16,
+ feather_out:2,feather_in:2,lasting_out:17,lasting_in:17,tongue:17};
+const LOF={throat_end:[-3,8,'end'],counter_end:[3,-4,'start']};
+const PST={J:1,S:1,CP:3,V:3,V1:3,I:3,T:3,M:4,X:5,LB:6,LF:6,U:9,"I'":9,toe_top:9,Q:9,pivot:9,F:10,throat_end:12,counter_end:14};
+const path=(a,cls)=>`<path vector-effect="non-scaling-stroke" d="M${a.map(p=>p[0]+' '+(-p[1])).join('L')}" ${cls}/>`;
+function box(arr,pad){let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;for(const a of arr)for(const p of a){x0=Math.min(x0,p[0]);x1=Math.max(x1,p[0]);y0=Math.min(y0,-p[1]);y1=Math.max(y1,-p[1])}return[x0-pad,y0-pad,x1-x0+2*pad,y1-y0+2*pad]}
+let VER=2;const DC={};const TURN={on:false,g:null,rev:false,score:[]};
+const WHY=["Everything is measured from these two. Get the pitch wrong and every angle after it tilts with it.","The standard is drawn on the forme, so any error in the taping is copied into every part.","These points place the lacing, throat and top line. Measuring from CP means the same rules work on any size.","The short heel line sets where the leg stands: too far back and the boot leans back, too far forward and it rubs the ankle.","X is the foot of the leg. Every height on the boot is measured up from it.","These widths make the collar opening: too small and the foot will not go in, too big and the heel lifts out.","Pulling the edge in leaves a gap between the facings, so the laces can still close the upper as the leather gives.","A straight back is quick to cut and close. The fold line keeps the counter snug at the top and full at the seat.","Without dropping the toe the forme will not lie flat, and the vamp pleats over the toe when it is lasted.","T–X guides the quarter seam and the lacing slot so they sit square to the instep.","Inside and outside are drawn apart because the arch side sits lower. One line for both leaves one side too high.","The throat takes the most strain in the vamp: too shallow and it tears, too deep and it gapes.","The dip at F lets the quarter flex over the instep. The rising top line clears the ankle bone.","Moving the seam off T–X keeps it out of the crease. The counter covers the heel where the foot pushes hardest.","Two collar parts let the padding bend round the ankle. The back facing guards the top of the heel seam.","The flash covers and strengthens the seam. The facing doubles the edge so the eyelets cannot pull through.","Too little lasting allowance and the upper pulls off the insole. The tongue must reach past the throat or it slides out."];
+function load(v){VER=v;$$('[data-v]').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.v===v));$('#heroimg').src=v===2?'img/v2/hero.webp':'img/hero.webp';$$('.vtag').forEach(e=>e.textContent=v===2?'GARRA TS-27 V2':'GARRA TS-27 V1');setFrames(v);
+ (DC[v]?Promise.resolve(DC[v]):fetch(v===2?'data_v2.json':'data.json').then(r=>r.json()).then(d=>DC[v]=d)).then(render)}
+function render(D){
+ // numbers
+ const gmax=Math.max(...D.girth.map(g=>Math.abs(g[3])));$('#gmax').textContent=gmax.toFixed(2)+'%';
+ const cb=D.pieces.reduce((s,p)=>s+p.corners[0],0),ca=D.pieces.reduce((s,p)=>s+p.corners[1],0);$('#corn').textContent=cb+' → '+ca;
+ $('#spr').textContent=Math.abs(D.mean.spring_deg).toFixed(1)+'°';
+ const fi=D.flatten.inside,fo=D.flatten.outside;
+ $('#flat').textContent=`Area in, area out: the inside half goes from ${Math.round(fi.area3d).toLocaleString()} to ${Math.round(fi.area2d).toLocaleString()} mm², the outside from ${Math.round(fo.area3d).toLocaleString()} to ${Math.round(fo.area2d).toLocaleString()} mm². Nine in ten edges keep their length within ${(100*(fi.stretch_p95-1)).toFixed(1)} %.`;
+ // formes
+ const fshow={inside:1,outside:1,mean:1};
+ function drawFormes(){const F=D.formes,parts=[];const all=[];
+  for(const[k,c]of[['inside',BLUE],['outside',RED]]){for(const s of['back','front','top','feather'])all.push(F[k][s]);if(fshow[k])for(const s of['back','front','top','feather'])parts.push(path(F[k][s],`stroke="${c}" stroke-width="1.6" fill="none"`))}
+  if(fshow.mean)parts.push(path(F.mean,`stroke="#000" stroke-width="1.4" fill="none" stroke-dasharray="6 4"`));
+  const b=box(all,14);$('#formes').setAttribute('viewBox',b.join(' '));$('#formes').innerHTML=grid(b)+parts.join('')}
+ function grid(b){let s='';const st=10;for(let x=Math.ceil(b[0]/st)*st;x<b[0]+b[2];x+=st)s+=`<line x1="${x}" x2="${x}" y1="${b[1]}" y2="${b[1]+b[3]}" stroke="#ececec" stroke-width=".4"/>`;for(let y=Math.ceil(b[1]/st)*st;y<b[1]+b[3];y+=st)s+=`<line y1="${y}" y2="${y}" x1="${b[0]}" x2="${b[0]+b[2]}" stroke="#ececec" stroke-width=".4"/>`;return s}
+ $$('[data-f]').forEach(b=>b.onclick=()=>{fshow[b.dataset.f]^=1;b.setAttribute('aria-pressed',!!fshow[b.dataset.f]);drawFormes()});drawFormes();
+ // standard
+ const lay={out:1,in:1,construction:1,tongue:1};
+ const TGT={1:['S','the seat point S'],3:['V','V, 210 mm from CP'],4:['M','M, the middle of the short heel line'],5:['X','X, under M on the feather line'],
+  6:['LF','the front of the top of the leg'],9:['toe_top','the toe after it is sprung onto the crease'],10:['F','F, 29 mm down T–X'],
+  11:['mud','the lowest point of the outside mudguard dip'],12:['throat_end','the bottom of the throat'],14:['counter_end','where the counter ends on the feather line'],
+  16:['eye','the first eyelet'],17:['tongue_top','the top of the tongue']};
+ const tpt=k=>k==='mud'?D.std.out.mudguard_out.reduce((m,p)=>p[1]<m[1]?p:m):k==='eye'?D.eyes[0]:D.pts[k];
+ function drawStd(n){const S=D.std,o=[];const hide=TURN.on&&!TURN.rev;const m=hide?n-1:n;
+  const add=(grp,col,w,dash)=>{for(const[k,a]of Object.entries(S[grp])){const s=BY[k]||17;if(s>m)continue;let pts=a;if(k==='base')pts=[[-128,0],[240,0]];
+    const on=s===n;o.push(path(pts,`fill="none" stroke="${on?BLUE:col}" stroke-width="${on?2.2:w}" ${dash&&!on?`stroke-dasharray="${dash}"`:''}`))}};
+  if(lay.construction)add('construction',GREY,.9,'4 3');
+  add('style',INK,1.2);
+  if(lay.out)for(const[k,a]of Object.entries(S.out)){const s=BY[k];if(s>m)continue;o.push(path(a,`fill="none" stroke="${RED}" stroke-width="${s===n?2.4:1.3}"`))}
+  if(lay.in)for(const[k,a]of Object.entries(S.in)){const s=BY[k];if(s>m)continue;o.push(path(a,`fill="none" stroke="${BLUE}" stroke-width="${s===n?2.4:1.3}"`))}
+  if(lay.tongue&&m>=17)o.push(path(S.tongue.tongue,`fill="none" stroke="${YEL}" stroke-width="1.6" stroke-dasharray="8 4"`));
+  for(const[k,p]of Object.entries(D.pts)){const s=PST[k];if(!s||s>m||(k==='X'&&m>=PST.U))continue;const on=s===n;
+   o.push(`<circle cx="${p[0]}" cy="${-p[1]}" r="${on?2.4:1.6}" fill="${on?BLUE:RED}"/><text x="${p[0]+(LOF[k]?LOF[k][0]:3)}" y="${-p[1]+(LOF[k]?LOF[k][1]:-3)}" text-anchor="${LOF[k]?LOF[k][2]:'start'}" font-family="Helvetica Neue,Arial,sans-serif" font-weight="700" font-size="6.5" fill="#000" paint-order="stroke" stroke="#fff" stroke-width="2.2">${k.replace('_',' ').toUpperCase()}</text>`)}
+  if(m>=16)for(const e of D.eyes)o.push(`<circle cx="${e[0]}" cy="${-e[1]}" r="2.4" fill="#fff" stroke="#000" stroke-width=".8"/>`);
+  const T=TGT[n];
+  if(TURN.on&&T){const p=tpt(T[0]);
+   if(TURN.g){const g=TURN.g;o.push(`<circle cx="${g[0]}" cy="${-g[1]}" r="3.2" fill="none" stroke="#ff3d00" stroke-width="1.4"/><path d="M${g[0]-5} ${-g[1]}h10M${g[0]} ${-g[1]-5}v10" stroke="#ff3d00" stroke-width="1"/>`);
+    if(TURN.rev){const e=Math.hypot(g[0]-p[0],g[1]-p[1]);o.push(`<line x1="${g[0]}" y1="${-g[1]}" x2="${p[0]}" y2="${-p[1]}" stroke="#ff3d00" stroke-width="1" stroke-dasharray="3 2"/><circle cx="${p[0]}" cy="${-p[1]}" r="4.5" fill="none" stroke="${BLUE}" stroke-width="1.4"/><text x="${(g[0]+p[0])/2+3}" y="${-(g[1]+p[1])/2-3}" font-family="Helvetica Neue,Arial,sans-serif" font-weight="700" font-size="7" fill="#ff3d00" paint-order="stroke" stroke="#fff" stroke-width="2.4">${e.toFixed(1)} mm off</text>`)}}
+   else if(TURN.rev)o.push(`<circle cx="${p[0]}" cy="${-p[1]}" r="4.5" fill="none" stroke="${BLUE}" stroke-width="1.4"/>`)}
+  $('#std').setAttribute('viewBox','-132 -178 376 214');$('#std').innerHTML=grid([-132,-178,376,214])+o.join('');
+  $('#sn').textContent=n;$('#st').textContent=STEPS[n-1][0];$('#sd').textContent=STEPS[n-1][1];$('#sw').textContent=WHY[n-1];
+  const pr=$('#prompt'),rv=$('#reveal');
+  if(!TURN.on){pr.textContent='';rv.hidden=true}
+  else if(!T){pr.textContent=TURN.rev?'Here it is. Read why, then go on.':'Nothing to place on this step: picture the line, then show it.';rv.hidden=TURN.rev}
+  else if(!TURN.rev){pr.textContent=`Tap where you think ${T[1]} goes.`;rv.hidden=false}
+  else{const p=tpt(T[0]);pr.textContent=TURN.g?(()=>{const e=Math.hypot(TURN.g[0]-p[0],TURN.g[1]-p[1]);return e<=3?`Spot on: ${e.toFixed(1)} mm off.`:e<=10?`Close: ${e.toFixed(1)} mm off. Within a pattern cutter's tape check.`:`${e.toFixed(1)} mm off. Read the step again and watch how it is measured.`})():'Answer shown.';rv.hidden=true}
+  const sc=TURN.score;$('#score').textContent=TURN.on&&sc.length?`${sc.length} placed · average ${(sc.reduce((a,b)=>a+b,0)/sc.length).toFixed(1)} mm off`:''}
+ const st=$('#step');const go=n=>{st.value=n;TURN.g=null;TURN.rev=false;drawStd(n)};
+ st.oninput=()=>go(+st.value);
+ $('#prev').onclick=()=>go(Math.max(1,+st.value-1));$('#next').onclick=()=>go(Math.min(17,+st.value+1));
+ $$('[data-l]').forEach(b=>b.onclick=()=>{lay[b.dataset.l]^=1;b.setAttribute('aria-pressed',!!lay[b.dataset.l]);drawStd(+st.value)});
+ $('#turn').onclick=()=>{TURN.on=!TURN.on;$('#turn').setAttribute('aria-pressed',TURN.on);TURN.score=[];$('#stdwrap').classList.toggle('turning',TURN.on);go(TURN.on?1:17)};
+ $('#reveal').onclick=()=>{TURN.rev=true;drawStd(+st.value)};
+ $('#std').onclick=e=>{const n=+st.value;if(!TURN.on||TURN.rev||!TGT[n])return;const sv=$('#std'),pt=sv.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;const q=pt.matrixTransform(sv.getScreenCTM().inverse());
+  TURN.g=[q.x,-q.y];TURN.rev=true;const p=tpt(TGT[n][0]);TURN.score.push(Math.hypot(q.x-p[0],-q.y-p[1]));drawStd(n)};
+ drawStd(+st.value||17);
+ // parts
+ function pieceSVG(p,big){const all=[...p.cut];const o=[];const sep=p.separate;
+  const shift=i=>sep&&i===1?(box([p.cut[0]],0)[2]+24):0;
+  const T=(a,i)=>a.map(q=>[q[0]+shift(i),q[1]]);
+  const cuts=p.cut.map((c,i)=>T(c,i));
+  const b=box(cuts,big?10:6);
+  p.halves.forEach((h,i)=>o.push(path(T(h[1],sep?i:0),`fill="${h[0]==='out'?RED:BLUE}" fill-opacity=".07" stroke="none"`)));
+  const near=pt=>{if(!sep)return 0;let best=0,bd=1e9;p.cut.forEach((c,i)=>{for(const q of c){const d=Math.hypot(q[0]-pt[0],q[1]-pt[1]);if(d<bd){bd=d;best=i}}});return best};
+  if(big)p.lines.forEach(l=>o.push(path(T(l,near(l[0])),`fill="none" stroke="#9a9a9a" stroke-width=".6" stroke-dasharray="2 1.5"`)));
+  cuts.forEach(c=>o.push(path(c,`fill="none" stroke="#000" stroke-width="${big?1.1:1.4}" vector-effect="non-scaling-stroke"`)));
+  const cid='c'+p.code.replace(/\W/g,'')+(big?'b':'s');
+  if(p.fold){let[a,c]=p.fold;const dx=c[0]-a[0],dy=c[1]-a[1],L=Math.hypot(dx,dy),ux=dx/L,uy=dy/L;a=[a[0]-ux*400,a[1]-uy*400];c=[c[0]+ux*400,c[1]+uy*400];
+   o.push(`<defs><clipPath id="${cid}">${cuts.map(q=>path(q,'')).join('')}</clipPath></defs><g clip-path="url(#${cid})"><line x1="${a[0]}" y1="${-a[1]}" x2="${c[0]}" y2="${-c[1]}" stroke="${RED}" stroke-width="1.2" vector-effect="non-scaling-stroke" stroke-dasharray="8 3 2 3"/></g>`)}
+  if(big){p.notches.forEach(n=>{const s=shift(near(n[0]));o.push(`<line x1="${n[0][0]+s}" y1="${-n[0][1]}" x2="${n[1][0]+s}" y2="${-n[1][1]}" stroke="#000" stroke-width="1.1"/>`)});
+   p.eyes.forEach(e=>{const s=shift(near(e));o.push(`<circle cx="${e[0]+s}" cy="${-e[1]}" r="2.5" fill="none" stroke="#000" stroke-width=".7"/>`)})}
+  return{vb:b.join(' '),html:(big?grid(b):'')+o.join('')}}
+ $('#partgrid').innerHTML=D.pieces.map((p,i)=>{const s=pieceSVG(p,false);return`<button class="part" data-i="${i}" aria-label="Open ${p.name}"><span class="pl"><svg viewBox="${s.vb}" preserveAspectRatio="xMidYMid meet">${s.html}</svg></span><span class="label n">${p.code} · ${p.box.map(b=>b[0]+' × '+b[1]).join(' + ')} mm</span><span class="t">${p.name}</span><span class="m">${p.mat} · ×${p.qty}</span></button>`}).join('');
+ const dlg=$('#dlg');
+ $$('.part').forEach(b=>b.onclick=()=>{const p=D.pieces[+b.dataset.i],s=pieceSVG(p,true);$('#big').setAttribute('viewBox',s.vb);$('#big').innerHTML=s.html;
+  $('#dc').textContent=p.code;$('#dt').textContent=p.name;$('#dn').textContent=p.note;
+  $('#dkv').innerHTML=[['Qty per shoe',p.qty],['Material',p.mat],['Thickness',p.th],['Box',p.box.map(b=>b[0]+' × '+b[1]).join(' + ')+' mm'],['Cut perimeter',p.perim+' mm'],['Area',p.area+' cm²'],['Notches',p.notches.length],['Eyelets',p.eyes.length],['Corners','R2 out / R2 in']].map(([k,v])=>`<dt>${k}</dt><dd>${v}</dd>`).join('');
+  try{dlg.showModal()}catch(e){dlg.setAttribute('open','')}});
+ $$('[data-v]').forEach(b=>b.onclick=()=>load(+b.dataset.v));
+ $('#dx').onclick=()=>dlg.close();dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
+ // checks
+ {const META={'J on the base line (mm above)':[1,'J above the base line','mm',.05,'Datum'],'S at the heel pitch (mm)':[1,'S, heel pitch','mm',.05,'Datum'],
+  'CP up the back curve from S':[3,'CP up the back curve from S','mm',1,'Reference points'],'V from CP (straight)':[3,'V from CP, straight','mm',1,'Reference points'],
+  'V1 in front of V':[3,'V¹ in front of V','mm',.5,'Reference points'],'I from V (along the cone)':[3,'I from V, along the cone','mm',1.5,'Reference points'],'T above I':[3,'T above I','mm',.5,'Reference points'],
+  'short heel line above long heel (°)':[4,'Short heel line above long','°',.05,'Heel and leg'],'short heel = long heel length':[4,'Short heel = long heel length','mm',.05,'Heel and leg'],
+  'X directly below M (Δx)':[5,'X directly below M, Δx','mm',.05,'Heel and leg'],'top of leg above X':[6,'Top of leg above X','mm',.05,'Heel and leg'],'top of leg back / front':[6,'Top of leg, back + front','mm',.05,'Heel and leg'],
+  'U along the feather from S':[9,'U along the feather from S','mm',1.5,'Style lines'],'F down T–X from T':[10,'F down T–X from T','mm',.1,'Style lines'],'throat depth at V1':[12,'Throat depth at V¹','mm',.3,'Style lines'],
+  'counter ends along the feather from S':[14,'Counter end along the feather','mm',1.5,'Style lines'],'lasting allowance outside':[17,'Lasting allowance, outside','mm',.8,'Allowances'],
+  'lasting allowance inside':[17,'Lasting allowance, inside','mm',.8,'Allowances'],'tongue width':[17,'Tongue width','mm',.6,'Allowances']};
+  const rows=D.checks.filter(c=>META[c[0]]).sort((a,b)=>META[a[0]][0]-META[b[0]][0]);let g='',h='',ok=0;
+  for(const c of rows){const[stp,lab,u,tol,grp]=META[c[0]];if(grp!==g){g=grp;h+=`<tr class="grp"><td colspan="8">${grp}</td></tr>`}
+   const sp=+c[1],dr=+c[2],dv=dr-sp,pass=Math.abs(dv)<=tol+1e-9;ok+=pass;const f=v=>v.toFixed(1);
+   h+=`<tr><td class="st">${String(stp).padStart(2,'0')}</td><td>${lab}</td><td class="r">${f(sp)}</td><td class="r"><b>${f(dr)}</b></td><td class="u">${u}</td><td class="r dv ${Math.abs(dv)>=.05?'nz':''}">${dv>=0?'+':'−'}${Math.abs(dv).toFixed(2)}</td><td class="r">${tol.toFixed(2)}</td><td class="r"><span class="chip ${pass?'':'bad'}">${pass?'PASS':'CHECK'}</span></td></tr>`}
+  $('#cks').innerHTML=h;$('#ckf').innerHTML=`${ok} of ${rows.length} measurements within tolerance <span style="font-weight:400;color:var(--muted)">· Δ = drawn − spec · units mm unless marked</span>`;}
+ $('#girth').innerHTML=D.girth.map(g=>{const pct=g[3],w=Math.min(Math.abs(pct),1)*50;return`<div class="bar"><span>${g[0]}</span><span class="tr" aria-label="${pct.toFixed(2)} percent"><i class="${pct<0?'neg':''}" style="left:${pct<0?50-w:50}%;width:${w}%"></i></span><span class="r" style="text-align:right;font-weight:700">${pct>0?'+':''}${pct.toFixed(2)} %</span></div>`}).join('')+`<div class="bar" style="border:0;color:var(--muted)"><span></span><span style="display:flex;justify-content:space-between;font-size:12px"><span>−1 %</span><span>0</span><span>+1 %</span></span><span></span></div>`;
+}
+function setFrames(v){imgs=[];for(let i=0;i<N;i++){const im=new Image();im.src=(v===2?'img/v2/':'img/')+`tt${String(i).padStart(2,'0')}.webp`;imgs.push(im)}if(typeof show==='function')show(f)}
+// fit the hero headline to the column width
+const fit=$('#fit');const fitIt=()=>{fit.style.fontSize='100px';const w=fit.parentElement.clientWidth,n=fit.scrollWidth;fit.style.fontSize=Math.min(210,Math.max(48,100*(w-parseFloat(getComputedStyle(fit.parentElement).paddingLeft)*2)/n*0.99))+'px'};
+fitIt();new ResizeObserver(fitIt).observe(fit.parentElement);document.fonts&&document.fonts.ready.then(fitIt);
+// turntable
+const N=36,tt=$('#tt'),ti=$('#tti');let imgs=[];
+let f=0,drag=null,auto=!matchMedia('(prefers-reduced-motion: reduce)').matches,timer=null;
+const show=k=>{f=(k%N+N)%N;ti.src=imgs[f].src;tt.setAttribute('aria-valuenow',f*10)};
+tt.addEventListener('pointerdown',e=>{drag={x:e.clientX,f};auto=false;tt.setPointerCapture(e.pointerId);tt.style.cursor='grabbing'});
+tt.addEventListener('pointermove',e=>{if(drag)show(drag.f+Math.round((e.clientX-drag.x)/14))});
+tt.addEventListener('pointerup',()=>{drag=null;tt.style.cursor='grab'});
+tt.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){show(f+1);auto=false;e.preventDefault()}if(e.key==='ArrowLeft'){show(f-1);auto=false;e.preventDefault()}});
+const io=new IntersectionObserver(es=>{for(const en of es){if(en.isIntersecting&&auto&&!timer)timer=setInterval(()=>{if(auto)show(f+1)},140);if(!en.isIntersecting){clearInterval(timer);timer=null}}});io.observe(tt);
+// nav highlight
+const secs=['idea','taping','standard','parts','last','v2','checks'].map(id=>document.getElementById(id));
+
+fetch('last_cmp.json').then(r=>r.json()).then(C=>{
+ const fmt=v=>v.toFixed(1);
+ const ch=[['Leg height',C.height[0],C.height[1],'Collar top sits at 152 mm, so the last now runs to 162: the whole collar, foam and back facing are drafted on real surface, not extrapolated.'],
+  ['Ball girth',C.ball_girth[0],C.ball_girth[1],'Half a width fitting more round the joint. Basketball loads the forefoot hardest on landings and cuts; a basketball sock is thicker too.'],
+  ['Ball width',C.ball_width[0],C.ball_width[1],'1.5 mm each side at the joint, faded out over about 30 mm so the waist line and the toe shape stay clean.'],
+  ['Toe box height',C.toe[0],C.toe[1],'1.5 mm more toe room at 86 % of length, so toes do not hit the top on hard stops.']];
+ $('#chg').innerHTML=ch.map(c=>`<li><b>${c[0]}</b><span class="d">${c[2]>c[1]?'+':''}${fmt(c[2]-c[1])} mm</span><span>${fmt(c[1])} → ${fmt(c[2])} mm. ${c[3]}</span></li>`).join('');
+ $('#stn').innerHTML=C.stations.map(s=>{const[nm,pc]=s[0].split(' ');const d=s[2]-s[1];return`<tr><td><b>${nm}</b></td><td class="r">${pc}</td><td class="r">${fmt(s[1])}</td><td class="r"><b>${fmt(s[2])}</b></td><td class="r">${d>=0?'+':'−'}${Math.abs(d).toFixed(1)}</td><td class="r">${(100*d/s[1]).toFixed(1)}</td><td><span class="mini"><i style="width:${Math.min(100,Math.max(0,d/6*100))}%"></i></span></td></tr>`}).join('');
+ $('#stf').innerHTML=`Ball girth on the joint line ${fmt(C.ball_girth[0])} → ${fmt(C.ball_girth[1])} mm <span style="font-weight:400;color:var(--muted)">· all values mm unless marked</span>`;
+ const chk=(a,n=3)=>{for(let k=0;k<n;k++){const o=[];for(let i=0;i<a.length;i++){const p=a[i],q=a[(i+1)%a.length];o.push([.75*p[0]+.25*q[0],.75*p[1]+.25*q[1]],[.25*p[0]+.75*q[0],.25*p[1]+.75*q[1]])}a=o}return a};
+ const draw=(id,A,B,flip,extra='')=>{const all=[A,B];let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;for(const a of all)for(const p of a){x0=Math.min(x0,p[0]);x1=Math.max(x1,p[0]);y0=Math.min(y0,-p[1]);y1=Math.max(y1,-p[1])}
+  const pad=8,vb=[x0-pad,y0-pad,x1-x0+2*pad,y1-y0+2*pad];const P=(a,st)=>`<path vector-effect="non-scaling-stroke" d="M${a.map(p=>p[0]+' '+(-p[1])).join('L')}Z" ${st}/>`;
+  $(id).setAttribute('viewBox',vb.join(' '));$(id).setAttribute('preserveAspectRatio','xMidYMid meet');
+  $(id).innerHTML=P(B,'fill="#0036f9" fill-opacity=".08" stroke="#0036f9" stroke-width="1.6" stroke-linejoin="round"')+P(A,'fill="none" stroke="#9a9a9a" stroke-width="1.2" stroke-dasharray="5 3"')+extra};
+ const sx=C.side.v2.map(p=>p[0]);draw('#cmpSide',C.side.v1,C.side.v2,0,`<line x1="${Math.min(...sx)-6}" x2="${Math.max(...sx)+6}" y1="${-C.collar}" y2="${-C.collar}" stroke="#e50000" stroke-width="1" vector-effect="non-scaling-stroke" stroke-dasharray="6 3"/>`);
+ draw('#cmpTop',chk(C.top.v1.map(p=>[p[1],p[0]])),chk(C.top.v2.map(p=>[p[1],p[0]])));
+ draw('#cmpBall',chk(C.ball.v1),chk(C.ball.v2));
+});
+load(2);
+const nio=new IntersectionObserver(es=>{for(const en of es)if(en.isIntersecting){$$('nav.scroll a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+en.target.id))}},{rootMargin:'-40% 0px -55% 0px'});secs.forEach(s=>nio.observe(s));
+}
+</script>
+<script>
+(()=>{const pvd=document.getElementById('pvd'),pvi=document.getElementById('pvi'),pvt=document.getElementById('pvt');
+ document.querySelectorAll('.pvb').forEach(b=>b.addEventListener('click',()=>{pvi.src=b.dataset.pv;pvi.alt='Every page of '+b.dataset.t;pvt.textContent=b.dataset.t;pvd.showModal()}));
+ document.getElementById('pvx').onclick=()=>pvd.close();pvd.addEventListener('click',e=>{if(e.target===pvd)pvd.close()});
+ const msg=document.getElementById('dlmsg');let dl=null;
+ if(window.claude&&claude.use)claude.use('downloads').then(n=>{dl=n}).catch(()=>{});
+ document.querySelectorAll('a[data-dl]').forEach(a=>a.addEventListener('click',async e=>{
+  if(!dl)return;                                   // outside the Claude viewer: plain link
+  e.preventDefault();const f=a.dataset.dl;msg.textContent='Preparing '+f+' …';
+  try{const r=await fetch(a.getAttribute('href'));if(!r.ok)throw{code:'unavailable'};
+   await dl.save({filename:f,data:await r.blob()});msg.textContent='Saved '+f+'.'}
+  catch(err){msg.textContent=err&&err.code==='declined'?'Download cancelled.':err&&err.code==='rate_limited'?'One download at a time: try again in a moment.':'This file could not be saved here.'}
+ }))})();
+</script>
+</body>
+</html>
