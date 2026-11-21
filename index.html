@@ -1826,6 +1826,7 @@ const BC={id:'basecamp',title:'BASECAMP',
  parts:['Tune / dim dial, light and radio buttons, band slider','Front Torx T10 screws','Perforated speaker plate','Printed faceplate','Speaker driver','Main board','Shell','Two 18650 cells','Back plate with spec label, 4 × T10','Fold-out crank','Pop-up lantern','SOS button'],
  cmf:[['#DDD4C2','Shell · sand'],['#222326','Faceplate · graphite'],['#FF5A1F','Signal · orange'],['#E8321A','SOS · red'],['#F1ECE1','Radio · cream'],['#C9CBCD','Knurled aluminium'],['#3A3C40','Crank arm · graphite'],['#1A1A1C','Print · ink']]
 };
+const CARD_PT={id:'pantera',href:'https://tigrestudiodesign.github.io/pantera/',isNew:true,kind:'Footwear · Pattern Engineering',title:'PANTERA · Pattern Case Study',meta:'A basketball boot pattern engineered in code on a 3D last · 11 parts at size · 19/19 checks',imgs:[['img/pt__card.webp',1600,1000]]};
 const CARD_BC={id:BC.id,isNew:true,kind:'Industrial Design',title:'BASECAMP',meta:'Emergency radio + lantern · Parametric grille · Python',imgs:[BC.img.crop]};
 const CARD_KN={id:'knit-nodes',isNew:true,kind:'CMF · Computational Textiles',title:'Computational Couture: Knit Nodes',meta:'Ten knit structures on one robotic joint, with a material behaviour model',imgs:[['img/kn__01_hero.webp',1800,1012]]};
 const CARD_KA={id:'knit-curve-atlas',isNew:true,kind:'Pattern · Textile CMF',title:'Knit Curve Atlas',meta:'109 mathematical curves knitted onto spheres, colour-coded by family',imgs:[['img/ka2/card.webp',1800,1012]]};
@@ -2172,8 +2173,8 @@ function home(){
  const href=id=>'#'+id;
  SEL6.forEach(x=>{if(!x[1]){const n=NK(x[0]);x[1]=n?n.hero:['img/hk__hero.webp?v=3',1600,1000]}});
  const tiles=D.nike.map((p,i)=>`<a class="tile" href="#${p.id}"><div class="media ${i%2?'bl':'tr'}">${im(p.hero,p.title)}</div><small>${esc(p.brand)}</small><h3>${esc(p.title)}</h3><p class="tile-r">${esc(NIKE_ROLE[p.id]||'')}</p></a>`).join('');
- const card=(r,i)=>`<a class="card" href="#${r.id}"><div class="media ${i%2?'bl':'tr'}${r.fit?' paper':''}">${r.isNew?'<span class="badge">New</span>':''}${im(r.imgs[0],r.title)}</div>${r.kind?`<p class="kind">${esc(r.kind)}</p>`:''}<h3>${esc(r.title)}</h3><p>${esc(r.meta)}</p></a>`;
- const prod=[CARD_KH,CARD_SY,CARD_BC,{...PICK('trenza-alpargata'),isNew:true,meta:'Muisca CMF study · 3 editions'},{...PICK('electric-guitar'),isNew:true,kind:'Product Modeling',meta:'Launch set · 4 finishes · 230 parts'},{...PICK('penny-loafer'),isNew:true,kind:'Footwear · CMF',meta:'Rhino model, Blender Cycles render · 3 colourways'},{...PICK('f1-car'),isNew:true,meta:'Team-launch set · original Tigre livery'},CARD_WL,CARD_KP].map(card).join('');
+ const card=(r,i)=>`<a class="card" href="${r.href||'#'+r.id}"${r.href?' target="_blank" rel="noopener"':''}><div class="media ${i%2?'bl':'tr'}${r.fit?' paper':''}">${r.isNew?'<span class="badge">New</span>':''}${im(r.imgs[0],r.title)}</div>${r.kind?`<p class="kind">${esc(r.kind)}</p>`:''}<h3>${esc(r.title)}</h3><p>${esc(r.meta)}</p></a>`;
+ const prod=[CARD_PT,CARD_KH,CARD_SY,CARD_BC,{...PICK('trenza-alpargata'),isNew:true,meta:'Muisca CMF study · 3 editions'},{...PICK('electric-guitar'),isNew:true,kind:'Product Modeling',meta:'Launch set · 4 finishes · 230 parts'},{...PICK('penny-loafer'),isNew:true,kind:'Footwear · CMF',meta:'Rhino model, Blender Cycles render · 3 colourways'},{...PICK('f1-car'),isNew:true,meta:'Team-launch set · original Tigre livery'},CARD_WL,CARD_KP].map(card).join('');
  const cmf=[CARD_ML,CARD_CMFN,CARD_KA,{...PICK('nesting-tables'),isNew:false,kind:'CMF · Furniture'}].map(card).join('');
  const vis=[
   {id:'standard-play',kind:'AI Design Systems',title:'Standard Play',meta:'Five Figma design systems I directed, built with Claude',sp:true},
