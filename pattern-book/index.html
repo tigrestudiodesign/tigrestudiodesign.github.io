@@ -190,6 +190,10 @@ footer .stripe-rule{height:14px}
 .chapters{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:0;margin:40px 0 48px;padding:0 1px 1px 0;background:#000;outline:1px solid #333;outline-offset:-1px}
 .chapters a{background:#000;color:#fff;text-decoration:none;padding:18px 16px 18px;display:grid;grid-template-rows:auto auto auto 1fr auto;gap:6px;position:relative;border:1px solid #333;margin:0 -1px -1px 0;min-width:0;container-type:inline-size;transition:background .15s}
 .chapters a:hover{background:#111}
+.chapters .partlabel{grid-column:1/-1;font:700 11px var(--font-sans);letter-spacing:.18em;color:#fff;background:#111;border:1px solid #333;margin:0 -1px -1px 0;padding:10px 16px}
+.chapters .partlabel:not(:first-child){border-top:3px solid var(--spectrum-red,#e50000)}
+.toc .tocpart{font:700 11px var(--font-sans);letter-spacing:.18em;color:var(--spectrum-red,#e50000);margin:22px 0 10px;border-top:1px solid var(--grid-line);padding-top:12px}
+
 .chapters a[aria-current="true"]{background:#fff;color:#000;border-color:#fff;z-index:1}
 .chapters a[aria-current="true"] .cm{color:#595959}
 .chapters a[aria-current="true"] .bar{background:#d9d9d9}
@@ -277,15 +281,6 @@ footer .stripe-rule{height:14px}
 .step.focus{outline:2px solid var(--spectrum-blue);outline-offset:12px}
 .langsw{display:flex;border:1px solid #444}
 .langsel{display:none;background:#000;color:#fff;border:1px solid #444;font:700 12px var(--font-sans);letter-spacing:.04em;padding:7px 6px;cursor:pointer}
-:lang(zh-Hant-TW){--font-head:"Inter Display","PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;--font-sans:"Helvetica Neue",Helvetica,"PingFang TC","Noto Sans TC","Microsoft JhengHei",Arial,sans-serif;--font-serif:Palatino,Georgia,"PingFang TC","Noto Serif TC","Noto Sans TC",serif}
-:lang(ko){--font-head:"Inter Display","Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;--font-sans:"Helvetica Neue",Helvetica,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",Arial,sans-serif;--font-serif:Palatino,Georgia,"Apple SD Gothic Neo","Noto Serif KR","Noto Sans KR",serif}
-:lang(ja){--font-head:"Inter Display","Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic",sans-serif;--font-sans:"Helvetica Neue",Helvetica,"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic",Arial,sans-serif;--font-serif:Palatino,Georgia,"Hiragino Mincho ProN","Noto Serif JP","Yu Mincho",serif}
-html:lang(zh-Hant-TW) *,html:lang(ko) *,html:lang(ja) *{font-synthesis:none}
-html:lang(zh-Hant-TW) :is(i,em,.cm,.kicker,.sub,.itname,.stat span,figcaption,.ft,.term),html:lang(ko) :is(i,em,.cm,.kicker,.sub,.itname,.stat span,figcaption,.ft,.term),html:lang(ja) :is(i,em,.cm,.kicker,.sub,.itname,.stat span,figcaption,.ft,.term){font-style:normal}
-html:lang(ko) body{word-break:keep-all;overflow-wrap:anywhere}
-html:lang(zh-Hant-TW) body,html:lang(ja) body{line-break:strict;overflow-wrap:anywhere}
-html:lang(zh-Hant-TW) p,html:lang(ko) p,html:lang(ja) p{line-height:1.75}
-html:lang(zh-Hant-TW) .display,html:lang(ko) .display,html:lang(ja) .display{letter-spacing:0;line-height:1.05}
 
 .viewsw button[data-view=vec][aria-pressed=true]{background:var(--spectrum-sky);color:#000}
 .langsw button{background:#000;color:#8c8c8c;border:0;font:700 12px var(--font-sans);letter-spacing:.08em;padding:8px 10px;cursor:pointer}
@@ -368,7 +363,7 @@ html:lang(zh-Hant-TW) .display,html:lang(ko) .display,html:lang(ja) .display{let
   </a>
   <div class="crumbs" id="crumbs"></div>
   <div class="langsw viewsw" role="group" aria-label="Figure style"><button data-view="vec" aria-pressed="true">VECTOR</button><button data-view="scan" aria-pressed="false">SCAN</button></div>
-  <div class="langsw langbtns" role="group" aria-label="Language"><button data-lang="en" aria-pressed="true">EN</button><button data-lang="es" aria-pressed="false">ES</button><button data-lang="zh" aria-pressed="false" lang="zh-Hant-TW">繁中</button><button data-lang="ko" aria-pressed="false" lang="ko">한국어</button><button data-lang="ja" aria-pressed="false" lang="ja">日本語</button></div><select class="langsel" id="langsel" aria-label="Language"><option value="en">EN</option><option value="es">ES</option><option value="zh" lang="zh-Hant-TW">繁中</option><option value="ko" lang="ko">한국어</option><option value="ja" lang="ja">日本語</option></select>
+  <div class="langsw langbtns" role="group" aria-label="Language"><button data-lang="en" aria-pressed="true">EN</button><button data-lang="es" aria-pressed="false">ES</button></div><select class="langsel" id="langsel" aria-label="Language"><option value="en">EN</option><option value="es">ES</option></select>
   <select class="chsel" id="chsel" aria-label="Jump to chapter"></select>
   <div class="prog" id="prog"></div>
   <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="toc">Contents</button>
@@ -439,6 +434,16 @@ html:lang(zh-Hant-TW) .display,html:lang(ko) .display,html:lang(ja) .display{let
 
 
 
+
+
+
+
+
+
+
+
+
+
 <div id="gate" style="position:fixed;inset:0;z-index:1000;background:#000;color:#fff;display:grid;place-items:center;padding:24px;background-image:linear-gradient(#ffffff10 1px,transparent 1px),linear-gradient(90deg,#ffffff10 1px,transparent 1px);background-size:48px 48px">
  <div style="width:min(420px,100%)">
   <div style="font:700 11px var(--font-sans);letter-spacing:.12em;color:#8c8c8c;text-transform:uppercase">Private study edition</div>
@@ -451,7 +456,7 @@ html:lang(zh-Hant-TW) .display,html:lang(ko) .display,html:lang(ja) .display{let
  </div></div>
 <script>
 (function(){
-const SALT=Uint8Array.from(atob('j3neYbNiMWNPRAaQQx2o+w=='),c=>c.charCodeAt(0)),ITER=310000;
+const SALT=Uint8Array.from(atob('mHmuhKNXxRC+3tiUgUMjjw=='),c=>c.charCodeAt(0)),ITER=310000;
 const gate=document.getElementById('gate'),msg=document.getElementById('gm');
 document.documentElement.style.overflow='hidden';
 const dec=(key,buf)=>{buf=new Uint8Array(buf);return crypto.subtle.decrypt({name:'AES-GCM',iv:buf.slice(0,12)},key,buf.slice(12))};
@@ -472,7 +477,7 @@ async function unlock(key){const code=new TextDecoder().decode(await dec(key,awa
   gate.remove();document.documentElement.style.overflow='';}
 async function derive(pw){const k=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']);
   return crypto.subtle.deriveKey({name:'PBKDF2',salt:SALT,iterations:ITER,hash:'SHA-256'},k,{name:'AES-GCM',length:256},true,['decrypt'])}
-const KS='pb-key-'+'j3neYbNiMWNPRAaQQx2o+w=='.slice(0,8);
+const KS='pb-key-'+'mHmuhKNXxRC+3tiUgUMjjw=='.slice(0,8);
 (async()=>{try{const raw=sessionStorage.getItem(KS);if(raw){const k=await crypto.subtle.importKey('raw',Uint8Array.from(atob(raw),c=>c.charCodeAt(0)),'AES-GCM',true,['decrypt']);await unlock(k);return}}catch(e){}
   document.getElementById('gpw').focus()})();
 document.getElementById('gf').onsubmit=async e=>{e.preventDefault();msg.textContent='Unlocking…';
