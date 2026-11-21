@@ -3,7 +3,7 @@ usage: python3 tools/size_report.py [ARTIFACT_OUTDIR]
 Exit code 1 when a budget is broken. Budgets:
   GitHub: published site < 500 MB (GitHub Pages limit is 1 GB), no single file > 25 MB,
           no image > 1.5 MB, no image over 7 megapixels except CSS sprites and full-size linked files.
-  Artifact: index.html < 4 MB (hard cap 16 MiB), < 300 files (cap 512), each file < 15 MB (cap 20 MiB)."""
+  Artifact: index.html < 4 MB (hard cap 16 MiB), < 400 files (cap 512), each file < 15 MB (cap 20 MiB)."""
 import json, os, subprocess, sys, glob
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__))); os.chdir(ROOT)
 from PIL import Image
@@ -43,10 +43,10 @@ out = sys.argv[1] if len(sys.argv) > 1 else None
 if out and os.path.exists(out + '/files.json'):
     af = json.load(open(out + '/files.json'))
     ix = os.path.getsize(out + '/index.html'); big = max(os.path.getsize(out + '/' + f) for f in af)
-    print('Artifact: index.html %.2f MB (budget 4), %d files (budget 300), biggest %.1f MB (budget 15), total %.1f MB'
+    print('Artifact: index.html %.2f MB (budget 4), %d files (budget 400), biggest %.1f MB (budget 15), total %.1f MB'
           % (ix / 1e6, len(af), big / 1e6, sum(os.path.getsize(out + '/' + f) for f in af) / 1e6))
     if ix > 4e6: bad.append('artifact index.html over 4 MB')
-    if len(af) > 300: bad.append('artifact over 300 files')
+    if len(af) > 400: bad.append('artifact over 400 files')
     if big > 15.5 * 1024 * 1024: bad.append('artifact file over 15 MB')
 print('\n'.join('OVER BUDGET: ' + b for b in bad) or 'All within budget.')
 sys.exit(1 if bad else 0)

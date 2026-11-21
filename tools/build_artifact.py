@@ -13,11 +13,11 @@ from PIL import Image
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__))); os.chdir(ROOT)
 OUT = os.path.abspath(sys.argv[1] if len(sys.argv) > 1 else '/home/claude/out/artifact')
 LIVE = 'https://tigrestudiodesign.github.io/'
-BUNDLE_MAX = 12 * 1024 * 1024
+BUNDLE_MAX = int(0.9 * 1024 * 1024)   # small parts: the first images of a page show within a second, the rest stream in parallel
 STEPS = [480, 640, 800, 1080, 1280, 1600, 1920, 2560]
 M = json.load(open('tools/image_map.json'))
 s = open('index.html').read()
-s = re.sub(r"(img/[^'\"?\s)]+)\?v=\d+", r'\1', s)   # cache-busting queries are for the live site only
+s = re.sub(r"\.(webp|png|jpe?g)\?v=\d+", r'.\1', s)   # cache-busting queries are for the live site only
 os.makedirs(OUT + '/b', exist_ok=True)
 for f in glob.glob(OUT + '/b/*'): os.remove(f)
 
@@ -59,7 +59,7 @@ def add_bundle(key, items):
     if idx: BUN[key] = {'f': names, 'i': idx}
 
 for r, imgs in M['routes'].items():
-    add_bundle(r, [(f, px) for f, px in sorted(imgs.items()) if f not in css])
+    add_bundle(r, [(f, px) for f, px in imgs.items() if f not in css])   # page order: top of the page first
 # everything else the code can reach (tabs, viewers, rarely drawn states): full size, capped
 rest = sorted(f for f in glob.glob('img/**/*.*', recursive=True)
               if re.search(r'\.(webp|png|jpg|jpeg)$', f) and f not in placed and f not in css
