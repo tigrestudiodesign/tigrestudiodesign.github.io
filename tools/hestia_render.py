@@ -327,13 +327,13 @@ def robot(off=(0, 0, 0), explode=0.0):
         x = 0.105 * sgn; e = np.array((sgn * explode, 0, 0))
         # humanoid leg: hip, full thigh, defined knee slightly forward, calf, slim ankle
         ctrl = [o + e + (x * 0.8, 0.0, 0.9), o + e + (x * 0.98, 0.0, 0.82), o + e + (x * 1.02, -0.012, 0.66), o + e + (x * 1.03, -0.02, 0.49),
-                o + e + (x * 1.03, -0.005, 0.32), o + e + (x * 1.03, 0.005, 0.15), o + e + (x * 1.03, 0.0, 0.085)]
+                o + e + (x * 1.03, -0.005, 0.32), o + e + (x * 1.03, 0.005, 0.15), o + e + (x * 1.03, 0.0, 0.045)]   # ends inside the foot: no gap at the ankle
         prof = lambda t: lerpk(t, [(0, 0.074), (0.1, 0.08), (0.3, 0.074), (0.44, 0.06), (0.5, 0.058), (0.56, 0.06), (0.66, 0.063), (0.8, 0.05), (0.92, 0.038), (1, 0.034)]) * rounded(t, 0.03, 0.6)
         zones = [(0, 0.1, 'moss', True), (0.1, 0.42, 'oat', False), (0.42, 0.56, 'moss', True), (0.56, 0.9, 'birch', False), (0.9, 1, 'moss', True)]
         parts.append(tube('leg%d' % sgn, ctrl, prof, zones, ring=40, n=200, rib=(0.0115, 0.13)))
         # foot: soft rounded pad, champagne heel tab
-        f0 = o + e + (x * 1.03, 0.06, 0.035); f1 = o + e + (x * 1.03, -0.17, 0.035)
-        parts.append(tube('foot%d' % sgn, [f0, (f0 + f1) / 2, f1], lambda t: (0.05 * rounded(t, 0.25, 0.4), 0.035 * rounded(t, 0.2, 0.5)),
+        f0 = o + e + (x * 1.03, 0.06, 0.04); f1 = o + e + (x * 1.03, -0.17, 0.04)
+        parts.append(tube('foot%d' % sgn, [f0, (f0 + f1) / 2, f1], lambda t: (0.052 * rounded(t, 0.25, 0.4), 0.04 * rounded(t, 0.2, 0.5)),
                           [(0, 1, 'moss', False)], ring=40, n=40, ref=(1, 0, 0), expo=2.4,
                           rule=lambda c, n: 'champ' if (n[1] > 0.7 and c[2] > 0.03) else None))
     # arms
