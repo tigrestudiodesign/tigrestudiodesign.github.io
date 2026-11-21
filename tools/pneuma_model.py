@@ -24,6 +24,19 @@ plt.rcParams.update({'font.family': [MONO, 'DejaVu Sans'], 'font.size': 10, 'axe
 PAPER, CARD, INK, HOT, GRID, MUTE = '#ECE8E0', '#F6F3EC', '#1B1B1C', '#FF5A1F', '#DCD7CC', '#6E6A64'
 OAT, MOSS, TERRA, CHAMP, BIRCH = '#B9A787', '#5E6555', '#B65A3A', '#C9B48C', '#958E82'
 
+def modern(ax, ytitle, xtitle):
+    ax.set_facecolor(CARD); ax.set_axisbelow(True)
+    for sp in ('top', 'right', 'left'): ax.spines[sp].set_visible(False)
+    ax.spines['bottom'].set_color(INK); ax.spines['bottom'].set_linewidth(1.0)
+    ax.tick_params(length=0, pad=6, colors=MUTE, labelsize=9)
+    ax.grid(axis='y', color='#E3DDD0', lw=0.8); ax.grid(axis='x', visible=False)
+    ax.set_xlabel(''); ax.set_ylabel('')
+    ax.text(0, 1.04, ytitle, transform=ax.transAxes, fontsize=8.6, color=MUTE, ha='left', va='bottom')
+    ax.text(1, -0.12, xtitle, transform=ax.transAxes, fontsize=8.6, color=MUTE, ha='right', va='top')
+def end_lab(ax, x, y, txt, col, dy=0):
+    ax.plot([x], [y], 'o', ms=7, mfc=col, mec=CARD, mew=1.5, clip_on=False, zorder=6)
+    ax.annotate(txt, (x, y), xytext=(9, dy), textcoords='offset points', fontsize=8.8, va='center', color=INK, annotation_clip=False)
+
 # ------------------------------------------------------------------ model
 # Constant-curvature bending: the woven bottom is inextensible (neutral layer), so a top-layer
 # strain eps over a pouch height h bends the finger by theta = L * eps / h.
@@ -128,18 +141,25 @@ def sheet_model(M):
     bg.text(0.7, 5.75, 'The woven layer is the neutral axis: every mm the knit grows over height h bends the finger.', fontsize=8.8, color=MUTE, zorder=6)
     # curves
     panel(bg, 7.75, 5.55, 7.77, 4.3)
-    ax = fig.add_axes([0.545, 0.54, 0.4, 0.27]); ax.set_facecolor(CARD)
-    cols = ['#9C968C', HOT, INK]
-    for (kn, pts), c in zip(M['curves'].items(), cols):
-        pts = np.array(pts); ax.plot(pts[:, 0], pts[:, 1], color=c, lw=2.2 if c == HOT else 1.6, label=f'{kn}' + ('  · selected' if c == HOT else ''))
+    ax = fig.add_axes([0.53, 0.545, 0.315, 0.25])
+    cols = ['#A9A397', HOT, INK]
+    if P_MAX < 78:
+        ax.axvspan(P_MAX, 80.5, facecolor='none', hatch='////', edgecolor=(1, .353, .122, .35), lw=0, zorder=0)
+        ax.text(P_MAX + 0.8, 212, f'ABOVE\n{P_MAX:.0f} kPa', fontsize=7.8, color=HOT, va='top')
+    wrap = math.degrees(92 / (MUG_D / 2))
+    ax.axhline(wrap, color=MUTE, ls=(0, (4, 3)), lw=1.0); ax.text(1, wrap + 5, f'WRAPS AN {MUG_D:.0f} mm MUG · {wrap:.0f}°', fontsize=7.8, color=MUTE)
     pw = [r for r in M['fingers'] if r['finger'] == 'Index'][0]['p_wrap']
-    ax.axhline(math.degrees(92 / (MUG_D / 2)), color=MUTE, ls='--', lw=1)
-    ax.text(1, math.degrees(92 / 40) + 4, f'wraps an {MUG_D:.0f} mm mug: {math.degrees(92/40):.0f}°', fontsize=8.5, color=MUTE)
-    ax.axvline(pw, color=HOT, ls=':', lw=1); ax.text(pw + 1, 8, f'{pw} kPa', fontsize=8.5, color=HOT)
-    ax.axvspan(P_MAX, 80.5, color=HOT, alpha=0.1)
-    ax.set_xlim(0, 80.5); ax.set_ylim(0, 220); ax.set_xlabel('Pressure (kPa)'); ax.set_ylabel('Bend, index finger (°)')
-    ax.grid(color=GRID, lw=0.6); ax.legend(frameon=False, loc='upper left', fontsize=9)
-    for s in ('top', 'right'): ax.spines[s].set_visible(False)
+    sel = None
+    offs = {INK: -6, '#A9A397': 6, HOT: 0}
+    for (kn, pts), c in zip(M['curves'].items(), cols):
+        pts = np.array(pts); ax.plot(pts[:, 0], pts[:, 1], color=c, lw=2.6 if c == HOT else 1.9, solid_capstyle='round', zorder=4 if c == HOT else 3)
+        end_lab(ax, pts[-1, 0], pts[-1, 1], kn.upper() + (' ◀ PICK' if c == HOT else ''), c, offs[c])
+        if c == HOT: sel = pts
+    yw = float(np.interp(pw, sel[:, 0], sel[:, 1]))
+    ax.plot([pw], [yw], 'o', ms=6.5, mfc=CARD, mec=HOT, mew=1.6, zorder=6)
+    ax.annotate(f'{pw} kPa', (pw, yw), xytext=(pw - 4, yw - 40), fontsize=8.4, color=HOT, arrowprops=dict(arrowstyle='-', color=HOT, lw=.8, shrinkA=2, shrinkB=4))
+    ax.set_xlim(0, 80.5); ax.set_ylim(0, 220)
+    modern(ax, 'BEND, INDEX FINGER · DEGREES', 'PRESSURE · kPa')
     # table
     cols_x = [0.48, 2.3, 3.6, 4.9, 6.2, 7.9, 9.9, 12.0, 13.8]
     hdr = ['FINGER', 'L', 'W × H', 'BEND @70', 'WRAP NEEDS', 'PRESSURE TO WRAP', 'TIP FORCE @70', 'AIR', '']
@@ -262,20 +282,26 @@ def sheet_control(M):
     bg.text(4.8, 5.72, 'feedback', fontsize=8, color=HOT, va='center', ha='center', zorder=5)
     # sequence chart
     panel(bg, 8.45, 4.6, 7.07, 5.25)
-    ax = fig.add_axes([0.57, 0.445, 0.38, 0.33]); ax.set_facecolor(CARD)
+    ax = fig.add_axes([0.57, 0.445, 0.38, 0.31])
     tt = np.linspace(0, 5, 500)
     def env(t, pts):
         return np.interp(t, [p[0] for p in pts], [p[1] for p in pts])
     th = env(tt, [(0, 0), (0.2, 0), (0.6, 30), (1.4, 32), (1.8, 70), (4.0, 70), (4.4, 0), (5, 0)])
     fg = env(tt, [(0, 0), (0.6, 0), (1.4, 55), (1.8, 70), (4.0, 70), (4.5, 0), (5, 0)])
     rip = np.where((tt > 1.9) & (tt < 4.0), 1.8 * np.sin(tt * 2 * np.pi * 3.2), 0)
-    ax.plot(tt, fg + rip, color=HOT, lw=2.2, label='Fingers'); ax.plot(tt, th + rip * 0.7, color=INK, lw=1.6, label='Thumb')
-    for x0, x1, s in [(0, 0.6, 'PRE-SHAPE'), (0.6, 1.4, 'WRAP'), (1.4, 1.9, 'SQUEEZE'), (1.9, 4.0, 'HOLD ±3 kPa'), (4.0, 4.6, 'VENT')]:
-        ax.axvline(x0, color=GRID, lw=1); ax.text((x0 + x1) / 2, 84, s, ha='center', fontsize=7.6, color=MUTE)
-    ax.axhline(55, color=HOT, ls=':', lw=1); ax.text(4.65, 56.5, 'wrap', fontsize=8, color=HOT)
-    ax.set_xlim(0, 5); ax.set_ylim(0, 90); ax.set_xlabel('Time (s)'); ax.set_ylabel('Pressure (kPa)')
-    ax.legend(frameon=False, loc='lower center', bbox_to_anchor=(0.6, 0.06), ncol=2, fontsize=9); ax.grid(axis='y', color=GRID, lw=0.6)
-    for s in ('top', 'right'): ax.spines[s].set_visible(False)
+    for k, (x0, x1, s_) in enumerate([(0, 0.6, 'PRE-SHAPE'), (0.6, 1.4, 'WRAP'), (1.4, 1.9, 'SQUEEZE'), (1.9, 4.0, 'HOLD ±3 kPa'), (4.0, 4.6, 'VENT')]):
+        if k % 2: ax.axvspan(x0, x1, color=INK, alpha=0.035, lw=0, zorder=0)
+        ax.text((x0 + x1) / 2, 86, s_, ha='center', fontsize=7.6, color=INK if k == 3 else MUTE)
+    ax.fill_between(tt, fg + rip, 0, color=HOT, alpha=0.08, lw=0, zorder=1)
+    ax.plot(tt, fg + rip, color=HOT, lw=2.6, zorder=4, solid_capstyle='round'); ax.plot(tt, th + rip * 0.7, color=INK, lw=1.9, zorder=3, solid_capstyle='round')
+    ax.axhline(55, color=HOT, ls=(0, (2, 3)), lw=1); ax.text(4.95, 57, 'WRAP 55 kPa', fontsize=7.8, color=HOT, ha='right')
+    ax.annotate('THUMB PRE-SHAPES', (0.9, 31), xytext=(0.15, 46), fontsize=8.2, color=INK, arrowprops=dict(arrowstyle='-', color=INK, lw=.8, shrinkA=2, shrinkB=2))
+    ax.annotate('FINGERS WRAP', (1.25, 47), xytext=(1.95, 30), fontsize=8.2, color=HOT, arrowprops=dict(arrowstyle='-', color=HOT, lw=.8, shrinkA=2, shrinkB=2))
+    ax.set_xlim(0, 5); ax.set_ylim(0, 92); ax.set_yticks(range(0, 91, 30))
+    modern(ax, 'PRESSURE · kPa', 'TIME · s')
+    for x_, c_, t_ in ((0.0, HOT, 'FINGERS'), (0.9, INK, 'THUMB')):
+        ax.plot([x_ + 3.0, x_ + 3.25], [1.07, 1.07], color=c_, lw=2.4, transform=ax.get_xaxis_transform(), clip_on=False)
+        ax.text(x_ + 3.3, 1.07, t_, fontsize=8.2, va='center', transform=ax.get_xaxis_transform())
     rows = [('One grip of air', f"{M['vol_cc']} cm³ of pockets = {M['free_air_cc']} cm³ of free air at {M['p_hold']:.0f} kPa"),
             ('From the tank', f"{M['tank_L']} L at {M['tank_kpa']:.0f} kPa drops to {M['tank_after_kpa']} kPa: still above hold, so the grip never waits on the pump"),
             ('Hold', 'PWM on V1/V2 keeps ±3 kPa around 70; the pump only tops up the tank'),
