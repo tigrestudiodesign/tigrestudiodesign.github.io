@@ -1826,7 +1826,6 @@ const BC={id:'basecamp',title:'BASECAMP',
  parts:['Tune / dim dial, light and radio buttons, band slider','Front Torx T10 screws','Perforated speaker plate','Printed faceplate','Speaker driver','Main board','Shell','Two 18650 cells','Back plate with spec label, 4 × T10','Fold-out crank','Pop-up lantern','SOS button'],
  cmf:[['#DDD4C2','Shell · sand'],['#222326','Faceplate · graphite'],['#FF5A1F','Signal · orange'],['#E8321A','SOS · red'],['#F1ECE1','Radio · cream'],['#C9CBCD','Knurled aluminium'],['#3A3C40','Crank arm · graphite'],['#1A1A1C','Print · ink']]
 };
-const CARD_PT={id:'pantera',href:'https://tigrestudiodesign.github.io/pantera/',isNew:true,kind:'Footwear · Pattern Engineering',title:'PANTERA · Pattern Case Study',meta:'A basketball boot pattern engineered in code on a 3D last · 11 parts at size · 19/19 checks',imgs:[['img/pt__card.webp',1600,1000]]};
 const CARD_BC={id:BC.id,isNew:true,kind:'Industrial Design',title:'BASECAMP',meta:'Emergency radio + lantern · Parametric grille · Python',imgs:[BC.img.crop]};
 const CARD_KN={id:'knit-nodes',isNew:true,kind:'CMF · Computational Textiles',title:'Computational Couture: Knit Nodes',meta:'Ten knit structures on one robotic joint, with a material behaviour model',imgs:[['img/kn__01_hero.webp',1800,1012]]};
 const CARD_KA={id:'knit-curve-atlas',isNew:true,kind:'Pattern · Textile CMF',title:'Knit Curve Atlas',meta:'109 mathematical curves knitted onto spheres, colour-coded by family',imgs:[['img/ka2/card.webp',1800,1012]]};
@@ -1840,10 +1839,10 @@ const LANES=[
   ev:[['p10','Hyperboot'],['p09','Hyperslide'],['p06','Project Amplify'],['basecamp','BASECAMP']]},
  {k:'02',t:'Design Technology',b:'Parametric geometry, computational tools and AI workflows, built with the manufacturing constraints I spent 16 years documenting.',
   pts:['Rhino and Grasshopper tools that turn design rules into parameters and checks','Generative-AI pipelines (ComfyUI, Stable Diffusion, LLMs) that cut early concept time by 50%+','Rendered CMF proposals straight from the parametric model','Master in Parametric Design, Controlmad (in progress)'],
-  ev:[['parametric-keypad','Parametric Keypad'],['basecamp','BASECAMP'],['figures','Figures'],['knit-curve-atlas','Knit Curve Atlas']]},
+  ev:[['https://tigrestudiodesign.github.io/pantera/','PANTERA'],['parametric-keypad','Parametric Keypad'],['basecamp','BASECAMP'],['figures','Figures']]},
  {k:'03',t:'Technical Documentation & Systems',b:'Complex technology turned into manuals, specs and diagrams that a factory, an engineer or an exec can act on.',
   pts:['50+ tech manuals and quick start guides, 5,000+ pages','One template system rolled out across the whole library','Inspection standards, critical-to-quality checks and process flows for operators and engineers','Built and led documentation teams in the US, South Korea and Taiwan'],
-  ev:[['documentation','The Manuals'],['standard-play','Standard Play'],['arepa-ai','Arepa.AI']]},
+  ev:[['documentation','The Manuals'],['https://tigrestudiodesign.github.io/pantera/','PANTERA tech pack'],['standard-play','Standard Play'],['arepa-ai','Arepa.AI']]},
  {k:'04',t:'Soft Goods & Materials',b:'Materials, bonding and decoration processes taken from lab to production, for any product where textiles meet hardware: wearables, robotics, medical and outdoor.',
   pts:['Nike Milestone Award (2014) for a pad-printing breakthrough on knit materials','Knit, 3D-printed and co-molded technologies moved from innovation builds into production','Bonding, lamination, screen-printing and no-sew processes scaled with factories','Knit structures and material behaviour modelled computationally'],
   ev:[['p01','Alphafly 4.0'],['p03','Air Max 95000'],['knit-nodes','Knit Nodes'],['knit-curve-atlas','Knit Curve Atlas']]}
@@ -1856,6 +1855,7 @@ const RULE_TOOLS=[
 ];
 const FEAT=[
  {id:'basecamp',img:['img/bc2__hero.webp',1800,1440],k:'New · Industrial Design · Python + Blender',t:'BASECAMP Emergency Radio',d:'An upright hand-crank radio and pop-up lantern built to be repaired: product architecture, Torx hardware, CMF and a rule-driven speaker grille, all generated from code.',tags:['Product architecture','CMF','Computational design','Repairability']},
+ {id:'pantera',href:'https://tigrestudiodesign.github.io/pantera/',isNew:true,img:['img/pt__feat.webp',1800,1440],k:'New · Footwear Pattern Engineering · Python + Rhino',t:'PANTERA Basketball Boot',d:"Frank Jones's hand method for a basketball boot double standard, run end to end in code on a 3D last: 11 parts at size, 19 of 19 checks within tolerance, a tech pack and a printable paper test kit.",tags:['Pattern engineering','Rules → code','Tech pack','Footwear']},
  {id:'parametric-keypad',img:['img/kp__render.webp',2000,1320],k:'Computational Design · Grasshopper 2 + Blender',t:'Parametric Keypad',d:'A true 3D Voronoi seeded on the case surface so the grooves wrap every edge seamlessly, with Tarka-style hardware, pad-printed legends and four colorways from one model.',tags:['Grasshopper','Voronoi','CMF','Parametric']},
  {id:'p01',img:null,k:'Nike Running · Upper innovation',t:'Alphafly 4.0',d:'Led upper design and technical documentation to move Atomknit into inline production, partnering with manufacturing teams in Korea.',tags:['Atomknit','Innovation to inline','Factory partnership']},
  {id:'documentation',img:null,k:'Nike · 2018 – 2026',t:'The Technical Manual Library',d:'50+ tech manuals and quick start guides, 5,000+ pages, built on one visual system and handed to factories worldwide with on-site training.',tags:['Information design','Systems','Team leadership'],doc:true}
@@ -2170,20 +2170,20 @@ const SEL6=[
  ['basecamp',['img/bc2__hero.webp',1800,1440],'BASECAMP Emergency Radio','Industrial design · Python + Blender','A hand-crank radio and lantern built to be repaired, with a rule-driven speaker grille.','Product architecture · Torx hardware · CMF']];
 function home(){
  const NK=id=>D.nike.find(p=>p.id===id);
- const href=id=>'#'+id;
+ const href=id=>/^https?:/.test(id)?id:'#'+id;
  SEL6.forEach(x=>{if(!x[1]){const n=NK(x[0]);x[1]=n?n.hero:['img/hk__hero.webp?v=3',1600,1000]}});
  const tiles=D.nike.map((p,i)=>`<a class="tile" href="#${p.id}"><div class="media ${i%2?'bl':'tr'}">${im(p.hero,p.title)}</div><small>${esc(p.brand)}</small><h3>${esc(p.title)}</h3><p class="tile-r">${esc(NIKE_ROLE[p.id]||'')}</p></a>`).join('');
  const card=(r,i)=>`<a class="card" href="${r.href||'#'+r.id}"${r.href?' target="_blank" rel="noopener"':''}><div class="media ${i%2?'bl':'tr'}${r.fit?' paper':''}">${r.isNew?'<span class="badge">New</span>':''}${im(r.imgs[0],r.title)}</div>${r.kind?`<p class="kind">${esc(r.kind)}</p>`:''}<h3>${esc(r.title)}</h3><p>${esc(r.meta)}</p></a>`;
- const prod=[CARD_PT,CARD_KH,CARD_SY,CARD_BC,{...PICK('trenza-alpargata'),isNew:true,meta:'Muisca CMF study · 3 editions'},{...PICK('electric-guitar'),isNew:true,kind:'Product Modeling',meta:'Launch set · 4 finishes · 230 parts'},{...PICK('penny-loafer'),isNew:true,kind:'Footwear · CMF',meta:'Rhino model, Blender Cycles render · 3 colourways'},{...PICK('f1-car'),isNew:true,meta:'Team-launch set · original Tigre livery'},CARD_WL,CARD_KP].map(card).join('');
+ const prod=[CARD_KH,CARD_SY,CARD_BC,{...PICK('trenza-alpargata'),isNew:true,meta:'Muisca CMF study · 3 editions'},{...PICK('electric-guitar'),isNew:true,kind:'Product Modeling',meta:'Launch set · 4 finishes · 230 parts'},{...PICK('penny-loafer'),isNew:true,kind:'Footwear · CMF',meta:'Rhino model, Blender Cycles render · 3 colourways'},{...PICK('f1-car'),isNew:true,meta:'Team-launch set · original Tigre livery'},CARD_WL,CARD_KP].map(card).join('');
  const cmf=[CARD_ML,CARD_CMFN,CARD_KA,{...PICK('nesting-tables'),isNew:false,kind:'CMF · Furniture'}].map(card).join('');
  const vis=[
   {id:'standard-play',kind:'AI Design Systems',title:'Standard Play',meta:'Five Figma design systems I directed, built with Claude',sp:true},
   {id:'fold-bake',kind:'Editorial System',title:'Fold / Bake',meta:'A true-scale parchment cookbook generated from code',imgs:[['img/cb__co01.webp',1800,1273]],fit:true}
  ].map((r,i)=>r.sp?`<a class="card" href="#${r.id}"><div class="media ${i%2?'bl':'tr'}">${sleeve(TAPES[0])}</div><p class="kind">${r.kind}</p><h3>${r.title}</h3><p>${r.meta}</p></a>`:card(r,i)).join('');
  const feat=FEAT.map((f,i)=>{const n=NK(f.id);const img=f.img||(n&&n.hero);
-  const media=f.doc?`<div class="media ${i%2?'bl-l':'tr-l'} fr-doc"><div class="pages">${CAPS.slice(0,4).map(c=>sil(c.p[0][0])).join('')}</div></div>`:`<div class="media ${i%2?'bl-l':'tr-l'}">${f.id==='basecamp'?'<span class="badge">New</span>':''}${im(img,f.t)}</div>`;
-  return `<a class="fr${i%2?' rev':''}" href="${href(f.id)}">${media}<div class="fr-t"><p class="fr-k">${esc(f.k)}</p><h3>${esc(f.t)}</h3><p>${esc(f.d)}</p><ul class="tags">${f.tags.map(t=>`<li>${esc(t)}</li>`).join('')}</ul><span class="go">Read the case study →</span></div></a>`}).join('');
- const lane=l=>`<div class="lane"><p class="lane-k">${l.k}</p><h3>${esc(l.t)}</h3><p class="lane-b">${esc(l.b)}</p><ul class="lane-p">${l.pts.map(p=>`<li>${esc(p)}</li>`).join('')}</ul><p class="lane-e">See it in</p><div class="lane-l">${l.ev.map(([id,t])=>`<a href="#${id}">${esc(t)} →</a>`).join('')}</div></div>`;
+  const media=f.doc?`<div class="media ${i%2?'bl-l':'tr-l'} fr-doc"><div class="pages">${CAPS.slice(0,4).map(c=>sil(c.p[0][0])).join('')}</div></div>`:`<div class="media ${i%2?'bl-l':'tr-l'}">${f.id==='basecamp'||f.isNew?'<span class="badge">New</span>':''}${im(img,f.t)}</div>`;
+  return `<a class="fr${i%2?' rev':''}" href="${f.href||href(f.id)}">${media}<div class="fr-t"><p class="fr-k">${esc(f.k)}</p><h3>${esc(f.t)}</h3><p>${esc(f.d)}</p><ul class="tags">${f.tags.map(t=>`<li>${esc(t)}</li>`).join('')}</ul><span class="go">Read the case study →</span></div></a>`}).join('');
+ const lane=l=>`<div class="lane"><p class="lane-k">${l.k}</p><h3>${esc(l.t)}</h3><p class="lane-b">${esc(l.b)}</p><ul class="lane-p">${l.pts.map(p=>`<li>${esc(p)}</li>`).join('')}</ul><p class="lane-e">See it in</p><div class="lane-l">${l.ev.map(([id,t])=>`<a href="${href(id)}">${esc(t)} →</a>`).join('')}</div></div>`;
  const heroImgs=[['img/hk__hero.webp?v=3',1600,1000],NK('p11').hero,BC.img.crop];
  return nav()+`<main id="top">
  <section class="band dark rel stripey"><img class="stripes" src="img/stripe-hero.webp" alt="" aria-hidden="true"><div class="wrap hero v19h">
@@ -2216,7 +2216,7 @@ function home(){
   <p class="intro rl-intro">A factory tech manual is a list of constraints: how deep a cut can go, how close two features can sit, how thin a wall can get before it tears. I wrote more than 50 of them. In a parametric model, the same rules become inputs and live checks, so a design that breaks one is flagged on screen, before a sample is ever cut.</p>
   <ol class="rl-flow"><li><b>01</b><h3>RULE</h3><p>A constraint from the factory: a minimum, a maximum, a spacing.</p></li><li><b>02</b><h3>PARAMETER</h3><p>An input with a safe range instead of a note on a drawing.</p></li><li><b>03</b><h3>CHECK</h3><p>The geometry flags or refuses anything outside the range.</p></li><li><b>04</b><h3>OUTPUT</h3><p>Production-ready geometry that passes the factory's own rules.</p></li></ol>
   <div class="rl-tools">${RULE_TOOLS.map((t,i)=>`<div class="rl-t"><p class="rl-k"><span>T.${String(i+1).padStart(2,'0')}</span><em>${t.st}</em></p><h3>${t.n}</h3><dl><dt>RULE IT ENCODES</dt><dd>${t.r}</dd><dt>WHAT IT OUTPUTS</dt><dd>${t.o}</dd></dl></div>`).join('')}</div>
-  <p class="rl-proof"><span>PROOF SO FAR</span>${[['parametric-keypad','Parametric Keypad'],['basecamp','BASECAMP'],['knit-curve-atlas','Knit Curve Atlas'],['figures','Figures']].map(([h,t])=>`<a href="#${h}">${t} →</a>`).join('')}</p>
+  <p class="rl-proof"><span>PROOF SO FAR</span>${[['https://tigrestudiodesign.github.io/pantera/','PANTERA'],['parametric-keypad','Parametric Keypad'],['basecamp','BASECAMP'],['knit-curve-atlas','Knit Curve Atlas'],['figures','Figures']].map(([h,t])=>`<a href="${href(h)}">${t} →</a>`).join('')}</p>
   <p class="fine">Rules are described at a general, public level. No Nike specifications or values are shown.</p>
  </div></section>
  <section id="product" class="band light section"><div class="wrap">
@@ -2246,7 +2246,7 @@ function home(){
   <div><small>New · Free download · English &amp; Español</small><h3>Rhino &amp; Grasshopper Glossaries</h3><p>Two beginner glossaries I wrote and designed as LinkedIn carousels: 96 terms, commands and components in plain language, each linked to its reference page.</p><span class="go">Get the PDFs →</span></div></a>
  </div></section>
  <section id="work" class="band dark section"><div class="wrap">
-  <p class="eyebrow">Selected Case Studies</p><h2 class="sh-title">Start Here</h2><p class="sh-sub">Four projects that show the range: hardware product, parametric CMF, materials innovation, documentation</p>
+  <p class="eyebrow">Selected Case Studies</p><h2 class="sh-title">Start Here</h2><p class="sh-sub">Five projects that show the range: hardware product, pattern engineering, parametric CMF, materials innovation, documentation</p>
   <div class="frs">${feat}</div>
  </div></section>
 
