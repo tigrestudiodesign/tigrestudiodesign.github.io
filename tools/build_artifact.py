@@ -17,6 +17,7 @@ BUNDLE_MAX = 12 * 1024 * 1024
 STEPS = [480, 640, 800, 1080, 1280, 1600, 1920, 2560]
 M = json.load(open('tools/image_map.json'))
 s = open('index.html').read()
+s = re.sub(r"(img/[^'\"?\s)]+)\?v=\d+", r'\1', s)   # cache-busting queries are for the live site only
 os.makedirs(OUT + '/b', exist_ok=True)
 for f in glob.glob(OUT + '/b/*'): os.remove(f)
 
