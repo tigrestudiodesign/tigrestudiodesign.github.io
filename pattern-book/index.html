@@ -456,7 +456,7 @@ footer .stripe-rule{height:14px}
  </div></div>
 <script>
 (function(){
-const SALT=Uint8Array.from(atob('mHmuhKNXxRC+3tiUgUMjjw=='),c=>c.charCodeAt(0)),ITER=310000;
+const SALT=Uint8Array.from(atob('9MDqF2KdcjJJdVBg2jNSDw=='),c=>c.charCodeAt(0)),ITER=310000;
 const gate=document.getElementById('gate'),msg=document.getElementById('gm');
 document.documentElement.style.overflow='hidden';
 const dec=(key,buf)=>{buf=new Uint8Array(buf);return crypto.subtle.decrypt({name:'AES-GCM',iv:buf.slice(0,12)},key,buf.slice(12))};
@@ -477,7 +477,7 @@ async function unlock(key){const code=new TextDecoder().decode(await dec(key,awa
   gate.remove();document.documentElement.style.overflow='';}
 async function derive(pw){const k=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']);
   return crypto.subtle.deriveKey({name:'PBKDF2',salt:SALT,iterations:ITER,hash:'SHA-256'},k,{name:'AES-GCM',length:256},true,['decrypt'])}
-const KS='pb-key-'+'mHmuhKNXxRC+3tiUgUMjjw=='.slice(0,8);
+const KS='pb-key-'+'9MDqF2KdcjJJdVBg2jNSDw=='.slice(0,8);
 (async()=>{try{const raw=sessionStorage.getItem(KS);if(raw){const k=await crypto.subtle.importKey('raw',Uint8Array.from(atob(raw),c=>c.charCodeAt(0)),'AES-GCM',true,['decrypt']);await unlock(k);return}}catch(e){}
   document.getElementById('gpw').focus()})();
 document.getElementById('gf').onsubmit=async e=>{e.preventDefault();msg.textContent='Unlocking…';
