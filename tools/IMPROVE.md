@@ -26,3 +26,8 @@ Live: https://tigrestudiodesign.github.io/ · Mirror: claude.ai artifact `847d3d
 - After adding or changing a page's images, run `python3 tools/image_map.py` first (about 25 min) so the new page gets its own bundle.
 - New images: webp, at most 2560 px on the long side for photos/renders, under 1.5 MB. Keep masters (PNG renders, originals) in Google Drive, never in this repo.
 - Before every push: `python3 tools/size_report.py /home/claude/out/art2` must say "All within budget."
+
+## CMF priority (Nov 2026)
+- Every CMF page uses the same spec language: house `table.tbl`, `cmfChip(hex)` for colour (hex + CIELAB D65 computed live by `hexLab`), gloss in GU at 60° labelled as design targets, and a "becomes / typical zone" column.
+- Done: Standard Play (spCmf, 25 materials, tools/sp3d.py), Material Library (ML_SPEC), Nike CMF palette map (cnMap), Nesting Tables + Keypad CIELAB chips.
+- Next ideas: Knit Atlas and HESTIA colourway sheets with the same chips; ΔE tolerance column where a colour must match across materials. Never add Nike-internal specifics.
