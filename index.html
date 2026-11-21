@@ -48,11 +48,14 @@ table.spc-t td{vertical-align:middle}.spc-chip{display:inline-flex;align-items:c
 .sp-hot{position:absolute;inset:0;pointer-events:none}.sp-hot span{position:absolute;display:flex;gap:8px;align-items:center;font:600 10px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:#F3EFE6;background:rgba(14,14,16,.72);padding:6px 9px;white-space:nowrap;backdrop-filter:blur(3px)}
 .sp-hot b{color:#FF5A1F;font-weight:700}
 @media(max-width:760px){.sp-hot span{font-size:0;gap:0;padding:4px 6px}.sp-hot b{font-size:10px}}
-</style><title>Henry Ortega · CMF, Soft Goods &amp; Design Technology</title><meta name="description" content="Henry Ortega: CMF and soft goods for hardware, design technologist (Rhino, Grasshopper, Python, Blender) and technical program leader. 16 years at Nike, concept to factory, ending with Nike Tuned Air. Remote (US) or Portland, OR.">
+.pov{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin-top:36px}
+.pov-c{border-top:2px solid currentColor;padding-top:18px}.pov-c b{font:700 12px var(--mono);color:#FF5A1F;letter-spacing:.12em}.pov-c h3{margin:10px 0 10px}.pov-c p{color:var(--muted);margin:0 0 14px}
+@media(max-width:860px){.pov{grid-template-columns:1fr}}
+</style><title>Henry Ortega · Creative Director for Technical Products</title><meta name="description" content="Henry Ortega: creative director for technical products. CMF, 3D, launch visuals and visual systems, built in Rhino, Grasshopper and Blender. 16 years at Nike turning new technology into the images and manuals 50+ launches were built from. Tigre Studio, Portland, OR.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tigrestudiodesign.github.io/">
-<meta property="og:title" content="Henry Ortega · Product Development & Design Technology">
-<meta property="og:description" content="Hardware programs & NPI, design technology, technical documentation and soft goods. 16 years at Nike, concept to factory. Remote (US) or Portland, OR.">
+<meta property="og:title" content="Henry Ortega · Creative Director for Technical Products">
+<meta property="og:description" content="I make complex products easy to understand and hard to ignore: CMF, 3D, launch visuals and systems. 16 years at Nike. Tigre Studio, Portland, OR.">
 <meta property="og:image" content="https://tigrestudiodesign.github.io/img/og-card.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -1861,7 +1864,7 @@ const foot=()=>`<div class="band dark rel stripey foot-b"><img class="stripes" s
 const head=(sec,num)=>`<div class="band dark"><div class="wrap rh"><a href="#${sec}" style="text-decoration:none">← Back to portfolio</a><span class="hide-s" style="display:inline-flex;align-items:center"><svg class="tmark" viewBox="0 0 24 28" aria-hidden="true"><path d="M0 0H20.75A3.25 3.25 0 0 1 24 3.25V7H15.75V28H8.25V7H0Z"/></svg>Tigre Studio · Henry Ortega</span><span class="hide-s">Hardware Programs · Design Technology · Technical Documentation</span><span class="num">${num}</span></div></div>`;
 
 /* ---------- v19: recruiter-first home, BASECAMP ---------- */
-const NAV=[['selected','Work'],['fit','What I Do'],['rules','Rules → Code'],['product','Computational'],['work','Case Studies'],['nike','Nike'],['documentation','Documentation'],['brand','Brand'],['resume','Résumé'],['contact','Contact']];
+const NAV=[['selected','Work'],['pov','Point of View'],['work','Case Studies'],['nike','Nike'],['documentation','Documentation'],['brand','Brand'],['product','Lab'],['resume','Résumé'],['contact','Contact']];
 const nav=()=>`<header class="nav band"><div class="wrap"><a class="brand" href="#top"><svg class="tmark" viewBox="0 0 24 28" aria-hidden="true"><path d="M0 0H20.75A3.25 3.25 0 0 1 24 3.25V7H15.75V28H8.25V7H0Z"/></svg>Henry Ortega<span> · Tigre Studio</span></a><nav aria-label="Sections"><ul>${NAV.map(([h,t])=>`<li><a href="#${h}">${t}</a></li>`).join('')}</ul></nav><div class="nav-r">${socials('mini nav-soc')}<a class="nav-cta" href="mailto:${EMAIL}">Email me</a></div></div></header>`;
 
 const BC={id:'basecamp',title:'BASECAMP',
@@ -2268,12 +2271,12 @@ function mountKH(){
 }
 
 const SEL6=[
- ['hestia-knit-nodes',['img/hk__hero.webp?v=3',1600,1000],'HESTIA × Knit Nodes','CMF · Robotics · Program integration','Two studies joined by one selection engine: every zone of a home humanoid wears the knit the data picks.','Rhino · Python · Blender · 11 zones × 10 knits'],
+ ['hestia-knit-nodes',['img/hk__hero.webp?v=3',1600,1000],'HESTIA × Knit Nodes','Creative direction · CMF · Robotics','A soft-goods identity for a home humanoid, from concept and colourways to a data engine that picks the knit for every zone.','Concept · 3 colourways · 11 zones × 10 knits · Rhino, Python, Blender'],
+ ['standard-play',['img/spr__sel.webp',1376,860],'Standard Play','Art direction · Design systems','Five design systems directed as physical objects first: 25 specified materials, five tapes, then the Figma libraries.','5 systems · 25 materials · 240 variables'],
  ['p11',['img/ta__key1.webp',2000,1333],'Nike Tuned Air','Nike · My last program','Technical manuals and tech packs for two of the first Tuned Air programs, a new digital method of making Nike Air.','Announced Nov 2026 · Air development time down 70% (Nike)'],
- ['trenza-alpargata',['img/tz__r_hero_tumbaga.webp',1700,1040],'Trenza Alpargata · Muisca','Footwear CMF','A luxury alpargata with colour, material and pattern drawn from the Muisca of Colombia.','3 editions · original pattern system · factory CMF spec'],
+ ['trenza-alpargata',['img/tz__r_hero_tumbaga.webp',1700,1040],'Trenza Alpargata · Muisca','Concept · Footwear CMF','A luxury alpargata with colour, material and pattern drawn from the Muisca of Colombia.','3 editions · original pattern system · factory CMF spec'],
  ['p10',null,'Nike × Hyperice Hyperboot','Nike · Powered hardware','Electronics integration documentation for a heated, air-compression boot built with Hyperice.','Battery, heating and pneumatics inside a shoe'],
- ['nesting-tables',['img/nt2__hero.webp',2000,1240],'Nesting Tables','Furniture CMF','Three tables that lock into one block; colour, material and finish tell them apart.','13 finishes · 7 material families · 3 colourways'],
- ['basecamp',['img/bc2__hero.webp',1800,1440],'BASECAMP Emergency Radio','Industrial design · Python + Blender','A hand-crank radio and lantern built to be repaired, with a rule-driven speaker grille.','Product architecture · Torx hardware · CMF']];
+ ['basecamp',['img/bc2__hero.webp',1800,1440],'BASECAMP Emergency Radio','Product concept · Documentation system','A hand-crank radio and lantern built to be repaired, documented end to end in my own manual system.','Product architecture · CMF · 8-chapter manual']];
 function home(){
  const NK=id=>D.nike.find(p=>p.id===id);
  const href=id=>/^https?:/.test(id)?id:'#'+id;
@@ -2294,15 +2297,15 @@ function home(){
  return nav()+`<main id="top">
  <section class="band dark rel stripey"><img class="stripes" src="img/stripe-hero.webp" alt="" aria-hidden="true"><div class="wrap hero v19h">
   <div class="v19h-t">
-   <p class="avail">Available now · Open to CMF · Soft goods · Design technology · Hardware programs · Remote (US) or Portland, OR · Full-time or contract</p>
+   <p class="avail">Available now · Creative director · Design director · Technical products, hardware, robotics &amp; sport-tech · Remote (US) or Portland, OR</p>
    <h1 class="name">Henry Ortega</h1>
-   <p class="role">CMF &amp; Soft Goods for Hardware · Design Technologist · Technical Program Leader</p>
-   <p class="lead">I spent 16 years at Nike helping new products make it from the design studio to the factory floor: working with factory teams in Asia, partnering with Hyperice on powered footwear, and writing the manuals more than 50 launches were built from. My last project there was Nike Tuned Air. Now I'm bringing that experience to colour, materials and soft goods for hardware and robotics, and I model and render my own work in Rhino, Grasshopper and Blender.</p>
+   <p class="role">Creative Director for Technical Products · CMF · 3D · Launch Visuals · Systems</p>
+   <p class="lead">I make complex products easy to understand and hard to ignore. For 16 years at Nike I turned new footwear technology into the images, manuals and visual systems that more than 50 launches were built from, ending with Nike Tuned Air. Now I direct the whole picture through Tigre Studio: the concept, the colour and materials, the 3D, the launch visuals and the system behind them, modelled in Rhino and Grasshopper and rendered in Blender. Technical, but never boring.</p>
    <div class="ctas"><a class="btn inv" href="mailto:${EMAIL}">Email me</a><a class="btn" href="downloads/Henry-Ortega-Resume.pdf" download>Download résumé (PDF)</a><a class="btn" href="#selected">Selected work</a><a class="btn" href="${LI}" target="_blank" rel="noopener">LinkedIn</a></div>
    <div class="hero-soc"><span>Follow</span>${socials()}</div>
   </div>
   <div class="v19h-m" aria-hidden="true"><a class="media tr-l a" href="#hestia-knit-nodes" tabindex="-1">${im(heroImgs[0],'')}</a><a class="media bl b" href="#p11" tabindex="-1">${im(heroImgs[1],'')}</a><a class="media tr c" href="#basecamp" tabindex="-1">${im(heroImgs[2],'')}</a></div>
-  <div class="stats v19s"><div><b>16+</b><span>Years concept to production</span></div><div><b>10</b><span>Years technical program management</span></div><div><b>50+</b><span>Tech manuals · 5,000+ pages</span></div><div><b>9</b><span>Years leading teams</span></div></div>
+  <div class="stats v19s"><div><b>16+</b><span>Years concept to production</span></div><div><b>50+</b><span>Launches built from my visual systems</span></div><div><b>5,000+</b><span>Pages art-directed and drawn</span></div><div><b>9</b><span>Years leading teams</span></div></div>
  </div>${lines()}</section>
  <span class="spectrum thin"></span>
 
@@ -2311,46 +2314,16 @@ function home(){
   <div class="sel6">${SEL6.map((x,i)=>`<a class="sel-c${i<2?' big':''}" href="#${x[0]}"><div class="media ${i%2?'bl':'tr'}">${im(x[1],x[2])}</div><p class="kind">${x[3]}</p><h3>${esc(x[2])}</h3><p>${esc(x[4])}</p><p class="sel-o">${esc(x[5])}</p></a>`).join('')}</div>
  </div></section>
 
- <section id="fit" class="band light section"><div class="wrap">
-  <p class="eyebrow">What I Do · For hiring teams</p><h2 class="sh-title">Four Ways I Can Help Your Team</h2><p class="sh-sub">Hardware programs &amp; NPI / Design technology / Technical documentation / Soft goods &amp; materials</p>
-  <div class="lanes">${LANES.map(lane).join('')}</div>
-  <div class="tools"><span>Tools</span><ul><li>Rhino 9</li><li>Grasshopper 2</li><li>KeyShot · V-Ray</li><li>Adobe Creative Cloud</li><li>Figma</li><li>Smartsheet · Airtable</li><li>Python</li><li>Claude · ComfyUI</li></ul></div>
+ <section id="pov" class="band light section"><div class="wrap">
+  <p class="eyebrow">Point Of View · How I direct</p><h2 class="sh-title">THREE RULES I WORK BY</h2><p class="sh-sub">What a team gets when I lead the creative</p>
+  <div class="pov">${[
+   ['01','CLARITY FIRST','If a factory, a buyer or a customer has to work to understand it, the design isn\'t finished. Sixteen years of manuals taught me to make the complex obvious, then make it beautiful.',[['documentation','The manual library'],['basecamp','BASECAMP manual']]],
+   ['02','SYSTEMS, NOT ONE-OFFS','Every project ships with the rules behind it: a colour and material spec, a type system, a parametric model, so the next hundred pieces stay on brand without me in the room.',[['standard-play','Standard Play'],['material-library','Material Library']]],
+   ['03','TECHNICAL, BUT FUN','Precise enough for engineering, playful enough to stop the scroll: hot accent colour, technical micro-type, knurled hardware, grid backdrops.',[['hestia','HESTIA'],['parametric-keypad','Parametric Keypad']]]
+  ].map(([n,t,b,ev])=>`<div class="pov-c"><b>${n}</b><h3>${t}</h3><p>${b}</p><div class="lane-l">${ev.map(([id,x])=>`<a href="${href(id)}">${x} →</a>`).join('')}</div></div>`).join('')}</div>
+  <div class="tools"><span>Tools</span><ul><li>Rhino 9</li><li>Grasshopper 2</li><li>Blender · KeyShot</li><li>Adobe Creative Cloud</li><li>Figma</li><li>Python</li><li>Claude · ComfyUI</li><li>Smartsheet · Airtable</li></ul></div>
  </div></section>
 
- <section id="rules" class="band dark section rl-sec"><div class="wrap">
-  <p class="eyebrow">Method · Rules → Code</p><h2 class="sh-title">The Rule Book, As Geometry</h2><p class="sh-sub">What I wrote in manuals, now built into the model</p>
-  <p class="intro rl-intro">A factory tech manual is a list of constraints: how deep a cut can go, how close two features can sit, how thin a wall can get before it tears. I wrote more than 50 of them. In a parametric model, the same rules become inputs and live checks, so a design that breaks one is flagged on screen, before a sample is ever cut.</p>
-  <ol class="rl-flow"><li><b>01</b><h3>RULE</h3><p>A constraint from the factory: a minimum, a maximum, a spacing.</p></li><li><b>02</b><h3>PARAMETER</h3><p>An input with a safe range instead of a note on a drawing.</p></li><li><b>03</b><h3>CHECK</h3><p>The geometry flags or refuses anything outside the range.</p></li><li><b>04</b><h3>OUTPUT</h3><p>Production-ready geometry that passes the factory's own rules.</p></li></ol>
-  <div class="rl-tools">${RULE_TOOLS.map((t,i)=>`<div class="rl-t"><p class="rl-k"><span>T.${String(i+1).padStart(2,'0')}</span><em>${t.st}</em></p><h3>${t.n}</h3><dl><dt>RULE IT ENCODES</dt><dd>${t.r}</dd><dt>WHAT IT OUTPUTS</dt><dd>${t.o}</dd></dl></div>`).join('')}</div>
-  <p class="rl-proof"><span>PROOF SO FAR</span>${[['https://tigrestudiodesign.github.io/pantera/','PANTERA'],['parametric-keypad','Parametric Keypad'],['basecamp','BASECAMP'],['knit-curve-atlas','Knit Curve Atlas'],['figures','Figures']].map(([h,t])=>`<a href="${href(h)}">${t} →</a>`).join('')}</p>
-  <p class="fine">Rules are described at a general, public level. No Nike specifications or values are shown.</p>
- </div></section>
- <section id="product" class="band light section"><div class="wrap">
-  <p class="eyebrow">Computational &amp; Product Design · 2026</p><h2 class="sh-title">I Build The Geometry Myself</h2><p class="sh-sub">Industrial design / CMF &amp; materials / Footwear / Parametric · Rhino 9 + Grasshopper 2</p>
-  <p class="intro">After 16 years translating other people's designs into specs, I now model, script and render products end to end, as part of the Master in Parametric Design at Controlmad and on my own.</p>
-  <div class="cards">${prod}</div>
-  <h3 class="sub-h">CMF &amp; Materials</h3>
-  <p class="intro" style="margin-top:12px">Studies in how structure, pattern and colour live inside a material: knit constructions, knitted graphics and finish palettes.</p>
-  <div class="hk-group"><a class="hk-g-main" href="#hestia-knit-nodes"><div class="media tr-l"><span class="badge">New</span><img src="img/hk__hero.webp?v=3" alt="HESTIA dressed in the knits the selection engine picked" loading="lazy" width="1600" height="1000"></div><p class="kind">CMF · Program Integration · Lead project</p><h3>HESTIA × Knit Nodes</h3><p>Two studies joined by one selection engine: Rhino + Python knit behaviour, HESTIA joint demands, Blender renders and a live matrix, all from one data file.</p></a>
-  <div class="hk-g-side"><p class="hk-g-lab">The two studies it joins</p>${[CARD_HS,CARD_KN].map(card).join('')}</div></div>
-  <a class="feature gl-feat" href="#${PN.id}"><div class="media tr-l"><span class="badge">New</span>${im(PN.img.hero,'PNEUMA, a soft textile hand, wrapped around a mug')}</div>
-  <div><small>New · Soft Robotics · Soft Goods · Built for HESTIA</small><h3>PNEUMA</h3><p>A soft textile hand adapted from the Soft Robotics Toolkit: knit fingers over heat-sealed bladders, a Python bend model, a parametric flat pattern and a cut-down control board. Drag the pressure and watch a finger curl.</p><span class="go">See the study →</span></div></a>
-  <div class="cards">${cmf}</div>
-  <h3 class="sub-h">Visual Communication &amp; Systems</h3>
-  <p class="intro" style="margin-top:12px">Projects where the craft is the system behind the visuals: scripted 3D illustration and type, AI-built design systems and a cookbook generated from code.</p>
-  <div class="cards c2">${vis}</div>
-  <h3 class="sub-h">Free Resources</h3>
-  <a class="feature gl-feat" href="#${GB2.id}"><div class="media tr-l"><span class="badge">New</span>${im(GB2.img.hero,'Three slides from The Sorting Tray: the cover, graft flatten and simplify, and loft each pair')}</div>
-  <div><small>New · Free download · Brick by Brick Vol. 02</small><h3>The Sorting Tray</h3><p>Data matching and data trees explained with LEGO® bricks: Longest List = reuse the last brick, paths = bag labels, Graft = one brick per bag. Twelve pairs, a first build and a cheat sheet.</p><span class="go">Get the PDF →</span></div></a>
-  <a class="feature gl-feat" href="#${GB.id}"><div class="media tr-l"><span class="badge">New</span>${im(GB.img.hero,'Three slides from Grasshopper, Brick by Brick: the cover, baseplate equals canvas, and your first build')}</div>
-  <div><small>New · Free download · English &amp; Español</small><h3>Grasshopper, Brick By Brick</h3><p>The basic Grasshopper components explained with LEGO® bricks: baseplate = canvas, studs and tubes = wires, turntable = number slider. Fourteen pairs, a first build and a cheat sheet in eleven slides.</p><span class="go">Get the PDF →</span></div></a>
-  <a class="feature gl-feat" href="#${RS2.id}"><div class="media tr-l"><span class="badge">New</span>${im(RS2.img.hero,'Three slides from Rhino to Stager, volume two of the Rhino and Adobe series')}</div>
-  <div><small>New · Free download · Rhino ⇄ Adobe · Vol. 02</small><h3>Rhino → Stager</h3><p>Volume two of the series: taking Rhino models into Substance 3D Stager to stage and render them, with the bridge glossary, the round trip and the five things that go wrong.</p><span class="go">Get the PDF →</span></div></a>
-  <a class="feature gl-feat" href="#${RA.id}"><div class="media tr-l"><span class="badge">New</span>${im(RA.img.hero,'Three slides from Rhino to Illustrator, volume one of the Rhino and Adobe series')}</div>
-  <div><small>New · Free download · Rhino ⇄ Adobe · Vol. 01</small><h3>Rhino → Illustrator</h3><p>The first volume of a series on moving work between Rhino and Adobe's tools: a bridge glossary, the full round trip and the five things that go wrong, in ten slides.</p><span class="go">Get the PDF →</span></div></a>
-  <a class="feature gl-feat" href="#${GL.id}"><div class="media tr-l"><span class="badge">New</span>${im(GL.img.hero,'Covers of the Rhino Glossary and the Grasshopper Glossary')}</div>
-  <div><small>New · Free download · English &amp; Español</small><h3>Rhino &amp; Grasshopper Glossaries</h3><p>Two beginner glossaries I wrote and designed as LinkedIn carousels: 96 terms, commands and components in plain language, each linked to its reference page.</p><span class="go">Get the PDFs →</span></div></a>
- </div></section>
  <section id="work" class="band dark section"><div class="wrap">
   <p class="eyebrow">Selected Case Studies</p><h2 class="sh-title">Start Here</h2><p class="sh-sub">Five projects that show the range: hardware product, pattern engineering, parametric CMF, materials innovation, documentation</p>
   <div class="frs">${feat}</div>
@@ -2381,6 +2354,40 @@ function home(){
  </div></section>
 
  ${brandSection()}
+ <section id="rules" class="band dark section rl-sec"><div class="wrap">
+  <p class="eyebrow">Lab · Method · Rules → Code</p><h2 class="sh-title">The Rule Book, As Geometry</h2><p class="sh-sub">What I wrote in manuals, now built into the model</p>
+  <p class="intro rl-intro">A factory tech manual is a list of constraints: how deep a cut can go, how close two features can sit, how thin a wall can get before it tears. I wrote more than 50 of them. In a parametric model, the same rules become inputs and live checks, so a design that breaks one is flagged on screen, before a sample is ever cut.</p>
+  <ol class="rl-flow"><li><b>01</b><h3>RULE</h3><p>A constraint from the factory: a minimum, a maximum, a spacing.</p></li><li><b>02</b><h3>PARAMETER</h3><p>An input with a safe range instead of a note on a drawing.</p></li><li><b>03</b><h3>CHECK</h3><p>The geometry flags or refuses anything outside the range.</p></li><li><b>04</b><h3>OUTPUT</h3><p>Production-ready geometry that passes the factory's own rules.</p></li></ol>
+  <div class="rl-tools">${RULE_TOOLS.map((t,i)=>`<div class="rl-t"><p class="rl-k"><span>T.${String(i+1).padStart(2,'0')}</span><em>${t.st}</em></p><h3>${t.n}</h3><dl><dt>RULE IT ENCODES</dt><dd>${t.r}</dd><dt>WHAT IT OUTPUTS</dt><dd>${t.o}</dd></dl></div>`).join('')}</div>
+  <p class="rl-proof"><span>PROOF SO FAR</span>${[['https://tigrestudiodesign.github.io/pantera/','PANTERA'],['parametric-keypad','Parametric Keypad'],['basecamp','BASECAMP'],['knit-curve-atlas','Knit Curve Atlas'],['figures','Figures']].map(([h,t])=>`<a href="${href(h)}">${t} →</a>`).join('')}</p>
+  <p class="fine">Rules are described at a general, public level. No Nike specifications or values are shown.</p>
+ </div></section>
+ <section id="product" class="band light section"><div class="wrap">
+  <p class="eyebrow">Lab · Computational &amp; Product Design · 2026</p><h2 class="sh-title">I Build The Geometry Myself</h2><p class="sh-sub">Industrial design / CMF &amp; materials / Footwear / Parametric · Rhino 9 + Grasshopper 2</p>
+  <p class="intro">After 16 years translating other people's designs into specs, I now model, script and render products end to end, as part of the Master in Parametric Design at Controlmad and on my own.</p>
+  <div class="cards">${prod}</div>
+  <h3 class="sub-h">CMF &amp; Materials</h3>
+  <p class="intro" style="margin-top:12px">Studies in how structure, pattern and colour live inside a material: knit constructions, knitted graphics and finish palettes.</p>
+  <div class="hk-group"><a class="hk-g-main" href="#hestia-knit-nodes"><div class="media tr-l"><span class="badge">New</span><img src="img/hk__hero.webp?v=3" alt="HESTIA dressed in the knits the selection engine picked" loading="lazy" width="1600" height="1000"></div><p class="kind">CMF · Program Integration · Lead project</p><h3>HESTIA × Knit Nodes</h3><p>Two studies joined by one selection engine: Rhino + Python knit behaviour, HESTIA joint demands, Blender renders and a live matrix, all from one data file.</p></a>
+  <div class="hk-g-side"><p class="hk-g-lab">The two studies it joins</p>${[CARD_HS,CARD_KN].map(card).join('')}</div></div>
+  <a class="feature gl-feat" href="#${PN.id}"><div class="media tr-l"><span class="badge">New</span>${im(PN.img.hero,'PNEUMA, a soft textile hand, wrapped around a mug')}</div>
+  <div><small>New · Soft Robotics · Soft Goods · Built for HESTIA</small><h3>PNEUMA</h3><p>A soft textile hand adapted from the Soft Robotics Toolkit: knit fingers over heat-sealed bladders, a Python bend model, a parametric flat pattern and a cut-down control board. Drag the pressure and watch a finger curl.</p><span class="go">See the study →</span></div></a>
+  <div class="cards">${cmf}</div>
+  <h3 class="sub-h">Visual Communication &amp; Systems</h3>
+  <p class="intro" style="margin-top:12px">Projects where the craft is the system behind the visuals: scripted 3D illustration and type, AI-built design systems and a cookbook generated from code.</p>
+  <div class="cards c2">${vis}</div>
+  <h3 class="sub-h">Free Resources</h3>
+  <a class="feature gl-feat" href="#${GB2.id}"><div class="media tr-l"><span class="badge">New</span>${im(GB2.img.hero,'Three slides from The Sorting Tray: the cover, graft flatten and simplify, and loft each pair')}</div>
+  <div><small>New · Free download · Brick by Brick Vol. 02</small><h3>The Sorting Tray</h3><p>Data matching and data trees explained with LEGO® bricks: Longest List = reuse the last brick, paths = bag labels, Graft = one brick per bag. Twelve pairs, a first build and a cheat sheet.</p><span class="go">Get the PDF →</span></div></a>
+  <a class="feature gl-feat" href="#${GB.id}"><div class="media tr-l"><span class="badge">New</span>${im(GB.img.hero,'Three slides from Grasshopper, Brick by Brick: the cover, baseplate equals canvas, and your first build')}</div>
+  <div><small>New · Free download · English &amp; Español</small><h3>Grasshopper, Brick By Brick</h3><p>The basic Grasshopper components explained with LEGO® bricks: baseplate = canvas, studs and tubes = wires, turntable = number slider. Fourteen pairs, a first build and a cheat sheet in eleven slides.</p><span class="go">Get the PDF →</span></div></a>
+  <a class="feature gl-feat" href="#${RS2.id}"><div class="media tr-l"><span class="badge">New</span>${im(RS2.img.hero,'Three slides from Rhino to Stager, volume two of the Rhino and Adobe series')}</div>
+  <div><small>New · Free download · Rhino ⇄ Adobe · Vol. 02</small><h3>Rhino → Stager</h3><p>Volume two of the series: taking Rhino models into Substance 3D Stager to stage and render them, with the bridge glossary, the round trip and the five things that go wrong.</p><span class="go">Get the PDF →</span></div></a>
+  <a class="feature gl-feat" href="#${RA.id}"><div class="media tr-l"><span class="badge">New</span>${im(RA.img.hero,'Three slides from Rhino to Illustrator, volume one of the Rhino and Adobe series')}</div>
+  <div><small>New · Free download · Rhino ⇄ Adobe · Vol. 01</small><h3>Rhino → Illustrator</h3><p>The first volume of a series on moving work between Rhino and Adobe's tools: a bridge glossary, the full round trip and the five things that go wrong, in ten slides.</p><span class="go">Get the PDF →</span></div></a>
+  <a class="feature gl-feat" href="#${GL.id}"><div class="media tr-l"><span class="badge">New</span>${im(GL.img.hero,'Covers of the Rhino Glossary and the Grasshopper Glossary')}</div>
+  <div><small>New · Free download · English &amp; Español</small><h3>Rhino &amp; Grasshopper Glossaries</h3><p>Two beginner glossaries I wrote and designed as LinkedIn carousels: 96 terms, commands and components in plain language, each linked to its reference page.</p><span class="go">Get the PDFs →</span></div></a>
+ </div></section>
  ${figuresHome()}
 
  ${resume()}
@@ -3357,8 +3364,8 @@ function bcPage(){
 
 function resume(){
  return `<section id="resume" class="band light section"><div class="wrap">
-  <p class="eyebrow">Résumé</p><h2 class="sh-title">From Concept To Factory, And The Tools Behind It</h2><p class="sh-sub">Henry Mauricio Ortega Vera</p>
-  <div class="res-top"><div><p>Product development and technical program leader. I take physical products from first concept to mass production, and I build the tools and documentation that make it repeatable.</p><p>16 years at Nike: 10 years of technical program management, 4 years leading cross-functional hardware programs (mechanical, electrical, software) including Nike × Hyperice powered products, nearly three years in Taichung running technical transfer with contract manufacturers, and the documentation system behind 50+ manuals and 5,000+ pages.</p><p>Now at Tigre Studio I build computational design tools in Rhino and Grasshopper and generative-AI workflows. Open to Senior and Lead roles in hardware program management and NPI, design technology, technical documentation and soft-goods product development.</p></div>
+  <p class="eyebrow">Résumé</p><h2 class="sh-title">From Concept To Factory, And The Picture Around It</h2><p class="sh-sub">Henry Mauricio Ortega Vera</p>
+  <div class="res-top"><div><p>Creative director for technical products. I lead the picture from first concept to mass production: the idea, the colour and materials, the 3D, the launch visuals and the documentation system that makes it repeatable.</p><p>16 years at Nike: 10 years of technical program management, 4 years leading cross-functional hardware programs (mechanical, electrical, software) including Nike × Hyperice powered products, nearly three years in Taichung running technical transfer with contract manufacturers, and the documentation system behind 50+ manuals and 5,000+ pages.</p><p>Now at Tigre Studio I art-direct and build product stories end to end in Rhino, Grasshopper and Blender, with generative-AI workflows. Open to creative director, design director and creative lead roles at technical brands: hardware, robotics, energy, sport-tech and footwear.</p></div>
   <ul class="contact-list"><li><span>Email</span><span>${EMAIL}</span></li><li><span>Phone</span><span>${PHONE}</span></li><li><span>LinkedIn</span><span><a href="${LI}" target="_blank" rel="noopener">linkedin.com/in/henryortega</a></span></li><li><span>Location</span><span>Portland, OR · Remote (US)</span></li></ul></div>
   <div class="caps5">${RES.caps.map(([t,b])=>`<div><h4>${t}</h4><p>${b}</p></div>`).join('')}</div>
   <h3 class="sub-h">Experience</h3>
