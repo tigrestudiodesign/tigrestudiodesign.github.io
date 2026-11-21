@@ -65,7 +65,7 @@ def _():
     return 0.25 * st * (1 - d) + 0.55 * d, ONE, paint([(d, '#FF1F8F')], '#141318')
 
 # ---- T-60 PHOSPHOR · 80s CRT terminal
-@reg('t60_crt', 'Phosphor screen', .05, .05, 2.0, {'glass': '#0A140C', 'emit': 5.0}, tape='t60', proc='Soda-lime CRT glass · P1 green phosphor', gloss='95 GU', role='Background / Glow text', hexes=['#050B07', '#39FF6E'])
+@reg('t60_crt', 'Phosphor screen', .05, .05, 2.0, {'glass': '#0A140C', 'emit': 0.7}, tape='t60', proc='Soda-lime CRT glass · P1 green phosphor', gloss='95 GU', role='Background / Glow text', hexes=['#050B07', '#39FF6E'])
 def _():
     scan = ((ym % 0.7) < 0.42).astype(np.float32); glyph = Z.copy()
     for i, ch in enumerate('046'): glyph = np.maximum(glyph, seg7(ch, 8 + i * 12, 30, 8, 12, 1.4))
@@ -73,7 +73,8 @@ def _():
     return Z, ONE, paint([(em, '#39FF6E')], '#050B07'), em
 @reg('t60_case', 'Computer case', .62, .28, 3.0, tape='t60', proc='ABS · VDI 30 spark texture', gloss='6 GU', role='Surface (Daylight)', hexes=['#E8E0CA'])
 def _():
-    st = fbm(0.22, 3); return 0.6 * st, ONE, paint([], '#E8E0CA') * (0.95 + 0.07 * st[..., None])
+    st = fbm(0.22, 3); sp = (fbm(0.6, 1) > 0.66).astype(np.float32)
+    return 0.55 * st + 0.35 * sp, ONE, paint([], '#E8E0CA') * (0.94 + 0.08 * st[..., None])
 @reg('t60_vents', 'Cooling vents', .62, 1.4, 3.0, tape='t60', proc='ABS · moulded-through slots · 2 mm pitch', gloss='6 GU', role='Divider / Pattern', hexes=['#E8E0CA', '#3B372E'])
 def _():
     slot = ((xm % 3.0) < 1.4) & (ym > 8) & (ym < 42); st = fbm(0.22, 2)
@@ -88,7 +89,7 @@ def _():
             h = np.maximum(h, k * dish)
             if (i + j) % 2: dark = np.maximum(dark, k)
     return h, ONE, paint([(dark, '#8C877C')], '#D9D2C0')
-@reg('t60_led', 'Drive-activity lens', .1, 1.2, 3.0, {'emit': 1.2}, tape='t60', proc='Amber PC light-pipe · on ABS case', gloss='85 GU', role='Warning', hexes=['#FFB000'])
+@reg('t60_led', 'Drive-activity lens', .1, 1.2, 3.0, {'emit': 0.3}, tape='t60', proc='Amber PC light-pipe · on ABS case', gloss='85 GU', role='Warning', hexes=['#FFB000'])
 def _():
     d = disc(25, 25, 8, 0.4); dome = np.sqrt(np.clip(1 - ((xm - 25) ** 2 + (ym - 25) ** 2) / 64, 0, 1)); st = fbm(0.22, 2)
     return 0.12 * st * (1 - d) + 0.3 + 0.7 * dome * d, ONE, paint([(d, '#FF9800')], '#E8E0CA'), d * (0.5 + 0.5 * dome)
@@ -107,7 +108,7 @@ def _():
 def _():
     p = 2.0; a = np.abs(((xm + ym) % p) / p - .5) * 2; b = np.abs(((xm - ym) % p) / p - .5) * 2
     k = np.minimum(a, b); return k, ONE, paint([], '#3A3C40') * (0.85 + 0.3 * k[..., None])
-@reg('t90_vu', 'Backlit VU dial', .25, .04, 2.0, {'emit': 0.45, 'coat': 1}, tape='t90', proc='Printed PET dial · amber backlight', gloss='70 GU', role='Accent glow / meter', hexes=['#F5A623', '#D7281E'])
+@reg('t90_vu', 'Backlit VU dial', .25, .04, 2.0, {'emit': 0.3, 'coat': 1}, tape='t90', proc='Printed PET dial · amber backlight', gloss='70 GU', role='Accent glow / meter', hexes=['#F5A623', '#D7281E'])
 def _():
     cx, cy = 25, -2; r = np.hypot(xm - cx, ym - cy); ang = np.degrees(np.arctan2(ym - cy, xm - cx))
     arc = (np.abs(r - 34) < 0.35) & (ang > 40) & (ang < 140)
@@ -162,7 +163,7 @@ def _():
     return 0.05 * st + np.sqrt(p), ONE, paint([(m, '#FFD23F')], '#D6D3DE')
 
 # ---- C-46 DIGITAL DASH · 80s car dashboards
-@reg('c46_vfd', 'Vacuum-fluorescent readout', .04, .05, 2.0, {'glass': '#07090B', 'emit': 6.0}, tape='c46', proc='VFD behind smoked acrylic · teal phosphor', gloss='95 GU', role='Primary readout', hexes=['#07090B', '#2EF2D0'])
+@reg('c46_vfd', 'Vacuum-fluorescent readout', .04, .05, 2.0, {'glass': '#07090B', 'emit': 0.6}, tape='c46', proc='VFD behind smoked acrylic · teal phosphor', gloss='95 GU', role='Primary readout', hexes=['#07090B', '#2EF2D0'])
 def _():
     m = Z.copy()
     for i, ch in enumerate('046'): m = np.maximum(m, seg7(ch, 7 + i * 12.5, 15, 9, 18, 1.6))
@@ -171,9 +172,9 @@ def _():
     return Z, ONE, paint([(ghost * .15, '#0E3B36'), (m, '#2EF2D0')], '#07090B'), m
 @reg('c46_soft', 'Soft-touch dash skin', .7, .8, 3.0, tape='c46', proc='TPO skin · leather-grain emboss · soft-touch', gloss='3 GU', role='Surface (Night)', hexes=['#10151A'])
 def _():
-    g = fbm(16, 3); cells = np.abs(g - 0.5) < 0.03
-    return 0.6 * g - 0.5 * cells, ONE, paint([], '#10151A') * (0.9 + 0.2 * g[..., None])
-@reg('c46_amber', 'Amber bar graph', .04, .05, 2.0, {'glass': '#07090B', 'emit': 5.0}, tape='c46', proc='VFD bar segments · amber filter', gloss='95 GU', role='Secondary readout / warning', hexes=['#FFB23E'])
+    g = fbm(5, 3); cells = (np.abs(g - 0.5) < 0.022).astype(np.float32); pore = (fbm(0.5, 1) > 0.72).astype(np.float32)
+    return 0.45 * g - 0.6 * cells - 0.15 * pore, ONE, paint([], '#10151A') * (0.94 + 0.1 * g[..., None])
+@reg('c46_amber', 'Amber bar graph', .04, .05, 2.0, {'glass': '#07090B', 'emit': 0.5}, tape='c46', proc='VFD bar segments · amber filter', gloss='95 GU', role='Secondary readout / warning', hexes=['#FFB23E'])
 def _():
     m = Z.copy()
     for i in range(10):
@@ -184,7 +185,7 @@ def _():
 def _():
     r = np.hypot(xm - 25, ym - 25); ring = 0.5 + 0.5 * np.sin(r * 9); lip = smooth(14, 15, r) * (1 - smooth(19, 20, r))
     return 0.15 * ring + 0.85 * lip, ONE, paint([], '#B8C0C8') * (0.93 + 0.1 * ring[..., None])
-@reg('c46_lamp', 'Telltale lens', .08, .05, 2.0, {'glass': '#07090B', 'emit': 4.0}, tape='c46', proc='Red PC lens · masked icon · smoked cover', gloss='90 GU', role='Danger lamp', hexes=['#FF3B30'])
+@reg('c46_lamp', 'Telltale lens', .08, .05, 2.0, {'glass': '#07090B', 'emit': 0.5}, tape='c46', proc='Red PC lens · masked icon · smoked cover', gloss='90 GU', role='Danger lamp', hexes=['#FF3B30'])
 def _():
     body = rect(13, 16, 37, 32, 0.12) - rect(14.6, 17.6, 35.4, 30.4, 0.12); t1 = rect(17, 32, 21, 34.5, 0.1); t2 = rect(29, 32, 33, 34.5, 0.1)
     plus = np.maximum(rect(17.5, 23.3, 22.5, 24.7, 0.1), rect(19.3, 21.5, 20.7, 26.5, 0.1)); minus = rect(27.5, 23.3, 32.5, 24.7, 0.1)
