@@ -376,5 +376,14 @@
    "tools/image_map.json",
    "data/improve-log.json"
   ]
+ },
+ {
+  "date": "2026-11-22",
+  "project": "standard-play",
+  "change": "New ONE LAYOUT, FIVE TAPES section: a live tape-deck specimen that re-skins across all five tapes by swapping seven shared semantic tokens (surface, well, text, primary, signal, warning, frame). Each token value is traced to its material in the CMF tables, with WCAG contrast computed live, hover-to-locate, keyboard tabs and a Play button that runs the meter. Hero facts now sit in one row of five on desktop. Desktop and 390 px verified.",
+  "files": [
+   "index.html",
+   "data/improve-log.json"
+  ]
  }
 ]

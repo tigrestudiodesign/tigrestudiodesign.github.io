@@ -279,6 +279,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .case .meta{font-family:var(--serif);font-style:italic;font-size:26px;line-height:1.2;margin:0;padding-bottom:16px;border-bottom:2px solid var(--rule)}
 .case .note{font-size:clamp(20px,2.2vw,28px);line-height:1.1;max-width:34ch;margin:24px 0 0}
 .facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin:40px 0 0}
+@media (min-width:1100px){.facts.f5{grid-template-columns:repeat(5,minmax(0,1fr))}}
 .facts div{border-top:1px solid var(--grid);padding-top:10px;min-width:0}
 .facts dt{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:15px}
 .facts dd{margin:4px 0 0;font-weight:700;font-size:18px;line-height:1.15}
@@ -369,6 +370,52 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 @media (max-width:820px){.tt-cluster{padding:30px 10px 26px}.lx-bin{padding:16px 14px 12px;border-radius:40px}.lx-dials{gap:6px}.lx-low{flex-direction:column;gap:8px}.tt-dial text{font-size:15px}}
 @media (max-width:480px){.lx-low{padding:0}.tt-lamps{gap:1px;flex-wrap:nowrap}.tt-lamps button{width:27px;height:26px}.tt-lamps svg{width:17px;height:17px}}
 @media (prefers-reduced-motion:reduce){.tt-ndl{transition:none}.tt-lamps .blink{animation:none}}
+.rk{margin-top:32px}
+.rk-tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-bottom:14px}
+.rk-tab{display:flex;flex-direction:column;align-items:flex-start;gap:8px;text-align:left;cursor:pointer;color:#C9CCD0;background:#121316;border:1px solid #2A2C31;border-radius:4px;padding:11px 12px;font:600 11px/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase}
+.rk-tab small{font:500 9.5px/1.2 var(--mono);letter-spacing:.08em;color:#7F858C}
+.rk-tab .sw{display:flex;gap:2px;height:6px;width:100%}.rk-tab .sw i{flex:1;border-radius:1px}
+.rk-tab:hover{border-color:#5A5E66}.rk-tab[aria-selected=true]{border-color:#FF5A1F;color:#fff;box-shadow:inset 0 -2px 0 #FF5A1F}
+.rk-tab:focus-visible,.rk-dev button:focus-visible,.rk-t tr:focus-visible{outline:2px solid #FF5A1F;outline-offset:2px}
+.rk-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:14px;align-items:stretch}
+.rk-stage{position:relative;display:grid;place-items:center;padding:44px 28px;border:1px solid #2A2C31;border-radius:4px;background:#0E0F11;background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:12px 12px}
+.rk-stage>.rk-cap{position:absolute;left:12px;top:10px;font:500 9.5px/1 var(--mono);letter-spacing:.16em;color:#7F858C;text-transform:uppercase}
+.rk-stage>.rk-cap.r{left:auto;right:12px}
+.rk-dev{--glow:none;box-sizing:border-box;width:min(100%,380px);background:var(--surface);color:var(--text);border:2px solid var(--frame);border-radius:14px;padding:16px 16px 18px;box-shadow:0 24px 60px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.08);transition:background .35s,color .35s,border-color .35s}
+.rk-top{display:flex;justify-content:space-between;align-items:center;font:600 10px/1 var(--mono);letter-spacing:.18em}
+.rk-badge{background:var(--warning);color:var(--on-warning);padding:5px 7px 4px;border-radius:3px;letter-spacing:.14em}
+.rk-name{display:flex;align-items:baseline;gap:10px;margin:14px 0 12px;font-family:var(--tfont);font-size:30px;line-height:1;color:var(--text)}
+.rk-name small{font:700 11px/1 'Noto Sans JP',sans-serif;opacity:.8;letter-spacing:.1em}
+.rk-well{background:var(--well);border:1px solid var(--frame);border-radius:8px;padding:14px 14px 12px}
+.rk-read{font-family:var(--tfont);font-size:34px;line-height:1;color:var(--signal);text-shadow:var(--glow);font-variant-numeric:tabular-nums;letter-spacing:.04em}
+.rk-meter{display:grid;grid-template-columns:repeat(16,1fr);gap:3px;height:22px;margin:12px 0 6px}
+.rk-meter i{background:var(--signal);opacity:.16;border-radius:1px;transition:opacity .08s}
+.rk-meter i.on{opacity:1;box-shadow:var(--glow)}
+.rk-meter i.pk{background:var(--warning)}
+.rk-lab{display:flex;justify-content:space-between;font:500 9px/1 var(--mono);letter-spacing:.16em;color:var(--signal);opacity:.75}
+.rk-row{display:flex;gap:8px;align-items:center;margin-top:14px;flex-wrap:wrap}
+.rk-dev .rk-btn{font:700 11px/1 var(--mono);letter-spacing:.14em;border-radius:6px;padding:11px 14px;cursor:pointer;border:2px solid var(--primary)}
+.rk-dev .rk-btn.p{background:var(--primary);color:var(--on-primary)}
+.rk-dev .rk-btn.s{background:transparent;color:var(--text);border-color:var(--frame)}
+.rk-tg{margin-left:auto;display:flex;align-items:center;gap:8px;font:600 9.5px/1 var(--mono);letter-spacing:.14em;background:none;border:0;color:var(--text);cursor:pointer;padding:4px 0}
+.rk-tg b{position:relative;width:34px;height:18px;border-radius:9px;background:var(--well);border:1px solid var(--frame)}
+.rk-tg b:after{content:"";position:absolute;top:2px;left:2px;width:12px;height:12px;border-radius:50%;background:var(--text);transition:transform .2s,background .2s}
+.rk-tg[aria-pressed=true] b:after{transform:translateX(16px);background:var(--primary)}
+.rk-dev .hl,.rk-dev.hl{outline:2px dashed #FF5A1F;outline-offset:3px}
+.rk-sheet{border:1px solid #2A2C31;border-radius:4px;padding:6px 16px 16px;background:#0E0F11;color:#E6E7E9;min-width:0}
+.rk-sheet .tbl-wrap{margin-top:10px}.tbl-wrap table.rk-t{min-width:0;width:100%}.rk-t tbody tr{cursor:default}.rk-t tbody tr:hover>*,.rk-t tbody tr:focus-visible>*{background:rgba(255,90,31,.1)}
+.rk-t td,.rk-t tbody th{padding:9px 10px 9px 0!important;vertical-align:middle}
+.rk-t .tk{font:600 11px/1.2 var(--mono);letter-spacing:.06em;color:#fff}
+.rk-t .hx{display:inline-flex;align-items:center;gap:7px;font:600 11px/1 var(--mono)}.rk-t .hx i{width:16px;height:16px;border-radius:2px;border:1px solid rgba(255,255,255,.18)}
+.rk-t .src{font-size:12.5px;color:#AEB3B8}.rk-t .src b{color:#FF5A1F;font:700 10.5px/1 var(--mono);margin-right:6px}
+.rk-cr{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:14px}
+.rk-cr div{border-top:1px solid #2A2C31;padding-top:8px;font:500 9.5px/1.35 var(--mono);letter-spacing:.08em;color:#8C9198;text-transform:uppercase}
+.rk-cr b{display:block;font:700 18px/1.1 var(--mono);color:#fff;letter-spacing:0;margin:3px 0 2px}
+.rk-cr .ok{color:#4CFF6A}.rk-cr .lo{color:#FFB23E}
+.rk-note{margin-top:12px;font-size:12.5px;color:#8C9198}
+@media (max-width:900px){.rk-grid{grid-template-columns:1fr}}
+@media (max-width:620px){.rk-tabs{grid-template-columns:repeat(5,minmax(0,1fr));gap:5px}.rk-tab{padding:9px 7px;font-size:10px;letter-spacing:.06em}.rk-tab small{display:none}.rk-stage{padding:36px 12px 20px}.rk-name{font-size:24px}.rk-read{font-size:28px}.rk-sheet{padding:4px 10px 12px}.rk-t th:nth-child(3),.rk-t td:nth-child(3){display:none}.rk-cr b{font-size:15px}}
+@media (prefers-reduced-motion:reduce){.rk-dev,.rk-meter i,.rk-tg b:after{transition:none}}
 .tt-key{list-style:none;padding:0;margin:20px 0 0;display:flex;flex-wrap:wrap;gap:10px 26px;font-size:13px;color:#B8C4C8}
 .tt-key li{display:flex;align-items:center;gap:8px}.tt-key i{width:10px;height:10px;border-radius:50%;background:var(--c);box-shadow:0 0 8px var(--c)}.tt-key b{color:#fff;font-weight:600}
 .tt-h{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:#7D97A0;margin:44px 0 14px;display:flex;justify-content:space-between;border-bottom:1px solid #1E272E;padding-bottom:10px}
@@ -3943,6 +3990,33 @@ function spCmf(){
   <div class="tbl-wrap"><table class="tbl spc-t"><thead><tr><th>#</th><th>Material</th><th>Process · finish</th><th class="n">Gloss 60°</th><th>Colour · CIELAB (D65)</th><th>Becomes in the system</th></tr></thead><tbody>
   ${rows.map(([k,nm,proc,gl,role,cols],i)=>`<tr><th scope="row">${String(i+1).padStart(2,'0')}</th><td><b>${esc(nm)}</b></td><td class="why">${esc(proc)}</td><td class="n">${gl}</td><td>${cols.map(chip).join('')}</td><td><span class="spc-arrow">→</span> ${esc(role)}</td></tr>`).join('')}
   </tbody></table></div></div>`}).join('')}
+/* ONE LAYOUT, FIVE TAPES: seven shared semantic tokens per tape, each traced to a row of SP_CMF (material number) or derived */
+const RK_ROLES=[['surface','Surface','Panel ground'],['well','Well','Display / inset'],['text','Text','Labels on surface'],['primary','Primary','Main button'],['signal','Signal','Readout + meter'],['warning','Warning','Badge + peak'],['frame','Frame','Borders + track']];
+const RK={
+ t120:{glow:'0 0 10px rgba(63,230,204,.55)',v:{surface:['#141318','02'],well:['#2E2A33','03'],text:['#F6ECC6','04'],primary:['#FF1F8F','05'],signal:['#3FE6CC','01'],warning:['#FFC23A','01'],frame:['#3A3542','d']}},
+ t60:{glow:'0 0 10px rgba(57,255,110,.6)',v:{surface:['#050B07','01'],well:['#0A160D','d'],text:['#39FF6E','01'],primary:['#D9D2C0','04'],signal:['#39FF6E','01'],warning:['#FFB000','05'],frame:['#3B372E','03']}},
+ t90:{glow:'0 0 10px rgba(245,166,35,.5)',v:{surface:['#17181A','05'],well:['#2A2B2E','03'],text:['#F3E7C9','05'],primary:['#C3C7CB','01'],signal:['#F5A623','04'],warning:['#D7281E','04'],frame:['#8A5A35','02']}},
+ t160:{glow:'none',v:{surface:['#6B3FA0','01'],well:['#C9DB7A','03'],text:['#D6D3DE','04'],primary:['#C2185B','02'],signal:['#0F2410','03'],warning:['#FFD23F','05'],frame:['#0F2410','03']}},
+ c46:{glow:'0 0 10px rgba(46,242,208,.6)',v:{surface:['#10151A','02'],well:['#07090B','01'],text:['#B8C0C8','04'],primary:['#2EF2D0','01'],signal:['#2EF2D0','01'],warning:['#FFB23E','03'],frame:['#2A3138','d']}}
+};
+const rkLum=h=>{const c=[1,3,5].map(i=>{const v=parseInt(h.substr(i,2),16)/255;return v<=.04045?v/12.92:Math.pow((v+.055)/1.055,2.4)});return .2126*c[0]+.7152*c[1]+.0722*c[2]};
+const rkCR=(a,b)=>{const x=rkLum(a),y=rkLum(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05)};
+const rkOn=h=>rkCR(h,'#0B0B0C')>=rkCR(h,'#FFFFFF')?'#0B0B0C':'#FFFFFF';
+function spReskin(){
+ const tabs=TAPES.map((t,i)=>`<button type="button" role="tab" class="rk-tab" data-t="${t.id}" aria-selected="${i?'false':'true'}" tabindex="${i?-1:0}" aria-controls="rk-panel"><span class="sw">${Object.values(RK[t.id].v).slice(0,6).map(([h])=>`<i style="background:${h}"></i>`).join('')}</span>${t.title}<small>${esc(t.name)}</small></button>`).join('');
+ const rows=RK_ROLES.map(([k,n,u])=>`<tr tabindex="0" data-r="${k}"><th scope="row" class="tk">${n}</th><td><span class="hx"><i data-sw="${k}"></i><span data-hx="${k}"></span></span></td><td class="src" data-use="${k}">${u}</td><td class="src" data-src="${k}"></td></tr>`).join('');
+ return `<section class="band dark section" id="sp-reskin"><div class="wrap"><h2 class="sh-title" style="font-size:32px">One Layout, Five Tapes</h2><p class="sh-sub">The handover, live / seven shared tokens, each one traced back to a material</p>
+  <p class="intro">Every tape fills the same seven semantic tokens, so one layout re-skins with no edits. Pick a tape: the deck below keeps its structure and swaps only token values, and every value comes from a material in the CMF tables above. Point at a token to see where it lands; press Play to run the meter.</p>
+  <div class="rk" id="rk"><div class="rk-tabs" role="tablist" aria-label="Choose a tape">${tabs}</div>
+  <div class="rk-grid" id="rk-panel" role="tabpanel"><div class="rk-stage"><span class="rk-cap">Specimen · one layout</span><span class="rk-cap r" data-rk-cap></span>
+   <div class="rk-dev" aria-label="Tape deck specimen"><div class="rk-top"><span>STANDARD PLAY</span><span class="rk-badge" data-r="warning">REC</span></div>
+    <div class="rk-name" data-r="text"><span data-rk-title>T-120</span><small data-rk-jp></small></div>
+    <div class="rk-well" data-r="well"><div class="rk-read" data-r="signal" data-rk-read>00:00</div><div class="rk-meter" aria-hidden="true">${'<i></i>'.repeat(16)}</div><div class="rk-lab"><span>-20</span><span>-10</span><span>-5</span><span>0</span><span>+3 dB</span></div></div>
+    <div class="rk-row"><button type="button" class="rk-btn p" data-r="primary" data-rk-play aria-pressed="false">▶ PLAY</button><button type="button" class="rk-btn s" data-r="frame" data-rk-stop>■ STOP</button><button type="button" class="rk-tg" data-rk-tg aria-pressed="true">AUTO-REV <b data-r="frame"></b></button></div></div></div>
+   <div class="rk-sheet"><div class="tbl-wrap"><table class="tbl rk-t"><thead><tr><th>Token</th><th>Value</th><th>Used for</th><th>From material</th></tr></thead><tbody>${rows}</tbody></table></div>
+   <div class="rk-cr" data-rk-cr></div><p class="rk-note">Contrast is WCAG 2.1, computed live from the values. “Derived” marks a tint of a material colour; every other value comes straight from the CMF spec.</p></div></div></div>
+ </div></section>`;
+}
 function spPage(){
  const rows=TAPES.map(t=>`<div class="tape-row"><div class="media ${t.id==='c46'?'bl':'tr'}">${im(['img/spr__'+t.id+'.webp',1000,1250],t.title+' '+t.name+(t.id==='c46'?': audio cassette and its case with the sleeve art':': VHS cassette and its sleeve'))}</div><div><h3>${t.title} ${esc(t.name)}</h3><span class="era">${esc(t.era)}</span><p>${esc(t.body)}</p><p class="muted"><b style="color:inherit">Components:</b> ${esc(t.comps)}</p><ul class="swatch-row" aria-label="Palette">${t.sw.map(c=>`<li style="background:${c}" title="${c}"></li>`).join('')}</ul></div></div>`).join('');
  const TTC={battery:'r',oil:'r',coolant:'r',brake:'r',fuel:'a',service:'a',warning:'a',car:'a','high-beam':'b','turn-left':'g','turn-right':'g',gauge:''};
@@ -3961,7 +4035,7 @@ function spPage(){
  return head('product','AI')+`<main>
  <section class="band dark"><div class="wrap case"><p class="num">AI Design Systems / Standard Play</p><h1>Standard Play</h1><p class="meta">An open library of design systems on tape</p>
   <p class="note">I wanted to find out how far I could push an AI as a production partner while keeping the taste and the decisions mine. The result is a free library of Figma design systems, each one named like a tape and drawn from a piece of old hardware.</p>
-  <dl class="facts"><div><dt>My role</dt><dd>Founder, design director</dd></div><div><dt>Built with</dt><dd>Claude · Figma · Figma MCP</dd></div><div><dt>Output</dt><dd>5 Figma libraries + public site</dd></div><div><dt>Scale</dt><dd>240 variables · 35 component sets · 46 icons</dd></div><div><dt>CMF</dt><dd>25 materials · 5 tapes · Blender Cycles</dd></div></dl></div></section>
+  <dl class="facts f5"><div><dt>My role</dt><dd>Founder, design director</dd></div><div><dt>Built with</dt><dd>Claude · Figma · Figma MCP</dd></div><div><dt>Output</dt><dd>5 Figma libraries + public site</dd></div><div><dt>Scale</dt><dd>240 variables · 35 component sets · 46 icons</dd></div><div><dt>CMF</dt><dd>25 materials · 5 tapes · Blender Cycles</dd></div></dl></div></section>
  <section class="band dark" style="padding-bottom:56px"><div class="wrap"><figure class="mono" style="margin:0;padding-top:0"><div class="media tr-l">${im(['img/spr__shelf.webp',1800,860],'The five Standard Play tapes on a shelf: four VHS sleeves, T-120, T-60, T-90 and T-160, and the C-46 audio cassette case, with two cassettes in front','heroimg')}<div class="sp-hot" aria-hidden="true"><span style="left:7.5%;top:11%"><b>01</b>SBS BOARD · PET OVERLAY · 90 GU</span><span style="left:66%;top:29%"><b>02</b>CLEAR PS CASE · PRINTED J-CARD</span><span style="right:2%;top:24%"><b>03</b>POWDER-COAT BOOKEND · KNURLED AL</span><span style="left:12%;top:90%"><b>04</b>STIPPLE ABS · SMOKED PC WINDOW</span><span style="left:70%;top:89%"><b>05</b>SMOKED SHELL · VFD-TEAL LABEL</span></div></div><figcaption>The shelf, rebuilt with production CMF: printed SBS board under a gloss PET overlay for the sleeves, a clear polystyrene case for the C-46, stipple ABS and smoked polycarbonate for the cassettes, on a graphite powder-coat plinth with an orange anodised edge.</figcaption></figure>
   <div class="tiles sp-tiles sp-strip">${TAPES.map((t,i)=>`<div class="tile"><div class="media ${i%2?'bl':'tr'}">${sleeve(t)}</div><small>${esc(t.era)}</small><h3>${t.title}</h3><button class="sp-mat" type="button" onclick="document.getElementById('spc-${t.id}').scrollIntoView({behavior:'smooth',block:'start'})" aria-label="${t.title} materials">${(SP_CMF[t.id]||[]).map(r=>`<i style="background:${r[5][0][0]}"></i>`).join('')}<span>CMF ↓</span></button></div>`).join('')}</div></div></section>
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Object First, Tokens Second</h2><p class="sh-sub">Every tape starts as a physical object / 25 materials, rebuilt in Blender, specified like production CMF</p>
@@ -3970,6 +4044,7 @@ function spPage(){
   ${spCmf()}
   <p class="muted spc-note">Gloss values are design targets at 60°; colour values are CIELAB D65 computed from each master colour. Every reference era is mine to interpret; no brand marks or trade dress are reproduced.</p>
  </div></section>
+ ${spReskin()}
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Who Did What</h2><p class="sh-sub">Direction stays human; production is shared</p>
   <div class="split-note"><div><h3>My decisions</h3><ul><li>The concept, the name and the tape-length naming system</li><li>Each reference and era: VHS, CRT terminals, hi-fi, handheld consoles, car dashboards</li><li>Extracting style only from references I don't own, never their marks</li><li>Reviewing every page and sending back fixes: contrast, scaling, glow strength, cropped text</li><li>What ships free and what the product becomes next</li></ul></div>
   <div><h3>Claude's work</h3><ul><li>Turning each direction into tokens: primitives, Night/Daylight semantic colors, spacing, radius</li><li>Writing the Figma Plugin API scripts that built variables, text styles, effects and components</li><li>Drawing the 46 Telltales icons on a 24px grid</li><li>Building the public Standard Play site</li></ul></div></div>
@@ -4336,6 +4411,38 @@ function gamePage(i){
 
 
 /* games: fetch the published file and run it in srcdoc, so it works for every viewer */
+function mountRK(){
+ const c=document.getElementById('rk'); if(!c) return;
+ const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const dev=c.querySelector('.rk-dev'), tabs=[...c.querySelectorAll('.rk-tab')], bars=[...c.querySelectorAll('.rk-meter i')], read=c.querySelector('[data-rk-read]'), play=c.querySelector('[data-rk-play]');
+ const T=Object.fromEntries(TAPES.map(t=>[t.id,t]));
+ let cur='t120', sec=0, raf=0, last=0, lvl=0;
+ const meter=v=>bars.forEach((b,i)=>{b.classList.toggle('on',i<v);b.classList.toggle('pk',i>=13)});
+ const fmt=x=>String(Math.floor(x/60)).padStart(2,'0')+':'+String(Math.floor(x%60)).padStart(2,'0');
+ const set=id=>{cur=id;const t=T[id],r=RK[id],v=r.v,mats=SP_CMF[id];
+  tabs.forEach(b=>{const on=b.dataset.t===id;b.setAttribute('aria-selected',on);b.tabIndex=on?0:-1});
+  for(const k in v) dev.style.setProperty('--'+k,v[k][0]);
+  dev.style.setProperty('--on-primary',rkOn(v.primary[0]));dev.style.setProperty('--on-warning',rkOn(v.warning[0]));
+  dev.style.setProperty('--glow',r.glow);dev.style.setProperty('--tfont',t.font);
+  c.querySelector('[data-rk-title]').textContent=t.title;c.querySelector('[data-rk-jp]').textContent=t.jp;
+  c.querySelector('[data-rk-cap]').textContent=t.title+' · '+t.name;
+  for(const k in v){const[h,src]=v[k];c.querySelector(`[data-sw="${k}"]`).style.background=h;c.querySelector(`[data-hx="${k}"]`).textContent=h;
+   const m=src==='d'?null:mats[+src-1];c.querySelector(`[data-src="${k}"]`).innerHTML=m?`<b>${src}</b>${esc(m[1])}`:`<b>—</b>Derived`}
+  const cr=[['Text on surface',v.text[0],v.surface[0]],['Signal on well',v.signal[0],v.well[0]],['Label on primary',rkOn(v.primary[0]),v.primary[0]]].map(([n,a,b])=>{const x=rkCR(a,b);return `<div>${n}<b class="${x>=4.5?'ok':'lo'}">${x.toFixed(1)}:1</b>${x>=7?'AAA':x>=4.5?'AA':x>=3?'AA large':'Below AA'}</div>`}).join('');
+  c.querySelector('[data-rk-cr]').innerHTML=cr;
+ };
+ const stop=()=>{cancelAnimationFrame(raf);raf=0;play.setAttribute('aria-pressed','false');play.textContent='▶ PLAY';meter(0)};
+ const tick=ts=>{if(!document.body.contains(c)) return;if(last){sec+=(ts-last)/1000}last=ts;read.textContent=fmt(sec);
+  const target=7+Math.round(6*Math.abs(Math.sin(ts/310)*Math.sin(ts/170+1)))+(Math.random()<.12?3:0);lvl+=(target-lvl)*.35;meter(Math.min(16,Math.round(lvl)));raf=requestAnimationFrame(tick)};
+ play.onclick=()=>{if(raf){stop();return}play.setAttribute('aria-pressed','true');play.textContent='❚❚ PAUSE';if(rm){meter(11);return}last=0;raf=requestAnimationFrame(tick)};
+ c.querySelector('[data-rk-stop]').onclick=()=>{stop();sec=0;read.textContent=fmt(0)};
+ const tg=c.querySelector('[data-rk-tg]');tg.onclick=()=>tg.setAttribute('aria-pressed',tg.getAttribute('aria-pressed')!=='true');
+ tabs.forEach((b,i)=>{b.onclick=()=>set(b.dataset.t);b.onkeydown=e=>{const d=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;if(!d)return;e.preventDefault();const n=tabs[(i+d+tabs.length)%tabs.length];n.focus();set(n.dataset.t)}});
+ const hl=(k,on)=>dev.querySelectorAll(`[data-r="${k}"]`).forEach(el=>el.classList.toggle('hl',on));
+ const devHl=(k,on)=>{if(k==='surface')dev.classList.toggle('hl',on);else hl(k,on)};
+ c.querySelectorAll('.rk-t tbody tr').forEach(tr=>{const k=tr.dataset.r;['mouseenter','focus'].forEach(e=>tr.addEventListener(e,()=>devHl(k,true)));['mouseleave','blur'].forEach(e=>tr.addEventListener(e,()=>devHl(k,false)))});
+ set(cur);meter(0);
+}
 function mountTT(){
  const c=document.getElementById('ttc'); if(!c) return;
  const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -4864,7 +4971,7 @@ function route(){
  else if(h===KP.id){html=keypadPage();title=KP.title+' · Henry Ortega'}
  else if((i=RH.findIndex(p=>p.id===h))>=0){html=CS[RH[i].id]?casePage(RH,i,'rhino','Rhino Workflow'):galleryPage(RH,i,'rhino','Rhino Workflow');title=RH[i].title+' · Henry Ortega'}
  document.body.classList.remove('gm-lock');
- if(html){app.innerHTML=html;app.dataset.view='project';scrollTo(0,0);mountGame();mountTT();mountKN();mountHKN();mountPN();mountTA();mountKH();mountBM();mountTZ();mountKA();mountSim();mountGrille();mountPV();mountFB();window.TigreFigures&&TigreFigures.mountAll(app)}
+ if(html){app.innerHTML=html;app.dataset.view='project';scrollTo(0,0);mountGame();mountTT();mountRK();mountKN();mountHKN();mountPN();mountTA();mountKH();mountBM();mountTZ();mountKA();mountSim();mountGrille();mountPV();mountFB();window.TigreFigures&&TigreFigures.mountAll(app)}
  else{
   if(app.dataset.view!=='home'){app.innerHTML=home();app.dataset.view='home';window.TigreFigures&&TigreFigures.mountAll(app)}
   const t=h&&document.getElementById(h); if(t) t.scrollIntoView(); else if(!h||h==='top') scrollTo(0,0);
