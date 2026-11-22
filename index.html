@@ -142,6 +142,8 @@ table.spc-t td{vertical-align:middle}.spc-chip{display:inline-flex;align-items:c
 .spc-fmw{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:36px;align-items:center;margin-top:18px}.spc-fmw p{margin:0;color:var(--muted)}
 .spc-fm{width:100%;height:auto;display:block}.spc-fm .gr{stroke:#D6CFC2;stroke-dasharray:2 3}.spc-fm .rw{stroke:#1A1A1C;stroke-opacity:.25}.spc-fm .ax{font:600 9px var(--mono);fill:#8F8A80;text-anchor:middle}.spc-fm .zn{font:700 8px var(--mono);letter-spacing:.12em;fill:#FF5A1F;text-anchor:middle}.spc-fm .tp{font:700 10px var(--mono);fill:currentColor}.spc-fm .axe{font:600 8px var(--mono);fill:#8F8A80;text-anchor:end;letter-spacing:.1em}
 @media(max-width:900px){.spc-top,.spc-fmw{grid-template-columns:1fr}.spc-mats li{grid-template-columns:28px 46px minmax(0,1fr)}.spc-mats .gl{grid-column:3}}
+.glm{display:grid;gap:3px;min-width:84px}.glm>span{height:5px;background:color-mix(in srgb,currentColor 12%,transparent)}.glm>span{display:block;overflow:hidden}.tbl .glm>span>i,.glm>span>i{display:block;height:5px!important;min-width:0;margin:0;border:0;box-shadow:none;vertical-align:top;background:linear-gradient(90deg,#8F8A80,#FF5A1F)}.glm em{font:700 11px var(--mono);font-style:normal}.glm small{font:600 8px var(--mono);letter-spacing:.12em;text-transform:uppercase;opacity:.65}.cmf-g{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:40px;align-items:start;margin-top:22px}.cmf-g aside{position:sticky;top:90px}.cmf-bar{display:flex;height:44px;border:1px solid color-mix(in srgb,currentColor 25%,transparent)}.cmf-bar i{flex:1}.cmf-fm{margin-top:6px}.cmf-fm .z0{fill:color-mix(in srgb,currentColor 4%,transparent)}.cmf-fm .z1{fill:color-mix(in srgb,currentColor 8%,transparent)}.cmf-fm .pt{font:700 8px var(--mono);text-anchor:middle}.cmf-p .spc-mats .mt p{color:inherit;opacity:.7}
+@media(max-width:900px){.cmf-g{grid-template-columns:1fr}.cmf-g aside{position:static}}
 </style><title>Henry Ortega · Creative Director for Technical Products</title><meta name="description" content="Henry Ortega: creative director for technical products. CMF, 3D, launch visuals and visual systems, built in Rhino, Grasshopper and Blender. 16 years at Nike turning new technology into the images and manuals 50+ launches were built from. Tigre Studio, Portland, OR.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tigrestudiodesign.github.io/">
@@ -2117,6 +2119,7 @@ function syPage(){
   <ol class="sy-hw-l">${[['Lid','Paper shell, knobs and keys. The knobs keep the phone version\'s colours: octave, vibrato, decay, tempo.'],['Pots · A0–A3','Four 10 kΩ pots, one under each knob.'],['Piezo · D11','Under the grille, top left. The LED (D13) and MODE (D10) sit below it.'],['Keys · D2–D9','Eight 12 mm tact switches on one perfboard, with internal pull-ups, so no resistors.'],['Arduino Uno R3','Drawn at its real footprint, USB at the back edge for power and the sketch.'],['Tray','Ink tray with an orange split line, the Tigre accent where the two halves meet.']].map(([h,t],i)=>`<li><b>${String(i+1).padStart(2,'0')}</b><div><h3>${h.toUpperCase()}</h3><p>${t}</p></div></li>`).join('')}</ol></div>
   <p class="fine" style="margin-top:20px">A concept enclosure, modelled in Blender around the Tinkercad circuit and rendered in Cycles. Not yet printed or built; the next step is a 3D-printed shell sized to these parts.</p>
  </div></section>
+ ${cmfSec('sy-5000','alt')}
  ${nextLink('product',{id:'hestia-knit-nodes',title:'HESTIA × Knit Nodes'})}</main>`+foot();
 }
 
@@ -2667,6 +2670,7 @@ function hsPage(){
   <figure class="el-fig">${im(I.cmf,'Warm Minimalist palette, material matrix with performance targets, and 3D yarn renders of the oatmeal jersey and slate-moss rib')}<figcaption>01 · Oatmeal, birch and slate-moss come from upholstery, not from machines. Terracotta appears only on the forearms, palms and sternum tab: the places a person is invited to hold or guide. Yarn close-ups are real 3D yarn geometry, not a texture.</figcaption></figure>
  </div></section>
 
+ ${cmfSec('hestia','alt')}
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Zone Map</h2><p class="sh-sub">Eight zones / Each one earns its material</p>
   <div class="el-two"><figure class="el-fig">${im(I.zones,'Zone map of HESTIA with eight callouts: sensor weave, rib flex sleeves, terracotta grip, champagne hands, oatmeal knit, vent mesh, birch knit, slate-moss feet')}<figcaption>02 · Flat-colour zone render with callouts.</figcaption></figure>
   <div><p class="intro" style="margin-top:0">Every zone is a rule written into the model: the script assigns material by position and surface direction, so moving a vent or widening a grip changes the render, the zone map and the numbers together.</p>
@@ -2742,6 +2746,7 @@ function pnPage(){
   <p class="fine">Slate-moss binding covers the sewn edge, the same rib as HESTIA's joints. The inlet barb sits in the champagne palm, where all five air lines meet.</p></div></div>
  </div></section>
 
+ ${cmfSec('pneuma','alt')}
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Modeling</h2><p class="sh-sub">Predict the bend / Then pick the knit</p>
   <figure class="el-fig">${im(I.model,'Bend model sheet: finger cross-section with layer callouts, bend versus pressure for three knits with the mug wrap line, and a finger table with wrap pressure and tip force')}<figcaption>01 · Power mesh wraps every finger around the mug at 58–63 kPa and keeps 17 kPa in reserve for squeeze. At 70 kPa the five tips push 8.9 N: with silicone dots, 1.8× what a full 450 g mug needs.</figcaption></figure>
  </div></section>
@@ -3508,6 +3513,7 @@ function bcPage(){
   <p class="fine">Colour does a job: orange means light, red means SOS, and the graphite faceplate makes every printed scale readable. Knurled aluminium marks the parts your fingers turn.</p></div></div>
  </div></section>
 
+ ${cmfSec('basecamp','alt')}
  <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">How It Was Built</h2><p class="sh-sub">Scripted geometry / Tagged parts / Repeatable renders</p>
   <div class="cols"><div><h3>Geometry From Code</h3><p>Every part is generated by a Python script: rounded-rectangle shells, knurled dials, Torx recesses and the graded grille. Change a dimension and the part rebuilds.</p></div>
   <div><h3>One File, Every View</h3><p>Parts are tagged by group, so the same file produces the assembly, the elevations and the exploded view by changing one number.</p></div>
@@ -3718,19 +3724,19 @@ const CAPS3={
 
 /* ---------- Parametric Keypad CMF (v40) ---------- */
 const KP_SPEC=[
- ['Case','6061 aluminium, CNC from billet','Matte powder coat, warm white','#E4E1DA'],
- ['Voronoi grooves','Laser-etched, 0.5 mm, ~115 cells','Black fill, wraps every edge','#26272A'],
- ['Launcher keys (×4)','PBT, sculpted profile','Pad-printed legends 01–04','#F3F1EB'],
- ['Power key','PBT, safety orange','Pad-printed ON/OFF, hold 2 s','#FF4D12'],
- ['Knob','Black anodised aluminium','Straight knurl, orange index dot','#1B1C1F'],
- ['Key well','Aluminium plate','Dark anodise, satin','#1D1F22'],
- ['USB-C port','Stainless shell','Machined recess','#0A0A0B']];
+ ['Case','6061 aluminium, CNC from billet','Matte powder coat, warm white','#E4E1DA','8'],
+ ['Voronoi grooves','Laser-etched, 0.5 mm, ~115 cells','Black fill, wraps every edge','#26272A','5'],
+ ['Launcher keys (×4)','PBT, sculpted profile','Pad-printed legends 01–04','#F3F1EB','15'],
+ ['Power key','PBT, safety orange','Pad-printed ON/OFF, hold 2 s','#FF4D12','15'],
+ ['Knob','Black anodised aluminium','Straight knurl, orange index dot','#1B1C1F','35'],
+ ['Key well','Aluminium plate','Dark anodise, satin','#1D1F22','40'],
+ ['USB-C port','Stainless shell','Machined recess','#0A0A0B','70']];
 const KP_WAYS=[['Glacier','Clear anodised case, cyan keys, frosted mint power key',['#AEB2B8','#1FA6D6','#8FE0BD']],['Graphite','Dark grey case, safety-orange keys, bone power key',['#3A3C40','#FF5A1F','#F2EFE8']],['Sand','Champagne case, navy keys, amber power key',['#D8CBB3','#1F3A6B','#E8B04A']]];
 function kpCMF(){
  const macro=['Launcher keys 01–04: pad-printed number, glyph and row/unit micro-type','Black knurled knob with an orange index dot','The Voronoi cells run unbroken over every edge and corner','Power key: one hot accent, ON/OFF pad print, hold 2 s'];
  return `<section class="band light section nt"><div class="wrap"><h2 class="sh-title" style="font-size:32px">MATERIAL SPEC</h2><p class="sh-sub">Seven parts, Signal colorway</p>
   <div class="nt-lib"><figure><div class="kp-sp kp-sp-top" role="img" aria-label="Keypad from above"></div><figcaption>Top view: four launcher keys, the power key and the indexed knob</figcaption></figure>
-  <table class="tbl nt-spec"><thead><tr><th>Part</th><th>Material</th><th>Finish</th><th>Colour · CIELAB (D65)</th></tr></thead><tbody>${KP_SPEC.map(([a,b,c,d])=>`<tr><td>${a}</td><td>${b}</td><td>${c}</td><td class="nt-lab">${cmfChip(d)}</td></tr>`).join('')}</tbody></table></div>
+  <div class="tbl-wrap"><table class="tbl nt-spec"><thead><tr><th>Part</th><th>Material</th><th>Finish</th><th>Colour · CIELAB (D65)</th><th>Gloss · 60°</th></tr></thead><tbody>${KP_SPEC.map(([a,b,c,d,g])=>`<tr><td>${a}</td><td>${b}</td><td>${c}</td><td class="nt-lab">${cmfChip(d)}</td><td>${glMini(g)}</td></tr>`).join('')}</tbody></table></div></div>
  </div></section>
  <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">CLOSE-UPS</h2><p class="sh-sub">How each finish reads up close</p>
   <figure class="nt-strip"><div class="kp-sp kp-sp-mac" role="img" aria-label="Keypad close-ups: launcher keys, knob, edge wrap, power key"></div></figure>
@@ -3742,19 +3748,19 @@ function kpCMF(){
 
 /* ---------- Nesting Tables CMF ---------- */
 const NT_SPEC=[
- ['Lilac top','Furniture linoleum on 30 mm birch ply','Matte, marbled linseed','#D6D1DC'],
- ['Sage top','Furniture linoleum on 30 mm birch ply','Matte, marbled linseed','#C3DCC2'],
- ['Yellow top','Furniture linoleum on 30 mm birch ply','Matte, marbled linseed','#EFCF4E'],
- ['Top inlays','Linoleum, CNC-cut, set flush','Matte','#1F3A8A'],
- ['Top edges','Exposed 1.5 mm birch veneers','Clear oil','#D9C49C'],
- ['Tiled leg','Glazed ceramic tile, 7 × 6 cm, sanded grout','Gloss glaze, tile-to-tile tone shift, pooled edges','#DCD77C'],
- ['Orange leg','Recycled HDPE sheet, three-tone angular fleck','Satin, swirled','#D9822B'],
- ['Blue leg','Recycled HDPE, radiused end, three-tone fleck','Satin, swirled','#2A5D8F'],
- ['Navy edge strip','Lacquered MDF','Satin lacquer','#1F3A8A'],
- ['Red leg','Lacquered MDF','High-gloss lacquer','#C23A2E'],
- ['Fluted leg','Fluted MDF, 11 flutes','Satin lacquer','#D9A7AA'],
- ['Cream post','Cast terrazzo: green, marble, terracotta and grey aggregate','Honed, sealed','#ECE2C2'],
- ['Green stripe','Lacquered MDF','Gloss lacquer','#2F8A5E']];
+ ['Lilac top','Furniture linoleum on 30 mm birch ply','Matte, marbled linseed','#D6D1DC','6'],
+ ['Sage top','Furniture linoleum on 30 mm birch ply','Matte, marbled linseed','#C3DCC2','6'],
+ ['Yellow top','Furniture linoleum on 30 mm birch ply','Matte, marbled linseed','#EFCF4E','6'],
+ ['Top inlays','Linoleum, CNC-cut, set flush','Matte','#1F3A8A','6'],
+ ['Top edges','Exposed 1.5 mm birch veneers','Clear oil','#D9C49C','15'],
+ ['Tiled leg','Glazed ceramic tile, 7 × 6 cm, sanded grout','Gloss glaze, tile-to-tile tone shift, pooled edges','#DCD77C','85'],
+ ['Orange leg','Recycled HDPE sheet, three-tone angular fleck','Satin, swirled','#D9822B','35'],
+ ['Blue leg','Recycled HDPE, radiused end, three-tone fleck','Satin, swirled','#2A5D8F','35'],
+ ['Navy edge strip','Lacquered MDF','Satin lacquer','#1F3A8A','45'],
+ ['Red leg','Lacquered MDF','High-gloss lacquer','#C23A2E','92'],
+ ['Fluted leg','Fluted MDF, 11 flutes','Satin lacquer','#D9A7AA','45'],
+ ['Cream post','Cast terrazzo: green, marble, terracotta and grey aggregate','Honed, sealed','#ECE2C2','20'],
+ ['Green stripe','Lacquered MDF','Gloss lacquer','#2F8A5E','80']];
 const NT_WAYS=[['Pastel','img/nt2__hero.webp','The launch set: soft tops, saturated legs',['#D6D1DC','#C3DCC2','#EFCF4E','#2A5D8F','#C23A2E','#D9A7AA']],
  ['Stone','img/nt2__stone.webp','One tonal family: travertine, putty and graphite',['#D8D4CC','#C9C4B8','#E4DDCF','#5B5650','#3A3A38','#CFC7BA']],
  ['Night','img/nt2__night.webp','Dark tops with brass and vermilion accents',['#2C2A36','#24302C','#3A3326','#C9A54A','#C4532E','#4A3236']]];
@@ -3762,7 +3768,7 @@ function ntCMF(){
  const macro=[['img/nt2__m_tile.webp','Glazed tile: every tile a slightly different tone, glaze pooling at the edges'],['img/nt2__m_terr.webp','Terrazzo: four aggregates in two sizes, honed and sealed'],['img/nt2__m_blue.webp','Recycled HDPE: angular three-tone fleck through a swirled blue'],['img/nt2__m_top.webp','Linoleum on birch ply: marbled top, 1.5 mm veneers at the edge'],['img/nt2__m_flute.webp','Fluted MDF in satin lacquer: light runs down every flute']];
  return `<section class="band light section nt"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Material Library</h2><p class="sh-sub">Thirteen finishes, seven material families, staged in window light</p>
   <div class="nt-lib"><figure>${im(['img/nt2__chips.webp',1600,1120],'Material chips')}<figcaption>Material chips on limewash plaster, rendered from the same shaders as the tables</figcaption></figure>
-  <table class="tbl nt-spec"><thead><tr><th>Part</th><th>Material</th><th>Finish</th><th>Colour · CIELAB (D65)</th></tr></thead><tbody>${NT_SPEC.map(([a,b,c,d])=>`<tr><td>${a}</td><td>${b}</td><td>${c}</td><td class="nt-lab">${cmfChip(d)}</td></tr>`).join('')}</tbody></table></div>
+  <div class="tbl-wrap"><table class="tbl nt-spec"><thead><tr><th>Part</th><th>Material</th><th>Finish</th><th>Colour · CIELAB (D65)</th><th>Gloss · 60°</th></tr></thead><tbody>${NT_SPEC.map(([a,b,c,d,g])=>`<tr><td>${a}</td><td>${b}</td><td>${c}</td><td class="nt-lab">${cmfChip(d)}</td><td>${glMini(g)}</td></tr>`).join('')}</tbody></table></div></div>
  </div></section>
  <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Close-Ups</h2><p class="sh-sub">How each finish reads up close</p>
   <div class="nt-mac">${macro.map(([f,c],i)=>`<figure>${im([f,1100,880],c)}<figcaption><b>0${i+1}</b>${c}</figcaption></figure>`).join('')}</div></div></section>
@@ -3780,15 +3786,15 @@ const CS={
               ['The Spindle Whorl','The volante de huso spun the cotton for every manta. Its incised geometry, read in rings around a centre, is where the squared spiral and the nested rhombus in this pattern come from.'],
               ['Tumbaga','Muisca goldsmiths cast gold, copper and silver alloys by lost wax, outlining their figures in thin cast threads. That thread is the gold piping here; the hammered heel tab nods to their two-tone gilded surfaces.'],
               ['Still Living','Muisca communities in Bosa, Cota, Suba, Chía and Sesquilé keep the language alive: rhomboids, spirals and triangles still mark the facades of their houses.']];
-   const SPEC=[['Toe cap + heel','Painted cotton manta, plain weave','Hand-painted, fixed pigment, matte','Crudo / Black / Moss'],
-               ['Vamp','Over-under woven leather straps, 10 mm','Veg-tan, aniline, light wax','Tobacco / Black / Bone'],
-               ['Strap','Faja, warp-faced woven band','Cotton with gold lurex edge','Edition palette'],
-               ['Piping','Tumbaga-tone cord','Brushed gold PVD','Gold, all editions'],
-               ['Heel tab','Cast brass','Hammered, gold PVD','Gold, all editions'],
-               ['Lip band','Woven faja band, 8.5 mm','Bound over the braid','Edition palette'],
-               ['Midsole','Braided fique, two rows, 26 mm','Natural, hand-stitched spiral','Natural fique'],
-               ['Outsole','Vulcanised rubber, 4.5 mm','Fine texture','Carbón / Black / Moss'],
-               ['Lining','Cotton twill','Brushed','Crudo / Tobacco / Crudo']];
+   const SPEC=[['Toe cap + heel','Painted cotton manta, plain weave','Hand-painted, fixed pigment, matte','Crudo / Black / Moss','3'],
+               ['Vamp','Over-under woven leather straps, 10 mm','Veg-tan, aniline, light wax','Tobacco / Black / Bone','22'],
+               ['Strap','Faja, warp-faced woven band','Cotton with gold lurex edge','Edition palette','5'],
+               ['Piping','Tumbaga-tone cord','Brushed gold PVD','Gold, all editions','40'],
+               ['Heel tab','Cast brass','Hammered, gold PVD','Gold, all editions','60'],
+               ['Lip band','Woven faja band, 8.5 mm','Bound over the braid','Edition palette','5'],
+               ['Midsole','Braided fique, two rows, 26 mm','Natural, hand-stitched spiral','Natural fique','3'],
+               ['Outsole','Vulcanised rubber, 4.5 mm','Fine texture','Carbón / Black / Moss','8'],
+               ['Lining','Cotton twill','Brushed','Crudo / Tobacco / Crudo','4']];
    const SK=[['00','PENCIL PASS','img/tz__00_loafer.webp','Starting point: my Rhino penny loafer, redrawn as working sketches.',[['KEEP','Last shape and the moc-toe line'],['DROP','Saddle strap, replaced by woven straps'],['SWAP','Leather outsole to braided fique and rubber']]],
              ['01','IDEATION','img/tz__01_ideas.webp','Six directions on the same last: open back, heel cup, low toe, tall toe cap, more straps.',[['CHOSE','B: heel cup, 5 straps'],['WHY','Holds the heel without a stiff counter'],['PASSED','A, C, D, E, F']]],
              ['02','LATERAL','img/tz__02_side.webp','The profile, called out part by part, with the ball line at 62% of the length.',[['UPPER','Over-under veg-tan straps'],['EDGE','Caña flecha zig-zag band'],['BASE','Fique braid on 4 mm rubber']]],
@@ -3822,7 +3828,7 @@ const CS={
     <div class="f1-set"><figure>${im(['img/tz__r_trio_manta.webp',1800,1000],'The three editions on one stage')}<figcaption>Páramo, Manta and Tumbaga, the same file with three material sets.</figcaption></figure></div>
    </div></section>
    <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The CMF Spec</h2><p class="sh-sub">Part by part, as a factory would read it</p>
-    <table class="tbl tz-spec"><thead><tr><th>Part</th><th>Material</th><th>Finish</th><th>Colour (Manta / Tumbaga / Páramo)</th></tr></thead><tbody>${SPEC.map(r=>`<tr>${r.map(x=>`<td>${x}</td>`).join('')}</tr>`).join('')}</tbody></table>
+    <div class="tbl-wrap"><table class="tbl tz-spec"><thead><tr><th>Part</th><th>Material</th><th>Finish</th><th>Colour (Manta / Tumbaga / Páramo)</th><th>Gloss · 60°</th></tr></thead><tbody>${SPEC.map(r=>`<tr>${r.slice(0,4).map(x=>`<td>${x}</td>`).join('')}<td>${glMini(r[4])}</td></tr>`).join('')}</tbody></table></div>
    </div></section>
    <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Build</h2><p class="sh-sub">Seven parts, lifted in build order</p>
     <div class="tz-build"><figure class="tz-b-ex">${im(['img/tz__r_exploded_manta.webp',1500,1100],'Exploded alpargata: sole unit, lining, upper, heel tab, piping, faja strap and stitches lifted in build order')}</figure>
@@ -4010,6 +4016,7 @@ function casePage(list,i,sec,label){
  </div></section>
 
  ${c.extra?c.extra(p):''}
+ ${cmfSec(p.id,'alt')}
  ${rest.length?`<section class="band alt section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Views</h2><p class="sh-sub">${rest.length+1} views of the same file</p>
   <div class="duo">${rest.map(fig).join('')}</div></div></section>`:''}
 
@@ -4128,6 +4135,91 @@ function spcDraw(id){
  }
  return `<svg viewBox="0 0 600 440" class="spc-svg" role="img" aria-label="Front elevation of the ${id.toUpperCase()} source object, coloured from its CMF spec">${d}<text x="12" y="432" class="cap">FRONT ELEVATION · NTS · CMF CALLOUT</text></svg>`;
 }
+/* CMF SPEC (shared): part, material, process, gloss target (GU at 60°, set from render roughness), role, colours. Lab computed from hex. */
+const CMF_P={
+'electric-guitar':{t:'Four finishes, one hardware set',n:'Nitro bodies go high-gloss; every surface a hand touches is satin or oiled. Gloss targets come from the Blender roughness and clear-coat values each finish was rendered with.',m:[
+['Body · solid finishes','Alder · metallic nitrocellulose · clear coat, buffed','88','Hero colour: Tigre Orange, Ice, Ink',['#E8400A','#9CC9D6','#101012']],
+['Body · burst edition','Alder · tinted nitro sunburst · clear coat, buffed','88','Vintage edition, same file',['#0E0704','#EBA521']],
+['Neck','Hard maple · tinted satin nitro','25','Hand contact: satin so it never grabs',['#D9A866','#E3B97C']],
+['Fretboard','Rosewood · oiled, no lacquer','10','Dark ground for the inlays',['#1C0F0A','#4A2A1A']],
+['Frets','Nickel-silver wire · crowned and polished','75','Contact metal',['#D9D6CF']],
+['Pickguard','3-ply celluloid · parchment over black · bevelled edge','65','Graphic plate; the black ply draws the outline',['#F1ECE2','#121212']],
+['Inlays and nut','Bone · hand-shaped, polished','45','Position markers',['#EFE7D2']],
+['Bridge, tuners, plate','Chrome-plated steel and zinc','92','Bright metal: one finish for all hardware',['#E8E8EA','#8E8E8C']],
+['Strings','Plain steel · phosphor-bronze wound','60','Function, not colour',['#D9D9DB','#C9B48A']]]},
+'f1-car':{t:'Tigre livery, part by part',n:'One hero orange carries the brand; exposed carbon and satin graphite sit underneath it so the shape reads before the sponsor blocks. The Bone livery swaps only the primary paint.',m:[
+['Primary livery','Carbon body · Tigre Orange metallic flake · 2K clear','82','Hero colour (Bone edition #E7E1D6)',['#FF5A1F','#E7E1D6']],
+['Secondary livery','Carbon body · graphite 2K satin','45','Shadow blocks and number field',['#16171A']],
+['Exposed carbon','2×2 twill carbon fibre · clear coat','70','Tech reveal: floor, halo, wing endplates',['#141516','#2A2C2F']],
+['Accent stripe','2K gloss · bone','72','Pinstripe and race number',['#EDE8DF']],
+['Tyres','Slick compound rubber','5','Ground',['#141414']],
+['Wheels','Forged magnesium · satin black paint','35','Frame for the tyre',['#1E1F21']],
+['Exhaust','Titanium · heat tint','50','Heat signature at the rear',['#8A7C6A']],
+['Skid plank','Wood-laminate composite','10','Wear part, left raw',['#B79A72']],
+['Rain light','Red PC lens over LED array','90','Signal',['#FF2A10']],
+['Visor and mirrors','Tinted PC visor · mirror glass','95','Reflections that sell the curvature',['#1A1408','#DDE3EA']]]},
+'penny-loafer':{t:'Three colourways, one last',n:'Cognac, oxblood and bone share every material; only the leather dye and the heel-tab accent change. Lining and sole stay matte so the waxed upper is the only sheen on the shoe.',m:[
+['Vamp and quarter','Full-grain calf · aniline dyed · light wax','20','Upper: cognac, oxblood, bone',['#7E3F1E','#4E1517','#CFC3AE']],
+['Saddle strap','Full-grain calf · burnished, inked edge','22','The penny strap',['#6E361A']],
+['Piping','Calf piping · glazed','45','Edge line around the throat',['#5C2C15']],
+['Heel tab','Calf · contrast colour per edition','35','Signature accent: cobalt, champagne, terracotta',['#2C4FB0','#B49C74','#B65A3A']],
+['Sock lining','Pig suede','2','Comfort, never seen in use',['#C8A273']],
+['Outsole','Rubber · black or gum','6','Ground',['#1F1C1A','#A86F3F']],
+['Moc stitch','Waxed cotton thread · hand-sewn apron','10','Construction made visible',['#E9DBB8']]]},
+'basecamp':{t:'Matte body, metal where you turn',n:'Everything you hold is matte and warm; gloss is saved for the lantern and the controls your fingers find in the dark. Targets are set from the render roughness of each part.',m:[
+['Shell','Glass-filled PA · moulded-in sand · VDI 33 texture','8','Body',['#DDD4C2']],
+['Faceplate','PC/ABS · graphite · pad-printed scales','18','Readable ground for every scale',['#222326','#1A1A1C']],
+['Knurled collar and dials','6061 aluminium · diamond knurl · clear anodise','45','Turn here',['#C9CBCD']],
+['Crank arm','Aluminium · graphite anodise','30','Hand power',['#3A3C40']],
+['Signal keys','PC/ABS · moulded-in orange','20','Light functions',['#FF5A1F']],
+['SOS key','Silicone · red · raised ring','15','Emergency only, on its own',['#E8321A']],
+['Lantern diffuser','Frosted PC · light-diffusing grade','45','Glow',['#F1ECE1']],
+['Bumpers and feet','TPE overmould','3','Grip and drop protection',['#202124']],
+['Fasteners','Stainless Torx · bead blast','40','Service points, left visible',['#9A9DA1']]]},
+'sy-5000':{t:'HW-01 enclosure',n:'The box keeps the phone app\'s colour code: blue, green and white knobs map to the same parameters on screen, orange marks C and power. Paper-grain shell, ink tray, one orange split line.',m:[
+['Lid shell','PC/ABS · paper-grain texture · moulded-in','12','Body',['#F2EEE6']],
+['Base tray','PC/ABS · ink · VDI 24','20','Ground',['#0B0B0C']],
+['Split line','TPE gasket · moulded-in orange','25','Brand line around the box',['#FF5A1F']],
+['Keys','PBT · dye-sub legends · C keys in orange','18','Play keys',['#E4DED2','#FF5A1F']],
+['Knob caps','ABS · diamond knurl · colour per parameter','30','Octave, vibrato, decay, tempo',['#2F5BFF','#1FA35C','#F4F1EA','#FF5A1F']],
+['Knob plate','Aluminium · bead blast · clear anodise','45','Frame for the controls',['#C9CCD1']],
+['Speaker grille','Perforated steel · powder coat','6','Sound out',['#151517']],
+['Power LED','Clear PC light pipe','90','Status',['#FF5A1F']]]},
+'hestia':{t:'Warm Minimalist skin',n:'Textiles carry the body in matte living-room neutrals; terracotta is the one hot colour and appears only where a person is invited to hold. Gloss climbs only at the champagne hardware and the visor. Values are the Warm colourway; Graphite and Sand swap the neutrals and keep terracotta and champagne.',m:[
+['Body knit','Jersey knit · oatmeal heather','2','Main skin',['#B9A787','#C8B898']],
+['Vent mesh','3D spacer mesh · birch · perforated','4','Flank and back vents',['#958E82','#2E2C29']],
+['Flex sleeves','1×1 rib knit · slate moss','3','Knees, elbows, waist, feet',['#5E6555']],
+['Grip zones','Seed knit + silicone dot print · terracotta','20','Hold here: forearms, palms, sternum tab',['#B65A3A','#9A4A2F']],
+['Hands and handle','6061 aluminium · champagne anodise · diamond-cut chamfer','35','Hardware you touch',['#B49C74','#C9B48C']],
+['Sensor window','Open technical weave · graphite','25','Face: sensors see through it',['#2A2B2B']],
+['Shell','PC/ABS · warm white · light clear coat','40','Under-skin structure, seen at the seams',['#EDEBE6']],
+['Visor','Smoked PC · high-gloss hard coat','95','Eyes glow through',['#07080A','#FFB070']]]},
+'pneuma':{t:'Soft goods, sewn not moulded',n:'The finger is almost all matte textile; the only gloss is the bladder you never see and the champagne hub where the air comes in. Terracotta means "hold here" across HESTIA.',m:[
+['Knit top','Power-mesh warp knit · nylon/elastane · oat','2','The layer that grows and sets the bend',['#B9A787','#C8B898']],
+['Woven base','210D nylon plain weave','5','Neutral axis the finger curls around',['#958E82']],
+['Binding','Rib-knit binding · slate moss','3','Seam cover, same as HESTIA joints',['#5E6555']],
+['Grip print','Silicone dot print · palm side','25','Hold here',['#B65A3A','#A89A86']],
+['Palm pad','Moulded silicone · terracotta','20','Load point',['#B65A3A','#8E4229']],
+['Palm hub','6061 aluminium · champagne anodise · bead blast','40','Air manifold',['#B49C74']],
+['Bladder','TPU-coated nylon · RF welded, 4 mm margin','70','Holds the air; the fabric takes the load',['#D9B060']],
+['Air lines','PU tube · 4 mm','55','Feed from the hub',['#D8D4CC']]]}
+};
+function cmfSec(id,band){const P=CMF_P[id];if(!P)return '';const M=P.m;
+ const lab=h=>{const l=hexLab(h);return `${h.toUpperCase()} <span>L ${l[0]} · a ${l[1]} · b ${l[2]}</span>`};
+ const list=`<ol class="spc-mats">${M.map(([nm,proc,gl,role,cols],i)=>`<li><b class="pn">${String(i+1).padStart(2,'0')}</b><span class="sws">${cols.map(h=>`<i style="background:${h}"></i>`).join('')}</span><div class="mt"><h4>${esc(nm)}</h4><p>${esc(proc)}</p><small>${cols.map(lab).join(' · ')}</small></div><div class="gl" title="Gloss target at 60°"><span><i style="width:${Math.min(100,parseFloat(gl))}%"></i></span><em>${gl} GU</em><small>${spcGloss(gl)}</small></div><p class="rl"><span class="spc-arrow">→</span> ${esc(role)}</p></li>`).join('')}</ol>`;
+ const X=g=>20+g*5.6, N=M.length, H=40+N*0+60;
+ const st={};const fm=`<svg viewBox="0 0 600 150" class="spc-fm cmf-fm" role="img" aria-label="Finish strip: every part placed by its gloss target">
+  ${[['MATTE',0,10],['LOW SHEEN',10,30],['SATIN',30,60],['GLOSS',60,85],['HIGH',85,100]].map(([n,a,b],k)=>`<rect x="${X(a)}" y="18" width="${X(b)-X(a)}" height="84" class="${k%2?'z1':'z0'}"/><text x="${(X(a)+X(b))/2}" y="12" class="zn">${n}</text>`).join('')}
+  ${[0,10,30,60,85,100].map(g=>`<text x="${X(g)}" y="118" class="ax">${g}</text>`).join('')}
+  ${M.map((m,i)=>{const g=parseFloat(m[2]),b=Math.round(g/6);const k=st[b]=(st[b]||0)+1;const y=88-(k-1)*20;return `<g><rect x="${X(g)-8}" y="${y-8}" width="16" height="16" rx="2" fill="${m[4][0]}" stroke="#1A1A1C" stroke-width="1"/><text x="${X(g)}" y="${y+3}" class="pt" fill="${hexLab(m[4][0])[0]>60?'#1A1A1C':'#fff'}">${i+1}</text><title>${esc(String(i+1).padStart(2,'0')+' · '+m[0]+' · '+m[2]+' GU')}</title></g>`}).join('')}
+  <text x="${X(100)}" y="138" class="axe">GLOSS TARGET · GU AT 60°</text></svg>`;
+ const all=[...new Set(M.flatMap(m=>m[4]))];
+ const bar=`<div class="cmf-bar">${all.map(h=>`<i style="background:${h}" title="${h.toUpperCase()}"></i>`).join('')}</div>`;
+ return `<section class="band ${band||'light'} section cmf-p"><div class="wrap"><h2 class="sh-title" style="font-size:32px">CMF SPEC</h2><p class="sh-sub">${esc(P.t)} / ${N} parts / Lab + gloss targets</p>
+  <div class="cmf-g">${list}<aside><p class="eyebrow">Palette · ${all.length} colours</p>${bar}<p class="eyebrow" style="margin-top:26px">Finish strip</p>${fm}<p class="fine">${esc(P.n)}</p><p class="fine">CIELAB D65 computed from each hex. Gloss values are design targets for a 60° meter, not lab measurements.</p></aside></div>
+ </div></section>`;
+}
+function glMini(g){return `<span class="glm"><span><i style="width:${Math.min(100,parseFloat(g))}%"></i></span><em>${g} GU</em><small>${spcGloss(g)}</small></span>`}
 function spcGloss(v){const n=parseFloat(v)||0;return n<10?'Matte':n<30?'Low sheen':n<60?'Satin':n<85?'Gloss':'High gloss'}
 function spCmf(){
  const T=Object.fromEntries(TAPES.map(t=>[t.id,t]));
