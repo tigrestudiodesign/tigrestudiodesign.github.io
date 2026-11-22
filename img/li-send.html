@@ -1,0 +1,2 @@
+<!doctype html><meta charset="utf-8"><title>send</title><body style="background:#0B0B0C;color:#F2EEE6;font:14px monospace">
+<script>fetch('li-banner.png?x='+Date.now()).then(r=>r.blob()).then(b=>{const t=window.opener;if(t){t.postMessage({tigreBanner:b},'https://www.linkedin.com');document.body.textContent='SENT '+b.size}else document.body.textContent='NO OPENER'})</script>
