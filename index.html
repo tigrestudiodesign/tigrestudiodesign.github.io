@@ -144,6 +144,31 @@ table.spc-t td{vertical-align:middle}.spc-chip{display:inline-flex;align-items:c
 @media(max-width:900px){.spc-top,.spc-fmw{grid-template-columns:1fr}.spc-mats li{grid-template-columns:28px 46px minmax(0,1fr)}.spc-mats .gl{grid-column:3}}
 .glm{display:grid;gap:3px;min-width:84px}.glm>span{height:5px;background:color-mix(in srgb,currentColor 12%,transparent)}.glm>span{display:block;overflow:hidden}.tbl .glm>span>i,.glm>span>i{display:block;height:5px!important;min-width:0;margin:0;border:0;box-shadow:none;vertical-align:top;background:linear-gradient(90deg,#8F8A80,#FF5A1F)}.glm em{font:700 11px var(--mono);font-style:normal}.glm small{font:600 8px var(--mono);letter-spacing:.12em;text-transform:uppercase;opacity:.65}.cmf-g{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:40px;align-items:start;margin-top:22px}.cmf-g aside{position:sticky;top:90px}.cmf-bar{display:flex;height:44px;border:1px solid color-mix(in srgb,currentColor 25%,transparent)}.cmf-bar i{flex:1}.cmf-fm{margin-top:6px}.cmf-fm.m{display:none}.cmf-fm .z0{fill:color-mix(in srgb,currentColor 4%,transparent)}.cmf-fm .z1{fill:color-mix(in srgb,currentColor 8%,transparent)}.cmf-fm .pt{font:700 8px var(--mono);text-anchor:middle}.cmf-p .spc-mats .mt p{color:inherit;opacity:.7}
 @media(max-width:900px){.cmf-fm.d{display:none}.cmf-fm.m{display:block}.cmf-g{grid-template-columns:1fr}.cmf-g aside{position:static}}
+
+.spc-draw{perspective:900px;overflow:hidden;position:relative}.spc-draw .spc-svg{transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .25s ease-out;transform-style:preserve-3d}
+.spc-svg .z-sh{filter:blur(6px);opacity:.22;transform:translate(calc(var(--px,0)*-6px + 8px),calc(var(--py,0)*-6px + 12px));pointer-events:none}.spc-svg .z-sh *{fill:#1A1A1C!important;stroke:none!important}.spc-svg .z-sh text{display:none}
+.spc-svg .z-obj{transform:translate(calc(var(--px,0)*4px),calc(var(--py,0)*4px));transition:transform .25s ease-out}.spc-svg .z-pin{transform:translate(calc(var(--px,0)*6px),calc(var(--py,0)*6px));transition:transform .25s ease-out}
+.spc-draw:not(.on) .pin{opacity:0;transform:scale(.4)}.spc-svg .pin{transform-box:fill-box;transform-origin:center;transition:opacity .35s var(--d,0s),transform .45s cubic-bezier(.3,1.6,.5,1) var(--d,0s)}
+.spc-draw.on .spc-svg [class^="a-"],.spc-draw.on .spc-svg [class*=" a-"]{animation-play-state:running}
+.spc-svg [class^="a-"],.spc-svg [class*=" a-"]{animation-play-state:paused;transform-box:fill-box;transform-origin:center}
+.spc-svg .a-spin{animation:aSpin 1.6s linear infinite}@keyframes aSpin{to{transform:rotate(-360deg)}}
+.spc-svg .a-tape1{animation:aTape1 12s ease-in-out infinite alternate}.spc-svg .a-tape2{animation:aTape2 12s ease-in-out infinite alternate}@keyframes aTape1{to{transform:scale(.68)}}@keyframes aTape2{to{transform:scale(1.5)}}
+.spc-svg .a-glint{animation:aGlint 3.5s ease-in-out infinite}@keyframes aGlint{0%,100%{opacity:0;transform:translateY(0)}50%{opacity:.12;transform:translateY(34px)}}
+.spc-svg .a-wob{animation:aWob 3s ease-in-out infinite}@keyframes aWob{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
+.spc-svg .a-ty{opacity:0;animation:aTy .01s steps(1) var(--t) forwards}@keyframes aTy{to{opacity:1}}
+.spc-svg .a-blink{animation:aBlink 1s steps(1) infinite}@keyframes aBlink{50%{opacity:0}}
+.spc-svg .a-scan{animation:aScan 4s linear infinite;transform-box:view-box}@keyframes aScan{from{transform:translateY(0)}to{transform:translateY(166px)}}
+.spc-svg .a-led{animation:aLed 1.7s steps(1) infinite}@keyframes aLed{0%,18%,40%,46%{opacity:1}12%,30%,44%,70%{opacity:.25}}
+.spc-svg .a-key{animation:aKey 3s ease-in-out var(--k) infinite}@keyframes aKey{0%,8%,100%{transform:translateY(0)}4%{transform:translateY(2px);fill:#FF5A1F}}
+.spc-svg .a-ndl{transform-box:view-box;transform-origin:180px 222px;animation:aNdl 2.2s cubic-bezier(.4,.1,.3,1) infinite}@keyframes aNdl{0%{transform:rotate(-62deg)}18%{transform:rotate(-8deg)}30%{transform:rotate(-28deg)}46%{transform:rotate(6deg)}62%{transform:rotate(-40deg)}80%{transform:rotate(-14deg)}100%{transform:rotate(-62deg)}}
+.spc-svg .a-vu{animation:aVu 2.2s ease-in-out infinite}@keyframes aVu{50%{filter:brightness(1.12) drop-shadow(0 0 8px #F5A623)}}
+.spc-svg .a-knob{animation:aKnob 6s ease-in-out infinite}@keyframes aKnob{0%,100%{transform:rotate(-30deg)}50%{transform:rotate(40deg)}}
+.spc-svg .a-bob{animation:aBob 1s steps(2) infinite}@keyframes aBob{50%{transform:translateY(-10px)}}
+.spc-svg .a-btn{animation:aBtn 1.8s ease-in-out var(--k) infinite}@keyframes aBtn{0%,14%,100%{transform:scale(1)}7%{transform:scale(.86);filter:brightness(.8)}}
+.spc-svg .a-bar{animation:aBar 2.4s ease-in-out var(--k) infinite}@keyframes aBar{0%,100%{opacity:.25}20%,70%{opacity:1}}
+.spc-svg .a-lamp{animation:aLamp 1.4s steps(1) infinite}@keyframes aLamp{60%{opacity:.15}}
+@media (hover:none){.spc-hint{display:none}}.spc-hint{font:600 9px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#8F8A80;position:absolute;right:10px;bottom:8px;pointer-events:none}
+@media (prefers-reduced-motion:reduce){.spc-svg [class^="a-"],.spc-svg [class*=" a-"]{animation:none!important;opacity:1!important}.spc-draw .spc-svg,.spc-svg .z-obj,.spc-svg .z-pin,.spc-svg .pin{transition:none}}
 </style><title>Henry Ortega · Creative Director for Technical Products</title><meta name="description" content="Henry Ortega: creative director for technical products. CMF, 3D, launch visuals and visual systems, built in Rhino, Grasshopper and Blender. 16 years at Nike turning new technology into the images and manuals 50+ launches were built from. Tigre Studio, Portland, OR.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tigrestudiodesign.github.io/">
@@ -4078,25 +4103,25 @@ const SP_CMF={"t120":[["t120_sleeve","Printed sleeve board","SBS paperboard · 4
 /* CMF callout drawings: each tape's source object in front elevation, filled from its own CMF spec, pins match the material list */
 function spcDraw(id){
  const R=SP_CMF[id], c=(i,j=0)=>(R[i][5][j]||R[i][5][0])[0];
- const pin=(n,px,py,tx,ty)=>`<g class="pin"><line x1="${px}" y1="${py}" x2="${tx}" y2="${ty}"/><circle cx="${tx}" cy="${ty}" r="3.5"/><circle cx="${px}" cy="${py}" r="12"/><text x="${px}" y="${py+4}">${String(n).padStart(2,'0')}</text></g>`;
+ const pin=(n,px,py,tx,ty)=>`<g class="pin" style="--d:${n*.12}s"><line x1="${px}" y1="${py}" x2="${tx}" y2="${ty}"/><circle cx="${tx}" cy="${ty}" r="3.5"/><circle cx="${px}" cy="${py}" r="12"/><text x="${px}" y="${py+4}">${String(n).padStart(2,'0')}</text></g>`;
  const L=`stroke="#1A1A1C" stroke-width="2" stroke-linejoin="round"`;
  let d='';
  if(id==='t120'){
   const st=[c(0,0),c(0,1),c(0,2),c(0,3)].map((h,k)=>`<line x1="${-200+k*26}" y1="420" x2="${180+k*26}" y2="40" stroke="${h}" stroke-width="12"/>`).join('');
   d=`<defs><clipPath id="sc1"><rect x="60" y="190" width="190" height="190"/></clipPath><pattern id="st1" width="104" height="104" patternUnits="userSpaceOnUse" patternTransform="rotate(-38)"><rect width="104" height="104" fill="#0B0A10"/>${[c(0,0),c(0,1),c(0,2),c(0,3)].map((h,k)=>`<rect x="${k*26}" width="14" height="104" fill="${h}"/>`).join('')}</pattern></defs>
-  <rect x="60" y="40" width="190" height="340" rx="4" fill="#0B0A10" ${L}/><rect x="60" y="190" width="190" height="190" fill="url(#st1)"/><rect x="60" y="40" width="190" height="340" rx="4" fill="none" ${L}/>
+  <rect x="60" y="40" width="190" height="340" rx="4" fill="#0B0A10" ${L}/><rect x="60" y="190" width="190" height="190" fill="url(#st1)" class="a-stripe"/><rect x="60" y="40" width="190" height="340" rx="4" fill="none" ${L}/>
   <text x="78" y="102" class="big" fill="#F6ECC6">T-120</text><text x="80" y="124" class="sm" fill="#F6ECC6">VHS STORE · SIDE A</text>
-  <circle cx="214" cy="336" r="24" fill="${c(4)}" ${L}/><text x="214" y="341" class="sm" text-anchor="middle" fill="#0B0A10">99¢</text>
+  <g class="a-wob"><circle cx="214" cy="336" r="24" fill="${c(4)}" ${L}/><text x="214" y="341" class="sm" text-anchor="middle" fill="#0B0A10">99¢</text></g>
   <rect x="280" y="210" width="290" height="150" rx="8" fill="${c(1)}" ${L}/><rect x="350" y="236" width="150" height="54" rx="4" fill="${c(2)}" stroke="#555" stroke-width="1.5"/>
-  <circle cx="385" cy="263" r="18" fill="#3B2414"/><circle cx="385" cy="263" r="7" fill="#EDE8DC"/><circle cx="465" cy="263" r="12" fill="#3B2414"/><circle cx="465" cy="263" r="7" fill="#EDE8DC"/>
+  <circle cx="385" cy="263" r="18" fill="#3B2414" class="a-tape1"/><circle cx="465" cy="263" r="12" fill="#3B2414" class="a-tape2"/>${[385,465].map(x=>`<g class="a-spin"><circle cx="${x}" cy="263" r="7" fill="#EDE8DC"/>${[0,60,120].map(a=>`<line x1="${x-6*Math.cos(a*Math.PI/180)}" y1="${263-6*Math.sin(a*Math.PI/180)}" x2="${x+6*Math.cos(a*Math.PI/180)}" y2="${263+6*Math.sin(a*Math.PI/180)}" stroke="#3B2414" stroke-width="1.6"/>`).join('')}</g>`).join('')}<rect x="352" y="238" width="146" height="10" fill="#fff" opacity=".07" class="a-glint"/>
   <rect x="300" y="306" width="250" height="36" rx="2" fill="${c(3)}" stroke="#1A1A1C" stroke-width="1.5"/><text x="314" y="329" class="sm" fill="#0B0A10">T-120 · VHS STORE · 標準再生</text>
   ${pin(1,30,250,98,250)}${pin(2,590,190,556,224)}${pin(3,425,190,425,250)}${pin(4,590,370,540,324)}${pin(5,248,410,222,352)}`;
  } else if(id==='t60'){
-  const keys=[];for(let r=0;r<4;r++)for(let k=0;k<13;k++){const mod=(k===0||k===12||r===3&&(k<2||k>10));keys.push(`<rect x="${94+k*32}" y="${336+r*18}" width="27" height="14" rx="2.5" fill="${mod?c(3,1):c(3,0)}" stroke="#1A1A1C" stroke-width="1"/>`)}
+  const keys=[];for(let r=0;r<4;r++)for(let k=0;k<13;k++){const mod=(k===0||k===12||r===3&&(k<2||k>10));keys.push(`<rect x="${94+k*32}" y="${336+r*18}" width="27" height="14" rx="2.5" fill="${mod?c(3,1):c(3,0)}" stroke="#1A1A1C" stroke-width="1"${(r*13+k)%7===3?` class="a-key" style="--k:${((r*13+k)%5)*.6}s"`:''}/>`)}
   d=`<rect x="120" y="24" width="360" height="270" rx="18" fill="${c(1)}" ${L}/><rect x="152" y="50" width="296" height="196" rx="16" fill="#2A2824" ${L}/><rect x="166" y="62" width="268" height="172" rx="26" fill="${c(0,0)}"/>
-  <g class="mono" fill="${c(0,1)}" style="filter:drop-shadow(0 0 4px ${c(0,1)})"><text x="186" y="98">READY.</text><text x="186" y="120">046 BYTES FREE</text><text x="186" y="142">&gt; LOAD "T-60"_</text></g>
+  <g class="mono" fill="${c(0,1)}" style="filter:drop-shadow(0 0 4px ${c(0,1)})"><text x="186" y="98" class="a-ty" style="--t:0s">READY.</text><text x="186" y="120" class="a-ty" style="--t:.5s">046 BYTES FREE</text><text x="186" y="142" class="a-ty" style="--t:1s">&gt; LOAD "T-60"<tspan class="a-blink">_</tspan></text></g><rect x="166" y="62" width="268" height="6" fill="${c(0,1)}" opacity=".08" class="a-scan"/>
   ${Array.from({length:16},(_,k)=>`<rect x="${168+k*8}" y="258" width="4" height="22" rx="1" fill="${c(2,1)}"/>`).join('')}
-  <rect x="420" y="262" width="30" height="10" rx="3" fill="${c(4)}" stroke="#1A1A1C" stroke-width="1.5" style="filter:drop-shadow(0 0 5px ${c(4)})"/>
+  <rect x="420" y="262" width="30" height="10" rx="3" fill="${c(4)}" stroke="#1A1A1C" stroke-width="1.5" style="filter:drop-shadow(0 0 5px ${c(4)})" class="a-led"/>
   <rect x="80" y="324" width="440" height="92" rx="8" fill="${c(1)}" ${L}/>${keys.join('')}
   ${pin(1,560,110,434,110)}${pin(2,560,40,470,60)}${pin(3,140,306,200,272)}${pin(4,560,380,510,370)}${pin(5,560,250,450,266)}`;
  } else if(id==='t90'){
@@ -4105,8 +4130,8 @@ function spcDraw(id){
   const knurl=Array.from({length:48},(_,k)=>{const a=k*Math.PI/24;return `<line x1="${440+38*Math.cos(a)}" y1="${200+38*Math.sin(a)}" x2="${440+48*Math.cos(a)}" y2="${200+48*Math.sin(a)}" stroke="#55585D" stroke-width="2"/>`}).join('');
   d=`<rect x="40" y="108" width="34" height="228" fill="${c(1,0)}" ${L}/>${grain(40)}<rect x="526" y="108" width="34" height="228" fill="${c(1,0)}" ${L}/>${grain(526)}
   <rect x="74" y="108" width="452" height="228" fill="${c(0)}" ${L}/>${brush}
-  <rect x="98" y="134" width="164" height="100" rx="6" fill="${c(3,0)}" ${L}/><path d="M122 214 A 60 60 0 0 1 238 214" fill="none" stroke="#1A1A1C" stroke-width="1.5"/>${Array.from({length:11},(_,k)=>{const a=Math.PI*(1.15+k*.07);return `<line x1="${180+58*Math.cos(a)}" y1="${222+58*Math.sin(a)}" x2="${180+66*Math.cos(a)}" y2="${222+66*Math.sin(a)}" stroke="${k>7?c(3,1):'#1A1A1C'}" stroke-width="2"/>`}).join('')}<line x1="180" y1="222" x2="214" y2="168" stroke="${c(3,1)}" stroke-width="2.5"/><text x="168" y="208" class="sm" fill="#1A1A1C">VU</text>
-  <circle cx="440" cy="200" r="48" fill="${c(2)}" ${L}/>${knurl}<circle cx="440" cy="200" r="30" fill="#3A3C40"/><line x1="440" y1="176" x2="440" y2="190" stroke="#FF5A1F" stroke-width="3"/>
+  <rect x="98" y="134" width="164" height="100" rx="6" fill="${c(3,0)}" ${L} class="a-vu"/><path d="M122 214 A 60 60 0 0 1 238 214" fill="none" stroke="#1A1A1C" stroke-width="1.5"/>${Array.from({length:11},(_,k)=>{const a=Math.PI*(1.15+k*.07);return `<line x1="${180+58*Math.cos(a)}" y1="${222+58*Math.sin(a)}" x2="${180+66*Math.cos(a)}" y2="${222+66*Math.sin(a)}" stroke="${k>7?c(3,1):'#1A1A1C'}" stroke-width="2"/>`}).join('')}<line x1="180" y1="222" x2="214" y2="168" stroke="${c(3,1)}" stroke-width="2.5" class="a-ndl"/><text x="168" y="208" class="sm" fill="#1A1A1C">VU</text>
+  <g class="a-knob"><circle cx="440" cy="200" r="48" fill="${c(2)}" ${L}/>${knurl}<circle cx="440" cy="200" r="30" fill="#3A3C40"/><line x1="440" y1="176" x2="440" y2="190" stroke="#FF5A1F" stroke-width="3"/></g>
   <circle cx="330" cy="200" r="20" fill="${c(2)}" ${L}/><circle cx="330" cy="200" r="12" fill="#3A3C40"/>
   <rect x="74" y="280" width="452" height="56" fill="${c(4,0)}" ${L}/><g class="sm" fill="${c(4,1)}"><text x="98" y="314">PHONO</text><text x="190" y="314">TUNER</text><text x="282" y="314">AUX</text><text x="352" y="314">TAPE 1</text><text x="436" y="314">VOLUME</text></g>
   ${pin(1,300,70,300,150)}${pin(2,22,70,56,130)}${pin(3,560,70,474,170)}${pin(4,180,70,180,140)}${pin(5,300,380,300,318)}`;
@@ -4117,9 +4142,9 @@ function spcDraw(id){
   <clipPath id="hb160"><rect x="30" y="88" width="530" height="262" rx="58"/></clipPath><g clip-path="url(#hb160)"><rect x="30" y="88" width="76" height="262" fill="${c(0)}" opacity=".85"/><rect x="484" y="88" width="76" height="262" fill="${c(0)}" opacity=".85"/></g>
   <rect x="30" y="88" width="530" height="262" rx="58" fill="none" ${L}/>
   <rect x="188" y="116" width="214" height="176" rx="10" fill="#55576A" ${L}/><rect x="212" y="136" width="166" height="136" fill="${c(2,0)}"/>
-  ${px.map(([x,y])=>`<rect x="${258+x*10}" y="${180+y*10}" width="9" height="9" fill="${c(2,1)}"/>`).join('')}
+  <g class="a-bob">${px.map(([x,y])=>`<rect x="${258+x*10}" y="${180+y*10}" width="9" height="9" fill="${c(2,1)}"/>`).join('')}</g>
   <path d="M112 206 h18 v-18 h18 v18 h18 v18 h-18 v18 h-18 v-18 h-18z" fill="#2A2A30" ${L}/>
-  <circle cx="452" cy="226" r="16" fill="${c(1,0)}" ${L}/><circle cx="486" cy="198" r="16" fill="${c(1,0)}" ${L}/><circle cx="486" cy="254" r="16" fill="${c(1,0)}" ${L}/><circle cx="520" cy="226" r="16" fill="${c(1,0)}" ${L}/>
+  ${[[452,226],[486,198],[486,254],[520,226]].map(([x,y],k)=>`<circle cx="${x}" cy="${y}" r="16" fill="${c(1,0)}" ${L} class="a-btn" style="--k:${k*.45}s"/>`).join('')}
   <rect x="246" y="308" width="38" height="12" rx="6" fill="${c(4)}" stroke="#1A1A1C" stroke-width="1.5"/><rect x="306" y="308" width="38" height="12" rx="6" fill="${c(4)}" stroke="#1A1A1C" stroke-width="1.5"/>
   ${Array.from({length:10},(_,k)=>`<circle cx="${120+(k%5)*11}" cy="${296+Math.floor(k/5)*11}" r="3" fill="#9A97A6"/>`).join('')}
   ${pin(1,40,50,64,150)}${pin(2,560,50,500,186)}${pin(3,295,40,295,140)}${pin(4,200,410,200,330)}${pin(5,380,410,326,318)}`;
@@ -4127,12 +4152,13 @@ function spcDraw(id){
   d=`<rect x="24" y="52" width="552" height="336" rx="64" fill="${c(1)}" ${L}/><path d="M60 80 Q300 50 540 80" stroke="#fff" stroke-opacity=".1" stroke-width="10" fill="none"/>
   <circle cx="186" cy="214" r="102" fill="#07090B" stroke="${c(3)}" stroke-width="14"/><circle cx="186" cy="214" r="86" fill="none" stroke="${c(3)}" stroke-opacity=".5" stroke-width="2"/>
   <circle cx="414" cy="214" r="102" fill="#07090B" stroke="${c(3)}" stroke-width="14"/><circle cx="414" cy="214" r="86" fill="none" stroke="${c(3)}" stroke-opacity=".5" stroke-width="2"/>
-  <text x="186" y="230" text-anchor="middle" class="vfd" fill="${c(0,1)}" style="filter:drop-shadow(0 0 5px ${c(0,1)})">046</text><text x="186" y="256" text-anchor="middle" class="sm" fill="${c(0,1)}">KM/H</text>
-  ${Array.from({length:10},(_,k)=>`<rect x="${362+k*11}" y="${250-k*7}" width="8" height="${12+k*7}" fill="${c(2)}" opacity="${k<7?1:.25}" style="filter:drop-shadow(0 0 3px ${c(2)})"/>`).join('')}<text x="414" y="268" text-anchor="middle" class="sm" fill="${c(2)}">FUEL</text>
-  <rect x="282" y="330" width="36" height="22" rx="3" fill="none" stroke="${c(4)}" stroke-width="3" style="filter:drop-shadow(0 0 5px ${c(4)})"/><rect x="288" y="324" width="7" height="6" fill="${c(4)}"/><rect x="305" y="324" width="7" height="6" fill="${c(4)}"/>
+  <text x="186" y="230" text-anchor="middle" class="vfd" fill="${c(0,1)}" style="filter:drop-shadow(0 0 5px ${c(0,1)})" data-spd>046</text><text x="186" y="256" text-anchor="middle" class="sm" fill="${c(0,1)}">KM/H</text>
+  ${Array.from({length:10},(_,k)=>`<rect x="${362+k*11}" y="${250-k*7}" width="8" height="${12+k*7}" fill="${c(2)}" opacity="${k<7?1:.25}" style="filter:drop-shadow(0 0 3px ${c(2)});--k:${k*.12}s" class="a-bar"/>`).join('')}<text x="414" y="268" text-anchor="middle" class="sm" fill="${c(2)}">FUEL</text>
+  <g class="a-lamp"><rect x="282" y="330" width="36" height="22" rx="3" fill="none" stroke="${c(4)}" stroke-width="3" style="filter:drop-shadow(0 0 5px ${c(4)})"/><rect x="288" y="324" width="7" height="6" fill="${c(4)}"/><rect x="305" y="324" width="7" height="6" fill="${c(4)}"/></g>
   ${pin(1,186,30,186,190)}${pin(2,560,40,520,90)}${pin(3,414,30,414,225)}${pin(4,40,330,110,290)}${pin(5,300,420,300,352)}`;
  }
- return `<svg viewBox="0 0 600 440" class="spc-svg" role="img" aria-label="Front elevation of the ${id.toUpperCase()} source object, coloured from its CMF spec">${d}<text x="12" y="432" class="cap">FRONT ELEVATION · NTS · CMF CALLOUT</text></svg>`;
+ const k=d.indexOf('<g class="pin"');
+ return `<svg viewBox="0 0 600 440" class="spc-svg" role="img" aria-label="Front elevation of the ${id.toUpperCase()} source object, coloured from its CMF spec, animated"><g class="z-sh" aria-hidden="true">${d.slice(0,k).replace(/ data-spd| id="[^"]*"/g,'')}</g><g class="z-obj">${d.slice(0,k)}</g><g class="z-pin">${d.slice(k)}</g><text x="12" y="432" class="cap">FRONT ELEVATION · NTS · CMF CALLOUT</text></svg>`;
 }
 /* CMF SPEC (shared): part, material, process, gloss target (GU at 60°, set from render roughness), role, colours. Lab computed from hex. */
 const CMF_P={
@@ -4248,7 +4274,7 @@ function spCmf(){
  const lab=([h,l])=>`${h.toUpperCase()} <span>L ${l[0]} · a ${l[1]} · b ${l[2]}</span>`;
  const tapes=['t120','t60','t90','t160','c46'].map((id,n)=>{const t=T[id],rows=SP_CMF[id];
   return `<div class="spc-tape" id="spc-${id}"><div class="spc-hd"><span class="spc-n">${String(n+1).padStart(2,'0')}</span><h3>${t.title} ${esc(t.name)}</h3><span class="era">${esc(t.era)}</span></div>
-  <div class="spc-top"><figure class="spc-draw">${spcDraw(id)}</figure>
+  <div class="spc-top"><figure class="spc-draw" data-spc>${spcDraw(id)}<span class="spc-hint">Move to tilt</span></figure>
   <ol class="spc-mats">${rows.map(([k,nm,proc,gl,role,cols],i)=>`<li><b class="pn">${String(i+1).padStart(2,'0')}</b><span class="sws">${cols.map(([h])=>`<i style="background:${h}"></i>`).join('')}</span><div class="mt"><h4>${esc(nm)}</h4><p>${esc(proc)}</p><small>${cols.map(lab).join(' · ')}</small></div><div class="gl" title="Gloss at 60°"><span><i style="width:${Math.min(100,parseFloat(gl))}%"></i></span><em>${gl}</em><small>${spcGloss(gl)}</small></div><p class="rl"><span class="spc-arrow">→</span> ${esc(role)}</p></li>`).join('')}</ol></div>
   <figure class="spc-board"><div class="spc-bi">${im(['img/spc__'+id+'.webp',1800,500],t.title+' '+t.name+' CMF board: five 50 mm material samples rebuilt in Blender')}<div class="spc-tags">${rows.map((r,i)=>`<span style="left:${(13.4+i*18.3).toFixed(1)}%">${String(i+1).padStart(2,'0')}</span>`).join('')}</div></div><figcaption>The five samples, 50 × 50 mm, rebuilt in Blender under one studio light.</figcaption></figure></div>`}).join('');
  // finish map: every material placed by gloss, one row per tape
@@ -4304,6 +4330,13 @@ function spDeck(icons){
   <details class="vx-tt"><summary>THE C-46 TELLTALES · 46 ICONS</summary><p class="muted">The C-46 tape ships with 46 icons drawn like dashboard warning lights on a 24px grid, one outlined shape each so colour survives a swap. Load the C-46 above to see them light up on screen.</p>${icons}</details>
  </div></section>`;
 }
+function mountSPC(){const ds=document.querySelectorAll('.spc-draw[data-spc]:not([data-on])');if(!ds.length)return;const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const io=new IntersectionObserver(es=>es.forEach(e=>{e.target.classList.toggle('on',e.isIntersecting);e.target._vis=e.isIntersecting}),{threshold:.3});
+ ds.forEach(f=>{f.dataset.on=1;io.observe(f);if(rm)return;
+  f.addEventListener('pointermove',e=>{const r=f.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;f.style.setProperty('--ry',(x*12).toFixed(2)+'deg');f.style.setProperty('--rx',(-y*9).toFixed(2)+'deg');f.style.setProperty('--px',x.toFixed(3));f.style.setProperty('--py',y.toFixed(3))});
+  f.addEventListener('pointerleave',()=>['--ry','--rx','--px','--py'].forEach(k=>f.style.removeProperty(k)));
+  const sp=f.querySelector('[data-spd]');if(sp){let t=0;const tick=()=>{if(!document.body.contains(f))return;if(f._vis){t=(t+1)%160;const v=t<60?Math.round(120*Math.sin(t/60*Math.PI/2)):t<100?120-Math.round((t-60)*1.85):46;sp.textContent=String(Math.max(0,v)).padStart(3,'0')}setTimeout(tick,60)};tick()}
+ })}
 function mountVX(){
  const c=document.getElementById('vx'); if(!c) return;
  const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -5322,7 +5355,7 @@ function route(){
  else if(h===KP.id){html=keypadPage();title=KP.title+' · Henry Ortega'}
  else if((i=RH.findIndex(p=>p.id===h))>=0){html=CS[RH[i].id]?casePage(RH,i,'rhino','Rhino Workflow'):galleryPage(RH,i,'rhino','Rhino Workflow');title=RH[i].title+' · Henry Ortega'}
  document.body.classList.remove('gm-lock');
- if(html){app.innerHTML=html;app.dataset.view='project';scrollTo(0,0);mountGame();mountTT();mountRK();mountVX();mountKN();mountHKN();mountPN();mountTA();mountKH();mountBM();mountTZ();mountKA();mountSim();mountGrille();mountPV();mountFB();window.TigreFigures&&TigreFigures.mountAll(app)}
+ if(html){app.innerHTML=html;app.dataset.view='project';scrollTo(0,0);mountGame();mountTT();mountRK();mountVX();mountSPC();mountKN();mountHKN();mountPN();mountTA();mountKH();mountBM();mountTZ();mountKA();mountSim();mountGrille();mountPV();mountFB();window.TigreFigures&&TigreFigures.mountAll(app)}
  else{
   if(app.dataset.view!=='home'){app.innerHTML=home();app.dataset.view='home';window.TigreFigures&&TigreFigures.mountAll(app)}
   const t=h&&document.getElementById(h); if(t) t.scrollIntoView(); else if(!h||h==='top') scrollTo(0,0);
