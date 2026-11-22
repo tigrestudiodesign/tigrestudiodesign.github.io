@@ -1,0 +1,5 @@
+exec(open('/home/claude/styles/_u.py').read())
+for k in ('shell','back','graph','rubber','steel','alu','cell','orange','btn_*','cone','blk'): setm(k,col='#E6ECF5',rough=0.06,metal=1.0,film=420,coat=0)
+setm('face',col='#C8E6FF',rough=0.08,metal=1.0,film=550,ink='#0A2A6B'); setm('plate',col='#FFD1F2',rough=0.1,metal=1.0,film=300,ink='#0A2A6B')
+floor('#9FD3FF','#BFE3FF',rough=0.3); world('#CFE9FF',0.2)
+clear_lights(); area((-0.4,-0.5,0.6),0.6,3.5); area((0.6,-0.2,0.2),0.15,2.2,'#FFFFFF',shape=0.9); area((-0.6,0.1,0.25),0.15,1.6,'#FFD6F5',shape=0.9); area((0.1,0.5,0.6),0.8,1.6,'#BFE6FF')

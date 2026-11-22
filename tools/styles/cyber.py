@@ -1,0 +1,6 @@
+exec(open('/home/claude/styles/_u.py').read())
+for k in ('shell','back'): setm(k,col='#24262C',rough=0.45,ink='#FF2BD6')
+setm('face',col='#101114',ink='#29F5FF'); setm('plate',col='#FF2BD6',ink='#101114')
+setm('ledon',col='#29F5FF',emis=('#29F5FF',12)); setm('diff',emis=('#FF2BD6',3))
+floor('#07070A','#3A0F45',rough=0.08); world('#05050A',0.05)
+clear_lights(); area((-0.5,-0.1,0.18),0.12,26,'#FF2BD6',shape=0.8); area((0.5,-0.15,0.18),0.12,26,'#29F5FF',shape=0.8); area((0.1,0.45,0.5),0.4,6,'#7A35FF'); area((-0.2,-0.6,0.5),0.5,2.5,'#FFFFFF')
