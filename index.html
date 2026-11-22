@@ -51,6 +51,9 @@ table.spc-t td{vertical-align:middle}.spc-chip{display:inline-flex;align-items:c
 .pov{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin-top:36px}
 .pov-c{border-top:2px solid currentColor;padding-top:18px}.pov-c b{font:700 12px var(--mono);color:#FF5A1F;letter-spacing:.12em}.pov-c h3{margin:10px 0 10px}.pov-c p{color:var(--muted);margin:0 0 14px}
 @media(max-width:860px){.pov{grid-template-columns:1fr}}
+.oo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px 32px;margin-top:36px}
+.oo-c .media{aspect-ratio:5/4}.oo-c h3{margin:6px 0 8px}.oo-c p{margin:0 0 8px}.oo-when{color:var(--ink,#111)}.oo-when b{font:700 11px var(--mono);letter-spacing:.12em;color:#FF5A1F;margin-right:6px}.oo-how{font:500 12px var(--mono);color:var(--muted);letter-spacing:.02em}
+@media(max-width:760px){.oo-grid{grid-template-columns:1fr}}
 </style><title>Henry Ortega · Creative Director for Technical Products</title><meta name="description" content="Henry Ortega: creative director for technical products. CMF, 3D, launch visuals and visual systems, built in Rhino, Grasshopper and Blender. 16 years at Nike turning new technology into the images and manuals 50+ launches were built from. Tigre Studio, Portland, OR.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tigrestudiodesign.github.io/">
@@ -1861,7 +1864,7 @@ const sheet=r=>`<div class="sheet"><p class="sheet-k">Rhino · ${r.caps.length} 
 const lines=()=>`<svg class="lines" viewBox="0 0 1440 140" preserveAspectRatio="none" aria-hidden="true"><polyline fill="none" stroke="#0036f9" stroke-width="1" points="0,110 220,96 420,128 640,70 860,100 1080,60 1300,92 1440,80"/><polyline fill="none" stroke="#e50000" stroke-width="1" points="420,128 520,104 640,70"/><polyline fill="none" stroke="#333333" stroke-width="1" points="0,70 180,120 360,60 560,118 760,84 980,130 1200,74 1440,112"/></svg>`;
 
 const foot=()=>`<div class="band dark rel stripey foot-b"><img class="stripes" src="img/stripe-band.webp" alt="" aria-hidden="true"><div class="wrap foot"><b><svg class="tmark" viewBox="0 0 24 28" aria-hidden="true"><path d="M0 0H20.75A3.25 3.25 0 0 1 24 3.25V7H15.75V28H8.25V7H0Z"/></svg>Tigre Studio</b>${socials('mini')}<span>Henry Mauricio Ortega Vera · Portland, OR · Portfolio 2027 · v52</span><a href="#top">Back to top</a></div></div><span class="spectrum"></span>`;
-const head=(sec,num)=>`<div class="band dark"><div class="wrap rh"><a href="#${sec}" style="text-decoration:none">← Back to portfolio</a><span class="hide-s" style="display:inline-flex;align-items:center"><svg class="tmark" viewBox="0 0 24 28" aria-hidden="true"><path d="M0 0H20.75A3.25 3.25 0 0 1 24 3.25V7H15.75V28H8.25V7H0Z"/></svg>Tigre Studio · Henry Ortega</span><span class="hide-s">Hardware Programs · Design Technology · Technical Documentation</span><span class="num">${num}</span></div></div>`;
+const head=(sec,num)=>`<div class="band dark"><div class="wrap rh"><a href="#${sec}" style="text-decoration:none">← Back to portfolio</a><span class="hide-s" style="display:inline-flex;align-items:center"><svg class="tmark" viewBox="0 0 24 28" aria-hidden="true"><path d="M0 0H20.75A3.25 3.25 0 0 1 24 3.25V7H15.75V28H8.25V7H0Z"/></svg>Tigre Studio · Henry Ortega</span><span class="hide-s">Creative Direction · CMF · 3D · Visual Systems</span><span class="num">${num}</span></div></div>`;
 
 /* ---------- v19: recruiter-first home, BASECAMP ---------- */
 const NAV=[['selected','Work'],['pov','Point of View'],['work','Case Studies'],['nike','Nike'],['documentation','Documentation'],['brand','Brand'],['product','Lab'],['resume','Résumé'],['contact','Contact']];
@@ -2080,6 +2083,30 @@ function mlSpec(){const grp=[...new Set(ML_D.map(m=>m.g))];
  ${grp.map(g=>`<tr class="tbl-grp"><th colspan="6">${esc(g.toUpperCase())} · ${ML_D.filter(m=>m.g===g).length}</th></tr>`+ML_D.map((m,i)=>[m,i]).filter(([m])=>m.g===g).map(([m,i])=>{const [p,gl,c,z]=ML_SPEC[m.k]||['','',[],''];return `<tr><th scope="row">${String(i+1).padStart(2,'0')}</th><td><b>${esc(m.name)}</b></td><td class="why">${esc(p)}</td><td class="n">${gl}</td><td>${c.map(cmfChip).join('')}</td><td><span class="spc-arrow">→</span> ${esc(z)}</td></tr>`}).join('')).join('')}
  </tbody></table></div><p class="fine" style="margin-top:16px">Colours are the master values each sample was built from; CIELAB is computed from them under D65. Gloss values are my targets for the rebuild, not lab readings. Typical zones are generic footwear uses, not any one product.</p></div></section>`}
 
+/* ---------- ONE OBJECT · EIGHT STYLES (art direction study on the BASECAMP radio) ---------- */
+const OO=[
+ ['clay','CLAY','Soft, matte, rounded, pastel. Every hard edge reads as friendly.','Kids, wellness, onboarding: hardware that should feel safe to touch.','Blender: matte clay shading, pastel palette, big soft lights'],
+ ['glass','GLASSMORPHISM','Frosted, translucent layers over glowing colour.','Tech launches and UI-led products: shows what is inside and feels digital.','Blender: frosted transmission shell, emissive colour fields'],
+ ['y2k','Y2K CHROME','Liquid chrome, thin-film iridescence, baby-blue optimism.','Youth drops, fashion collabs, limited editions.','Blender: chrome metal with thin-film interference'],
+ ['cyber','CYBERPUNK','Neon rim light on dark, wet reflective floor, a grid to the horizon.','Gaming, night events, energy and audio brands.','Blender: magenta and cyan rim lights, gloss floor, emissive grid'],
+ ['pop','POP ART','Flat primaries, halftone dots, heavy outlines, a shout.','Retail windows and social campaigns: loud, fast, cheap to print.','Python: posterised render, halftone and outline pass'],
+ ['aurora','AURORA','A clean object in front of soft, glowing gradient light.','Calm tech, sleep and wellness, AI products.','Blender: blurred emissive fields, shallow depth of field'],
+ ['swiss','SWISS','Grid, flush-left type, one colour, asymmetry, nothing extra.','Spec sheets, B2B, design press and museum shops.','Python: 12-column grid layout, Inter Display, front elevation'],
+ ['collage','COLLAGE','Torn paper, a halftone ghost, tape and typed labels.','Heritage and outdoor storytelling, zines, behind the scenes.','Python: torn-edge shapes, halftone copy, sticker cut-out']];
+function ooPage(){
+ return head('product','New')+`<main>
+ <section class="band dark"><div class="wrap case"><p class="num">New · Art direction study</p><h1>ONE OBJECT · EIGHT STYLES</h1><p class="meta">The same radio, art-directed eight ways</p>
+  <p class="note">A creative director's job is not to have one look. It is to pick the right one for the audience, the channel and the brand, and to keep the product true while the look changes. So I took one object, my BASECAMP hand-crank radio, and directed it in eight graphic styles: five as new 3D renders, three as 2D treatments built from those renders in code. The model, the proportions and the orange plate never change. Everything around them does.</p>
+  <dl class="facts"><div><dt>Object</dt><dd>BASECAMP emergency radio</dd></div><div><dt>Styles</dt><dd>8 · 5 in 3D, 3 in 2D</dd></div><div><dt>Built with</dt><dd>Python · Blender Cycles · Pillow</dd></div><div><dt>Rule</dt><dd>The look changes, the product truth doesn't</dd></div></dl></div></section>
+ <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">THE EIGHT</h2><p class="sh-sub">What defines each style / when I would use it</p>
+  <div class="oo-grid">${OO.map(([k,t,what,when,how],i)=>`<article class="oo-c"><div class="media ${i%2?'bl':'tr'}">${im(['img/oo__'+k+'.webp',1200,960],'BASECAMP radio in the '+t.toLowerCase()+' style')}</div><p class="kind">${String(i+1).padStart(2,'0')} · Style</p><h3>${t}</h3><p>${esc(what)}</p><p class="oo-when"><b>USE IT FOR</b> ${esc(when)}</p><p class="oo-how">${esc(how)}</p></article>`).join('')}</div>
+ </div></section>
+ <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">HOW I CHOOSE</h2><p class="sh-sub">Four questions before any style</p>
+  <ol class="rl-flow"><li><b>01</b><h3>WHO</h3><p>Who has to stop scrolling, and what do they already like?</p></li><li><b>02</b><h3>WHERE</h3><p>A phone screen, a shop window, a spec sheet or a trade show wall?</p></li><li><b>03</b><h3>WHAT IT COSTS</h3><p>Two renders and a print file, or a full campaign in 3D?</p></li><li><b>04</b><h3>WHAT STAYS</h3><p>The product, its proportions and the brand colour never move.</p></li></ol>
+ </div></section>
+ ${nextLink('product',{id:'standard-play',title:'Standard Play'})}</main>`+foot();
+}
+
 function mlPage(){
  const grp=[...new Set(ML_D.map(m=>m.g))];
  return head('product','New')+`<main>
@@ -2287,7 +2314,8 @@ function home(){
  const cmf=[CARD_ML,CARD_CMFN,{id:'standard-play',isNew:true,kind:'CMF · Design Systems',title:'Standard Play',meta:'25 materials behind five tapes, specified like production CMF, then turned into Figma systems',imgs:[['img/spc__t90.webp',1800,500]]},CARD_KA,{...PICK('nesting-tables'),isNew:false,kind:'CMF · Furniture'}].map(card).join('');
  const vis=[
   {id:'standard-play',kind:'AI Design Systems',title:'Standard Play',meta:'Five Figma design systems I directed, built with Claude',sp:true},
-  {id:'fold-bake',kind:'Editorial System',title:'Fold / Bake',meta:'A true-scale parchment cookbook generated from code',imgs:[['img/cb__co01.webp',1800,1273]],fit:true}
+  {id:'one-object-eight-styles',kind:'Art Direction',title:'One Object · Eight Styles',meta:'My BASECAMP radio directed eight ways, from clay to Swiss, and when I would use each',imgs:[['img/oo__grid.webp',1600,840]],isNew:true},
+ {id:'fold-bake',kind:'Editorial System',title:'Fold / Bake',meta:'A true-scale parchment cookbook generated from code',imgs:[['img/cb__co01.webp',1800,1273]],fit:true}
  ].map((r,i)=>r.sp?`<a class="card" href="#${r.id}"><div class="media ${i%2?'bl':'tr'}">${sleeve(TAPES[0])}</div><p class="kind">${r.kind}</p><h3>${r.title}</h3><p>${r.meta}</p></a>`:card(r,i)).join('');
  const feat=FEAT.map((f,i)=>{const n=NK(f.id);const img=f.img||(n&&n.hero);
   const media=f.doc?`<div class="media ${i%2?'bl-l':'tr-l'} fr-doc"><div class="pages">${CAPS.slice(0,4).map(c=>sil(c.p[0][0])).join('')}</div></div>`:`<div class="media ${i%2?'bl-l':'tr-l'}">${f.id==='basecamp'||f.isNew?'<span class="badge">New</span>':''}${im(img,f.t)}</div>`;
@@ -2319,7 +2347,7 @@ function home(){
   <div class="pov">${[
    ['01','CLARITY FIRST','If a factory, a buyer or a customer has to work to understand it, the design isn\'t finished. Sixteen years of manuals taught me to make the complex obvious, then make it beautiful.',[['documentation','The manual library'],['basecamp','BASECAMP manual']]],
    ['02','SYSTEMS, NOT ONE-OFFS','Every project ships with the rules behind it: a colour and material spec, a type system, a parametric model, so the next hundred pieces stay on brand without me in the room.',[['standard-play','Standard Play'],['material-library','Material Library']]],
-   ['03','TECHNICAL, BUT FUN','Precise enough for engineering, playful enough to stop the scroll: hot accent colour, technical micro-type, knurled hardware, grid backdrops.',[['hestia','HESTIA'],['parametric-keypad','Parametric Keypad']]]
+   ['03','TECHNICAL, BUT FUN','Precise enough for engineering, playful enough to stop the scroll: hot accent colour, technical micro-type, knurled hardware, grid backdrops.',[['one-object-eight-styles','One Object · Eight Styles'],['hestia','HESTIA']]]
   ].map(([n,t,b,ev])=>`<div class="pov-c"><b>${n}</b><h3>${t}</h3><p>${b}</p><div class="lane-l">${ev.map(([id,x])=>`<a href="${href(id)}">${x} →</a>`).join('')}</div></div>`).join('')}</div>
   <div class="tools"><span>Tools</span><ul><li>Rhino 9</li><li>Grasshopper 2</li><li>Blender · KeyShot</li><li>Adobe Creative Cloud</li><li>Figma</li><li>Python</li><li>Claude · ComfyUI</li><li>Smartsheet · Airtable</li></ul></div>
  </div></section>
@@ -4831,6 +4859,7 @@ function route(){
  else if((i=D.nike.findIndex(p=>p.id===h))>=0){html=nikePage(i);title=D.nike[i].title+' · Henry Ortega'}
  else if((i=ALL3D.findIndex(p=>p.id===h))>=0){html=ALL3D[i].full?ravenPage(i):(CS[ALL3D[i].id]?casePage(ALL3D,i,'studio','3D Work'):galleryPage(ALL3D,i,'studio','Studio Work'));title=ALL3D[i].title+' · Henry Ortega'}
  else if(h==='standard-play'){html=spPage();title='Standard Play · Henry Ortega'}
+ else if(h==='one-object-eight-styles'){html=ooPage();title='One Object · Eight Styles · Henry Ortega'}
  else if(h==='figures-index'){html=figuresPage();title='Index of Figures · Henry Ortega'}
  else if(h===KP.id){html=keypadPage();title=KP.title+' · Henry Ortega'}
  else if((i=RH.findIndex(p=>p.id===h))>=0){html=CS[RH[i].id]?casePage(RH,i,'rhino','Rhino Workflow'):galleryPage(RH,i,'rhino','Rhino Workflow');title=RH[i].title+' · Henry Ortega'}
