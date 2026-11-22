@@ -142,8 +142,8 @@ table.spc-t td{vertical-align:middle}.spc-chip{display:inline-flex;align-items:c
 .spc-fmw{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:36px;align-items:center;margin-top:18px}.spc-fmw p{margin:0;color:var(--muted)}
 .spc-fm{width:100%;height:auto;display:block}.spc-fm .gr{stroke:#D6CFC2;stroke-dasharray:2 3}.spc-fm .rw{stroke:#1A1A1C;stroke-opacity:.25}.spc-fm .ax{font:600 9px var(--mono);fill:#8F8A80;text-anchor:middle}.spc-fm .zn{font:700 8px var(--mono);letter-spacing:.12em;fill:#FF5A1F;text-anchor:middle}.spc-fm .tp{font:700 10px var(--mono);fill:currentColor}.spc-fm .axe{font:600 8px var(--mono);fill:#8F8A80;text-anchor:end;letter-spacing:.1em}
 @media(max-width:900px){.spc-top,.spc-fmw{grid-template-columns:1fr}.spc-mats li{grid-template-columns:28px 46px minmax(0,1fr)}.spc-mats .gl{grid-column:3}}
-.glm{display:grid;gap:3px;min-width:84px}.glm>span{height:5px;background:color-mix(in srgb,currentColor 12%,transparent)}.glm>span{display:block;overflow:hidden}.tbl .glm>span>i,.glm>span>i{display:block;height:5px!important;min-width:0;margin:0;border:0;box-shadow:none;vertical-align:top;background:linear-gradient(90deg,#8F8A80,#FF5A1F)}.glm em{font:700 11px var(--mono);font-style:normal}.glm small{font:600 8px var(--mono);letter-spacing:.12em;text-transform:uppercase;opacity:.65}.cmf-g{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:40px;align-items:start;margin-top:22px}.cmf-g aside{position:sticky;top:90px}.cmf-bar{display:flex;height:44px;border:1px solid color-mix(in srgb,currentColor 25%,transparent)}.cmf-bar i{flex:1}.cmf-fm{margin-top:6px}.cmf-fm .z0{fill:color-mix(in srgb,currentColor 4%,transparent)}.cmf-fm .z1{fill:color-mix(in srgb,currentColor 8%,transparent)}.cmf-fm .pt{font:700 8px var(--mono);text-anchor:middle}.cmf-p .spc-mats .mt p{color:inherit;opacity:.7}
-@media(max-width:900px){.cmf-g{grid-template-columns:1fr}.cmf-g aside{position:static}}
+.glm{display:grid;gap:3px;min-width:84px}.glm>span{height:5px;background:color-mix(in srgb,currentColor 12%,transparent)}.glm>span{display:block;overflow:hidden}.tbl .glm>span>i,.glm>span>i{display:block;height:5px!important;min-width:0;margin:0;border:0;box-shadow:none;vertical-align:top;background:linear-gradient(90deg,#8F8A80,#FF5A1F)}.glm em{font:700 11px var(--mono);font-style:normal}.glm small{font:600 8px var(--mono);letter-spacing:.12em;text-transform:uppercase;opacity:.65}.cmf-g{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:40px;align-items:start;margin-top:22px}.cmf-g aside{position:sticky;top:90px}.cmf-bar{display:flex;height:44px;border:1px solid color-mix(in srgb,currentColor 25%,transparent)}.cmf-bar i{flex:1}.cmf-fm{margin-top:6px}.cmf-fm.m{display:none}.cmf-fm .z0{fill:color-mix(in srgb,currentColor 4%,transparent)}.cmf-fm .z1{fill:color-mix(in srgb,currentColor 8%,transparent)}.cmf-fm .pt{font:700 8px var(--mono);text-anchor:middle}.cmf-p .spc-mats .mt p{color:inherit;opacity:.7}
+@media(max-width:900px){.cmf-fm.d{display:none}.cmf-fm.m{display:block}.cmf-g{grid-template-columns:1fr}.cmf-g aside{position:static}}
 </style><title>Henry Ortega · Creative Director for Technical Products</title><meta name="description" content="Henry Ortega: creative director for technical products. CMF, 3D, launch visuals and visual systems, built in Rhino, Grasshopper and Blender. 16 years at Nike turning new technology into the images and manuals 50+ launches were built from. Tigre Studio, Portland, OR.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tigrestudiodesign.github.io/">
@@ -2239,6 +2239,7 @@ function ooPage(){
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">THE EIGHT</h2><p class="sh-sub">What defines each style / when I would use it</p>
   <div class="oo-grid">${OO.map(([k,t,what,when,how],i)=>`<article class="oo-c"><div class="media ${i%2?'bl':'tr'}">${im(['img/oo__'+k+'.webp',1200,960],'BASECAMP radio in the '+t.toLowerCase()+' style')}</div><p class="kind">${String(i+1).padStart(2,'0')} · Style</p><h3>${t}</h3><p>${esc(what)}</p><p class="oo-when"><b>USE IT FOR</b> ${esc(when)}</p><p class="oo-how">${esc(how)}</p></article>`).join('')}</div>
  </div></section>
+ ${cmfSec('one-object-eight-styles','alt')}
  <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">HOW I CHOOSE</h2><p class="sh-sub">Four questions before any style</p>
   <ol class="rl-flow"><li><b>01</b><h3>WHO</h3><p>Who has to stop scrolling, and what do they already like?</p></li><li><b>02</b><h3>WHERE</h3><p>A phone screen, a shop window, a spec sheet or a trade show wall?</p></li><li><b>03</b><h3>WHAT IT COSTS</h3><p>Two renders and a print file, or a full campaign in 3D?</p></li><li><b>04</b><h3>WHAT STAYS</h3><p>The product, its proportions and the brand colour never move.</p></li></ol>
  </div></section>
@@ -3827,9 +3828,7 @@ const CS={
     <div class="tz-ed">${ED.map(([k,n,fj,hr,t,c])=>`<figure>${im([hr,1700,1040],n+' edition hero')}<figcaption><b>${n}</b><span class="tz-chips">${c.map(x=>`<i style="background:${x}"></i>`).join('')}</span><em>${t}</em></figcaption></figure>`).join('')}</div>
     <div class="f1-set"><figure>${im(['img/tz__r_trio_manta.webp',1800,1000],'The three editions on one stage')}<figcaption>Páramo, Manta and Tumbaga, the same file with three material sets.</figcaption></figure></div>
    </div></section>
-   <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The CMF Spec</h2><p class="sh-sub">Part by part, as a factory would read it</p>
-    <div class="tbl-wrap"><table class="tbl tz-spec"><thead><tr><th>Part</th><th>Material</th><th>Finish</th><th>Colour (Manta / Tumbaga / Páramo)</th><th>Gloss · 60°</th></tr></thead><tbody>${SPEC.map(r=>`<tr>${r.slice(0,4).map(x=>`<td>${x}</td>`).join('')}<td>${glMini(r[4])}</td></tr>`).join('')}</tbody></table></div>
-   </div></section>
+   ${cmfSec('trenza-alpargata','light')}
    <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Build</h2><p class="sh-sub">Seven parts, lifted in build order</p>
     <div class="tz-build"><figure class="tz-b-ex">${im(['img/tz__r_exploded_manta.webp',1500,1100],'Exploded alpargata: sole unit, lining, upper, heel tab, piping, faja strap and stitches lifted in build order')}</figure>
      <figure>${im(['img/tz__r_side_tumbaga.webp',1800,900],'Tumbaga edition, lateral view')}</figure>
@@ -4016,7 +4015,7 @@ function casePage(list,i,sec,label){
  </div></section>
 
  ${c.extra?c.extra(p):''}
- ${cmfSec(p.id,'alt')}
+ ${CMF_P[p.id]&&!CMF_P[p.id].inl?cmfSec(p.id,'alt'):''}
  ${rest.length?`<section class="band alt section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Views</h2><p class="sh-sub">${rest.length+1} views of the same file</p>
   <div class="duo">${rest.map(fig).join('')}</div></div></section>`:''}
 
@@ -4194,6 +4193,25 @@ const CMF_P={
 ['Sensor window','Open technical weave · graphite','25','Face: sensors see through it',['#2A2B2B']],
 ['Shell','PC/ABS · warm white · light clear coat','40','Under-skin structure, seen at the seams',['#EDEBE6']],
 ['Visor','Smoked PC · high-gloss hard coat','95','Eyes glow through',['#07080A','#FFB070']]]},
+'trenza-alpargata':{inl:1,t:'Three editions, one material set',n:'Every edition uses the same nine materials; only the dye, the paint and the faja change. Gold is fixed across all three, so the hardware reads as the brand. Swatches run Manta / Tumbaga / Páramo.',m:[
+['Toe cap and heel','Painted cotton manta, plain weave · hand-painted, fixed pigment','3','Pattern carrier: the Muisca geometry',['#E8DDC6','#17140F','#3C4631']],
+['Vamp','Over-under woven leather straps, 10 mm · veg-tan, aniline, light wax','22','Structure you can see',['#7A4320','#141210','#D6C7AA']],
+['Strap','Faja, warp-faced woven band · cotton with gold lurex edge','5','Edition story',['#A8391C','#6E1F1A','#C08A3A']],
+['Piping','Tumbaga-tone cord · brushed gold PVD','40','Edge line, all editions',['#C9A04A']],
+['Heel tab','Cast brass · hammered, gold PVD','60','Signature hardware',['#D8B25A']],
+['Lip band','Woven faja band, 8.5 mm · bound over the braid','5','Caps the sole',['#23305E','#8C6A2E','#1E2A4E']],
+['Midsole','Braided fique, two rows, 26 mm · natural, hand-stitched spiral','3','Craft made visible',['#CDB98F']],
+['Outsole','Vulcanised rubber, 4.5 mm · fine texture','8','Ground',['#1C1B1A','#141210','#3C4631']],
+['Lining','Cotton twill · brushed','4','Comfort',['#E8DDC6','#7A4320']]]},
+'one-object-eight-styles':{t:'The finish changes, the product doesn\'t',n:'Same radio, same parts, same proportions. Each style is a finish decision first: matte clay and frosted glass whisper, chrome and wet neon shout. Palettes are sampled from the final images; 2D styles list the print finish they are designed for.',m:[
+['01 · Clay','Matte clay shell · pastel · big soft light','2','Kids, wellness, onboarding',['#8EB2A0','#957E79','#8FA891']],
+['02 · Glassmorphism','Frosted transmission shell over emissive colour','35','Tech launches, UI-led products',['#1A1A2C','#4B4B6D','#CAD4F6']],
+['03 · Y2K Chrome','Liquid chrome · thin-film iridescence','95','Youth drops, fashion collabs',['#91BCF5','#6E91D0','#A8C6F0']],
+['04 · Cyberpunk','Dark gloss shell · neon rim light · wet floor','75','Gaming, night events, audio',['#110B1A','#3C1944','#76327F','#687E98']],
+['05 · Pop Art','Flat process inks · halftone · gloss poster stock','70','Retail windows, social',['#FFE502','#541C1B','#9A7530']],
+['06 · Aurora','Satin warm-white shell · glowing gradient light','20','Calm tech, sleep, AI',['#A4A3AF','#85FAF6','#908084']],
+['07 · Swiss','One spot colour on uncoated stock','4','Spec sheets, B2B, museum shops',['#F4F2EE','#FF5A1E','#462F29']],
+['08 · Collage','Uncoated paper · matte tape · halftone toner','6','Heritage, zines, outdoor stories',['#E6DECF','#222225','#FC5B20']]]},
 'pneuma':{t:'Soft goods, sewn not moulded',n:'The finger is almost all matte textile; the only gloss is the bladder you never see and the champagne hub where the air comes in. Terracotta means "hold here" across HESTIA.',m:[
 ['Knit top','Power-mesh warp knit · nylon/elastane · oat','2','The layer that grows and sets the bend',['#B9A787','#C8B898']],
 ['Woven base','210D nylon plain weave','5','Neutral axis the finger curls around',['#958E82']],
@@ -4207,12 +4225,16 @@ const CMF_P={
 function cmfSec(id,band){const P=CMF_P[id];if(!P)return '';const M=P.m;
  const lab=h=>{const l=hexLab(h);return `${h.toUpperCase()} <span>L ${l[0]} · a ${l[1]} · b ${l[2]}</span>`};
  const list=`<ol class="spc-mats">${M.map(([nm,proc,gl,role,cols],i)=>`<li><b class="pn">${String(i+1).padStart(2,'0')}</b><span class="sws">${cols.map(h=>`<i style="background:${h}"></i>`).join('')}</span><div class="mt"><h4>${esc(nm)}</h4><p>${esc(proc)}</p><small>${cols.map(lab).join(' · ')}</small></div><div class="gl" title="Gloss target at 60°"><span><i style="width:${Math.min(100,parseFloat(gl))}%"></i></span><em>${gl} GU</em><small>${spcGloss(gl)}</small></div><p class="rl"><span class="spc-arrow">→</span> ${esc(role)}</p></li>`).join('')}</ol>`;
- const X=g=>20+g*5.6, N=M.length, H=40+N*0+60;
- const st={};const fm=`<svg viewBox="0 0 600 150" class="spc-fm cmf-fm" role="img" aria-label="Finish strip: every part placed by its gloss target">
-  ${[['MATTE',0,10],['LOW SHEEN',10,30],['SATIN',30,60],['GLOSS',60,85],['HIGH',85,100]].map(([n,a,b],k)=>`<rect x="${X(a)}" y="18" width="${X(b)-X(a)}" height="84" class="${k%2?'z1':'z0'}"/><text x="${(X(a)+X(b))/2}" y="12" class="zn">${n}</text>`).join('')}
-  ${[0,10,30,60,85,100].map(g=>`<text x="${X(g)}" y="118" class="ax">${g}</text>`).join('')}
-  ${M.map((m,i)=>{const g=parseFloat(m[2]),b=Math.round(g/6);const k=st[b]=(st[b]||0)+1;const y=88-(k-1)*20;return `<g><rect x="${X(g)-8}" y="${y-8}" width="16" height="16" rx="2" fill="${m[4][0]}" stroke="#1A1A1C" stroke-width="1"/><text x="${X(g)}" y="${y+3}" class="pt" fill="${hexLab(m[4][0])[0]>60?'#1A1A1C':'#fff'}">${i+1}</text><title>${esc(String(i+1).padStart(2,'0')+' · '+m[0]+' · '+m[2]+' GU')}</title></g>`}).join('')}
-  <text x="${X(100)}" y="138" class="axe">GLOSS TARGET · GU AT 60°</text></svg>`;
+ const N=M.length;
+ const strip=(W,sq,cls)=>{const X=g=>14+g*(W-28)/100,rw={},pl=[];
+  M.map((m,i)=>[parseFloat(m[2]),i]).sort((a,b)=>a[0]-b[0]).forEach(([g,i])=>{let r=0;while(pl.some(q=>q.r===r&&Math.abs(q.x-X(g))<sq+2))r++;pl.push({r,x:X(g)});rw[i]=r});
+  const R=Math.max(3,...Object.values(rw).map(r=>r+1)),zh=R*(sq+3)+12,base=18+zh-6,H=zh+66;
+  return `<svg viewBox="0 0 ${W} ${H}" class="spc-fm cmf-fm ${cls}" role="img" aria-label="Finish strip: every part placed by its gloss target">
+  ${[['MATTE',0,10],['LOW SHEEN',10,30],['SATIN',30,60],['GLOSS',60,85],['HIGH',85,100]].map(([n,a,b],k)=>`<rect x="${X(a)}" y="18" width="${X(b)-X(a)}" height="${zh}" class="${k%2?'z1':'z0'}"/><text x="${(X(a)+X(b))/2}" y="12" class="zn">${cls==='m'&&n==='LOW SHEEN'?'LOW':n}</text>`).join('')}
+  ${[0,10,30,60,85,100].map(g=>`<text x="${X(g)}" y="${18+zh+16}" class="ax">${g}</text>`).join('')}
+  ${M.map((m,i)=>{const g=parseFloat(m[2]);const y=base-sq/2-rw[i]*(sq+3);return `<g><rect x="${X(g)-sq/2}" y="${y-sq/2}" width="${sq}" height="${sq}" rx="2" fill="${m[4][0]}" stroke="#1A1A1C" stroke-width="1"/><text x="${X(g)}" y="${y+3}" class="pt" fill="${hexLab(m[4][0])[0]>60?'#1A1A1C':'#fff'}">${i+1}</text><title>${esc(String(i+1).padStart(2,'0')+' · '+m[0]+' · '+m[2]+' GU')}</title></g>`}).join('')}
+  <text x="${X(100)}" y="${18+zh+36}" class="axe">GLOSS TARGET · GU AT 60°</text></svg>`};
+ const fm=strip(600,16,'d')+strip(340,17,'m');
  const all=[...new Set(M.flatMap(m=>m[4]))];
  const bar=`<div class="cmf-bar">${all.map(h=>`<i style="background:${h}" title="${h.toUpperCase()}"></i>`).join('')}</div>`;
  return `<section class="band ${band||'light'} section cmf-p"><div class="wrap"><h2 class="sh-title" style="font-size:32px">CMF SPEC</h2><p class="sh-sub">${esc(P.t)} / ${N} parts / Lab + gloss targets</p>
