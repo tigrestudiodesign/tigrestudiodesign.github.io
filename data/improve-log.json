@@ -385,5 +385,14 @@
    "index.html",
    "data/improve-log.json"
   ]
+ },
+ {
+  "date": "2026-11-23",
+  "project": "hestia-knit-nodes",
+  "change": "New MOVE THE RULE control in THE SELECTION MATRIX: a knurled slider (60 to 100 %) re-runs the knit_select.py engine in the page, recolours all 110 cells against the new limit, re-picks the flex-joint knits and reports flat vs pleated joints, gussets, knits in use and what changed against the 85 % shipping spec (e.g. 74 %: hip goes to pleated rib, knee to flat garter; 95 %: elbow passes flat). At 85 % it reproduces the published spec exactly; keeps the matrix scroll position on phones.",
+  "files": [
+   "index.html",
+   "data/improve-log.json"
+  ]
  }
 ]
