@@ -449,5 +449,18 @@
    "index.html",
    "data/improve-log.json"
   ]
+ },
+ {
+  "date": "2026-11-24",
+  "project": "standard-play",
+  "change": "Fixed the Vizcom pass's text errors: on the shelf hero (and homepage card) the original sleeve artwork was warped back onto all five sleeve faces with SIFT homographies, keeping Vizcom's light, edges and wear (restores 端末, 高音質, the '·' separators, the T-160 checker and the C-46 card); the VHS spine label kanji was retypeset; T-60's 'DISK 1 · 端末' label retypeset; invented micro-text removed from the C-46 cassette label. Caption updated.",
+  "files": [
+   "img/spr__shelf.webp",
+   "img/spr__sel.webp",
+   "img/spr__t60.webp",
+   "img/spr__c46.webp",
+   "index.html",
+   "data/improve-log.json"
+  ]
  }
 ]
