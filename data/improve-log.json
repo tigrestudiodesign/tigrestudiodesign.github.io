@@ -420,5 +420,18 @@
    "index.html",
    "data/improve-log.json"
   ]
+ },
+ {
+  "date": "2026-11-24",
+  "project": "penny-loafer, nesting-tables",
+  "change": "Vizcom STUDIO PASS (requested by Henry): each project's Blender hero went through Vizcom Instant Render with a written material spec; two kept per project and added as a new Studio Pass section (shared vzPass block), labelled as an AI render pass on Henry's model with what it changed and simplified. Loafer: burnished leather and real creasing; tables: real glaze, fluting, translucent HDPE and sunlit room.",
+  "files": [
+   "index.html",
+   "img/lf__vz_studio.webp",
+   "img/lf__vz_photo.webp",
+   "img/nt2__vz_sun.webp",
+   "img/nt2__vz_grid.webp",
+   "data/improve-log.json"
+  ]
  }
 ]
