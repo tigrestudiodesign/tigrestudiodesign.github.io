@@ -407,5 +407,18 @@
    "img/ta__quote2.webp (removed)",
    "img/ta__07.webp (removed)"
   ]
+ },
+ {
+  "date": "2026-11-24",
+  "project": "ohm-01",
+  "change": "Round 08: Vizcom render pass (requested by Henry). His PUNCH hero went through Vizcom Instant Render with a written CMF spec; two results added as a new STUDIO SHOTS section, labelled as an AI render pass on the Blender model with what it changed and simplified, plus a Round 08 entry in PROCESS, a nav link, rounds 7 to 8, and a new homepage card crop.",
+  "files": [
+   "ohm/index.html",
+   "ohm/img/vz_studio.webp",
+   "ohm/img/vz_ripstop.webp",
+   "img/ohm__feat.webp",
+   "index.html",
+   "data/improve-log.json"
+  ]
  }
 ]
