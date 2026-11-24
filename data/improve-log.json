@@ -462,5 +462,15 @@
    "index.html",
    "data/improve-log.json"
   ]
+ },
+ {
+  "date": "2026-11-24",
+  "project": "electric-guitar",
+  "change": "Vizcom render pass (Realistic) on the hero, replacing the Blender still at 2550x1560. Checked against the model: fret inlays match to 1 px, 6 strings, 3 pickups, 3 knobs, switch and tremolo arm intact. Vizcom turned the black tuner buttons chrome (recoloured back to black plastic per the model) and garbled the bridge saddles (replaced with a separate Vizcom macro pass of the bridge, registered by homography). Finish elevations, macros, exploded and clay views stay as Blender renders since exact geometry matters there. Caption updated.",
+  "files": [
+   "img/eg__hero.webp",
+   "index.html",
+   "data/improve-log.json"
+  ]
  }
 ]
