@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OHM-01 · Zero Resistance · Tigre Studio</title>
+<meta name="description" content="OHM-01: an unofficial women's puffer high-top concept for lululemon, modelled in code and rendered headless in Blender. Process, iterations and three colourways.">
+<meta property="og:title" content="OHM-01 · Zero Resistance">
+<meta property="og:description" content="A puffer high-top built like soft hardware. Modelled in Python, rendered headless in Blender.">
+<meta property="og:image" content="https://tigrestudiodesign.github.io/ohm/img/pair_punch.webp">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Crect width='28' height='28' fill='%230B0B0C'/%3E%3Cpath d='M4 4h20v6h-7v14h-6V10H4z' fill='%23FF5A1F'/%3E%3C/svg%3E">
+<style>
+@font-face{font-family:"Inter Display";src:url(../fonts/InterDisplay-Black.woff2) format("woff2");font-weight:900;font-display:swap}
+@font-face{font-family:"Inter Display";src:url(../fonts/InterDisplay-Bold.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"JetBrains Mono";src:url(../fonts/JetBrainsMono-400.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"JetBrains Mono";src:url(../fonts/JetBrainsMono-700.woff2) format("woff2");font-weight:700;font-display:swap}
+:root{--ink:#0b0b0c;--paper:#f4f2ee;--mute:#8f8f95;--line:#2a2a2e;--hot:#ff4a1c;--acc:#ffc21a;--vio:#5326f2;
+ --disp:"Inter Display",Inter,"Helvetica Neue",Arial,sans-serif;--mono:"JetBrains Mono",ui-monospace,Menlo,monospace;--ser:"Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:var(--paper);font-family:var(--disp);font-weight:700;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{display:block;max-width:100%;height:auto}
+.grid{background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:40px 40px}
+.wrap{max-width:1360px;margin:0 auto;padding:0 clamp(20px,4vw,56px)}
+.mono{font-family:var(--mono);font-weight:400;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.it{font-family:var(--ser);font-style:italic;font-weight:400}
+h1,h2,h3{font-weight:900;text-transform:uppercase;margin:0;letter-spacing:-.01em}
+.stripe{height:6px;background:linear-gradient(90deg,#59c0e6,#0036f9 20%,#7a3cff 38%,#e50000 56%,#ff8a00 76%,#ffc21a)}
+/* nav */
+.nav{position:sticky;top:0;z-index:10;background:rgba(11,11,12,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;flex-wrap:wrap}
+.nav b{font-weight:900;letter-spacing:.04em}
+.nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+.nav ul a{text-decoration:none;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#cfcfd4}
+.nav ul a:hover{color:var(--acc)}
+/* hero */
+.hero{padding:56px 0 0}
+.hero-top{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.hero h1{font-size:clamp(84px,16vw,248px);line-height:.84;margin-top:28px}
+.hero h1 span{color:var(--hot)}
+.hero .tag{font-size:clamp(28px,4.4vw,64px);line-height:.95;margin-top:14px}
+.hero .lede{max-width:880px;font-size:clamp(18px,1.8vw,24px);line-height:1.45;color:#d6d6da;margin:22px 0 0}
+.spec{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:36px}
+.spec div{background:var(--ink);padding:16px}
+.spec b{display:block;font-size:clamp(28px,3vw,40px);font-weight:900}
+.hero-img{margin-top:40px;border-top-right-radius:56px;overflow:hidden;background:#e9e6e1}
+/* sections */
+section.sec{padding:96px 0;border-top:1px solid var(--line)}
+.sec-h{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;border-bottom:1px solid #fff;padding-bottom:14px;margin-bottom:36px}
+.sec-h h2{font-size:clamp(40px,5.4vw,80px);line-height:.92}
+.sec-h .it{font-size:22px;color:#cfcfd4}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:40px}
+.two p{font-size:19px;line-height:1.55;color:#d6d6da;margin:0 0 16px;font-weight:400;font-family:Inter,"Helvetica Neue",Arial,sans-serif}
+/* colourways */
+.cw-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.cw-tabs button{font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;background:transparent;color:var(--paper);border:1px solid #555;border-radius:999px;padding:12px 20px;cursor:pointer;min-height:44px;display:flex;align-items:center;gap:10px}
+.cw-tabs button[aria-pressed="true"]{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.cw-tabs i{width:14px;height:14px;border-radius:50%;display:inline-block;border:1px solid rgba(255,255,255,.4)}
+.cw-stage{border-top-left-radius:48px;overflow:hidden}
+.cw-meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-top:22px;align-items:start}
+.sw{display:flex;gap:8px;flex-wrap:wrap}
+.sw span{display:flex;flex-direction:column;gap:6px;font-family:var(--mono);font-size:11px;color:var(--mute);text-transform:uppercase;letter-spacing:.06em}
+.sw span i{width:56px;height:56px;border-radius:14px;border:1px solid rgba(255,255,255,.15)}
+.cw-copy h3{font-size:36px}
+.cw-copy p{font-size:18px;line-height:1.5;color:#d6d6da;margin:8px 0 0}
+/* anatomy */
+.anat{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.anat div{background:var(--ink);padding:24px}
+.anat .n{font-family:var(--mono);color:var(--acc);font-size:12px}
+.anat h3{font-size:22px;margin:8px 0}
+.anat p{margin:0;font-family:Inter,Arial,sans-serif;font-weight:400;font-size:16px;line-height:1.5;color:#cfcfd4}
+.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;margin-top:16px}
+figure{margin:0}
+figure img{border-radius:0 0 0 28px;background:#e9e6e1}
+figcaption{margin-top:10px;color:#bdbdc3;font-size:16px}
+/* process */
+.log{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:56px}
+.log li{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:36px;align-items:start}
+.log li:nth-child(even) .lg-img{order:2}
+.log .v{font-family:var(--mono);color:var(--hot);font-size:13px;letter-spacing:.1em}
+.log h3{font-size:clamp(26px,2.6vw,38px);line-height:1;margin:8px 0 12px}
+.log .ask{font-size:19px;color:#fff;margin:0 0 12px}
+.log ul{margin:0;padding-left:18px;font-family:Inter,Arial,sans-serif;font-weight:400;font-size:16px;line-height:1.55;color:#cfcfd4}
+.log .why{margin-top:12px;font-size:17px;color:var(--acc)}
+.lg-img img{border-radius:0 28px 0 0;background:#e9e6e1}
+@media (max-width:820px){.log li{grid-template-columns:1fr}.log li:nth-child(even) .lg-img{order:0}}
+/* pipeline */
+.pipe{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;counter-reset:s}
+.pipe div{border:1px solid #444;border-radius:18px;padding:20px;position:relative}
+.pipe div::before{counter-increment:s;content:"0" counter(s);font-family:var(--mono);color:var(--acc);font-size:12px}
+.pipe h3{font-size:20px;margin:8px 0}
+.pipe p{margin:0;font-family:Inter,Arial,sans-serif;font-weight:400;font-size:15px;line-height:1.5;color:#cfcfd4}
+/* footer */
+footer{padding:64px 0 0;border-top:1px solid var(--line)}
+footer .row{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap}
+.back{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 22px;border-radius:999px;background:var(--paper);color:var(--ink);text-decoration:none;font-weight:900;text-transform:uppercase;letter-spacing:.04em}
+.back:hover{background:var(--acc)}
+.disc{max-width:640px;font-family:Inter,Arial,sans-serif;font-weight:400;font-size:13px;line-height:1.55;color:var(--mute)}
+</style>
+</head>
+<body>
+<nav class="nav" aria-label="OHM-01 sections"><div class="wrap">
+ <a href="https://tigrestudiodesign.github.io/" style="text-decoration:none"><b>TIGRE STUDIO</b> <span class="mono">/ OHM-01</span></a>
+ <ul><li><a href="#colourways">Colourways</a></li><li><a href="#anatomy">Anatomy</a></li><li><a href="#process">Process</a></li><li><a href="#pipeline">Pipeline</a></li><li><a href="https://tigrestudiodesign.github.io/">Portfolio ↗</a></li></ul>
+</div></nav>
+<div class="stripe"></div>
+
+<header class="hero grid"><div class="wrap">
+ <div class="hero-top"><span class="mono">Unofficial concept · lululemon women's footwear · 2026</span><span class="mono">Python SDF → Blender Cycles (headless)</span></div>
+ <h1>OHM<span>-</span>01</h1>
+ <p class="tag">ZERO RESISTANCE.</p>
+ <p class="lede"><span class="it">Om</span>, the breath. <span class="it">Ohm</span>, the unit of resistance. A women's puffer high-top built like soft hardware: tuned with a heel dial, cinched with a bungee, gripped by a parametric lug sole. Cosy enough for the studio, ready for a short trail.</p>
+ <div class="spec">
+  <div><span class="mono">Collar opening</span><b>32 cm</b></div>
+  <div><span class="mono">Midsole perforations</span><b>393</b></div>
+  <div><span class="mono">Lug height</span><b>4.2 mm</b></div>
+  <div><span class="mono">Colourways</span><b>3</b></div>
+  <div><span class="mono">Design rounds</span><b>7</b></div>
+ </div>
+ <div class="hero-img"><img id="heroImg" src="img/pair_punch.webp" width="1600" height="900" alt="A left and right pair of OHM-01 high-tops in the PUNCH colourway: orange quilted puffer uppers, violet heel counters printed with OHM and lululemon, perforated cream midsoles with yellow showing through."></div>
+</div></header>
+
+<section class="sec" id="colourways"><div class="wrap">
+ <div class="sec-h"><h2>THREE MOODS, ONE PAIR</h2><span class="it">Punch · Obsidian · Manga</span></div>
+ <div class="cw-tabs" role="group" aria-label="Choose a colourway">
+  <button type="button" aria-pressed="true" data-cw="punch"><i style="background:#ff4a1c"></i>Punch</button>
+  <button type="button" aria-pressed="false" data-cw="obsidian"><i style="background:#16161a"></i>Obsidian</button>
+  <button type="button" aria-pressed="false" data-cw="manga"><i style="background:#f3f1ec"></i>Manga</button>
+ </div>
+ <div class="cw-stage"><img id="cwImg" src="img/pair_punch.webp" width="1600" height="900" alt="OHM-01 pair in PUNCH."></div>
+ <div class="cw-meta">
+  <div class="cw-copy"><h3 id="cwName">PUNCH</h3><p id="cwText">Hot-orange puffer, violet counter and toe, a yellow core glowing through the perforations and yellow lugs underneath. The loud one.</p></div>
+  <div class="sw" id="cwSw"></div>
+ </div>
+</div></section>
+
+<section class="sec" id="anatomy"><div class="wrap">
+ <div class="sec-h"><h2>ANATOMY</h2><span class="it">What every part is doing</span></div>
+ <div class="anat">
+  <div><span class="n">01 / COLLAR</span><h3>PADDED, GATHERED OPENING</h3><p>A tilted oval, 32 cm around, lower at the front so the foot slides in. A padded roll of outer fabric is gathered by elastic, with fleece lining inside.</p></div>
+  <div><span class="n">02 / CINCH</span><h3>BUNGEE + CORD LOCK</h3><p>A second gathered channel sits lower on the shaft. A bungee exits at the instep into a cord lock, so she can seal out cold or open it right up.</p></div>
+  <div><span class="n">03 / FIT</span><h3>HEEL TUNE DIAL</h3><p>A knurled, synth-style dial on an anodised bezel sets heel hold. One twist, no laces.</p></div>
+  <div><span class="n">04 / UPPER</span><h3>QUILTED RIPSTOP PUFFER</h3><p>Stitched channels with soft wrinkles, a satin-coated ripstop shell and a matte fleece lining: lululemon's cosy bootie DNA, kept on purpose.</p></div>
+  <div><span class="n">05 / COUNTER</span><h3>SOFT-TOUCH HEEL CUP</h3><p>A one-colour TPU counter with a rolled lip carries the OHM lockup as a clean print, plus a heel pull loop above it.</p></div>
+  <div><span class="n">06 / MIDSOLE</span><h3>GRADED PERFORATION</h3><p>393 domed holes on a hex pitch, big under the heel for cushioning, shrinking toward the toe, with a glossy coloured core showing through.</p></div>
+  <div><span class="n">07 / OUTSOLE</span><h3>PARAMETRIC HIKE LUGS</h3><p>Triangular lugs on a hex lattice. Heel lugs point forward to brake on descents, forefoot lugs point back for climbing, and edge lugs are bigger. Two flex grooves let the sole bend.</p></div>
+ </div>
+ <div class="gal">
+  <figure><img src="img/topq.webp" width="1280" height="1600" alt="Top three-quarter view showing the wide gathered collar opening, fleece lining, heel pull loop and bungee cord lock." loading="lazy"><figcaption class="it">The rebuilt collar: wide oval opening, gathered roll, fleece, pull loop, cord lock.</figcaption></figure>
+  <figure><img src="img/heel.webp" width="1280" height="1600" alt="Rear three-quarter view of the heel: violet counter with OHM lockup, black knurled dial on a yellow bezel, perforated midsole." loading="lazy"><figcaption class="it">Heel counter, tune dial and the graded perforation.</figcaption></figure>
+ </div>
+ <div class="gal">
+  <figure><img src="img/side.webp" width="1152" height="720" alt="Lateral side profile of the PUNCH shoe." loading="lazy"><figcaption class="it">Lateral profile.</figcaption></figure>
+  <figure><img src="img/sole.webp" width="1344" height="720" alt="Outsole view: yellow triangular lugs on a hex lattice with two flex grooves." loading="lazy"><figcaption class="it">The lug field: braking at the heel, propulsion up front, flex grooves between.</figcaption></figure>
+ </div>
+</div></section>
+
+<section class="sec grid" id="process"><div class="wrap">
+ <div class="sec-h"><h2>PROCESS &amp; ITERATIONS</h2><span class="it">Seven rounds, each one a response</span></div>
+ <ol class="log">
+  <li><div class="lg-img"><img src="img/v1.webp" width="1200" height="900" alt="Round 1: low-top in graphite and hot orange with exposed cable lacing, screws, a speaker grille and a heel dial." loading="lazy"></div>
+   <div><span class="v">ROUND 01 · LOW-TOP "SIGNAL"</span><h3>TAKE THE ELECTRONICS LITERALLY</h3>
+   <p class="ask it">Brief: comfortable, cool, techy, inspired by modern electronics, still lululemon.</p>
+   <ul><li>Mapped the references part by part: synth knobs became the tune dial, chassis cut-outs the heel frame, speaker grilles the vents, patch cables the lacing.</li><li>Exposed screws, micro-type, a barcode and a SLIP / LOCK toggle.</li></ul>
+   <p class="why it">Learned: too much gadget. It read as a device, not a shoe she'd want.</p></div></li>
+  <li><div class="lg-img"><img src="img/v2.webp" width="1200" height="1500" alt="Round 2: orange quilted high-top with a violet counter and an oversized dial." loading="lazy"></div>
+   <div><span class="v">ROUND 02 · HIGH-TOP, PUNCHIER</span><h3>FEWER, BIGGER MOVES</h3>
+   <p class="ask it">Feedback: make it a high-top, less techy, more punchy. Lose the air-like windows.</p>
+   <ul><li>Raised it into a quilted puffer high-top and stripped the cable, screws, grilles and small type.</li><li>Bold colour-blocking, an oversized dial and a big wordmark.</li><li>Replaced the air-style midsole windows with a 3D Voronoi groove pattern.</li></ul>
+   <p class="why it">Learned: punch comes from a few confident shapes, not more parts.</p></div></li>
+  <li><div class="lg-img"><img src="img/v3.webp" width="1200" height="1500" alt="Round 3: refined puffer with stitch lines and a pillowed, graded Voronoi midsole." loading="lazy"></div>
+   <div><span class="v">ROUND 03 · +25% CMF &amp; MODELLING</span><h3>MAKE THE MATERIALS BELIEVABLE</h3>
+   <p class="ask it">Feedback: push the CMF and the modelling further.</p>
+   <ul><li>Modelling: stitch lines and soft wrinkles on the puffs, a rolled lip on the counter, a graded and pillowed Voronoi, a 40% finer mesh.</li><li>CMF: satin ripstop, fleece lining, soft-touch TPU, porous foam, a glossy candy core and an anodised dial.</li><li>Moved the logo from 3D text to a printed decal, which fixed the garbled lettering.</li></ul></div></li>
+  <li><div class="lg-img"><img src="img/v4.webp" width="1200" height="1500" alt="Round 4: midsole with graded round perforations and yellow core showing through." loading="lazy"></div>
+   <div><span class="v">ROUND 04 · SOLE REFINED</span><h3>FROM CRACKED MUD TO MOULDED</h3>
+   <p class="ask it">Feedback: the sole looks crude. Refine the texture (with material samples attached).</p>
+   <ul><li>Took the cue from the perforated helmet sample: a hex field of round holes, graded big at the heel to small at the toe and fading at the edges.</li><li>Each hole is a capsule cut along the surface normal down to a coloured core, with a filleted rim.</li><li>Finer foam pore and topographic line rubber.</li></ul></div></li>
+  <li><div class="lg-img"><img src="img/v4b.webp" width="1280" height="1600" alt="Round 4.1: close-up of the corrected heel with clean, evenly spaced holes and a crisp colour line." loading="lazy"></div>
+   <div><span class="v">ROUND 04.1 · HEEL FIX</span><h3>DEBUG THE GEOMETRY, NOT THE RENDER</h3>
+   <p class="ask it">Feedback: the finish at the heel looks weird.</p>
+   <ul><li>Cause: the hole rows start and end at the heel, so holes landed on top of each other and fused into a blob.</li><li>Fix: overlap pruning with a minimum web between holes, plus wider hex spacing so the pattern stays regular.</li><li>The colour line was set per vertex and came out ragged. It's now an analytic curve in the shader, and the midsole mesh is 35% finer.</li></ul></div></li>
+  <li><div class="lg-img"><img src="img/v5.webp" width="1440" height="1800" alt="Round 5: PUNCH hero with the new OHM lockup printed on the counter." loading="lazy"></div>
+   <div><span class="v">ROUND 05 · OUTSOLE + LOCKUP</span><h3>DESIGN THE SOLE FOR A SHORT HIKE</h3>
+   <p class="ask it">Feedback: widen the collar, fix the OHM branding, make the outsole parametric and trail-ready.</p>
+   <ul><li>Lug field rules: triangle lugs on an 11.2 mm hex pitch, heel lugs braking, forefoot lugs propelling, edge lugs about 25% bigger and splayed outward.</li><li>Two flex grooves, a 4.2 mm lug height (2.8 mm under the arch) and tapered sides so mud sheds.</li><li>A clean OHM over lululemon lockup in place of the warped 3D letters.</li></ul></div></li>
+  <li><div class="lg-img"><img src="img/v6.webp" width="1280" height="1600" alt="Round 6: top view of the rebuilt gathered collar with fleece lining, pull loop and cord lock." loading="lazy"></div>
+   <div><span class="v">ROUND 06 · THE COLLAR, RESEARCHED</span><h3>BUILD IT THE WAY BOOTIES ARE BUILT</h3>
+   <p class="ask it">Feedback: really fix the collar. Research this type of shoe.</p>
+   <ul><li>Research: puffer booties use an elastic gathered opening, often a second gather lower down, visible fleece lining, a drawcord with a toggle and a pull loop. Leg openings run about 28–34 cm.</li><li>Found the root bug: the shaft "flare" had the wrong sign, so the shaft narrowed toward the ankle.</li><li>Rebuilt it: a tilted plane-cut opening (32 cm), a padded ruched roll, a cinch channel, a bungee with cord lock, and a sewn-in pull loop.</li></ul>
+   <p class="why it">Learned: when a shape keeps fighting you, check the maths before the materials.</p></div></li>
+  <li><div class="lg-img"><img src="img/pair_obsidian.webp" width="1600" height="900" alt="Round 7: the OHM-01 pair in OBSIDIAN, black with violet core." loading="lazy"></div>
+   <div><span class="v">ROUND 07 · PAIR + COLOURWAYS</span><h3>LEFT, RIGHT, THREE MOODS</h3>
+   <ul><li>The right shoe is a true mirror of the left. Its decal mapping is reversed so the lockup still reads correctly on both.</li><li>Three colourways from one model: Punch, Obsidian and Manga.</li></ul></div></li>
+ </ol>
+</div></section>
+
+<section class="sec" id="pipeline"><div class="wrap">
+ <div class="sec-h"><h2>THE PIPELINE</h2><span class="it">No viewport. Every change is code.</span></div>
+ <div class="pipe">
+  <div><h3>SIGNED DISTANCE FIELDS</h3><p>Every part is a function in Python: footprint, last profile, puffs, collar, counter, perforation and lugs, joined with smooth blends.</p></div>
+  <div><h3>MARCHING CUBES</h3><p>Fields are meshed with scikit-image at 0.5 mm voxels, plus a 0.32 mm midsole pass. A KD-tree keeps 393 hole cuts fast.</p></div>
+  <div><h3>RULES AS PARAMETERS</h3><p>Hole grading, lug direction, edge growth, flex grooves and the 32 cm opening are all numbers you can tune and re-run.</p></div>
+  <div><h3>HEADLESS BLENDER</h3><p>bpy builds the materials, decals, hardware and studio from a script, then Cycles renders with AgX Punchy.</p></div>
+  <div><h3>COLOURWAYS AS DATA</h3><p>Each colourway is a small table of hex values, so a new one is a few lines and a re-render.</p></div>
+ </div>
+</div></section>
+
+<footer><div class="wrap">
+ <div class="row">
+  <div><p class="mono" style="margin:0 0 12px">Tigre Studio · Computational / Graphic / Design</p><a class="back" href="https://tigrestudiodesign.github.io/">← Back to the portfolio</a></div>
+  <p class="disc">Unofficial design concept by Henry Mauricio Ortega, made for portfolio purposes. Not affiliated with, sponsored by or endorsed by lululemon athletica. "lululemon" is a trademark of its owner.</p>
+ </div>
+</div><div class="stripe" style="margin-top:56px;height:12px"></div></footer>
+
+<script>
+const CW={
+ punch:{name:'PUNCH',img:'img/pair_punch.webp',alt:'OHM-01 pair in PUNCH: orange puffer, violet counter, yellow core and lugs.',text:"Hot-orange puffer, violet counter and toe, a yellow core glowing through the perforations and yellow lugs underneath. The loud one.",sw:[['Upper','#ff4a1c'],['Counter','#5326f2'],['Core','#ffc21a'],['Midsole','#f4efe6'],['Dial','#111114']]},
+ obsidian:{name:'OBSIDIAN',img:'img/pair_obsidian.webp',alt:'OHM-01 pair in OBSIDIAN: black puffer, graphite counter, violet core.',text:"Volcanic-glass black on black, a graphite counter and a violet sheen inside the perforations, like light caught in obsidian. The night one.",sw:[['Upper','#16161a'],['Counter','#2c2c33'],['Core','#8b5cff'],['Midsole','#1e1e23'],['Dial','#c9cbd1']]},
+ manga:{name:'MANGA',img:'img/pair_manga.webp',alt:'OHM-01 pair in MANGA: white puffer, black counter, hot pink core and lugs.',text:"Ink on paper: a white puffer, a black counter and toe, and perforations that read like screentone with a hot-pink core behind them. The graphic one.",sw:[['Upper','#f3f1ec'],['Counter','#111114'],['Core','#ff2e63'],['Midsole','#f3f1ec'],['Lugs','#ff2e63']]}
+};
+const img=document.getElementById('cwImg'),nm=document.getElementById('cwName'),tx=document.getElementById('cwText'),sw=document.getElementById('cwSw');
+function show(k){const c=CW[k];img.src=c.img;img.alt=c.alt;nm.textContent=c.name;tx.textContent=c.text;
+ sw.innerHTML='';c.sw.forEach(([l,h])=>{const s=document.createElement('span');const i=document.createElement('i');i.style.background=h;s.appendChild(i);s.appendChild(document.createTextNode(l+' '+h));sw.appendChild(s)});
+ document.querySelectorAll('.cw-tabs button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.cw===k))}
+document.querySelectorAll('.cw-tabs button').forEach(b=>b.addEventListener('click',()=>show(b.dataset.cw)));
+show('punch');
+</script>
+</body>
+</html>
