@@ -394,5 +394,18 @@
    "index.html",
    "data/improve-log.json"
   ]
+ },
+ {
+  "date": "2026-11-24",
+  "project": "p11",
+  "change": "Gallery rebuilt: dropped two press cards that repeated the hero and the insole shot with words baked into the image, plus a near-duplicate film still; the five remaining images now sit in a balanced grid (tall portrait + four film stills, no empty column bottoms) with FIG-numbered micro-type captions and descriptive alt text. Nike's launch quote is now live, readable text with attribution, paired with a WHERE I CAME IN note on Henry's role. Site-wide: added the Tigre T favicon so no page requests a missing /favicon.ico (zero 404s).",
+  "files": [
+   "index.html",
+   "tools/image_map.json",
+   "data/improve-log.json",
+   "img/ta__quote1.webp (removed)",
+   "img/ta__quote2.webp (removed)",
+   "img/ta__07.webp (removed)"
+  ]
  }
 ]
