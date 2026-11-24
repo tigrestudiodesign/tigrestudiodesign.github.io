@@ -433,5 +433,21 @@
    "img/nt2__vz_grid.webp",
    "data/improve-log.json"
   ]
+ },
+ {
+  "date": "2026-11-24",
+  "project": "standard-play",
+  "change": "Vizcom render pass on all seven Standard Play renders (requested by Henry): the shelf hero, the homepage card crop and the five tape portraits, rendered from the full-resolution Blender originals at Realistic fidelity and swapped in place (same files, same aspect ratios, CMF hotspots still aligned). Caption now says the shots are Vizcom passes over the Blender scenes and that the smallest C-46 print softens. CMF sample boards untouched.",
+  "files": [
+   "img/spr__shelf.webp",
+   "img/spr__sel.webp",
+   "img/spr__t120.webp",
+   "img/spr__t60.webp",
+   "img/spr__t90.webp",
+   "img/spr__t160.webp",
+   "img/spr__c46.webp",
+   "index.html",
+   "data/improve-log.json"
+  ]
  }
 ]
