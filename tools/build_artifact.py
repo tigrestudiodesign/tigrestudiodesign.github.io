@@ -16,6 +16,9 @@ LIVE = 'https://tigrestudiodesign.github.io/'
 BUNDLE_MAX = int(0.9 * 1024 * 1024)   # small parts: the first images of a page show within a second, the rest stream in parallel
 STEPS = [480, 640, 800, 1080, 1280, 1600, 1920, 2560]
 M = json.load(open('tools/image_map.json'))
+_known = {f for r in M['routes'].values() for f in r}
+_new = [f for f in glob.glob('img/**/*.*', recursive=True) if re.search(r'\.(webp|png|jpe?g)$', f) and f not in _known and os.path.getmtime(f) > os.path.getmtime('tools/image_map.json')]
+if _new: print('WARNING: %d images are newer than tools/image_map.json and not in it (e.g. %s). Run tools/image_map.py first, or they may be blank in the artifact.' % (len(_new), _new[0]), file=sys.stderr)
 s = open('index.html').read()
 s = re.sub(r"\.(webp|png|jpe?g)\?v=\d+", r'.\1', s)   # cache-busting queries are for the live site only
 os.makedirs(OUT + '/b', exist_ok=True)
