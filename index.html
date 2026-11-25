@@ -1903,7 +1903,7 @@ const TA_M={
   bars:{k:'Independent foam nodes per shoe · reported by Nike',rows:[['Nike Mind',22,22,1]],cap:'ONE BLOCK = ONE NODE · 22 PER SHOE'},
   big:{k:'In the making',v:'10+ YRS',b:'An engineering and manufacturing challenge over a decade in the making, per Nike.'},
   tl:[['BEFORE LAUNCH','Sensory bottom tech manual and tech packs for the move to inline.',1],['OCT 23, 2025','Nike debuts Mind 001 and Mind 002.'],['JAN 2026','Both silhouettes available.']],
-  src:['https://about.nike.com/en-GB/newsroom/releases/nike-debuts-its-first-neuroscience-based-footwear-to-help-athletes-feel-calm-focused-and-present','Oct 23, 2025']},
+  src:['https://about.nike.com/en/newsroom/releases/the-expanded-nike-mind-platform-gives-athletes-more-choice-in-sensation','Nov 16, 2026']},
  p05:{h:'HOW I DOCUMENTED A TRAIL SUPER SHOE',lead:'For a performance knit yarn, the factory needs a short document first. I wrote the quick start guide: the same eight chapters cut down to what a line needs on day one, with the full tech pack behind it.',
   hl:{0:'The quick start guide: the yarn technology on one page.',5:'Method of making for a trail-tuned Flyknit upper yarn, with factory teams in Korea.',6:'Checks that keep the upper consistent pair to pair.'},
   bars:{k:'Rounds of testing · reported by Nike',rows:[['ACG Ultrafly',13,13,1]],cap:'ONE BLOCK = ONE ROUND · 13 ROUNDS'},
@@ -1933,7 +1933,7 @@ const TA_M={
   bars:{k:'Inside the boot · reported by Nike',rows:[['Air bladders',2,3,0],['Batteries',2,3,0],['Levels each',3,3,1]],cap:'DUAL AIR BLADDERS · ONE BATTERY PER INSOLE · THREE LEVELS'},
   big:{k:'Heat × pressure',v:'3 × 3',b:'Three levels of warmth and three of air compression, per Nike.'},
   tl:[['BEFORE LAUNCH','Electronics integration documentation and technical specifications.',1],['APR 17, 2025','Nike and Hyperice announce the Hyperboot.'],['MAY 17, 2025','On sale in North America.']],
-  src:['https://about.nike.com/ja/newsroom/releases/the-hyperboot-by-nike-x-hyperice-revolutionizes-warm-up-and-recovery-for-all-athletes','Apr 17, 2025']}
+  src:['https://about.nike.com/en/newsroom/releases/hyperboot-by-nike-hyperice-official-images','Apr 17, 2025']}
 };
 function pnAB(b,st){const f=b.closest('.pn-ab');f.dataset.s=st;f.querySelectorAll('.pn-ab-b button').forEach(x=>x.setAttribute('aria-pressed',x===b))}
 function taPane(i,id){const [t,q,r,m,p]=TA_CH[i],o=((TA_M[id]||{}).hl||{})[i];return `<p class="tm-k">Chapter ${n2(i)} / 08</p><h3>${esc(t)}</h3><p class="tm-q">${esc(q)}</p><dl class="tm-dl"><div><dt>Read by</dt><dd>${esc(r)}</dd></div><div><dt>Without it</dt><dd>${esc(m)}</dd></div></dl>${o?`<p class="tm-on"><b>On this program</b>${esc(o)}</p>`:''}<div class="tm-pil" aria-label="Part of the manual">${TA_PIL.map((x,j)=>`<span class="${j===p?'on':''}">${x}</span>`).join('')}</div>`}
@@ -5364,6 +5364,7 @@ function mountSim(){document.querySelectorAll('.sim[data-sim]:not([data-on])').f
 
 function route(){
  if(location.hash==='#factory-floor-2013')history.replaceState(null,'','#factory-floor');
+ if(location.hash==='#work')history.replaceState(null,'','#product');
  {const ext={'ohm-01':'ohm/','ohm':'ohm/','pantera':'pantera/'}[location.hash.slice(1)];if(ext){location.replace(ext);return}}
  const h=location.hash.slice(1)==='grimlotch-peak'?'rise':location.hash.slice(1), app=document.getElementById('app');
  let i, html=null, title='Henry Ortega · Senior Creative for Technical Products';
