@@ -1201,6 +1201,24 @@ button.btn{cursor:pointer}
 .ka2-feat h3{font:900 clamp(26px,3vw,44px)/.95 var(--display);margin:14px 0 14px}
 .ka2-feat p{font-size:17px;line-height:1.5;color:#cfcfcf;max-width:28em;margin:0}
 .ka2-draw.sm{width:120px;margin-top:24px}
+.ka2-rm{display:inline-flex;gap:4px;padding:4px;border-radius:999px;background:#151518;margin:-12px 0 24px}
+.ka2-rm button{font:500 11px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.12em;border:0;border-radius:999px;padding:10px 16px;min-height:40px;background:transparent;color:#cfcfcf;cursor:pointer}
+.ka2-rm button[aria-pressed="true"]{background:#FF5A1F;color:#0B0B0C}
+.ka2-feat[data-rm="vz"] img.cg,.ka2-feat[data-rm="cg"] img.vz{display:none}
+.ka2-mgrid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:start}
+.ka2-cmp{position:relative;aspect-ratio:1;overflow:hidden;border-radius:24px;user-select:none;background:#0b0b0d}
+.ka2-cmp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.ka2-cmp .top{position:absolute;inset:0;clip-path:inset(0 calc(100% - var(--x)) 0 0)}
+.ka2-cmp input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.ka2-cmp .h{position:absolute;top:0;bottom:0;left:var(--x);width:2px;background:#FF5A1F;transform:translateX(-1px);pointer-events:none}
+.ka2-cmp .h::after{content:"";position:absolute;top:50%;left:50%;width:34px;height:34px;border-radius:50%;background:#FF5A1F;transform:translate(-50%,-50%);box-shadow:0 2px 10px rgba(0,0,0,.35)}
+.ka2-cmp .l,.ka2-cmp .r{position:absolute;top:14px;font:500 10px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.14em;background:rgba(11,11,12,.72);color:#F2EEE6;padding:6px 9px;border-radius:999px;pointer-events:none}
+.ka2-cmp .l{left:14px}.ka2-cmp .r{right:14px}
+.ka2-flow{list-style:none;margin:0;padding:0;display:grid;gap:28px}
+.ka2-flow li{border-top:1px solid #2a2a2a;padding-top:16px}
+.ka2-flow b{font:500 12px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.12em;color:#FF5A1F}
+.ka2-flow h3{margin:8px 0;font-size:22px;line-height:1.1}.ka2-flow p{margin:0;font-size:15px;line-height:1.5;color:#cfcfcf}
+@media(max-width:820px){.ka2-mgrid{grid-template-columns:1fr}}
 .ka2-why{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
 .ka2-why small{font:500 12px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.14em;text-transform:uppercase}
 .ka2-why h3{margin:8px 0;font-size:22px;line-height:1.1}.ka2-why p{margin:0;font-size:15px;line-height:1.5}
@@ -3270,7 +3288,7 @@ function kaPage(){
  </section>
 
  <section class="band dark ka2-statement"><div class="wrap"><p>Line, conic, cubic, rose, spiral, fractal, knot. Every curve here is drawn by an equation, and every one is knitted on the same ball, in the same yarn, at the same gauge. <em>Only the rule changes.</em></p>
-  <dl class="ka2-facts"><div><dt>Role</dt><dd>Solo: curve library, knit mapping, colour system, rendering</dd></div><div><dt>Tools</dt><dd>Rhino 9 · Python · Blender Cycles</dd></div><div><dt>Output</dt><dd>109 specimens, 13 families</dd></div><div><dt>Focus</dt><dd>Pattern systems · colour · textile CMF</dd></div></dl>
+  <dl class="ka2-facts"><div><dt>Role</dt><dd>Solo: curve library, knit mapping, colour system, rendering</dd></div><div><dt>Tools</dt><dd>Rhino 9 · Python · Blender Cycles · Vizcom</dd></div><div><dt>Output</dt><dd>109 specimens, 13 families</dd></div><div><dt>Focus</dt><dd>Pattern systems · colour · textile CMF</dd></div></dl>
  </div></section>
 
  <section class="band dark ka2-sec" id="kaIndexSec"><div class="wrap">
@@ -3295,16 +3313,29 @@ function kaPage(){
  </div></section>
 
  <section class="band dark ka2-sec"><div class="wrap">
-  <header class="ka2-h"><span>04</span><h2>Specimens</h2><p>Six curves, up close.</p></header>
-  <div class="ka2-feat">${KA.feat.map(([n,t,d],i)=>`<article class="${i%2?'r':''}"><figure>${im([kaImg(n,'l'),1200,1200],t+' knitted on a sphere')}</figure><div><b>${n}</b><h3>${t}</h3><p>${d}</p><div class="ka2-draw sm" data-curve="${+n}" aria-hidden="true"></div></div></article>`).join('')}</div>
+  <header class="ka2-h"><span>04</span><h2>SPECIMENS</h2><p>Six curves, up close. Switch between the Vizcom material pass and the original Blender render.</p></header>
+  <div class="ka2-rm" role="group" aria-label="Render"><button type="button" data-rm="vz" aria-pressed="true">VIZCOM</button><button type="button" data-rm="cg" aria-pressed="false">BLENDER</button></div>
+  <div class="ka2-feat" data-rm="vz">${KA.feat.map(([n,t,d],i)=>`<article class="${i%2?'r':''}"><figure>${im([`img/ka2/vz_${n}_l.webp`,1200,1200],t+' knitted on a sphere, Vizcom material pass','vz')}${im([kaImg(n,'l'),1200,1200],t+' knitted on a sphere, Blender render','cg')}</figure><div><b>${n}</b><h3>${t}</h3><p>${d}</p><div class="ka2-draw sm" data-curve="${+n}" aria-hidden="true"></div></div></article>`).join('')}</div>
+ </div></section>
+
+ <section class="band dark ka2-sec ka2-mat"><div class="wrap">
+  <header class="ka2-h"><span>05</span><h2>FROM RENDER TO MATERIAL</h2><p>Blender places every stitch exactly. Vizcom makes the yarn read as yarn. The motif never moves.</p></header>
+  <div class="ka2-mgrid">
+   <div class="ka2-cmp" id="kaCmp" style="--x:50%">${im(['img/ka2/macro_029_vz.webp',1200,1200],'Macro of the knitted lemniscate after the Vizcom pass: plied merino yarn with a soft fibre halo')}<div class="top">${im(['img/ka2/macro_029_cg.webp',1200,1200],'The same stitches in the original Blender render')}</div><span class="h" aria-hidden="true"></span><span class="l">BLENDER</span><span class="r">VIZCOM</span><input type="range" min="0" max="100" value="50" aria-label="Compare Blender render and Vizcom pass"></div>
+   <ol class="ka2-flow">
+    <li><b>01 · TRUTH</b><h3>THE RENDER SETS THE RULES</h3><p>Stitch grid, gauge, motif placement and family colour come from the Blender render. That file is the spec, and nothing downstream may change it.</p></li>
+    <li><b>02 · MATERIAL</b><h3>VIZCOM ADDS THE FIBRE</h3><p>Each specimen went through Vizcom Pro with four outputs and one prompt that locks the motif, the yarn colour and the framing, and asks only for plied twist, fibre halo and real stitch depth.</p></li>
+    <li><b>03 · JUDGEMENT</b><h3>CURATE, THEN CORRECT</h3><p>24 outputs, 6 kept. I rejected any that redrew the curve (one turned the lemniscate into an upright 8), reframed the ball or drifted off-colour. The keepers are cut back onto the plate, and two were pulled back to their family yarn so the colour index still holds.</p></li>
+   </ol>
+  </div>
  </div></section>
 
  <section class="band light ka2-sec"><div class="wrap">
-  <header class="ka2-h"><span>05</span><h2>Why It Matters For CMF</h2><p>What the study proves.</p></header>
+  <header class="ka2-h"><span>06</span><h2>Why It Matters For CMF</h2><p>What the study proves.</p></header>
   <div class="ka2-why"><div><small>Pattern</small><h3>Graphics that live in the material</h3><p>The motif is built from the same stitches as the base, the way knit, weave and jacquard graphics work on product.</p></div>
   <div><small>Colour</small><h3>A palette that works as a system</h3><p>One colour per family turns 109 objects into a readable range, the same thinking behind a seasonal colourway or a CMF library.</p></div>
   <div><small>Scale</small><h3>Hundreds of variants, one setup</h3><p>Base, yarn, gauge and light stay fixed while the rule changes, so a whole range can be reviewed side by side.</p></div></div>
-  <p class="ka2-credit">Curve library, knit mapping, colour system and rendering by Henry Mauricio Ortega Vera · Rhino 9 · Python · Blender Cycles. Numbering follows Wikipedia’s <a href="https://en.wikipedia.org/wiki/Gallery_of_curves" target="_blank" rel="noopener">Gallery of curves</a>, extended with spirals, helices and space-filling curves. Companion study: <a href="#knit-nodes">Computational Couture: Knit Nodes</a>.</p>
+  <p class="ka2-credit">Curve library, knit mapping, colour system, rendering and Vizcom material pass by Henry Mauricio Ortega Vera · Rhino 9 · Python · Blender Cycles · Vizcom. Numbering follows Wikipedia’s <a href="https://en.wikipedia.org/wiki/Gallery_of_curves" target="_blank" rel="noopener">Gallery of curves</a>, extended with spirals, helices and space-filling curves. Companion study: <a href="#knit-nodes">Computational Couture: Knit Nodes</a>.</p>
  </div></section>
  <div class="ka2-view" id="kaView" hidden role="dialog" aria-modal="true" aria-label="Specimen"><button type="button" class="x" aria-label="Close">×</button><button type="button" class="pv" aria-label="Previous">←</button><button type="button" class="nx" aria-label="Next">→</button><div class="in"><figure><span class="ka2-vw" role="img"></span></figure><div><b></b><h3></h3><p></p><div class="ka2-draw"></div></div></div></div>
  ${nextLink('product',{id:'knit-nodes',title:'Knit Nodes'})}</main>`+foot();
@@ -3313,6 +3344,8 @@ let KAD=null;
 function kaSvg(c,col){return `<svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-opacity=".25" stroke-width=".4"/><path d="${c.d}" fill="none" stroke="${col}" stroke-width="${c.f==='fr'?.45:.9}" stroke-linecap="round" stroke-linejoin="round"/></svg>`}
 function mountKA(){
  const ix=document.getElementById('kaIndex'); if(!ix) return;
+ {const fe=document.querySelector('.ka2-feat'),bs=[...document.querySelectorAll('.ka2-rm button')];bs.forEach(b=>b.addEventListener('click',()=>{bs.forEach(x=>x.setAttribute('aria-pressed',x===b));fe.dataset.rm=b.dataset.rm}));
+  const c=document.getElementById('kaCmp');if(c){const r=c.querySelector('input');r.addEventListener('input',()=>c.style.setProperty('--x',r.value+'%'))}}
  const famC=Object.fromEntries(KA.fams.map(f=>[f[0],f])),view=document.getElementById('kaView');
  const go=d=>{KAD=d;
   ix.innerHTML=d.curves.map(c=>{const n=String(c.n).padStart(3,'0');return `<li data-f="${c.f}"><button type="button" data-n="${c.n}" style="--c:${famC[c.f][2]}">${kaTh(c.n)}<b>${n}</b><span>${esc(c.name)}</span></button></li>`}).join('');
