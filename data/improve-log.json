@@ -472,5 +472,32 @@
    "index.html",
    "data/improve-log.json"
   ]
+ },
+ {
+  "date": "2026-11-24",
+  "project": "hestia / hestia-knit-nodes / knit-nodes",
+  "change": "Vizcom render pass (Realistic) across the HESTIA launch set (reveal, three-quarter, face, grip, three colourways, living room, back, knee), the HESTIA x Knit Nodes hero, reveal and four close-ups, and the Knit Nodes white-yarn node and rib/lace/tuck details. Each option was registered back onto the Blender frame and checked against it; options that invented panels, rivets, dirt or changed framing were rejected. Fixed source errors: blocky texture squares on the HESTIA x Knit Nodes forearm (flattened before the pass), moire on the HESTIA knee rib, tiling patches on the close-ups. Yarn colour graded back to neutral white and the navy backdrop matched on the Knit Nodes images. Data views (strain colours, matrix, clay, wire) stay as Blender renders. Captions note the pass.",
+  "files": [
+   "img/hk__hero.webp",
+   "img/hk__reveal.webp",
+   "img/hk__torso.webp",
+   "img/hk__knee.webp",
+   "img/hk__shoulder.webp",
+   "img/hk__grip.webp",
+   "img/hs2__reveal.webp",
+   "img/hs2__hero2.webp",
+   "img/hs2__trio.webp",
+   "img/hs2__living.webp",
+   "img/hs2__face.webp",
+   "img/hs2__grip.webp",
+   "img/hs2__back.webp",
+   "img/hs2__knee.webp",
+   "img/kn__09_node_white.webp",
+   "img/kn__05_detail.webp",
+   "img/kn__07_detail.webp",
+   "img/kn__08_detail.webp",
+   "index.html",
+   "data/improve-log.json"
+  ]
  }
 ]

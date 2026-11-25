@@ -2507,7 +2507,7 @@ function mountKH(){
 }
 
 const SEL6=[
- ['hestia-knit-nodes',['img/hk__hero.webp?v=3',1600,1000],'HESTIA × Knit Nodes','Art direction · CMF · Robotics','A soft-goods identity for a home humanoid, from concept and colourways to a data engine that picks the knit for every zone.','Concept · 3 colourways · 11 zones × 10 knits · Rhino, Python, Blender'],
+ ['hestia-knit-nodes',['img/hk__hero.webp?v=4',1600,1000],'HESTIA × Knit Nodes','Art direction · CMF · Robotics','A soft-goods identity for a home humanoid, from concept and colourways to a data engine that picks the knit for every zone.','Concept · 3 colourways · 11 zones × 10 knits · Rhino, Python, Blender'],
  ['standard-play',['img/spr__sel.webp',1376,860],'Standard Play','Art direction · Design systems','Five design systems directed as physical objects first: 25 specified materials, five tapes, then the Figma libraries.','5 systems · 25 materials · 240 variables'],
  ['p11',['img/ta__key1.webp',2000,1333],'Nike Tuned Air','Nike · My last program','Technical manuals and tech packs for two of the first Tuned Air programs, a new digital method of making Nike Air.','Announced Nov 2026 · Air development time down 70% (Nike)'],
  ['trenza-alpargata',['img/tz__r_hero_tumbaga.webp',1700,1040],'Trenza Alpargata · Muisca','Concept · Footwear CMF','A luxury alpargata with colour, material and pattern drawn from the Muisca of Colombia.','3 editions · original pattern system · factory CMF spec'],
@@ -2526,7 +2526,7 @@ function archiveSection(){let n=0;
 function home(){
  const NK=id=>D.nike.find(p=>p.id===id);
  const href=id=>/^https?:/.test(id)?id:'#'+id;
- SEL6.forEach(x=>{if(!x[1]){const n=NK(x[0]);x[1]=n?n.hero:['img/hk__hero.webp?v=3',1600,1000]}});
+ SEL6.forEach(x=>{if(!x[1]){const n=NK(x[0]);x[1]=n?n.hero:['img/hk__hero.webp?v=4',1600,1000]}});
  const tiles=D.nike.map((p,i)=>`<a class="tile" href="#${p.id}"><div class="media ${i%2?'bl':'tr'}">${im(p.hero,p.title)}</div><small>${esc(p.brand)}</small><h3>${esc(p.title)}</h3><p class="tile-r">${esc(NIKE_ROLE[p.id]||'')}</p></a>`).join('');
  const card=(r,i)=>`<a class="card" href="${r.href||'#'+r.id}"${r.href?' target="_blank" rel="noopener"':''}><div class="media ${i%2?'bl':'tr'}${r.fit?' paper':''}">${r.isNew?'<span class="badge">New</span>':''}${im(r.imgs[0],r.title)}</div>${r.kind?`<p class="kind">${esc(r.kind)}</p>`:''}<h3>${esc(r.title)}</h3><p>${esc(r.meta)}</p></a>`;
  const prod=[CARD_KH,CARD_SY,CARD_BC,{...PICK('trenza-alpargata'),isNew:true,meta:'Muisca CMF study · 3 editions'},{...PICK('electric-guitar'),isNew:true,kind:'Product Modeling',meta:'Launch set · 4 finishes · 230 parts'},{...PICK('penny-loafer'),isNew:true,kind:'Footwear · CMF',meta:'Rhino model, Blender Cycles render · 3 colourways'},{...PICK('f1-car'),isNew:true,meta:'Team-launch set · original Tigre livery'},CARD_WL,CARD_KP].map(card).join('');
@@ -2540,7 +2540,7 @@ function home(){
   const media=f.doc?`<div class="media ${i%2?'bl-l':'tr-l'} fr-doc"><div class="pages">${CAPS.slice(0,4).map(c=>sil(c.p[0][0])).join('')}</div></div>`:`<div class="media ${i%2?'bl-l':'tr-l'}">${f.id==='basecamp'||f.isNew?'<span class="badge">New</span>':''}${im(img,f.t)}</div>`;
   return `<a class="fr${i%2?' rev':''}" href="${f.href||href(f.id)}">${media}<div class="fr-t"><p class="fr-k">${esc(f.k)}</p><h3>${esc(f.t)}</h3><p>${esc(f.d)}</p><ul class="tags">${f.tags.map(t=>`<li>${esc(t)}</li>`).join('')}</ul><span class="go">Read the case study →</span></div></a>`}).join('');
  const lane=l=>`<div class="lane"><p class="lane-k">${l.k}</p><h3>${esc(l.t)}</h3><p class="lane-b">${esc(l.b)}</p><ul class="lane-p">${l.pts.map(p=>`<li>${esc(p)}</li>`).join('')}</ul><p class="lane-e">See it in</p><div class="lane-l">${l.ev.map(([id,t])=>`<a href="${href(id)}">${esc(t)} →</a>`).join('')}</div></div>`;
- const heroImgs=[['img/hk__hero.webp?v=3',1600,1000],NK('p11').hero,BC.img.crop];
+ const heroImgs=[['img/hk__hero.webp?v=4',1600,1000],NK('p11').hero,BC.img.crop];
  return nav()+`<main id="top">
  <section class="band dark rel stripey"><img class="stripes" src="img/stripe-hero.webp" alt="" aria-hidden="true"><div class="wrap hero v19h">
   <div class="v19h-t">
@@ -2611,7 +2611,7 @@ const HS={id:'hestia',title:'HESTIA',
   ['Kinematics','Sleeves move with every high-range joint (hip, knee, shoulder, elbow) and never bind, snag or pinch.'],
   ['Sensors','LiDAR and depth cameras stay clear, behind an open technical weave that light and sound pass through.']]
 };
-const CARD_HS={id:HS.id,isNew:true,kind:'CMF · Soft Goods · Robotics',title:'HESTIA',meta:'A home humanoid in a warm knit skin · launch set · 3 colourways',imgs:[['img/hs2__reveal.webp?v=3',1920,1080]]};
+const CARD_HS={id:HS.id,isNew:true,kind:'CMF · Soft Goods · Robotics',title:'HESTIA',meta:'A home humanoid in a warm knit skin · launch set · 3 colourways',imgs:[['img/hs2__reveal.webp?v=4',1920,1080]]};
 
 /* v57: HESTIA x Knit Nodes: two studies joined by one selection engine */
 const HKN={id:'hestia-knit-nodes',sel:[["Hip", 100, "flex", "rib1", null, "Densest closed knit under the 85 % line: 84 rounds per sleeve.", 4, 12], ["Knee", 95, "flex", "rib1", null, "Densest closed knit under the 85 % line: 84 rounds per sleeve.", 14, 13], ["Ankle", 52, "flex", "rib1", null, "Densest closed knit under the 85 % line: 84 rounds per sleeve.", 27, 8], ["Shoulder", 131, "flex", "rib1", "lace", "Pleat stack needs 45 mm but the inside of the bend has 12 mm: rib pleats outside, open lace gusset inside.", -33, 11], ["Elbow", 111, "flex", "rib1", "lace", "Pleat stack needs 38 mm but the inside of the bend has 30 mm: rib pleats outside, open lace gusset inside.", -8, 10], ["Waist twist", 40, "flex", "rib1", null, "Densest closed knit under the 85 % line: 84 rounds per sleeve.", null, null], ["Torso", 15, "cover", "stockinette", null, "Low strain: the smoothest face and lowest bulk win.", null, null], ["Shin", 10, "brace", "slip", null, "Wants the least stretch: floats lock the fabric so the shin cover holds its shape.", null, null], ["Flank vent", 15, "open", "lace", null, "Only the eyelet structure opens holes as it stretches: airflow through the knit.", null, null], ["Forearm grip", 20, "grip", "seed", null, "Pebbled all over and lies flat with no curl: a surface for silicone dots.", null, null], ["Sensor band", 5, "open-fine", "lace", null, "Lace at double gauge: light and sound pass, the sensor stays hidden.", null, null]],
@@ -2622,7 +2622,7 @@ const HKN={id:'hestia-knit-nodes',sel:[["Hip", 100, "flex", "rib1", null, "Dense
   ['Python','Selection engine','85 % rule, gussets, jobs per zone','knit_select.json'],
   ['Blender','Zone shaders','Each zone wears its chosen knit, from the Knit Nodes swatches','hestia.py · KNITMAP'],
   ['Web','This page','The matrix below is built from the same JSON','live · no images']]};
-const CARD_HKN={id:HKN.id,isNew:true,kind:'CMF · Program Integration',title:'HESTIA × Knit Nodes',meta:'Two studies, one selection engine: every zone wears the knit the data picks',imgs:[['img/hk__hero.webp?v=3',1600,1000]]};
+const CARD_HKN={id:HKN.id,isNew:true,kind:'CMF · Program Integration',title:'HESTIA × Knit Nodes',meta:'Two studies, one selection engine: every zone wears the knit the data picks',imgs:[['img/hk__hero.webp?v=4',1600,1000]]};
 const hknUtil=(d,k)=>Math.round(d/KB[k][1]*100);
 function hknFlow(){
  return `<ol class="hk-flow" aria-label="Pipeline from Knit Nodes to this page">${HKN.flow.map(([prog,t,d,io],i)=>`<li class="${i===3?'join':''}"><span class="hk-p">${String(i+1).padStart(2,'0')} · ${prog.toUpperCase()}</span><b class="hk-t">${t.toUpperCase()}</b><p class="hk-d">${d}</p><span class="hk-io">${io}</span></li>`).join('')}</ol>
@@ -2674,12 +2674,12 @@ function hknPage(){
  <section class="band dark"><div class="wrap case"><p class="num">New · CMF / Program Integration</p><h1>HESTIA × KNIT NODES</h1><p class="meta">Two studies, one selection engine · every zone wears the knit the data picks</p>
   <p class="note">Knit Nodes measured how ten knit structures stretch on a robotic joint. HESTIA calculated how much every joint of a home humanoid asks of its skin. This project joins them: one Python engine reads both, applies an 85 % rule, and dresses the robot zone by zone, in the render and on this page.</p>
   <dl class="facts"><div><dt>Programs</dt><dd>Rhino · Python · Blender · Web</dd></div><div><dt>Zones</dt><dd>${S.length} zones × 10 knits = ${S.length*10} checks</dd></div><div><dt>Rule</dt><dd>≤ 85 % of a knit's stretch on a moving joint</dd></div><div><dt>Outcome</dt><dd>5 knits, 2 lace gussets, 0 overstretched zones</dd></div></dl></div></section>
- <div class="band dark" style="padding-bottom:56px"><div class="wrap"><div class="media tr-l">${im(['img/hk__hero.webp?v=3',1600,1000],'HESTIA dressed in the knits the engine picked: stockinette torso, rib 1×1 at every joint, slip-stitch shins, lace vents and seed grips','heroimg')}</div></div></div>
+ <div class="band dark" style="padding-bottom:56px"><div class="wrap"><div class="media tr-l">${im(['img/hk__hero.webp?v=4',1600,1000],'HESTIA dressed in the knits the engine picked: stockinette torso, rib 1×1 at every joint, slip-stitch shins, lace vents and seed grips','heroimg')}</div></div></div>
 
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Two Studies, One System</h2><p class="sh-sub">What each one brought / What neither could answer alone</p>
   <div class="hk-two"><a class="hk-src" href="#knit-nodes"><img src="img/kn__01_hero.webp" alt="" loading="lazy" width="1800" height="1012"><small>STUDY 01 · KNIT NODES</small><h3>How far each knit can stretch</h3><p>Ten structures from one loop equation, scripted in Rhino with Python, each with a measured stretch, capacity and round count on a robotic X-joint.</p></a>
   <div class="hk-plus">+</div>
-  <a class="hk-src" href="#hestia"><img src="img/hs2__reveal.webp?v=3" alt="" loading="lazy" width="1920" height="1080"><small>STUDY 02 · HESTIA</small><h3>How far each joint pulls</h3><p>Flex demand, pleat count and pinch margin at hip, knee, ankle, shoulder and elbow, from the robot's joint radii and range of motion.</p></a></div>
+  <a class="hk-src" href="#hestia"><img src="img/hs2__reveal.webp?v=4" alt="" loading="lazy" width="1920" height="1080"><small>STUDY 02 · HESTIA</small><h3>How far each joint pulls</h3><p>Flex demand, pleat count and pinch margin at hip, knee, ankle, shoulder and elbow, from the robot's joint radii and range of motion.</p></a></div>
  </div></section>
 
  <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Pipeline</h2><p class="sh-sub">Four programs / Six steps / One data trail / No hand-copied numbers</p>
@@ -2691,7 +2691,7 @@ function hknPage(){
   ${hknMatrix()}
  </div></section>
 
- <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">What Changed In HESTIA</h2><p class="sh-sub">Four decisions the data made</p>
+ <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">What Changed In HESTIA</h2><p class="sh-sub">Four decisions the data made / Vizcom render pass over the Blender close-ups</p>
   <div class="hk-grid">${fig('img/hk__shoulder.webp',1200,900,'Shoulder: 131 % demand breaks every closed knit, and the pleat stack has 12 mm of room for 45 mm. Rib pleats outside, an open lace gusset inside.')}
   ${fig('img/hk__knee.webp',1200,900,'Knee: 95 % demand puts rib 1×1 at 76 % of its stretch, the densest knit under the line. Below it, slip-stitch floats brace the shin.')}
   ${fig('img/hk__torso.webp',1200,900,'Torso and flank: 15 % demand, so smooth stockinette for the face and lace eyelets over the vents, where holes are the job.')}
@@ -2704,7 +2704,7 @@ function hknPage(){
   <div class="hm-key tbl-key"><span><b class="k-ok"></b>Within the 85 % rule</span><span><b class="k-lim"></b>85–100 % · at limit</span><span><b class="k-ov"></b>Over 100 % · carried by pleats</span><span><b class="k-tick"></b>85 % line</span></div>
   <p class="fine">Use above 85 % on the shoulder and elbow is carried by pleats, which unfold length before the knit stretches (HESTIA flex study). Next: knit the four structures on a flatbed, cycle-test the rib and gusset seam at 10,000 bends, and check sensor return through the double-gauge lace.</p>
  </div></section>
- <section class="statement">${im(['img/hk__reveal.webp?v=3',1920,1080],'HESTIA in the selected knits')}<p>Two studies, <span class="it">one skin.</span></p></section>
+ <section class="statement">${im(['img/hk__reveal.webp?v=4',1920,1080],'HESTIA in the selected knits')}<p>Two studies, <span class="it">one skin.</span></p></section>
  ${nextLink('product',{id:HS.id,title:'HESTIA'})}</main>`+foot();
 }
 
@@ -2716,13 +2716,13 @@ function hsPage(){
   <p class="note">Warehouse humanoids are built for logistics: hard shells, exposed actuators, matte black. HESTIA asks what the same class of bipedal robot needs to wear to live with a family, without blocking its airflow, its joints or its sensors.</p>
   <dl class="facts"><div><dt>Role</dt><dd>Concept, CMF, soft-goods engineering, 3D, rendering</dd></div><div><dt>Tools</dt><dd>Blender Cycles · Python · NumPy · Matplotlib</dd></div><div><dt>Direction</dt><dd>Warm Minimalist</dd></div><div><dt>Platform</dt><dd>Home humanoid, ~1.75 m (original design)</dd></div></dl></div></section>
 <div class="hk-ban"><div class="wrap"><a href="#hestia-knit-nodes"><b>THIS STUDY FEEDS HESTIA × KNIT NODES</b><span>Its joint demands meet the Knit Nodes behaviour model, and the engine picks a knit for every zone.</span><i>→</i></a></div></div>
- <div class="band dark" style="padding-bottom:56px"><div class="wrap"><div class="media tr-l">${im(['img/hs2__reveal.webp?v=3',1920,1080],'HESTIA on a black glass charging dock in a dark launch studio, warm and cool rim light, oatmeal knit skin, slate-moss rib joints, terracotta grip zones, black glass visor','heroimg')}</div></div></div>
- <section class="band dark section" style="padding-top:0"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Launch Set</h2><p class="sh-sub">Visor / Grip / Three colourways</p>
-  <div class="hs-launch"><figure class="hs-l1">${im(['img/hs2__hero2.webp?v=3',1600,1000],'HESTIA three-quarter view on the dock')}<figcaption>Three-quarter: humanoid legs with a full thigh, defined knee and calf, every joint in slate-moss rib.</figcaption></figure>
-  <figure>${im(['img/hs2__face.webp?v=3',1400,1000],'Close-up of the black glass visor and warm light-strip eyes')}<figcaption>The face: a black glass visor over the sensors, two warm light strips for eyes. Cameras see out; people see someone looking back.</figcaption></figure>
-  <figure>${im(['img/hs2__grip.webp?v=3',1200,1000],'Forearm grip zone close-up')}<figcaption>Forearm: terracotta silicone-dot knit where you hold or guide, heathered oatmeal jersey, champagne anodised hand.</figcaption></figure></div>
-  <figure class="el-fig hs-trio" style="margin-top:24px"><div class="hs-trio-img">${im(['img/hs2__trio.webp?v=3',1920,1000],'KESTIA, HESTIA and MESTIA colourways on three docks: white, yellow and black knit covers')}<span style="left:27.3%">01 · KESTIA<small>White</small></span><span style="left:50%">02 · HESTIA<small>Yellow</small></span><span style="left:72.6%">03 · MESTIA<small>Black</small></span></div><figcaption>KESTIA (white), HESTIA (yellow) and MESTIA (black), colourway names by my daughter: same patterns and the same shell, three covers for three kinds of home. Terracotta and champagne stay constant so every HESTIA is read the same way: hold here, lift here.</figcaption></figure>
-  <figure class="el-fig" style="margin-top:24px">${im(['img/hs2__living.webp?v=3',1600,1000],'HESTIA in a sunlit living room carrying folded towels')}<figcaption>At home: carrying folded towels past a bouclé sofa.</figcaption></figure>
+ <div class="band dark" style="padding-bottom:56px"><div class="wrap"><div class="media tr-l">${im(['img/hs2__reveal.webp?v=4',1920,1080],'HESTIA on a black glass charging dock in a dark launch studio, warm and cool rim light, oatmeal knit skin, slate-moss rib joints, terracotta grip zones, black glass visor','heroimg')}</div></div></div>
+ <section class="band dark section" style="padding-top:0"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Launch Set</h2><p class="sh-sub">Visor / Grip / Three colourways / Vizcom render pass over the Blender set</p>
+  <div class="hs-launch"><figure class="hs-l1">${im(['img/hs2__hero2.webp?v=4',1600,1000],'HESTIA three-quarter view on the dock')}<figcaption>Three-quarter: humanoid legs with a full thigh, defined knee and calf, every joint in slate-moss rib.</figcaption></figure>
+  <figure>${im(['img/hs2__face.webp?v=4',1400,1000],'Close-up of the black glass visor and warm light-strip eyes')}<figcaption>The face: a black glass visor over the sensors, two warm light strips for eyes. Cameras see out; people see someone looking back.</figcaption></figure>
+  <figure>${im(['img/hs2__grip.webp?v=4',1200,1000],'Forearm grip zone close-up')}<figcaption>Forearm: terracotta silicone-dot knit where you hold or guide, heathered oatmeal jersey, champagne anodised hand.</figcaption></figure></div>
+  <figure class="el-fig hs-trio" style="margin-top:24px"><div class="hs-trio-img">${im(['img/hs2__trio.webp?v=4',1920,1000],'KESTIA, HESTIA and MESTIA colourways on three docks: white, yellow and black knit covers')}<span style="left:27.3%">01 · KESTIA<small>White</small></span><span style="left:50%">02 · HESTIA<small>Yellow</small></span><span style="left:72.6%">03 · MESTIA<small>Black</small></span></div><figcaption>KESTIA (white), HESTIA (yellow) and MESTIA (black), colourway names by my daughter: same patterns and the same shell, three covers for three kinds of home. Terracotta and champagne stay constant so every HESTIA is read the same way: hold here, lift here.</figcaption></figure>
+  <figure class="el-fig" style="margin-top:24px">${im(['img/hs2__living.webp?v=4',1600,1000],'HESTIA in a sunlit living room carrying folded towels')}<figcaption>At home: carrying folded towels past a bouclé sofa.</figcaption></figure>
  </div></section>
 
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">The Brief</h2><p class="sh-sub">Approachable / Durable / Three rules it cannot break</p>
@@ -2740,13 +2740,13 @@ function hsPage(){
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Zone Map</h2><p class="sh-sub">Eight zones / Each one earns its material</p>
   <div class="el-two"><figure class="el-fig">${im(I.zones,'Zone map of HESTIA with eight callouts: sensor weave, rib flex sleeves, terracotta grip, champagne hands, oatmeal knit, vent mesh, birch knit, slate-moss feet')}<figcaption>02 · Flat-colour zone render with callouts.</figcaption></figure>
   <div><p class="intro" style="margin-top:0">Every zone is a rule written into the model: the script assigns material by position and surface direction, so moving a vent or widening a grip changes the render, the zone map and the numbers together.</p>
-  <div class="hs-duo">${fig(['img/hs2__back.webp?v=3',1000,1250],'Back: the flank vents and a champagne carry handle that says where to lift.')}${fig(I.hand,'Hand and forearm: terracotta silicone-dot grip, perforated vent knit above the waist rib.')}</div></div></div>
+  <div class="hs-duo">${fig(['img/hs2__back.webp?v=4',1000,1250],'Back: the flank vents and a champagne carry handle that says where to lift.')}${fig(I.hand,'Hand and forearm: terracotta silicone-dot grip, perforated vent knit above the waist rib.')}</div></div></div>
  </div></section>
 
  <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Flex Zones</h2><p class="sh-sub">Unfold first / Stretch second</p>
   <p class="intro">A knee bending 120° asks the outside of a sleeve for 142 mm more fabric. A flat knit would have to stretch 95 %; a rib sleeve with 6–7 mm pleats unfolds that length first and stays under a 30 % strain limit. The same check flagged the shoulder and elbow: the inside of the bend has no room for a pleat stack, so those get an open mesh gusset instead.</p>
   <div class="el-two" style="padding-top:24px"><figure class="el-fig">${im(I.flex,'Flex-zone sheet: rib pleat section, strain versus knee angle for flat and pleated sleeves, and a joint table with pinch margins')}<figcaption>03 · First-pass geometry from the model's joint radii. FEA and a 10,000-cycle stretch test come next.</figcaption></figure>
-  ${fig(['img/hs2__knee.webp?v=3',1000,1250],'Knee in slate-moss rib: the pleats are the stored length.','hs-tall')}</div>
+  ${fig(['img/hs2__knee.webp?v=4',1000,1250],'Knee in slate-moss rib: the pleats are the stored length.','hs-tall')}</div>
  </div></section>
 
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Heat + Sound</h2><p class="sh-sub">The skin insulates / So the vents do the work</p>
@@ -2760,7 +2760,7 @@ function hsPage(){
  </div></section>
 
  <section class="band light section"><div class="wrap"><p class="fine">Unofficial concept study by Tigre Studio. The robot is an original design with the proportions of a commercial bipedal humanoid; it is not affiliated with or endorsed by Agility Robotics or any other company.</p></div></section>
- <section class="statement">${im(['img/hs2__living.webp?v=3',1600,1000],'HESTIA at home')}<p>Built for the warehouse, <span class="it">dressed for the living room.</span></p></section>
+ <section class="statement">${im(['img/hs2__living.webp?v=4',1600,1000],'HESTIA at home')}<p>Built for the warehouse, <span class="it">dressed for the living room.</span></p></section>
  ${nextLink('product',{id:'hestia-knit-nodes',title:'HESTIA × Knit Nodes'})}</main>`+foot();
 }
 
@@ -3117,7 +3117,7 @@ function knPage(){
   <div class="kn-vs"><figure>${im(knN('rib1','strain'),'Rib 1×1 sleeve, coloured by strain')}<h3>Most compliant · Rib 1×1</h3><p>${knStat('rib1')}</p></figure><figure>${im(knN('cable','strain'),'Cable sleeve, coloured by strain')}<h3>Stiffest · Cable</h3><p>${knStat('cable')}</p></figure></div>
  </div></section>
 
- <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Up Close</h2><p class="sh-sub">Rib / Cable / Lace / Tuck</p>
+ <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Up Close</h2><p class="sh-sub">Rib / Cable / Lace / Tuck / White-yarn views are a Vizcom pass over the Blender loops; cable keeps its strain colours</p>
   <div class="kn-close"><div class="kn-4">${KN.details.map(r=>fig(r)).join('')}</div>${fig(KN.node,'kn-tall')}</div>
  </div></section>
 
