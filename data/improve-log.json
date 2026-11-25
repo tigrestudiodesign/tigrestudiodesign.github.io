@@ -499,5 +499,14 @@
    "index.html",
    "data/improve-log.json"
   ]
+ },
+ {
+  "date": "2026-11-25",
+  "project": "basecamp",
+  "change": "New SIZE & ENVELOPE section: a live third-angle drawing (top, front, right side) drawn from the build script's own numbers (160 x 64 x 128 mm body, 189 mm crank out, 83 mm dial to screws, Ø31 dial, 66 mm plate with the same 150-hole Fermat rule). POP / STOW LANTERN animates the 40 mm lift and the height dimension (138 <-> 178 mm); a shelf-height slider drops a shelf line on the drawing and checks the fit. Key-numbers list (keys, Torx count, cells, input). Site audit: 58 routes, 0 issues.",
+  "files": [
+   "index.html",
+   "data/improve-log.json"
+  ]
  }
 ]

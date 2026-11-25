@@ -1052,6 +1052,9 @@ button.btn{cursor:pointer}
 .grl-chk{margin:14px 0 0;padding:10px 12px;font-size:12px;letter-spacing:.04em;text-transform:uppercase;border:2px solid var(--ink);background:#fff}
 .grl-chk.bad{background:#E8321A;color:#fff;border-color:#E8321A}
 .grl-ft{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#5d5d5d;margin:14px 0 0}
+.env{margin:28px 0 8px}.env-body{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:18px}.env .grl-plate svg{max-width:none}.env .grl-plate svg text{font-family:var(--mono)}.env .grl-ro dd{font-size:18px}.env .grl-ctl{display:flex;flex-direction:column}.env-k{list-style:none;margin:auto 0 0;padding:18px 0 0}.env-k li{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid #cfccc3;font-size:11px;letter-spacing:.06em;text-transform:uppercase}.env-k li:first-child{border-top:2px solid var(--ink)}.env-k span{color:#5d5d5d}.env-k b{text-align:right}
+@media (max-width:900px){.env-body{grid-template-columns:1fr}}
+@media (max-width:600px){.env .grl-plate{padding:8px 4px}.env .grl-plate small{padding:0 4px}.env svg text{font-size:9.5px}}
 @media (max-width:760px){.grl{padding:12px}.grl-body{grid-template-columns:1fr}.grl-hd button{margin-left:0}}
 .sim small,.sim-hd,.sim-pins,.sim-hint,.sim button{text-transform:uppercase;letter-spacing:.06em}
 .sim-hd{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;font-size:12px;border-bottom:2px solid var(--ink);padding-bottom:12px;margin-bottom:18px}
@@ -3561,6 +3564,11 @@ function bcPage(){
   <div class="bc-duo">${fig(I.front,'Front elevation: lantern, SOS, perforated plate, Torx hardware, tune / dim dial, buttons and crank.','bc-bg')}${fig(I.back,'Rear elevation: four T10 screws, USB-C and the spec label printed on the part.','bc-bg')}</div>
  </div></section>
 
+ <section class="band alt section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Size &amp; Envelope</h2><p class="sh-sub">160 × 64 × 128 mm / Lantern +40 mm / Will it fit your shelf?</p>
+  <p class="intro">Every number here is read from the same Python script that built the renders, so the drawing is the geometry, not a sketch of it. Pop the lantern and the height changes; set the clear height under your shelf and the drawing checks the fit.</p>
+  <div class="grl env" data-env></div>
+ </div></section>
+
  <section class="band light section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">Product Architecture</h2><p class="sh-sub">Twelve parts / One stack / Screws you can reach</p>
   <div class="bc-arch"><figure class="bc-bg">${im(I.exp,'BASECAMP exploded assembly')}</figure>
   <div><p class="intro" style="margin-top:0">The exploded view is the spec. Each layer is a real part with its own material, from the controls and the perforated plate at the front, through the board and shell, to the cells and the back plate.</p>
@@ -5417,6 +5425,75 @@ function mountGrille(){document.querySelectorAll('.grl[data-grl]:not([data-on])'
  el.querySelectorAll('input[data-k]').forEach(i=>{const k=i.dataset.k;i.value=S[k];i.oninput=()=>{S[k]=+i.value;draw()}});
  el.querySelector('[data-r]').onclick=()=>{Object.assign(S,D);el.querySelectorAll('input[data-k]').forEach(i=>i.value=S[i.dataset.k]);draw()};
  draw()})}
+function mountEnv(){document.querySelectorAll('.env[data-env]:not([data-on])').forEach(el=>{el.dataset.on=1;
+ /* BASECAMP envelope: every number from tools/basecamp_manual_renders.py (mm). Front X=x,Y=-z · right side X=SX+y · top X=x,Y=TO-y (third-angle) */
+ const SX=190,TO=-262,G=Math.PI*(3-Math.sqrt(5)),f=v=>+v.toFixed(1);
+ const S={u:1,shelf:200,anim:0};
+ el.innerHTML=`<div class="grl-hd"><b>LIVE DRAWING</b><span>BC-01 · THIRD-ANGLE · MM · READ FROM THE BUILD SCRIPT</span><button type="button" data-lt aria-pressed="true">▼ STOW LANTERN</button></div>
+ <div class="env-body"><div class="grl-plate"><small>TOP · FRONT · RIGHT SIDE · 1 SQUARE = 10 MM</small><svg viewBox="-120 -322 370 366" role="img" aria-label="Dimensioned front, side and top views of BASECAMP with a shelf line"></svg></div>
+ <div class="grl-ctl"><small>WILL IT FIT YOUR SHELF?</small><label>CLEAR HEIGHT UNDER THE SHELF · MM<output data-o></output><input type="range" min="110" max="210" step="1" value="200" aria-label="Clear height under the shelf in millimetres"></label>
+ <dl class="grl-ro"><div><dt>HEIGHT</dt><dd data-v="h"></dd></div><div><dt>WIDTH · CRANK OUT</dt><dd>160 · 189 mm</dd></div><div><dt>DEPTH · DIAL TO SCREWS</dt><dd>64 · 83 mm</dd></div><div><dt>FOOTPRINT</dt><dd>102 cm²</dd></div></dl>
+ <p class="grl-chk" data-v="chk" role="status"></p>
+ <ul class="env-k"><li><span>Lantern lift</span><b>40 mm</b></li><li><span>Tune / dim dial</span><b>Ø31 · 200-tooth knurl</b></li><li><span>Speaker plate</span><b>66 × 66 × 2.2 mm</b></li><li><span>Light · radio · SOS keys</span><b>Ø16 · Ø16 · Ø14</b></li><li><span>Torx T10</span><b>8 front · 4 back</b></li><li><span>Cells · input</span><b>2 × 18650 · USB-C 5 V 2 A</b></li></ul></div></div>
+ <p class="grl-ft">Body 160 × 64 × 128 mm on 4 mm feet. Stowed, the lantern cap sits 10 mm proud of the top; it lifts 40 mm to light a room. Orange = what moves.</p>`;
+ const svg=el.querySelector('svg'),V=k=>el.querySelector(`[data-v="${k}"]`),rng=el.querySelector('input'),bt=el.querySelector('[data-lt]');
+ const K='#1d1d1f',OR='#FF5A1F',ln=(a,b,c,d,s=K,w=.4,da='')=>`<path d="M${f(a)} ${f(b)}L${f(c)} ${f(d)}" stroke="${s}" stroke-width="${w}"${da?` stroke-dasharray="${da}"`:''}/>`;
+ const R=(x,y,w,h,r,fill,sw=.5,s=K)=>`<rect x="${f(x)}" y="${f(y)}" width="${f(w)}" height="${f(h)}" rx="${r}" fill="${fill}" stroke="${s}" stroke-width="${sw}"/>`;
+ const C=(x,y,r,fill,sw=.5)=>`<circle cx="${f(x)}" cy="${f(y)}" r="${r}" fill="${fill}" stroke="${K}" stroke-width="${sw}"/>`;
+ const T=(x,y,t,a='middle',rot=0)=>`<text x="${f(x)}" y="${f(y)}" text-anchor="${a}"${rot?` transform="rotate(${rot} ${f(x)} ${f(y)})"`:''}>${t}</text>`;
+ const fz=(x0,z0,w,h,r,fill,sw)=>R(x0,-(z0+h),w,h,r,fill,sw);            /* front-view rect from floor coords */
+ const dimH=(x1,x2,y,t,ext)=>ln(x1,y-3,x1,y+3)+ln(x2,y-3,x2,y+3)+ln(x1,y,x2,y,K,.35)+(ext?ln(x1,ext,x1,y,K,.2,'1 1')+ln(x2,ext,x2,y,K,.2,'1 1'):'')+T((x1+x2)/2,y-2.2,t);
+ const dimV=(y1,y2,x,t,c=K)=>ln(x-3,y1,x+3,y1,c)+ln(x-3,y2,x+3,y2,c)+ln(x,y1,x,y2,c,.35)+`<g fill="${c}">`+T(x-2.4,(y1+y2)/2,t,'middle',-90)+`</g>`;
+ let grid='';for(let x=-120;x<=250;x+=10)grid+=`<path d="M${x} -322V44" stroke="#d9d7cf" stroke-width=".3"/>`;for(let y=-320;y<=40;y+=10)grid+=`<path d="M-120 ${y}H250" stroke="#d9d7cf" stroke-width=".3"/>`;
+ /* static parts that never move */
+ let holes='';for(let i=0;i<150;i++){const r=17.2*Math.sqrt((i+.5)/150),a=i*G,t=r/17.2;holes+=`<circle cx="${f(-36+r*Math.cos(a))}" cy="${f(-71+r*Math.sin(a))}" r="${f((2.0-0.9*t)/2)}" fill="${K}"/>`}
+ const scr=(x,y)=>C(x,y,2.7,'#C9CBCD',.3);
+ let tick='';for(let k=0;k<=24;k++){const a=(225-k*11.25)*Math.PI/180,r1=19,r2=k%4?21:23;tick+=ln(38+r1*Math.cos(a),-83-r1*Math.sin(a),38+r2*Math.cos(a),-83-r2*Math.sin(a),'#F2EEE6',.45)}
+ const front=fz(-62-5,0,10,4,1,K,0)+fz(62-5,0,10,4,1,K,0)
+  +fz(-80,4,160,124,18,'#DDD4C2')+fz(-75,11,150,110,9,'#222326',.4)
+  +fz(-69,38,66,66,8,OR,.4)+holes+[[-27,-27],[27,-27],[-27,27],[27,27]].map(([a,b])=>scr(-36+a,-71+b)).join('')
+  +[[-69,17],[69,17],[-69,115],[69,115]].map(([x,z])=>scr(x,-z)).join('')
+  +tick+C(38,-83,15.5,'#C9CBCD',.5)+C(38,-83,12.5,'#3A3C40',.35)+ln(38-2,-83+2,38-7.5,-83+7.5,OR,1.6)
+  +C(24,-34.5,9.4,'#C9CBCD',.35)+C(24,-34.5,8,OR,.4)+C(52,-34.5,9.4,'#C9CBCD',.35)+C(52,-34.5,8,'#F1ECE1',.4)
+  +R(25,-47.6,26,3.2,1.6,'none',.4,'#F2EEE6')+fz(34.5,43.5,7,5,1.5,OR,.4)
+  +[49.5,53,56.5].map((x,i)=>C(x,-110.6,1.1,i<2?OR:'#5a4a40',.2)).join('')
+  +fz(-60.6,127.5,17.2,1.4,.5,'#C9CBCD',.3)+fz(-59,127.5,14,4,2,'#E8321A',.4)
+  +fz(80,62,5,24,1,'#C9CBCD',.4)+fz(84.5,26,4,52,2,'#3A3C40',.4)+fz(88.5,24,20,12,1.5,OR,.4);
+ const side=R(SX-25,-4,10,4,1,K,0)+R(SX+15,-4,10,4,1,K,0)
+  +R(SX-32,-128,64,124,5,'#DDD4C2')+R(SX-33.9,-121,2.5,110,1,'#222326',.3)+R(SX-36.1,-104,2.2,66,.8,OR,.3)
+  +R(SX-46.9,-98.5,13,31,1.5,'#C9CBCD',.4)+[...Array(13)].map((_,i)=>ln(SX-46.4+i,-98.5,SX-46.4+i,-67.5,'#8f9295',.2)).join('')+R(SX-47.5,-95.5,1.2,25,.4,'#3A3C40',.3)
+  +R(SX-38.9,-42.5,5,16,1.2,OR,.4)+R(SX-37.9,-48.5,4,5,1,OR,.3)
+  +R(SX+31.4,-114,2,96,1,'#DDD4C2',.35)+R(SX+32.4,-14.7,2,3.4,1,K,0)+[25,107].map(z=>R(SX+33.4,-z-2.7,1.6,5.4,.8,'#C9CBCD',.25)).join('')
+  +R(SX-14.6,-128.9,17.2,1.4,.5,'#C9CBCD',.3)+R(SX-13,-131.5,14,4,2,'#E8321A',.4)
+  +C(SX+8,-74,12,'#C9CBCD',.4)+R(SX+4,-78,8,52,4,'#3A3C40',.4)+C(SX+8,-30,6,OR,.4);
+ const top=R(-80,TO-32,160,64,5,'#DDD4C2')+ln(-75,TO+33.9,75,TO+33.9,K,.6)+ln(-65,TO-33.4,65,TO-33.4,K,.6)
+  +R(22.5,TO+33.9,31,13,1.5,'#C9CBCD',.4)+R(16,TO+33.9,16,5,1,OR,.35)+R(44,TO+33.9,16,5,1,'#F1ECE1',.35)
+  +C(-52,TO+6,8.6,'#C9CBCD',.35)+C(-52,TO+6,7,'#E8321A',.4)
+  +R(80,TO-20,5,24,1,'#C9CBCD',.35)+R(84.5,TO-12,4,8,1,'#3A3C40',.35)+R(88.5,TO-14,20,12,1.5,OR,.35);
+ const labels=`<g font-size="6.2" fill="#5d5d5d" letter-spacing=".4">`+T(-90,-306,'TOP','start')+T(-90,-190,'FRONT','start')+T(SX-46,-190,'RIGHT SIDE','start')+`</g>`;
+ const dims=`<g font-size="6.6" font-weight="700" fill="${K}">`+dimH(-80,80,14,'160',4)+dimH(-80,108.5,29,'189 CRANK OUT',4)
+  +dimH(SX-47.5,SX+35,14,'83',4)+dimH(SX-32,SX+32,29,'64 BODY',4)+dimV(0,-128,-92,'128')
+  +dimV(TO-32,TO+32,-92,'64')+ln(-50,-96,-72,-146,K,.3)+T(-100,-149,'PLATE 66 · 150 HOLES','start')
+  +ln(53,-90,86,-137,K,.3)+T(84,-140,'DIAL Ø31','start')+`</g>`;
+ const lant=u=>{const L=40*u,Hc=138.3+L,col='#C9CBCD';
+  const fr=fz(38-19.2,125.5,38.4,5,1,col,.4)+fz(38-16,128.5,32,2+L,2,'#EFE6D2',.4)+fz(38-17.5,130.5+L,35,7,1.5,'#3A3C40',.4)+fz(38-13,137.5+L,26,.8,.3,OR,.3);
+  const sd=R(SX-19.2,-130.5,38.4,5,1,col,.4)+R(SX-16,-(130.5+L),32,2+L,2,'#EFE6D2',.4)+R(SX-17.5,-(137.5+L),35,7,1.5,'#3A3C40',.4)+R(SX-13,-(138.3+L),26,.8,.3,OR,.3);
+  const tp=C(38,TO,19.2,col,.4)+C(38,TO,17.5,'#3A3C40',.4)+C(38,TO,13,OR,.35);
+  const lift=u>.02?`<g font-size="6.2" font-weight="700" fill="${OR}">`+ln(62,-130.5,62,-(130.5+L),OR,.5)+ln(59,-130.5,65,-130.5,OR,.5)+ln(59,-(130.5+L),65,-(130.5+L),OR,.5)+T(67,-(130.5+L/2)+2,'+'+Math.round(L),'start')+`</g>`:'';
+  return {g:fr+sd+tp+lift+`<g font-size="6.6" font-weight="700" fill="${OR}">`+dimV(0,-Hc,-106,Math.round(Hc)+'',OR)+`</g>`,H:Hc}};
+ const draw=()=>{const l=lant(S.u),hit=S.shelf<l.H,y=-S.shelf;
+  const shelf=`<rect x="-120" y="${f(y-8)}" width="370" height="8" fill="${hit?'#E8321A':K}" opacity="${hit?.85:.9}"/>`+ln(-120,y,250,y,hit?'#E8321A':K,.6)+`<g font-size="6.2" font-weight="700" fill="#F2EEE6">`+T(246,y-2.2,'SHELF · '+S.shelf+' MM','end')+`</g>`;
+  svg.innerHTML=grid+`<g font-family="ui-monospace,Menlo,Consolas,monospace">`+top+front+side+l.g+labels+dims+shelf+`</g>`;
+  el.querySelector('[data-o]').textContent=S.shelf;V('h').textContent=Math.round(l.H)+' mm';
+  const c=V('chk'),need=n=>Math.ceil(n);
+  if(S.shelf<138.3){c.className='grl-chk bad';c.textContent='✕ TOO LOW · STOWED IT NEEDS '+need(138.3)+' MM'}
+  else if(S.shelf<178.3){c.className='grl-chk'+(hit?' bad':'');c.textContent=hit?'✕ THE LANTERN HITS THE SHELF · STOW IT OR GIVE IT '+need(178.3)+' MM':'✓ FITS STOWED · THE LANTERN NEEDS '+need(178.3)+' MM TO POP UP HERE'}
+  else{c.className='grl-chk';c.textContent='✓ FITS WITH THE LANTERN UP · '+Math.floor(S.shelf-178.3)+' MM TO SPARE'}};
+ rng.oninput=()=>{S.shelf=+rng.value;draw()};
+ bt.onclick=()=>{const to=S.u>.5?0:1,from=S.u,t0=performance.now();bt.textContent=to?'▼ STOW LANTERN':'▲ POP LANTERN';bt.setAttribute('aria-pressed',to?'true':'false');cancelAnimationFrame(S.anim);
+  const rd=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const st=n=>{const k=rd?1:Math.min(1,(n-t0)/420),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;S.u=from+(to-from)*e;draw();if(k<1)S.anim=requestAnimationFrame(st)};S.anim=requestAnimationFrame(st)};
+ draw()})}
 function mountSim(){document.querySelectorAll('.sim[data-sim]:not([data-on])').forEach(el=>{el.dataset.on=1;(el.dataset.sim==='kp'?simKP:simBC)(el)})}
 
 function route(){
@@ -5458,7 +5535,7 @@ function route(){
  else if(h===KP.id){html=keypadPage();title=KP.title+' · Henry Ortega'}
  else if((i=RH.findIndex(p=>p.id===h))>=0){html=CS[RH[i].id]?casePage(RH,i,'rhino','Rhino Workflow'):galleryPage(RH,i,'rhino','Rhino Workflow');title=RH[i].title+' · Henry Ortega'}
  document.body.classList.remove('gm-lock');
- if(html){app.innerHTML=html;app.dataset.view='project';scrollTo(0,0);mountGame();mountTT();mountRK();mountVX();mountSPC();mountKN();mountHKN();mountPN();mountTA();mountKH();mountBM();mountTZ();mountKA();mountSim();mountGrille();mountPV();mountFB();window.TigreFigures&&TigreFigures.mountAll(app)}
+ if(html){app.innerHTML=html;app.dataset.view='project';scrollTo(0,0);mountGame();mountTT();mountRK();mountVX();mountSPC();mountKN();mountHKN();mountPN();mountTA();mountKH();mountBM();mountTZ();mountKA();mountSim();mountGrille();mountEnv();mountPV();mountFB();window.TigreFigures&&TigreFigures.mountAll(app)}
  else{
   if(app.dataset.view!=='home'){app.innerHTML=home();app.dataset.view='home';window.TigreFigures&&TigreFigures.mountAll(app)}
   const t=h&&document.getElementById(h); if(t) t.scrollIntoView({behavior:'instant',block:'start'}); else if(!h||h==='top') scrollTo({top:0,behavior:'instant'});
