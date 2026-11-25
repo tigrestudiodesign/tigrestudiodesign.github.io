@@ -5404,7 +5404,7 @@ function route(){
  if(html){app.innerHTML=html;app.dataset.view='project';scrollTo(0,0);mountGame();mountTT();mountRK();mountVX();mountSPC();mountKN();mountHKN();mountPN();mountTA();mountKH();mountBM();mountTZ();mountKA();mountSim();mountGrille();mountPV();mountFB();window.TigreFigures&&TigreFigures.mountAll(app)}
  else{
   if(app.dataset.view!=='home'){app.innerHTML=home();app.dataset.view='home';window.TigreFigures&&TigreFigures.mountAll(app)}
-  const t=h&&document.getElementById(h); if(t) t.scrollIntoView(); else if(!h||h==='top') scrollTo(0,0);
+  const t=h&&document.getElementById(h); if(t) t.scrollIntoView({behavior:'instant',block:'start'}); else if(!h||h==='top') scrollTo({top:0,behavior:'instant'});
  }
  document.title=title;
 }
@@ -5412,7 +5412,10 @@ document.addEventListener('click',e=>{const b=e.target.closest('.copy');if(!b)re
 // in-page anchors on project pages (e.g. Figures tabs): scroll within the page instead of routing away
 document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(!a||e.defaultPrevented||e.metaKey||e.ctrlKey)return;const app=document.getElementById('app');if(app.dataset.view!=='project')return;
  const id=a.getAttribute('href').slice(1),sm=matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth';if(id==='top'){e.preventDefault();scrollTo({top:0,behavior:sm});return}const t=id&&app.querySelector('#'+CSS.escape(id));if(!t)return;e.preventDefault();t.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'})});
+if('scrollRestoration' in history)history.scrollRestoration='manual';
 addEventListener('hashchange',route); route();
+// deep links (#resume, #product…) on first load: re-land once images/fonts settle, unless the visitor has scrolled
+{let moved=false;const mark=()=>moved=true;['wheel','touchmove','keydown'].forEach(ev=>addEventListener(ev,mark,{once:true,passive:true}));const reland=()=>{if(moved)return;const h=location.hash.slice(1),t=h&&h!=='top'&&document.getElementById(h);if(t&&document.getElementById('app').dataset.view==='home')t.scrollIntoView({behavior:'instant',block:'start'})};addEventListener('load',()=>{reland();setTimeout(reland,400);setTimeout(reland,1500)});document.fonts&&document.fonts.ready.then(reland)}
 </script>
 
 </body></html>
