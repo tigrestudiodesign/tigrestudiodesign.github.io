@@ -5364,8 +5364,9 @@ function mountSim(){document.querySelectorAll('.sim[data-sim]:not([data-on])').f
 
 function route(){
  if(location.hash==='#factory-floor-2013')history.replaceState(null,'','#factory-floor');
+ {const ext={'ohm-01':'ohm/','ohm':'ohm/','pantera':'pantera/'}[location.hash.slice(1)];if(ext){location.replace(ext);return}}
  const h=location.hash.slice(1)==='grimlotch-peak'?'rise':location.hash.slice(1), app=document.getElementById('app');
- let i, html=null, title='Henry Ortega · Product Development & Design Technology';
+ let i, html=null, title='Henry Ortega · Senior Creative for Technical Products';
  if((i=GAMES.findIndex(g=>g.id===h))>=0){html=gamePage(i);title=GAMES[i].title+' · Henry Ortega'}
  else if(h===CB.id){html=cookbookPage();title='Fold / Bake · Henry Ortega'}
  else if(h===GB2.id){html=gb2Page();title='The Sorting Tray · Brick by Brick Vol. 02 · Henry Ortega'}
