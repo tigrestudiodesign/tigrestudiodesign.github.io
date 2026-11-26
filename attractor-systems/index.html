@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Attractor Systems · Tigre Studio</title>
+<meta name="description" content="Distance as a design input: perforated halftone panels and a pavilion whose openings and columns are sized by an attractor, built in Grasshopper and specified for fabrication.">
+<meta property="og:title" content="Attractor Systems · Tigre Studio">
+<meta property="og:description" content="Distance as a design input: perforated halftone panels and a pavilion whose openings and columns are sized by an attractor, built in Grasshopper and specified for fabrication.">
+<meta property="og:image" content="https://tigrestudiodesign.github.io/attractor-systems/img/halftone.webp">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Crect width='28' height='28' fill='%230B0B0C'/%3E%3Cpath d='M4 4h20v6h-7v14h-6V10H4z' fill='%23FF4A1C'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="case.css">
+</head>
+<body>
+<a href="#main" class="mono" style="position:absolute;left:-999px">Skip to content</a>
+<nav class="nav" aria-label="ATTRACTOR SYSTEMS sections"><div class="wrap">
+ <a href="https://tigrestudiodesign.github.io/" style="text-decoration:none"><b>TIGRE STUDIO</b> <span class="mono">/ ATTRACTOR SYSTEMS</span></a>
+ <ul><li><a href="#field">Live field</a></li><li><a href="#panels">Panels</a></li><li><a href="#pavilion">Pavilion</a></li><li><a href="#uses">Uses</a></li><li><a href="https://tigrestudiodesign.github.io/">Portfolio ↗</a></li></ul>
+</div></nav>
+<div class="stripe"></div>
+<main id="main">
+<header class="hero grid"><div class="wrap">
+ <div class="hero-top"><span class="mono">Computational design · fabrication · 2026</span><span class="mono">Grasshopper → Rhino 9 → Vizcom</span></div>
+ <h1>ATTRACTOR<span>.</span><br>SYSTEMS</h1>
+ <p class="tag">DISTANCE IS A DESIGN INPUT.</p>
+ <p class="lede">One idea, two scales. Measure how far every element is from something, pass that number through a curve, and let it set a size. At hand scale it perforates a panel; at building scale it opens a roof and thickens the columns that hold it. Move the attractor and the whole pattern answers.</p>
+ <div class="spec"><div><span class="mono">Systems</span><b>2</b></div><div><span class="mono">Ways to move an attractor</span><b>3</b></div><div><span class="mono">Hole radius</span><b>0.05 → 0.62</b></div><div><span class="mono">Fabrication sizes</span><b>Gene Pool</b></div></div>
+</div></header>
+<section class="sec grid" id="field" style="padding-top:0"><div class="wrap">
+ <div class="sec-h"><h2>THE <em>FIELD</em>, LIVE</h2><span class="mono">Move the cursor · the knobs change the pattern</span></div>
+ <div style="position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#0a0a0a">
+  <canvas id="fld" style="display:block;width:100%;height:clamp(360px,56vw,620px)" role="img" aria-label="Live halftone field: dot size follows the distance to five moving attractors and the cursor"></canvas>
+  <div style="position:absolute;left:16px;top:14px" class="mono" id="fldHud">Grid → distance → sine → remap → dot radius</div>
+ </div>
+ <div style="display:flex;flex-wrap:wrap;gap:24px;margin-top:16px;align-items:center">
+  <label class="mono">Frequency <input id="fF" type="range" min="2" max="9" step="1" value="4" style="accent-color:#ff4a1c;vertical-align:middle"></label>
+  <label class="mono">Density <input id="fD" type="range" min="24" max="80" step="2" value="48" style="accent-color:#ff4a1c;vertical-align:middle"></label>
+  <span class="mono" id="fOut">freq 4 · 48 columns</span>
+ </div>
+</div></section>
+<section class="sec" id="panels"><div class="wrap">
+ <div class="sec-h"><h2>HALFTONE <em>PANELS</em></h2><span class="mono">01 · hand scale</span></div>
+ <article class="obj" style="border-top:0;padding-top:0">
+  <div class="om"><button class="shot" type="button" aria-label="Enlarge: Two square aluminium panels with drilled halftone dot patterns of concentric rings, glowing orange light from behind, on a charcoal wall"><img src="img/halftone.webp" alt="Two square aluminium panels with drilled halftone dot patterns of concentric rings, glowing orange light from behind, on a charcoal wall" loading="lazy"></button><div class="pair"><button class="shot" type="button" aria-label="Enlarge: Panel variant with more grazing light"><img src="img/halftone_b.webp" alt="Panel variant with more grazing light" loading="lazy"></button><button class="shot" type="button" aria-label="Enlarge: My Grasshopper definition: three versions of the same field, with attractors from Rhino points, sliders and MD Sliders"><img src="img/v3.webp" alt="My Grasshopper definition: three versions of the same field, with attractors from Rhino points, sliders and MD Sliders" loading="lazy"></button></div><figure style="margin:0"><div class="cmp"><img src="img/pre_halftone.webp" alt="Halftone panels: my Rhino viewport" loading="lazy"><img class="af" src="img/halftone.webp" alt="Halftone panels: Vizcom pass" loading="lazy"><span class="h" aria-hidden="true"></span><span class="l a">RHINO</span><span class="l b">VIZCOM</span><input type="range" min="0" max="100" value="50" aria-label="Compare Halftone panels: Rhino viewport and Vizcom pass"></div><figcaption class="cmpcap mono"><span>Drag: viewport → render</span><span>Same camera, same geometry</span></figcaption></figure></div>
+  <div class="ot"><p class="num">01 · Closest point · sine · remap</p><h3>DRILLED LIGHT</h3><p>A grid of points, each one asking how far it is from the nearest attractor. That distance runs through a sine so the dots grow and shrink in rings, then gets remapped to a real drill range. I built the same field three ways, with attractors from Rhino points, from Construct Point and sliders, and from MD Sliders, so the pattern can be tuned by hand or by drag.</p>
+  <pre class="logic"><b>INPUT</b> square grid · 5 attractors
+<b>FIELD</b> Closest Point distance → sine × frequency → remap
+<b>OUTPUT</b> one circle per point, radius 0.05 → 0.62
+<b>CONTROL</b> Rhino points · Construct Point + sliders · MD Sliders</pre>
+  <table class="cmf"><tbody><tr><th scope="row">Material</th><td>3 mm aluminium sheet</td></tr><tr><th scope="row">Finish</th><td>Brushed, clear anodise</td></tr><tr><th scope="row">Colour</th><td><span class="sw" style="background:#c8c8c6"></span><span class="sw" style="background:#ff4a1c"></span>Natural aluminium · Tigre Orange backlight</td></tr><tr><th scope="row">Process</th><td>CNC drilled with stepped bit sizes snapped to the remapped radii</td></tr><tr><th scope="row">Light</th><td>Edge-lit LED panel 40 mm behind, on standoffs</td></tr></tbody></table></div>
+ </article>
+</div></section>
+<section class="sec lgrid" id="pavilion"><div class="wrap">
+ <div class="sec-h"><h2>ATTRACTOR <em>PAVILION</em></h2><span class="mono">02 · building scale</span></div>
+ <article class="obj" style="border-top:0;padding-top:0;border-color:#0002">
+  <div class="om"><button class="shot" type="button" aria-label="Enlarge: Aerial view of the pavilion: a wavy perforated roof on cylindrical columns, light filtering through the openings"><img src="img/roof_aerial.webp" alt="Aerial view of the pavilion: a wavy perforated roof on cylindrical columns, light filtering through the openings" loading="lazy"></button><div class="pair"><button class="shot" type="button" aria-label="Enlarge: Looking up between the columns at the perforated roof"><img src="img/roof_up.webp" alt="Looking up between the columns at the perforated roof" loading="lazy"></button><button class="shot" type="button" aria-label="Enlarge: Drone plan view: openings and columns follow the attractor curve"><img src="img/roof_plan.webp" alt="Drone plan view: openings and columns follow the attractor curve" loading="lazy"></button></div><figure style="margin:0"><div class="cmp"><img src="img/pre_roof_aerial.webp" alt="Attractor pavilion: my Rhino viewport" loading="lazy"><img class="af" src="img/roof_aerial.webp" alt="Attractor pavilion: Vizcom pass" loading="lazy"><span class="h" aria-hidden="true"></span><span class="l a">RHINO RENDER</span><span class="l b">VIZCOM</span><input type="range" min="0" max="100" value="50" aria-label="Compare Attractor pavilion: Rhino viewport and Vizcom pass"></div><figcaption class="cmpcap mono"><span>Drag: viewport → render</span><span>Same camera, same geometry</span></figcaption></figure></div>
+  <div class="ot" style="color:var(--ink)"><p class="num">02 · Curve attractor · Gene Pool</p><h3>A ROOF THAT READS A PATH</h3><p style="color:#3d3d42">A curve drawn across the site becomes the attractor. Every roof cell and every column measures its distance to that path: close to it the roof opens and the columns slim down, far from it the roof closes and the columns thicken. Then every size is snapped to a short list of real ones, so the pavilion needs a handful of parts, not hundreds.</p>
+  <pre class="logic"><b>INPUT</b> roof surface · column grid · attractor curve
+<b>FIELD</b> Curve Closest Point → remap → opening size + column radius
+<b>SNAP</b> Find Similar Member against a Gene Pool of real sizes
+<b>OUTPUT</b> perforated roof · cylindrical columns</pre>
+  <table class="cmf" style="color:var(--ink)"><tbody>
+   <tr><th scope="row" style="border-color:#0002;color:#6a6a70">Roof</th><td style="border-color:#0002;color:var(--ink)">Powder-coated aluminium cassette panels, laser cut</td></tr>
+   <tr><th scope="row" style="border-color:#0002;color:#6a6a70">Columns</th><td style="border-color:#0002;color:var(--ink)">Spun precast concrete, sizes from the Gene Pool only</td></tr>
+   <tr><th scope="row" style="border-color:#0002;color:#6a6a70">Colour</th><td style="border-color:#0002;color:var(--ink)"><span class="sw" style="background:#f1f0ec;box-shadow:0 0 0 1px #0003"></span><span class="sw" style="background:#b9b5ae;box-shadow:0 0 0 1px #0003"></span>Signal white roof · raw concrete</td></tr>
+   <tr><th scope="row" style="border-color:#0002;color:#6a6a70">Why it matters</th><td style="border-color:#0002;color:var(--ink)">A variable pattern built from a fixed set of parts</td></tr>
+  </tbody></table></div>
+ </article>
+ <div class="pair" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px"><figure style="margin:0"><div class="cmp"><img src="img/pre_roof_up.webp" alt="Pavilion from below: my Rhino viewport" loading="lazy"><img class="af" src="img/roof_up.webp" alt="Pavilion from below: Vizcom pass" loading="lazy"><span class="h" aria-hidden="true"></span><span class="l a">RHINO RENDER</span><span class="l b">VIZCOM</span><input type="range" min="0" max="100" value="50" aria-label="Compare Pavilion from below: Rhino viewport and Vizcom pass"></div><figcaption class="cmpcap mono"><span>Drag: viewport → render</span><span>Same camera, same geometry</span></figcaption></figure><figure style="margin:0"><div class="cmp"><img src="img/pre_roof_plan.webp" alt="Pavilion plan: my Rhino viewport" loading="lazy"><img class="af" src="img/roof_plan.webp" alt="Pavilion plan: Vizcom pass" loading="lazy"><span class="h" aria-hidden="true"></span><span class="l a">RHINO RENDER</span><span class="l b">VIZCOM</span><input type="range" min="0" max="100" value="50" aria-label="Compare Pavilion plan: Rhino viewport and Vizcom pass"></div><figcaption class="cmpcap mono"><span>Drag: viewport → render</span><span>Same camera, same geometry</span></figcaption></figure></div>
+</div></section>
+<section class="sec" id="uses"><div class="wrap">
+ <div class="sec-h"><h2>WHERE IT <em>GOES</em></h2><span class="mono">The same field, other products</span></div>
+ <div class="rel">
+  <div style="border:1px solid var(--line);border-radius:16px;padding:20px;background:#111113"><span class="mono">Footwear</span><h3 style="font-size:26px;margin:8px 0 6px">Perforation maps</h3><p style="margin:0;color:#bdbdc2;font-size:15px">Breathing holes on an upper graded by a heat or pressure map instead of a flat pattern.</p></div>
+  <div style="border:1px solid var(--line);border-radius:16px;padding:20px;background:#111113"><span class="mono">Hardware</span><h3 style="font-size:26px;margin:8px 0 6px">Speaker grilles</h3><p style="margin:0;color:#bdbdc2;font-size:15px">Open area where the driver needs it, solid where the hand grips, all snapped to standard drill sizes.</p></div>
+  <div style="border:1px solid var(--line);border-radius:16px;padding:20px;background:#111113"><span class="mono">Graphics</span><h3 style="font-size:26px;margin:8px 0 6px">Print halftone</h3><p style="margin:0;color:#bdbdc2;font-size:15px">Posters and packaging screens built as real geometry, exported straight to Illustrator.</p></div>
+  <div style="border:1px solid var(--line);border-radius:16px;padding:20px;background:#111113"><span class="mono">Architecture</span><h3 style="font-size:26px;margin:8px 0 6px">Facade screens</h3><p style="margin:0;color:#bdbdc2;font-size:15px">Shade where the sun hits, view where people stand, from a short list of panel types.</p></div>
+ </div>
+</div></section>
+<section class="sec lgrid" id="related" style="padding-top:clamp(40px,5vw,70px)"><div class="wrap">
+ <div class="sec-h"><h2>MORE <em>COMPUTATION</em></h2><span class="mono">Related work</span></div>
+ <div class="rel">
+  <a href="../found-forms/" style="color:var(--paper)"><span class="mono">New · Kangaroo · CMF</span><h3>Found Forms</h3><p>Eight objects found by a solver, finished as CMF studies.</p></a>
+  <a href="https://tigrestudiodesign.github.io/#kinetic-hexagon-facade" style="color:var(--paper)"><span class="mono">Grasshopper</span><h3>Kinetic Hexagon Facade</h3><p>The dot product turned into folding shade.</p></a>
+  <a href="https://tigrestudiodesign.github.io/#parametric-keypad" style="color:var(--paper)"><span class="mono">Hardware · CMF</span><h3>Parametric Keypad</h3><p>A 3D Voronoi wrapped seamlessly around a case.</p></a>
+ </div>
+</div></section>
+</main>
+<footer class="foot"><div class="wrap"><div><p class="mono">Henry Mauricio Ortega · Tigre Studio</p><h3>ATTRACTOR SYSTEMS</h3><p class="mono" style="margin-top:10px">From my own Grasshopper definitions, developed during the Master in Parametric Design at ControlMad, 2026.</p></div><a class="btn hot" href="https://tigrestudiodesign.github.io/">Back to the portfolio</a></div></footer>
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Enlarged image"><img id="lbImg" alt=""><p class="mono" id="lbCt"></p><p id="lbCap"></p><div class="row"><button id="lbP" type="button">← Prev</button><button id="lbN" type="button">Next →</button><button class="x" id="lbX" type="button">Close</button></div></div>
+<script src="case.js"></script>
+<script>
+(function(){var cv=document.getElementById('fld'),x=cv.getContext('2d'),W,H,freq=4,dens=48,t=0,mouse=null,mp=null,amt=0,raf=0,vis=true;
+ var RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ var A=[{x:.18,y:.3,p:0},{x:.72,y:.22,p:1.7},{x:.5,y:.62,p:3.1},{x:.28,y:.8,p:4.2},{x:.86,y:.74,p:5.3}];
+ function fit(){var r=cv.getBoundingClientRect(),d=Math.min(2,devicePixelRatio||1);cv.width=r.width*d;cv.height=r.height*d;x.setTransform(d,0,0,d,0,0);W=r.width;H=r.height}
+ function mix(a,b,k){return a+(b-a)*k}
+ function draw(){x.fillStyle='#0a0a0a';x.fillRect(0,0,W,H);var cs=W/dens,rows=Math.ceil(H/cs);
+  if(mouse){mp=mp?[mix(mp[0],mouse[0],.12),mix(mp[1],mouse[1],.12)]:mouse.slice();amt=mix(amt,1,.08)}else amt=mix(amt,0,.06);
+  var at=A.map(function(a){return[(a.x+Math.sin(t*.4+a.p)*.06)*W,(a.y+Math.cos(t*.33+a.p)*.06)*H]});
+  var diag=Math.hypot(W,H),k=diag*.022,R=diag*.095,cx=mp?mp[0]*W:-1e4,cy=mp?mp[1]*H:-1e4;
+  for(var j=0;j<=rows;j++)for(var i=0;i<=dens;i++){var px=i*cs,py=j*cs,sum=0;for(var q=0;q<at.length;q++)sum+=Math.exp(-Math.hypot(px-at[q][0],py-at[q][1])/k);
+   var dc=Math.hypot(px-cx,py-cy);sum+=amt*Math.exp(-dc/k);var dm=-k*Math.log(sum+1e-12);
+   var v=Math.sin(dm/diag*freq*Math.PI*2-t*1.2),rr=(0.05+(v+1)/2*0.57)*cs*.53,w=amt*Math.exp(-((dc/R)*(dc/R)));rr*=1+w*.25;
+   x.fillStyle='rgb('+Math.round(mix(239,255,w))+','+Math.round(mix(238,74,w))+','+Math.round(mix(233,28,w))+')';x.beginPath();x.arc(px,py,Math.max(.4,rr),0,7);x.fill()}
+  at.forEach(function(a){x.strokeStyle='#ff4a1c';x.lineWidth=1.2;x.beginPath();x.arc(a[0],a[1],7,0,7);x.stroke();x.beginPath();x.moveTo(a[0]-12,a[1]);x.lineTo(a[0]+12,a[1]);x.moveTo(a[0],a[1]-12);x.lineTo(a[0],a[1]+12);x.stroke()})}
+ function loop(){t+=.016;draw();if(vis&&!RM)raf=requestAnimationFrame(loop)}
+ new ResizeObserver(function(){fit();draw()}).observe(cv);
+ cv.addEventListener('pointermove',function(e){var r=cv.getBoundingClientRect();mouse=[(e.clientX-r.left)/r.width,(e.clientY-r.top)/r.height];if(RM)draw()});
+ cv.addEventListener('pointerleave',function(){mouse=null;if(RM)draw()});
+ function out(){document.getElementById('fOut').textContent='freq '+freq+' · '+dens+' columns';draw()}
+ document.getElementById('fF').oninput=function(e){freq=+e.target.value;out()};document.getElementById('fD').oninput=function(e){dens=+e.target.value;out()};
+ new IntersectionObserver(function(es){vis=es[0].isIntersecting;cancelAnimationFrame(raf);if(vis&&!RM)raf=requestAnimationFrame(loop)}).observe(cv);
+ fit();draw();
+})();
+</script>
+</body>
+</html>

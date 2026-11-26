@@ -517,5 +517,29 @@
    "index.html",
    "data/improve-log.json"
   ]
+ },
+ {
+  "date": "2026-11-26",
+  "project": "found-forms",
+  "change": "New case study FOUND FORMS (found-forms/): eight objects from my own Grasshopper definitions (Kangaroo growth, mesh relaxation, form-found shell, sphere clusters; ripple field on plate and vase; Anemone loops), each with a Vizcom pass, a Rhino-viewport vs render slider, the solver logic and a CMF spec; method strip and 12-material palette. Linked from Featured, the Computational index and the Design Technology lane.",
+  "files": [
+   "found-forms/index.html",
+   "found-forms/case.css",
+   "found-forms/case.js",
+   "index.html",
+   "data/improve-log.json"
+  ]
+ },
+ {
+  "date": "2026-11-26",
+  "project": "attractor-systems",
+  "change": "New case study ATTRACTOR SYSTEMS (attractor-systems/): a live halftone attractor field (cursor + frequency/density), drilled halftone panels with CMF and render comparison, an attractor pavilion with Gene Pool size snapping and three Rhino-render vs Vizcom sliders, and four product uses (footwear perforation, speaker grilles, print halftone, facade screens).",
+  "files": [
+   "attractor-systems/index.html",
+   "attractor-systems/case.css",
+   "attractor-systems/case.js",
+   "index.html",
+   "data/improve-log.json"
+  ]
  }
 ]
