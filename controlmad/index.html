@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portafolio Máster Paramétrico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE  Tigre Studio, exaggerated: a final-project portfolio that feels like a piece of technical hardware, confident and playful
+   IDEA   a modular instrument rack: each unit of the master is one module plate with knurled knobs, micro-type and a live "definition" you can play
+   PICTURE the hero is a live attractor halftone field (the logic of my own Grasshopper definition), each unit has a working lab
+   COLOUR black and paper-grey fields to the edges, Tigre hot orange #ff3d00 as the one accent, the Tigre spectrum codes the units
+   TYPE   Anton ALL CAPS headers, Inter for reading, JetBrains Mono micro-type for specs and readouts
+   LAYOUT sticky rack bar, full-bleed bands, content to 1240px; labs stack as figure then controls under 760px */
+@font-face{font-family:"JBM";src:url(fonts/JetBrainsMono-400.woff2) format("woff2");font-weight:400}
+@font-face{font-family:"JBM";src:url(fonts/JetBrainsMono-700.woff2) format("woff2");font-weight:700}
+:root{color-scheme:light dark;
+  --hot:#ff3d00;--sky:#59c0e6;--blue:#0036f9;--violet:#8a3ffc;--red:#e50000;--yellow:#ffb000;
+  --paper:light-dark(#e9e8e4,#141414);--card:light-dark(#f6f5f2,#1b1b1b);--ink:light-dark(#0b0b0b,#f1f0ec);
+  --muted:light-dark(#5d5d5a,#a3a29d);--line:light-dark(#cfcdc7,#2d2d2d);--gridc:light-dark(rgba(0,0,0,.07),rgba(255,255,255,.06));
+  --disp:Anton,"Futura Condensed ExtraBold","Arial Narrow",sans-serif;--body:Inter,"Helvetica Neue",Arial,sans-serif;--mono:JBM,ui-monospace,Menlo,monospace}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:72px;scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 var(--body);overflow-x:clip;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--hot);outline-offset:3px}
+h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;line-height:1.02;margin:0;letter-spacing:.01em;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:1240px;margin:0 auto}
+.band{padding:clamp(40px,6vw,88px) max(5vw,16px);position:relative}
+.grid{background-image:linear-gradient(var(--gridc) 1px,transparent 1px),linear-gradient(90deg,var(--gridc) 1px,transparent 1px);background-size:24px 24px}
+.dark{background:#0a0a0a;color:#f1f0ec;--muted:#9c9b96;--line:#2a2a2a;--card:#151515;--gridc:rgba(255,255,255,.06)}
+.mono{font:500 12px/1.45 var(--mono);letter-spacing:.04em}
+.lab{font:700 11px/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.hot{color:var(--hot)}
+.spec{height:6px;background:linear-gradient(90deg,var(--sky),var(--blue),var(--violet),var(--red),var(--hot),var(--yellow))}
+
+/* rack bar */
+.bar{position:sticky;top:0;z-index:30;background:#000;color:#fff;display:flex;align-items:center;gap:16px;padding:0 max(2.5vw,12px);height:58px;border-bottom:3px solid transparent;border-image:linear-gradient(90deg,var(--sky),var(--blue),var(--violet),var(--red),var(--hot),var(--yellow)) 1}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex:none}
+.brand i{width:28px;height:28px;border-radius:50%;background:conic-gradient(from 200deg,var(--sky),var(--blue),var(--violet),var(--red),var(--hot),var(--yellow),var(--sky));box-shadow:inset 0 0 0 7px #000}
+.brand b{font:400 20px/1 var(--disp);letter-spacing:.03em}
+.brand small{font:500 10px/1.2 var(--mono);color:#9c9b96;letter-spacing:.08em;display:block}
+.nav{display:flex;gap:4px;overflow-x:auto;margin-left:auto;scrollbar-width:none}
+.nav a{flex:none;text-decoration:none;font:700 12px/1 var(--mono);letter-spacing:.08em;padding:10px 12px;border-radius:999px;color:#cfcfcf;display:flex;align-items:center;gap:7px}
+.nav a i{width:8px;height:8px;border-radius:50%;background:var(--c)}
+.nav a:hover,.nav a.on{background:#1d1d1d;color:#fff}
+@media(max-width:700px){.brand small{display:none}.nav a span{display:none}}
+
+/* hero */
+.hero{background:#0a0a0a;color:#f1f0ec;padding:0;overflow:hidden}
+.hero .in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);min-height:min(86vh,820px)}
+.hero .txt{padding:clamp(36px,5vw,72px) max(5vw,16px);display:flex;flex-direction:column;justify-content:space-between;gap:28px;position:relative;z-index:1}
+.hero h1{font-size:clamp(44px,6.2vw,100px);line-height:1}
+.hero h1 em{font-style:normal;color:var(--hot)}
+.hero .intro{font-size:18px;max-width:46ch;color:#d8d7d2}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid #2a2a2a}
+.kpis div{padding:14px 10px 0 0}
+.kpis b{display:block;font:400 clamp(34px,3.6vw,52px)/1 var(--disp)}
+.kpis span{font:500 11px/1.3 var(--mono);color:#9c9b96;letter-spacing:.06em;text-transform:uppercase}
+.field{position:relative;min-height:420px;background:#0a0a0a;border-left:1px solid #1f1f1f}
+.field canvas{position:absolute;inset:0;width:100%;height:100%;cursor:crosshair;touch-action:none}
+.hud{position:absolute;font:500 10.5px/1.5 var(--mono);letter-spacing:.08em;color:#8d8c87;text-transform:uppercase;pointer-events:none}
+.hud.tl{left:16px;top:14px;background:rgba(10,10,10,.75);padding:4px 6px}.hud.br{right:16px;bottom:30px;text-align:right;background:rgba(10,10,10,.75);padding:4px 6px}
+.knobs{position:absolute;left:16px;bottom:30px;display:flex;gap:18px;z-index:2}
+@media(max-width:900px){.hero .in{grid-template-columns:minmax(0,1fr)}.field{min-height:380px;border-left:0;border-top:1px solid #1f1f1f}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* knurled knob */
+.knob{display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:0;padding:0;cursor:ns-resize;touch-action:none}
+.knob .k{width:54px;height:54px;border-radius:50%;position:relative;background:repeating-conic-gradient(#2b2b2b 0 4deg,#111 4deg 8deg);box-shadow:0 6px 14px rgba(0,0,0,.6),inset 0 0 0 1px #3a3a3a}
+.knob .k::after{content:"";position:absolute;inset:8px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#3a3a3a,#141414 70%);box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
+.knob .k i{position:absolute;left:50%;top:5px;width:4px;height:12px;margin-left:-2px;border-radius:2px;background:var(--hot);z-index:1;transform-origin:2px 22px}
+.knob span{background:rgba(10,10,10,.8);padding:3px 5px;font:700 9.5px/1 var(--mono);letter-spacing:.12em;color:#bdbcb7}
+
+/* route index */
+.route{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:28px}
+.stop{display:block;text-decoration:none;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;position:relative;overflow:hidden;transition:transform .2s}
+.stop:hover{transform:translateY(-4px)}
+.stop .n{font:400 64px/1 var(--disp);color:var(--c)}
+.stop h3{font-size:24px;margin-top:6px}
+.stop p{font-size:14px;color:var(--muted);margin-top:6px}
+.stop .st{position:absolute;right:14px;top:16px}
+.stop::after{content:"";position:absolute;left:0;right:0;bottom:0;height:6px;background:var(--c)}
+@media(max-width:1000px){.route{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.route{grid-template-columns:minmax(0,1fr)}}
+.pill{display:inline-flex;align-items:center;gap:6px;font:700 10.5px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;padding:6px 9px;border-radius:999px;border:1px solid var(--line);background:var(--paper)}
+.pill.go{background:var(--hot);border-color:var(--hot);color:#fff}
+
+/* unit plate */
+.plate{background:var(--c);color:var(--on,#fff);padding:clamp(36px,5vw,72px) max(5vw,16px) 0;position:relative;overflow:hidden}
+.plate .wrap{display:grid;grid-template-columns:minmax(0,auto) minmax(0,1fr);gap:clamp(20px,4vw,56px);align-items:end}
+.plate .big{font:400 clamp(120px,19vw,280px)/.8 var(--disp);letter-spacing:-.01em;margin-bottom:-.06em}
+.plate h2{font-size:clamp(40px,5.6vw,80px)}
+.plate .sub{font:500 13px/1.5 var(--mono);letter-spacing:.06em;text-transform:uppercase;margin-top:10px;opacity:.85}
+.plate .intro{font-size:18px;max-width:58ch;margin-top:16px}
+.plate .meta{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 clamp(28px,4vw,56px)}
+.plate .meta .pill{background:rgba(0,0,0,.18);border-color:rgba(255,255,255,.35);color:inherit}
+.plate.lt .meta .pill{background:rgba(255,255,255,.35);border-color:rgba(0,0,0,.25)}
+.plate .screws i{position:absolute;width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 40% 35%,rgba(255,255,255,.55),rgba(0,0,0,.35));box-shadow:inset 0 0 0 1px rgba(0,0,0,.25)}
+.plate .screws i::after{content:"";position:absolute;left:3px;right:3px;top:6px;height:2px;background:rgba(0,0,0,.45);transform:rotate(35deg)}
+@media(max-width:760px){.plate .wrap{grid-template-columns:minmax(0,1fr)}.plate .big{font-size:120px}}
+
+/* sessions */
+.sec-h{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:10px 20px;margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid var(--ink)}
+.sec-h h3{font-size:clamp(28px,3vw,40px)}
+.sess{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.ses{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 16px 18px;display:flex;flex-direction:column;gap:8px}
+.ses .h{display:flex;justify-content:space-between;align-items:center}
+.ses .h b{font:400 30px/1 var(--disp);color:var(--c)}
+.ses h4{margin:0;font-size:16px;line-height:1.25;font-weight:700}
+.ses ul{margin:2px 0 0;padding:0;list-style:none;display:grid;gap:6px}
+.ses li{font-size:14.5px;line-height:1.45;padding-left:16px;position:relative;color:var(--muted)}
+.ses li::before{content:"";position:absolute;left:0;top:7px;width:7px;height:7px;background:var(--c);border-radius:1px}
+
+/* lab */
+.labbox{margin-top:clamp(40px,5vw,64px);background:#0e0e0e;color:#ededea;border-radius:22px;overflow:hidden;border:1px solid #232323;box-shadow:0 30px 60px rgba(0,0,0,.18)}
+.labtop{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:16px 20px;border-bottom:1px solid #232323}
+.labtop h3{font-size:clamp(22px,2.4vw,30px)}
+.labtop .led{width:10px;height:10px;border-radius:50%;background:var(--hot);box-shadow:0 0 10px var(--hot);display:inline-block;margin-right:8px;animation:bl 1.6s infinite}
+@keyframes bl{50%{opacity:.35}}
+.labin{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,300px)}
+.stage{position:relative;min-height:420px;background:#0a0a0a;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:20px 20px}
+.stage canvas,.stage svg{position:absolute;inset:0;width:100%;height:100%;touch-action:none}
+.ctrl{padding:18px 20px;border-left:1px solid #232323;display:flex;flex-direction:column;gap:16px}
+.ctrl p.how{font-size:14px;color:#b8b7b2}
+.rng label{display:flex;justify-content:space-between;font:700 11px/1 var(--mono);letter-spacing:.1em;color:#bdbcb7;text-transform:uppercase;margin-bottom:8px}
+.rng label output{color:var(--hot)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:28px;background:transparent;cursor:pointer}
+input[type=range]::-webkit-slider-runnable-track{height:6px;border-radius:6px;background:linear-gradient(90deg,var(--hot) var(--p,50%),#2c2c2c var(--p,50%))}
+input[type=range]::-moz-range-track{height:6px;border-radius:6px;background:#2c2c2c}
+input[type=range]::-moz-range-progress{height:6px;border-radius:6px;background:var(--hot)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;margin-top:-10px;border-radius:50%;background:repeating-conic-gradient(#3a3a3a 0 10deg,#1b1b1b 10deg 20deg);border:2px solid #555;box-shadow:0 3px 8px rgba(0,0,0,.6)}
+input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:repeating-conic-gradient(#3a3a3a 0 10deg,#1b1b1b 10deg 20deg);border:2px solid #555}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.btn{min-height:44px;padding:0 16px;border-radius:999px;border:1.5px solid #3a3a3a;background:#161616;color:#ededea;font:700 12px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+.btn:hover{border-color:#777}
+.btn.go{background:var(--hot);border-color:var(--hot);color:#fff}
+.btn[aria-pressed=true]{background:#ededea;color:#0a0a0a;border-color:#ededea}
+.readout{font:500 11.5px/1.7 var(--mono);color:#9c9b96;letter-spacing:.04em;border-top:1px solid #232323;padding-top:12px;margin-top:auto;white-space:pre-wrap}
+.readout b{color:#ededea;font-weight:700}
+@media(max-width:760px){.labin{grid-template-columns:minmax(0,1fr)}.ctrl{border-left:0;border-top:1px solid #232323}.stage{min-height:340px}}
+
+/* projects */
+.proj{margin-top:clamp(40px,5vw,64px)}
+.final{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:clamp(20px,3vw,40px);align-items:start}
+.final .hero-img{border-radius:18px;overflow:hidden;cursor:zoom-in;border:0;padding:0;background:#111;display:block;width:100%}
+.final .hero-img img{width:100%;transition:transform .5s}
+.final .hero-img:hover img{transform:scale(1.02)}
+.final h3{font-size:clamp(34px,4vw,56px)}
+.final .note{font-size:17px;margin-top:14px}
+.facts{margin:18px 0 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border-top:1px solid var(--line)}
+.facts div{padding:10px 10px 10px 0;border-bottom:1px solid var(--line)}
+.facts dt{font:700 10.5px/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.facts dd{margin:4px 0 0;font-size:14.5px;font-weight:600}
+.learned{margin-top:16px;padding:14px 16px;border-radius:12px;background:var(--card);border:1px solid var(--line);font-size:15px}
+.learned b{display:block;font:700 10.5px/1.3 var(--mono);letter-spacing:.1em;color:var(--hot);margin-bottom:4px}
+.strip{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;margin-top:16px;padding-bottom:8px}
+.strip button{flex:0 0 auto;height:120px;scroll-snap-align:start;border:0;padding:0;border-radius:10px;overflow:hidden;background:#111;cursor:zoom-in}
+.strip img{height:100%;width:auto}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-top:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.card .cv{aspect-ratio:16/10;background:#111;border:0;padding:0;cursor:zoom-in;position:relative;overflow:hidden;display:block;width:100%}
+.card .cv img,.card .cv svg{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.card .cv:hover img{transform:scale(1.04)}
+.card .cv .cnt{position:absolute;right:10px;bottom:10px;font:700 10.5px/1 var(--mono);background:rgba(0,0,0,.7);color:#fff;padding:6px 8px;border-radius:6px;letter-spacing:.08em}
+.card .bd{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card h4{margin:0;font:400 24px/1.05 var(--disp);text-transform:uppercase}
+.card p{font-size:14.5px;color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:6px}
+.tags span{font:700 10px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:5px 7px;border-radius:5px;background:var(--paper);border:1px solid var(--line)}
+.pend{font:700 10.5px/1 var(--mono);letter-spacing:.08em;color:var(--hot)}
+@media(max-width:900px){.final{grid-template-columns:minmax(0,1fr)}}
+
+/* step rail (kinetic) */
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:18px}
+.steps button{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:0;overflow:hidden;cursor:zoom-in;text-align:left}
+.steps img{aspect-ratio:16/10;object-fit:cover;width:100%;background:#fff}
+.steps span{display:block;padding:8px 10px;font:700 10.5px/1.35 var(--mono);letter-spacing:.06em;text-transform:uppercase}
+@media(max-width:700px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* unit 5 */
+.todo{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-top:22px}
+.todo div{border:1.5px dashed rgba(0,0,0,.35);border-radius:14px;padding:16px;background:rgba(255,255,255,.25)}
+.todo b{font:400 22px/1.1 var(--disp);text-transform:uppercase;display:block}
+.todo p{font-size:14.5px;margin-top:6px}
+
+footer .cols{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1fr);gap:28px}
+footer h3{font-size:clamp(36px,4.4vw,64px)}
+footer ul{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:6px;font-size:15px}
+@media(max-width:800px){footer .cols{grid-template-columns:minmax(0,1fr)}}
+
+
+.dls{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.dl{display:inline-flex;align-items:center;gap:7px;min-height:36px;padding:0 10px 0 4px;border-radius:999px;border:1px solid var(--line);background:var(--paper);text-decoration:none;font:700 11px/1 var(--mono);letter-spacing:.06em}
+.dl i{font-style:normal;background:var(--ink);color:var(--paper);padding:5px 7px;border-radius:999px}
+.dl b{color:var(--hot)}
+.dl:hover{border-color:var(--hot)}
+.labfoot{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;padding:12px 20px;border-top:1px solid #232323;font:700 11px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:#9c9b96}
+.labfoot a{color:var(--hot);text-decoration:none;text-transform:none;letter-spacing:.02em}
+.labfoot a:hover{text-decoration:underline}
+.ftab{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px}
+.fg{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 12px 6px}
+.fgt{font:400 20px/1.1 var(--disp);text-transform:uppercase;margin:2px 4px 8px}
+.frow{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;gap:10px;align-items:center;padding:9px 6px;border-top:1px solid var(--line);text-decoration:none;font-size:14px}
+.frow:hover{background:var(--paper)}
+.frow .x{font:700 10px/1 var(--mono);font-style:normal;padding:5px 6px;border-radius:5px;background:var(--ink);color:var(--paper);min-width:40px;text-align:center}
+.frow .xgh,.frow .xghz{background:var(--hot);color:#fff}
+.frow .nm{font-family:var(--mono);font-size:12.5px;overflow-wrap:anywhere}
+.frow .sz{font:500 11.5px/1 var(--mono);color:var(--muted);white-space:nowrap}
+.frow b{color:var(--hot)}
+@media(max-width:420px){.ftab{grid-template-columns:minmax(0,1fr)}}
+.fhero{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:end}
+.fstats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.fstats a{display:grid;gap:2px;padding:14px;border-radius:14px;background:#151515;border:1px solid #2a2a2a;text-decoration:none;position:relative;overflow:hidden}
+.fstats a::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--c)}
+.fstats a:hover{border-color:var(--hot)}
+.fstats b{font:400 36px/1 var(--disp);color:var(--c);padding-left:6px}
+.fstats span{font:700 11px/1.2 var(--mono);letter-spacing:.1em;padding-left:6px}
+.fstats em{font:500 11px/1.2 var(--mono);font-style:normal;color:var(--hot);padding-left:6px}
+@media(max-width:900px){.fhero{grid-template-columns:minmax(0,1fr)}}
+.cmps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:16px}
+.cmpf{margin:0}
+@media(min-width:900px){.cmps.even{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.cmp{position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#111;user-select:none}
+.cmp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cmp img.af{clip-path:inset(0 0 0 var(--x))}
+.cmp .hdl{position:absolute;top:0;bottom:0;left:var(--x);width:3px;margin-left:-1.5px;background:var(--hot);pointer-events:none}
+.cmp .hdl::after{content:"";position:absolute;top:50%;left:50%;width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;background:repeating-conic-gradient(#3a3a3a 0 10deg,#1b1b1b 10deg 20deg);border:3px solid var(--hot);box-shadow:0 4px 12px rgba(0,0,0,.5)}
+.cmp input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.cmp .tg{position:absolute;top:12px;font:700 10.5px/1 var(--mono);letter-spacing:.12em;background:rgba(0,0,0,.72);color:#fff;padding:6px 8px;border-radius:6px;pointer-events:none}
+.cmp .tg.l{left:12px}.cmp .tg.r{right:12px;background:var(--hot)}
+.cmpf figcaption{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:8px;font:700 11px/1.3 var(--mono);letter-spacing:.08em}
+.cmpf figcaption span{color:var(--muted);font-weight:500}
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:60;background:rgba(5,5,5,.94);display:none;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:16px;color:#fff}
+.lb.open{display:flex}
+.lb img{max-height:66vh;max-width:min(1400px,100%);width:auto;border-radius:8px}
+.lb p{max-width:80ch;text-align:center;font-size:15px;color:#d6d5d0}
+.lb .row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.lb .ct{font:700 11px/1 var(--mono);letter-spacing:.1em;color:#9c9b96}
+
+
+
+/* film */
+.film h2 em{font-style:normal;color:var(--hot)}
+.filmbox{position:relative;border-radius:20px;overflow:hidden;background:#000;aspect-ratio:16/9;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.filmbox video{width:100%;height:100%;display:block;object-fit:cover}
+.filmbtn{position:absolute;right:16px;bottom:16px;width:56px;height:56px;border-radius:50%;border:0;cursor:pointer;background:repeating-conic-gradient(#3a3a3a 0 10deg,#1b1b1b 10deg 20deg);box-shadow:0 0 0 3px var(--hot),0 6px 16px rgba(0,0,0,.6);color:#fff;font-size:18px}
+/* language toggle */
+.lang{display:flex;gap:2px;padding:3px;border-radius:999px;background:#151515;border:1px solid #2a2a2a;flex:none}
+.lang button{display:flex;align-items:center;gap:6px;border:0;background:transparent;color:#9c9b96;font:700 11px/1 var(--mono);letter-spacing:.08em;padding:6px 9px 6px 7px;border-radius:999px;cursor:pointer;min-height:32px}
+.lang button svg{width:22px;height:15px;border-radius:3px;box-shadow:0 0 0 1px rgba(255,255,255,.15);filter:saturate(.55) brightness(.8);transition:filter .2s}
+.lang button[aria-pressed=true]{background:#fff;color:#0a0a0a}
+.lang button[aria-pressed=true] svg{filter:none}
+.lang button:hover svg{filter:none}
+@media(max-width:700px){.lang button span{display:none}.lang button{padding:6px}}
+@media(max-width:480px){.brand span{display:none}.bar{gap:10px}}
+/* ===== v2 polish ===== */
+.prog{position:fixed;left:0;top:58px;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(var(--pg,0));background:var(--hot);z-index:31;pointer-events:none}
+@media(max-width:700px){.nav{mask-image:linear-gradient(90deg,transparent,#000 14px,#000 calc(100% - 22px),transparent)}}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+.card{transition:transform .25s,box-shadow .25s}
+.card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,0,0,.12)}
+.frow .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;overflow-wrap:normal}
+.cv .ownb,.hero-img .ownb{position:absolute;left:10px;top:10px;font:700 10px/1 var(--mono);letter-spacing:.1em;background:var(--hot);color:#fff;padding:6px 8px;border-radius:6px}
+.final .hero-img{position:relative}
+.diagl{font:700 10.5px/1 var(--mono);letter-spacing:.08em;color:var(--muted)}
+/* showreel */
+.reel{background:#0a0a0a;color:#f1f0ec;padding:clamp(40px,6vw,80px) 0;overflow:hidden;position:relative}
+.reel .head{padding:0 max(5vw,16px);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:14px 30px;max-width:1240px;margin:0 auto 28px}
+.reel h2{font-size:clamp(40px,6vw,92px)}
+.reel h2 em{font-style:normal;color:var(--hot)}
+.reel .head p{max-width:46ch;color:#bdbcb7;font-size:16px}
+.track{display:flex;gap:14px;width:max-content;animation:mq var(--d,80s) linear infinite}
+.track.rev{animation-direction:reverse;margin-top:14px}
+.reel:hover .track,.reel:focus-within .track{animation-play-state:paused}
+@keyframes mq{to{transform:translateX(-50%)}}
+.tile{flex:none;width:clamp(240px,26vw,420px);aspect-ratio:16/10;border-radius:14px;overflow:hidden;position:relative;border:0;padding:0;background:#151515;cursor:zoom-in}
+.tile img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.tile:hover img{transform:scale(1.06)}
+.tile span{position:absolute;left:10px;bottom:10px;font:700 10.5px/1 var(--mono);letter-spacing:.1em;background:rgba(0,0,0,.72);color:#fff;padding:7px 9px;border-radius:6px;display:flex;gap:7px;align-items:center}
+.tile span i{width:8px;height:8px;border-radius:50%;background:var(--c)}
+.reel .ctr{display:flex;justify-content:center;gap:10px;margin-top:26px}
+.reel .tick{position:absolute;left:0;right:0;top:0;height:6px;background:linear-gradient(90deg,var(--sky),var(--blue),var(--violet),var(--red),var(--hot),var(--yellow))}
+@media(prefers-reduced-motion:reduce){.track{animation:none}.reel .rows{overflow-x:auto}.rv{opacity:1;transform:none}}
+/* mobile sessions swipe */
+@media(max-width:700px){.sess{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;margin:0 calc(-1*max(5vw,16px));padding:0 max(5vw,16px) 8px;scrollbar-width:none}.ses{flex:0 0 84%;scroll-snap-align:center}
+ .sess-hint{display:block!important}}
+.sess-hint{display:none;font:700 10.5px/1 var(--mono);letter-spacing:.1em;color:var(--muted);margin-top:10px}
+/* lightbox polish */
+.lb .stage2{position:relative;display:flex;align-items:center;justify-content:center;width:100%}
+.lb img{box-shadow:0 30px 80px rgba(0,0,0,.6);animation:lbin .35s ease}
+@keyframes lbin{from{opacity:0;transform:scale(.97)}}
+.lb .thumbs{display:flex;gap:6px;overflow-x:auto;max-width:min(1100px,100%);padding:4px}
+.lb .thumbs button{flex:none;width:72px;height:46px;border-radius:6px;overflow:hidden;border:2px solid transparent;padding:0;background:#111;cursor:pointer;opacity:.55}
+.lb .thumbs button.on{border-color:var(--hot);opacity:1}
+.lb .thumbs img{width:100%;height:100%;object-fit:cover;animation:none;box-shadow:none;border-radius:0;max-height:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="bar">
+  <a class="brand" href="#top" aria-label="Inicio"><i aria-hidden="true"></i><span><b>TIGRE × CONTROLMAD</b><small>MÁSTER EN DISEÑO PARAMÉTRICO · PORTAFOLIO</small></span></a>
+  <nav class="nav" id="nav" aria-label="Unidades"></nav>
+  <div class="lang" role="group" aria-label="Idioma · Language"><button type="button" data-lang="es" aria-label="Español" title="Español"><svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#aa151b"/><rect y="5" width="30" height="10" fill="#f1bf00"/></svg><span>ES</span></button><button type="button" data-lang="en" aria-label="English" title="English"><svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#b22234"/><g fill="#fff"><rect y="1.538" width="30" height="1.538"/><rect y="4.615" width="30" height="1.538"/><rect y="7.692" width="30" height="1.538"/><rect y="10.769" width="30" height="1.538"/><rect y="13.846" width="30" height="1.538"/><rect y="16.923" width="30" height="1.538"/></g><rect width="13" height="10.77" fill="#3c3b6e"/><g fill="#fff"><circle cx="1.60" cy="1.30" r=".45"/><circle cx="3.80" cy="1.30" r=".45"/><circle cx="6.00" cy="1.30" r=".45"/><circle cx="8.20" cy="1.30" r=".45"/><circle cx="10.40" cy="1.30" r=".45"/><circle cx="2.70" cy="2.95" r=".45"/><circle cx="4.90" cy="2.95" r=".45"/><circle cx="7.10" cy="2.95" r=".45"/><circle cx="9.30" cy="2.95" r=".45"/><circle cx="11.50" cy="2.95" r=".45"/><circle cx="1.60" cy="4.60" r=".45"/><circle cx="3.80" cy="4.60" r=".45"/><circle cx="6.00" cy="4.60" r=".45"/><circle cx="8.20" cy="4.60" r=".45"/><circle cx="10.40" cy="4.60" r=".45"/><circle cx="2.70" cy="6.25" r=".45"/><circle cx="4.90" cy="6.25" r=".45"/><circle cx="7.10" cy="6.25" r=".45"/><circle cx="9.30" cy="6.25" r=".45"/><circle cx="11.50" cy="6.25" r=".45"/><circle cx="1.60" cy="7.90" r=".45"/><circle cx="3.80" cy="7.90" r=".45"/><circle cx="6.00" cy="7.90" r=".45"/><circle cx="8.20" cy="7.90" r=".45"/><circle cx="10.40" cy="7.90" r=".45"/><circle cx="2.70" cy="9.55" r=".45"/><circle cx="4.90" cy="9.55" r=".45"/><circle cx="7.10" cy="9.55" r=".45"/><circle cx="9.30" cy="9.55" r=".45"/><circle cx="11.50" cy="9.55" r=".45"/></g></svg><span>EN</span></button></div>
+</header>
+
+<div class="prog" id="prog" aria-hidden="true"></div>
+<main id="top">
+<section class="hero">
+  <div class="in">
+    <div class="txt">
+      <div>
+        <p class="lab" style="color:#9c9b96">Henry Mauricio Ortega · Tigre Studio · Unidad 5: portafolio</p>
+        <h1 style="margin-top:18px">DISEÑO <em>PARAMÉTRICO</em>, CAPÍTULO A CAPÍTULO</h1>
+      </div>
+      <p class="intro">Todo lo que aprendí en el Máster en Diseño Paramétrico de ControlMad, unidad por unidad: lo que entendí en cada sesión, los ejercicios que hice y el resultado final de cada aprendizaje. Cada unidad trae un laboratorio en vivo para tocar la lógica con las manos.</p>
+      <div class="kpis" id="kpis"></div>
+    </div>
+    <div class="field" id="field">
+      <canvas id="fieldCv" aria-label="Campo de puntos tipo semitono: el radio de cada punto sale de la distancia al atractor más cercano, pasada por un seno y remapeada"></canvas>
+      <p class="hud tl">Grid 60 · Closest Point → Sin → Remap<br>Radio 0.05 → 0.62 · mueve el cursor</p>
+      <p class="hud br" id="hudR">Atractores 5 + cursor</p>
+      <div class="knobs">
+        <button class="knob" id="kFreq" role="slider" aria-label="Frecuencia de la onda" aria-valuemin="1" aria-valuemax="10" aria-valuenow="4"><span class="k"><i></i></span><span>FRECUENCIA</span></button>
+        <button class="knob" id="kDens" role="slider" aria-label="Densidad de la rejilla" aria-valuemin="24" aria-valuemax="80" aria-valuenow="44"><span class="k"><i></i></span><span>DENSIDAD</span></button>
+      </div>
+    </div>
+  </div>
+  <div class="spec"></div>
+</section>
+
+<section class="band grid" id="indice">
+  <div class="wrap">
+    <div class="sec-h"><h2 style="font-size:clamp(32px,4vw,52px)">LA RUTA DEL MÁSTER</h2><p class="lab">De la primera curva al solver de Kangaroo</p></div>
+    <p style="max-width:68ch;font-size:17px">El máster avanza como un manual de montaje: primero modelar con precisión en Rhino, después pensar en datos con Grasshopper, luego estructurar árboles y, al final, dejar que la física encuentre la forma. Cada estación lleva a su unidad.</p>
+    <div class="route" id="route"></div>
+  </div>
+</section>
+
+<section class="reel" id="reel" aria-labelledby="reelH">
+  <div class="tick" aria-hidden="true"></div>
+  <div class="head"><div><p class="lab" style="color:#9c9b96">Showreel · todas las unidades</p><h2 id="reelH" style="margin-top:10px">LO MEJOR DEL <em>MÁSTER</em></h2></div>
+  <p>Una pasada rápida por las piezas: modelos de Rhino, definiciones de Grasshopper y su pasada de render. Pasa el cursor para pausar, toca una imagen para verla grande.</p></div>
+  <div class="rows"><div class="track" id="trackA" style="--d:90s"></div><div class="track rev" id="trackB" style="--d:110s"></div></div>
+</section>
+
+<section class="band dark" id="archivos">
+  <div class="wrap fhero">
+    <div><p class="lab">Para los profesores</p><h2 style="font-size:clamp(34px,4.4vw,64px);margin-top:10px">DESCARGA MIS ARCHIVOS .3DM Y .GH</h2>
+    <p style="margin-top:14px;max-width:60ch;color:#cfcec9;font-size:17px">Cada ejercicio trae sus archivos originales de Rhino y Grasshopper. Se abren en Rhino 9; algunas definiciones necesitan Kangaroo, LunchBox, Ladybug o Weaverbird. Los archivos grandes (renders, escenas) muestran un aviso de Google Drive antes de bajar.</p></div>
+    <div class="fstats" id="fstats"></div>
+  </div>
+</section>
+
+<div id="units"></div>
+
+<section class="plate lt" id="u5" style="--c:var(--yellow);--on:#0a0a0a">
+  <div class="screws" aria-hidden="true"><i style="left:16px;top:16px"></i><i style="right:16px;top:16px"></i></div>
+  <div class="wrap">
+    <div class="big" aria-hidden="true">05</div>
+    <div>
+      <p class="sub">Unidad 05 · en curso</p>
+      <h2>PORTAFOLIO Y PROYECTO FINAL</h2>
+      <p class="intro">Esta web es la entrega de la Unidad 5: un portafolio que muestra, capítulo a capítulo, las habilidades del máster. Sigue creciendo con cada clase nueva.</p>
+      <div class="meta"><span class="pill">Rhino 9</span><span class="pill">Grasshopper</span><span class="pill">Sistema Tigre Studio</span></div>
+    </div>
+  </div>
+  <div class="wrap" style="padding-bottom:clamp(40px,5vw,72px)">
+    <p class="lab" style="color:#3a3a3a">Próximos pasos</p>
+    <div class="todo" id="todo"></div>
+  </div>
+</section>
+</main>
+
+<section class="band dark film" id="film" aria-labelledby="filmH">
+  <div class="wrap">
+    <div class="sec-h" style="border-color:#f1f0ec"><h2 id="filmH" style="font-size:clamp(34px,5vw,72px)">EL MÁSTER EN <em>36 SEGUNDOS</em></h2><p class="lab">Cierre · todas las unidades</p></div>
+    <div class="filmbox"><video id="filmV" src="media/reel.mp4" poster="media/reel-poster.webp" muted loop playsinline preload="none" aria-label="Vídeo resumen del máster: las piezas de cada unidad"></video>
+      <button class="filmbtn" id="filmB" type="button" aria-label="Reproducir o pausar el vídeo"><span>▶</span></button></div>
+  </div>
+</section>
+
+<footer class="band dark">
+  <div class="wrap cols">
+    <div><h3>HENRY MAURICIO ORTEGA</h3><p style="margin-top:12px;color:#bdbcb7;max-width:46ch">Diseñador gráfico computacional. Tigre Studio. Uso Rhino y Grasshopper para diseño de producto, CMF y gráfica técnica.</p></div>
+    <div><p class="lab">Herramientas</p><ul><li>Rhino 9 · Grasshopper</li><li>Kangaroo · LunchBox · Ladybug</li><li>Weaverbird · Mesh Edit</li><li>Blender Cycles · Vizcom</li></ul></div>
+    <div><p class="lab">Máster en Diseño Paramétrico · ControlMad</p><ul><li>Unidades 1 y 2: Sergio Alonso del Campo y Diego García Cuevas</li><li>Unidad 3: Andrés González</li><li>Unidad 3B: Heba Eiz</li></ul></div>
+  </div>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Imagen ampliada">
+  <img id="lbImg" alt="">
+  <p class="ct" id="lbCt"></p>
+  <p id="lbCap"></p>
+  <div class="row"><button class="btn" id="lbPrev">← Anterior</button><button class="btn" id="lbNext">Siguiente →</button><button class="btn go" id="lbClose">Cerrar</button></div>
+  <div class="thumbs" id="lbThumbs"></div>
+</div>
+
+<script>
+/* ===== i18n: ES (source) / EN ===== */
+var EN_DICT={"01 Rejilla hexagonal": "01 Hexagonal grid", "02 Bisagras y centros": "02 Hinges and centres", "03 Solapas planas": "03 Flat flaps", "04 Prueba de rotación": "04 Rotation test", "05 Posición del sol": "05 Sun position", "06 Exposición (dot)": "06 Exposure (dot)", "07 Plegado por sol": "07 Folding by sun", "08 Pared final": "08 Final wall", "0° cerrada · 80° abierta": "0° closed · 80° open", "15° por hora": "15° per hour", "21, temperamento igual": "21, equal temperament", "A la altura de los ojos, en el camino de entrada": "At eye level, on the way in", "ANTES Y DESPUÉS · VIZCOM": "BEFORE AND AFTER · VIZCOM", "ARCHIVOS": "FILES", "ARCHIVOS DE LA UNIDAD": "UNIT FILES", "ASA 3D": "3D HANDLE", "ASA 3D CON MARCOS PERPENDICULARES": "3D HANDLE WITH PERPENDICULAR FRAMES", "Acabado Ice": "Ice finish", "Acabado Ink": "Ink finish", "Acabado Sunburst": "Sunburst finish", "Acabado Tigre Orange": "Tigre Orange finish", "Aleatorio": "Random", "Alzado": "Elevation", "Ampliar imagen principal": "Enlarge main image", "Anclas en los vértices desnudos, una carga y un goal de longitud: la misma malla cuelga como red o se tensa como cubierta. Weaverbird le da marco y grosor.": "Anchors on the naked vertices, a load and a length goal: the same mesh hangs like a net or pulls taut like a roof. Weaverbird adds frame and thickness.", "Anclas, carga y goal de longitud. Cambia el factor: 0 tensa, 1 deja colgar. Carga positiva empuja hacia arriba.": "Anchors, load and length goal. Change the factor: 0 pulls taut, 1 lets it hang. A positive load pushes upwards.", "Anclas: esquinas": "Anchors: corners", "Anemone repite una operación sobre su propio resultado: Loop Start y Loop End cierran el bucle y cada vuelta parte de la anterior.": "Anemone repeats an operation on its own result: Loop Start and Loop End close the loop and each pass starts from the previous one.", "Anemone y Ripple": "Anemone and Ripple", "Archivos": "Files", "Archivos .3dm / .gh": ".3dm / .gh files", "Archivos del ejercicio": "Exercise files", "Arrastra los puntos de control. Sube el grado y mira cómo la curva se suaviza y se aleja del polígono.": "Drag the control points. Raise the degree and watch the curve smooth out and pull away from the polygon.", "Arrastra para comparar el modelo con la pasada de render": "Drag to compare the model with the render pass", "Atractor": "Attractor", "Atractores 5 + cursor": "Attractors 5 + cursor", "Banco Lungomare: superficies": "Lungomare bench: surfaces", "Barridos, Patch y SubD: Tindaya": "Sweeps, Patch and SubD: Tindaya", "Booleanas": "Booleans", "Box Morph mapea un módulo en cada celda de una superficie.": "Box Morph maps a module into every cell of a surface.", "Brep Join + Cap Holes cierran todo en un sólido estanco para imprimir.": "Brep Join + Cap Holes close everything into a watertight solid for printing.", "Bruja, vampiro, monstruo, fantasma, murciélago, gato, araña y calabaza, modelados como figuras de vinilo suave.": "Witch, vampire, monster, ghost, bat, cat, spider and pumpkin, modelled as soft vinyl figures.", "CONTROL DE SUPERFICIE": "SURFACE CONTROL", "CRECIMIENTO": "GROWTH", "CRECIMIENTO CON KANGAROO": "GROWTH WITH KANGAROO", "CRECIMIENTO · KANGAROO": "GROWTH · KANGAROO", "CUBIERTA CON ATRACTOR": "ATTRACTOR ROOF", "CUBIERTA CON ATRACTOR DE CURVA": "CURVE ATTRACTOR ROOF", "CUBIERTA · AÉREA": "ROOF · AERIAL", "CUBIERTA · BAJO EL TECHO": "ROOF · UNDERNEATH", "CUBIERTA · PLANTA": "ROOF · PLAN", "Cada ejercicio sale de una vista de mi propio .gh en Rhino, pasada por Vizcom.": "Every exercise comes from a Rhino view of my own .gh, run through Vizcom.", "Cada ejercicio trae sus archivos originales de Rhino y Grasshopper. Se abren en Rhino 9; algunas definiciones necesitan Kangaroo, LunchBox, Ladybug o Weaverbird. Los archivos grandes (renders, escenas) muestran un aviso de Google Drive antes de bajar.": "Every exercise comes with its original Rhino and Grasshopper files. They open in Rhino 9; some definitions need Kangaroo, LunchBox, Ladybug or Weaverbird. Large files (renders, scenes) show a Google Drive notice before downloading.", "Cada sesión nueva entra como capítulo con su laboratorio, sus archivos y su render.": "Every new session comes in as a chapter with its lab, its files and its render.", "Campo de puntos tipo semitono: el radio de cada punto sale de la distancia al atractor más cercano, pasada por un seno y remapeada": "Halftone dot field: each dot's radius comes from the distance to the nearest attractor, passed through a sine and remapped", "Carga (load)": "Load", "Cerrar": "Close", "Chimenea · booleanas · planos 2D": "Fireplace · booleans · 2D drawings", "Clay pass sin pintura": "Clay pass without paint", "Clay pass: solo las superficies": "Clay pass: surfaces only", "Cockpit: halo de carbono y casco": "Cockpit: carbon halo and helmet", "Componentes": "Components", "Componentes básicos de Grasshopper": "Basic Grasshopper components", "Conjuntos, booleanas y vistas": "Sets, booleans and views", "Construida con": "Built with", "Construido desde vistas superior, lateral y frontal: alerón, halo, pontones, suelo y ruedas. Renderizado con una librea original de Tigre Studio.": "Built from top, side and front views: wing, halo, sidepods, floor and wheels. Rendered with an original Tigre Studio livery.", "Construirlo sin plugin una vez para que LunchBox no sea una caja negra.": "Build it once without a plugin so LunchBox is not a black box.", "Control de superficie": "Surface control", "Controles: volumen, dos tonos y selector de cinco posiciones": "Controls: volume, two tones and a five-way selector", "Crecimiento = Sphere Collide + un goal de longitud que crece despacio, con damping bajo.": "Growth = Sphere Collide + a length goal that grows slowly, with low damping.", "Crecimiento con Kangaroo": "Growth with Kangaroo", "Cuatro días intensivos: sliders y remap, marcos y el asa 3D, weave y box morph, y un día entero de árboles de datos. Aquí Grasshopper dejó de ser cables y pasó a ser estructura.": "Four intensive days: sliders and remap, frames and the 3D handle, weave and box morph, and a whole day of data trees. This is where Grasshopper stopped being wires and became structure.", "Cuatro vistas del modelo": "Four views of the model", "Cubierta con atractor de curva": "Curve attractor roof", "Cuerpo sólido tipo S · 230 piezas · escala 25.5″": "S-type solid body · 230 parts · 25.5″ scale", "Curvas NURBS": "NURBS curves", "Curvas, marcos y el asa 3D": "Curves, frames and the 3D handle", "Curve Closest Point da la distancia de cada punto a un recorrido.": "Curve Closest Point gives the distance from each point to a path.", "CÁSCARA · DAY 2": "SHELL · DAY 2", "DENSIDAD": "DENSITY", "DESCARGA MIS ARCHIVOS .3DM Y .GH": "DOWNLOAD MY .3DM AND .GH FILES", "DIAGRAMA DE LA LÓGICA": "LOGIC DIAGRAM", "Day 1 · Kangaroo con puntos": "Day 1 · Kangaroo with points", "Day 2 · Kangaroo en mallas": "Day 2 · Kangaroo on meshes", "Day 3 · bucles con Anemone": "Day 3 · loops with Anemone", "Day 3 · ondas sobre malla": "Day 3 · waves on a mesh", "De la primera curva al solver de Kangaroo": "From the first curve to the Kangaroo solver", "Deberes · Sort List + Mass Addition": "Homework · Sort List + Mass Addition", "Definición en vivo": "Live definition", "Definición paso a paso": "Step-by-step definition", "Definición sensible al sol": "Sun-reactive definition", "Definir el proyecto de cierre del máster y sumarlo como capítulo 06.": "Define the master's closing project and add it as chapter 06.", "Del primer slider a fachadas paneladas, un puente loftado, un sólido estanco hecho con árboles de datos y dos encargos reales: una pared que reacciona al sol y un pabellón con atractor.": "From the first slider to panelled facades, a lofted bridge, a watertight solid built with data trees and two real briefs: a wall that reacts to the sun and an attractor pavilion.", "Densidad de la rejilla": "Grid density", "Desordenar": "Shuffle", "Detalle Noir": "Noir detail", "Diagrama conceptual generado": "Generated concept diagram", "Diseñador gráfico computacional. Tigre Studio. Uso Rhino y Grasshopper para diseño de producto, CMF y gráfica técnica.": "Computational graphic designer. Tigre Studio. I use Rhino and Grasshopper for product design, CMF and technical graphics.", "Distancia del sol": "Sun distance", "Divide Domain² + Isotrim cortan la superficie en subsuperficies.": "Divide Domain² + Isotrim cut the surface into sub-surfaces.", "Dominios": "Domains", "EJERCICIOS": "EXERCISES", "ESTRUCTURA DE DATOS": "DATA STRUCTURE", "ESTRUCTURA DE DATOS Y FORM-FINDING": "DATA STRUCTURE AND FORM-FINDING", "Ejercicio de clase de la Unidad 3": "Unit 3 class exercise", "Ejercicios": "Exercises", "El .gh se guarda aparte del .3dm: hay que guardar los dos.": "The .gh is saved separately from the .3dm: you have to save both.", "El Voronoi corre sin cortes por aristas y esquinas": "The Voronoi runs unbroken across edges and corners", "El encargo: diseñar una pared que reaccione a su entorno. Cada hexágono son seis solapas triangulares sobre bisagras. La definición calcula dónde está el sol, cuánto lo mira cada hexágono y pliega las solapas: cerradas para dar sombra donde pega el sol, abiertas para dejar pasar luz y aire donde no.": "The brief: design a wall that reacts to its surroundings. Each hexagon is six triangular flaps on hinges. The definition works out where the sun is, how much each hexagon faces it and folds the flaps: closed to give shade where the sun hits, open to let light and air through where it doesn't.", "El grado cambia cómo los puntos de control tiran de la curva; F10 los muestra.": "The degree changes how the control points pull on the curve; F10 shows them.", "El modelo de Rhino: bloques de color antes del material": "The Rhino model: colour blocks before materials", "El máster avanza como un manual de montaje: primero modelar con precisión en Rhino, después pensar en datos con Grasshopper, luego estructurar árboles y, al final, dejar que la física encuentre la forma. Cada estación lleva a su unidad.": "The master's moves like an assembly manual: first model precisely in Rhino, then think in data with Grasshopper, then structure trees and, finally, let physics find the form. Each stop leads to its unit.", "El producto escalar convierte una pregunta de diseño (¿cuánto sol recibe esto?) en un número que puede mover geometría.": "The dot product turns a design question (how much sun does this get?) into a number that can move geometry.", "El producto escalar de vectores unitarios es el coseno del ángulo: mide cuánto mira cada ventana al sol.": "The dot product of unit vectors is the cosine of the angle: it measures how much each window faces the sun.", "En curso": "In progress", "Encargo 2 · pabellón": "Brief 2 · pavilion", "Escala": "Scale", "Escena": "Scene", "Esferas que no se pueden solapar y un imán que las agrupa: los puntos se reúnen en racimos dentro del límite.": "Spheres that cannot overlap and a magnet that groups them: the points gather into clusters inside the boundary.", "Esta web es la entrega de la Unidad 5: un portafolio que muestra, capítulo a capítulo, las habilidades del máster. Sigue creciendo con cada clase nueva.": "This site is the Unit 5 deliverable: a portfolio that shows the master's skills chapter by chapter. It keeps growing with every new class.", "Estructura de datos": "Data structure", "Estructura de datos explicada con paneles y letras, y después Kangaroo: cables, redes colgantes, cubiertas tensadas y crecimiento. La forma ya no se dibuja, se encuentra.": "Data structure explained with panels and letters, then Kangaroo: cables, hanging nets, tensioned roofs and growth. Form is no longer drawn, it is found.", "Estudio": "Study", "Explosionado del montaje": "Exploded assembly", "Expression es una calculadora para listas: x², seno, cualquier fórmula.": "Expression is a calculator for lists: x², sine, any formula.", "FRECUENCIA": "FREQUENCY", "Factor de longitud": "Length factor", "Factor de longitud 0 tensa como una cubierta; 1 mantiene la longitud y deja colgar.": "Length factor 0 pulls taut like a roof; 1 keeps the length and lets it hang.", "Find Similar Member contra un Gene Pool ajusta los radios a tamaños reales de fabricación.": "Find Similar Member against a Gene Pool snaps the radii to real fabrication sizes.", "Flatten colapsa un árbol en una sola lista.": "Flatten collapses a tree into a single list.", "Flyer 3D · escena iluminada": "3D flyer · lit scene", "Frecuencia de la onda": "Wave frequency", "Frontal: alerón delantero, morro y halo": "Front: front wing, nose and halo", "GH AVANZADO": "ADVANCED GH", "GUITARRA ELÉCTRICA": "ELECTRIC GUITAR", "Grado": "Degree", "Graft da a cada elemento su rama; Flatten los junta en una.": "Graft gives every item its own branch; Flatten joins them into one.", "Gráfica 3D": "3D graphics", "Guardar vistas con nombre y estados de capa para lo que reutilizo.": "Save named views and layer states for what I reuse.", "Guitarra eléctrica": "Electric guitar", "Hecha": "Done", "Henry Mauricio Ortega · Tigre Studio · Unidad 5: portafolio": "Henry Mauricio Ortega · Tigre Studio · Unit 5: portfolio", "Hero 3-Tone Burst: geometría, incrustaciones y herrajes salen del modelo de Rhino": "3-Tone Burst hero: geometry, inlays and hardware come straight from the Rhino model", "Hero de lanzamiento con librea original Tigre": "Launch hero with an original Tigre livery", "Hero en naranja señal": "Hero in signal orange", "Herramientas": "Tools", "Hora": "Time", "Igualar direcciones de curva antes del loft para que no se tuerza.": "Match curve directions before lofting so it doesn't twist.", "Iluminación": "Lighting", "Image Sampler devuelve brillo de 0 a 1; se remapea a radios, alturas o relieves.": "Image Sampler returns brightness from 0 to 1; it gets remapped to radii, heights or relief.", "Imagen ampliada": "Enlarged image", "Inicio": "Home", "Kangaroo en mallas y crecimiento": "Kangaroo on meshes and growth", "Kangaroo se piensa en tres bloques (entradas, goals, solver) y se ajusta en pasos pequeños: resetear a menudo y subir despacio.": "Kangaroo is thought of in three blocks (inputs, goals, solver) and tuned in small steps: reset often and raise values slowly.", "LA RUTA DEL MÁSTER": "THE MASTER'S ROUTE", "LARGO TOTAL": "TOTAL LENGTH", "LISTAS, DOMINIOS Y VECTORES": "LISTS, DOMAINS AND VECTORS", "LO MEJOR DEL": "THE BEST OF THE", "LO QUE APRENDÍ": "WHAT I LEARNED", "LO QUE ME LLEVO": "MY TAKEAWAY", "LONGITUDES": "LENGTHS", "La definición real": "The real definition", "La luz atraviesa la piel": "Light passes through the skin", "La línea de comandos primero: escribir el comando es más rápido que cualquier barra.": "Command line first: typing the command is faster than any toolbar.", "La pieza que cierra la unidad": "The piece that closes the unit", "Ladybug e Image Sampler": "Ladybug and Image Sampler", "Ladybug lee un EPW y da el vector solar real de una fecha y hora.": "Ladybug reads an EPW file and gives the real sun vector for a date and time.", "Larger Than + Dispatch quitan las celdas en sombra; Remap lleva el valor a un rango útil.": "Larger Than + Dispatch remove the cells in shade; Remap brings the value into a useful range.", "Las superficies complejas empiezan con curvas sacadas de los planos.": "Complex surfaces start with curves taken from the drawings.", "Leer datos de TXT o CSV y un Python que hornea en capas con color.": "Read data from TXT or CSV, plus a Python script that bakes into coloured layers.", "Librea": "Livery", "Listas y árboles": "Lists and trees", "Lofts, dominios y expresiones": "Lofts, domains and expressions", "Longest List es el emparejamiento por defecto; saber cuándo cambiarlo.": "Longest List is the default matching; know when to change it.", "Los puntos de una polilínea con colisión de esferas y un goal de longitud que aumenta poco a poco se arrugan en una línea tipo coral. En el día 2 la misma lógica crece sobre un jarrón: un goal On Mesh mantiene los puntos en la superficie y Mesh Pipe da grosor a las curvas.": "The points of a polyline with sphere collision and a length goal that grows little by little crumple into a coral-like line. On day 2 the same logic grows over a vase: an On Mesh goal keeps the points on the surface and Mesh Pipe gives the curves thickness.", "Lógica": "Logic", "MESAS NIDO": "NESTING TABLES", "MI ARCHIVO → VIZCOM": "MY FILE → VIZCOM", "MODELADO, SUPERFICIES Y SUBD": "MODELLING, SURFACES AND SUBD", "MONOPLAZA F1": "F1 SINGLE-SEATER", "Macro de las solapas": "Flap macro", "Mass Addition convierte una lista de anchos en posiciones.": "Mass Addition turns a list of widths into positions.", "Merge, Entwine, Flatten, Graft y Simplify probados con paneles, y Relative Item para emparejar cada elemento con su vecino.": "Merge, Entwine, Flatten, Graft and Simplify tested with panels, and Relative Item to pair each item with its neighbour.", "Mesas nido": "Nesting tables", "Mi .gh en Rhino → Vizcom": "My .gh in Rhino → Vizcom", "Mi Day1-Kangaroo-Growth.gh → Vizcom": "My Day1-Kangaroo-Growth.gh → Vizcom", "Mi Day1-Kangaroo.gh → Vizcom": "My Day1-Kangaroo.gh → Vizcom", "Mi Day2-Kangaroo.gh → Vizcom": "My Day2-Kangaroo.gh → Vizcom", "Mi Day3-Ripple.gh → Vizcom": "My Day3-Ripple.gh → Vizcom", "Mirando hacia arriba bajo la cubierta": "Looking up under the roof", "Mobiliario y CMF · Rhino 9 · Cycles": "Furniture and CMF · Rhino 9 · Cycles", "Modelar 230 piezas exige capas, nombres y sólidos cerrados desde el primer día. El clay pass demuestra que la forma funciona sin material.": "Modelling 230 parts demands layers, names and closed solids from day one. The clay pass proves the form works without materials.", "Monoplaza F1": "F1 single-seater", "Movimiento": "Movement", "Muestras de material": "Material samples", "Mueve la hora. Cada solapa se pliega según el producto escalar entre la normal de la pared y la dirección al sol.": "Move the time. Each flap folds according to the dot product between the wall normal and the sun direction.", "MultiPipe convierte una red de curvas en SubD en segundos.": "MultiPipe turns a curve network into SubD in seconds.", "MÁSTER": "MASTER'S", "MÁSTER EN DISEÑO PARAMÉTRICO · PORTAFOLIO": "MASTER IN PARAMETRIC DESIGN · PORTFOLIO", "Máster en Diseño Paramétrico · ControlMad": "Master in Parametric Design · ControlMad", "Nombrar el .3dm igual que el .gh para que viajen los materiales.": "Name the .3dm the same as the .gh so the materials travel with it.", "Nuevas clases": "New classes", "ORDENAR CON SEPARACIÓN": "SORT WITH SPACING", "Ondas": "Waves", "Ondas sobre una malla: una gota central que abre anillos concéntricos, una segunda placa con crestas paralelas y una pieza blanda al lado, todo desde mi Day3-Ripple.": "Waves on a mesh: a central drop opening concentric rings, a second plate with parallel ridges and a soft piece beside them, all from my Day3-Ripple.", "Ordenar": "Sort", "Ordenar con separación": "Sort with spacing", "Otros modelos de la unidad": "Other models from the unit", "PORTAFOLIO": "PORTFOLIO", "PORTAFOLIO Y PROYECTO FINAL": "PORTFOLIO AND FINAL PROJECT", "Pabellón con atractor": "Attractor pavilion", "Pala: seis clavijas, guía de cuerdas y enrollados": "Headstock: six tuners, string guide and windings", "Panelización de superficies": "Surface panelling", "Para los profesores": "For instructors", "Pared reactiva · solapas de origami que se pliegan con el sol": "Reactive wall · origami flaps that fold with the sun", "Parámetros": "Parameters", "Patch y Pull construyen terreno a partir de curvas de nivel.": "Patch and Pull build terrain from contour lines.", "Pensamiento paramétrico": "Parametric thinking", "Perp Frame da un plano en cualquier parámetro de una curva.": "Perp Frame gives a plane at any parameter of a curve.", "Personajes": "Characters", "Piezas": "Parts", "Piezas sueltas y giradas: medir cada una, ordenarlas con Sort List, sumar anchos más una separación con Mass Addition y colocarlas en fila. En 005_Sort_List salen cinco piezas en orden; en los deberes, lo mismo con rectángulos. El laboratorio de arriba es esta lógica, en vivo.": "Loose, rotated pieces: measure each one, sort them with Sort List, add widths plus a gap with Mass Addition and lay them in a row. In 005_Sort_List five pieces come out in order; in the homework, the same with rectangles. The lab above is this logic, live.", "Pilares cilíndricos bajo una cubierta perforada: una curva atractora decide el tamaño de cada hueco y de cada pilar, ajustados a tamaños reales con Gene Pool.": "Cylindrical columns under a perforated roof: an attractor curve decides the size of every opening and every column, snapped to real sizes with Gene Pool.", "Planta, perspectiva y alzados": "Plan, perspective and elevations", "Planta: luz y sombra siguiendo la curva": "Plan: light and shade following the curve", "Portafolio Máster Paramétrico": "Parametric Master's Portfolio", "Producto escalar": "Dot product", "Prototipo electrónico": "Electronics prototype", "Proyecto final": "Final project", "Práctica de Kangaroo": "Kangaroo practice", "Práctica de clase": "Class practice", "Próximos pasos": "Next steps", "Puente de seis selletas con tornillos de altura y muelles": "Six-saddle bridge with height screws and springs", "Pulsa ordenar: las aristas se ordenan por longitud y Mass Addition acumula los anchos más la separación.": "Press sort: the edges are sorted by length and Mass Addition accumulates the widths plus the gap.", "Puntos (F10)": "Points (F10)", "RED COLGANTE Y CUBIERTA": "HANGING NET AND ROOF", "REMAP, MARCOS Y ÁRBOLES": "REMAP, FRAMES AND TREES", "RESULTADO FINAL": "FINAL RESULT", "Radio 0.05 → 0.62 · mueve el cursor": "Radius 0.05 → 0.62 · move the cursor", "Radio, lados, giro y redondeo por sección": "Radius, sides, twist and rounding per section", "Random necesita una semilla que cambie para variar de verdad.": "Random needs a changing seed to truly vary.", "Random, series y árboles": "Random, series and trees", "Recorte cuadrado para redes": "Square crop for social media", "Red colgante y cubierta": "Hanging net and roof", "Rejilla → punto más cercano → seno → remap a radio de punto. Tres formas de mover los atractores: puntos de Rhino, sliders y MD Sliders. Es la lógica del campo de la portada.": "Grid → closest point → sine → remap to dot radius. Three ways to move the attractors: Rhino points, sliders and MD Sliders. It is the logic behind the cover field.", "Remapear cualquier lista a un dominio nuevo y darle forma con Graph Mapper.": "Remap any list to a new domain and shape it with Graph Mapper.", "Render de Rhino → Vizcom": "Rhino render → Vizcom", "Render del teclado": "Keypad render", "Render final": "Final render", "Render final en estudio cálido": "Final render in a warm studio", "Render original de Rhino: vista aérea del pabellón": "Original Rhino render: aerial view of the pavilion", "Renders de mis archivos": "Renders from my files", "Reparametrizar la curva (0 a 1) hace que los marcos caigan siempre en el mismo sitio, aunque la curva cambie de largo.": "Reparameterizing the curve (0 to 1) makes the frames always land in the same place, even when the curve changes length.", "Retrato de la pared": "Portrait of the wall", "Revisar continuidad G0/G1/G2 con zebra y curvatura antes de dar espesor.": "Check G0/G1/G2 continuity with zebra and curvature before adding thickness.", "Revisión de dirección antes de invertir normales": "Direction check before flipping normals", "Rhino desde cero: planos de construcción, grado de curva, lógica booleana, SubD, secciones y un estudio completo de superficies. Aquí aprendí a modelar con intención: cada superficie empieza en una curva limpia.": "Rhino from scratch: construction planes, curve degree, boolean logic, SubD, sections and a full surface study. Here I learned to model with intent: every surface starts with a clean curve.", "Ripple deforma una malla con ondas: una gota abre anillos concéntricos y un frente plano levanta crestas paralelas.": "Ripple deforms a mesh with waves: a drop opens concentric rings and a flat front raises parallel ridges.", "SÓLIDOS Y MAKE2D": "SOLIDS AND MAKE2D", "Salida": "Output", "Secciones y planos de recorte para dibujos 2D; Unroll para fabricar.": "Sections and clipping planes for 2D drawings; Unroll for fabrication.", "Seleccionar curvas abiertas para descubrir por qué un sólido no cierra.": "Select open curves to find out why a solid won't close.", "Selección, offsets, secciones": "Selection, offsets, sections", "Seno": "Sine", "Separación (gap)": "Gap", "Separadas: cada mesa con su material": "Apart: each table with its material", "Sesiones": "Sessions", "Sesión": "Session", "Set de lanzamiento en Cycles": "Launch set in Cycles", "Set de personajes · 8 figuras": "Character set · 8 figures", "Set pastel con luz de ventana": "Pastel set with window light", "Setup, planos y grado de curva": "Setup, planes and curve degree", "Shift List empareja cada punto con su vecino.": "Shift List pairs each point with its neighbour.", "Showreel · todas las unidades": "Showreel · every unit", "Siguiente →": "Next →", "Sistema Tigre Studio": "Tigre Studio system", "Sliders de la definición de Grasshopper": "Sliders from the Grasshopper definition", "Sol": "Sun", "Sol → producto escalar → ángulo": "Sun → dot product → angle", "Sort, Weave y Morph": "Sort, Weave and Morph", "Sphere Collide + longitud creciente · sobre línea y sobre malla": "Sphere Collide + growing length · on a line and on a mesh", "Subdivisión y sólido cerrado": "Subdivision and closed solid", "Superficie ondulada con isocurvas; magenta marca caras invertidas": "Wavy surface with isocurves; magenta marks flipped faces", "Superficies automotrices · Rhino 9 · Cycles": "Automotive surfacing · Rhino 9 · Cycles", "Sólidos": "Solids", "Sólidos de la chimenea": "Fireplace solids", "Sólidos levantados desde sus curvas en planta": "Solids raised from their plan curves", "Sólidos y Make2D": "Solids and Make2D", "TECLADO PARAMÉTRICO": "PARAMETRIC KEYPAD", "TEXTURA SEMITONO": "HALFTONE TEXTURE", "TEXTURA SEMITONO CON ATRACTORES": "HALFTONE TEXTURE WITH ATTRACTORS", "Teclado paramétrico": "Parametric keypad", "Textura semitono": "Halftone texture", "Timelapse de 7:00 a 17:00": "Timelapse from 7:00 to 17:00", "Todo archivo de Kangaroo en tres partes: entradas, goals y solver.": "Every Kangaroo file in three parts: inputs, goals and solver.", "Todo lo que aprendí en el Máster en Diseño Paramétrico de ControlMad, unidad por unidad: lo que entendí en cada sesión, los ejercicios que hice y el resultado final de cada aprendizaje. Cada unidad trae un laboratorio en vivo para tocar la lógica con las manos.": "Everything I learned in ControlMad's Master in Parametric Design, unit by unit: what I understood in each session, the exercises I made and the final result of each lesson. Every unit has a live lab so you can play with the logic yourself.", "Torre solar: producto escalar": "Solar tower: dot product", "Trastes": "Frets", "Tres cuartos trasero: beam wing y difusor": "Rear three-quarter: beam wing and diffuser", "Tres mesas auxiliares que encajan en un solo bloque, cada una con su historia de color y material de patas: azulejo, laca acanalada, plástico reciclado y terrazo.": "Three side tables that nest into a single block, each with its own colour and leg-material story: tile, fluted lacquer, recycled plastic and terrazzo.", "Tres versiones de una definición": "Three versions of one definition", "Un bucle de Anemone repite la misma subdivisión sobre su propio resultado: en mi archivo, cada vuelta vacía el triángulo central y sale un triángulo de Sierpinski.": "An Anemone loop repeats the same subdivision on its own result: in my file, each pass empties the central triangle and a Sierpinski triangle appears.", "Un flyer 2D reconstruido como escena 3D: personajes, cabina de DJ, letrero luminoso y panel LED delante de un muro de código.": "A 2D flyer rebuilt as a 3D scene: characters, a DJ booth, a neon sign and an LED panel in front of a wall of code.", "Un loft es tan limpio como el orden y la dirección de sus curvas.": "A loft is only as clean as the order and direction of its curves.", "Un path es una dirección: {0;1} se lee como país, ciudad, calle.": "A path is an address: {0;1} reads like country, city, street.", "Una carcasa con un Voronoi 3D sembrado en la superficie para que las ranuras envuelvan cada arista, con teclas lanzadoras y prototipo electrónico.": "A housing with a 3D Voronoi seeded on the surface so the slots wrap every edge, with launcher keys and an electronics prototype.", "Una chimenea modelada en sólidos, revisada y pasada por Make2D para dibujos técnicos en proyección del primer diedro.": "A fireplace modelled in solids, checked and run through Make2D for first-angle projection technical drawings.", "Una curva reconstruida, marcos perpendiculares en tres parámetros, un polígono distinto en cada marco (tamaño, lados, giro y redondeo con sliders) y Sweep1 para unirlos en un asa. Cambiar un slider cambia la sección del asa en ese punto: diseño de producto controlado por parámetros.": "A rebuilt curve, perpendicular frames at three parameters, a different polygon on each frame (size, sides, twist and rounding with sliders) and Sweep1 to join them into a handle. Changing a slider changes the handle's section at that point: product design driven by parameters.", "Una guitarra completa modelada en Rhino y lanzada como un proyecto de cliente: hero, cuatro acabados, macros de herrajes, explosionado y la matemática del mástil. Es el examen de todo lo de la unidad: curvas limpias, sólidos que cierran y superficies que aguantan un render de cerca.": "A complete guitar modelled in Rhino and launched like a client project: hero, four finishes, hardware macros, an exploded view and the maths of the neck. It is the exam for everything in the unit: clean curves, solids that close and surfaces that hold up in a close-up render.", "Una pasada rápida por las piezas: modelos de Rhino, definiciones de Grasshopper y su pasada de render. Pasa el cursor para pausar, toca una imagen para verla grande.": "A quick pass through the pieces: Rhino models, Grasshopper definitions and their render pass. Hover to pause, tap an image to see it large.", "Una superficie libre loftada desde secciones, revisada en dirección de normales y reconstruida a menos puntos de control sin salirse de la desviación medida.": "A freeform surface lofted from sections, checked for normal direction and rebuilt with fewer control points without leaving the measured deviation.", "Unidad 05 · en curso": "Unit 05 · in progress", "Unidad 3: Andrés González": "Unit 3: Andrés González", "Unidad 3B: Heba Eiz": "Unit 3B: Heba Eiz", "Unidades": "Units", "Unidades 1 y 2: Sergio Alonso del Campo y Diego García Cuevas": "Units 1 and 2: Sergio Alonso del Campo and Diego García Cuevas", "Unión, diferencia e intersección son operaciones de conjuntos sobre sólidos.": "Union, difference and intersection are set operations on solids.", "V1: atractores desde puntos de Rhino": "V1: attractors from Rhino points", "V2: atractores con Construct Point y sliders": "V2: attractors with Construct Point and sliders", "V3: atractores con MD Sliders": "V3: attractors with MD Sliders", "Versión Noir Champagne": "Noir Champagne version", "Versión de color por ángulo de plegado": "Colour version by fold angle", "Viewport de sólidos → Vizcom": "Solids viewport → Vizcom", "Vista de Rhino → Vizcom": "Rhino view → Vizcom", "Vista frontal: las figuras se solapan en profundidad": "Front view: the figures overlap in depth", "Vista lateral": "Side view", "Vista paralela con aristas numeradas": "Parallel view with numbered edges", "Vista superior: cada figura en su huella": "Top view: each figure on its footprint", "Vizcom (captura de clase): curvas crecidas sobre un jarrón, como relieve de esmalte verde sobre cerámica lila": "Vizcom (class capture): curves grown over a vase, as green glaze relief on lilac ceramic", "Vizcom (captura de clase): la cubierta como maqueta de gridshell de madera lacada": "Vizcom (class capture): the roof as a lacquered timber gridshell model", "Vizcom (captura de clase): los racimos de esferas": "Vizcom (class capture): the sphere clusters", "Vizcom sobre el modelo de sólidos: la chimenea como pieza de producto": "Vizcom over the solids model: the fireplace as a product piece", "Vizcom sobre la vista de Rhino": "Vizcom over the Rhino view", "Vizcom sobre la vista de Rhino: la superficie como panel lacado": "Vizcom over the Rhino view: the surface as a lacquered panel", "Vizcom sobre la vista en Rhino de mi Day2-Kangaroo.gh: cáscara subdividida con óculo, yeso blanco y canto naranja": "Vizcom over the Rhino view of my Day2-Kangaroo.gh: subdivided shell with an oculus, white plaster and an orange edge", "Vizcom sobre mi .gh: variante con más luz rasante": "Vizcom over my .gh: variant with more grazing light", "Vizcom sobre mi 005_Sort_List.gh: las piezas ya ordenadas en fila con su separación, como acrílico naranja cortado a láser": "Vizcom over my 005_Sort_List.gh: the pieces sorted in a row with their gap, as laser-cut orange acrylic", "Vizcom sobre mi 005_Sort_List.gh: vista cenital con los índices": "Vizcom over my 005_Sort_List.gh: top view with the indices", "Vizcom sobre mi Attractor_Halftone_Texture.gh: V2 y V3 como placas de aluminio perforadas con luz naranja detrás": "Vizcom over my Attractor_Halftone_Texture.gh: V2 and V3 as perforated aluminium plates with orange light behind", "Vizcom sobre mi Day1-Kangaroo-Growth.gh: los corales de las opciones 1 y 2 como piezas cortadas en acrílico naranja y aluminio azul": "Vizcom over my Day1-Kangaroo-Growth.gh: the corals from options 1 and 2 as cut pieces in orange acrylic and blue aluminium", "Vizcom sobre mi Day1-Kangaroo-Growth.gh: variante sobre fieltro gris": "Vizcom over my Day1-Kangaroo-Growth.gh: variant on grey felt", "Vizcom sobre mi Day1-Kangaroo.gh: los racimos como cuentas de vidrio rojo en una bandeja blanca": "Vizcom over my Day1-Kangaroo.gh: the clusters as red glass beads in a white tray", "Vizcom sobre mi Day1-Kangaroo.gh: variante con racimos más compactos": "Vizcom over my Day1-Kangaroo.gh: variant with tighter clusters", "Vizcom sobre mi Day2-Kangaroo.gh: EX4 con la malla, EX5 Quad Remesh y EX6 Catmull-Clark como tres prototipos de cerámica": "Vizcom over my Day2-Kangaroo.gh: EX4 with the mesh, EX5 Quad Remesh and EX6 Catmull-Clark as three ceramic prototypes", "Vizcom sobre mi Day2-Kangaroo.gh: la misma cáscara sobre zócalo de hormigón": "Vizcom over my Day2-Kangaroo.gh: the same shell on a concrete base", "Vizcom sobre mi Day2-Kangaroo.gh: la misma familia con luz cenital": "Vizcom over my Day2-Kangaroo.gh: the same family with overhead light", "Vizcom sobre mi Day3-Anemone.gh: el fractal como placa de aluminio negro cortada a láser": "Vizcom over my Day3-Anemone.gh: the fractal as a laser-cut black aluminium plate", "Vizcom sobre mi Day3-Anemone.gh: variante con luz cálida": "Vizcom over my Day3-Anemone.gh: variant with warm light", "Vizcom sobre mi Day3-Ripple.gh: las placas como resina naranja y la pieza blanda en vidrio rosa": "Vizcom over my Day3-Ripple.gh: the plates as orange resin and the soft piece in pink glass", "Vizcom sobre mi Day3-Ripple.gh: variante de la misma escena": "Vizcom over my Day3-Ripple.gh: variant of the same scene", "Vizcom sobre mi render de Rhino: vista aérea con la luz que se filtra por los huecos": "Vizcom over my Rhino render: aerial view with light filtering through the openings", "Vizcom sobre mi vista en Rhino + capturas de clase": "Vizcom over my Rhino view + class captures", "Vizcom: el asa en aluminio cepillado con tapas naranja, sobre la vista de Rhino del ejercicio de clase": "Vizcom: the handle in brushed aluminium with orange caps, over the Rhino view of the class exercise", "Vizcom: la línea de esferas que crece, como cuentas de vidrio verde": "Vizcom: the growing line of spheres, as green glass beads", "Vizcom: mirando hacia arriba entre los pilares": "Vizcom: looking up between the columns", "Vizcom: planta desde dron, los pilares siguen la curva atractora": "Vizcom: drone plan view, the columns follow the attractor curve", "Vizcom: variante aérea": "Vizcom: aerial variant", "Vizcom: variante con hogar abierto": "Vizcom: variant with an open hearth", "Vizcom: variante con isocurvas grabadas": "Vizcom: variant with engraved isocurves", "Vizcom: variante con las secciones facetadas más marcadas": "Vizcom: variant with more pronounced faceted sections", "Vizcom: variante de la línea de esferas": "Vizcom: variant of the line of spheres", "Vizcom: variante de la vista bajo la cubierta": "Vizcom: variant of the view under the roof", "Vizcom: variante del jarrón": "Vizcom: vase variant", "Vizcom: variante sobre zócalo de hormigón": "Vizcom: variant on a concrete base", "Vizcom: vista desde abajo, marco rosa y paneles de vidrio": "Vizcom: view from below, pink frame and glass panels", "Wireframe con las curvas de control numeradas": "Wireframe with numbered control curves", "Wireframe de la escena": "Scene wireframe", "Wireframe del archivo de Rhino": "Wireframe of the Rhino file", "Wireframe superior": "Top wireframe", "Wireframe superior del archivo de Rhino": "Top wireframe of the Rhino file", "Zebra · curvatura": "Zebra · curvature", "esta web y el proyecto de cierre": "this site and the closing project", "estructura de datos y form-finding": "data structure and form-finding", "listas, dominios y vectores": "lists, domains and vectors", "modelado, superficies y subd": "modelling, surfaces and subd", "remap, marcos y árboles": "remap, frames and trees", "ÁNGULO SOLAR": "SUN ANGLE", "Árboles de datos a fondo": "Data trees in depth", "Árboles, Relative Item y Kangaroo": "Trees, Relative Item and Kangaroo", "← Anterior": "← Previous", "▶ Animar el día": "▶ Animate the day", "Anclas: ": "Anchors: ", "esquinas": "corners", "esquinas + medios": "corners + midpoints", "borde desnudo": "naked edge", "ASA 3D CON MARCOS": "3D HANDLE WITH FRAMES", "CÁSCARA": "SHELL", "GRADO DE CURVA": "CURVE DEGREE", "PARED QUE SIGUE AL SOL": "WALL THAT FOLLOWS THE SUN", "RED COLGANTE KANGAROO": "KANGAROO HANGING NET", "CONTROL DE SUPERFICIE: modelo original": "SURFACE CONTROL: original model", "Sliders, Remap y Value Lists": "Sliders, Remap and Value Lists", "❚❚ Pausa": "❚❚ Pause", "Anclas: esquinas + medios": "Anchors: corners + midpoints", "Anclas: borde desnudo": "Anchors: naked edge", "Script GH": "GH script", "Idioma": "Language", "EL MÁSTER EN": "THE MASTER'S IN", "36 SEGUNDOS": "36 SECONDS", "Cierre · todas las unidades": "Closing · every unit", "Vídeo resumen del máster: las piezas de cada unidad": "Master's summary video: the pieces from every unit", "Reproducir o pausar el vídeo": "Play or pause the video"};
+var LANG=(function(){try{var q=new URLSearchParams(location.search).get('lang');if(q==='en'||q==='es'){localStorage.setItem('tigreLang',q);return q}var s=localStorage.getItem('tigreLang');if(s==='en'||s==='es')return s}catch(e){}return /^es/i.test(navigator.language||'es')?'es':'en'})();
+document.documentElement.lang=LANG;
+function L(es,en){return LANG==='en'?en:es}
+var TR_RULES=[
+ [/^Ampliar: (.+)$/,function(m){return 'Enlarge: '+TT(m[1])}],
+ [/^Ampliar paso (.+)$/,function(m){return 'Enlarge step '+TT(m[1])}],
+ [/^Ampliar (.+)$/,function(m){return 'Enlarge '+TT(m[1])}],
+ [/^Comparar (.+)$/,function(m){return 'Compare '+TT(m[1])}],
+ [/^Ver galería de (.+)$/,function(m){return 'Open gallery: '+TT(m[1])}],
+ [/^(.+): modelo original$/,function(m){return TT(m[1])+': original model'}],
+ [/^(.+): pasada de Vizcom$/,function(m){return TT(m[1])+': Vizcom pass'}],
+ [/^(\d+) archivos(.*)$/,function(m){return m[1]+' files'+m[2]}],
+ [/^(\d+) piezas de la unidad$/,function(m){return m[1]+(m[1]==='1'?' piece':' pieces')+' in this unit'}],
+ [/^(\d+) sesiones · en mis palabras$/,function(m){return m[1]+' sessions · in my words'}],
+ [/^(\d+) piezas$/,function(m){return m[1]+' parts'}],[/^(\d+) materiales$/,function(m){return m[1]+' materials'}],[/^(\d+) objetos$/,function(m){return m[1]+' objects'}],
+ [/^(\d+) DEFINICIONES \.GH · (\d+) MODELOS \.3DM · (.+)$/,function(m){return m[1]+' .GH DEFINITIONS · '+m[2]+' .3DM MODELS · '+m[3]}],
+ [/^(\d\d|3B) · (.+)$/,function(m){return m[1]+' · '+TT(m[2])}],
+ [/^LAB (\S+) · (.+)$/,function(m){return 'LAB '+m[1]+' · '+TT(m[2])}],
+ [/^← Desliza para ver las (\d+) sesiones →$/,function(m){return '← Swipe to see all '+m[1]+' sessions →'}],
+ [/^Unidad (\S+) · (.+?) · (.+)$/,function(m){return 'Unit '+m[1]+' · '+TT(m[2])+' · '+m[3].replace(' y ',' and ')}]];
+function TT(k){if(EN_DICT[k]!==undefined)return EN_DICT[k];for(var i=0;i<TR_RULES.length;i++){var m=k.match(TR_RULES[i][0]);if(m)return TR_RULES[i][1](m)}return k}
+</script>
+<script>
+{
+/* ================= DATA ================= */
+const I=(f,c)=>['img/'+f+'.webp',c];
+const UNITS=[
+ {id:'u1',n:'01',c:'var(--sky)',lt:true,name:'RHINO',title:'MODELADO, SUPERFICIES Y SUBD',who:'Sergio Alonso del Campo y Diego García Cuevas',
+  intro:'Rhino desde cero: planos de construcción, grado de curva, lógica booleana, SubD, secciones y un estudio completo de superficies. Aquí aprendí a modelar con intención: cada superficie empieza en una curva limpia.',
+  tools:['Curvas NURBS','Booleanas','SubD','Make2D','Zebra · curvatura'],
+  ses:[
+   ['Setup, planos y grado de curva',['La línea de comandos primero: escribir el comando es más rápido que cualquier barra.','El grado cambia cómo los puntos de control tiran de la curva; F10 los muestra.']],
+   ['Conjuntos, booleanas y vistas',['Unión, diferencia e intersección son operaciones de conjuntos sobre sólidos.','Guardar vistas con nombre y estados de capa para lo que reutilizo.']],
+   ['Barridos, Patch y SubD: Tindaya',['Patch y Pull construyen terreno a partir de curvas de nivel.','MultiPipe convierte una red de curvas en SubD en segundos.']],
+   ['Selección, offsets, secciones',['Seleccionar curvas abiertas para descubrir por qué un sólido no cierra.','Secciones y planos de recorte para dibujos 2D; Unroll para fabricar.']],
+   ['Banco Lungomare: superficies',['Las superficies complejas empiezan con curvas sacadas de los planos.','Revisar continuidad G0/G1/G2 con zebra y curvatura antes de dar espesor.']]],
+  cmp:[['pre__surf','vz__surf','CONTROL DE SUPERFICIE','Vista de Rhino → Vizcom'],['pre__chim','vz__chim','SÓLIDOS Y MAKE2D','Viewport de sólidos → Vizcom']],
+  lab:'curve',
+  final:{f:'guitar',t:'GUITARRA ELÉCTRICA',meta:'Cuerpo sólido tipo S · 230 piezas · escala 25.5″',
+   note:'Una guitarra completa modelada en Rhino y lanzada como un proyecto de cliente: hero, cuatro acabados, macros de herrajes, explosionado y la matemática del mástil. Es el examen de todo lo de la unidad: curvas limpias, sólidos que cierran y superficies que aguantan un render de cerca.',
+   facts:[['Escala','647.7 mm · 25.5″'],['Trastes','21, temperamento igual'],['Piezas','230'],['Salida','Set de lanzamiento en Cycles']],
+   learned:'Modelar 230 piezas exige capas, nombres y sólidos cerrados desde el primer día. El clay pass demuestra que la forma funciona sin material.',
+   imgs:[I('eg__hero','Hero 3-Tone Burst: geometría, incrustaciones y herrajes salen del modelo de Rhino'),I('eg__exploded','Explosionado del montaje'),I('eg__front_sunburst','Acabado Sunburst'),I('eg__front_orange','Acabado Tigre Orange'),I('eg__front_ice','Acabado Ice'),I('eg__front_ink','Acabado Ink'),I('eg__bridge','Puente de seis selletas con tornillos de altura y muelles'),I('eg__head','Pala: seis clavijas, guía de cuerdas y enrollados'),I('eg__controls','Controles: volumen, dos tonos y selector de cinco posiciones'),I('eg__clay','Clay pass: solo las superficies'),I('new__guitar-wire','Wireframe del archivo de Rhino')]},
+  ex:[
+   {f:'f1',t:'MONOPLAZA F1',meta:'Superficies automotrices · Rhino 9 · Cycles',d:'Construido desde vistas superior, lateral y frontal: alerón, halo, pontones, suelo y ruedas. Renderizado con una librea original de Tigre Studio.',tags:['261 objetos','Surfacing','Librea'],imgs:[I('f1__r_hero','Hero de lanzamiento con librea original Tigre'),I('f1__r_front','Frontal: alerón delantero, morro y halo'),I('f1__r_rear','Tres cuartos trasero: beam wing y difusor'),I('f1__r_detail','Cockpit: halo de carbono y casco'),I('f1__top-wire','Wireframe superior del archivo de Rhino'),I('f1__r_clay','Clay pass sin pintura')]},
+   {f:'keypad',t:'TECLADO PARAMÉTRICO',meta:'Rhino + Grasshopper · Voronoi · CMF',d:'Una carcasa con un Voronoi 3D sembrado en la superficie para que las ranuras envuelvan cada arista, con teclas lanzadoras y prototipo electrónico.',tags:['Voronoi','Script GH','CMF'],imgs:[I('kp__render','Render del teclado'),I('kp__edges','El Voronoi corre sin cortes por aristas y esquinas'),I('kp__4view','Cuatro vistas del modelo'),I('kp__top-wire','Wireframe superior'),I('kp__gh','Sliders de la definición de Grasshopper'),I('kp__el-proto','Prototipo electrónico')]},
+   {f:'raven',t:'RAVEN AFTER PARTY',meta:'Flyer 3D · escena iluminada',d:'Un flyer 2D reconstruido como escena 3D: personajes, cabina de DJ, letrero luminoso y panel LED delante de un muro de código.',tags:['Escena','Iluminación','Gráfica 3D'],imgs:[I('new__raven-hero','Render final'),I('new__raven-square','Recorte cuadrado para redes'),I('new__raven-wire','Wireframe de la escena'),I('new__raven-side','Vista lateral')]},
+   {f:'halloween',t:'HALLOWEEN CREW',meta:'Set de personajes · 8 figuras',d:'Bruja, vampiro, monstruo, fantasma, murciélago, gato, araña y calabaza, modelados como figuras de vinilo suave.',tags:['SubD','Personajes','Estudio'],imgs:[I('new__halloween-hero','Render final en estudio cálido'),I('new__halloween-front','Vista frontal: las figuras se solapan en profundidad'),I('new__halloween-top','Vista superior: cada figura en su huella')]},
+   {f:'chimenea',t:'SÓLIDOS Y MAKE2D',meta:'Chimenea · booleanas · planos 2D',d:'Una chimenea modelada en sólidos, revisada y pasada por Make2D para dibujos técnicos en proyección del primer diedro.',tags:['Sólidos','Make2D','Booleanas'],imgs:[I('vz__chim','Vizcom sobre el modelo de sólidos: la chimenea como pieza de producto'),I('vz__chim_b','Vizcom: variante con hogar abierto'),I('new__chimenea-render','Sólidos de la chimenea'),I('new__chimenea-parallel','Vista paralela con aristas numeradas'),I('new__chimenea-shaded','Sólidos levantados desde sus curvas en planta')]},
+   {f:'surface',t:'CONTROL DE SUPERFICIE',meta:'NURBS · loft · rebuild',d:'Una superficie libre loftada desde secciones, revisada en dirección de normales y reconstruida a menos puntos de control sin salirse de la desviación medida.',tags:['Loft','Dir','Rebuild'],imgs:[I('vz__surf','Vizcom sobre la vista de Rhino: la superficie como panel lacado'),I('vz__surf_b','Vizcom: variante con isocurvas grabadas'),I('new__surface-shaded','Superficie ondulada con isocurvas; magenta marca caras invertidas'),I('new__surface-normals','Revisión de dirección antes de invertir normales'),I('new__surface-wire','Wireframe con las curvas de control numeradas')]}]},
+
+ {id:'u2',n:'02',c:'var(--blue)',name:'GRASSHOPPER',title:'LISTAS, DOMINIOS Y VECTORES',who:'Sergio Alonso del Campo y Diego García Cuevas',
+  intro:'Del primer slider a fachadas paneladas, un puente loftado, un sólido estanco hecho con árboles de datos y dos encargos reales: una pared que reacciona al sol y un pabellón con atractor.',
+  tools:['Listas y árboles','Dominios','Producto escalar','Remap','Ladybug'],
+  ses:[
+   ['Pensamiento paramétrico',['El .gh se guarda aparte del .3dm: hay que guardar los dos.','Longest List es el emparejamiento por defecto; saber cuándo cambiarlo.']],
+   ['Random, series y árboles',['Random necesita una semilla que cambie para variar de verdad.','Flatten colapsa un árbol en una sola lista.']],
+   ['Panelización de superficies',['Construirlo sin plugin una vez para que LunchBox no sea una caja negra.','Shift List empareja cada punto con su vecino.']],
+   ['Lofts, dominios y expresiones',['Un loft es tan limpio como el orden y la dirección de sus curvas.','Expression es una calculadora para listas: x², seno, cualquier fórmula.']],
+   ['Subdivisión y sólido cerrado',['Divide Domain² + Isotrim cortan la superficie en subsuperficies.','Brep Join + Cap Holes cierran todo en un sólido estanco para imprimir.']],
+   ['Torre solar: producto escalar',['El producto escalar de vectores unitarios es el coseno del ángulo: mide cuánto mira cada ventana al sol.','Larger Than + Dispatch quitan las celdas en sombra; Remap lleva el valor a un rango útil.']],
+   ['Pabellón con atractor',['Find Similar Member contra un Gene Pool ajusta los radios a tamaños reales de fabricación.','Curve Closest Point da la distancia de cada punto a un recorrido.']],
+   ['Ladybug e Image Sampler',['Ladybug lee un EPW y da el vector solar real de una fecha y hora.','Image Sampler devuelve brillo de 0 a 1; se remapea a radios, alturas o relieves.']]],
+  cmp:[['pre__own_halftone','vz__own_halftone','TEXTURA SEMITONO','Mi .gh en Rhino → Vizcom'],['roof__aerial','vz__roof_aerial','CUBIERTA · AÉREA','Render de Rhino → Vizcom'],['roof__up','vz__roof_up','CUBIERTA · BAJO EL TECHO','Render de Rhino → Vizcom'],['roof__plan','vz__roof_plan','CUBIERTA · PLANTA','Render de Rhino → Vizcom']],
+  lab:'sun',
+  final:{f:'kinetic',t:'KINETIC HEXAGON FACADE',meta:'Pared reactiva · solapas de origami que se pliegan con el sol',
+   note:'El encargo: diseñar una pared que reaccione a su entorno. Cada hexágono son seis solapas triangulares sobre bisagras. La definición calcula dónde está el sol, cuánto lo mira cada hexágono y pliega las solapas: cerradas para dar sombra donde pega el sol, abiertas para dejar pasar luz y aire donde no.',
+   facts:[['Lógica','Sol → producto escalar → ángulo'],['Movimiento','0° cerrada · 80° abierta'],['Sol','15° por hora'],['Construida con','Componentes básicos de Grasshopper']],
+   learned:'El producto escalar convierte una pregunta de diseño (¿cuánto sol recibe esto?) en un número que puede mover geometría.',
+   imgs:[I('kh__01_hero','Hero en naranja señal'),I('kh__09_hue','Versión de color por ángulo de plegado'),I('kh__10_noir','Versión Noir Champagne'),I('kh__03_macro','Macro de las solapas'),I('kh__02_portrait','Retrato de la pared'),I('kh__11_noir_detail','Detalle Noir'),I('kh__04_shadow','La luz atraviesa la piel'),I('kh__05_elevation','Alzado'),I('kh__06_09h','09:00'),I('kh__07_12h','12:00'),I('kh__08_15h','15:00'),I('kh__p09_timelapse','Timelapse de 7:00 a 17:00'),I('kh__gh_sun','Definición sensible al sol'),I('kh__gh_steps','Definición paso a paso')],
+   steps:[['kh__p01','01 Rejilla hexagonal'],['kh__p02','02 Bisagras y centros'],['kh__p03','03 Solapas planas'],['kh__p04','04 Prueba de rotación'],['kh__p05','05 Posición del sol'],['kh__p06','06 Exposición (dot)'],['kh__p07','07 Plegado por sol'],['kh__p08','08 Pared final']]},
+  ex:[
+   {f:'roof',t:'CUBIERTA CON ATRACTOR DE CURVA',meta:'Encargo 2 · pabellón',d:'Pilares cilíndricos bajo una cubierta perforada: una curva atractora decide el tamaño de cada hueco y de cada pilar, ajustados a tamaños reales con Gene Pool.',tags:['Atractor','Gene Pool','Remap'],imgs:[I('vz__roof_aerial','Vizcom sobre mi render de Rhino: vista aérea con la luz que se filtra por los huecos'),I('vz__roof_up','Vizcom: mirando hacia arriba entre los pilares'),I('vz__roof_plan','Vizcom: planta desde dron, los pilares siguen la curva atractora'),I('vz__roof_up_b','Vizcom: variante de la vista bajo la cubierta'),I('vz__roof_aerial_b','Vizcom: variante aérea'),I('roof__aerial','Render original de Rhino: vista aérea del pabellón'),I('roof__up','Mirando hacia arriba bajo la cubierta'),I('roof__path','A la altura de los ojos, en el camino de entrada'),I('roof__plan','Planta: luz y sombra siguiendo la curva')]},
+   {f:'halftone',t:'TEXTURA SEMITONO CON ATRACTORES',meta:'Tres versiones de una definición',d:'Rejilla → punto más cercano → seno → remap a radio de punto. Tres formas de mover los atractores: puntos de Rhino, sliders y MD Sliders. Es la lógica del campo de la portada.',tags:['Closest Point','Seno','Gene Pool'],imgs:[I('vz__own_halftone','Vizcom sobre mi Attractor_Halftone_Texture.gh: V2 y V3 como placas de aluminio perforadas con luz naranja detrás'),I('vz__own_halftone_b','Vizcom sobre mi .gh: variante con más luz rasante'),I('ht__v1','V1: atractores desde puntos de Rhino'),I('ht__v2','V2: atractores con Construct Point y sliders'),I('ht__v3','V3: atractores con MD Sliders')]},
+   {f:'mesas',t:'MESAS NIDO',meta:'Mobiliario y CMF · Rhino 9 · Cycles',d:'Tres mesas auxiliares que encajan en un solo bloque, cada una con su historia de color y material de patas: azulejo, laca acanalada, plástico reciclado y terrazo.',tags:['3 piezas','7 materiales','CMF'],imgs:[I('nt2__hero','Set pastel con luz de ventana'),I('nt2__apart','Separadas: cada mesa con su material'),I('tb__hero','El modelo de Rhino: bloques de color antes del material'),I('tb__4view','Planta, perspectiva y alzados'),I('nt2__chips','Muestras de material'),I('nt2__night','Colorway Night')]}]},
+
+ {id:'u3',n:'03',c:'var(--violet)',name:'GH AVANZADO',title:'REMAP, MARCOS Y ÁRBOLES',who:'Andrés González',
+  intro:'Cuatro días intensivos: sliders y remap, marcos y el asa 3D, weave y box morph, y un día entero de árboles de datos. Aquí Grasshopper dejó de ser cables y pasó a ser estructura.',
+  tools:['Graph Mapper','Perp Frames','Weave','Box Morph','Data Trees'],
+  ses:[
+   ['Sliders, Remap y Value Lists',['Remapear cualquier lista a un dominio nuevo y darle forma con Graph Mapper.','Nombrar el .3dm igual que el .gh para que viajen los materiales.']],
+   ['Curvas, marcos y el asa 3D',['Perp Frame da un plano en cualquier parámetro de una curva.','Igualar direcciones de curva antes del loft para que no se tuerza.']],
+   ['Sort, Weave y Morph',['Mass Addition convierte una lista de anchos en posiciones.','Box Morph mapea un módulo en cada celda de una superficie.']],
+   ['Árboles de datos a fondo',['Graft da a cada elemento su rama; Flatten los junta en una.','Leer datos de TXT o CSV y un Python que hornea en capas con color.']]],
+  lab:'sort',
+  final:{t:'ASA 3D CON MARCOS PERPENDICULARES',meta:'Perp Frame · Polygon · Sweep1',
+   note:'Una curva reconstruida, marcos perpendiculares en tres parámetros, un polígono distinto en cada marco (tamaño, lados, giro y redondeo con sliders) y Sweep1 para unirlos en un asa. Cambiar un slider cambia la sección del asa en ese punto: diseño de producto controlado por parámetros.',
+   facts:[['Componentes','Rebuild · Perp Frame · Polygon · Sweep1'],['Parámetros','Radio, lados, giro y redondeo por sección'],['Base','Ejercicio de clase de la Unidad 3'],['Render','Vizcom sobre la vista de Rhino']],
+   learned:'Reparametrizar la curva (0 a 1) hace que los marcos caigan siempre en el mismo sitio, aunque la curva cambie de largo.',
+   imgs:[I('vz__handle','Vizcom: el asa en aluminio cepillado con tapas naranja, sobre la vista de Rhino del ejercicio de clase'),I('vz__handle_b','Vizcom: variante con las secciones facetadas más marcadas')]},
+  ex:[
+   {f:'sort',t:'ORDENAR CON SEPARACIÓN',meta:'Deberes · Sort List + Mass Addition',d:'Piezas sueltas y giradas: medir cada una, ordenarlas con Sort List, sumar anchos más una separación con Mass Addition y colocarlas en fila. En 005_Sort_List salen cinco piezas en orden; en los deberes, lo mismo con rectángulos. El laboratorio de arriba es esta lógica, en vivo.',tags:['Sort List','Mass Addition','Orient'],imgs:[I('vz__own_sort','Vizcom sobre mi 005_Sort_List.gh: las piezas ya ordenadas en fila con su separación, como acrílico naranja cortado a láser'),I('vz__own_sort_b','Vizcom sobre mi 005_Sort_List.gh: vista cenital con los índices')]}]},
+
+ {id:'u3b',cmp:[['pre__own_growth','vz__own_growth','CRECIMIENTO','Mi Day1-Kangaroo-Growth.gh → Vizcom'],['pre__own_shells','vz__own_shells','EX4 · EX5 · EX6','Mi Day2-Kangaroo.gh → Vizcom'],['pre__own_spheres','vz__own_spheres','SPHERE COLLIDE','Mi Day1-Kangaroo.gh → Vizcom'],['pre__own_ripple','vz__own_ripple','RIPPLE','Mi Day3-Ripple.gh → Vizcom']],n:'3B',c:'var(--red)',name:'KANGAROO',title:'ESTRUCTURA DE DATOS Y FORM-FINDING',who:'Heba Eiz',
+  intro:'Estructura de datos explicada con paneles y letras, y después Kangaroo: cables, redes colgantes, cubiertas tensadas y crecimiento. La forma ya no se dibuja, se encuentra.',
+  tools:['Relative Item','Tree Item','Kangaroo 2','Weaverbird','Quad Remesh'],
+  ses:[
+   ['Árboles, Relative Item y Kangaroo',['Un path es una dirección: {0;1} se lee como país, ciudad, calle.','Todo archivo de Kangaroo en tres partes: entradas, goals y solver.']],
+   ['Kangaroo en mallas y crecimiento',['Factor de longitud 0 tensa como una cubierta; 1 mantiene la longitud y deja colgar.','Crecimiento = Sphere Collide + un goal de longitud que crece despacio, con damping bajo.']],
+   ['Anemone y Ripple',['Anemone repite una operación sobre su propio resultado: Loop Start y Loop End cierran el bucle y cada vuelta parte de la anterior.','Ripple deforma una malla con ondas: una gota abre anillos concéntricos y un frente plano levanta crestas paralelas.']]],
+  lab:'net',
+  final:{f:'growth',t:'CRECIMIENTO CON KANGAROO',meta:'Sphere Collide + longitud creciente · sobre línea y sobre malla',
+   note:'Los puntos de una polilínea con colisión de esferas y un goal de longitud que aumenta poco a poco se arrugan en una línea tipo coral. En el día 2 la misma lógica crece sobre un jarrón: un goal On Mesh mantiene los puntos en la superficie y Mesh Pipe da grosor a las curvas.',
+   imgs:[I('vz__own_growth','Vizcom sobre mi Day1-Kangaroo-Growth.gh: los corales de las opciones 1 y 2 como piezas cortadas en acrílico naranja y aluminio azul'),I('vz__own_growth_b','Vizcom sobre mi Day1-Kangaroo-Growth.gh: variante sobre fieltro gris'),I('vz__vase','Vizcom (captura de clase): curvas crecidas sobre un jarrón, como relieve de esmalte verde sobre cerámica lila'),I('vz__vase_b','Vizcom: variante del jarrón'),I('vz__growth','Vizcom: la línea de esferas que crece, como cuentas de vidrio verde'),I('vz__growth_b','Vizcom: variante de la línea de esferas')],
+   facts:[['Archivos','Day1-Kangaroo-Growth .gh + .3dm'],['Goals','Sphere Collide · Length · On Mesh'],['Damping','≈ 0.002'],['Render','Vizcom sobre mi vista en Rhino + capturas de clase']],
+   learned:'Kangaroo se piensa en tres bloques (entradas, goals, solver) y se ajusta en pasos pequeños: resetear a menudo y subir despacio.'},
+  ex:[
+   {f:'tree',t:'ESTRUCTURA DE DATOS',meta:'Day 1 · Merge, Entwine, paths',d:'Merge, Entwine, Flatten, Graft y Simplify probados con paneles, y Relative Item para emparejar cada elemento con su vecino.',tags:['Paths','Relative Item'],diagram:'tree'},
+   {f:'canopy',t:'RED COLGANTE Y CUBIERTA',meta:'Day 2 · Kangaroo en mallas',d:'Anclas en los vértices desnudos, una carga y un goal de longitud: la misma malla cuelga como red o se tensa como cubierta. Weaverbird le da marco y grosor.',tags:['Anchor','Load','Weaverbird'],imgs:[I('vz__own_canopy','Vizcom sobre la vista en Rhino de mi Day2-Kangaroo.gh: cáscara subdividida con óculo, yeso blanco y canto naranja'),I('vz__own_canopy_b','Vizcom sobre mi Day2-Kangaroo.gh: la misma cáscara sobre zócalo de hormigón'),I('vz__own_shells','Vizcom sobre mi Day2-Kangaroo.gh: EX4 con la malla, EX5 Quad Remesh y EX6 Catmull-Clark como tres prototipos de cerámica'),I('vz__own_shells_b','Vizcom sobre mi Day2-Kangaroo.gh: la misma familia con luz cenital'),I('vz__canopy','Vizcom (captura de clase): la cubierta como maqueta de gridshell de madera lacada'),I('vz__canopy_b','Vizcom: variante sobre zócalo de hormigón'),I('vz__canopy2','Vizcom: vista desde abajo, marco rosa y paneles de vidrio')]},
+   {f:'u3bother',t:'SPHERE COLLIDE + MAGNET SNAP',meta:'Day 1 · Kangaroo con puntos',d:'Esferas que no se pueden solapar y un imán que las agrupa: los puntos se reúnen en racimos dentro del límite.',tags:['SphereCollide','MagnetSnap','Solver'],imgs:[I('vz__own_spheres','Vizcom sobre mi Day1-Kangaroo.gh: los racimos como cuentas de vidrio rojo en una bandeja blanca'),I('vz__own_spheres_b','Vizcom sobre mi Day1-Kangaroo.gh: variante con racimos más compactos'),I('vz__spheres','Vizcom (captura de clase): los racimos de esferas')]},
+   {f:'anemone',t:'ANEMONE',meta:'Day 3 · bucles con Anemone',d:'Un bucle de Anemone repite la misma subdivisión sobre su propio resultado: en mi archivo, cada vuelta vacía el triángulo central y sale un triángulo de Sierpinski.',tags:['Anemone','Loop','Fractal'],imgs:[I('vz__own_anemone','Vizcom sobre mi Day3-Anemone.gh: el fractal como placa de aluminio negro cortada a láser'),I('vz__own_anemone_b','Vizcom sobre mi Day3-Anemone.gh: variante con luz cálida')]},
+   {f:'ripple',t:'RIPPLE',meta:'Day 3 · ondas sobre malla',d:'Ondas sobre una malla: una gota central que abre anillos concéntricos, una segunda placa con crestas paralelas y una pieza blanda al lado, todo desde mi Day3-Ripple.',tags:['Kangaroo','Mesh','Ondas'],imgs:[I('vz__own_ripple','Vizcom sobre mi Day3-Ripple.gh: las placas como resina naranja y la pieza blanda en vidrio rosa'),I('vz__own_ripple_b','Vizcom sobre mi Day3-Ripple.gh: variante de la misma escena')]}]}
+];
+const TODO=[
+ ['Proyecto final','Definir el proyecto de cierre del máster y sumarlo como capítulo 06.'],
+ ['Nuevas clases','Cada sesión nueva entra como capítulo con su laboratorio, sus archivos y su render.'],
+ ['Renders de mis archivos','Cada ejercicio sale de una vista de mi propio .gh en Rhino, pasada por Vizcom.']];
+const LABS={
+ curve:['GRADO DE CURVA','Arrastra los puntos de control. Sube el grado y mira cómo la curva se suaviza y se aleja del polígono.'],
+ sun:['PARED QUE SIGUE AL SOL','Mueve la hora. Cada solapa se pliega según el producto escalar entre la normal de la pared y la dirección al sol.'],
+ sort:['SORT + MASS ADDITION','Pulsa ordenar: las aristas se ordenan por longitud y Mass Addition acumula los anchos más la separación.'],
+ net:['RED COLGANTE KANGAROO','Anclas, carga y goal de longitud. Cambia el factor: 0 tensa, 1 deja colgar. Carga positiva empuja hacia arriba.']};
+
+/* ================= HELPERS ================= */
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+/* my own exercise files (shared on Drive as "anyone with the link · viewer") */
+const FL={
+ guitar:[['Fender-Claude-HMO.3dm','1-LP85cFMdGH-qHsqGDBf14M7T6_dJ3Pc',39984770]],
+ f1:[['KIMI-F1.3dm','1P4Pmf5jpPT-GcD5s_7_qWt5qiL1NDqNq',25507919]],
+ keypad:[['KEYPAD-HMO.3dm','1C0MNgYhSaH0e6HaShtsacU63fBJIDXWd',9057425],['Keypad-Grasshopper-Script-V1.ghz','1zO-PDaFkOWO2xYz2EOkLCpnLO4Ga4Vba',69742],['Keypad-Rhino-Grasshopper-Script-V1.ghz','1SG3gKE3V0-iLSyv2sHFH2HBONrzAckwt',69742]],
+ raven:[['Raven-Flyer-HMO.3dm','1v4rHUP62MLaaapAWD2Zpkjiz7Cp0A8d6',130898982]],
+ halloween:[['Halloween-HMO.3dm','1qHIWBD0MBhop2ZzzEz5hqo1Fl0FRXzEP',81361118]],
+ chimenea:[['Unit-1-Chimenea-Practica-V1.3dm','1TyTutZColHgahJ5zN_4YoRNAX_t2rOuN',502378]],
+ surface:[['1-Control-Points-Practice.3dm','1uaJbUWmCYMr84JuilpCiVx2RlJ-SX7g_',579090]],
+ u1other:[['CAJON.3dm','1_7OyjY0NOlE8vrwQykNQ0plCQxxAIM9e',299451],['ROTHYS-V1.3dm','1vWFWEXGOxssoNjWFo_ulTwwFcE8ywE6c',12124517],['ZAPATOCA-V1.3dm','1RtTkuQkLM1Ns34rWdtxHeKf0crbuKm_5',47020646]],
+ kinetic:[['Kinetic_Hexagon_Facade_SunReactive.gh','1AD7uGcaROxTIkYhoTf2_srYS-jlgy9LQ',32041],['Kinetic_Hexagon_Facade_SunReactive.3dm','1I8POFf3QIg2zTorxsRsVEu6ETpse6BrS',148952],['Kinetic_Hexagon_Facade_StepByStep.gh','1C-hKUsga-717pLyzjpXvI0O1TTYXdVu3',55753],['Kinetic_Hexagon_Facade_StepByStep.3dm','1mLg4u2CG7yX7Ujg-GM0JJKhQRbxJFheO',30108991],['Kinetic_Hexagon_Facade_SunReactive_v1_curved_advanced.gh','18ChKwWVzEldn1bk8udYNeuiW3uC-Kftg',21177],['Kinetic_Hexagon_Facade_Renders.3dm','1XrLIbjak7O4Jewl-EDGPuMMc7r8TOuup',37772586]],
+ roof:[['Curve_Attractor_Roof_v3.gh','1EBnZdnR0EcZneckxJqoq5r_LGvNHY47O',35922],['Curve_Attractor_Roof_v2.gh','1J3ZS3DUYABlUFMIM0JyfJ1QiCGK_oN8c',26353],['Curve_Attractor_Roof_v2.3dm','1cxg7pOX7AbJMc_2YXpbKvi8H87Ir47br',700980],['Curve_Attractor_Roof.gh','15P4TipZXAjXKiekh3T1JcJ-W1fE5uIr9',15536],['Curve_Attractor_Roof.3dm','1Z-KUkIHypQot2BlTtj9MYo7yU5DYuWG1',525470]],
+ halftone:[['Attractor_Halftone_Texture.gh','1Q03bTuz0B4N3RQ1LIVij85g9WCbsKzQJ',21895],['Attractor_Halftone_Texture.3dm','12xyUjXx18xYOeMoybWzLJ5_n2z9fwCQY',24986668]],
+ mesas:[['MESAS-LeManoosh.gh','1lszdsbaLNxjgXhH50iY27AeOUynVvA7K',52803],['MESAS-LeManoosh.3dm','1UC6ltqFhnimssqytZBsQKb4YdQS6wuFd',24579261]],
+ u2other:[['Grasshopper-Practice-Nov3.gh','1nJ1codPK5n7V-gU3o12lBb3155Ycjq5e',16572],['Grasshopper-Practice-Nov3.3dm','1iPYNFqLQM0OtTStoveIQHY_B_XDMdOv5',9829918]],
+ sort:[['005_Sort_List.gh','1vT72dDzvX8z6muSmte3N3EG05f6ZQlEM',7146],['005_Sort_List.3dm','10OncdoHiTHzZzvLIVO7fUlcNOtTBLc2w',51834],['Homework-Unit-2-AG.gh','1Wn759KJy0mJ2EXzNkcTwxsDTRc-IZOuO',24185],['Homework-Unit-2-AG.3dm','1iEwFFJnesAM8oQWPbbPEYAWgFZ1aFMec',55378]],
+ growth:[['Day1-Kangaroo-Growth.gh','1k5ZrpY5UrRIDwqSuCiX3tbJ-hV4GofiP',47412],['Day1-Kangaroo-Growth.3dm','1i8oYPmtxrmT3ADHKgABPZa0pCvyIHaI7',200058]],
+ tree:[['Day1-DataStructure.gh','13IpOWuU7NhkxbgyX285GYOaxVfZYU-az',10987],['Day1-DataStructure.3dm','1viXGdkGcfz6jRhAqXlCxtjyX7nRWR8gK',53869]],
+ canopy:[['Day2-Kangaroo.gh','1TLxw8jbMnsDJGy-wvUECws_ASt_Aqd1S',63072],['Day2-Kangaroo.3dm','1MaZooMz0ebJ_72SNgaL2uZeA0p8AZPS7',88943]],
+ anemone:[['Day3-Anemone.gh','1NcXLcgTx848fZ3yb0ATndnut5_Q2_y3_',47813],['Day3-Anemone.3dm','1fLydH7taeyTsPdFzLrjT-ZBl7AN3oC72',51584]],
+ ripple:[['Day3-Ripple.gh','1kUJ0LBcdS1IdPriOQAkZZLqGu-YrtJin',26063],['Day3-Ripple.3dm','1qCc4gnlWqWlVjfiOiUdRIoKv2qpnayV3',92199]],
+ u3bother:[['Day1-Kangaroo.gh','1hfHCXe2z56aHcKIPwgFtV5zdxXyIArJ5',20982],['Day1-Kangaroo.3dm','1Q32-PXYk7hq4iF7mxnQEpAi3cGpHXfID',183189]]};
+const UFILES={u1:[['Guitarra eléctrica','guitar'],['Monoplaza F1','f1'],['Teclado paramétrico','keypad'],['Raven After Party','raven'],['Halloween Crew','halloween'],['Sólidos y Make2D','chimenea'],['Control de superficie','surface'],['Otros modelos de la unidad','u1other']],
+ u2:[['Kinetic Hexagon Facade','kinetic'],['Cubierta con atractor de curva','roof'],['Textura semitono','halftone'],['Mesas nido','mesas'],['Práctica de clase','u2other']],
+ u3:[['Ordenar con separación','sort']],
+ u3b:[['Crecimiento con Kangaroo','growth'],['Estructura de datos','tree'],['Red colgante y cubierta','canopy'],['Anemone','anemone'],['Ripple','ripple'],['Práctica de Kangaroo','u3bother']]};
+const LABFILE={curve:'surface',sun:'kinetic',sort:'sort',net:'canopy'};
+const DL=id=>'https://drive.google.com/uc?export=download&id='+id;
+const VIEW=id=>'https://drive.google.com/file/d/'+id+'/view';
+const MB=b=>b>=1e6?(b/1048576).toFixed(b>=1e8?0:1)+' MB':Math.max(1,Math.round(b/1024))+' KB';
+const EXT=n=>n.split('.').pop().toUpperCase();
+const dlRow=key=>FL[key]?`<div class="dls">${FL[key].map(([n,id,sz])=>`<a class="dl" href="${DL(id)}" target="_blank" rel="noopener" title="${esc(n)}"><i>${EXT(n)}</i>${MB(sz)}<b aria-hidden="true">↓</b></a>`).join('')}</div>`:'';
+const ALLF=Object.values(FL).flat();
+
+const GAL=[];let gi=0,gcur=[];
+const gal=imgs=>{GAL.push(imgs);return GAL.length-1};window.__GAL=GAL;
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* diagrams (generated concept drawings, not renders) */
+function diag(kind,seed=1){
+ let s=seed*9301+49297;const r=()=>(s=(s*9301+49297)%233280)/233280;
+ const W=480,H=300;let g='';
+ if(kind==='tree'){const ps=[[0,0],[0,1],[0,2],[1,0],[1,1]];g+=`<text x="24" y="34" fill="#9c9b96" font-family="JBM,monospace" font-size="11">DATA TREE · {A;B}</text>`;
+  ps.forEach(([a,b],i)=>{const y=70+i*44;g+=`<path d="M60 ${150} C140 150 140 ${y} 210 ${y}" fill="none" stroke="#e50000" stroke-width="2"/><rect x="210" y="${y-14}" width="92" height="28" rx="6" fill="#1b1b1b" stroke="#444"/><text x="222" y="${y+5}" fill="#fff" font-family="JBM,monospace" font-size="12">{${a};${b}}</text>`;
+   for(let k=0;k<4;k++)g+=`<circle cx="${330+k*30}" cy="${y}" r="9" fill="${k==2?'#ff3d00':'#333'}"/>`});
+  g+=`<circle cx="60" cy="150" r="10" fill="#ff3d00"/>`}
+ if(kind==='canopy'){const n=12;for(let i=0;i<=n;i++)for(let j=0;j<=n;j++){const u=i/n,v=j/n,z=Math.sin(Math.PI*u)*Math.sin(Math.PI*v);const P=(u,v,z)=>[240+(u-v)*170,70+(u+v)*90+z*-90];const[a,b]=P(u,v,z);if(i<n){const z2=Math.sin(Math.PI*(u+1/n))*Math.sin(Math.PI*v);const[c,d]=P(u+1/n,v,z2);g+=`<line x1="${a}" y1="${b}" x2="${c}" y2="${d}" stroke="hsl(${10+z*40},100%,${45+z*15}%)" stroke-width="1.2"/>`}if(j<n){const z2=Math.sin(Math.PI*u)*Math.sin(Math.PI*(v+1/n));const[c,d]=P(u,v+1/n,z2);g+=`<line x1="${a}" y1="${b}" x2="${c}" y2="${d}" stroke="hsl(${10+z*40},100%,${45+z*15}%)" stroke-width="1.2"/>`}}}
+ if(kind==='anemone'){for(let k=0;k<36;k++){const a=k/36*Math.PI*2;let x=240,y=150,d='M240 150';for(let t=1;t<=14;t++){const ang=a+Math.sin(t*.5+k)*.35;x+=Math.cos(ang)*8;y+=Math.sin(ang)*8;d+=` L${x.toFixed(1)} ${y.toFixed(1)}`}g+=`<path d="${d}" fill="none" stroke="#e50000" stroke-width="2" stroke-linecap="round"/><circle cx="${x}" cy="${y}" r="4" fill="#ff3d00"/>`}g+=`<circle cx="240" cy="150" r="16" fill="#ffb000"/>`}
+ if(kind==='ripple'){for(let k=1;k<14;k++){let d='';for(let t=0;t<=72;t++){const a=t/72*Math.PI*2,rr=k*11+Math.sin(a*6+k*.8)*k*.9;d+=(t?'L':'M')+(240+Math.cos(a)*rr).toFixed(1)+' '+(150+Math.sin(a)*rr*.62).toFixed(1)}g+=`<path d="${d}Z" fill="none" stroke="${k%3?'#555':'#ff3d00'}" stroke-width="${k%3?1:2}"/>`}}
+ if(kind==='growth'){let pts=[];for(let i=0;i<60;i++)pts.push([60+i*6,150]);for(let it=0;it<60;it++){pts=pts.map(([x,y],i)=>{if(i<4||i>55)return[x,y];const n=Math.sin(i*.7+it*.15)*2.4+(r()-.5)*1.4;return[x+(r()-.5)*1.2,y+n]})}
+  g+=`<path d="M${pts.map(p=>p.map(v=>v.toFixed(1)).join(' ')).join(' L')}" fill="none" stroke="#e50000" stroke-width="3" stroke-linecap="round"/>`+pts.map(([x,y],i)=>`<circle cx="${x}" cy="${y}" r="${i<4||i>55?5:3.2}" fill="${i<4||i>55?'#ffb000':'#ff3d00'}" fill-opacity=".9"/>`).join('');g+=`<text x="24" y="34" fill="#9c9b96" font-family="JBM,monospace" font-size="11">FIJOS <tspan fill="#ffb000">●</tspan> CRECEN <tspan fill="#ff3d00">●</tspan></text>`}
+ if(kind==='sort'){const ws=[118,46,82,64,30,100,56];const so=[...ws].sort((a,b)=>a-b);let x=24;g+=`<text x="24" y="34" fill="#9c9b96" font-family="JBM,monospace" font-size="11">ANTES</text>`;ws.forEach((w,i)=>{g+=`<rect x="${30+i*62}" y="${62+(i%3)*14}" width="${w*.45}" height="40" fill="none" stroke="#8a3ffc" stroke-width="2" transform="rotate(${(i*23)%50-20} ${30+i*62} 80)"/>`});
+  g+=`<text x="24" y="170" fill="#9c9b96" font-family="JBM,monospace" font-size="11">SORT + GAP 6</text>`;so.forEach(w=>{g+=`<rect x="${x}" y="${200}" width="${w*.7}" height="54" fill="#8a3ffc" fill-opacity=".85"/><text x="${x+3}" y="${270}" fill="#ff3d00" font-family="JBM,monospace" font-size="10">${x-24|0}</text>`;x+=w*.7+6})}
+ return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Diagrama conceptual generado"><rect width="${W}" height="${H}" fill="#0e0e0e"/>${g}</svg>`;
+}
+
+/* ================= RENDER ================= */
+const st={sessions:0,ex:0};
+UNITS.forEach(u=>{st.sessions+=u.ses.length;st.ex+=u.ex.length+1});
+$('#kpis').innerHTML=[[UNITS.length,'Unidades'],[st.sessions,'Sesiones'],[st.ex,'Ejercicios'],[ALLF.length,'Archivos .3dm / .gh']].map(([b,s])=>`<div><b>${b}</b><span>${s}</span></div>`).join('');
+const navItems=[...UNITS.map(u=>[u.id,u.n,u.name,u.c]),['u5','05','PORTAFOLIO','var(--yellow)']];
+const navAll=[['archivos','↓','ARCHIVOS','var(--hot)'],...navItems];
+$('#nav').innerHTML=navAll.map(([id,n,nm,c])=>`<a href="#${id}" style="--c:${c}" data-id="${id}"><i></i>${n}<span>&nbsp;${nm}</span></a>`).join('');
+$('#route').innerHTML=navItems.map(([id,n,nm,c],k)=>{const u=UNITS[k];return `<a class="stop" href="#${id}" style="--c:${c}"><span class="st pill ${u?'':'go'}">${u?'Hecha':'En curso'}</span><div class="n">${n}</div><h3>${nm}</h3><p>${u?esc(u.title.toLowerCase()):'esta web y el proyecto de cierre'}</p></a>`}).join('');
+$('#fstats').innerHTML=UNITS.map(u=>{const g=UFILES[u.id]||[];const n=g.reduce((a,[,k])=>a+FL[k].length,0);return `<a href="#${u.id}-archivos" style="--c:${u.c}"><b>${u.n}</b><span>${esc(u.name)}</span><em>${n} archivos</em></a>`}).join('')+`<p class="mono" style="grid-column:1/-1;color:#9c9b96">${ALLF.filter(f=>/^GH/.test(EXT(f[0]))).length} DEFINICIONES .GH · ${ALLF.filter(f=>EXT(f[0])==='3DM').length} MODELOS .3DM · ${MB(ALLF.reduce((a,f)=>a+f[2],0))}</p>`;
+$('#todo').innerHTML=TODO.map(([t,d])=>`<div><b>${t}</b><p>${d}</p></div>`).join('');
+
+
+const filePanel=u=>{const g=UFILES[u.id]||[];const n=g.reduce((a,[,k])=>a+FL[k].length,0);const tot=g.reduce((a,[,k])=>a+FL[k].reduce((x,f)=>x+f[2],0),0);
+ return `<div class="proj files" id="${u.id}-archivos"><div class="sec-h"><h3>ARCHIVOS DE LA UNIDAD</h3><p class="lab">${n} archivos · ${MB(tot)} · Rhino 9 + Grasshopper</p></div>
+ <div class="ftab">${g.map(([t,k])=>`<div class="fg"><p class="fgt">${esc(t)}</p>${FL[k].map(([nm,id,sz])=>`<a class="frow" href="${DL(id)}" target="_blank" rel="noopener"><i class="x x${EXT(nm).toLowerCase()}">${EXT(nm)}</i><span class="nm">${esc(nm)}</span><span class="sz">${MB(sz)}</span><b aria-hidden="true">↓</b></a>`).join('')}</div>`).join('')}</div></div>`};
+const btnImg=(src,cap,g,i,cls='')=>`<button class="${cls}" data-g="${g}" data-i="${i}" aria-label="Ampliar: ${esc(cap)}"><img src="${src}" alt="${esc(cap)}" loading="lazy"></button>`;
+$('#units').innerHTML=UNITS.map(u=>{
+ const F=u.final,fg=F.imgs?gal(F.imgs):-1;
+ const sg=F.steps?gal(F.steps.map(([f,c])=>I(f,c))):-1;
+ const heroMedia=F.imgs?`<button class="hero-img" data-g="${fg}" data-i="0" aria-label="Ampliar imagen principal"><img src="${F.imgs[0][0]}" alt="${esc(F.imgs[0][1])}" loading="lazy">${/vz__own_/.test(F.imgs[0][0])?'<span class="ownb">MI ARCHIVO → VIZCOM</span>':''}</button>`:`<div class="hero-img" style="aspect-ratio:16/10;border-radius:18px;overflow:hidden">${diag(F.diagram,3)}</div><p class="diagl" style="margin-top:8px">DIAGRAMA DE LA LÓGICA</p>`;
+ return `
+<section class="plate${u.lt?' lt':''}" id="${u.id}" style="--c:${u.c};--on:${u.lt?'#0a0a0a':'#fff'}">
+ <div class="screws" aria-hidden="true"><i style="left:16px;top:16px"></i><i style="right:16px;top:16px"></i></div>
+ <div class="wrap"><div class="big" aria-hidden="true">${u.n}</div>
+  <div><p class="sub">Unidad ${u.n} · ${esc(u.name)} · ${esc(u.who)}</p><h2>${esc(u.title)}</h2><p class="intro">${esc(u.intro)}</p>
+  <div class="meta">${u.tools.map(t=>`<span class="pill">${esc(t)}</span>`).join('')}</div></div></div>
+</section>
+<section class="band grid" style="--c:${u.c}">
+ <div class="wrap">
+  <div class="sec-h"><h3>LO QUE APRENDÍ</h3><p class="lab">${u.ses.length} sesiones · en mis palabras</p></div>
+  <div class="sess">${u.ses.map(([t,pts],i)=>`<article class="ses"><div class="h"><b>${String(i+1).padStart(2,'0')}</b><span class="lab">Sesión</span></div><h4>${esc(t)}</h4><ul>${pts.map(p=>`<li>${esc(p)}</li>`).join('')}</ul></article>`).join('')}</div><p class="sess-hint">← Desliza para ver las ${u.ses.length} sesiones →</p>
+
+  <div class="labbox" data-lab="${u.lab}" style="--c:${u.c}">
+   <div class="labtop"><h3><span class="led" aria-hidden="true"></span>LAB ${u.n} · ${LABS[u.lab][0]}</h3><span class="lab" style="color:#9c9b96">Definición en vivo</span></div>
+   <div class="labin"><div class="stage"></div><div class="ctrl"><p class="how">${LABS[u.lab][1]}</p></div></div><div class="labfoot"><span>La definición real</span>${FL[LABFILE[u.lab]].filter(f=>/gh/i.test(EXT(f[0]))).slice(0,1).map(([n,id])=>`<a href="${DL(id)}" target="_blank" rel="noopener">${esc(n)} ↓</a>`).join('')||FL[LABFILE[u.lab]].slice(0,1).map(([n,id])=>`<a href="${DL(id)}" target="_blank" rel="noopener">${esc(n)} ↓</a>`).join('')}</div>
+  </div>
+
+  <div class="proj">
+   <div class="sec-h"><h3>RESULTADO FINAL</h3><p class="lab">La pieza que cierra la unidad</p></div>
+   <div class="final">
+    <div>${heroMedia}${F.imgs?`<div class="strip">${F.imgs.slice(1).map((im,i)=>btnImg(im[0],im[1],fg,i+1)).join('')}</div>`:''}</div>
+    <div><p class="lab">${esc(F.meta)}</p><h3 style="margin-top:8px">${esc(F.t)}</h3><p class="note">${esc(F.note)}</p>
+     <dl class="facts">${F.facts.map(([a,b])=>`<div><dt>${a}</dt><dd>${esc(b)}</dd></div>`).join('')}</dl>
+     <p class="learned"><b>LO QUE ME LLEVO</b>${esc(F.learned)}</p>${FL[F.f]?`<p class="lab" style="margin-top:16px">Archivos del ejercicio</p>${dlRow(F.f)}`:""}</div>
+   </div>
+   ${F.steps?`<div class="steps">${F.steps.map(([f,c],i)=>`<button data-g="${sg}" data-i="${i}" aria-label="Ampliar paso ${esc(c)}"><img src="img/${f}.webp" alt="${esc(c)}" loading="lazy"><span>${esc(c)}</span></button>`).join('')}</div>`:''}
+  </div>
+
+  ${u.ex.length?`<div class="proj"><div class="sec-h"><h3>EJERCICIOS</h3><p class="lab">${u.ex.length} piezas de la unidad</p></div>
+  <div class="cards">${u.ex.map((e,k)=>{const g=e.imgs?gal(e.imgs):-1;return `<article class="card">${e.imgs?`<button class="cv" data-g="${g}" data-i="0" aria-label="Ver galería de ${esc(e.t)}"><img src="${e.imgs[0][0]}" alt="${esc(e.imgs[0][1])}" loading="lazy"><span class="cnt">${e.imgs.length} IMG</span>${/vz__own_/.test(e.imgs[0][0])?'<span class="ownb">MI ARCHIVO → VIZCOM</span>':''}</button>`:`<div class="cv">${diag(e.diagram,k+2)}</div>`}
+   <div class="bd"><p class="lab">${esc(e.meta)}</p><h4>${esc(e.t)}</h4><p>${esc(e.d)}</p>${e.imgs?'':'<p class="diagl">DIAGRAMA DE LA LÓGICA</p>'}${dlRow(e.f)}<div class="tags">${e.tags.map(t=>`<span>${esc(t)}</span>`).join('')}</div></div></article>`}).join('')}</div></div>`:''}
+  ${u.cmp?`<div class="proj"><div class="sec-h"><h3>ANTES Y DESPUÉS · VIZCOM</h3><p class="lab">Arrastra para comparar el modelo con la pasada de render</p></div><div class="cmps${u.cmp.length%2?'':' even'}">${u.cmp.map(([a,b,t,m])=>`<figure class="cmpf"><div class="cmp" style="--x:50%"><img src="img/${a}.webp" alt="${esc(t)}: modelo original" loading="lazy"><img class="af" src="img/${b}.webp" alt="${esc(t)}: pasada de Vizcom" loading="lazy"><span class="tg l">RHINO</span><span class="tg r">VIZCOM</span><i class="hdl" aria-hidden="true"></i><input type="range" min="0" max="100" value="50" aria-label="Comparar ${esc(t)}"></div><figcaption><b>${esc(t)}</b><span>${esc(m)}</span></figcaption></figure>`).join('')}</div></div>`:''}
+  ${filePanel(u)}
+ </div>
+</section>`}).join('');
+
+/* ================= SHOWREEL ================= */
+{const R=[['eg__hero','u1','GUITARRA ELÉCTRICA'],['vz__own_growth','u3b','CRECIMIENTO · KANGAROO'],['kh__01_hero','u2','KINETIC HEXAGON FACADE'],['f1__r_hero','u1','MONOPLAZA F1'],['vz__own_shells','u3b','EX4 · EX5 · EX6'],['vz__roof_aerial','u2','CUBIERTA CON ATRACTOR'],['vz__handle','u3','ASA 3D'],['new__raven-hero','u1','RAVEN AFTER PARTY'],['vz__own_ripple','u3b','RIPPLE'],
+ ['nt2__hero','u2','MESAS NIDO'],['vz__own_canopy','u3b','CÁSCARA · DAY 2'],['kp__render','u1','TECLADO PARAMÉTRICO'],['vz__own_anemone','u3b','ANEMONE'],['vz__surf','u1','CONTROL DE SUPERFICIE'],['new__halloween-hero','u1','HALLOWEEN CREW'],['vz__roof_up','u2','CUBIERTA · BAJO EL TECHO'],['kh__10_noir','u2','FACADE · NOIR'],['vz__chim','u1','SÓLIDOS Y MAKE2D'],['vz__own_halftone','u2','TEXTURA SEMITONO'],['vz__own_spheres','u3b','SPHERE COLLIDE'],['vz__own_sort','u3','SORT LIST + MASS ADDITION']];
+ const extra=window.REEL_EXTRA||[];const all=[...R,...extra];
+ const UC=Object.fromEntries([...UNITS.map(u=>[u.id,[u.c,u.n]])]);
+ const g=gal(all.map(([f,u,t])=>I(f,`${UC[u][1]} · ${t}`)));
+ const half=Math.ceil(all.length/2);
+ const tile=([f,u,t],i)=>`<button class="tile" data-g="${g}" data-i="${i}" style="--c:${UC[u][0]}" aria-label="Ampliar ${esc(t)}"><img src="img/${f}.webp" alt="${esc(t)}" loading="lazy"><span><i></i>${UC[u][1]} · ${esc(t)}</span></button>`;
+ const rowA=all.slice(0,half).map((x,i)=>tile(x,i)).join(''),rowB=all.slice(half).map((x,i)=>tile(x,i+half)).join('');
+ // duplicate for seamless loop; duplicates hidden from AT
+ $('#trackA').innerHTML=rowA+rowA.replace(/<button /g,'<button tabindex="-1" aria-hidden="true" ');
+ $('#trackB').innerHTML=rowB+rowB.replace(/<button /g,'<button tabindex="-1" aria-hidden="true" ');
+}
+
+
+/* ================= FILM ================= */
+{const v=$('#filmV'),b=$('#filmB');const set=()=>{b.querySelector('span').textContent=v.paused?'▶':'❚❚'};
+ b.onclick=()=>{v.paused?v.play():v.pause()};v.addEventListener('play',set);v.addEventListener('pause',set);
+ if(!RM){new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){v.preload='auto';v.play().catch(()=>{})}else v.pause()}),{threshold:.35}).observe(v)}}
+/* ================= LIGHTBOX ================= */
+const lb=$('#lb');let lastFocus=null;
+function show(){const [src,cap]=gcur[gi];const im=$('#lbImg');im.style.animation='none';im.offsetWidth;im.style.animation='';im.src=src;im.alt=cap;$('#lbCap').textContent=cap;$('#lbCt').textContent=`${gi+1} / ${gcur.length}`;
+ const th=$('#lbThumbs');if(th){if(th.dataset.n!==String(gcur.length)+gcur[0][0]){th.dataset.n=String(gcur.length)+gcur[0][0];th.innerHTML=gcur.length>1?gcur.map(([s2,c2],k)=>`<button data-k="${k}" aria-label="Imagen ${k+1}"><img src="${s2}" alt="" loading="lazy"></button>`).join(''):''}
+ th.querySelectorAll('button').forEach((b,k)=>{b.classList.toggle('on',k===gi);if(k===gi)b.scrollIntoView({block:'nearest',inline:'center'})})}
+ [gi+1,gi-1].forEach(k=>{const n=gcur[(k+gcur.length)%gcur.length];if(n){const p=new Image();p.src=n[0]}})}
+function openLb(g,i){gcur=GAL[g];gi=i;lastFocus=document.activeElement;show();lb.classList.add('open');$('#lbClose').focus()}
+function closeLb(){lb.classList.remove('open');lastFocus&&lastFocus.focus()}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-g]');if(b&&b.dataset.g>=0)openLb(+b.dataset.g,+b.dataset.i)});
+$('#lbClose').onclick=closeLb;$('#lbPrev').onclick=()=>{gi=(gi-1+gcur.length)%gcur.length;show()};$('#lbNext').onclick=()=>{gi=(gi+1)%gcur.length;show()};
+lb.addEventListener('click',e=>{if(e.target===lb)closeLb();const t=e.target.closest('#lbThumbs button');if(t){gi=+t.dataset.k;show()}});
+{let x0=null;lb.addEventListener('touchstart',e=>{x0=e.touches[0].clientX},{passive:true});lb.addEventListener('touchend',e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>45)(dx<0?$('#lbNext'):$('#lbPrev')).click();x0=null})}
+document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')closeLb();if(e.key==='ArrowLeft')$('#lbPrev').click();if(e.key==='ArrowRight')$('#lbNext').click()});
+
+document.querySelectorAll('.cmp input').forEach(r=>r.addEventListener('input',()=>r.parentElement.style.setProperty('--x',r.value+'%')));
+/* nav highlight */
+const secs=navAll.map(([id])=>document.getElementById(id));
+const navIO=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting)document.querySelectorAll('.nav a').forEach(a=>a.classList.toggle('on',a.dataset.id===en.target.id))}),{rootMargin:'-40% 0px -55% 0px'});
+secs.forEach(s=>s&&navIO.observe(s));
+new MutationObserver(()=>{const a=document.querySelector('.nav a.on');if(a){const n=$('#nav');n.scrollTo({left:a.offsetLeft-n.offsetLeft-n.clientWidth/2+a.clientWidth/2,behavior:RM?'auto':'smooth'})}}).observe($('#nav'),{attributes:true,subtree:true,attributeFilter:['class']});
+{const pg=$('#prog');let tk=0;const up=()=>{tk=0;const h=document.documentElement;pg.style.setProperty('--pg',(h.scrollTop/(h.scrollHeight-h.clientHeight)).toFixed(4))};addEventListener('scroll',()=>{if(!tk)tk=requestAnimationFrame(up)},{passive:true});up()}
+if(!RM&&'IntersectionObserver' in window){const els=document.querySelectorAll('.ses,.card,.final,.labbox,.cmpf,.fg,.stop,.sec-h');els.forEach(e=>e.classList.add('rv'));const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}}),{rootMargin:'0px 0px -8% 0px'});els.forEach(e=>io.observe(e))}
+
+/* ================= CANVAS UTIL ================= */
+function fit(cv){const r=cv.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);cv.width=Math.max(1,r.width*d|0);cv.height=Math.max(1,r.height*d|0);const x=cv.getContext('2d');x.setTransform(d,0,0,d,0,0);return[x,r.width,r.height]}
+function slider(box,id,label,min,max,step,val,fmt=v=>v){const w=document.createElement('div');w.className='rng';w.innerHTML=`<label for="${id}">${label}<output id="${id}o"></output></label><input type="range" id="${id}" min="${min}" max="${max}" step="${step}" value="${val}">`;box.appendChild(w);const inp=w.querySelector('input'),o=w.querySelector('output');const up=()=>{o.textContent=fmt(+inp.value);inp.style.setProperty('--p',((inp.value-min)/(max-min)*100)+'%')};inp.addEventListener('input',up);up();return inp}
+function btns(box,list){const d=document.createElement('div');d.className='btns';d.innerHTML=list.map(([id,t,c])=>`<button class="btn ${c||''}" id="${id}">${t}</button>`).join('');box.appendChild(d)}
+function readout(box){const p=document.createElement('p');p.className='readout';box.appendChild(p);return p}
+const onVis=(el,cb)=>{const io=new IntersectionObserver(es=>es.forEach(e=>cb(e.isIntersecting)));io.observe(el)};
+
+/* ================= HERO FIELD ================= */
+{const cv=$('#fieldCv');let x,W,H,freq=4,dens=44,mouse=null,mp=null,mAmt=0,t=0,vis=true,raf=0;
+ const A=[[.2,.3],[.7,.2],[.5,.62],[.85,.75],[.25,.82]].map(([a,b],i)=>({x:a,y:b,p:i*1.7}));
+ const rs=()=>{[x,W,H]=fit(cv)};rs();new ResizeObserver(rs).observe(cv);
+ cv.addEventListener('pointermove',e=>{const r=cv.getBoundingClientRect();mouse=[(e.clientX-r.left)/r.width,(e.clientY-r.top)/r.height]});
+ cv.addEventListener('pointerleave',()=>mouse=null);
+ const mix=(a,b,k)=>a+(b-a)*k;
+ function draw(){x.fillStyle='#0a0a0a';x.fillRect(0,0,W,H);const cs=W/dens,rows=Math.ceil(H/cs);
+  // ease the cursor attractor in/out and follow the pointer with lag, so nothing snaps
+  if(mouse){mp=mp?[mix(mp[0],mouse[0],.12),mix(mp[1],mouse[1],.12)]:mouse.slice();mAmt=mix(mAmt,1,.08)}else{mAmt=mix(mAmt,0,.06)}
+  const at=A.map(a=>[(a.x+Math.sin(t*.4+a.p)*.06)*W,(a.y+Math.cos(t*.33+a.p)*.06)*H]);
+  const diag=Math.hypot(W,H),k=diag*.022,R=diag*.095;const cx=mp?mp[0]*W:-1e4,cy=mp?mp[1]*H:-1e4;
+  for(let j=0;j<=rows;j++)for(let i=0;i<=dens;i++){const px=i*cs,py=j*cs;
+   // smooth minimum of distances (log-sum-exp) instead of a hard closest point: no Voronoi seams
+   let sum=0;for(const a of at)sum+=Math.exp(-Math.hypot(px-a[0],py-a[1])/k);
+   const dc=Math.hypot(px-cx,py-cy);sum+=mAmt*Math.exp(-dc/k);
+   const dm=-k*Math.log(sum+1e-12);
+   const v=Math.sin(dm/diag*freq*Math.PI*2-t*1.2);let rr=(0.05+(v+1)/2*0.57)*cs*.5*1.7*.62;
+   // gaussian glow around the cursor: colour and size fade out smoothly
+   const w=mAmt*Math.exp(-((dc/R)**2));rr*=1+w*.25;
+   const r=Math.round(mix(239,255,w)),g=Math.round(mix(238,61,w)),b=Math.round(mix(233,0,w));
+   x.fillStyle=`rgb(${r},${g},${b})`;x.beginPath();x.arc(px,py,Math.max(.4,rr),0,7);x.fill()}
+  const marks=mAmt>.02?[...at,[cx,cy]]:at;
+  marks.forEach((a,n)=>{x.globalAlpha=n===at.length?mAmt:1;x.strokeStyle='#ff3d00';x.lineWidth=1.2;x.beginPath();x.arc(a[0],a[1],7,0,7);x.stroke();x.beginPath();x.moveTo(a[0]-12,a[1]);x.lineTo(a[0]+12,a[1]);x.moveTo(a[0],a[1]-12);x.lineTo(a[0],a[1]+12);x.stroke()});x.globalAlpha=1}
+ function loop(){t+=.016;draw();if(vis&&!RM)raf=requestAnimationFrame(loop)}
+ onVis(cv,v=>{vis=v;cancelAnimationFrame(raf);if(v)loop()});draw();
+ function knob(el,get,set,min,max){const ind=el.querySelector('i');const paint=()=>{const v=get();ind.style.transform=`rotate(${-135+(v-min)/(max-min)*270}deg)`;el.setAttribute('aria-valuenow',v);el.setAttribute('aria-valuetext',String(v))};
+  let sy=null,sv=0;el.addEventListener('pointerdown',e=>{sy=e.clientY;sv=get();el.setPointerCapture(e.pointerId)});
+  el.addEventListener('pointermove',e=>{if(sy==null)return;set(Math.round(Math.min(max,Math.max(min,sv+(sy-e.clientY)/4))));paint();if(RM)draw()});
+  el.addEventListener('pointerup',()=>sy=null);
+  el.addEventListener('keydown',e=>{const d=e.key==='ArrowUp'||e.key==='ArrowRight'?1:e.key==='ArrowDown'||e.key==='ArrowLeft'?-1:0;if(d){e.preventDefault();set(Math.min(max,Math.max(min,get()+d)));paint();if(RM)draw()}});paint()}
+ knob($('#kFreq'),()=>freq,v=>{freq=v;$('#hudR').textContent=L('Frecuencia ','Frequency ')+v+L(' · densidad ',' · density ')+dens},1,10);
+ knob($('#kDens'),()=>dens,v=>{dens=v;$('#hudR').textContent=L('Frecuencia ','Frequency ')+freq+L(' · densidad ',' · density ')+v},24,80);
+}
+
+/* ================= LABS ================= */
+document.querySelectorAll('.labbox').forEach(box=>{const k=box.dataset.lab,stage=box.querySelector('.stage'),ctrl=box.querySelector('.ctrl');const cv=document.createElement('canvas');stage.appendChild(cv);({curve:labCurve,sun:labSun,sort:labSort,net:labNet})[k](cv,ctrl)});
+
+function labCurve(cv,ctrl){let x,W,H;const P=[[.08,.75],[.2,.25],[.38,.8],[.5,.2],[.64,.78],[.8,.3],[.92,.7]];let deg=3,showP=true,drag=-1;
+ const dg=slider(ctrl,'cDeg','Grado',1,6,1,3);
+ btns(ctrl,[['cF10','Puntos (F10)'],['cRnd','Aleatorio']]);$('#cF10').setAttribute('aria-pressed','true');const ro=readout(ctrl);
+ function deBoor(t,p,pts,kn){let k=p;while(k<kn.length-p-2&&t>=kn[k+1])k++;const d=[];for(let j=0;j<=p;j++)d.push([...pts[j+k-p]]);
+  for(let r=1;r<=p;r++)for(let j=p;j>=r;j--){const i=j+k-p,a=(t-kn[i])/(kn[i+1+p-r]-kn[i]||1);d[j]=[(1-a)*d[j-1][0]+a*d[j][0],(1-a)*d[j-1][1]+a*d[j][1]]}return d[p]}
+ function draw(){const n=P.length,p=Math.min(deg,n-1);const kn=[];for(let i=0;i<=n+p;i++)kn.push(i<=p?0:i>=n?1:(i-p)/(n-p));
+  const pts=P.map(([a,b])=>[a*W,b*H]);x.clearRect(0,0,W,H);
+  if(showP){x.setLineDash([5,6]);x.strokeStyle='#5c5c5c';x.lineWidth=1.2;x.beginPath();pts.forEach(([a,b],i)=>i?x.lineTo(a,b):x.moveTo(a,b));x.stroke();x.setLineDash([])}
+  x.strokeStyle='#ff3d00';x.lineWidth=4;x.lineCap='round';x.beginPath();for(let s=0;s<=240;s++){const t=Math.min(s/240,.99999);const [a,b]=deBoor(t,p,pts,kn);s?x.lineTo(a,b):x.moveTo(a,b)}x.stroke();
+  if(showP)pts.forEach(([a,b],i)=>{x.fillStyle=i===drag?'#ff3d00':'#0a0a0a';x.strokeStyle='#ededea';x.lineWidth=2;x.beginPath();x.rect(a-7,b-7,14,14);x.fill();x.stroke();x.fillStyle='#9c9b96';x.font='10px JBM,monospace';x.fillText('P'+i,a+10,b-10)});
+  ro.innerHTML=L(`<b>GRADO ${p}</b> · ORDEN ${p+1}\nPUNTOS DE CONTROL ${n}\nNUDOS [${kn.map(v=>+v.toFixed(2)).join(', ')}]\n${p===1?'Grado 1 = polilínea: pasa por cada punto.':p<=3?'Grado 3 es el estándar de Rhino.':'Más grado = más suave y más lejos del polígono.'}`,`<b>DEGREE ${p}</b> · ORDER ${p+1}\nCONTROL POINTS ${n}\nKNOTS [${kn.map(v=>+v.toFixed(2)).join(', ')}]\n${p===1?'Degree 1 = polyline: it passes through every point.':p<=3?'Degree 3 is the Rhino standard.':'Higher degree = smoother and further from the polygon.'}`)}
+ const rs=()=>{[x,W,H]=fit(cv);draw()};new ResizeObserver(rs).observe(cv);
+ dg.addEventListener('input',()=>{deg=+dg.value;draw()});
+ $('#cF10').onclick=e=>{showP=!showP;e.target.setAttribute('aria-pressed',showP);draw()};
+ $('#cRnd').onclick=()=>{P.forEach((p,i)=>{p[0]=.08+i*.14;p[1]=.15+Math.random()*.7});draw()};
+ const pick=e=>{const r=cv.getBoundingClientRect();return[(e.clientX-r.left)/r.width,(e.clientY-r.top)/r.height]};
+ cv.addEventListener('pointerdown',e=>{const [u,v]=pick(e);drag=P.findIndex(([a,b])=>Math.hypot((a-u)*W,(b-v)*H)<22);if(drag>=0)cv.setPointerCapture(e.pointerId)});
+ cv.addEventListener('pointermove',e=>{if(drag<0)return;const [u,v]=pick(e);P[drag]=[Math.min(.98,Math.max(.02,u)),Math.min(.97,Math.max(.03,v))];draw()});
+ cv.addEventListener('pointerup',()=>{drag=-1;draw()});
+}
+
+function ramp(e){const S=[[89,192,230],[0,54,249],[138,63,252],[255,61,0],[255,176,0]];const t=e*(S.length-1),i=Math.min(S.length-2,Math.floor(t)),f=t-i;const c=S[i].map((v,k)=>Math.round(v+(S[i+1][k]-v)*f));return `rgb(${c})`}
+function labSun(cv,ctrl){let x,W,H,hour=9,play=false,raf=0;
+ const hs=slider(ctrl,'sHr','Hora',7,17,.1,9,v=>{const h=Math.floor(v),m=Math.round((v-h)*60);return String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')});
+ const ds=slider(ctrl,'sDist','Distancia del sol',1,4,.1,1.6,v=>v.toFixed(1)+'×');
+ btns(ctrl,[['sPlay','▶ Animar el día','go']]);const ro=readout(ctrl);
+ function draw(){x.clearRect(0,0,W,H);const pad=30,top=70;const cols=13,rows=7;const sz=Math.min((W-pad*2)/(cols*1.5+.5),(H-top-pad)/(rows*1.732+.9));
+  const ox=(W-((cols-1)*1.5+2)*sz)/2+sz,oy=top+sz;const fx=W/2,D=Math.max(W,H)*+ds.value;
+  const az=(12-hour)*15*Math.PI/180,el=Math.sin((hour-7)/10*Math.PI)*.9+.15;
+  const S=[fx-Math.sin(az)*D*.6,-Math.cos(az)*D*.45-D*.2,el*D*.55];
+  const sx=W/2-Math.sin(az)*W*.42,sy=40-Math.sin((hour-7)/10*Math.PI)*0+ (1-Math.sin((hour-7)/10*Math.PI))*20;
+  const cells=[];let mn=1,mx=-1;
+  for(let c=0;c<cols;c++)for(let r=0;r<rows;r++){const cx=ox+c*1.5*sz,cy=oy+r*1.732*sz+(c%2?.866*sz:0);const P=[cx,0,(H-cy)];const v=[S[0]-P[0],S[1]-P[1],S[2]-P[2]];const l=Math.hypot(...v);const dot=-v[1]/l;cells.push([cx,cy,dot]);mn=Math.min(mn,dot);mx=Math.max(mx,dot)}
+  const rng=mx-mn||1;
+  x.strokeStyle='#ffb000';x.setLineDash([3,5]);x.lineWidth=1;x.beginPath();x.moveTo(sx,sy);x.lineTo(W/2,H/2);x.stroke();x.setLineDash([]);
+  const g=x.createRadialGradient(sx-4,sy-4,2,sx,sy,16);g.addColorStop(0,'#fff3c2');g.addColorStop(1,'#ffb000');x.fillStyle=g;x.beginPath();x.arc(sx,sy,14,0,7);x.fill();
+  cells.forEach(([cx,cy,dot])=>{const e=(dot-mn)/rng;const ang=(1-e)*80;const f=Math.cos(ang*Math.PI/180);
+   const col=ramp(e);
+   for(let k=0;k<6;k++){const a1=k*Math.PI/3,a2=(k+1)*Math.PI/3;const p1=[cx+Math.cos(a1)*sz,cy+Math.sin(a1)*sz],p2=[cx+Math.cos(a2)*sz,cy+Math.sin(a2)*sz];const m=[(p1[0]+p2[0])/2,(p1[1]+p2[1])/2];const tip=[m[0]+(cx-m[0])*f,m[1]+(cy-m[1])*f];
+    x.fillStyle=col;x.globalAlpha=.35+.65*f;x.beginPath();x.moveTo(...p1);x.lineTo(...p2);x.lineTo(...tip);x.closePath();x.fill();x.globalAlpha=1}
+   x.strokeStyle='#2a2a2a';x.lineWidth=1;x.beginPath();for(let k=0;k<=6;k++){const a=k*Math.PI/3;const p=[cx+Math.cos(a)*sz,cy+Math.sin(a)*sz];k?x.lineTo(...p):x.moveTo(...p)}x.stroke()});
+  ro.innerHTML=L(`<b>ÁNGULO SOLAR</b> (12 − h) × 15° = ${((12-hour)*15).toFixed(0)}°\n<b>DOT</b> min ${mn.toFixed(2)} · max ${mx.toFixed(2)}\nMás sol → 0° (cerrada, sombra)\nMenos sol → 80° (abierta, luz)`,`<b>SUN ANGLE</b> (12 − h) × 15° = ${((12-hour)*15).toFixed(0)}°\n<b>DOT</b> min ${mn.toFixed(2)} · max ${mx.toFixed(2)}\nMore sun → 0° (closed, shade)\nLess sun → 80° (open, light)`)}
+ const rs=()=>{[x,W,H]=fit(cv);draw()};new ResizeObserver(rs).observe(cv);
+ hs.addEventListener('input',()=>{hour=+hs.value;draw()});ds.addEventListener('input',draw);
+ function loop(){hour+=.03;if(hour>17)hour=7;hs.value=hour;hs.dispatchEvent(new Event('input'));if(play)raf=requestAnimationFrame(loop)}
+ $('#sPlay').onclick=e=>{play=!play;e.target.textContent=play?'❚❚ Pausa':'▶ Animar el día';e.target.setAttribute('aria-pressed',play);if(play)loop();else cancelAnimationFrame(raf)};
+ onVis(cv,v=>{if(!v&&play){play=false;cancelAnimationFrame(raf);$('#sPlay').textContent='▶ Animar el día';$('#sPlay').setAttribute('aria-pressed','false')}});
+}
+
+function labSort(cv,ctrl){let x,W,H,sorted=false,anim=1,raf=0;let R=[];
+ const gp=slider(ctrl,'gGap','Separación (gap)',0,40,1,12,v=>v+' u');
+ btns(ctrl,[['gSort','Ordenar','go'],['gShuf','Desordenar']]);const ro=readout(ctrl);
+ function make(){R=Array.from({length:9},(_,i)=>({w:30+Math.round(Math.random()*90),h:30+Math.round(Math.random()*60),x:Math.random(),y:Math.random(),r:(Math.random()-.5)*1.4,i}))}
+ make();
+ function targets(){const g=+gp.value;const s=[...R].sort((a,b)=>a.w-b.w);const sc=Math.min(1.4,(W-60)/(s.reduce((a,b)=>a+b.w,0)+g*(s.length-1)));let acc=0;const pos=new Map();s.forEach(r=>{pos.set(r,acc);acc+=r.w+g});return{pos,sc,s,total:acc-g}}
+ function draw(){x.clearRect(0,0,W,H);const T=targets();const e=anim<1?anim*anim*(3-2*anim):1;const base=H*.72;
+  x.strokeStyle='#3a3a3a';x.setLineDash([4,6]);x.beginPath();x.moveTo(20,base);x.lineTo(W-20,base);x.stroke();x.setLineDash([]);
+  R.forEach((r,k)=>{const sc=T.sc;const fx=30+r.x*(W-160),fy=40+r.y*(H*.45);const tx=30+T.pos.get(r)*sc,ty=base-r.h*sc;
+   const a=sorted?e:1-e;const px=fx+(tx-fx)*a,py=fy+(ty-fy)*a,rot=r.r*(1-a);
+   x.save();x.translate(px,py+r.h*sc);x.rotate(rot);x.fillStyle=`hsla(${265-k*6},85%,${58+(r.w/120)*10}%,.9)`;x.fillRect(0,-r.h*sc,r.w*sc,r.h*sc);x.strokeStyle='#ff3d00';x.lineWidth=3;x.beginPath();x.moveTo(0,0);x.lineTo(r.w*sc,0);x.stroke();x.restore();
+   if(sorted&&a>.98){x.fillStyle='#ff3d00';x.font='10px JBM,monospace';x.fillText(Math.round(T.pos.get(r)),tx,base+16)}});
+  ro.innerHTML=`<b>LONGITUDES</b> ${R.map(r=>r.w).join(' ')}\n<b>SORT LIST</b> ${T.s.map(r=>r.w).join(' ')}\n<b>MASS ADDITION</b> ${T.s.map(r=>Math.round(T.pos.get(r))).join(' ')}\n<b>LARGO TOTAL</b> ${T.total} u`}
+ const rs=()=>{[x,W,H]=fit(cv);draw()};new ResizeObserver(rs).observe(cv);
+ function go(){anim=0;const step=()=>{anim=Math.min(1,anim+.025);draw();if(anim<1)raf=requestAnimationFrame(step)};cancelAnimationFrame(raf);if(RM){anim=1;draw()}else step()}
+ $('#gSort').onclick=()=>{if(!sorted){sorted=true;go()}};
+ $('#gShuf').onclick=()=>{if(sorted){sorted=false;go()}else{make();draw()}};
+ gp.addEventListener('input',draw);
+}
+
+function labNet(cv,ctrl){let x,W,H,raf=0,run=true,vis=false;const N=15;let pts=[],old=[],links=[],anchors=new Set();let mode='corners';
+ const ld=slider(ctrl,'nLoad','Carga (load)',-1,1,.05,-.6,v=>v.toFixed(2));
+ const lf=slider(ctrl,'nLen','Factor de longitud',0,1.2,.05,.9,v=>v.toFixed(2));
+ btns(ctrl,[['nAnc','Anclas: esquinas'],['nRst','Reset','go']]);const ro=readout(ctrl);
+ function init(){pts=[];old=[];links=[];anchors=new Set();for(let j=0;j<N;j++)for(let i=0;i<N;i++){pts.push([i/(N-1)-.5,j/(N-1)-.5,0]);old.push([i/(N-1)-.5,j/(N-1)-.5,0])}
+  const L=1/(N-1);for(let j=0;j<N;j++)for(let i=0;i<N;i++){const k=j*N+i;if(i<N-1)links.push([k,k+1,L]);if(j<N-1)links.push([k,k+N,L]);
+   const edge=i===0||j===0||i===N-1||j===N-1,corner=(i===0||i===N-1)&&(j===0||j===N-1),mid=(i===0||i===N-1)&&j===(N-1)/2;
+   if(mode==='edge'?edge:mode==='corners'?corner:corner||mid||((j===0||j===N-1)&&i===(N-1)/2))anchors.add(k)}}
+ init();
+ function step(){const g=+ld.value*.0009,f=+lf.value;for(let k=0;k<pts.length;k++){if(anchors.has(k))continue;const p=pts[k],o=old[k];const v=[(p[0]-o[0])*.985,(p[1]-o[1])*.985,(p[2]-o[2])*.985];old[k]=[...p];p[0]+=v[0];p[1]+=v[1];p[2]+=v[2]+g}
+  for(let it=0;it<6;it++)links.forEach(([a,b,L])=>{const A=pts[a],B=pts[b];const d=[B[0]-A[0],B[1]-A[1],B[2]-A[2]];const l=Math.hypot(...d)||1e-6;const tl=L*f;const diff=(l-tl)/l*.5*(f>0?1:.6);const wa=anchors.has(a)?0:1,wb=anchors.has(b)?0:1;const s=wa+wb;if(!s)return;
+   for(let q=0;q<3;q++){A[q]+=d[q]*diff*2*wa/s;B[q]-=d[q]*diff*2*wb/s}})}
+ function proj([a,b,c]){const s=Math.min(W,H)*.95;return[W/2+(a-b)*s*.62,H*.5+(a+b)*s*.33-c*s*.9]}
+ function draw(){x.clearRect(0,0,W,H);let zmin=1e9,zmax=-1e9;pts.forEach(p=>{zmin=Math.min(zmin,p[2]);zmax=Math.max(zmax,p[2])});const zr=(zmax-zmin)||1;
+  const order=[];for(let j=0;j<N-1;j++)for(let i=0;i<N-1;i++){const k=j*N+i;order.push([k,k+1,k+N+1,k+N])}
+  order.sort((A,B)=>(pts[A[0]][0]+pts[A[0]][1])-(pts[B[0]][0]+pts[B[0]][1]));
+  order.forEach(q=>{const z=(q.reduce((s,k)=>s+pts[k][2],0)/4-zmin)/zr;x.fillStyle=`hsla(${10+z*40},100%,${30+z*30}%,.85)`;x.strokeStyle='rgba(255,255,255,.25)';x.lineWidth=.8;x.beginPath();q.forEach((k,i)=>{const[a,b]=proj(pts[k]);i?x.lineTo(a,b):x.moveTo(a,b)});x.closePath();x.fill();x.stroke()});
+  anchors.forEach(k=>{const[a,b]=proj(pts[k]);x.fillStyle='#ffb000';x.beginPath();x.arc(a,b,5,0,7);x.fill()});
+  ro.innerHTML=L(`<b>INPUTS</b> malla ${N}×${N} · ${anchors.size} anclas\n<b>GOALS</b> Anchor · Load ${(+ld.value).toFixed(2)} · Length ×${(+lf.value).toFixed(2)}\n<b>SOLVER</b> flecha ${(zr*100).toFixed(1)} cm`,`<b>INPUTS</b> mesh ${N}×${N} · ${anchors.size} anchors\n<b>GOALS</b> Anchor · Load ${(+ld.value).toFixed(2)} · Length ×${(+lf.value).toFixed(2)}\n<b>SOLVER</b> sag ${(zr*100).toFixed(1)} cm`)}
+ function loop(){step();draw();if(vis&&run)raf=requestAnimationFrame(loop)}
+ const rs=()=>{[x,W,H]=fit(cv);draw()};new ResizeObserver(rs).observe(cv);
+ onVis(cv,v=>{vis=v;cancelAnimationFrame(raf);if(v){if(RM){for(let i=0;i<400;i++)step();draw()}else loop()}});
+ const settle=()=>{if(RM){for(let i=0;i<400;i++)step();draw()}};ld.addEventListener('input',settle);lf.addEventListener('input',settle);
+ const names={corners:'esquinas',mid:'esquinas + medios',edge:'borde desnudo'};
+ $('#nAnc').onclick=e=>{mode=mode==='corners'?'mid':mode==='mid'?'edge':'corners';e.target.textContent='Anclas: '+names[mode];init();settle()};
+ $('#nRst').onclick=()=>{init();settle()};
+}
+}
+</script>
+<script>
+/* ===== i18n apply ===== */
+(function(){
+ var ORIG=new WeakMap(),ATTRS=['alt','aria-label','title'];
+ var H1=document.querySelector('.hero h1'),H1ES=H1?H1.innerHTML:'';
+ var H1EN='<em>PARAMETRIC</em> DESIGN, CHAPTER BY CHAPTER';
+ var TITLE_ES=document.title;
+ function tr(v){var k=v.trim();if(!k)return v;var t=TT(k);return t===k?v:v.replace(k,t)}
+ function doText(n){var p=n.parentNode;if(!p||p.closest&&p.closest('script,style,svg,.lang'))return;if(H1&&H1.contains(n))return;
+  var o=ORIG.get(n),cur=n.nodeValue;if(!o||(cur!==o.es&&cur!==o.en)){o={es:cur};ORIG.set(n,o)}
+  var v=LANG==='en'?tr(o.es):o.es;o.en=LANG==='en'?v:o.en;if(cur!==v)n.nodeValue=v}
+ function doEl(e){if(e.closest('.lang'))return;for(var i=0;i<ATTRS.length;i++){var a=ATTRS[i];if(!e.hasAttribute(a))continue;var key='data-es-'+a,cur=e.getAttribute(a),es=e.getAttribute(key);
+  if(es===null||(cur!==es&&cur!==e.__en&&cur!==TT(es))){es=cur;e.setAttribute(key,es)}var v=LANG==='en'?TT(es):es;if(cur!==v)e.setAttribute(a,v)}}
+ function walk(root){if(root.nodeType===3){doText(root);return}if(root.nodeType!==1)return;
+  var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),n;while(n=w.nextNode())doText(n);
+  if(root.matches&&root.matches('[alt],[aria-label],[title]'))doEl(root);root.querySelectorAll('[alt],[aria-label],[title]').forEach(doEl)}
+ var busy=false;
+ function apply(){busy=true;document.documentElement.lang=LANG;document.title=LANG==='en'?TT(TITLE_ES):TITLE_ES;if(H1)H1.innerHTML=LANG==='en'?H1EN:H1ES;walk(document.body);
+  document.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.lang===LANG)});
+  document.querySelectorAll('.labbox input[type=range]').forEach(function(r){r.dispatchEvent(new Event('input',{bubbles:true}))});
+  var p=document.getElementById('nAnc');if(p){var t=p.textContent;}
+  busy=false}
+ new MutationObserver(function(ms){if(busy||LANG!=='en')return;busy=true;ms.forEach(function(m){if(m.type==='characterData')doText(m.target);else if(m.type==='attributes')doEl(m.target);else m.addedNodes.forEach(walk)});busy=false})
+  .observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:ATTRS});
+ document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){if(LANG===b.dataset.lang)return;LANG=b.dataset.lang;try{localStorage.setItem('tigreLang',LANG);var u=new URL(location.href);u.searchParams.set('lang',LANG);history.replaceState(null,'',u)}catch(e){}apply()})});
+ apply();
+})();
+</script>
+</body>
+</html>
