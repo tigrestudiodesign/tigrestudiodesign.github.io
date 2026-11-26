@@ -775,8 +775,8 @@ function labSun(cv,ctrl){let x,W,H,hour=9,play=false,raf=0;
    x.strokeStyle='#2a2a2a';x.lineWidth=1;x.beginPath();for(let k=0;k<=6;k++){const a=k*Math.PI/3;const p=[cx+Math.cos(a)*sz,cy+Math.sin(a)*sz];k?x.lineTo(...p):x.moveTo(...p)}x.stroke()});
   ro.innerHTML=L(`<b>ÁNGULO SOLAR</b> (12 − h) × 15° = ${((12-hour)*15).toFixed(0)}°\n<b>DOT</b> min ${mn.toFixed(2)} · max ${mx.toFixed(2)}\nMás sol → 0° (cerrada, sombra)\nMenos sol → 80° (abierta, luz)`,`<b>SUN ANGLE</b> (12 − h) × 15° = ${((12-hour)*15).toFixed(0)}°\n<b>DOT</b> min ${mn.toFixed(2)} · max ${mx.toFixed(2)}\nMore sun → 0° (closed, shade)\nLess sun → 80° (open, light)`)}
  const rs=()=>{[x,W,H]=fit(cv);draw()};new ResizeObserver(rs).observe(cv);
- hs.addEventListener('input',()=>{hour=+hs.value;draw()});ds.addEventListener('input',draw);
- function loop(){hour+=.03;if(hour>17)hour=7;hs.value=hour;hs.dispatchEvent(new Event('input'));if(play)raf=requestAnimationFrame(loop)}
+ let auto=false;hs.addEventListener('input',()=>{if(!auto)hour=+hs.value;draw()});ds.addEventListener('input',draw);
+ function loop(){hour+=.015;if(hour>17)hour=7;hs.value=hour;auto=true;hs.dispatchEvent(new Event('input'));auto=false;if(play)raf=requestAnimationFrame(loop)}
  $('#sPlay').onclick=e=>{play=!play;e.target.textContent=play?'❚❚ Pausa':'▶ Animar el día';e.target.setAttribute('aria-pressed',play);if(play)loop();else cancelAnimationFrame(raf)};
  onVis(cv,v=>{if(!v&&play){play=false;cancelAnimationFrame(raf);$('#sPlay').textContent='▶ Animar el día';$('#sPlay').setAttribute('aria-pressed','false')}});
 }
