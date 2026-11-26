@@ -909,6 +909,34 @@ button.btn{cursor:pointer}
 .ml-rm{display:inline-flex;gap:4px;padding:4px;border-radius:999px;background:#0B0B0C;margin-top:20px}
 .ml-rm button{font:500 11px var(--mono);letter-spacing:.12em;border:0;border-radius:999px;padding:10px 16px;min-height:40px;background:transparent;color:#cfcfcf;cursor:pointer}
 .ml-rm button[aria-pressed="true"]{background:#FF5A1F;color:#0B0B0C}
+.mm{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:40px;align-items:start;margin-top:28px}
+.mm-lb{font:700 10px var(--mono);letter-spacing:.14em;text-transform:uppercase;opacity:.6;margin:0 0 10px}
+.mm-pick{display:grid;grid-template-columns:repeat(auto-fill,minmax(44px,1fr));gap:6px;margin:0 0 26px}
+.mm-pick button{position:relative;aspect-ratio:1;min-height:44px;border:1px solid rgba(11,11,12,.18);border-radius:4px;cursor:pointer;padding:0;background:var(--c)}
+.mm-pick button b{position:absolute;left:3px;bottom:2px;font:700 8px var(--mono);color:var(--t);letter-spacing:.04em}
+.mm-pick button[aria-pressed="true"]{outline:3px solid #FF5A1F;outline-offset:2px;z-index:1}
+.mm-pick button:focus-visible{outline:3px solid #0B0B0C;outline-offset:2px}
+.mm-tol{display:inline-flex;flex-wrap:wrap;gap:4px;padding:4px;border-radius:999px;background:#0B0B0C}
+.mm-tol button{font:500 11px var(--mono);letter-spacing:.1em;border:0;border-radius:999px;padding:10px 14px;min-height:40px;background:transparent;color:#cfcfcf;cursor:pointer}
+.mm-tol button[aria-pressed="true"]{background:#FF5A1F;color:#0B0B0C}
+.mm-why{font:12px/1.5 var(--mono);opacity:.75;margin:12px 0 0;max-width:52ch}
+.mm-cmp{display:grid;grid-template-columns:1fr 1fr;gap:0;border:2px solid #0B0B0C;background:#0B0B0C}
+.mm-sw{position:relative;aspect-ratio:1/.8;background:var(--c);overflow:hidden}
+.mm-sw:after{content:"";position:absolute;inset:0;background:linear-gradient(118deg,transparent 30%,rgba(255,255,255,var(--g)) 46%,transparent 58%),radial-gradient(120% 70% at 20% 0,rgba(255,255,255,calc(var(--g)*.6)),transparent 60%)}
+.mm-sw span{position:absolute;left:10px;top:10px;right:10px;font:700 10px/1.35 var(--mono);letter-spacing:.08em;color:var(--t);z-index:1;text-transform:uppercase}
+.mm-sw span small{display:block;font-weight:400;opacity:.8}
+.mm-read{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,1fr);background:#0B0B0C;color:#F2EEE6}
+.mm-read div{padding:12px 14px;border-right:1px solid rgba(242,238,230,.14)}.mm-read div:last-child{border:0}
+.mm-read dt{font:600 9px var(--mono);letter-spacing:.14em;opacity:.6}.mm-read dd{margin:4px 0 0;font:700 18px var(--mono)}
+.mm-v{grid-column:1/-1;margin:0!important;padding:12px 14px;font:700 12px/1.45 var(--mono);letter-spacing:.06em;background:#F2EEE6;color:#0B0B0C;border-top:2px solid #0B0B0C}
+.mm-v em{font-style:normal;display:inline-block;padding:3px 7px;margin-right:8px;background:var(--vc);color:#0B0B0C}
+.mm-bar{display:block;position:relative;height:6px;min-width:90px;background:color-mix(in srgb,currentColor 12%,transparent);margin-top:5px}
+.mm-bar i{position:absolute;left:0;top:0;bottom:0;background:#0B0B0C}.mm-bar u{position:absolute;top:-3px;bottom:-3px;width:2px;background:#FF5A1F;text-decoration:none}
+.mm-t .chip.ok{background:#3FA05A;border-color:#3FA05A;color:#fff}.mm-t .chip.gl{background:#FFC23A;border-color:#FFC23A;color:#0B0B0C}.mm-t .chip.cl{border-style:dashed}.mm-t .chip.no{opacity:.45}
+.mm-list{margin-top:36px}.mm-list .tbl-wrap{margin-top:0}.mm-t td{vertical-align:middle}.mm-t .mm-bar{margin-left:auto;max-width:120px}
+.mm-t tbody tr.hit>*{background:rgba(255,90,31,.08)}
+@media (max-width:760px){.tbl-wrap table.mm-t{min-width:0}.mm-t .spc-chip{margin:0}.mm-t .spc-chip b,.mm-t .spc-chip small,.mm-t .mm-bar,.mm-t td.n small{display:none}.mm-t th:nth-child(3),.mm-t td:nth-child(3){padding-right:6px}.mm-t td.n,.mm-t thead th.n{padding-right:10px}table.tbl.mm-t .chip{white-space:normal;line-height:1.3;font-size:9px;padding:4px 5px}.mm-t caption{line-height:1.5}}
+@media (max-width:900px){.mm{grid-template-columns:1fr;gap:28px}.mm-read dd{font-size:15px}.mm-read div{padding:10px}}
 .cols.cols4{grid-template-columns:repeat(4,minmax(0,1fr));gap:36px}
 @media (max-width:1100px){.cols.cols4{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:640px){.cols.cols4{grid-template-columns:1fr}}
@@ -2358,6 +2386,43 @@ function ooPage(){
  ${nextLink('product',{id:'standard-play',title:'Standard Play'})}</main>`+foot();
 }
 
+/* COLOUR MATCH: CIEDE2000 across the library (checked against Sharma, Wu & Dalal 2005 test pairs) */
+function de00(a,b){const [L1,a1,b1]=a,[L2,a2,b2]=b,R=Math.PI/180,C1=Math.hypot(a1,b1),C2=Math.hypot(a2,b2),Cm=(C1+C2)/2,G=.5*(1-Math.sqrt(Cm**7/(Cm**7+25**7))),
+ p1=a1*(1+G),p2=a2*(1+G),c1=Math.hypot(p1,b1),c2=Math.hypot(p2,b2),hh=(y,x)=>{const t=Math.atan2(y,x)/R;return t<0?t+360:t},h1=c1?hh(b1,p1):0,h2=c2?hh(b2,p2):0;
+ const dL=L2-L1,dC=c2-c1;let dh=0;if(c1*c2){dh=h2-h1;if(dh>180)dh-=360;else if(dh<-180)dh+=360}const dH=2*Math.sqrt(c1*c2)*Math.sin(dh*R/2);
+ const Lm=(L1+L2)/2,cm=(c1+c2)/2;let hm=h1+h2;if(c1*c2)hm=Math.abs(h1-h2)>180?(h1+h2<360?(h1+h2+360)/2:(h1+h2-360)/2):(h1+h2)/2;
+ const T=1-.17*Math.cos((hm-30)*R)+.24*Math.cos(2*hm*R)+.32*Math.cos((3*hm+6)*R)-.2*Math.cos((4*hm-63)*R),
+ SL=1+.015*(Lm-50)**2/Math.sqrt(20+(Lm-50)**2),SC=1+.045*cm,SH=1+.015*cm*T,RT=-2*Math.sqrt(cm**7/(cm**7+25**7))*Math.sin(60*Math.exp(-(((hm-275)/25)**2))*R);
+ return {de:Math.sqrt((dL/SL)**2+(dC/SC)**2+(dH/SH)**2+RT*(dC/SC)*(dH/SH)),dL,dC,dH}}
+const MM_TOL=[[1,'1.0','TIGHT','Parts that touch on one product, e.g. a toe cap against the upper.'],[2,'2.0','STANDARD','Same product, parts that do not touch.'],[3.5,'3.5','LOOSE','Across a collection: a bag that should read as the shoe’s family.']];
+const MM_GU=10;
+function mmCols(){if(mmCols.c)return mmCols.c;const o=[];ML_D.forEach((m,i)=>{const s=ML_SPEC[m.k];if(s)s[2].forEach(h=>o.push({i,k:m.k,n:m.name,h,gu:parseInt(s[1]),lab:hexLab(h)}))});return mmCols.c=o}
+const mmInk=h=>hexLab(h)[0]>58?'#0B0B0C':'#F2EEE6';
+function mmBody(ti,tj){const C=mmCols(),t=C[ti],tol=MM_TOL[tj][0];
+ const R=C.filter(c=>c.k!==t.k).map(c=>({...c,d:de00(t.lab,c.lab),g:c.gu-t.gu})).sort((a,b)=>a.d.de-b.d.de).filter((c,i,A)=>A.findIndex(x=>x.k===c.k)===i).slice(0,8);
+ const v=r=>r.d.de<=tol?(Math.abs(r.g)<=MM_GU?['ok','MATCH']:['gl','HUE OK · GLOSS OFF']):r.d.de<=2*tol?['cl','CLOSE · ADJUST']:['no','NO MATCH'],b=R[0],bv=v(b),nm=c=>String(c.i+1).padStart(2,'0')+' · '+c.n,
+ vc={ok:'#3FA05A',gl:'#FFC23A',cl:'#E6E1D6',no:'#E6E1D6'}[bv[0]],sw=(c,lb)=>`<div class="mm-sw" style="--c:${c.h};--t:${mmInk(c.h)};--g:${(Math.min(c.gu,95)/100*.55).toFixed(2)}"><span>${lb}<small>${esc(nm(c))}</small><small>${c.h} · ${c.gu} GU</small></span></div>`,f=x=>(x>=0?'+':'−')+Math.abs(x).toFixed(1);
+ const say={ok:`Inside ${tol.toFixed(1)} ΔE00 and within ±${MM_GU} GU. Specify both from one master standard and they will read as one colour.`,
+  gl:`Hue is inside ${tol.toFixed(1)} ΔE00, but the gloss is ${Math.abs(b.g)} GU apart. Side by side the ${b.g>0?'shinier':'flatter'} part will look ${b.g>0?'darker and richer':'lighter and chalkier'}: match the finish, not just the colour.`,
+  cl:`${b.d.de.toFixed(2)} ΔE00 is outside ${tol.toFixed(1)} but under ${(2*tol).toFixed(1)}: one dye or pigment adjustment away. Biggest gap: ${Math.abs(b.d.dL)>=Math.abs(b.d.dC)&&Math.abs(b.d.dL)>=Math.abs(b.d.dH)?'lightness':Math.abs(b.d.dC)>=Math.abs(b.d.dH)?'chroma':'hue'}.`,
+  no:`Nothing in the library sits within ${(2*tol).toFixed(1)} ΔE00 of this colour. If a second material has to carry it, it needs its own new standard.`}[bv[0]];
+ return [`<div class="mm-cmp">${sw(t,'TARGET')}${sw(b,'NEAREST · OTHER MATERIAL')}
+  <dl class="mm-read"><div><dt>ΔE00</dt><dd>${b.d.de.toFixed(2)}</dd></div><div><dt>ΔL′</dt><dd>${f(b.d.dL)}</dd></div><div><dt>ΔC′</dt><dd>${f(b.d.dC)}</dd></div><div><dt>Δ GLOSS</dt><dd>${b.g>0?'+':b.g<0?'−':''}${Math.abs(b.g)} GU</dd></div></dl>
+  <p class="mm-v" style="--vc:${vc}"><em>${bv[1]}</em>${esc(say)}</p></div>`,`<div class="tbl-wrap"><table class="tbl mm-t"><caption class="mm-lb" style="text-align:left;caption-side:top">Closest colour in each of the eight nearest materials · tolerance ${tol.toFixed(1)} ΔE00 · gloss ±${MM_GU} GU</caption><thead><tr><th>#</th><th>Material</th><th>Colour</th><th class="n">ΔE00</th><th class="n">Gloss</th><th>Verdict</th></tr></thead><tbody>
+  ${R.map(r=>{const q=v(r);return `<tr class="${q[0]==='ok'||q[0]==='gl'?'hit':''}"><th scope="row">${String(r.i+1).padStart(2,'0')}</th><td><b>${esc(r.n)}</b></td><td>${cmfChip(r.h)}</td><td class="n">${r.d.de.toFixed(2)}<span class="mm-bar" aria-hidden="true"><i style="width:${Math.min(100,r.d.de*10)}%"></i><u style="left:${tol*10}%"></u></span></td><td class="n">${r.gu} GU <small style="opacity:.6">(${r.g>0?'+':r.g<0?'−':'±'}${Math.abs(r.g)})</small></td><td><span class="chip ${q[0]}">${q[1]}</span></td></tr>`}).join('')}
+  </tbody></table></div>`]}
+function mmSec(){const C=mmCols(),t0=C.findIndex(c=>c.k==='carbon');
+ return `<section class="band alt section" id="ml-match"><div class="wrap"><h2 class="sh-title" style="font-size:32px">COLOUR MATCH ACROSS MATERIALS</h2><p class="sh-sub">A knit, a rubber and a plate rarely share a colour by accident. Pick any colour in the library: it is ranked against every other material by CIEDE2000, then checked for gloss.</p>
+ <div class="mm" data-t="${t0}" data-j="1"><div><p class="mm-lb">Target colour · ${C.length} masters from ${ML_D.length} samples</p>
+  <div class="mm-pick" role="group" aria-label="Target colour">${C.map((c,i)=>`<button type="button" data-i="${i}" aria-pressed="${i===t0}" style="--c:${c.h};--t:${mmInk(c.h)}" aria-label="${esc(String(c.i+1).padStart(2,'0')+' '+c.n+' '+c.h)}" title="${esc(String(c.i+1).padStart(2,'0')+' · '+c.n+' · '+c.h)}"><b>${String(c.i+1).padStart(2,'0')}</b></button>`).join('')}</div>
+  <p class="mm-lb">Tolerance · ΔE00</p><div class="mm-tol" role="group" aria-label="Tolerance">${MM_TOL.map((x,j)=>`<button type="button" data-j="${j}" aria-pressed="${j===1}">${x[1]} ${x[2]}</button>`).join('')}</div>
+  <p class="mm-why">${esc(MM_TOL[1][3])}</p></div>
+  <div class="mm-out" aria-live="polite">${mmBody(t0,1)[0]}</div></div><div class="mm-list">${mmBody(t0,1)[1]}</div>
+ <p class="fine" style="margin-top:18px">ΔE00 is CIEDE2000 on the master hex values (sRGB, D65), checked against the published Sharma test pairs. The three tolerances and the ±${MM_GU} GU gloss window are my working rules, not a supplier standard; a real approval happens on physical lab dips in a light booth. Sheen on the two swatches is drawn from the gloss target, as a guide.</p></div></section>`}
+document.addEventListener('click',e=>{const b=e.target.closest('.mm-pick button,.mm-tol button');if(!b)return;const m=b.closest('.mm');
+ if(b.dataset.i!=null)m.dataset.t=b.dataset.i;else{m.dataset.j=b.dataset.j;m.querySelector('.mm-why').textContent=MM_TOL[+b.dataset.j][3]}
+ b.parentNode.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));const o=mmBody(+m.dataset.t,+m.dataset.j);m.querySelector('.mm-out').innerHTML=o[0];m.closest('.wrap').querySelector('.mm-list').innerHTML=o[1]});
+
 document.addEventListener('click',e=>{const b=e.target.closest('.ml-rm button');if(!b)return;const g=document.querySelector(b.closest('.sp-rm')?'.sp-vz':'.ml-grid');b.parentNode.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));g.dataset.rm=b.dataset.rm});
 function mlPage(){
  const grp=[...new Set(ML_D.map(m=>m.g))];
@@ -2371,6 +2436,7 @@ function mlPage(){
   <div class="ml-grid" data-rm="vz">${ML_D.map((m,i)=>`<article class="ml-card${m.nu?' ml-new':''}"><div class="ml-img">${im(['img/mlvz__'+m.k+'.webp',1200,1200],m.name+(m.nu?': new sample, generated in Vizcom':': material sample after the Vizcom pass'),'vz')}${m.nu?'<span class="ml-tag">NEW · VIZCOM</span>':im(['img/ml__'+m.k+'.webp',1200,1200],m.name+': rebuilt sample, Blender render','cg')+`<figure class="ml-ref">${im(['img/mlr__'+m.k+'.webp',m.rw,m.rh],'Crop of the material from my prototype photo')}<figcaption>PHOTO CROP</figcaption></figure>`}</div>
    <p class="ml-n">${String(i+1).padStart(2,'0')} · ${esc(m.g.toUpperCase())}</p><h3>${esc(m.name.toUpperCase())}</h3><p>${esc(m.note)}</p></article>`).join('')}</div></div></section>
  ${mlSpec()}
+ ${mmSec()}
  <section class="band dark section"><div class="wrap"><h2 class="sh-title" style="font-size:32px">HOW THEY WERE BUILT</h2>
   <div class="cols cols4"><div><h3>READ</h3><p>Crop the material out of the prototype photo, so nothing of the shoe shows. Measure the repeat: stitch gauge, lug pitch, pocket size. Sample the colours. The crops are small, so each one is enlarged with a super-resolution model; the rebuild carries the full detail.</p></div>
   <div><h3>REBUILD</h3><p>Build each structure the way it is made: knits as interlocking yarn loops, carbon as 2×2 twill tows with a clear coat, the lattice as printed struts and nodes, rubbers as displaced lugs, inlays and dimples, clear rubber as a transmissive slab over the knit it covers.</p></div>

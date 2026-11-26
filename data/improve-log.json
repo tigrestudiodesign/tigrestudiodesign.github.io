@@ -508,5 +508,14 @@
    "index.html",
    "data/improve-log.json"
   ]
+ },
+ {
+  "date": "2026-11-26",
+  "project": "material-library",
+  "change": "New COLOUR MATCH ACROSS MATERIALS section: a live CIEDE2000 matcher over all 42 master colours in the library (checked against the Sharma test pairs). Pick a target colour and a tolerance (1.0 tight / 2.0 standard / 3.5 loose); it shows the nearest colour in another material as a side-by-side swatch with sheen drawn from the gloss target, the ΔE00, ΔL′, ΔC′ and gloss gap, a verdict (match / hue ok but gloss off / close / no match) and a ranked table of the closest colour in each of the eight nearest materials. Default opens on the carbon plate: same #111312 as the two-tone rubber, 80 GU apart. Mobile table trimmed to fit 390 px.",
+  "files": [
+   "index.html",
+   "data/improve-log.json"
+  ]
  }
 ]
