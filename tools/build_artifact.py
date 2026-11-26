@@ -86,6 +86,8 @@ s = re.sub(r"'(downloads/[^']+\.pdf)'", lambda m: "'" + LIVE + m.group(1) + "'",
 s = re.sub(r'(href="\$\{[A-Za-z_.]+\}") download', r'\1 target="_blank" rel="noopener"', s)
 s = re.sub(r'(<a\b[^>]*?)\sdownload(?=[\s>])(?![^>]*target=)', r'\1 target="_blank" rel="noopener"', s)
 s = re.sub(r'(<a\b[^>]*?)\sdownload(?=[\s>])', r'\1', s)
+# microsites (own folders) live only on the live site
+for _m in ('ohm/','pantera/','found-forms/','attractor-systems/'): s = s.replace("'" + _m + "'", "'" + LIVE + _m + "'").replace('href="' + _m + '"', 'href="' + LIVE + _m + '" target="_blank" rel="noopener"')
 s = re.sub(r'<a href="(img/[^"]+)"', lambda m: '<a href="' + LIVE + m.group(1) + '" target="_blank" rel="noopener"', s)
 # literal <img src="img/..."> in templates -> filled from the bundle
 BLANK = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='
