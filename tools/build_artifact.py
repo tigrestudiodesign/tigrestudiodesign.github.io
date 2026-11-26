@@ -120,7 +120,8 @@ s = s.replace('</body>', '<script>document.querySelectorAll("img[data-pk]").forE
 # cover for the artifact's gallery card and link previews (tools/make_thumb.py makes it)
 THUMB = os.path.exists('tools/artifact_thumb.png')
 if THUMB:
-    s = s.replace('</title>', '</title><link rel="artifact-thumbnail" href="thumb.png">', 1)
+    _h = s.find('<head>'); assert 0 <= _h < 4000, 'no early <head> to hold the thumbnail tag'
+    s = s[:_h + 6] + '<link rel="artifact-thumbnail" href="thumb.png">' + s[_h + 6:]   # must sit in the first 8 KB of the page
     open(OUT + '/thumb.png', 'wb').write(open('tools/artifact_thumb.png', 'rb').read())
 _ix = OUT + '/index.html'
 if os.path.islink(_ix): os.remove(_ix)
