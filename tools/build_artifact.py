@@ -117,6 +117,11 @@ i = s.find('<script>')
 assert i > 0
 s = s[:i + 8] + LOADER + s[i + 8:]
 s = s.replace('</body>', '<script>document.querySelectorAll("img[data-pk]").forEach(pkFill)</script></body>', 1)
+# cover for the artifact's gallery card and link previews (tools/make_thumb.py makes it)
+THUMB = os.path.exists('tools/artifact_thumb.png')
+if THUMB:
+    s = s.replace('</title>', '</title><link rel="artifact-thumbnail" href="thumb.png">', 1)
+    open(OUT + '/thumb.png', 'wb').write(open('tools/artifact_thumb.png', 'rb').read())
 _ix = OUT + '/index.html'
 if os.path.islink(_ix): os.remove(_ix)
 open(_ix, 'w').write(s)
@@ -131,6 +136,7 @@ for f in sorted(set(re.findall(r'url\((fonts/[^)]+)\)', s)) | css | {'data/ka_at
             if os.path.islink(dst) or os.path.exists(dst): os.remove(dst)   # never write through a symlink into the repo
             open(dst, 'wb').write(open(f, 'rb').read())
         files.append(f)
+if THUMB: files.append('thumb.png')
 json.dump(files, open(OUT + '/files.json', 'w'), indent=0)
 tot = sum(os.path.getsize(OUT + '/' + f) for f in files)
 big = max(os.path.getsize(OUT + '/' + f) for f in files)
