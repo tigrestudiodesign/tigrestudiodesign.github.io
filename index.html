@@ -131,6 +131,10 @@ table.spc-t td{vertical-align:middle}.spc-chip{display:inline-flex;align-items:c
 .spc-top{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:36px;align-items:start;margin-top:18px}
 .spc-draw{margin:0;background:#F2EEE6;background-image:linear-gradient(#E2DCD0 1px,transparent 1px),linear-gradient(90deg,#E2DCD0 1px,transparent 1px);background-size:20px 20px;border:1px solid #D6CFC2}
 .spc-svg{display:block;width:100%;height:auto}.spc-svg .pin line{stroke:#FF5A1F;stroke-width:1.5}.spc-svg .pin circle{fill:#FF5A1F}.spc-svg .pin text{font:700 11px var(--mono);fill:#fff;text-anchor:middle}
+@media (max-width:600px){.spc-hint{display:none}}
+.spc-svg .pin text.gu{font:700 9px var(--mono);letter-spacing:.06em;fill:#FF5A1F;paint-order:stroke;stroke:#F2EEE6;stroke-width:3px;stroke-linejoin:round}
+.spc-svg .dim line,.spc-svg .dim rect{stroke:#1A1A1C;stroke-width:.75;fill:none}.spc-svg .dim .tk{stroke-width:1.4}.spc-svg .dim .sb rect.f{fill:#1A1A1C}
+.spc-svg .dim text{font:600 8.5px var(--mono);letter-spacing:.12em;fill:#1A1A1C}.spc-svg .dim .cap2{fill:#6b6459}.spc-svg .tb rect{fill:#F2EEE6}
 .spc-svg .big{font:900 44px 'Inter Display',var(--sans)}.spc-svg .sm{font:700 10px var(--mono);letter-spacing:.08em}.spc-svg .mono{font:700 14px var(--mono)}.spc-svg .vfd{font:700 56px var(--mono)}.spc-svg .cap{font:600 9px var(--mono);letter-spacing:.16em;fill:#8F8A80}
 .spc-mats{list-style:none;margin:0;padding:0;border-top:2px solid currentColor}
 .spc-mats li{display:grid;grid-template-columns:30px 46px minmax(0,1fr) 108px;gap:6px 12px;align-items:start;padding:12px 0;border-bottom:1px solid color-mix(in srgb,currentColor 14%,transparent)}
@@ -4208,7 +4212,7 @@ const SP_CMF={"t120":[["t120_sleeve","Printed sleeve board","SBS paperboard · 4
 /* CMF callout drawings: each tape's source object in front elevation, filled from its own CMF spec, pins match the material list */
 function spcDraw(id){
  const R=SP_CMF[id], c=(i,j=0)=>(R[i][5][j]||R[i][5][0])[0];
- const pin=(n,px,py,tx,ty)=>`<g class="pin" style="--d:${n*.12}s"><line x1="${px}" y1="${py}" x2="${tx}" y2="${ty}"/><circle cx="${tx}" cy="${ty}" r="3.5"/><circle cx="${px}" cy="${py}" r="12"/><text x="${px}" y="${py+4}">${String(n).padStart(2,'0')}</text></g>`;
+ const pin=(n,px,py,tx,ty)=>{const r=Math.abs(tx-px)>8?tx>px:px>300,gl=(R[n-1]||[])[3]||'';return `<g class="pin" style="--d:${n*.12}s"><line x1="${px}" y1="${py}" x2="${tx}" y2="${ty}"/><circle cx="${tx}" cy="${ty}" r="3.5"/><circle cx="${px}" cy="${py}" r="12"/><text x="${px}" y="${py+4}">${String(n).padStart(2,'0')}</text>${gl?`<text class="gu" x="${r?px-17:px+17}" y="${py+3.5}" style="text-anchor:${r?'end':'start'}">${gl}</text>`:''}</g>`};
  const L=`stroke="#1A1A1C" stroke-width="2" stroke-linejoin="round"`;
  let d='';
  if(id==='t120'){
@@ -4263,7 +4267,16 @@ function spcDraw(id){
   ${pin(1,186,30,186,190)}${pin(2,560,40,520,90)}${pin(3,414,30,414,225)}${pin(4,40,330,110,290)}${pin(5,300,420,300,352)}`;
  }
  const k=d.indexOf('<g class="pin"');
- return `<svg viewBox="0 0 600 440" class="spc-svg" role="img" aria-label="Front elevation of the ${id.toUpperCase()} source object, coloured from its CMF spec, animated"><g class="z-sh" aria-hidden="true">${d.slice(0,k).replace(/ data-spd| id="[^"]*"/g,'')}</g><g class="z-obj">${d.slice(0,k)}</g><g class="z-pin">${d.slice(k)}</g><text x="12" y="432" class="cap">FRONT ELEVATION · NTS · CMF CALLOUT</text></svg>`;
+ const B={t120:[60,250,40,380,104,190,'VHS SLEEVE'],t60:[120,480,24,294,330,248,'TERMINAL'],t90:[40,560,108,336,440,193,'HI-FI FASCIA'],t160:[30,560,88,350,148,73,'HANDHELD'],c46:[24,576,52,388,300,183,'CLUSTER']}[id];
+ const [x0,x1,y0,y1,wm,hm,nm]=B,pxmm=(x1-x0)/wm,bm=[10,20,25,50,100].find(m=>m*pxmm>=60)||100,bw=bm*pxmm;
+ const tk=(x,y)=>`<line x1="${x-4}" y1="${y+4}" x2="${x+4}" y2="${y-4}" class="tk"/>`;
+ const dims=`<g class="dim" aria-hidden="true">
+  <line x1="${x0}" y1="${y0-6}" x2="${x0}" y2="-22"/><line x1="${x1}" y1="${y0-6}" x2="${x1}" y2="-22"/><line x1="${x0}" y1="-16" x2="${x1}" y2="-16"/>${tk(x0,-16)}${tk(x1,-16)}<text x="${(x0+x1)/2}" y="-20" text-anchor="middle">${wm} MM</text>
+  <line x1="${x0-6}" y1="${y0}" x2="-24" y2="${y0}"/><line x1="${x0-6}" y1="${y1}" x2="-24" y2="${y1}"/><line x1="-18" y1="${y0}" x2="-18" y2="${y1}"/>${tk(-18,y0)}${tk(-18,y1)}<text x="-22" y="${(y0+y1)/2}" text-anchor="middle" transform="rotate(-90 -22 ${(y0+y1)/2})">${hm} MM</text>
+  <g class="sb"><rect x="-24" y="452" width="${bw/2}" height="5" class="f"/><rect x="${-24+bw/2}" y="452" width="${bw/2}" height="5"/><text x="-24" y="448">0</text><text x="${-24+bw}" y="448" text-anchor="end">${bm} MM</text></g>
+  <text x="${-12+bw}" y="458" class="cap2">${nm} · NOMINAL</text>
+  <g class="tb"><rect x="318" y="440" width="196" height="30"/><line x1="418" y1="440" x2="418" y2="470"/><line x1="318" y1="455" x2="514" y2="455"/><text x="324" y="451">TIGRE STUDIO</text><text x="324" y="466">STANDARD PLAY</text><text x="424" y="451">DWG SP-${id.toUpperCase()}-01</text><text x="424" y="466">REV B · UNITS MM</text></g></g>`;
+ return `<svg viewBox="-40 -40 680 520" class="spc-svg" role="img" aria-label="Front elevation of the ${id.toUpperCase()} source object, coloured from its CMF spec, with overall dimensions, scale bar and gloss at 60 degrees on every callout, animated"><g class="z-sh" aria-hidden="true">${d.slice(0,k).replace(/ data-spd| id="[^"]*"/g,'')}</g><g class="z-obj">${d.slice(0,k)}</g>${dims}<g class="z-pin">${d.slice(k)}</g><text x="-24" y="474" class="cap">FRONT ELEVATION · CMF CALLOUT · GLOSS AT 60°</text></svg>`;
 }
 /* CMF SPEC (shared): part, material, process, gloss target (GU at 60°, set from render roughness), role, colours. Lab computed from hex. */
 const CMF_P={
