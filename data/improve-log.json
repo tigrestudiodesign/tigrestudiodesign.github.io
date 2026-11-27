@@ -541,5 +541,16 @@
    "index.html",
    "data/improve-log.json"
   ]
+ },
+ {
+  "date": "2026-11-27",
+  "project": "p11",
+  "change": "THE FILMS rebuilt: each of Nike's three launch films now has a FIG-style caption (FILM 01-03, label, format and running time) and a one-line note, with FILM 03 ON THE LINE tied to the method-of-make chapters Henry's manuals are written for. Added an accessible pause/play button on every film (keyboard, aria-labels, user pause is respected on scroll) and prefers-reduced-motion stops autoplay. The 9:16 film no longer opens on a half-black frame: trimmed its black 0.8 s lead-in and replaced the poster with a frame of finished units. Descriptive aria-labels replace 'Tuned Air film'.",
+  "files": [
+   "index.html",
+   "img/ta__film004.mp4",
+   "img/ta__poster004.webp",
+   "data/improve-log.json"
+  ]
  }
 ]
