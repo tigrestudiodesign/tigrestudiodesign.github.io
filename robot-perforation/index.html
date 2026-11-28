@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Robot Perforation · Tigre Studio</title>
-<meta name="description" content="An unofficial brand and CMF study: a tracked utility humanoid modelled in Rhino 9, shot from six scripted cameras, rendered in Vizcom and re-liveried in a calm teal and black, in the plain, direct register Agility uses for Digit.">
-<meta property="og:title" content="Robot Perforation · Tigre Studio">
-<meta property="og:description" content="One Rhino model, six scripted cameras, two liveries. An unofficial brand and CMF study in a teal and black humanoid language.">
+<meta name="description" content="UNIT 1024: an unofficial brand system for a humanoid robot. Every unit gets its own perforated mark, plus a design system, signage, two narrated films and a live perception view.">
+<meta property="og:title" content="UNIT 1024 · Robot Perforation · Tigre Studio">
+<meta property="og:description" content="Every robot gets its own mark. A brand system, two narrated films and a live perception view for a humanoid robot. Unofficial concept by Tigre Studio.">
 <meta name="twitter:card" content="summary_large_image"><meta property="og:image" content="https://tigrestudiodesign.github.io/robot-perforation/img/rp__og.jpg">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Crect width='28' height='28' fill='%23132630'/%3E%3Cpath d='M4 4h20v6h-7v14h-6V10H4z' fill='%232FA39E'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="case.css">
@@ -212,13 +212,60 @@ body{background:var(--paper);color:var(--ink)}
 .film video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:#000}
 .film-meta{display:flex;flex-wrap:wrap;gap:10px 28px;margin:16px 0 0;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
 .film-meta b{color:#132630}
+
+/* 60-second read */
+.s60{padding:56px 0 40px}
+.s60 .head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;border-bottom:2px solid var(--ink);padding-bottom:12px;margin-bottom:28px}
+.s60 h2{font-weight:900;font-size:clamp(28px,4vw,56px);letter-spacing:-.03em;line-height:.92;margin:0}
+.s60 .clock{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:#17625f}
+.s60 .rows{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:32px;align-items:start}
+@media(max-width:900px){.s60 .rows{grid-template-columns:1fr}}
+.s60 ol{list-style:none;margin:0;padding:0;counter-reset:s}
+.s60 ol li{counter-increment:s;display:grid;grid-template-columns:44px 1fr;gap:6px 12px;padding:14px 0;border-top:1px solid var(--line)}
+.s60 ol li:first-child{border-top:0;padding-top:0}
+.s60 ol li:before{content:"0" counter(s);font-family:var(--mono);font-size:12px;color:#17625f;padding-top:5px}
+.s60 ol b{display:block;font-weight:900;text-transform:uppercase;letter-spacing:-.01em;font-size:clamp(17px,1.5vw,21px);line-height:1.05;margin-bottom:4px}
+.s60 ol p{margin:0;font-size:15.5px;line-height:1.5;color:#2c3f48}
+.s60 .pics{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.s60 .pics figure{margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#fff}
+.s60 .pics figure.w{grid-column:1/-1}
+.s60 .pics img{display:block;width:100%;height:auto}
+.s60 .pics figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:#33464f;padding:8px 12px}
+.s60 .cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.s60 .cta a{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;padding:12px 16px;border-radius:999px;border:1px solid var(--ink);color:var(--ink)}
+.s60 .cta a.p{background:var(--ink);color:#fff}
+.s60 .cta a:hover{border-color:#17625f}
+.s60 .start{margin-top:28px;background:var(--ink);color:#f4f5f5;border-radius:18px;padding:22px 24px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+@media(max-width:900px){.s60 .start{grid-template-columns:1fr}}
+.s60 .start h3{grid-column:1/-1;margin:0;font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:#7fe3dc;font-weight:700}
+.s60 .start b{display:block;font-weight:900;text-transform:uppercase;font-size:18px;margin-bottom:6px}
+.s60 .start span{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:#9fb1b8;display:block;margin-bottom:6px}
+.s60 .start p{margin:0;font-size:14.5px;line-height:1.5;color:#d5dee2}
+
+/* ruled out */
+.ko{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media(max-width:900px){.ko{grid-template-columns:1fr}}
+.ko article{position:relative;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.ko .art{position:relative;aspect-ratio:4/3;background:#132630;display:grid;place-items:center;overflow:hidden}
+.ko .art svg{width:100%;height:100%;display:block}
+.ko .x{position:absolute;top:12px;right:12px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;background:#b42318;color:#fff;padding:5px 9px;border-radius:999px}
+.ko .tx{padding:16px 18px 18px}
+.ko .n{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:#17625f}
+.ko b{display:block;font-weight:900;text-transform:uppercase;font-size:20px;line-height:1;margin:8px 0}
+.ko p{margin:0;font-size:15px;line-height:1.5;color:#2c3f48}
+.ko p+p{margin-top:8px}
+.ko .why{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:#5c6a72;text-transform:uppercase}
+.won{margin-top:16px;border-radius:16px;background:#e4e8ea;padding:18px 20px;display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.won canvas{width:88px;height:88px;border-radius:12px;background:#132630}
+.won p{margin:0;flex:1 1 320px;font-size:15.5px;line-height:1.5}
+.won b{text-transform:uppercase;font-weight:900}
 </style>
 </head>
 <body>
 <a href="#main" class="mono" style="position:absolute;left:-999px">Skip to content</a>
 <nav class="nav" aria-label="ROBOT PERFORATION sections"><div class="wrap">
  <a href="https://tigrestudiodesign.github.io/" style="text-decoration:none"><b>TIGRE STUDIO</b> <span class="mono">/ ROBOT PERFORATION</span></a>
- <ul><li><a href="#film">Film</a></li><li><a href="#turntable">Turntable</a></li><li><a href="#vision">Robot vision</a></li><li><a href="#brief">Brand brief</a></li><li><a href="#identity">Identity</a></li><li><a href="#system">System</a></li><li><a href="#details">Details</a></li><li><a href="#inuse">In use</a></li><li><a href="#livery">Livery</a></li><li><a href="#pipeline">Pipeline</a></li><li><a href="#set">The set</a></li><li><a href="https://tigrestudiodesign.github.io/">Portfolio ↗</a></li></ul>
+ <ul><li><a href="#film">Film</a></li><li><a href="#turntable">Turntable</a></li><li><a href="#vision">Robot vision</a></li><li><a href="#brief">Brand brief</a></li><li><a href="#identity">Identity</a></li><li><a href="#system">System</a></li><li><a href="#details">Details</a></li><li><a href="#onsite">On site</a></li><li><a href="#inuse">In use</a></li><li><a href="#livery">Livery</a></li><li><a href="#pipeline">Pipeline</a></li><li><a href="#set">The set</a></li><li><a href="https://tigrestudiodesign.github.io/">Portfolio ↗</a></li></ul>
 </div></nav>
 <div class="stripe"></div>
 <main id="main">
@@ -234,8 +281,35 @@ body{background:var(--paper);color:var(--ink)}
 </div></header>
 
 
+
+<section class="s60" id="sixty" aria-labelledby="s60h"><div class="wrap">
+ <div class="head"><h2 id="s60h">THE 60-SECOND VERSION</h2><span class="clock">READ TIME ≈ 1 MIN · DEPTH BELOW</span></div>
+ <div class="rows">
+  <ol>
+   <li><div><b>The problem</b><p>A fleet of identical robots on one floor. People need to tell them apart, read what each one is doing, and trust it, from across a warehouse.</p></div></li>
+   <li><div><b>The idea</b><p>Every robot gets its own mark. A 32 × 32 perforation grid holds one chevron that never moves; the unit's number seeds the rest of the field. Same number, same mark, forever. No database, no artwork per robot.</p></div></li>
+   <li><div><b>The system</b><p>The mark scales from a 16 px icon to a base-plate decal. Around it: tokens, icons, components, status lights, signage and a contrast-checked palette, documented so other people can use it without me.</p></div></li>
+   <li><div><b>The story</b><p>Two short films and a live perception view explain how it sees and why it slows down near people: inside 3.2 m it slows, inside 1.6 m it waits.</p></div></li>
+  </ol>
+  <div>
+   <div class="pics">
+    <figure class="w"><img src="img/rp__id_4.webp" alt="Fleet sheet: twenty unit marks, each a different perforation field around the same teal chevron, with unit numbers below" width="2200" height="1375" loading="lazy"><figcaption>01 · EVERY UNIT ITS OWN MARK</figcaption></figure>
+    <figure><img src="img/rp__id_5.webp" alt="The mark applied to the robot: chest display and base-plate decal callouts" width="2200" height="1375" loading="lazy"><figcaption>02 · ON THE MACHINE</figcaption></figure>
+    <figure><img src="img/rp__onsite_aisle.webp" alt="Warehouse aisle with the STOP &amp; LOOK floor decal and a ZONE B-04 sign hanging above" width="2400" height="1350" loading="lazy"><figcaption>03 · ON THE FLOOR</figcaption></figure>
+   </div>
+   <div class="cta"><a class="p" href="#film">▶ Watch the 78 s film</a><a href="#identity">Try a unit number</a><a href="system/">Open the design system ↗</a><a href="UNIT-1024-Two-Pager.pdf" download>Two-page PDF ↓</a></div>
+  </div>
+ </div>
+ <div class="start">
+  <h3>HOW I'D START ON A BRAND TEAM LIKE YOURS</h3>
+  <div><span>WEEKS 1–4 · LISTEN</span><b>Learn the system</b><p>Learn the guidelines and the people who use them. Audit where the brand shows up: on the robot, on customer sites, at shows, in sales decks.</p></div>
+  <div><span>WEEKS 5–8 · SHIP</span><b>Templates people reuse</b><p>Turn the most-rebuilt pieces (slides, social, event graphics) into templates with clear rules, so teams stop starting from zero.</p></div>
+  <div><span>WEEKS 9–12 · PROVE</span><b>One on-site system</b><p>Decals, signage and status language for a robot working near people, tested on a real floor and documented for the next site.</p></div>
+ </div>
+</div></section>
+
 <section class="sec" id="tour" style="padding-top:0"><div class="wrap">
- <div class="tour-h"><h2>THREE MINUTES? START HERE</h2><span class="mono">Made for the Brand Designer III application · <a href="UNIT-1024-Brand-Guidelines.pdf" download style="color:#17625f">Guidelines PDF ↓</a> · <a href="deck/" style="color:#17625f">Review deck ↗</a> · <a href="deck/UNIT-1024-Portfolio-Review.pdf" download style="color:#17625f">Deck PDF ↓</a></span></div>
+ <div class="tour-h"><h2>GO DEEPER</h2><span class="mono">Made for the Brand Designer III application · <a href="UNIT-1024-Brand-Guidelines.pdf" download style="color:#17625f">Guidelines PDF ↓</a> · <a href="deck/" style="color:#17625f">Review deck ↗</a> · <a href="deck/UNIT-1024-Portfolio-Review.pdf" download style="color:#17625f">Deck PDF ↓</a></span></div>
  <div class="tour">
   <a href="#film"><span class="n">00 · WATCH FIRST</span><b>Two short films</b><span class="d">78 s on how it sees, 41 s on the brand system. Sound on.</span></a>
   <a href="#identity"><span class="n">01 · IDENTITY</span><b>A mark per unit</b><span class="d">A 1,024-position grid, one fixed chevron, a field generated from each robot's number. Try your own.</span></a>
@@ -368,6 +442,17 @@ body{background:var(--paper);color:var(--ink)}
 </div></section>
 
 
+
+<section class="sec" id="ruled-out"><div class="wrap">
+ <div class="sec-h"><h2>RULED OUT, <em>AND WHY</em></h2><span class="mono">Three obvious directions · each one fails a real test on the floor</span></div>
+ <div class="ko">
+  <article><div class="art" id="koA" role="img" aria-label="Six robots shown as identical marks: the same perforated tile repeated six times"></div><div class="tx"><span class="n">A · ONE LOGO FOR THE FLEET</span><b>Same mark on every robot</b><p>The default: one logo, applied everywhere. Clean, familiar, cheap.</p><p><span class="why">Failed:</span> twenty identical robots wearing twenty identical logos. When one stops, nobody on the floor can say which.</p></div><span class="x" aria-hidden="true">✕ RULED OUT</span></article>
+  <article><div class="art" id="koB" role="img" aria-label="A robot panel wrapped in black and yellow diagonal hazard stripes"></div><div class="tx"><span class="n">B · HAZARD-STRIPE LIVERY</span><b>Look industrial, look safe</b><p>Black and yellow chevrons read "machine" instantly and look tough on a trade-show floor.</p><p><span class="why">Failed:</span> yellow and black belong to safety. If the brand wears them every day, the real warnings get quieter. They stay reserved for caution only.</p></div><span class="x" aria-hidden="true">✕ RULED OUT</span></article>
+  <article><div class="art" id="koC" role="img" aria-label="A plain stencil number 1024 in a box, with no mark"></div><div class="tx"><span class="n">C · NUMBER ONLY</span><b>Just paint the number</b><p>Honest and operational: a big stencil number, like a forklift or a rail car.</p><p><span class="why">Failed:</span> it reads up close and disappears at 20 m. It also gives marketing nothing to hold, and four digits are not a brand.</p></div><span class="x" aria-hidden="true">✕ RULED OUT</span></article>
+ </div>
+ <div class="won"><canvas id="koW" width="176" height="176" aria-label="The winning mark for unit 1024"></canvas><p><b>What won keeps the good part of each.</b> One chevron that never moves (A's recognition), a field you can tell apart across the floor (what A lacked), safety colours kept for safety (B's lesson), and the number still printed beside it (C's honesty).</p></div>
+</div></section>
+
 <section class="sec" id="system"><div class="wrap">
  <div class="sec-h"><h2>THE SYSTEM, <em>LIVE</em></h2><span class="mono">Unit System v1.0 · its own site</span></div>
  <p class="lede" style="margin:0 0 30px;max-width:70ch">A mark and a palette aren't a brand until other people can use them without me in the room. So I built the whole design system as a working site. One tokens file drives the colours, type, spacing and motion. 18 icons are drawn on the chevron's geometry. 10 components are built only from tokens. A live fleet console uses nothing but those parts. A contrast matrix is computed from the tokens, so it can't drift from them, and a governance page says how the system changes.</p>
@@ -408,6 +493,17 @@ body{background:var(--paper);color:var(--ink)}
    <li><span class="n">10</span><div><b>One source, no drift</b><p>Colours, type, spacing and motion live in one tokens.json. The CSS, the site, the console and the contrast matrix are generated from it, so they can't disagree.</p></div></li>
   </ol>
  </div>
+</div></section>
+
+
+<section class="sec" id="onsite"><div class="wrap">
+ <div class="sec-h"><h2>ON SITE: <em>THE PRINT KIT</em></h2><span class="mono">Floor decal · zone blade · wall poster · dock panel · visualized in Vizcom</span></div>
+ <p style="max-width:760px;font-size:17px;line-height:1.55;margin:0 0 22px;color:#2c3f48">A brand for robots that work next to people lives on the floor, not on a screen. Here the print kit is shown where it would actually go: a STOP &amp; LOOK decal where the aisle meets the robot lane, a zone blade hung at 3.2 m, and the caution poster beside a charging dock.</p>
+ <div style="display:grid;gap:16px">
+  <figure style="margin:0"><img src="img/rp__onsite_aisle.webp" alt="A warehouse aisle with orange pallet racking. On the concrete floor, a round dark STOP &amp; LOOK decal with yellow hazard border; above the aisle hangs a dark ZONE B-04 sign" width="2400" height="1350" loading="lazy" style="display:block;width:100%;height:auto;border-radius:16px"><figcaption class="mono" style="margin-top:8px">01 · AISLE · 600 mm Ø anti-slip floor decal + double-sided zone blade, 450 × 760 mm</figcaption></figure>
+  <figure style="margin:0"><img src="img/rp__onsite_wall.webp" alt="A painted block wall in a warehouse: a white CAUTION, PEOPLE + ROBOTS WORK HERE poster and a teal UNIT CHARGING, DOCK 2 panel above a grey charging dock" width="2400" height="1350" loading="lazy" style="display:block;width:100%;height:auto;border-radius:16px"><figcaption class="mono" style="margin-top:8px">02 · CHARGING BAY · caution poster + dock panel, 450 × 600 mm</figcaption></figure>
+ </div>
+ <p class="mono" style="margin-top:14px;max-width:900px;line-height:1.6">How these were made: I blocked out each scene in perspective, rendered the environment in Vizcom, then placed the actual print files back on top in perspective, so every word and mark is the real artwork, not regenerated. These are visualizations, not photos of a real site.</p>
 </div></section>
 
 <section class="sec" id="inuse"><div class="wrap">
@@ -725,6 +821,20 @@ draw()})();
  play.addEventListener('click',function(){if(timer){stop();return}timer=setInterval(function(){set(cur+1)},RM?2400:1100);play.setAttribute('aria-pressed','true');play.textContent='❚❚ Stop'});
  var A=document.getElementById('cmpA'),B=document.getElementById('cmpB'),vb=[].slice.call(document.querySelectorAll('#vpick button'));
  vb.forEach(function(b){b.addEventListener('click',function(){vb.forEach(function(o){o.setAttribute('aria-pressed',o===b?'true':'false')});A.src='img/rp__rhino_'+b.dataset.v+'.webp';B.src='img/rp__raw_'+b.dataset.v+'.webp'})});
+})();
+</script>
+
+<script>
+(function(){if(!window.UnitMark)return;
+var A=document.getElementById('koA'),B=document.getElementById('koB'),C=document.getElementById('koC');
+var one=UnitMark.svg(1024,{size:100,field:'#dfe5e8',hot:'#2fa39e',bg:'none'}).replace(/<\?xml[^>]*>/,'');
+var h='<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#132630"/>';
+for(var i=0;i<6;i++){var x=38+(i%3)*112,y=40+Math.floor(i/3)*120;h+='<svg x="'+x+'" y="'+y+'" width="96" height="96" viewBox="0 0 100 100">'+one.replace(/^[\s\S]*?<svg[^>]*>/,'').replace(/<\/svg>\s*$/,'')+'</svg><text x="'+(x+48)+'" y="'+(y+112)+'" fill="#9fb1b8" font-family="monospace" font-size="10" text-anchor="middle">UNIT ????</text>'}
+A.innerHTML=h+'</svg>';
+var b='<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="hz" width="40" height="40" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="40" height="40" fill="#f2c230"/><rect width="20" height="40" fill="#0b1317"/></pattern></defs><rect width="400" height="300" fill="#e4e8ea"/><rect x="110" y="40" width="180" height="220" rx="28" fill="url(#hz)"/><rect x="150" y="80" width="100" height="56" rx="10" fill="#0b1317"/><circle cx="176" cy="108" r="9" fill="#2fa39e"/><circle cx="224" cy="108" r="9" fill="#2fa39e"/><rect x="160" y="200" width="80" height="28" rx="6" fill="#e23b2e"/><text x="200" y="219" fill="#fff" font-family="monospace" font-size="12" text-anchor="middle" font-weight="700">STOP</text><text x="200" y="285" fill="#5c6a72" font-family="monospace" font-size="11" text-anchor="middle">WHICH YELLOW IS THE WARNING?</text></svg>';
+B.innerHTML=b;
+C.innerHTML='<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#f4f5f5"/><rect x="70" y="80" width="260" height="120" rx="8" fill="none" stroke="#132630" stroke-width="6"/><text x="200" y="172" fill="#132630" font-family="Inter Display, Arial Black, sans-serif" font-weight="900" font-size="88" text-anchor="middle" letter-spacing="-2">1024</text><text x="200" y="245" fill="#5c6a72" font-family="monospace" font-size="11" text-anchor="middle">CLEAR AT 2 M · GONE AT 20 M</text></svg>';
+var w=document.getElementById('koW');if(w){var x=w.getContext('2d');UnitMark.draw(x,8,8,160,1024,{field:'#dfe5e8',hot:'#2fa39e'})}
 })();
 </script>
 </body>
