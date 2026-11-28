@@ -82,7 +82,7 @@ meter($('#m1'),72);meter($('#m2'),18);
  $$('#seg button').forEach(function(b){b.addEventListener('click',function(){$$('#seg button').forEach(function(o){o.setAttribute('aria-pressed',o===b)})})})})();
 
 // templates
-(function(){var L=[['rp__r_booth_wall','Booth wall','r01'],['rp__r_sign','Facility sign','r02'],['rp__r_explainer','Explainer','r03'],['rp__r_slide1','Slide','r04'],['rp__r_social1','Social','r05'],['rp__r_library','Asset library','r06'],['rp__r_web_desktop','Web','r08'],['rp__r_anatomy','Anatomy','r09']];
+(function(){var L=[['rp__r_booth_wall','Booth wall','r01'],['rp__r_sign','Facility sign','r02'],['rp__r_explainer','Explainer','r03'],['rp__r_slide1','Slide','r04'],['rp__r_social1','Social','r05'],['rp__r_library','Asset library','r06'],['rp__r_web_desktop','Web','r08'],['rp__r_wayfinding','Wayfinding','r02b']];
  $('#tpl').innerHTML=L.map(function(a){return '<a href="../#'+a[2]+'"><img src="../img/'+a[0]+'.webp" alt="'+a[1]+' template" loading="lazy"><span>'+a[1]+' ↗</span></a>'}).join('')})();
 
 // motion
