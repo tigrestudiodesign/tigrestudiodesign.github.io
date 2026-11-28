@@ -116,6 +116,15 @@ body{background:var(--paper);color:var(--ink)}
 .fab th{font-family:var(--mono);font-weight:400;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);text-align:left;padding:8px 10px 8px 0;width:32%;vertical-align:top;border-bottom:1px solid var(--line)}
 .fab td{padding:8px 0;border-bottom:1px solid var(--line)}
 .note2{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--mute);text-transform:uppercase;border-left:3px solid var(--signal);padding-left:10px}
+.brief-map{width:100%;border-collapse:collapse;margin:0 0 40px;background:#fff;border:1.5px solid var(--ink);border-radius:16px;overflow:hidden}
+.brief-map th,.brief-map td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--line);font-size:15px;vertical-align:top}
+.brief-map thead th{font-family:var(--mono);font-weight:400;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);background:var(--steel)}
+.brief-map td:first-child{color:#33464f;width:55%}
+.brief-map a{color:var(--teal-d);font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;margin-right:12px;white-space:nowrap}
+.brief-map a:hover{text-decoration:underline}
+.vid{border-radius:14px;overflow:hidden;background:var(--ink)}
+.vid video{display:block;width:100%;height:auto}
+@media(max-width:700px){.brief-map td:first-child{width:auto}.brief-map th,.brief-map td{padding:10px}}
 </style>
 </head>
 <body>
@@ -132,7 +141,7 @@ body{background:var(--paper);color:var(--ink)}
  <h1>ROBOT<span>.</span><br>PERFORATION</h1>
  <p class="tag">DRAWN FOR THE DULL, HEAVY, REPEATABLE WORK.</p>
  <p class="lede">A tracked utility humanoid I modelled in Rhino 9. Six scripted cameras, one material direction in Vizcom, one studio. Then a second job: dress the same robot in a humanoid maker's brand language, a calm teal and black, plain light studios and plain words, and show exactly how I got there, including the renders I threw away.</p>
- <div class="spec"><div><span class="mono">Scripted cameras</span><b>6</b></div><div><span class="mono">Liveries</span><b>2</b></div><div><span class="mono">Vizcom passes</span><b>3</b></div><div><span class="mono">Brand pieces</span><b>12</b></div><div><span class="mono">Master size</span><b>3840 × 2160</b></div></div>
+ <div class="spec"><div><span class="mono">Scripted cameras</span><b>6</b></div><div><span class="mono">Liveries</span><b>2</b></div><div><span class="mono">Vizcom passes</span><b>3</b></div><div><span class="mono">Brand formats</span><b>19</b></div><div><span class="mono">Master size</span><b>3840 × 2160</b></div></div>
  <div class="hero-img"><img src="img/rp__t_cover.webp" alt="Cover: the tracked utility humanoid in a teal and black livery on a pale steel studio sweep, title ROBOT PERFORATION in dark ink" width="3840" height="2160"></div>
  <p class="disclaim"><i></i>Unofficial concept · not affiliated with or endorsed by Agility · no logos or proprietary type used</p>
 </div></header>
@@ -188,9 +197,25 @@ body{background:var(--paper);color:var(--ink)}
 
 <section class="sec" id="inuse"><div class="wrap">
  <div class="sec-h"><h2>THE BRAND, <em>IN USE</em></h2><span class="mono">Booth · facility · collateral · slides · social · system</span></div>
- <p class="lede" style="margin:0 0 30px;max-width:70ch">A brand for a humanoid has to work on a trade-show wall, on a factory floor, in a sales deck and in a feed, often in the same week. Same robot, same palette, same plain voice, twelve formats.</p>
+ <p class="lede" style="margin:0 0 30px;max-width:70ch">A brand for a humanoid has to work on a trade-show wall, on a factory floor, in a sales deck and in a feed, often in the same week. Same robot, same palette, same plain voice, nineteen formats.</p>
+ <table class="brief-map"><thead><tr><th scope="col">The Brand Designer III brief asks for</th><th scope="col">Where it is on this page</th></tr></thead><tbody>
+  <tr><td>Event and booth graphics</td><td><a href="#r01">01 Booth</a></td></tr>
+  <tr><td>Facility signage and environmental graphics</td><td><a href="#r02">02 Signs · floor · lights</a></td></tr>
+  <tr><td>Video graphics · directing motion</td><td><a href="#r07">07 Motion sting</a></td></tr>
+  <tr><td>Marketing collateral</td><td><a href="#r03">03 Explainer</a></td></tr>
+  <tr><td>Presentations</td><td><a href="#r04">04 Slides</a></td></tr>
+  <tr><td>Social content</td><td><a href="#r05">05 Carousel</a></td></tr>
+  <tr><td>Email and web assets</td><td><a href="#r08">08 Web + email</a></td></tr>
+  <tr><td>Complex robotics concepts made clear for every audience</td><td><a href="#r03">03 Explainer</a><a href="#r09">09 Anatomy</a></td></tr>
+  <tr><td>Print and fabrication, vendor quality control</td><td><a href="#r01">01 Fab spec</a><a href="#r02">02 Sign spec</a></td></tr>
+  <tr><td>Brand guardian: quality standards and design feedback</td><td><a href="#r10">10 Brand review</a></td></tr>
+  <tr><td>Directing photography</td><td><a href="#r11">11 Shot list</a></td></tr>
+  <tr><td>Brand asset libraries and design systems</td><td><a href="#r06">06 Asset library</a></td></tr>
+  <tr><td>New ideas inside an existing system</td><td><a href="#livery">Livery pass</a><a href="#brief">Brand brief</a></td></tr>
+ </tbody></table>
 
- <div class="rg">
+
+ <div class="rg" id="r01">
   <div><button class="shot" type="button" aria-label="Enlarge: 10 by 10 foot inline booth, concept view"><img src="img/rp__r_booth_view.webp" alt="Concept view of a 10 by 10 foot inline trade-show booth: back wall with the headline THE HEAVY, THE DULL, THE REPEAT. and the teal robot, a dark header, a teal-trimmed side wall and a demo counter" loading="lazy"></button>
    <div class="g2" style="margin-top:10px"><button class="shot" type="button" aria-label="Enlarge: Booth back-wall artwork"><img src="img/rp__r_booth_wall.webp" alt="Back-wall artwork, 10 by 8 feet, flat" loading="lazy"></button><button class="shot" type="button" aria-label="Enlarge: Headline detail at full size"><img src="img/rp__r_booth_detail.webp" alt="Detail crop of the back-wall headline and body copy, as printed" loading="lazy" style="aspect-ratio:5/4;object-fit:cover"></button></div></div>
   <div><span class="k">01 · EVENTS</span><h3>TRADE-SHOW BOOTH</h3><p>One headline you can read from the aisle, the robot at true presence, and a footer that tells people when to come back. The wall carries the message; the demo carries the proof.</p>
@@ -203,7 +228,7 @@ body{background:var(--paper);color:var(--ink)}
    </tbody></table></div>
  </div>
 
- <div class="rg">
+ <div class="rg" id="r02">
   <div><div class="g2"><button class="shot" type="button" aria-label="Enlarge: Shared-zone sign"><img src="img/rp__r_sign.webp" alt="18 by 24 inch sign: yellow CAUTION band, PEOPLE + ROBOTS WORK HERE, three pictograms for walkway, work zone and e-stop" loading="lazy"></button><div class="decal"><img src="img/rp__r_decal.webp" alt="36 inch circular floor decal with yellow and ink hazard stripes: ROBOT WORK ZONE, STOP AND LOOK, WAIT FOR GREEN" loading="lazy"></div></div>
    <button class="shot" type="button" aria-label="Enlarge: Status light card" style="margin-top:10px"><img src="img/rp__r_lights.webp" alt="Field guide card READ THE LIGHTS: steady green working, pulsing green waiting, yellow needs a hand, red stopped" loading="lazy"></button></div>
   <div><span class="k">02 · FACILITY</span><h3>SIGNS, FLOOR, LIGHTS</h3><p>Where the brand meets the people who work next to the robot. Short sentences, one action each. Safety colours do safety jobs only; teal never appears where it could be mistaken for a signal.</p>
@@ -215,29 +240,61 @@ body{background:var(--paper);color:var(--ink)}
    <p class="note2">Brand layer only. Real safety signage follows ANSI Z535 / ISO 7010 and the site's EHS team.</p></div>
  </div>
 
- <div class="rg">
+ <div class="rg" id="r03">
   <div><button class="shot" type="button" aria-label="Enlarge: One-page explainer"><img src="img/rp__r_explainer.webp" alt="Letter-size explainer HOW A HUMANOID JOINS YOUR FLOOR: five steps from walking the site to steady state, and a panel LESS LIFTING. SAME CREW." loading="lazy" style="max-height:760px;width:auto;margin:auto"></button></div>
   <div><span class="k">03 · COLLATERAL</span><h3>ONE-PAGE EXPLAINER</h3><p>Written for an operations lead, not an engineer: five steps from walking the site to steady state, and what changes for the crew. The hard part of robotics, made into one page someone can pin to a wall.</p>
    <table class="fab"><tbody><tr><th scope="row">Format</th><td>US Letter · print + PDF</td></tr><tr><th scope="row">Reading order</th><td>Headline → five steps → what changes → day one</td></tr></tbody></table>
    <p class="note2">Generic rollout steps for a portfolio, not any company's actual process.</p></div>
  </div>
 
- <div class="rg">
+ <div class="rg" id="r04">
   <div><div class="g2"><button class="shot" type="button" aria-label="Enlarge: Slide 1"><img src="img/rp__r_slide1.webp" alt="Slide: ONE ROBOT. ONE JOB. EVERY SHIFT. with the teal robot on a pale steel sweep" loading="lazy"></button><button class="shot" type="button" aria-label="Enlarge: Slide 2"><img src="img/rp__r_slide2.webp" alt="Slide on ink: THE LOOP IT RUNS, four cards PICK, CARRY, PLACE, REPEAT" loading="lazy"></button></div></div>
   <div><span class="k">04 · PRESENTATIONS</span><h3>CUSTOMER BRIEFING</h3><p>A light title slide and a dark content slide from the same system, so a deck can breathe. One idea per slide, the robot as the only image, the loop in four words.</p>
    <table class="fab"><tbody><tr><th scope="row">Format</th><td>16:9 · 1920 × 1080</td></tr><tr><th scope="row">Pairing</th><td>Paper for titles · ink for content</td></tr></tbody></table></div>
  </div>
 
- <div class="rg">
+ <div class="rg" id="r05">
   <div><div class="g3"><button class="shot" type="button" aria-label="Enlarge: Social 1"><img src="img/rp__r_social1.webp" alt="Social panel 1: MEET UNIT 1024" loading="lazy"></button><button class="shot" type="button" aria-label="Enlarge: Social 2"><img src="img/rp__r_social2.webp" alt="Social panel 2: ONE MODEL. SIX CAMERAS. with six robot views" loading="lazy"></button><button class="shot" type="button" aria-label="Enlarge: Social 3"><img src="img/rp__r_social3.webp" alt="Social panel 3 on teal: NO HERO SHOTS WITHOUT THE WORK." loading="lazy"></button></div></div>
   <div><span class="k">05 · SOCIAL</span><h3>THREE-PANEL CAROUSEL</h3><p>Hook, proof, point of view. Paper, ink, teal: the three panels use the three main colours in order, so the carousel reads as one piece when it scrolls past.</p>
    <table class="fab"><tbody><tr><th scope="row">Format</th><td>4:5 · 1080 × 1350 × 3</td></tr><tr><th scope="row">Sequence</th><td>Meet it → how it was made → why it matters</td></tr></tbody></table></div>
  </div>
 
- <div class="rg">
+ <div class="rg" id="r06">
   <div><button class="shot" type="button" aria-label="Enlarge: Asset library"><img src="img/rp__r_library.webp" alt="Asset library sheet: colour, type, rules, six robot views, pictograms and the pieces in use" loading="lazy"></button></div>
   <div><span class="k">06 · SYSTEM</span><h3>ASSET LIBRARY</h3><p>Everything above comes out of one sheet: four brand colours, three safety colours with strict jobs, two typefaces, six robot views, five pictograms and four rules. Hand it to another designer or a vendor and the next piece still looks like this one.</p>
    <table class="fab"><tbody><tr><th scope="row">Rules</th><td>One teal accent per layout · safety colours for safety only · robot on pale steel · say what it does</td></tr></tbody></table></div>
+ </div>
+
+ <div class="rg" id="r07">
+  <div><div class="vid"><video src="img/rp__r_sting.mp4" poster="img/rp__r_sting_poster.webp" muted loop playsinline controls preload="metadata" aria-label="Nine-second motion sting: title lines wipe up, the robot turns through four views, a lower-third slides in, end card"></video></div></div>
+  <div><span class="k">07 · MOTION</span><h3>9-SECOND STING</h3><p>An opener for event screens and video: the headline wipes up line by line, the robot turns through four views on the studio floor, a lower-third names it, and an ink end card closes. Built so every piece can be swapped for real footage later.</p>
+   <table class="fab"><tbody><tr><th scope="row">Format</th><td>16:9 · 1920 × 1080 · 30 fps · 9 s</td></tr><tr><th scope="row">Beats</th><td>Title 0–2 s · turn 1.6–6 s · lower-third 3.2–8 s · end card 8–9 s</td></tr><tr><th scope="row">Motion</th><td>Ease-out on entries · no bounces · no glows</td></tr></tbody></table></div>
+ </div>
+
+ <div class="rg" id="r08">
+  <div><button class="shot" type="button" aria-label="Enlarge: Web hero, desktop"><img src="img/rp__r_web_desktop.webp" alt="Website hero, desktop: THE HEAVY, THE DULL, THE REPEAT., two buttons, the robot on the right and a loop strip PICK CARRY PLACE REPEAT" loading="lazy"></button>
+   <div class="g2" style="margin-top:10px;grid-template-columns:1fr 1.4fr"><button class="shot" type="button" aria-label="Enlarge: Web hero, mobile"><img src="img/rp__r_web_mobile.webp" alt="Website hero on mobile" loading="lazy"></button><button class="shot" type="button" aria-label="Enlarge: Email"><img src="img/rp__r_email.webp" alt="Email: YOUR CREW'S FIRST WEEK WITH A ROBOT, a button for the floor guide and three modules" loading="lazy"></button></div></div>
+  <div><span class="k">08 · WEB + EMAIL</span><h3>LANDING HERO + EMAIL</h3><p>The booth headline, carried to the web without changing a word: one claim, one sentence of proof, one primary action. The email turns the explainer into a send: one thing to download, three short reasons to open it.</p>
+   <table class="fab"><tbody><tr><th scope="row">Web</th><td>1440 desktop · 390 mobile · one primary button</td></tr><tr><th scope="row">Email</th><td>600 px · single column · live text, image-light</td></tr></tbody></table></div>
+ </div>
+
+ <div class="rg" id="r09">
+  <div><button class="shot" type="button" aria-label="Enlarge: Anatomy callout illustration"><img src="img/rp__r_anatomy.webp" alt="Front view of the robot with nine callouts: face and cameras, status light, unit display, perforated shell, swappable grippers, turret and column, light bar, front e-stop, tracked base" loading="lazy"></button></div>
+  <div><span class="k">09 · TECHNICAL ILLUSTRATION</span><h3>ANATOMY, IN PLAIN WORDS</h3><p>Nine callouts, each one a part and why it matters to the person standing next to it. The same drawing works in a sales deck, an investor update and an onboarding binder, because none of it needs an engineer to explain it. This is what I did for sixteen years in technical manuals.</p>
+   <p class="note2">Design intent for my concept robot, not a product specification.</p></div>
+ </div>
+
+ <div class="rg" id="r10">
+  <div><button class="shot" type="button" aria-label="Enlarge: Brand review redline"><img src="img/rp__r_redline.webp" alt="Brand review: an off-brand neon social post with six numbered red pins, six notes in the middle, and the corrected on-brand post on the right" loading="lazy"></button></div>
+  <div><span class="k">10 · BRAND GUARDIAN</span><h3>REDLINE REVIEW</h3><p>Part of the job is reviewing other teams' work. This is how I'd give that feedback: numbered pins on the piece, one short note per pin that names the rule and the fix, and the corrected version next to it so nobody has to guess.</p>
+   <table class="fab"><tbody><tr><th scope="row">Format</th><td>Pin · rule · fix · after</td></tr><tr><th scope="row">Tone</th><td>About the work, never the person · every note has a fix</td></tr></tbody></table>
+   <p class="note2">The "before" is a deliberate straw man I made for this review.</p></div>
+ </div>
+
+ <div class="rg" id="r11">
+  <div><button class="shot" type="button" aria-label="Enlarge: Photo direction shot list"><img src="img/rp__r_shotlist.webp" alt="Photo direction sheet WEAR-AND-TEAR, NOT UTOPIA: six planned shots with lens, framing and notes, plus light and grade rules" loading="lazy"></button></div>
+  <div><span class="k">11 · PHOTO DIRECTION</span><h3>ON-SITE SHOT LIST</h3><p>The studio set shows the product; this brief gets the truth. Six shots on a working floor: the aisle, the hands on a scuffed tote, the handoff, the stop, end of shift and the crew. Lens and framing for each, and one rule for the grade: keep the scuffs.</p>
+   <table class="fab"><tbody><tr><th scope="row">Lenses</th><td>24 · 35 · 50 · 85 mm</td></tr><tr><th scope="row">Light</th><td>Available facility light + one soft fill · no gels, no haze</td></tr><tr><th scope="row">People</th><td>Real crew, real names, releases signed</td></tr></tbody></table></div>
  </div>
 </div></section>
 
