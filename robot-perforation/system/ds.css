@@ -24,9 +24,9 @@ svg.i{width:24px;height:24px;flex:none}
 .shell{display:grid;grid-template-columns:220px minmax(0,1fr);max-width:1480px;margin:0 auto}
 .side{position:sticky;top:56px;align-self:start;height:calc(100vh - 56px);overflow:auto;padding:var(--space-6) var(--space-5);border-right:1px solid var(--border-default)}
 .side a{display:flex;gap:10px;padding:7px 0;font:700 11px/1.2 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--fg-muted);text-decoration:none;border-left:2px solid transparent;padding-left:10px;margin-left:-12px}
-.side a span{color:var(--fg-subtle);width:20px}
+.side a span{color:var(--fg-muted);width:20px}
 .side a.on{color:var(--fg-default);border-left-color:var(--c-teal-500)}
-.side .grp{margin:var(--space-5) 0 var(--space-2);font:700 10px/1 var(--font-mono);letter-spacing:.14em;color:var(--fg-subtle);text-transform:uppercase}
+.side .grp{margin:var(--space-5) 0 var(--space-2);font:700 10px/1 var(--font-mono);letter-spacing:.14em;color:var(--fg-muted);text-transform:uppercase}
 main{min-width:0;padding:0 var(--space-7) var(--space-9)}
 @media(max-width:1000px){.shell{grid-template-columns:1fr}.side{display:none}main{padding:0 var(--space-4) var(--space-8)}.top nav a.opt{display:none}}
 
@@ -67,14 +67,14 @@ main{min-width:0;padding:0 var(--space-7) var(--space-9)}
 
 /* principles */
 .pr{position:relative;padding-top:var(--space-6)}
-.pr .num{position:absolute;top:var(--space-5);right:var(--space-5);font:700 11px/1 var(--font-mono);color:var(--fg-subtle)}
-.pr h4{font:900 26px/.95 var(--font-display);letter-spacing:-.02em;text-transform:uppercase;margin:var(--space-3) 0 var(--space-3)}
+.pr .num{position:absolute;top:var(--space-5);right:var(--space-5);font:700 11px/1 var(--font-mono);color:var(--fg-muted)}
+.pr h3,.pr h4{font:900 26px/.95 var(--font-display);letter-spacing:-.02em;text-transform:uppercase;margin:var(--space-3) 0 var(--space-3)}
 .pr p{margin:0;color:#33464f;font-size:15px}
 
 /* colour */
 .ramp{display:grid;grid-template-columns:repeat(auto-fit,minmax(92px,1fr));border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--border-default);margin-bottom:var(--space-4)}
 .sw{min-height:120px;padding:10px;display:flex;flex-direction:column;justify-content:flex-end;border:0;text-align:left;cursor:pointer;font:700 10px/1.4 var(--font-mono);letter-spacing:.08em;text-transform:uppercase}
-.sw small{font-weight:400;opacity:.85}
+.sw span{display:inline-block;background:#fff;color:#132630;border-radius:4px;padding:4px 6px;box-shadow:0 1px 2px rgba(0,0,0,.12)}.sw small{display:block;font-weight:400;margin-top:2px}
 .roles{width:100%;border-collapse:collapse;font-size:14px}
 .roles th,.roles td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--border-default);vertical-align:middle}
 .roles th{font:var(--type-mono-2);letter-spacing:.12em;text-transform:uppercase;color:var(--fg-muted)}
@@ -185,7 +185,7 @@ main{min-width:0;padding:0 var(--space-7) var(--space-9)}
 
 .compwrap{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:var(--space-5);align-items:start;padding:var(--space-5) 0;border-bottom:1px solid var(--border-default)}
 .compwrap:last-child{border-bottom:0}
-.compwrap .doc h4{font:900 22px/1 var(--font-display);letter-spacing:-.01em;text-transform:uppercase;margin:0 0 8px}
+.compwrap .doc h3,.compwrap .doc h4{font:900 22px/1 var(--font-display);letter-spacing:-.01em;text-transform:uppercase;margin:0 0 8px}
 .compwrap .doc p{margin:0 0 10px;font-size:14px;color:#33464f}
 .compwrap .doc ul{margin:0;padding-left:18px;font-size:13px;color:#33464f}
 @media(max-width:900px){.compwrap{grid-template-columns:1fr}}

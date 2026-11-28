@@ -29,7 +29,7 @@ function grade(r,kind){if(kind==='graphic')return r>=3?['aa','GRAPHIC ✓']:['no
 // ramps
 (function(){var el=$('#ramps'),h='';
  [['Teal','teal'],['Ink','ink'],['Safety','safety']].forEach(function(r){var g=P[r[1]];h+='<div class="lbl" style="margin:0 0 8px">'+r[0]+'</div><div class="ramp">';
-  Object.keys(g).forEach(function(k){var hex=g[k],dark=lum(hex)<.3;h+='<button class="sw" style="background:'+hex+';color:'+(dark?'#fff':'#132630')+'" data-hex="'+hex+'" aria-label="Copy '+r[1]+'-'+k+' '+hex+'">'+r[1]+'-'+k+'<small>'+hex.toUpperCase()+'</small></button>'});h+='</div>'});
+  Object.keys(g).forEach(function(k){var hex=g[k],dark=lum(hex)<.3;h+='<button class="sw" style="background:'+hex+'" data-hex="'+hex+'" aria-label="Copy '+r[1]+'-'+k+' '+hex+'"><span>'+r[1]+'-'+k+'<small>'+hex.toUpperCase()+'</small></span></button>'});h+='</div>'});
  el.innerHTML=h;$$('.sw',el).forEach(function(b){b.addEventListener('click',function(){copy(b.dataset.hex,'Copied '+b.dataset.hex)})})})();
 
 // roles
@@ -106,7 +106,7 @@ meter($('#m1'),72);meter($('#m2'),18);
 (function(){var fg=[['ink-800',H('ink.800')],['ink-500',H('ink.500')],['teal-800',H('teal.800')],['teal-500',H('teal.500')],['white',H('white')],['ink-900',H('ink.900')]],
  bg=[['ink-50',H('ink.50')],['white',H('white')],['ink-100',H('ink.100')],['ink-800',H('ink.800')],['teal-500',H('teal.500')],['yellow',H('safety.yellow')],['red-700',H('safety.red-700')]];
  var h='<thead><tr><th>Text ↓ / Ground →</th>'+bg.map(function(b){return '<th>'+b[0]+'</th>'}).join('')+'</tr></thead><tbody>';
- fg.forEach(function(f){h+='<tr><th>'+f[0]+'</th>';bg.forEach(function(b){var r=cr(f[1],b[1]),g=grade(r,'text');h+='<td><div style="background:'+b[1]+';color:'+f[1]+';border:1px solid rgba(19,38,48,.1)">'+r.toFixed(1)+'<small class="wc '+g[0]+'">'+g[1]+'</small></div></td>'});h+='</tr>'});
+ fg.forEach(function(f){h+='<tr><th>'+f[0]+'</th>';bg.forEach(function(b){var r=cr(f[1],b[1]),g=grade(r,'text');h+='<td aria-label="'+f[0]+' on '+b[0]+': '+r.toFixed(1)+' to 1, '+g[1]+'"><div aria-hidden="true" style="background:'+b[1]+';color:'+f[1]+';border:1px solid rgba(19,38,48,.1)">'+r.toFixed(1)+'<small class="wc '+g[0]+'">'+g[1]+'</small></div></td>'});h+='</tr>'});
  $('#mx').innerHTML=h+'</tbody>'})();
 
 // checklist

@@ -3,7 +3,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>UNIT SYSTEM v1.0 · Design system for a robot fleet · Tigre Studio</title>
 <meta name="description" content="UNIT SYSTEM: a complete design system for a fleet of tracked utility humanoids. Tokens, mark, icons, components, a live fleet console, motion, accessibility, voice and governance. Unofficial concept by Tigre Studio.">
-<meta property="og:title" content="UNIT SYSTEM v1.0 · Tigre Studio"><meta property="og:image" content="https://tigrestudiodesign.github.io/robot-perforation/img/rp__ds_cover.webp">
+<meta property="og:title" content="UNIT SYSTEM v1.0 · Tigre Studio"><meta name="twitter:card" content="summary_large_image"><meta property="og:image" content="https://tigrestudiodesign.github.io/robot-perforation/img/rp__ds_og.jpg">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22%3E%3Crect width=%2224%22 height=%2224%22 rx=%223%22 fill=%22%23132630%22/%3E%3Cpath d=%22M8 5l7 7-7 7%22 fill=%22none%22 stroke=%22%232fa39e%22 stroke-width=%223%22/%3E%3C/svg%3E"><link rel="stylesheet" href="tokens.css"><link rel="stylesheet" href="ds.css">
 </head><body>
 <a class="skip" href="#main">Skip to content</a>
@@ -38,10 +38,10 @@
 <section class="sec" id="principles"><div class="sec-h"><span class="n">00</span><h2>PRINCIPLES</h2></div>
  <p class="lede">Four rules decide every argument the specs don't cover. If a design breaks one, it doesn't ship.</p>
  <div class="g4">
-  <div class="card pr"><span class="num">P1</span><svg class="i"><use href="#i-check"/></svg><h4>Say what it does</h4><p>Plain words, real numbers, no hype. If we can't measure it, we don't claim it.</p></div>
-  <div class="card pr"><span class="num">P2</span><svg class="i"><use href="#i-unit"/></svg><h4>Built for the floor</h4><p>Everything works at 6 metres, under warehouse light, with gloves on. Pretty comes second.</p></div>
-  <div class="card pr"><span class="num">P3</span><svg class="i"><use href="#i-stop"/></svg><h4>Safety is not a style</h4><p>Red, yellow and green have one job each. They never decorate, never carry a brand moment.</p></div>
-  <div class="card pr"><span class="num">P4</span><svg class="i"><use href="#i-route"/></svg><h4>One family, every unit</h4><p>Every robot reads as the same brand and still can be told apart. The mark does both.</p></div>
+  <div class="card pr"><span class="num">P1</span><svg class="i"><use href="#i-check"/></svg><h3>Say what it does</h3><p>Plain words, real numbers, no hype. If we can't measure it, we don't claim it.</p></div>
+  <div class="card pr"><span class="num">P2</span><svg class="i"><use href="#i-unit"/></svg><h3>Built for the floor</h3><p>Everything works at 6 metres, under warehouse light, with gloves on. Pretty comes second.</p></div>
+  <div class="card pr"><span class="num">P3</span><svg class="i"><use href="#i-stop"/></svg><h3>Safety is not a style</h3><p>Red, yellow and green have one job each. They never decorate, never carry a brand moment.</p></div>
+  <div class="card pr"><span class="num">P4</span><svg class="i"><use href="#i-route"/></svg><h3>One family, every unit</h3><p>Every robot reads as the same brand and still can be told apart. The mark does both.</p></div>
  </div>
 </section>
 
@@ -54,7 +54,7 @@
  <div class="tblwrap"><table class="roles" id="roles"><thead><tr><th>Role</th><th>Token</th><th>Points to</th><th>On</th><th>Contrast</th></tr></thead><tbody></tbody></table></div>
  <div class="rule"><b>Rule</b><span>Shell teal (teal-500) never carries text on paper: it only reaches 2.8:1. Teal text uses <code>fg-brand</code> (teal-800, 6.5:1). Teal-500 is for fills, the chevron and graphics.</span></div>
  <h3>Colour by area</h3>
- <div class="ratio" aria-label="Colour proportions"><div style="flex:44;background:var(--c-ink-50)"></div><div style="flex:26;background:var(--c-ink-800)"></div><div style="flex:18;background:var(--c-teal-500)"></div><div style="flex:8;background:var(--c-ink-100)"></div><div style="flex:2;background:var(--c-safety-yellow)"></div><div style="flex:1.2;background:var(--c-safety-green)"></div><div style="flex:.8;background:var(--c-safety-red)"></div></div>
+ <div class="ratio" role="img" aria-label="Colour proportions: paper 44%, ink 26%, shell teal 18%, steel 8%, safety colours 4%"><div style="flex:44;background:var(--c-ink-50)"></div><div style="flex:26;background:var(--c-ink-800)"></div><div style="flex:18;background:var(--c-teal-500)"></div><div style="flex:8;background:var(--c-ink-100)"></div><div style="flex:2;background:var(--c-safety-yellow)"></div><div style="flex:1.2;background:var(--c-safety-green)"></div><div style="flex:.8;background:var(--c-safety-red)"></div></div>
  <p class="lbl" style="margin-top:10px">Paper 44 · Ink 26 · Shell teal 18 · Steel 8 · Safety 4, and only where something is actually safe, running or stopped</p>
 </section>
 
@@ -100,14 +100,14 @@
  <p class="lede">Every component is built from tokens only, with no hard-coded values, and works on paper and ink. They are all live: hover, tab through them, try them.</p>
 
  <div class="compwrap"><div>
-   <div class="states" role="table" aria-label="Button states">
+   <div class="states">
     <span class="lbl hd"></span><span class="lbl hd">Default</span><span class="lbl hd">Hover</span><span class="lbl hd">Focus</span><span class="lbl hd">Disabled</span>
     <span class="lbl">Primary</span><button class="btn btn-primary">Assign task</button><button class="btn btn-primary is-hover" tabindex="-1">Assign task</button><button class="btn btn-primary is-focus" tabindex="-1">Assign task</button><button class="btn btn-primary" disabled>Assign task</button>
     <span class="lbl">Brand</span><button class="btn btn-brand">See it work</button><button class="btn btn-brand is-hover" tabindex="-1">See it work</button><button class="btn btn-brand is-focus" tabindex="-1">See it work</button><button class="btn btn-brand" disabled>See it work</button>
     <span class="lbl">Secondary</span><button class="btn btn-secondary">View log</button><button class="btn btn-secondary is-hover" tabindex="-1">View log</button><button class="btn btn-secondary is-focus" tabindex="-1">View log</button><button class="btn btn-secondary" disabled>View log</button>
     <span class="lbl">Stop</span><button class="btn btn-stop"><svg class="i"><use href="#i-stop"/></svg>Stop unit</button><button class="btn btn-stop is-hover" tabindex="-1"><svg class="i"><use href="#i-stop"/></svg>Stop unit</button><button class="btn btn-stop is-focus" tabindex="-1"><svg class="i"><use href="#i-stop"/></svg>Stop unit</button><span class="lbl" style="font-size:10px">Never disabled</span>
    </div></div>
-  <div class="doc"><h4>Button</h4><p>Verb first, two words where possible. Height 44 px minimum, so it works with gloves.</p><ul><li>One brand button per view.</li><li>The stop button uses red-700 (6.6:1 with white) and is never disabled or hidden.</li></ul></div></div>
+  <div class="doc"><h3>Button</h3><p>Verb first, two words where possible. Height 44 px minimum, so it works with gloves.</p><ul><li>One brand button per view.</li><li>The stop button uses red-700 (6.6:1 with white) and is never disabled or hidden.</li></ul></div></div>
 
  <div class="compwrap"><div class="row">
    <span class="pill working"><span class="dot"></span>Working</span>
@@ -116,37 +116,37 @@
    <span class="pill stop"><svg class="i"><use href="#i-stop"/></svg>Stopped</span>
    <span class="pill info"><svg class="i"><use href="#i-charge"/></svg>Charging</span>
    <span class="pill offline"><svg class="i"><use href="#i-signal"/></svg>Offline</span></div>
-  <div class="doc"><h4>Status pill</h4><p>The only place safety colours appear in UI.</p><ul><li>Always icon + word + colour: never colour alone.</li><li>States map 1:1 to the robot's light bar.</li></ul></div></div>
+  <div class="doc"><h3>Status pill</h3><p>The only place safety colours appear in UI.</p><ul><li>Always icon + word + colour: never colour alone.</li><li>States map 1:1 to the robot's light bar.</li></ul></div></div>
 
  <div class="compwrap"><div class="row">
    <div class="badge" id="badge1"></div><div class="badge light" id="badge2"></div></div>
-  <div class="doc"><h4>Unit badge</h4><p>The unit's mark, number and zone. Used on cards, console rows, the chest screen and in decks.</p></div></div>
+  <div class="doc"><h3>Unit badge</h3><p>The unit's mark, number and zone. Used on cards, console rows, the chest screen and in decks.</p></div></div>
 
  <div class="compwrap"><div class="g3">
    <div class="rd"><div class="lbl">Totes moved · shift</div><div class="v">412<small>TOTES</small></div><div class="d">▲ 8% vs last shift</div><svg class="sp" viewBox="0 0 200 44" preserveAspectRatio="none"><polyline fill="none" stroke="var(--c-teal-500)" stroke-width="2.5" points="0,34 20,30 40,32 60,24 80,26 100,18 120,20 140,14 160,16 180,9 200,8"/></svg></div>
    <div class="rd"><div class="lbl">Uptime · 7 days</div><div class="v">97.2<small>%</small></div><div class="d">2 planned stops</div><svg class="sp" viewBox="0 0 200 44" preserveAspectRatio="none"><polyline fill="none" stroke="var(--c-ink-800)" stroke-width="2.5" points="0,10 30,10 31,30 40,10 120,10 121,26 128,10 200,10"/></svg></div>
    <div class="rd dark"><div class="lbl">Person proximity</div><div class="v">1.4<small>M</small></div><div class="d" style="color:var(--c-safety-yellow)">Inside 1.6 m · unit waits</div><svg class="sp" viewBox="0 0 200 44" preserveAspectRatio="none"><polyline fill="none" stroke="var(--c-safety-yellow)" stroke-width="2.5" points="0,8 40,10 80,18 120,30 140,36 160,34 200,26"/></svg></div>
   </div>
-  <div class="doc"><h4>Readout</h4><p>One number, one unit, one comparison. Sample values are placeholders, not measured data.</p><ul><li>Value in Display, unit and label in Mono.</li><li>Sparkline uses data colours; safety colours only when the metric is a safety metric.</li></ul></div></div>
+  <div class="doc"><h3>Readout</h3><p>One number, one unit, one comparison. Sample values are placeholders, not measured data.</p><ul><li>Value in Display, unit and label in Mono.</li><li>Sparkline uses data colours; safety colours only when the metric is a safety metric.</li></ul></div></div>
 
  <div class="compwrap"><div style="display:flex;flex-direction:column;gap:12px">
    <div class="alert info" role="status"><svg class="i"><use href="#i-route"/></svg><div><b>Route updated</b>Unit 1024 is taking aisle 6. Aisle 4 is blocked by a pallet.</div></div>
    <div class="alert caution" role="status"><svg class="i"><use href="#i-caution"/></svg><div><b>Person in zone B-04</b>Units in B-04 are moving at walking pace until the zone is clear.</div></div>
    <div class="alert stop" role="alert"><svg class="i"><use href="#i-stop"/></svg><div><b>Unit 1031 stopped</b>Someone pressed its stop button. It stays stopped until a person releases it.</div></div></div>
-  <div class="doc"><h4>Alert</h4><p>Title says what happened. Body says what it means and what happens next.</p><ul><li>Stop alerts are the only ones that interrupt.</li><li>Never "Error!": name the thing.</li></ul></div></div>
+  <div class="doc"><h3>Alert</h3><p>Title says what happened. Body says what it means and what happens next.</p><ul><li>Stop alerts are the only ones that interrupt.</li><li>Never "Error!": name the thing.</li></ul></div></div>
 
  <div class="compwrap"><div class="g2">
    <div class="field"><label for="unitIn">Unit number</label><input id="unitIn" value="1024" inputmode="numeric" aria-describedby="unitHelp"><div class="help" id="unitHelp"><svg class="i" style="width:14px;height:14px"><use href="#i-check"/></svg>Unit 1024 · Zone B-04</div></div>
    <div style="display:flex;flex-direction:column;gap:18px"><div><div class="lbl" style="margin-bottom:8px">Speed limit</div><div class="seg" role="group" aria-label="Speed limit" id="seg"><button aria-pressed="false">Walk</button><button aria-pressed="true">Standard</button><button aria-pressed="false">Restricted</button></div></div>
    <label class="tog"><input type="checkbox" checked> Announce moves out loud</label>
    <div><div class="lbl" style="margin-bottom:8px">Battery</div><div class="row"><span class="meter" id="m1"></span><span class="meter low" id="m2"></span></div></div></div></div>
-  <div class="doc"><h4>Inputs</h4><p>Type a unit that doesn't exist to see the error state. Errors say what's wrong and how to fix it.</p><ul><li>Segmented control for 2–4 exclusive options.</li><li>Battery turns yellow at 20%; it never goes red, because low battery isn't a stop.</li></ul></div></div>
+  <div class="doc"><h3>Inputs</h3><p>Type a unit that doesn't exist to see the error state. Errors say what's wrong and how to fix it.</p><ul><li>Segmented control for 2–4 exclusive options.</li><li>Battery turns yellow at 20%; it never goes red, because low battery isn't a stop.</li></ul></div></div>
 
  <div class="compwrap"><div class="rcard"><div class="im"><img src="../img/rp__t_cut_front.webp" alt="Unit 1024, front view, teal livery" loading="lazy"></div>
    <div class="bd"><div id="badge3"></div><span class="pill working" style="align-self:flex-start"><span class="dot"></span>Working</span>
    <dl><dt>Task</dt><dd>Totes · line 3 → dock 2</dd><dt>Zone</dt><dd>B-04</dd><dt>Battery</dt><dd>72% · about 5 h</dd><dt>Next service</dt><dd>14 days</dd></dl>
    <div class="row" style="margin-top:auto"><button class="btn btn-secondary btn-sm">Open log</button><button class="btn btn-stop btn-sm"><svg class="i"><use href="#i-stop"/></svg>Stop</button></div></div></div>
-  <div class="doc"><h4>Unit card</h4><p>The robot on pale steel, never cropped at the head. Status first, then task, then numbers.</p></div></div>
+  <div class="doc"><h3>Unit card</h3><p>The robot on pale steel, never cropped at the head. Status first, then task, then numbers.</p></div></div>
 </section>
 
 <!-- 07 -->
@@ -175,13 +175,13 @@
 
 <!-- 10 -->
 <section class="sec" id="a11y"><div class="sec-h"><span class="n">10</span><h2>ACCESSIBILITY</h2></div>
- <p class="lede">WCAG 2.2 AA is the floor, not the goal. This matrix is computed in the page from the tokens, so it can't drift from them.</p>
+ <p class="lede">WCAG 2.2 AA is the floor, not the goal. This matrix is computed in the page from the tokens, so it can't drift from them. The whole site is audited with axe-core: no violations, apart from the failing cells in this matrix, which fail on purpose.</p>
  <div class="tblwrap"><table class="mx" id="mx"></table></div>
  <div class="g4" style="margin-top:var(--space-5)">
-  <div class="card pr"><svg class="i"><use href="#i-scan"/></svg><h4>Never colour alone</h4><p>Every status has an icon and a word. It reads in greyscale and to colour-blind operators.</p></div>
-  <div class="card pr"><svg class="i"><use href="#i-check"/></svg><h4>44 px targets</h4><p>Gloves, tablets on carts, shaking hands. Nothing tappable is smaller.</p></div>
-  <div class="card pr"><svg class="i"><use href="#i-go"/></svg><h4>Visible focus</h4><p>3 px teal-800 ring, 2 px offset, on every interactive part. Tab through this page.</p></div>
-  <div class="card pr"><svg class="i"><use href="#i-pause"/></svg><h4>Motion off</h4><p>Reduced motion stops pulses, sweeps and the console animation steps instead.</p></div>
+  <div class="card pr"><svg class="i"><use href="#i-scan"/></svg><h3>Never colour alone</h3><p>Every status has an icon and a word. It reads in greyscale and to colour-blind operators.</p></div>
+  <div class="card pr"><svg class="i"><use href="#i-check"/></svg><h3>44 px targets</h3><p>Gloves, tablets on carts, shaking hands. Nothing tappable is smaller.</p></div>
+  <div class="card pr"><svg class="i"><use href="#i-go"/></svg><h3>Visible focus</h3><p>3 px teal-800 ring, 2 px offset, on every interactive part. Tab through this page.</p></div>
+  <div class="card pr"><svg class="i"><use href="#i-pause"/></svg><h3>Motion off</h3><p>Reduced motion stops pulses, sweeps and the console animation steps instead.</p></div>
  </div>
 </section>
 
@@ -222,7 +222,7 @@
 ├─ <b>motion/</b>        sting · lower thirds · status loops
 └─ <b>CHANGELOG.md</b></pre>
  <h3>Changelog</h3>
- <div class="log2"><b>v1.0 · 2026-11-28</b> · First release: tokens, mark generator, 18 icons, 10 components, fleet console pattern, a11y matrix.<br><b>v0.9 · 2026-11-27</b> · Unit mark and identity boards. Teal text darkened to teal-800 after the contrast audit.<br><b>v0.5 · 2026-11-26</b> · Teal livery, brand brief, 19 formats in use.</div>
+ <div class="log2"><b>v1.0.1 · 2026-11-28</b> · axe-core audit. Small grey labels moved from ink-300 to ink-500, swatch captions sit on white chips, heading levels fixed. The case study's small teal labels moved to teal-800.<br><b>v1.0 · 2026-11-28</b> · First release: tokens, mark generator, 18 icons, 10 components, fleet console pattern, a11y matrix.<br><b>v0.9 · 2026-11-27</b> · Unit mark and identity boards. Teal text darkened to teal-800 after the contrast audit.<br><b>v0.5 · 2026-11-26</b> · Teal livery, brand brief, 19 formats in use.</div>
 </section>
 
 <!-- 13 -->
