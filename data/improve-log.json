@@ -552,5 +552,14 @@
    "img/ta__poster004.webp",
    "data/improve-log.json"
   ]
+ },
+ {
+  "date": "2026-11-28",
+  "project": "hestia-knit-nodes",
+  "change": "WHAT CHANGED IN HESTIA rebuilt as four data PLATES: each close-up render now carries a dark spec strip (plate number, zone, demand, chosen knit, gusset, use-of-stretch bar against the 85 % line, pleats) read live from the same selection engine as the matrix, so the photos and the numbers can no longer disagree. Each zone row has a MATRIX button that scrolls to the selection matrix and highlights that row with an orange flash. Captions tightened, alt text now describes what each close-up shows. Checked at 1440 and 390: no overflow, no errors, site audit 0 issues.",
+  "files": [
+   "index.html",
+   "data/improve-log.json"
+  ]
  }
 ]
