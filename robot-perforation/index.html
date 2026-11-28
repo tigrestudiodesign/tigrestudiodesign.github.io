@@ -142,13 +142,33 @@ body{background:var(--paper);color:var(--ink)}
 .vzcards .ls{display:flex;gap:6px;margin-top:14px;flex-wrap:wrap}
 .vzcards .ls span{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:5px 8px;border-radius:6px;background:#132f39;color:#7fe3dc}
 .vzhint{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#f2c230;margin:0 0 12px}
+
+/* IDENTITY */
+.idgen{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(20px,3vw,44px);align-items:center;background:#132630;color:#fff;border-radius:22px;padding:clamp(22px,3.5vw,48px);margin:0 0 34px}
+@media(max-width:900px){.idgen{grid-template-columns:1fr}}
+.idgen .stage{border-radius:18px;display:flex;align-items:center;justify-content:center;aspect-ratio:1/1;transition:background .25s}
+.idgen canvas{width:72%;height:auto;aspect-ratio:1/1}
+.idgen .k{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#2fa39e}
+.idgen h3{font-size:clamp(34px,4.6vw,72px);margin:8px 0 6px;line-height:.9;color:#fff}
+.idgen p{color:#c9d3d8;font-size:16px;margin:0 0 18px;max-width:52ch}
+.idgen label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#9fb0b8;display:block;margin-bottom:8px}
+.idgen input{font:900 clamp(30px,4vw,52px)/1 var(--disp,inherit);width:100%;max-width:330px;background:transparent;border:2px solid #2fa39e;border-radius:12px;color:#fff;padding:10px 16px;letter-spacing:-.02em}
+.idgen input:focus{outline:3px solid #f4f5f5;outline-offset:2px}
+.idgen .row{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0}
+.idgen button{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:1.5px solid #5c6a72;background:transparent;color:#fff;border-radius:999px;padding:9px 14px;cursor:pointer}
+.idgen button[aria-pressed=true]{background:#2fa39e;border-color:#2fa39e;color:#132630;font-weight:700}
+.idgen .ro{font-family:var(--mono);font-size:12px;color:#9fb0b8;margin-top:14px;letter-spacing:.06em}
+.idboards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.idboards .wide{grid-column:1/-1}
+@media(max-width:700px){.idboards{grid-template-columns:1fr}}
+.idboards .shot img{border-radius:12px}
 </style>
 </head>
 <body>
 <a href="#main" class="mono" style="position:absolute;left:-999px">Skip to content</a>
 <nav class="nav" aria-label="ROBOT PERFORATION sections"><div class="wrap">
  <a href="https://tigrestudiodesign.github.io/" style="text-decoration:none"><b>TIGRE STUDIO</b> <span class="mono">/ ROBOT PERFORATION</span></a>
- <ul><li><a href="#turntable">Turntable</a></li><li><a href="#vision">Robot vision</a></li><li><a href="#brief">Brand brief</a></li><li><a href="#inuse">In use</a></li><li><a href="#livery">Livery</a></li><li><a href="#pipeline">Pipeline</a></li><li><a href="#set">The set</a></li><li><a href="https://tigrestudiodesign.github.io/">Portfolio ↗</a></li></ul>
+ <ul><li><a href="#turntable">Turntable</a></li><li><a href="#vision">Robot vision</a></li><li><a href="#brief">Brand brief</a></li><li><a href="#identity">Identity</a></li><li><a href="#inuse">In use</a></li><li><a href="#livery">Livery</a></li><li><a href="#pipeline">Pipeline</a></li><li><a href="#set">The set</a></li><li><a href="https://tigrestudiodesign.github.io/">Portfolio ↗</a></li></ul>
 </div></nav>
 <div class="stripe"></div>
 <main id="main">
@@ -158,7 +178,7 @@ body{background:var(--paper);color:var(--ink)}
  <h1>ROBOT<span>.</span><br>PERFORATION</h1>
  <p class="tag">DRAWN FOR THE DULL, HEAVY, REPEATABLE WORK.</p>
  <p class="lede">A tracked utility humanoid I modelled in Rhino 9. Six scripted cameras, one material direction in Vizcom, one studio. Then a second job: dress the same robot in a humanoid maker's brand language, a calm teal and black, plain light studios and plain words, and show exactly how I got there, including the renders I threw away.</p>
- <div class="spec"><div><span class="mono">Scripted cameras</span><b>6</b></div><div><span class="mono">Liveries</span><b>2</b></div><div><span class="mono">Vizcom passes</span><b>3</b></div><div><span class="mono">Brand formats</span><b>19</b></div><div><span class="mono">Master size</span><b>3840 × 2160</b></div></div>
+ <div class="spec"><div><span class="mono">Scripted cameras</span><b>6</b></div><div><span class="mono">Liveries</span><b>2</b></div><div><span class="mono">Vizcom passes</span><b>3</b></div><div><span class="mono">Brand formats</span><b>26</b></div><div><span class="mono">Master size</span><b>3840 × 2160</b></div></div>
  <div class="hero-img"><img src="img/rp__t_cover.webp" alt="Cover: the tracked utility humanoid in a teal and black livery on a pale steel studio sweep, title ROBOT PERFORATION in dark ink" width="3840" height="2160"></div>
  <p class="disclaim"><i></i>Unofficial concept · not affiliated with or endorsed by Agility · no logos or proprietary type used</p>
 </div></header>
@@ -229,9 +249,40 @@ body{background:var(--paper);color:var(--ink)}
 </div></section>
 
 
+
+<section class="sec" id="identity"><div class="wrap">
+ <div class="sec-h"><h2>THE MARK, <em>PER UNIT</em></h2><span class="mono">Identity · construction · fleet · on product</span></div>
+ <p class="lede" style="margin:0 0 30px;max-width:70ch">A fleet brand has a problem a single product doesn't: a hundred robots that should look like one family and still be told apart on the floor. So the mark is a perforated panel, 32 × 32 = 1,024 holes. A chevron of full holes points the way the robot drives and never changes. The rest of the field is generated from the unit number, so every robot carries its own.</p>
+ <div class="idgen" aria-label="Unit mark generator">
+  <div class="stage" id="idStage" style="background:#f4f5f5"><canvas id="idCv" width="640" height="640" role="img" aria-label="Unit mark for unit 1024"></canvas></div>
+  <div>
+   <span class="k">LIVE · TRY A UNIT NUMBER</span>
+   <h3 id="idName">UNIT 1024</h3>
+   <p>Type any number. Same chevron, same grid, same rules; a field nobody else has. This is the system the boards below are built from.</p>
+   <label for="idIn">Unit number</label>
+   <input id="idIn" type="text" inputmode="numeric" maxlength="5" value="1024" autocomplete="off">
+   <div class="row" role="group" aria-label="Ground">
+    <button type="button" data-g="paper" aria-pressed="true">Paper</button><button type="button" data-g="ink" aria-pressed="false">Ink</button><button type="button" data-g="teal" aria-pressed="false">Teal</button><button type="button" data-g="screen" aria-pressed="false">Chest screen</button>
+   </div>
+   <div class="row"><button type="button" id="idRand">Random unit</button><button type="button" id="idSvg">Download SVG</button></div>
+   <div class="ro" id="idRo">SEED 1024 → FIELD · CHEVRON = CONSTANT</div>
+  </div>
+ </div>
+ <div class="idboards">
+  <button class="shot wide" type="button" aria-label="Enlarge: Master mark"><img src="img/rp__id_1.webp" alt="Master mark: a perforated rounded tile with a teal chevron of large holes, next to the wordmark UNIT 1024 and the line tracked utility humanoid" loading="lazy"></button>
+  <button class="shot" type="button" aria-label="Enlarge: Construction"><img src="img/rp__id_2.webp" alt="Construction sheet: the mark on its 32 by 32 grid with chevron points, clear space of 4 cells, and a size ladder from 200 px down to a solid 16 px version" loading="lazy"></button>
+  <button class="shot" type="button" aria-label="Enlarge: Lockups"><img src="img/rp__id_3.webp" alt="Lockups: horizontal, stacked and symbol versions on paper, ink and teal grounds" loading="lazy"></button>
+  <button class="shot wide" type="button" aria-label="Enlarge: Fleet system"><img src="img/rp__id_4.webp" alt="Fleet system: 24 unit marks, each with a different generated field and the same chevron; unit 1024 highlighted on teal" loading="lazy"></button>
+  <button class="shot wide" type="button" aria-label="Enlarge: On product"><img src="img/rp__id_5.webp" alt="The teal robot from the front with the mark on its chest display and a UNIT 1024 decal on the base plate, with close-ups of both" loading="lazy"></button>
+  <button class="shot" type="button" aria-label="Enlarge: Colour, type and voice"><img src="img/rp__id_6.webp" alt="Colour by area bar, a six-step type scale, and say-this-not-that voice examples" loading="lazy"></button>
+  <button class="shot" type="button" aria-label="Enlarge: Misuse"><img src="img/rp__id_7.webp" alt="Six misuse examples: rotated, red chevron, stretched, moved chevron, glow effect, and no tile on a busy photo" loading="lazy"></button>
+ </div>
+ <p class="lede" style="margin:24px 0 0;max-width:70ch;font-size:15px">Why it fits the brief: it's a new idea that lives inside the existing palette and voice instead of fighting them, it scales from a 10-foot booth wall to a 16-pixel favicon, and the rules fit on one sheet a vendor can follow. Unofficial concept; the mark and the palette are mine.</p>
+</div></section>
+
 <section class="sec" id="inuse"><div class="wrap">
  <div class="sec-h"><h2>THE BRAND, <em>IN USE</em></h2><span class="mono">Booth · facility · collateral · slides · social · system</span></div>
- <p class="lede" style="margin:0 0 30px;max-width:70ch">A brand for a humanoid has to work on a trade-show wall, on a factory floor, in a sales deck and in a feed, often in the same week. Same robot, same palette, same plain voice, nineteen formats.</p>
+ <p class="lede" style="margin:0 0 30px;max-width:70ch">A brand for a humanoid has to work on a trade-show wall, on a factory floor, in a sales deck and in a feed, often in the same week. Same robot, same palette, same plain voice, twenty-six formats.</p>
  <table class="brief-map"><thead><tr><th scope="col">The Brand Designer III brief asks for</th><th scope="col">Where it is on this page</th></tr></thead><tbody>
   <tr><td>Event and booth graphics</td><td><a href="#r01">01 Booth</a></td></tr>
   <tr><td>Facility signage and environmental graphics</td><td><a href="#r02">02 Signs · floor · lights</a></td></tr>
@@ -245,7 +296,8 @@ body{background:var(--paper);color:var(--ink)}
   <tr><td>Brand guardian: quality standards and design feedback</td><td><a href="#r10">10 Brand review</a></td></tr>
   <tr><td>Directing photography</td><td><a href="#r11">11 Shot list</a></td></tr>
   <tr><td>Brand asset libraries and design systems</td><td><a href="#r06">06 Asset library</a></td></tr>
-  <tr><td>New ideas inside an existing system</td><td><a href="#livery">Livery pass</a><a href="#brief">Brand brief</a></td></tr>
+  <tr><td>New ideas inside an existing system</td><td><a href="#identity">Unit mark</a><a href="#livery">Livery pass</a></td></tr>
+  <tr><td>Logo and identity craft, brand guidelines</td><td><a href="#identity">Identity · 7 boards</a></td></tr>
  </tbody></table>
 
 
@@ -471,6 +523,18 @@ body{background:var(--paper);color:var(--ink)}
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Enlarged image"><img id="lbImg" alt=""><p class="mono" id="lbCt"></p><p id="lbCap"></p><div class="row"><button id="lbP" type="button">← Prev</button><button id="lbN" type="button">Next →</button><button class="x" id="lbX" type="button">Close</button></div></div>
 <script src="case.js"></script>
 <script src="vision.js"></script>
+<script src="mark.js"></script>
+<script>
+(function(){var cv=document.getElementById('idCv');if(!cv||!window.UnitMark)return;var x=cv.getContext('2d'),inp=document.getElementById('idIn'),st=document.getElementById('idStage'),nm=document.getElementById('idName'),ro=document.getElementById('idRo'),g='paper';
+var G={paper:{bg:'#f4f5f5',field:'#132630',hot:'#2fa39e'},ink:{bg:'#0e1d25',field:'#e4e8ea',hot:'#2fa39e'},teal:{bg:'#2fa39e',field:'#132630',hot:'#ffffff'},screen:{bg:'#0b1317',field:'#cfd6da',hot:'#39d353'}};
+function u(){var n=parseInt((inp.value||'').replace(/\D/g,''),10);return isNaN(n)?0:n}
+function draw(){var n=u(),o=G[g];st.style.background=o.bg;x.clearRect(0,0,640,640);UnitMark.draw(x,0,0,640,n,{field:o.field,hot:o.hot});nm.textContent='UNIT '+n;ro.textContent='SEED '+n+' → FIELD · CHEVRON = CONSTANT';cv.setAttribute('aria-label','Unit mark for unit '+n)}
+inp.addEventListener('input',draw);
+document.querySelectorAll('.idgen [data-g]').forEach(function(b){b.addEventListener('click',function(){g=b.dataset.g;document.querySelectorAll('.idgen [data-g]').forEach(function(o){o.setAttribute('aria-pressed',o===b)});draw()})});
+document.getElementById('idRand').addEventListener('click',function(){inp.value=1000+Math.floor(Math.random()*9000);draw()});
+document.getElementById('idSvg').addEventListener('click',function(){var o=G[g],svg=UnitMark.svg(u(),{size:512,field:o.field,hot:o.hot,bg:o.bg}),a=document.createElement('a');a.href=URL.createObjectURL(new Blob([svg],{type:'image/svg+xml'}));a.download='unit-'+u()+'-mark.svg';a.click();setTimeout(function(){URL.revokeObjectURL(a.href)},1000)});
+draw()})();
+</script>
 <script>
 (function(){
  var tt=document.getElementById('tt'),imgs=[].slice.call(tt.querySelectorAll('img')),hud=document.getElementById('ttHud'),cams=[].slice.call(document.querySelectorAll('#camBtns .pill')),lvs=[].slice.call(document.querySelectorAll('.pill.lv')),play=document.getElementById('ttPlay');
