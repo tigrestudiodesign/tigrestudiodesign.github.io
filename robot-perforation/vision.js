@@ -311,4 +311,5 @@ cv.addEventListener('keydown',function(e){ var k={ArrowLeft:[-.3,0],ArrowRight:[
 new ResizeObserver(function(){ fit(); draw() }).observe(cv);
 new IntersectionObserver(function(es){ vis=es[0].isIntersecting; cancelAnimationFrame(raf); last=0; if(vis){ if(RM){ boot=1; update(0); draw() } else raf=requestAnimationFrame(loop) } },{threshold:.25}).observe(cv);
 fit(); update(0); draw();
+window.UNIT_VZ={person:person,robot:robot,setMode:function(m){MODE=m},boot:function(v){boot=v}};
 })();

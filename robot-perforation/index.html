@@ -205,13 +205,19 @@ body{background:var(--paper);color:var(--ink)}
 .dl2 b{display:block;font-weight:900;text-transform:uppercase;letter-spacing:-.01em;font-size:clamp(19px,1.8vw,24px);line-height:1;margin-bottom:6px}
 .dl2 p{margin:0;color:#33464f;font-size:15px}
 .dl2 code{font-family:var(--mono);font-size:13px;background:var(--steel);padding:1px 6px;border-radius:4px}
+
+/* FILM */
+.film{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#000;box-shadow:0 30px 60px rgba(11,19,23,.18)}
+.film video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:#000}
+.film-meta{display:flex;flex-wrap:wrap;gap:10px 28px;margin:16px 0 0;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+.film-meta b{color:#132630}
 </style>
 </head>
 <body>
 <a href="#main" class="mono" style="position:absolute;left:-999px">Skip to content</a>
 <nav class="nav" aria-label="ROBOT PERFORATION sections"><div class="wrap">
  <a href="https://tigrestudiodesign.github.io/" style="text-decoration:none"><b>TIGRE STUDIO</b> <span class="mono">/ ROBOT PERFORATION</span></a>
- <ul><li><a href="#turntable">Turntable</a></li><li><a href="#vision">Robot vision</a></li><li><a href="#brief">Brand brief</a></li><li><a href="#identity">Identity</a></li><li><a href="#system">System</a></li><li><a href="#details">Details</a></li><li><a href="#inuse">In use</a></li><li><a href="#livery">Livery</a></li><li><a href="#pipeline">Pipeline</a></li><li><a href="#set">The set</a></li><li><a href="https://tigrestudiodesign.github.io/">Portfolio ↗</a></li></ul>
+ <ul><li><a href="#film">Film</a></li><li><a href="#turntable">Turntable</a></li><li><a href="#vision">Robot vision</a></li><li><a href="#brief">Brand brief</a></li><li><a href="#identity">Identity</a></li><li><a href="#system">System</a></li><li><a href="#details">Details</a></li><li><a href="#inuse">In use</a></li><li><a href="#livery">Livery</a></li><li><a href="#pipeline">Pipeline</a></li><li><a href="#set">The set</a></li><li><a href="https://tigrestudiodesign.github.io/">Portfolio ↗</a></li></ul>
 </div></nav>
 <div class="stripe"></div>
 <main id="main">
@@ -235,6 +241,15 @@ body{background:var(--paper);color:var(--ink)}
   <a href="#inuse"><span class="n">03 · IN USE</span><b>26 formats</b><span class="d">Booth, signage, slides, social, motion, web, email, each mapped to the job description.</span></a>
   <a href="#vision"><span class="n">04 · ROBOT VISION</span><b>How it sees</b><span class="d">An interactive perception HUD. Drag the person and watch the robot slow down.</span></a>
  </div>
+</div></section>
+
+
+<section class="sec" id="film"><div class="wrap">
+ <div class="sec-h"><h2>THE FILM: <em>PERCEPTION STACK</em></h2><span class="mono">78 s · 1080p · sound on</span></div>
+ <p class="lede" style="margin:0 0 26px;max-width:70ch">An explainer in the format of a robotics company's "foundations" series: what the robot has to do to work next to people, the five layers of its perception stack, and the live perception view doing each job. Every frame is drawn in code from this project's renders, tokens and simulation. The score is generated too.</p>
+ <div class="film"><video src="img/rp__film.mp4" poster="img/rp__film_poster.webp" controls playsinline preload="metadata" aria-label="UNIT 1024 Foundations: Perception Stack, a 78-second explainer film"></video></div>
+ <div class="film-meta"><span><b>01</b> Boot · 1,024 positions</span><span><b>02</b> Title · construction lines</span><span><b>03</b> See · understand · decide</span><span><b>04</b> The five-layer stack</span><span><b>05</b> Live perception, layer by layer</span><span><b>06</b> One robot, every angle</span><span><b>07</b> The fleet</span></div>
+ <p class="mono" style="margin-top:14px;font-size:11px;color:var(--mute)">Unofficial concept film. Simulated perception, not real robot software. Not affiliated with or endorsed by Agility Robotics.</p>
 </div></section>
 
 <section class="sec" id="turntable"><div class="wrap">
@@ -383,7 +398,7 @@ body{background:var(--paper);color:var(--ink)}
  <table class="brief-map"><thead><tr><th scope="col">The Brand Designer III brief asks for</th><th scope="col">Where it is on this page</th></tr></thead><tbody>
   <tr><td>Event and booth graphics</td><td><a href="#r01">01 Booth</a></td></tr>
   <tr><td>Facility signage and environmental graphics</td><td><a href="#r02">02 Signs · floor · lights</a></td></tr>
-  <tr><td>Video graphics · directing motion</td><td><a href="#r07">07 Motion sting</a></td></tr>
+  <tr><td>Video graphics · directing motion</td><td><a href="#film">Explainer film</a><a href="#r07">07 Motion sting</a></td></tr>
   <tr><td>Marketing collateral</td><td><a href="#r03">03 Explainer</a></td></tr>
   <tr><td>Presentations</td><td><a href="#r04">04 Slides</a></td></tr>
   <tr><td>Social content</td><td><a href="#r05">05 Carousel</a></td></tr>
