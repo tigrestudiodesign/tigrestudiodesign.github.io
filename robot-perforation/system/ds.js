@@ -47,7 +47,7 @@ function grade(r,kind){if(kind==='graphic')return r>=3?['aa','GRAPHIC ✓']:['no
 // type
 (function(){var el=$('#typescale'),h='',sample={'display-1':'Unit 1024','display-2':'Takes the dull shift','heading-1':'Built for the floor','heading-2':'It moves the heavy totes, all shift.','body':'Plain, direct, honest. Say what it does, give the number, say what happens next.','mono-1':'Zone B-04 · status: working','mono-2':'Line 3 → dock 2 · 14:02'};
  Object.keys(T.type).forEach(function(k){var t=T.type[k],fam=t.family==='mono'?'var(--font-mono)':'var(--font-display)';
-  h+='<div class="ts"><div class="lbl">'+k+'</div><div class="s" style="font:'+t.weight+' '+Math.min(t.size,96)+'px/'+t.line+' '+fam+';letter-spacing:'+t.track+'em;text-transform:'+(t.case==='upper'?'uppercase':'none')+'">'+sample[k]+'</div><div class="meta lbl" style="text-align:right">'+(t.family==='mono'?'JetBrains Mono':'Inter Display')+' '+t.weight+' · '+t.size+'/'+Math.round(t.size*t.line)+(t.size>96?' · shown at 96':'')+'</div></div>'});
+  var sz=Math.min(t.size,96);h+='<div class="ts"><div class="lbl">'+k+'</div><div class="s" style="font:'+t.weight+' '+sz+'px/'+t.line+' '+fam+';font-size:min('+sz+'px,max(14px,'+(sz*0.14).toFixed(2)+'vw));letter-spacing:'+t.track+'em;text-transform:'+(t.case==='upper'?'uppercase':'none')+'">'+sample[k]+'</div><div class="meta lbl" style="text-align:right">'+(t.family==='mono'?'JetBrains Mono':'Inter Display')+' '+t.weight+' · '+t.size+'/'+Math.round(t.size*t.line)+(t.size>96?' · shown at 96':'')+'</div></div>'});
  el.innerHTML=h})();
 
 // space, radius, grid
