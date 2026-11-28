@@ -67,7 +67,7 @@
 
 <!-- 03 -->
 <section class="sec" id="space"><div class="sec-h"><span class="n">03</span><h2>SPACE · GRID · RADIUS</h2></div>
- <p class="lede">The base unit is 8 px, the pitch of the perforation on the robot's shell. Every gap, margin and radius comes from it, so screens and hardware share one rhythm.</p>
+ <p class="lede">The base unit is 8 px, taken from the idea of the perforation on the robot's shell. Every gap, margin and radius comes from it, so screens and hardware share one rhythm.</p>
  <div class="g2">
   <div class="card"><div class="lbl" style="margin-bottom:12px">Space scale</div><div id="spacescale"></div></div>
   <div style="display:flex;flex-direction:column;gap:var(--space-4)">
@@ -77,12 +77,12 @@
  </div>
  <h3>Radius</h3>
  <div class="rad" id="radius"></div>
- <div class="rule"><b>Tile</b><span>The mark's corner (4.2 of 32 cells, 13.125%) matches the corner on the chassis panels. Use <code>radius-tile</code> only for the mark and app icons.</span></div>
+ <div class="rule"><b>Tile</b><span>The mark's corner (4.2 of 32 cells, 13.125%) was chosen to echo the rounded chassis panels. Use <code>radius-tile</code> only for the mark and app icons.</span></div>
 </section>
 
 <!-- 04 -->
 <section class="sec" id="mark"><div class="sec-h"><span class="n">04</span><h2>MARK</h2></div>
- <p class="lede">A 32 × 32 perforated tile: 1,024 holes. The chevron of full-size holes never changes. The field is generated from the unit number, so each robot carries its own mark. The full guidelines, lockups and misuse sheet are on the <a href="../#identity">case study</a>.</p>
+ <p class="lede">A 32 × 32 perforated tile: 1,024 positions, 992 holes once the rounded corners are cut. The chevron of full-size holes never changes. The field is generated from the unit number, so each robot carries its own mark. The full guidelines, lockups and misuse sheet are on the <a href="../#identity">case study</a>.</p>
  <div class="g3" id="markdemo"></div>
 </section>
 
@@ -233,5 +233,5 @@
 </section>
 </main></div>
 <div class="toast" id="toast" role="status"><svg class="i"><use href="#i-check"/></svg><span></span></div>
-<script src="tokens.js"></script><script src="icons.js"></script><script src="../mark.js"></script><script src="ds.js"></script>
+<script src="tokens.js"></script><script src="icons.js"></script><script src="../mark.js"></script><script src="../boot.js"></script><script src="ds.js"></script>
 </body></html>

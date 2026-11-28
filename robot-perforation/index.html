@@ -187,13 +187,31 @@ body{background:var(--paper);color:var(--ink)}
 @media(max-width:700px){.sys-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .sys-list div{border-top:2px solid #132630;padding-top:10px;font-size:14px;color:#33464f}
 .sys-list b{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#132630;margin-bottom:4px}
+
+/* DETAILS */
+.det{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(20px,3vw,44px);align-items:start}
+@media(max-width:900px){.det{grid-template-columns:1fr}}
+.chest{background:#0b1317;border-radius:26px;padding:clamp(18px,2.5vw,30px);border:10px solid #1f807c;box-shadow:inset 0 0 0 2px #050a0c,0 30px 60px rgba(11,19,23,.25);position:sticky;top:90px}
+@media(max-width:900px){.chest{position:static}}
+.chest canvas{width:100%;height:auto;display:block}
+.chest .ctl{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.chest button,.chest input{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;height:40px;border-radius:8px;border:1.5px solid #5c6a72;background:transparent;color:#fff;padding:0 14px;cursor:pointer}
+.chest input{width:110px;font-weight:700;cursor:text}
+.chest .k{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#9fb0b8;margin:0 0 14px;display:flex;justify-content:space-between}
+.dl2{list-style:none;margin:0;padding:0;counter-reset:d}
+.dl2 li{display:grid;grid-template-columns:54px 1fr;gap:14px;padding:18px 0;border-top:1px solid var(--line)}
+.dl2 li:first-child{border-top:0;padding-top:4px}
+.dl2 .n{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:#17625f;padding-top:6px}
+.dl2 b{display:block;font-weight:900;text-transform:uppercase;letter-spacing:-.01em;font-size:clamp(19px,1.8vw,24px);line-height:1;margin-bottom:6px}
+.dl2 p{margin:0;color:#33464f;font-size:15px}
+.dl2 code{font-family:var(--mono);font-size:13px;background:var(--steel);padding:1px 6px;border-radius:4px}
 </style>
 </head>
 <body>
 <a href="#main" class="mono" style="position:absolute;left:-999px">Skip to content</a>
 <nav class="nav" aria-label="ROBOT PERFORATION sections"><div class="wrap">
  <a href="https://tigrestudiodesign.github.io/" style="text-decoration:none"><b>TIGRE STUDIO</b> <span class="mono">/ ROBOT PERFORATION</span></a>
- <ul><li><a href="#turntable">Turntable</a></li><li><a href="#vision">Robot vision</a></li><li><a href="#brief">Brand brief</a></li><li><a href="#identity">Identity</a></li><li><a href="#system">System</a></li><li><a href="#inuse">In use</a></li><li><a href="#livery">Livery</a></li><li><a href="#pipeline">Pipeline</a></li><li><a href="#set">The set</a></li><li><a href="https://tigrestudiodesign.github.io/">Portfolio ↗</a></li></ul>
+ <ul><li><a href="#turntable">Turntable</a></li><li><a href="#vision">Robot vision</a></li><li><a href="#brief">Brand brief</a></li><li><a href="#identity">Identity</a></li><li><a href="#system">System</a></li><li><a href="#details">Details</a></li><li><a href="#inuse">In use</a></li><li><a href="#livery">Livery</a></li><li><a href="#pipeline">Pipeline</a></li><li><a href="#set">The set</a></li><li><a href="https://tigrestudiodesign.github.io/">Portfolio ↗</a></li></ul>
 </div></nav>
 <div class="stripe"></div>
 <main id="main">
@@ -212,7 +230,7 @@ body{background:var(--paper);color:var(--ink)}
 <section class="sec" id="tour" style="padding-top:0"><div class="wrap">
  <div class="tour-h"><h2>THREE MINUTES? START HERE</h2><span class="mono">Made for the Brand Designer III application · <a href="UNIT-1024-Brand-Guidelines.pdf" download style="color:#17625f">Guidelines PDF ↓</a></span></div>
  <div class="tour">
-  <a href="#identity"><span class="n">01 · IDENTITY</span><b>A mark per unit</b><span class="d">1,024 holes, one fixed chevron, a field generated from each robot's number. Try your own.</span></a>
+  <a href="#identity"><span class="n">01 · IDENTITY</span><b>A mark per unit</b><span class="d">A 1,024-position grid, one fixed chevron, a field generated from each robot's number. Try your own.</span></a>
   <a href="system/"><span class="n">02 · DESIGN SYSTEM ↗</span><b>Unit System v1.0</b><span class="d">Tokens, icons, components, a live fleet console, contrast checks, governance.</span></a>
   <a href="#inuse"><span class="n">03 · IN USE</span><b>26 formats</b><span class="d">Booth, signage, slides, social, motion, web, email, each mapped to the job description.</span></a>
   <a href="#vision"><span class="n">04 · ROBOT VISION</span><b>How it sees</b><span class="d">An interactive perception HUD. Drag the person and watch the robot slow down.</span></a>
@@ -288,7 +306,7 @@ body{background:var(--paper);color:var(--ink)}
 
 <section class="sec" id="identity"><div class="wrap">
  <div class="sec-h"><h2>THE MARK, <em>PER UNIT</em></h2><span class="mono">Identity · construction · fleet · on product</span></div>
- <p class="lede" style="margin:0 0 30px;max-width:70ch">A fleet brand has a problem a single product doesn't: a hundred robots that should look like one family and still be told apart on the floor. So the mark is a perforated panel, 32 × 32 = 1,024 holes. A chevron of full holes points the way the robot drives and never changes. The rest of the field is generated from the unit number, so every robot carries its own.</p>
+ <p class="lede" style="margin:0 0 30px;max-width:70ch">A fleet brand has a problem a single product doesn't: a hundred robots that should look like one family and still be told apart on the floor. So the mark is a perforated panel on a 32 × 32 grid: 1,024 positions, the unit's own number (992 holes once the rounded corners are cut). A chevron of full holes points the way the robot drives and never changes. The rest of the field is generated from the unit number, so every robot carries its own.</p>
  <div class="idgen" aria-label="Unit mark generator">
   <div class="stage" id="idStage" style="background:#f4f5f5"><canvas id="idCv" width="640" height="640" role="img" aria-label="Unit mark for unit 1024"></canvas></div>
   <div>
@@ -332,6 +350,31 @@ body{background:var(--paper);color:var(--ink)}
   <div><b>Governance</b>A request flow, a 10-point brand review checklist, the asset library structure and a changelog.</div>
  </div>
  <div class="sys-cta"><a class="go" href="system/">Open the design system ↗</a><a class="go go2" href="UNIT-1024-Brand-Guidelines.pdf" download>Brand guidelines PDF · 16 pp</a><a class="go go2" href="system/tokens.json" download>tokens.json</a></div>
+</div></section>
+
+
+<section class="sec" id="details"><div class="wrap">
+ <div class="sec-h"><h2>THE DETAILS, <em>COUNTED</em></h2><span class="mono">Obsessive on purpose</span></div>
+ <p class="lede" style="margin:0 0 30px;max-width:70ch">Brand work for a robot company is a trust job: if the small things are wrong, nobody believes the big ones. So I checked them, and when one was wrong I fixed it and said so. Start with the chest screen: it scans all 1,024 grid positions and counts every hole it draws, live.</p>
+ <div class="det">
+  <div class="chest" aria-label="Chest screen boot sequence">
+   <div class="k"><span>Chest display · boot</span><span id="bootHoles">—</span></div>
+   <canvas id="bootCv" width="720" height="900" role="img" aria-label="Boot sequence: the unit mark fills in position by position while a counter counts to 1,024"></canvas>
+   <div class="ctl"><button type="button" id="bootGo">Replay boot</button><label class="mono" for="bootIn" style="position:absolute;left:-999px">Unit number</label><input id="bootIn" value="1024" inputmode="numeric" maxlength="5" aria-label="Unit number"><button type="button" id="bootRand">Random unit</button></div>
+  </div>
+  <ol class="dl2">
+   <li><span class="n">01</span><div><b>1,024 positions, 992 holes</b><p>The grid is 32 × 32, the unit's number. The rounded corners cut 32 positions, so a mark has 992 holes. My first boards said "1,024 holes". That was wrong, so I corrected every board, the site and the PDF.</p></div></li>
+   <li><span class="n">02</span><div><b>164 holes make the chevron</b><p>Three points on half-cells: <code>9.5,5.5</code> <code>22,15.5</code> <code>9.5,25.5</code>. They sit symmetric about row 15.5, the tile's exact centre line. It's the same in every unit, every size.</p></div></li>
+   <li><span class="n">03</span><div><b>Same number, same mark, forever</b><p>The field comes from a deterministic hash of the unit number, not from random noise. Unit 1024 drawn today, in print or on its screen next year, is hole-for-hole identical.</p></div></li>
+   <li><span class="n">04</span><div><b>The audit caught my own teal</b><p>Teal-700 text on paper measured 4.33:1, under the 4.5 AA line. Teal text moved to teal-800 (6.52:1). The changelog records it, because a brand guardian checks their own work first.</p></div></li>
+   <li><span class="n">05</span><div><b>The stop button is a different red</b><p>Safety red with white type is 4.29:1. So the button uses red-700 (6.57:1), and it is never disabled or hidden. The physical button stays safety red.</p></div></li>
+   <li><span class="n">06</span><div><b>Three distances, one truth</b><p>The robot-vision HUD and the fleet console use the same thresholds: slow inside 3.2 m, wait inside 1.6 m. The copy, the rings and the logs all say the same numbers.</p></div></li>
+   <li><span class="n">07</span><div><b>Icons share the chevron's corners</b><p>Square caps, mitre joins, 45° and 90° only, 2 px at 24. Put an icon next to the mark and nothing looks softer than anything else.</p></div></li>
+   <li><span class="n">08</span><div><b>Every number is real, or says it isn't</b><p>Sample figures (412 totes, 97.2% uptime) are labelled placeholders. Simulations say "simulated". The palette says "my approximation". Nothing claims to be Agility's.</p></div></li>
+   <li><span class="n">09</span><div><b>Motion stops when you ask it to</b><p>With reduced motion switched on, the vision HUD, the fleet console and the status pulse slow to calm steps or stop, and this boot screen jumps straight to its final frame.</p></div></li>
+   <li><span class="n">10</span><div><b>One source, no drift</b><p>Colours, type, spacing and motion live in one tokens.json. The CSS, the site, the console and the contrast matrix are generated from it, so they can't disagree.</p></div></li>
+  </ol>
+ </div>
 </div></section>
 
 <section class="sec" id="inuse"><div class="wrap">
@@ -578,6 +621,17 @@ body{background:var(--paper);color:var(--ink)}
 <script src="case.js"></script>
 <script src="vision.js"></script>
 <script src="mark.js"></script>
+<script src="boot.js"></script>
+<script>
+(function(){var cv=document.getElementById('bootCv');if(!cv||!window.UnitBoot)return;var inp=document.getElementById('bootIn'),hl=document.getElementById('bootHoles');
+var b=UnitBoot.attach(cv,{unit:1024,size:720,top:0,onDone:function(h){hl.textContent=h+' holes · counted'}});
+function go(){hl.textContent='scanning…';b.setUnit(parseInt(inp.value.replace(/\D/g,''),10)||0)}
+document.getElementById('bootGo').addEventListener('click',go);
+document.getElementById('bootRand').addEventListener('click',function(){inp.value=1000+Math.floor(Math.random()*9000);go()});
+inp.addEventListener('change',go);
+var seen=false;if('IntersectionObserver' in window){new IntersectionObserver(function(e){if(e[0].isIntersecting&&!seen){seen=true;go()}},{threshold:.4}).observe(cv)}else go();
+})();
+</script>
 <script>
 (function(){var cv=document.getElementById('idCv');if(!cv||!window.UnitMark)return;var x=cv.getContext('2d'),inp=document.getElementById('idIn'),st=document.getElementById('idStage'),nm=document.getElementById('idName'),ro=document.getElementById('idRo'),g='paper';
 var G={paper:{bg:'#f4f5f5',field:'#132630',hot:'#2fa39e'},ink:{bg:'#0e1d25',field:'#e4e8ea',hot:'#2fa39e'},teal:{bg:'#2fa39e',field:'#132630',hot:'#ffffff'},screen:{bg:'#0b1317',field:'#cfd6da',hot:'#39d353'}};

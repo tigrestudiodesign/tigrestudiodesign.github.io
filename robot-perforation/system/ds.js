@@ -20,7 +20,7 @@ function cr(a,b){var x=lum(a),y=lum(b);if(x<y){var t=x;x=y;y=t}return (x+.05)/(y
 function grade(r,kind){if(kind==='graphic')return r>=3?['aa','GRAPHIC ✓']:['no','GRAPHIC ✕'];return r>=7?['aaa','AAA']:r>=4.5?['aa','AA']:r>=3?['lg','LARGE ONLY']:['no','FAILS']}
 
 // hero
-(function(){var c=$('#heroMark');if(!c||!window.UnitMark)return;UnitMark.draw(c.getContext('2d'),20,20,1000,1024,{field:'rgba(228,232,234,.55)',hot:'#2fa39e'})})();
+(function(){var c=$('#heroMark');if(!c||!window.UnitMark)return;if(window.UnitBoot){var b=UnitBoot.attach(c,{unit:1024,size:1000,top:20,bg:'none',field:'rgba(228,232,234,.55)',hot:'#2fa39e',live:'#2fa39e',text:false,duration:2600});b.start();c.style.cursor='pointer';c.addEventListener('click',b.start);c.removeAttribute('aria-hidden');c.setAttribute('role','img');c.setAttribute('aria-label','Unit 1024 mark, drawn hole by hole')}else UnitMark.draw(c.getContext('2d'),20,20,1000,1024,{field:'rgba(228,232,234,.55)',hot:'#2fa39e'})})();
 (function(){var n=0;['primitive'].forEach(function(){Object.keys(P).forEach(function(k){n+=typeof P[k]==='string'?1:Object.keys(P[k]).length})});
  var s=0;Object.keys(T.semantic).forEach(function(g){s+=Object.keys(T.semantic[g]).length});
  var o=Object.keys(T.space).length+Object.keys(T.radius).length+Object.keys(T.type).length+Object.keys(T.motion.duration).length+Object.keys(T.motion.easing).length+Object.keys(T.shadow).length;
