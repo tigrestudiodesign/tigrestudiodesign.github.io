@@ -261,6 +261,14 @@ body{background:var(--paper);color:var(--ink)}
 .won b{text-transform:uppercase;font-weight:900}
 
 /* on the robot */
+.mac{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.mac figure{margin:0;background:#0b1317;border-radius:16px;overflow:hidden;color:#e4e8ea}
+.mac img{display:block;width:100%;height:auto}
+.mac .mac-w{grid-column:1/-1}
+.mac figcaption{padding:12px 16px 14px}
+.mac b{display:block;font-weight:900;font-size:16px;letter-spacing:.01em}
+.mac span{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:#b5c3c9;margin-top:5px;line-height:1.5}
+@media(max-width:900px){.mac{grid-template-columns:1fr}}
 .ons{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .ons figure{margin:0}.ons .ons-w{grid-column:1/-1}
 @media(max-width:900px){.ons{grid-template-columns:1fr}}
@@ -289,7 +297,7 @@ body{background:var(--paper);color:var(--ink)}
 <a href="#main" class="mono" style="position:absolute;left:-999px">Skip to content</a>
 <nav class="nav" aria-label="ROBOT PERFORATION sections"><div class="wrap">
  <a href="https://tigrestudiodesign.github.io/" style="text-decoration:none"><b>TIGRE STUDIO</b> <span class="mono">/ ROBOT PERFORATION</span></a>
- <ul><li><a href="#film">Film</a></li><li><a href="#turntable">Turntable</a></li><li><a href="#vision">Robot vision</a></li><li><a href="#brief">Brand brief</a></li><li><a href="#identity">Identity</a></li><li><a href="#system">System</a></li><li><a href="#details">Details</a></li><li><a href="#onrobot">On the robot</a></li><li><a href="#onsite">On site</a></li><li><a href="#inuse">In use</a></li><li><a href="#livery">Livery</a></li><li><a href="#pipeline">Pipeline</a></li><li><a href="#set">The set</a></li><li><a href="https://tigrestudiodesign.github.io/">Portfolio ↗</a></li></ul>
+ <ul><li><a href="#film">Film</a></li><li><a href="#turntable">Turntable</a></li><li><a href="#vision">Robot vision</a></li><li><a href="#brief">Brand brief</a></li><li><a href="#identity">Identity</a></li><li><a href="#system">System</a></li><li><a href="#details">Details</a></li><li><a href="#onrobot">On the robot</a></li><li><a href="#upclose">Up close</a></li><li><a href="#onsite">On site</a></li><li><a href="#inuse">In use</a></li><li><a href="#livery">Livery</a></li><li><a href="#pipeline">Pipeline</a></li><li><a href="#set">The set</a></li><li><a href="https://tigrestudiodesign.github.io/">Portfolio ↗</a></li></ul>
 </div></nav>
 <div class="stripe"></div>
 <main id="main">
@@ -540,6 +548,19 @@ body{background:var(--paper);color:var(--ink)}
   <figure><img src="img/rp__cu_base.webp?v=5" alt="Close-up of the tracked base: on the black front panel, the 120 by 40 mm ID decal with the teal unit mark and UNIT 1024, centred above the yellow base light between the two tie-down rings" width="1600" height="900" loading="lazy"><figcaption><b>ID decal · on the base</b><span>The same 120 × 40 mm decal from the print kit, at knee height where people look down: the unit mark and its number.</span></figcaption></figure>
  </div>
  <p class="mono" style="margin-top:14px;max-width:900px;line-height:1.6">How these were made: close-up crops of the Rhino model rendered in Vizcom (the chest straight-on, so the screen sits flat to the camera), then the real screen layouts, light states and decal artwork placed back on top, so every word and number is the actual design. Visualizations of a concept, not photos of a working robot.</p>
+</div></section>
+
+<section class="sec" id="upclose"><div class="wrap">
+ <div class="sec-h"><h2>UP CLOSE: <em>CMF DETAILS</em></h2><span class="mono">Macro studies · colour, material, finish · rendered in Vizcom from the model</span></div>
+ <p style="max-width:780px;font-size:17px;line-height:1.55;margin:0 0 20px;color:#2c3f48">The brand lives in the finish too. A matte teal shell you can read in a dusty aisle, safety colours that only mean safety, and hardware honest enough to show how it is built. Five macro studies of the same robot, at the distance a technician sees it.</p>
+ <div class="mac">
+  <figure class="mac-a"><img src="img/rp__mac_estop.webp" alt="Macro: the teal matte powder-coated chest shell with a grid of round perforations, the red emergency stop with a knurled yellow ring, and the smoked status window with one green LED" width="1600" height="1195" loading="lazy"><figcaption><b>01 · CHEST</b><span>Matte powder coat, fine micro texture · round perforations · knurled e-stop ring · smoked status window</span></figcaption></figure>
+  <figure class="mac-a"><img src="img/rp__mac_spring.webp" alt="Macro: the polished stainless steel coil spring around the matte black column, with a slim steel guide rod, seated in the teal base" width="1600" height="1195" loading="lazy"><figcaption><b>02 · SPRUNG COLUMN</b><span>Polished stainless coil · black anodised column · steel guide rod</span></figcaption></figure>
+  <figure class="mac-w"><img src="img/rp__mac_elbow.webp" alt="Macro: bead-blasted aluminium forearm segments meeting a soft-touch black elbow joint with a round cap and centre bolt, teal perforated shell behind" width="1600" height="900" loading="lazy"><figcaption><b>03 · ELBOW</b><span>Bead-blasted aluminium forearm · soft-touch black joint · machined cap and hex bolt</span></figcaption></figure>
+  <figure class="mac-a"><img src="img/rp__mac_track.webp" alt="Macro: black rubber crawler track with a fine grain tread, the drive wheel with a brushed aluminium ring, idler wheels, and the teal fender with a glowing green LED" width="1600" height="885" loading="lazy"><figcaption><b>04 · TRACK</b><span>Grain-textured rubber tread · brushed aluminium rim · status LED on the fender</span></figcaption></figure>
+  <figure class="mac-a"><img src="img/rp__mac_base.webp" alt="Macro: the curved teal base shell with a field of round perforations, a frosted white light bar and a small black sensor window" width="1600" height="885" loading="lazy"><figcaption><b>05 · BASE</b><span>Perforation field on a compound curve · frosted light bar · sensor window</span></figcaption></figure>
+ </div>
+ <p class="mono" style="margin-top:14px;max-width:900px;line-height:1.6">How these were made: macro crops of the final renders, re-rendered in Vizcom as material studies, then retouched by hand where the AI drifted (a stray tag on the wheel, a few discoloured holes). Visualizations of a concept, not photos of a built robot.</p>
 </div></section>
 
 <section class="sec" id="onsite"><div class="wrap">
