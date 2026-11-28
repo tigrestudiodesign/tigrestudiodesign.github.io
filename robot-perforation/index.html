@@ -629,7 +629,7 @@ function go(){hl.textContent='scanning…';b.setUnit(parseInt(inp.value.replace(
 document.getElementById('bootGo').addEventListener('click',go);
 document.getElementById('bootRand').addEventListener('click',function(){inp.value=1000+Math.floor(Math.random()*9000);go()});
 inp.addEventListener('change',go);
-var seen=false;if('IntersectionObserver' in window){new IntersectionObserver(function(e){if(e[0].isIntersecting&&!seen){seen=true;go()}},{threshold:.4}).observe(cv)}else go();
+var seen=false;if('IntersectionObserver' in window){new IntersectionObserver(function(e){if(e[0].isIntersecting&&!seen){seen=true;go()}},{threshold:.15}).observe(cv)}else go();
 })();
 </script>
 <script>
