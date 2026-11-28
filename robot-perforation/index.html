@@ -261,6 +261,11 @@ body{background:var(--paper);color:var(--ink)}
 .won b{text-transform:uppercase;font-weight:900}
 
 /* on the robot */
+.orb-loop{margin:0 0 14px;background:#0b1317;border-radius:16px;overflow:hidden;color:#e4e8ea}
+.orb-loop video{display:block;width:100%;height:auto}
+.orb-loop figcaption{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:12px 16px 14px}
+.orb-loop span{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:#b5c3c9;line-height:1.5}
+.orb-loop button{font:700 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;background:none;color:#e4e8ea;border:1px solid #5c6a72;border-radius:999px;padding:8px 14px;cursor:pointer;flex:none}
 .orb-tri{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
 @media(max-width:900px){.orb-tri{grid-template-columns:1fr}}
 .orb-tri figure,.orb-two figure{margin:0;background:#0b1317;border-radius:16px;overflow:hidden;color:#e4e8ea}
@@ -310,7 +315,7 @@ body{background:var(--paper);color:var(--ink)}
   <div>
    <div class="pics">
     <figure class="w"><img src="img/rp__id_4.webp" alt="Fleet sheet: twenty unit marks, each a different perforation field around the same teal chevron, with unit numbers below" width="2200" height="1375" loading="lazy"><figcaption>01 · EVERY UNIT ITS OWN MARK</figcaption></figure>
-    <figure><img src="img/rp__cu_chest_slow.webp?v=3" alt="Close-up of the robot chest display showing SLOWING, PERSON NEAR, with a yellow status light" width="2400" height="1340" loading="lazy"><figcaption>02 · ON THE MACHINE</figcaption></figure>
+    <figure><img src="img/rp__cu_chest_slow.webp?v=4" alt="Close-up of the robot chest display showing SLOWING, PERSON NEAR, with a yellow status light" width="2400" height="1340" loading="lazy"><figcaption>02 · ON THE MACHINE</figcaption></figure>
     <figure><img src="img/rp__onsite_robot.webp" alt="The robot in a warehouse aisle behind the STOP &amp; LOOK floor decal, with the ZONE B-04 sign above" width="2400" height="1340" loading="lazy"><figcaption>03 · ON THE FLOOR</figcaption></figure>
    </div>
    <div class="cta"><a class="p" href="#film">▶ Watch the 78 s film</a><a href="#identity">Try a unit number</a><a href="system/">Open the design system ↗</a><a href="UNIT-1024-Two-Pager.pdf" download>Two-page PDF ↓</a></div>
@@ -343,7 +348,7 @@ body{background:var(--paper);color:var(--ink)}
  <div class="film-meta"><span><b>01</b> Boot · 1,024 positions</span><span><b>02</b> Title · construction lines</span><span><b>03</b> See · understand · decide</span><span><b>04</b> The five-layer stack</span><span><b>05</b> Live perception, layer by layer</span><span><b>06</b> One robot, every angle</span><span><b>07</b> The fleet</span></div>
  <p class="mono" style="margin-top:14px;font-size:11px;color:var(--mute)">Unofficial concept film. Simulated perception, not real robot software. Not affiliated with or endorsed by Agility Robotics.</p>
 <div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:clamp(18px,3vw,40px);align-items:center;margin:44px 0 0" class="ep2">
- <div class="film"><video src="img/rp__film_ep02.mp4" poster="img/rp__film_ep02_poster.webp" controls playsinline preload="none" aria-label="UNIT 1024 Foundations episode 2, The Brand, a 41-second film with British English narration" crossorigin="anonymous"><track kind="captions" src="img/rp__film_ep02.vtt" srclang="en-GB" label="English" default></video></div>
+ <div class="film"><video src="img/rp__film_ep02.mp4?v=3" poster="img/rp__film_ep02_poster.webp" controls playsinline preload="none" aria-label="UNIT 1024 Foundations episode 2, The Brand, a 41-second film with British English narration" crossorigin="anonymous"><track kind="captions" src="img/rp__film_ep02.vtt" srclang="en-GB" label="English" default></video></div>
  <div><span class="mono" style="font-size:12px;color:#17625f">EP. 02 · 41 S</span><h3 style="font-size:clamp(30px,3.4vw,50px);margin:8px 0 12px">THE BRAND</h3><p style="color:#33464f;font-size:16px;margin:0 0 12px">The identity as a system in motion. The grid fills and its 32 corner positions drop away. One tile cycles through unit numbers while the chevron holds still. Then the mark on the robot, the wayfinding family, every token pair checked for contrast, the five status loops, and the line it all comes back to: a brand is a system other people can use.</p></div>
 </div>
 <style>@media(max-width:800px){.ep2{grid-template-columns:1fr!important}}</style>
@@ -450,7 +455,7 @@ body{background:var(--paper);color:var(--ink)}
   <button class="shot" type="button" aria-label="Enlarge: Construction"><img src="img/rp__id_2.webp" alt="Construction sheet: the mark on its 32 by 32 grid with chevron points, clear space of 4 cells, and a size ladder from 200 px down to a solid 16 px version" loading="lazy"></button>
   <button class="shot" type="button" aria-label="Enlarge: Lockups"><img src="img/rp__id_3.webp" alt="Lockups: horizontal, stacked and symbol versions on paper, ink and teal grounds" loading="lazy"></button>
   <button class="shot wide" type="button" aria-label="Enlarge: Fleet system"><img src="img/rp__id_4.webp" alt="Fleet system: 24 unit marks, each with a different generated field and the same chevron; unit 1024 highlighted on teal" loading="lazy"></button>
-  <button class="shot wide" type="button" aria-label="Enlarge: On product"><img src="img/rp__id_5.webp" alt="The teal robot from the front with the mark on its chest display and a UNIT 1024 decal on the base plate, with close-ups of both" loading="lazy"></button>
+  <button class="shot wide" type="button" aria-label="Enlarge: On product"><img src="img/rp__id_5.webp?v=2" alt="The teal robot from the front with the mark on its chest display and a UNIT 1024 decal on the base plate, with close-ups of both" loading="lazy"></button>
   <button class="shot" type="button" aria-label="Enlarge: Colour, type and voice"><img src="img/rp__id_6.webp" alt="Colour by area bar, a six-step type scale, and say-this-not-that voice examples" loading="lazy"></button>
   <button class="shot" type="button" aria-label="Enlarge: Misuse"><img src="img/rp__id_7.webp" alt="Six misuse examples: rotated, red chevron, stretched, moved chevron, glow effect, and no tile on a busy photo" loading="lazy"></button>
  </div>
@@ -517,19 +522,20 @@ body{background:var(--paper);color:var(--ink)}
  <div class="sec-h"><h2>ON THE ROBOT: <em>THE SYSTEM IN ACTION</em></h2><span class="mono">Close-ups · chest display, status light, visor, unit plate</span></div>
  <p style="max-width:780px;font-size:17px;line-height:1.55;margin:0 0 20px;color:#2c3f48">The brand only matters if a person on the floor can read it in a second. So the same three states run on every surface of the robot at once: the chest display says it in words and numbers, the status light above it shows the colour, and the visor and head lights carry that colour to the face and the sides.</p>
  <div class="orb-key">
-  <div><b>Chest display</b>State, distance and the unit mark, readable at 3 m.</div>
+  <div><b>Chest display</b>State, distance and its own shape for each state (two chevrons, one chevron, hold bars), so it reads without colour, at 3 m.</div>
   <div><b>Status light</b>One LED above the display, in the same colour as the state, readable from any angle.</div>
   <div><b>Visor + side lights</b>The face and the head lights carry the same colour, so the state reads from the front and the side.</div>
   <div><b>E-stop</b>Red with a yellow ring on the upper chest, never used as decoration.</div>
  </div>
+ <figure class="orb-loop"><video id="orbv" src="img/rp__cu_states_loop.mp4" poster="img/rp__cu_states_poster.jpg" autoplay muted loop playsinline width="1600" height="900" aria-label="Loop of the chest close-up switching from WORKING (green, two chevrons) to SLOWING (yellow, one chevron) to WAITING (red, hold bars), with the status light changing colour each time"></video><figcaption><span>A person walks closer: working, slowing, waiting. The screen, the icon and the light change together, and the shape alone tells you the state.</span><button type="button" id="orbp" aria-pressed="false">Pause</button></figcaption></figure>
  <div class="orb-tri">
-  <figure><img src="img/rp__cu_chest_ok_sq.webp?v=3" alt="Straight-on close-up of the robot's chest: the display shows WORKING in green with the teal unit mark and 1024, speed 100%; the status light above is green" width="1000" height="1000" loading="lazy"><figcaption><b><i style="background:#39d353"></i>Working</b><span>Nothing in the lane. Green light, speed 100%.</span></figcaption></figure>
-  <figure><img src="img/rp__cu_chest_slow_sq.webp?v=3" alt="Straight-on close-up of the chest display showing SLOWING, PERSON NEAR, I SEE YOU 2.4 M, speed 40%; the status light above is yellow" width="1000" height="1000" loading="lazy"><figcaption><b><i style="background:#f2c230"></i>Slowing</b><span>Person inside 3.2 m. Yellow light, speed 40%, and it says how far you are.</span></figcaption></figure>
-  <figure><img src="img/rp__cu_chest_wait_sq.webp?v=3" alt="Straight-on close-up of the chest display showing WAITING, STOPPED FOR YOU, AFTER YOU 1.2 M, speed 0%; the status light above is red" width="1000" height="1000" loading="lazy"><figcaption><b><i style="background:#e23b2e"></i>Waiting</b><span>Person inside 1.6 m. Red light, it stops and lets you go first. Speed 0%.</span></figcaption></figure>
+  <figure><img src="img/rp__cu_chest_ok_sq.webp?v=4" alt="Straight-on close-up of the robot's chest: the display shows WORKING, LANE CLEAR in green with a two-chevron icon, speed 100%; the status light above is green" width="1000" height="1000" loading="lazy"><figcaption><b><i style="background:#39d353"></i>Working</b><span>Nothing in the lane. Green light, speed 100%.</span></figcaption></figure>
+  <figure><img src="img/rp__cu_chest_slow_sq.webp?v=4" alt="Straight-on close-up of the chest display showing SLOWING, PERSON NEAR, a single-chevron icon, I SEE YOU 2.4 M, speed 40%; the status light above is yellow" width="1000" height="1000" loading="lazy"><figcaption><b><i style="background:#f2c230"></i>Slowing</b><span>Person inside 3.2 m. Yellow light, speed 40%, and it says how far you are.</span></figcaption></figure>
+  <figure><img src="img/rp__cu_chest_wait_sq.webp?v=4" alt="Straight-on close-up of the chest display showing WAITING, STOPPED FOR YOU, a hold-bars icon, AFTER YOU 1.2 M, speed 0%; the status light above is red" width="1000" height="1000" loading="lazy"><figcaption><b><i style="background:#e23b2e"></i>Waiting</b><span>Person inside 1.6 m. Red light, it stops and lets you go first. Speed 0%.</span></figcaption></figure>
  </div>
  <div class="orb-two">
   <figure><img src="img/rp__cu_head.webp?v=3" alt="Close-up of the robot's head: the visor shows two yellow eyes looking toward a person and the words I SEE YOU 2.4 M; the side lights glow yellow" width="2400" height="1350" loading="lazy"><figcaption><b>Visor · I see you</b><span>When it slows, the eyes turn toward the person and the visor gives the distance. You know it has seen you.</span></figcaption></figure>
-  <figure><img src="img/rp__cu_base.webp?v=4" alt="Close-up of the tracked base: on the black front panel, the 120 by 40 mm ID decal with the teal unit mark and UNIT 1024, centred above the yellow base light between the two tie-down rings" width="1600" height="900" loading="lazy"><figcaption><b>ID decal · on the base</b><span>The same 120 × 40 mm decal from the print kit, at knee height where people look down: the unit mark and its number.</span></figcaption></figure>
+  <figure><img src="img/rp__cu_base.webp?v=5" alt="Close-up of the tracked base: on the black front panel, the 120 by 40 mm ID decal with the teal unit mark and UNIT 1024, centred above the yellow base light between the two tie-down rings" width="1600" height="900" loading="lazy"><figcaption><b>ID decal · on the base</b><span>The same 120 × 40 mm decal from the print kit, at knee height where people look down: the unit mark and its number.</span></figcaption></figure>
  </div>
  <p class="mono" style="margin-top:14px;max-width:900px;line-height:1.6">How these were made: close-up crops of the Rhino model rendered in Vizcom (the chest straight-on, so the screen sits flat to the camera), then the real screen layouts, light states and decal artwork placed back on top, so every word and number is the actual design. Visualizations of a concept, not photos of a working robot.</p>
 </div></section>
@@ -875,5 +881,6 @@ C.innerHTML='<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect
 var w=document.getElementById('koW');if(w){var x=w.getContext('2d');UnitMark.draw(x,8,8,160,1024,{field:'#dfe5e8',hot:'#2fa39e'})}
 })();
 </script>
+<script>(function(){var v=document.getElementById('orbv'),b=document.getElementById('orbp');if(!v||!b)return;function set(p){if(p){v.pause();b.textContent='Play';b.setAttribute('aria-pressed','true')}else{v.play();b.textContent='Pause';b.setAttribute('aria-pressed','false')}}if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){v.removeAttribute('autoplay');set(true)}b.addEventListener('click',function(){set(!v.paused)})})();</script>
 </body>
 </html>
