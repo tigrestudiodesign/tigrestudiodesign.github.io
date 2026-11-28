@@ -4,132 +4,228 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Robot Perforation · Tigre Studio</title>
-<meta name="description" content="A tracked utility humanoid modelled in Rhino 9, shot from six scripted cameras, rendered in Vizcom and finished as one consistent studio set: the pipeline, step by step.">
+<meta name="description" content="An unofficial brand and CMF study: a tracked utility humanoid modelled in Rhino 9, shot from six scripted cameras, rendered in Vizcom and re-liveried in a calm teal and black, in the plain, direct register Agility uses for Digit.">
 <meta property="og:title" content="Robot Perforation · Tigre Studio">
-<meta property="og:description" content="One Rhino model, six scripted cameras, one studio. A tracked utility humanoid taken from viewport to portfolio set, step by step.">
-<meta property="og:image" content="https://tigrestudiodesign.github.io/robot-perforation/img/rp__cover.webp">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Crect width='28' height='28' fill='%230B0B0C'/%3E%3Cpath d='M4 4h20v6h-7v14h-6V10H4z' fill='%23FF4A1C'/%3E%3C/svg%3E">
+<meta property="og:description" content="One Rhino model, six scripted cameras, two liveries. An unofficial brand and CMF study in a teal and black humanoid language.">
+<meta property="og:image" content="https://tigrestudiodesign.github.io/robot-perforation/img/rp__t_cover.webp">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Crect width='28' height='28' fill='%23132630'/%3E%3Cpath d='M4 4h20v6h-7v14h-6V10H4z' fill='%232FA39E'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="case.css">
 <style>
-/* title fits PERFORATION on one line */
-.hero h1{font-size:clamp(34px,10.4vw,168px)}
+/* ===== Light, plain-spoken theme (my read of a teal / ink / pale-steel humanoid system) ===== */
+:root{--ink:#132630;--paper:#f4f5f5;--steel:#e4e8ea;--mute:#5c6a72;--line:#cfd6da;--hot:#1f807c;--teal:#2fa39e;--teal-d:#1f807c;--signal:#e23b2e;--mark:#f2c230}
+body{background:var(--paper);color:var(--ink)}
+.mono{color:var(--mute)}
+.grid{background-image:linear-gradient(rgba(19,38,48,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(19,38,48,.055) 1px,transparent 1px);background-size:40px 40px}
+.nav{background:rgba(244,245,245,.92);border-bottom:1px solid var(--line)}
+.nav ul a{color:#33464f}.nav ul a:hover{background:var(--steel);color:var(--ink)}
+.stripe{height:4px;background:linear-gradient(90deg,var(--ink) 0 72%,var(--teal) 72% 100%)}
+.hero h1{font-size:clamp(34px,10.4vw,168px);color:var(--ink)}
+.hero h1 span{color:var(--teal)}
+.tag{color:var(--teal-d)}
+.lede{color:#2c3f48}
+.spec{background:var(--line);border-color:var(--line)}
+.spec div{background:#fff}
+.hero-img{background:var(--steel)}
+.chip{background:var(--ink)}
+.sec-h{border-bottom-color:var(--ink)}
+.sec-h h2 em{color:var(--teal-d)}
+.ot p{color:#33464f}
+.ot .num{color:var(--teal-d)}
+.logic{background:#fff;border-color:var(--line);color:var(--ink)}
+.logic b{color:var(--teal-d)}
+.cmf th{color:var(--mute);border-bottom-color:var(--line)}.cmf td{color:var(--ink);border-bottom-color:var(--line)}
+.sw{box-shadow:0 0 0 1px rgba(19,38,48,.25)}
+.obj{border-top-color:var(--line)}
+.shot{background:var(--steel)}
+.foot{border-top-color:var(--line);background:var(--ink);color:var(--paper)}
+.foot .mono{color:#9fb1b8}
+.btn.hot{background:var(--teal);border-color:var(--teal);color:var(--ink)}
+.cmp .l.b{background:var(--teal-d)}
+.cmp .h{background:var(--teal)}
+.cmp .h::after{box-shadow:0 0 0 3px var(--teal),0 6px 16px rgba(0,0,0,.3)}
+.disclaim{display:inline-flex;gap:10px;align-items:center;margin-top:18px;padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:#fff;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#33464f}
+.disclaim i{width:8px;height:8px;border-radius:50%;background:var(--signal);flex:none}
 /* turntable */
-.tt{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#d9d4ce;cursor:grab;touch-action:pan-y;user-select:none}
+.tt{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--steel);cursor:grab;touch-action:pan-y;user-select:none}
 .tt:active{cursor:grabbing}
 .tt img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .35s}
 .tt img.on{opacity:1}
 .tt .ratio{aspect-ratio:4/3}
 .tt-bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;align-items:center}
-.tt-bar button{min-height:42px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:#141416;color:#cfcfd3;cursor:pointer;font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase}
-.tt-bar button[aria-pressed="true"]{background:var(--hot);border-color:var(--hot);color:#fff}
-.tt-hud{position:absolute;left:50%;transform:translateX(-50%);bottom:12px;white-space:nowrap;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;background:rgba(11,11,12,.82);color:#fff;padding:7px 10px;border-radius:7px;pointer-events:none}
-.tt-hud b{color:var(--hot)}
-/* pipeline rail */
-.rail{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border:1.5px solid var(--ink);border-radius:16px;overflow:hidden}
-.rail a{display:block;padding:18px 16px;text-decoration:none;border-right:1.5px solid var(--ink);background:rgba(255,255,255,.45);transition:background .2s}
-.rail a:last-child{border-right:0}
-.rail a:hover{background:#fff}
-.rail .n{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--hot)}
-.rail h3{font-size:22px;margin:8px 0 6px}
-.rail p{margin:0;font-size:14px;color:#3d3d42;font-weight:700}
-@media(max-width:980px){.rail{grid-template-columns:repeat(2,1fr)}.rail a{border-bottom:1.5px solid var(--ink)}.rail a:nth-child(2n){border-right:0}}
-/* six-up grids */
+.pill{min-height:42px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:#fff;color:#33464f;cursor:pointer;font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase}
+.pill[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.pill.lv[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:var(--ink)}
+.pill.lv.or[aria-pressed="true"]{background:#ff4d00;border-color:#ff4d00;color:#fff}
+.tt-hud{position:absolute;left:50%;transform:translateX(-50%);bottom:12px;white-space:nowrap;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;background:rgba(19,38,48,.86);color:#fff;padding:7px 10px;border-radius:7px;pointer-events:none}
+.tt-hud b{color:var(--teal)}
+.sep{width:1px;height:28px;background:var(--line);margin:0 4px}
+/* brand brief */
+.bb{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media(max-width:900px){.bb{grid-template-columns:1fr}}
+.bb article{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px}
+.bb .k{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-d)}
+.bb h3{font-size:clamp(26px,2.6vw,36px);margin:10px 0 12px}
+.bb .read{font-size:15.5px;color:#33464f;margin:0 0 12px}
+.bb .did{font-size:15.5px;margin:0;padding-top:12px;border-top:1px dashed var(--line)}
+.bb .did b{font-family:var(--mono);font-weight:400;font-size:11px;letter-spacing:.1em;color:var(--teal-d);display:block;margin-bottom:4px}
+.pal2{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:22px}
+.pal2 div{border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#fff}
+.pal2 i{display:block;height:84px}
+.pal2 p{margin:0;padding:10px 12px;font-size:14px}
+.pal2 span{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--mute);text-transform:uppercase;margin-top:2px}
+.left{margin-top:22px;border-left:4px solid var(--ink);padding:4px 0 4px 18px;max-width:80ch;color:#33464f;font-size:15.5px}
+.left b{color:var(--ink)}
+.src{margin-top:14px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--mute)}
+.src a{color:var(--teal-d)}
+/* rail */
+.rail{display:grid;grid-template-columns:repeat(7,1fr);border:1.5px solid var(--ink);border-radius:16px;overflow:hidden;background:#fff}
+.rail a{display:block;padding:18px 14px;text-decoration:none;border-right:1.5px solid var(--ink);transition:background .2s}
+.rail a:last-child{border-right:0}.rail a:hover{background:var(--steel)}
+.rail .n{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--teal-d)}
+.rail h3{font-size:20px;margin:8px 0 6px}
+.rail p{margin:0;font-size:13.5px;color:#33464f;font-weight:700}
+@media(max-width:1100px){.rail{grid-template-columns:repeat(2,1fr)}.rail a{border-bottom:1.5px solid var(--ink)}.rail a:nth-child(2n){border-right:0}}
 .six{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 @media(max-width:700px){.six{grid-template-columns:repeat(2,1fr)}}
-.six figure{margin:0}
-.six figcaption{margin-top:6px}
-.chk{background-color:#1a1a1c;background-image:linear-gradient(45deg,#262628 25%,transparent 25%),linear-gradient(-45deg,#262628 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#262628 75%),linear-gradient(-45deg,transparent 75%,#262628 75%);background-size:22px 22px;background-position:0 0,0 11px,11px -11px,-11px 0}
+.six figure{margin:0}.six figcaption{margin-top:6px}
+.chk{border-radius:14px;overflow:hidden;background-color:#fff;background-image:linear-gradient(45deg,#e9edef 25%,transparent 25%),linear-gradient(-45deg,#e9edef 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#e9edef 75%),linear-gradient(-45deg,transparent 75%,#e9edef 75%);background-size:22px 22px;background-position:0 0,0 11px,11px -11px,-11px 0}
 .chk img{width:100%;aspect-ratio:4/3;object-fit:contain;padding:8%}
 .cam{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12.5px;margin-bottom:18px}
 .cam th,.cam td{text-align:left;padding:8px 10px 8px 0;border-bottom:1px solid var(--line);font-weight:400}
 .cam th{color:var(--mute);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
-.cam td{color:#e6e6e8}
-.cam td:first-child{color:var(--hot)}
-.rule{border:1.5px solid var(--hot);border-radius:14px;padding:16px 18px;margin:0 0 18px;font-size:16px;color:#efefef}
-.rule b{font-family:var(--mono);font-weight:400;font-size:11px;letter-spacing:.12em;color:var(--hot);display:block;margin-bottom:6px}
+.cam td:first-child{color:var(--teal-d)}
+.rule{border:1.5px solid var(--ink);border-radius:14px;padding:16px 18px;margin:0 0 18px;font-size:16px;background:#fff}
+.rule b{font-family:var(--mono);font-weight:400;font-size:11px;letter-spacing:.12em;color:var(--teal-d);display:block;margin-bottom:6px}
 .vpick{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
-.vpick button{min-height:36px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:#141416;color:#cfcfd3;cursor:pointer;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase}
-.vpick button[aria-pressed="true"]{background:#fff;color:var(--ink);border-color:#fff}
+.vpick button{min-height:36px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:#fff;color:#33464f;cursor:pointer;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.vpick button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
 .cmp.r43{aspect-ratio:4/3}
+.dark{background:var(--ink);color:var(--paper)}
+.dark .mono{color:#9fb1b8}.dark .sec-h{border-bottom-color:var(--paper)}.dark .sec-h h2 em{color:var(--teal)}
 </style>
 </head>
 <body>
 <a href="#main" class="mono" style="position:absolute;left:-999px">Skip to content</a>
 <nav class="nav" aria-label="ROBOT PERFORATION sections"><div class="wrap">
  <a href="https://tigrestudiodesign.github.io/" style="text-decoration:none"><b>TIGRE STUDIO</b> <span class="mono">/ ROBOT PERFORATION</span></a>
- <ul><li><a href="#turntable">Turntable</a></li><li><a href="#pipeline">Pipeline</a></li><li><a href="#s01">Steps</a></li><li><a href="#set">The set</a></li><li><a href="https://tigrestudiodesign.github.io/">Portfolio ↗</a></li></ul>
+ <ul><li><a href="#turntable">Turntable</a></li><li><a href="#brief">Brand brief</a></li><li><a href="#livery">Livery</a></li><li><a href="#pipeline">Pipeline</a></li><li><a href="#set">The set</a></li><li><a href="https://tigrestudiodesign.github.io/">Portfolio ↗</a></li></ul>
 </div></nav>
 <div class="stripe"></div>
 <main id="main">
 
 <header class="hero grid"><div class="wrap">
- <div class="hero-top"><span class="mono">Concept · robotics · CMF + render study · 2026</span><span class="mono">Rhino 9 → C# cameras → Vizcom → studio composite</span></div>
+ <div class="hero-top"><span class="mono">Unofficial brand + CMF study · robotics · 2026</span><span class="mono">Rhino 9 / scripted cameras / Vizcom / studio composite</span></div>
  <h1>ROBOT<span>.</span><br>PERFORATION</h1>
- <p class="tag">ONE MODEL. SIX CAMERAS. ONE STUDIO.</p>
- <p class="lede">A tracked utility humanoid: a torso on a turret, a spring-loaded column and a tracked base built to carry it. I modelled it in Rhino 9, scripted six cameras so every angle is repeatable, rendered each view in Vizcom, then finished the six as a single studio shoot: same backdrop, same light, same floor. This page is the whole pipeline, including the renders I threw away.</p>
- <div class="spec"><div><span class="mono">Scripted cameras</span><b>6</b></div><div><span class="mono">Pipeline steps</span><b>6</b></div><div><span class="mono">Vizcom passes</span><b>3</b></div><div><span class="mono">Final set</span><b>8 images</b></div><div><span class="mono">Master size</span><b>3840 × 2160</b></div></div>
- <div class="hero-img"><img src="img/rp__cover.webp" alt="Cover: the orange tracked utility humanoid on a warm grey studio sweep, with the title ROBOT PERFORATION in black monospace type" width="3840" height="2160"><span class="chip">Final cover</span></div>
+ <p class="tag">DRAWN FOR THE DULL, HEAVY, REPEATABLE WORK.</p>
+ <p class="lede">A tracked utility humanoid I modelled in Rhino 9. Six scripted cameras, one material direction in Vizcom, one studio. Then a second job: dress the same robot in a humanoid maker's brand language, a calm teal and black, plain light studios and plain words, and show exactly how I got there, including the renders I threw away.</p>
+ <div class="spec"><div><span class="mono">Scripted cameras</span><b>6</b></div><div><span class="mono">Liveries</span><b>2</b></div><div><span class="mono">Vizcom passes</span><b>3</b></div><div><span class="mono">Final set</span><b>8 + 8</b></div><div><span class="mono">Master size</span><b>3840 × 2160</b></div></div>
+ <div class="hero-img"><img src="img/rp__t_cover.webp" alt="Cover: the tracked utility humanoid in a teal and black livery on a pale steel studio sweep, title ROBOT PERFORATION in dark ink" width="3840" height="2160"></div>
+ <p class="disclaim"><i></i>Unofficial concept · not affiliated with or endorsed by Agility · no logos or proprietary type used</p>
 </div></header>
 
-<section class="sec grid" id="turntable" style="padding-top:0"><div class="wrap">
- <div class="sec-h"><h2>THE <em>TURNTABLE</em></h2><span class="mono">Drag across the image · arrow keys · or pick a camera</span></div>
+<section class="sec" id="turntable" style="padding-top:0"><div class="wrap">
+ <div class="sec-h"><h2>THE <em>TURNTABLE</em></h2><span class="mono">Drag across the image · arrow keys · switch the livery</span></div>
  <div class="tt" id="tt" tabindex="0" role="group" aria-roledescription="turntable" aria-label="Six studio views of the robot. Drag sideways or use the arrow keys to rotate.">
   <div class="ratio"></div>
-  <img class="on" src="img/rp__frame_01_hero.webp" alt="01 Hero, front three-quarter" width="2400" height="1800">
-  <img src="img/rp__frame_02_front.webp" alt="02 Front elevation" width="2400" height="1800" loading="lazy">
-  <img src="img/rp__frame_03_side.webp" alt="03 Side profile" width="2400" height="1800" loading="lazy">
-  <img src="img/rp__frame_04_rear.webp" alt="04 Rear three-quarter" width="2400" height="1800" loading="lazy">
-  <img src="img/rp__frame_05_low.webp" alt="05 Low angle" width="2400" height="1800" loading="lazy">
-  <img src="img/rp__frame_06_high.webp" alt="06 High three-quarter" width="2400" height="1800" loading="lazy">
-  <span class="tt-hud" id="ttHud" aria-live="polite"><b>01</b> / 06 · HERO, FRONT 3/4</span>
+  <img class="on" data-i="0" alt="01 Hero, front three-quarter" width="2400" height="1800">
+  <img data-i="1" alt="02 Front elevation" width="2400" height="1800">
+  <img data-i="2" alt="03 Side profile" width="2400" height="1800">
+  <img data-i="3" alt="04 Rear three-quarter" width="2400" height="1800">
+  <img data-i="4" alt="05 Low angle" width="2400" height="1800">
+  <img data-i="5" alt="06 High three-quarter" width="2400" height="1800">
+  <span class="tt-hud" id="ttHud" aria-live="polite"><b>01</b> / 06 · HERO, FRONT 3/4 · TEAL</span>
  </div>
- <div class="tt-bar" id="ttBar" role="group" aria-label="Pick a camera">
-  <button type="button" aria-pressed="true">01 Hero</button><button type="button" aria-pressed="false">02 Front</button><button type="button" aria-pressed="false">03 Side</button><button type="button" aria-pressed="false">04 Rear</button><button type="button" aria-pressed="false">05 Low</button><button type="button" aria-pressed="false">06 High</button>
-  <button type="button" id="ttPlay" aria-pressed="false" style="margin-left:auto">▶ Auto-spin</button>
+ <div class="tt-bar" id="ttBar">
+  <span role="group" aria-label="Pick a camera" id="camBtns" style="display:contents"><button class="pill" type="button" aria-pressed="true">01 Hero</button><button class="pill" type="button" aria-pressed="false">02 Front</button><button class="pill" type="button" aria-pressed="false">03 Side</button><button class="pill" type="button" aria-pressed="false">04 Rear</button><button class="pill" type="button" aria-pressed="false">05 Low</button><button class="pill" type="button" aria-pressed="false">06 High</button></span>
+  <span class="sep" aria-hidden="true"></span>
+  <span role="group" aria-label="Livery" style="display:contents"><button class="pill lv" type="button" aria-pressed="true" data-lv="t">Teal / black</button><button class="pill lv or" type="button" aria-pressed="false" data-lv="o">Safety orange</button></span>
+  <button class="pill" type="button" id="ttPlay" aria-pressed="false" style="margin-left:auto">▶ Auto-spin</button>
  </div>
 </div></section>
 
-<section class="sec lgrid" id="pipeline"><div class="wrap">
- <div class="sec-h"><h2>THE <em>PIPELINE</em></h2><span class="mono">Six steps · viewport to portfolio</span></div>
+<section class="sec grid" id="brief"><div class="wrap">
+ <div class="sec-h"><h2>BRAND <em>BRIEF</em></h2><span class="mono">What I read · what I did with it</span></div>
+ <div class="bb">
+  <article><span class="k">01 · Voice</span><h3>PLAIN, DIRECT, HONEST</h3>
+   <p class="read">Agility describes its own language as plain, direct and honest, and calls the team "the truth tellers" in a field full of overpromising.</p>
+   <p class="did"><b>WHAT I DID</b>Short declarative lines, no superlatives. The page shows the renders I binned and says plainly where AI helped and where it drifted.</p></article>
+  <article><span class="k">02 · Colour</span><h3>CALM TEAL, NOT DYSTOPIA</h3>
+   <p class="read">Digit's teal was chosen to feel calm and to stay away from the dark industrial tones of science-fiction robots.</p>
+   <p class="did"><b>WHAT I DID</b>Re-liveried the orange shells to a muted teal over matte black. Safety colour stays functional: red e-stops and yellow markers were masked out and never recoloured.</p></article>
+  <article><span class="k">03 · Imagery</span><h3>LIGHT, PLAIN STUDIOS</h3>
+   <p class="read">Product shots sit on plain light-grey backgrounds; the brand favours a "wear-and-tear reality" over a polished utopia.</p>
+   <p class="did"><b>WHAT I DID</b>Moved the set from a warm sweep to a cool pale-steel studio: one key light, honest contact shadows, no glow, no lens flares.</p></article>
+  <article><span class="k">04 · Character</span><h3>CRAFT, DURABILITY, CANDOR</h3>
+   <p class="read">The brand names four traits: craft and expertise, hard work and durability, levity and candor, responsibility and ethics.</p>
+   <p class="did"><b>WHAT I DID</b>Craft: a scripted, repeatable camera rig. Durability: tracks, guards and a sprung column, a robot drawn for repetitive work. Candor: the binned renders are on the page.</p></article>
+ </div>
+ <div class="pal2" aria-label="Study palette">
+  <div><i style="background:#2fa39e"></i><p><b>Shell teal</b><span>#2FA39E · my read, not official</span></p></div>
+  <div><i style="background:#132630"></i><p><b>Ink</b><span>#132630 · type + joints</span></p></div>
+  <div><i style="background:#e4e8ea"></i><p><b>Pale steel</b><span>#E4E8EA · studio</span></p></div>
+  <div><i style="background:#f4f5f5"></i><p><b>Paper</b><span>#F4F5F5 · page</span></p></div>
+  <div><i style="background:#e23b2e"></i><p><b>E-stop red</b><span>Safety · untouched</span></p></div>
+  <div><i style="background:#f2c230"></i><p><b>Marker yellow</b><span>Safety · untouched</span></p></div>
+ </div>
+ <p class="left"><b>What I left alone, on purpose.</b> No Agility logo or symbol, no Agility Diatype (it's theirs; this page uses Inter Display and JetBrains Mono), no taglines or trademarks, and nothing that copies Digit's form. This is my robot wearing a brand language, which is the part of the job I wanted to show.</p>
+ <p class="src">Sources: <a href="https://www.agilityrobotics.com/content/agility-gets-a-new-brand">Agility, "Agility Gets a New Brand"</a> (Mar 2026) · <a href="https://research.contrary.com/company/agility-robotics">Contrary Research on Digit's teal</a> · <a href="https://www.agilityrobotics.com/">agilityrobotics.com</a>. Hex values are my own approximations.</p>
+</div></section>
+
+<section class="sec" id="livery"><div class="wrap">
+ <div class="sec-h"><h2>ONE ROBOT, <em>TWO SKINS</em></h2><span class="mono">Same cutout · same light · drag to compare</span></div>
+ <article class="obj" style="border-top:0;padding-top:0">
+  <div class="om"><figure style="margin:0"><div class="cmp r43"><img src="img/rp__frame_01_hero.webp" alt="Hero view in the original safety-orange livery on a warm studio" loading="lazy"><img class="af" src="img/rp__t_frame_01_hero.webp" alt="Hero view in the teal and black livery on a pale steel studio" loading="lazy"><span class="h" aria-hidden="true"></span><span class="l a">SAFETY ORANGE</span><span class="l b">TEAL / BLACK</span><input type="range" min="0" max="100" value="50" aria-label="Compare the orange and teal liveries"></div><figcaption class="cmpcap mono"><span>Drag: Tigre orange → teal / black</span><span>Geometry untouched</span></figcaption></figure>
+  <div class="six" style="margin-top:10px">
+   <figure class="chk"><img src="img/rp__t_cut_hero.webp" alt="Teal cutout, hero" loading="lazy"></figure>
+   <figure class="chk"><img src="img/rp__t_cut_front.webp" alt="Teal cutout, front" loading="lazy"></figure>
+   <figure class="chk"><img src="img/rp__t_cut_side.webp" alt="Teal cutout, side" loading="lazy"></figure>
+  </div></div>
+  <div class="ot"><p class="num">LIVERY PASS · PYTHON</p><h3>RE-SKIN, DON'T REDRAW</h3><p>Asking an image model for "teal" redraws the robot. So the livery is done after the render, on the cutouts: every orange shell pixel is moved to the teal family while keeping its own light and shade, so the perforation, the highlights and the parting lines all survive. The robot's geometry is never touched.</p>
+  <pre class="logic"><b>MASK</b>     orange hue band · soft edges · blurred 1.2 px
+<b>PROTECT</b>  e-stop reds · marker yellows · black joints · aluminium
+<b>MAP</b>      hue → teal · saturation × 0.56 · value × 0.70
+<b>STUDIO</b>   pale steel sweep · same shadows · same ground line</pre>
+  <table class="cmf"><tbody><tr><th scope="row">Shell</th><td><span class="sw" style="background:#2fa39e"></span>Muted teal, satin, perforated</td></tr><tr><th scope="row">Joints + base</th><td><span class="sw" style="background:#16191b"></span>Matte black</td></tr><tr><th scope="row">Arms</th><td><span class="sw" style="background:#b9bcbf"></span>Bead-blasted aluminium</td></tr><tr><th scope="row">Safety</th><td><span class="sw" style="background:#e23b2e"></span><span class="sw" style="background:#f2c230"></span>E-stop red · marker yellow, unchanged</td></tr><tr><th scope="row">Status</th><td><span class="sw" style="background:#39d353"></span>Green LEDs, unchanged</td></tr></tbody></table></div>
+ </article>
+</div></section>
+
+<section class="sec grid" id="pipeline"><div class="wrap">
+ <div class="sec-h"><h2>THE <em>PIPELINE</em></h2><span class="mono">Seven steps · viewport to brand set</span></div>
  <nav class="rail" aria-label="Pipeline steps">
-  <a href="#s01"><span class="n">01</span><h3>MODEL</h3><p>Rhino 9 surfaces and solids, colour-coded by part.</p></a>
-  <a href="#s02"><span class="n">02</span><h3>CAMERAS</h3><p>A C# script sets six cameras and exports each view.</p></a>
-  <a href="#s03"><span class="n">03</span><h3>RENDER</h3><p>Vizcom turns each export into a product photo.</p></a>
-  <a href="#s04"><span class="n">04</span><h3>EDIT</h3><p>Keep what's faithful. Reject what drifts.</p></a>
-  <a href="#s05"><span class="n">05</span><h3>COMPOSITE</h3><p>Cut out, re-light, one shared studio.</p></a>
-  <a href="#s06"><span class="n">06</span><h3>LAYOUT</h3><p>Frames, turnaround and cover.</p></a>
+  <a href="#s01"><span class="n">01</span><h3>MODEL</h3><p>Rhino 9, colour-coded by part.</p></a>
+  <a href="#s02"><span class="n">02</span><h3>CAMERAS</h3><p>C# sets six repeatable views.</p></a>
+  <a href="#s03"><span class="n">03</span><h3>RENDER</h3><p>Vizcom, one material direction.</p></a>
+  <a href="#s04"><span class="n">04</span><h3>EDIT</h3><p>Keep what's true to the model.</p></a>
+  <a href="#s05"><span class="n">05</span><h3>COMPOSITE</h3><p>Cut out, one shared studio.</p></a>
+  <a href="#livery"><span class="n">06</span><h3>LIVERY</h3><p>Re-skin to the brand language.</p></a>
+  <a href="#s07"><span class="n">07</span><h3>LAYOUT</h3><p>Frames, turnaround, cover.</p></a>
  </nav>
 </div></section>
 
 <section class="sec" id="steps"><div class="wrap">
 
  <article class="obj" id="s01" style="border-top:0;padding-top:0">
-  <div class="om"><button class="shot" type="button" aria-label="Enlarge: The Rhino 9 model in a ghosted viewport, front three-quarter"><img src="img/rp__rhino_hero.webp" alt="The Rhino 9 model in a ghosted viewport: torso shell and track guards in orange curves, joints and tracks in grey, status lights in green and yellow" loading="lazy" width="1920" height="1440"></button><div class="pair"><button class="shot" type="button" aria-label="Enlarge: Rhino viewport, side profile"><img src="img/rp__rhino_side.webp" alt="Rhino viewport, side profile: spring column and tracked base" loading="lazy" width="1920" height="1440"></button><button class="shot" type="button" aria-label="Enlarge: Rhino viewport, high three-quarter"><img src="img/rp__rhino_top.webp" alt="Rhino viewport, high three-quarter looking down on the track guards" loading="lazy" width="1920" height="1440"></button></div></div>
-  <div class="ot"><p class="num">STEP 01 · RHINO 9</p><h3>THE MODEL</h3><p>Everything starts as real geometry. Head, torso shell, shoulder and elbow joints, gripper hands, a spring-loaded column, a turret ring and a tracked base with road wheels and guards. Parts are colour-coded on their layers, orange for shells, grey for mechanics, green and yellow for lights and markers, so the render step can read what each part is.</p>
+  <div class="om"><button class="shot" type="button" aria-label="Enlarge: The Rhino 9 model in a ghosted viewport"><img src="img/rp__rhino_hero.webp" alt="The Rhino 9 model in a ghosted viewport: shells in orange curves, joints and tracks in grey, lights in green and yellow" loading="lazy" width="1920" height="1440"></button><div class="pair"><button class="shot" type="button" aria-label="Enlarge: Rhino viewport, side profile"><img src="img/rp__rhino_side.webp" alt="Rhino viewport, side profile" loading="lazy" width="1920" height="1440"></button><button class="shot" type="button" aria-label="Enlarge: Rhino viewport, high three-quarter"><img src="img/rp__rhino_top.webp" alt="Rhino viewport, high three-quarter" loading="lazy" width="1920" height="1440"></button></div></div>
+  <div class="ot"><p class="num">STEP 01 · RHINO 9</p><h3>THE MODEL</h3><p>Real geometry first. Head, torso shell, shoulder and elbow joints, gripper hands, a spring-loaded column, a turret ring and a tracked base with road wheels and guards. Parts are colour-coded on their layers so the render step can read what each part is.</p>
   <pre class="logic"><b>BODY</b>   head · torso shell · 2 arms · grippers
 <b>SPINE</b>  turret ring · spring column · guide rods
 <b>BASE</b>   twin tracks · road wheels · track guards
 <b>CODE</b>   layer colour = part family</pre>
-  <p class="mono">The shells are smooth in Rhino. The perforation is a CMF direction I gave Vizcom in step 03, not modelled holes.</p></div>
+  <p class="mono">The shells are smooth in Rhino. The perforation is a material direction given to Vizcom, not modelled holes.</p></div>
  </article>
 
  <article class="obj" id="s02">
   <div class="om"><div class="six">
-   <figure><button class="shot" type="button" aria-label="Enlarge: Camera 01 export"><img src="img/rp__rhino_hero.webp" alt="Camera 01: hero, front three-quarter" loading="lazy" width="1920" height="1440"></button><figcaption class="mono">01 · Hero</figcaption></figure>
-   <figure><button class="shot" type="button" aria-label="Enlarge: Camera 02 export"><img src="img/rp__rhino_front.webp" alt="Camera 02: front elevation" loading="lazy" width="1920" height="1440"></button><figcaption class="mono">02 · Front</figcaption></figure>
-   <figure><button class="shot" type="button" aria-label="Enlarge: Camera 03 export"><img src="img/rp__rhino_side.webp" alt="Camera 03: side profile" loading="lazy" width="1920" height="1440"></button><figcaption class="mono">03 · Side</figcaption></figure>
-   <figure><button class="shot" type="button" aria-label="Enlarge: Camera 04 export"><img src="img/rp__rhino_back.webp" alt="Camera 04: rear three-quarter" loading="lazy" width="1920" height="1440"></button><figcaption class="mono">04 · Rear</figcaption></figure>
-   <figure><button class="shot" type="button" aria-label="Enlarge: Camera 05 export"><img src="img/rp__rhino_low.webp" alt="Camera 05: low angle, wide lens" loading="lazy" width="1920" height="1440"></button><figcaption class="mono">05 · Low</figcaption></figure>
-   <figure><button class="shot" type="button" aria-label="Enlarge: Camera 06 export"><img src="img/rp__rhino_top.webp" alt="Camera 06: high three-quarter" loading="lazy" width="1920" height="1440"></button><figcaption class="mono">06 · High</figcaption></figure>
+   <figure><button class="shot" type="button" aria-label="Enlarge: Camera 01"><img src="img/rp__rhino_hero.webp" alt="Camera 01: hero, front three-quarter" loading="lazy"></button><figcaption class="mono">01 · Hero</figcaption></figure>
+   <figure><button class="shot" type="button" aria-label="Enlarge: Camera 02"><img src="img/rp__rhino_front.webp" alt="Camera 02: front elevation" loading="lazy"></button><figcaption class="mono">02 · Front</figcaption></figure>
+   <figure><button class="shot" type="button" aria-label="Enlarge: Camera 03"><img src="img/rp__rhino_side.webp" alt="Camera 03: side profile" loading="lazy"></button><figcaption class="mono">03 · Side</figcaption></figure>
+   <figure><button class="shot" type="button" aria-label="Enlarge: Camera 04"><img src="img/rp__rhino_back.webp" alt="Camera 04: rear three-quarter" loading="lazy"></button><figcaption class="mono">04 · Rear</figcaption></figure>
+   <figure><button class="shot" type="button" aria-label="Enlarge: Camera 05"><img src="img/rp__rhino_low.webp" alt="Camera 05: low angle" loading="lazy"></button><figcaption class="mono">05 · Low</figcaption></figure>
+   <figure><button class="shot" type="button" aria-label="Enlarge: Camera 06"><img src="img/rp__rhino_top.webp" alt="Camera 06: high three-quarter" loading="lazy"></button><figcaption class="mono">06 · High</figcaption></figure>
   </div></div>
-  <div class="ot"><p class="num">STEP 02 · C# IN RHINO 9</p><h3>SIX CAMERAS, SCRIPTED</h3><p>Instead of orbiting by hand, a short C# script aims one camera at the same target from six directions, sets a lens for each, fits the model's bounding box and writes a 1920 × 1440 capture with no grid or axes. Same target, same framing logic, every time: if the model changes, all six views can be re-shot in seconds.</p>
+  <div class="ot"><p class="num">STEP 02 · C# IN RHINO 9</p><h3>SIX CAMERAS, SCRIPTED</h3><p>One camera, one target, six directions, a lens for each, the model's bounding box fitted every time, written out at 1920 × 1440 with no grid or axes. If the model changes, all six views can be re-shot in seconds. Repeatable beats pretty.</p>
   <table class="cam"><thead><tr><th>Cam</th><th>Direction (x, y, z)</th><th>Lens</th></tr></thead><tbody>
-   <tr><td>01</td><td>−0.55, −1.00, 0.35</td><td>50 mm</td></tr>
-   <tr><td>02</td><td>0.00, −1.00, 0.08</td><td>60 mm</td></tr>
-   <tr><td>03</td><td>1.00, 0.00, 0.08</td><td>60 mm</td></tr>
-   <tr><td>04</td><td>0.60, 1.00, 0.35</td><td>50 mm</td></tr>
-   <tr><td>05</td><td>0.45, −1.00, −0.05</td><td>35 mm</td></tr>
-   <tr><td>06</td><td>−0.70, −0.80, 1.10</td><td>50 mm</td></tr>
+   <tr><td>01</td><td>−0.55, −1.00, 0.35</td><td>50 mm</td></tr><tr><td>02</td><td>0.00, −1.00, 0.08</td><td>60 mm</td></tr><tr><td>03</td><td>1.00, 0.00, 0.08</td><td>60 mm</td></tr><tr><td>04</td><td>0.60, 1.00, 0.35</td><td>50 mm</td></tr><tr><td>05</td><td>0.45, −1.00, −0.05</td><td>35 mm</td></tr><tr><td>06</td><td>−0.70, −0.80, 1.10</td><td>50 mm</td></tr>
   </tbody></table>
   <pre class="logic"><b>TARGET</b> (0, 0, 78) · camera at target + dir × 450
 <b>FIT</b>    ZoomBoundingBox on the model
@@ -139,88 +235,91 @@
  <article class="obj" id="s03">
   <div class="om">
    <div class="vpick" id="vpick" role="group" aria-label="Pick a view to compare"><button type="button" aria-pressed="true" data-v="hero">01 Hero</button><button type="button" aria-pressed="false" data-v="front">02 Front</button><button type="button" aria-pressed="false" data-v="side">03 Side</button><button type="button" aria-pressed="false" data-v="low">05 Low</button></div>
-   <figure style="margin:0"><div class="cmp r43" id="cmp3"><img id="cmpA" src="img/rp__rhino_hero.webp" alt="Rhino viewport export" loading="lazy"><img class="af" id="cmpB" src="img/rp__raw_hero.webp" alt="Vizcom render of the same view" loading="lazy"><span class="h" aria-hidden="true"></span><span class="l a">RHINO</span><span class="l b">VIZCOM</span><input type="range" min="0" max="100" value="50" aria-label="Compare the Rhino viewport and the Vizcom render"></div><figcaption class="cmpcap mono"><span>Drag: viewport → render</span><span>Same camera, same geometry</span></figcaption></figure>
+   <figure style="margin:0"><div class="cmp r43"><img id="cmpA" src="img/rp__rhino_hero.webp" alt="Rhino viewport export" loading="lazy"><img class="af" id="cmpB" src="img/rp__raw_hero.webp" alt="Vizcom render of the same view" loading="lazy"><span class="h" aria-hidden="true"></span><span class="l a">RHINO</span><span class="l b">VIZCOM</span><input type="range" min="0" max="100" value="50" aria-label="Compare the Rhino viewport and the Vizcom render"></div><figcaption class="cmpcap mono"><span>Drag: viewport → render</span><span>Same camera, same geometry</span></figcaption></figure>
   </div>
-  <div class="ot"><p class="num">STEP 03 · VIZCOM</p><h3>FROM VIEWPORT TO PHOTO</h3><p>Each capture goes into Vizcom with one written material direction. The shells become safety-orange polymer with a fine CNC perforation, the joints anodised black, the arm tubes bead-blasted aluminium, the tracks real rubber. Four outputs per view; I pick the one that stays truest to the model.</p>
+  <div class="ot"><p class="num">STEP 03 · VIZCOM</p><h3>FROM VIEWPORT TO PHOTO</h3><p>Each capture goes into Vizcom with one written material direction: a perforated polymer shell, black anodised joints, bead-blasted aluminium arms, rubber tracks. Four outputs per view; I keep the one that stays truest to the model. The first pass was rendered in my studio's safety orange.</p>
   <pre class="logic"><b>MODE</b>    Modify · Pro · 4 outputs
-<b>SHELL</b>   safety-orange polymer · CNC perforation · satin
+<b>SHELL</b>   polymer · CNC perforation · satin
 <b>JOINTS</b>  matte black anodised
 <b>ARMS</b>    bead-blasted aluminium tubes
 <b>BASE</b>    rubber tracks with tread · green status LEDs
-<b>STUDIO</b>  seamless sweep · soft key · rim light · 85 mm</pre>
-  <table class="cmf"><tbody><tr><th scope="row">Shell</th><td><span class="sw" style="background:#ff4d00"></span>Safety orange, satin, perforated</td></tr><tr><th scope="row">Joints</th><td><span class="sw" style="background:#1d1d1f"></span>Matte black anodised</td></tr><tr><th scope="row">Arms</th><td><span class="sw" style="background:#b9bcbf"></span>Bead-blasted aluminium</td></tr><tr><th scope="row">Signals</th><td><span class="sw" style="background:#39d353"></span><span class="sw" style="background:#ffc21a"></span>Green status · yellow markers</td></tr></tbody></table></div>
+<b>STUDIO</b>  seamless sweep · soft key · rim light · 85 mm</pre></div>
  </article>
 
  <article class="obj" id="s04">
   <div class="om"><div class="six">
-   <figure><button class="shot" type="button" aria-label="Enlarge: Raw render, hero"><img src="img/rp__raw_hero.webp" alt="Raw Vizcom render, hero view, warm grey studio" loading="lazy"></button><figcaption class="mono">01 · warm grey</figcaption></figure>
-   <figure><button class="shot" type="button" aria-label="Enlarge: Raw render, front"><img src="img/rp__raw_front.webp" alt="Raw Vizcom render, front view, warm grey studio" loading="lazy"></button><figcaption class="mono">02 · warm grey</figcaption></figure>
-   <figure><button class="shot" type="button" aria-label="Enlarge: Raw render, side"><img src="img/rp__raw_side.webp" alt="Raw Vizcom render, side view, pure white backdrop" loading="lazy"></button><figcaption class="mono">03 · pure white</figcaption></figure>
-   <figure><button class="shot" type="button" aria-label="Enlarge: Raw render, rear"><img src="img/rp__raw_back.webp" alt="Raw Vizcom render, rear three-quarter, light grey" loading="lazy"></button><figcaption class="mono">04 · light grey</figcaption></figure>
-   <figure><button class="shot" type="button" aria-label="Enlarge: Raw render, low"><img src="img/rp__raw_low.webp" alt="Raw Vizcom render, low angle, beige backdrop" loading="lazy"></button><figcaption class="mono">05 · beige</figcaption></figure>
-   <figure><button class="shot" type="button" aria-label="Enlarge: Raw render, high"><img src="img/rp__raw_top.webp" alt="Raw Vizcom render, high three-quarter, white backdrop" loading="lazy"></button><figcaption class="mono">06 · white</figcaption></figure>
+   <figure><button class="shot" type="button" aria-label="Enlarge: Raw render, hero"><img src="img/rp__raw_hero.webp" alt="Raw Vizcom render, hero view, light grey studio" loading="lazy"></button><figcaption class="mono">01 · grey</figcaption></figure>
+   <figure><button class="shot" type="button" aria-label="Enlarge: Raw render, front"><img src="img/rp__raw_front.webp" alt="Raw Vizcom render, front view, warm grey" loading="lazy"></button><figcaption class="mono">02 · warm grey</figcaption></figure>
+   <figure><button class="shot" type="button" aria-label="Enlarge: Raw render, side"><img src="img/rp__raw_side.webp" alt="Raw Vizcom render, side view, pure white" loading="lazy"></button><figcaption class="mono">03 · pure white</figcaption></figure>
+   <figure><button class="shot" type="button" aria-label="Enlarge: Raw render, rear"><img src="img/rp__raw_back.webp" alt="Raw Vizcom render, rear three-quarter, warm grey" loading="lazy"></button><figcaption class="mono">04 · warm grey</figcaption></figure>
+   <figure><button class="shot" type="button" aria-label="Enlarge: Raw render, low"><img src="img/rp__raw_low.webp" alt="Raw Vizcom render, low angle, beige" loading="lazy"></button><figcaption class="mono">05 · beige</figcaption></figure>
+   <figure><button class="shot" type="button" aria-label="Enlarge: Raw render, high"><img src="img/rp__raw_top.webp" alt="Raw Vizcom render, high three-quarter, white" loading="lazy"></button><figcaption class="mono">06 · white</figcaption></figure>
   </div></div>
-  <div class="ot"><p class="num">STEP 04 · ART DIRECTION</p><h3>KEEP WHAT'S TRUE</h3><p>Six good renders still aren't a set. Every view came back on a different backdrop, from warm grey to pure white to beige. Pushing Vizcom harder to match them made it worse: on the side and high views it started turning the camera and redrawing the head and torso. A render that quietly changes the design is worse than a white background, so those went in the bin.</p>
+  <div class="ot"><p class="num">STEP 04 · ART DIRECTION</p><h3>KEEP WHAT'S TRUE</h3><p>Six good renders still aren't a set: every view came back on a different backdrop. Pushing Vizcom harder to match made it worse. On the side and high views it started turning the camera and redrawing the head and torso. A render that quietly changes the design is worse than a white background, so those went in the bin.</p>
   <div class="rule"><b>THE RULE</b>Never keep an output that changes the design. Fix consistency in the composite, not in the generator.</div>
   <pre class="logic"><b>PASSES</b>  3 rounds · 4 outputs each
-<b>KEPT</b>    the outputs that hold the model's pose and parts
+<b>KEPT</b>    outputs that hold the model's pose and parts
 <b>BINNED</b>  re-angled side views · copied poses · redrawn heads</pre></div>
  </article>
 
  <article class="obj" id="s05">
   <div class="om"><div class="six">
-   <figure class="chk" style="border-radius:14px;overflow:hidden"><img src="img/rp__cut_hero.webp" alt="Cutout, hero view, on a transparency checkerboard" loading="lazy"></figure>
-   <figure class="chk" style="border-radius:14px;overflow:hidden"><img src="img/rp__cut_front.webp" alt="Cutout, front view" loading="lazy"></figure>
-   <figure class="chk" style="border-radius:14px;overflow:hidden"><img src="img/rp__cut_side.webp" alt="Cutout, side view" loading="lazy"></figure>
-   <figure class="chk" style="border-radius:14px;overflow:hidden"><img src="img/rp__cut_back.webp" alt="Cutout, rear three-quarter" loading="lazy"></figure>
-   <figure class="chk" style="border-radius:14px;overflow:hidden"><img src="img/rp__cut_low.webp" alt="Cutout, low angle" loading="lazy"></figure>
-   <figure class="chk" style="border-radius:14px;overflow:hidden"><img src="img/rp__cut_top.webp" alt="Cutout, high three-quarter" loading="lazy"></figure>
+   <figure class="chk"><img src="img/rp__cut_hero.webp" alt="Cutout, hero, on a transparency checkerboard" loading="lazy"></figure>
+   <figure class="chk"><img src="img/rp__cut_front.webp" alt="Cutout, front" loading="lazy"></figure>
+   <figure class="chk"><img src="img/rp__cut_side.webp" alt="Cutout, side" loading="lazy"></figure>
+   <figure class="chk"><img src="img/rp__cut_back.webp" alt="Cutout, rear three-quarter" loading="lazy"></figure>
+   <figure class="chk"><img src="img/rp__cut_low.webp" alt="Cutout, low angle" loading="lazy"></figure>
+   <figure class="chk"><img src="img/rp__cut_top.webp" alt="Cutout, high three-quarter" loading="lazy"></figure>
   </div>
-  <div class="pair"><button class="shot" type="button" aria-label="Enlarge: Side view before, raw render on white"><img src="img/rp__raw_side.webp" alt="Before: raw side render on a pure white backdrop" loading="lazy"></button><button class="shot" type="button" aria-label="Enlarge: Side view after, studio composite"><img src="img/rp__frame_03_side.webp" alt="After: the same side view composited into the shared warm grey studio with cast and contact shadows" loading="lazy"></button></div></div>
-  <div class="ot"><p class="num">STEP 05 · CUT + COMPOSITE</p><h3>ONE STUDIO</h3><p>Vizcom cuts every robot off its backdrop. Then each one is rebuilt into the same studio: one warm grey sweep, one key light from the upper right, one floor line. Shadows are rebuilt from the robot's own silhouette, so every view casts the same long, soft shadow back-left, plus a tight contact shadow where the tracks meet the floor. A small colour balance pulls all six oranges to the same value.</p>
+  <div class="pair"><button class="shot" type="button" aria-label="Enlarge: Side view before"><img src="img/rp__raw_side.webp" alt="Before: raw side render on pure white" loading="lazy"></button><button class="shot" type="button" aria-label="Enlarge: Side view after, teal studio composite"><img src="img/rp__t_frame_03_side.webp" alt="After: the same side view in the teal livery, composited into the pale steel studio with cast and contact shadows" loading="lazy"></button></div></div>
+  <div class="ot"><p class="num">STEP 05 · CUT + COMPOSITE</p><h3>ONE STUDIO</h3><p>Vizcom cuts each robot off its backdrop. Each one is rebuilt into the same studio: one sweep, one key light from the upper right, one floor line. Shadows come from the robot's own silhouette, a long soft one back-left and a tight one where the tracks meet the floor. Same scale, same ground line, every view.</p>
   <pre class="logic"><b>CUT</b>       Vizcom Remove background · edge defringe
-<b>BACKDROP</b>  wall #C9C3BC → #E2DDD7 · sweep floor · key pool · vignette
+<b>BACKDROP</b>  pale steel #CED4D7 → #E6EAEC · sweep floor · key pool
 <b>SHADOW</b>    own silhouette → skew + squash + blur (long + contact)
-<b>COLOUR</b>    per-view RGB gain toward the set mean, capped ±12%
 <b>FINISH</b>    fine grain · same scale · same ground line</pre></div>
  </article>
 
- <article class="obj" id="s06">
-  <div class="om"><button class="shot" type="button" aria-label="Enlarge: Turnaround sheet"><img src="img/rp__turnaround.webp" alt="Turnaround sheet: all six views in a row on one floor line, numbered 01 to 06 in orange" loading="lazy" width="3840" height="2160"></button><div class="pair"><button class="shot" type="button" aria-label="Enlarge: Studio frame 01, hero"><img src="img/rp__frame_01_hero.webp" alt="Studio frame 01, hero, with Tigre Studio micro-type and crop marks" loading="lazy"></button><button class="shot" type="button" aria-label="Enlarge: Studio frame 05, low angle"><img src="img/rp__frame_05_low.webp" alt="Studio frame 05, low angle" loading="lazy"></button></div></div>
-  <div class="ot"><p class="num">STEP 06 · LAYOUT</p><h3>THE SET</h3><p>The last step turns renders into a portfolio set: six numbered studio frames, a six-view turnaround on a single floor line, and a 16:9 cover. Type is set in monospace caps with one hot-orange accent, crop ticks and a faint technical grid, quiet enough to stay out of the robot's way.</p>
+ <article class="obj" id="s07">
+  <div class="om"><button class="shot" type="button" aria-label="Enlarge: Teal turnaround sheet"><img src="img/rp__t_turnaround.webp" alt="Turnaround sheet: all six teal views on one floor line, numbered 01 to 06" loading="lazy" width="3840" height="2160"></button><div class="pair"><button class="shot" type="button" aria-label="Enlarge: Teal frame 01"><img src="img/rp__t_frame_01_hero.webp" alt="Teal studio frame 01, hero" loading="lazy"></button><button class="shot" type="button" aria-label="Enlarge: Teal frame 05"><img src="img/rp__t_frame_05_low.webp" alt="Teal studio frame 05, low angle" loading="lazy"></button></div></div>
+  <div class="ot"><p class="num">STEP 07 · LAYOUT</p><h3>THE SET</h3><p>Six numbered frames, a six-view turnaround on one floor line, and a 16:9 cover, in both liveries. The teal set uses dark ink type with one teal accent, crop ticks and a faint grid: enough system to look engineered, quiet enough to stay out of the robot's way.</p>
   <pre class="logic"><b>COVER</b>       3840 × 2160 · title block + hero
 <b>TURNAROUND</b>  3840 × 2160 · 6 views · one floor datum
 <b>FRAMES</b>      6 × 2400 × 1800 · numbered 01–06
-<b>TYPE</b>        mono caps · #FF4D00 accent · crop ticks · grid</pre></div>
+<b>TYPE</b>        Inter Display · JetBrains Mono caps · ink + teal</pre></div>
  </article>
 
 </div></section>
 
-<section class="sec grid" id="set"><div class="wrap">
- <div class="sec-h"><h2>THE <em>SET</em></h2><span class="mono">Click any frame to enlarge</span></div>
- <button class="shot" type="button" aria-label="Enlarge: Turnaround sheet" style="margin-bottom:10px"><img src="img/rp__turnaround.webp" alt="Turnaround: six views of the robot on one studio floor" loading="lazy" width="3840" height="2160"></button>
+<section class="sec dark" id="set"><div class="wrap">
+ <div class="sec-h"><h2>THE <em>SET</em></h2><span class="mono">Teal / black livery · click to enlarge</span></div>
+ <button class="shot" type="button" aria-label="Enlarge: Teal turnaround" style="margin-bottom:10px"><img src="img/rp__t_turnaround.webp" alt="Turnaround: six teal views of the robot on one studio floor" loading="lazy" width="3840" height="2160"></button>
  <div class="six">
-  <button class="shot" type="button" aria-label="Enlarge: 01 Hero"><img src="img/rp__frame_01_hero.webp" alt="01 Hero, front three-quarter" loading="lazy"></button>
-  <button class="shot" type="button" aria-label="Enlarge: 02 Front"><img src="img/rp__frame_02_front.webp" alt="02 Front elevation" loading="lazy"></button>
-  <button class="shot" type="button" aria-label="Enlarge: 03 Side"><img src="img/rp__frame_03_side.webp" alt="03 Side profile" loading="lazy"></button>
-  <button class="shot" type="button" aria-label="Enlarge: 04 Rear"><img src="img/rp__frame_04_rear.webp" alt="04 Rear three-quarter" loading="lazy"></button>
-  <button class="shot" type="button" aria-label="Enlarge: 05 Low"><img src="img/rp__frame_05_low.webp" alt="05 Low angle" loading="lazy"></button>
-  <button class="shot" type="button" aria-label="Enlarge: 06 High"><img src="img/rp__frame_06_high.webp" alt="06 High three-quarter" loading="lazy"></button>
+  <button class="shot" type="button" aria-label="Enlarge: 01 Hero"><img src="img/rp__t_frame_01_hero.webp" alt="01 Hero, front three-quarter, teal" loading="lazy"></button>
+  <button class="shot" type="button" aria-label="Enlarge: 02 Front"><img src="img/rp__t_frame_02_front.webp" alt="02 Front elevation, teal" loading="lazy"></button>
+  <button class="shot" type="button" aria-label="Enlarge: 03 Side"><img src="img/rp__t_frame_03_side.webp" alt="03 Side profile, teal" loading="lazy"></button>
+  <button class="shot" type="button" aria-label="Enlarge: 04 Rear"><img src="img/rp__t_frame_04_rear.webp" alt="04 Rear three-quarter, teal" loading="lazy"></button>
+  <button class="shot" type="button" aria-label="Enlarge: 05 Low"><img src="img/rp__t_frame_05_low.webp" alt="05 Low angle, teal" loading="lazy"></button>
+  <button class="shot" type="button" aria-label="Enlarge: 06 High"><img src="img/rp__t_frame_06_high.webp" alt="06 High three-quarter, teal" loading="lazy"></button>
  </div>
- <p class="mono" style="margin-top:22px">Me: the robot model in Rhino 9, the camera set, the material direction and every keep-or-bin call · Tools: Rhino 9 (C# view capture), Vizcom, browser canvas compositing with Claude</p>
+ <p class="mono" style="margin-top:26px">Original livery: <a href="img/rp__cover.webp" style="color:#2fa39e">safety-orange cover</a> · <a href="img/rp__turnaround.webp" style="color:#2fa39e">safety-orange turnaround</a></p>
+ <p class="mono" style="margin-top:10px">Me: the robot model in Rhino 9, the camera set, the material direction, the brand read and every keep-or-bin call · Tools: Rhino 9 (C# view capture), Vizcom, Python livery pass and browser compositing with Claude</p>
 </div></section>
 
 </main>
-<footer class="foot"><div class="wrap"><div><p class="mono">Henry Mauricio Ortega · Tigre Studio</p><h3>ROBOT PERFORATION</h3><p class="mono" style="margin-top:10px">Concept · robotics · CMF + render study · 2026</p></div><a class="btn hot" href="https://tigrestudiodesign.github.io/">Back to the portfolio</a></div></footer>
+<footer class="foot"><div class="wrap"><div><p class="mono">Henry Mauricio Ortega · Tigre Studio</p><h3>ROBOT PERFORATION</h3><p class="mono" style="margin-top:10px">Unofficial brand + CMF study · not affiliated with Agility · 2026</p></div><a class="btn hot" href="https://tigrestudiodesign.github.io/">Back to the portfolio</a></div></footer>
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Enlarged image"><img id="lbImg" alt=""><p class="mono" id="lbCt"></p><p id="lbCap"></p><div class="row"><button id="lbP" type="button">← Prev</button><button id="lbN" type="button">Next →</button><button class="x" id="lbX" type="button">Close</button></div></div>
 <script src="case.js"></script>
 <script>
 (function(){
- var tt=document.getElementById('tt'),imgs=[].slice.call(tt.querySelectorAll('img')),hud=document.getElementById('ttHud'),btns=[].slice.call(document.querySelectorAll('#ttBar button:not(#ttPlay)')),play=document.getElementById('ttPlay');
- var names=['HERO, FRONT 3/4','FRONT','SIDE','REAR 3/4','LOW ANGLE','HIGH 3/4'],cur=0,timer=null;
+ var tt=document.getElementById('tt'),imgs=[].slice.call(tt.querySelectorAll('img')),hud=document.getElementById('ttHud'),cams=[].slice.call(document.querySelectorAll('#camBtns .pill')),lvs=[].slice.call(document.querySelectorAll('.pill.lv')),play=document.getElementById('ttPlay');
+ var files=['01_hero','02_front','03_side','04_rear','05_low','06_high'],names=['HERO, FRONT 3/4','FRONT','SIDE','REAR 3/4','LOW ANGLE','HIGH 3/4'],cur=0,lv='t',timer=null;
  var RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
- function set(i){cur=(i+6)%6;imgs.forEach(function(m,k){m.classList.toggle('on',k===cur)});btns.forEach(function(b,k){b.setAttribute('aria-pressed',k===cur?'true':'false')});hud.innerHTML='<b>0'+(cur+1)+'</b> / 06 · '+names[cur]}
- btns.forEach(function(b,k){b.addEventListener('click',function(){stop();set(k)})});
+ function src(i){return 'img/rp__'+(lv==='t'?'t_':'')+'frame_'+files[i]+'.webp'}
+ function load(){imgs.forEach(function(m,i){m.src=src(i)})}
+ function set(i){cur=(i+6)%6;imgs.forEach(function(m,k){m.classList.toggle('on',k===cur)});cams.forEach(function(b,k){b.setAttribute('aria-pressed',k===cur?'true':'false')});hud.innerHTML='<b>0'+(cur+1)+'</b> / 06 · '+names[cur]+' · '+(lv==='t'?'TEAL':'ORANGE')}
+ load();
+ cams.forEach(function(b,k){b.addEventListener('click',function(){stop();set(k)})});
+ lvs.forEach(function(b){b.addEventListener('click',function(){lv=b.dataset.lv;lvs.forEach(function(o){o.setAttribute('aria-pressed',o===b?'true':'false')});load();set(cur)})});
  tt.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){stop();set(cur+1);e.preventDefault()}if(e.key==='ArrowLeft'){stop();set(cur-1);e.preventDefault()}});
  var x0=null,c0=0;
  tt.addEventListener('pointerdown',function(e){x0=e.clientX;c0=cur;stop();tt.setPointerCapture(e.pointerId)});
@@ -228,7 +327,6 @@
  function up(){x0=null}tt.addEventListener('pointerup',up);tt.addEventListener('pointercancel',up);
  function stop(){if(timer){clearInterval(timer);timer=null;play.setAttribute('aria-pressed','false');play.textContent='▶ Auto-spin'}}
  play.addEventListener('click',function(){if(timer){stop();return}timer=setInterval(function(){set(cur+1)},RM?2400:1100);play.setAttribute('aria-pressed','true');play.textContent='❚❚ Stop'});
- // step 03 compare: view picker
  var A=document.getElementById('cmpA'),B=document.getElementById('cmpB'),vb=[].slice.call(document.querySelectorAll('#vpick button'));
  vb.forEach(function(b){b.addEventListener('click',function(){vb.forEach(function(o){o.setAttribute('aria-pressed',o===b?'true':'false')});A.src='img/rp__rhino_'+b.dataset.v+'.webp';B.src='img/rp__raw_'+b.dataset.v+'.webp'})});
 })();
