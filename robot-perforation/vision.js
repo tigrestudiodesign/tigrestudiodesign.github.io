@@ -172,7 +172,7 @@ function draw(){
     if(!RM&&MODE!=='objects'){ x.strokeStyle='rgba(233,250,248,'+(.55*(1-sweepR/17)*aPts)+')'; x.lineWidth=2; strokePath(floorRing(sweepR,0,0)) } }
 
   // safety rings
-  if(showPath||showObj){ [[WAIT_R,'242,194,48','WAIT · 1.6 M'],[SLOW_R,'127,227,220','SLOW · 3.2 M']].forEach(function(rg,ri){ var hot=(ri===0&&robot.state==='WAITING')||(ri===1&&robot.state!=='WORKING');
+  if(showPath||showObj){ [[WAIT_R,'255,74,58','WAIT · 1.6 M'],[SLOW_R,'242,194,48','SLOW · 3.2 M']].forEach(function(rg,ri){ var hot=(ri===0&&robot.state==='WAITING')||(ri===1&&robot.state!=='WORKING');
       var ring=floorRing(rg[0],0,0); x.globalAlpha=aGeo;
       if(hot&&ring.length>2){ x.fillStyle='rgba('+rg[1]+','+(ri===0?.12:.06)+')'; x.beginPath(); ring.forEach(function(v,i){ i?x.lineTo(v[0],v[1]):x.moveTo(v[0],v[1]) }); x.closePath(); x.fill() }
       x.strokeStyle='rgba('+rg[1]+','+(hot?.95:.45)+')'; x.lineWidth=hot?2.5:1.5; x.setLineDash(ri?[8,7]:[]); x.lineDashOffset=RM?0:-t*20; strokePath(ring); x.setLineDash([]);
@@ -184,7 +184,7 @@ function draw(){
   // robot footprint + chevron
   (function(){ x.globalAlpha=aGeo; poly([[-.38,0.01,-.45],[.38,0.01,-.45],[.38,0.01,.45],[-.38,0.01,.45]],'rgba(47,163,158,.25)','rgba(127,227,220,.9)',1.6);
     var c1=P(-.18,0.02,-.05),c2=P(0,0.02,.22),c3=P(.18,0.02,-.05); if(c1&&c2&&c3){ x.strokeStyle=TEALL; x.lineWidth=3.5; x.lineCap='square'; x.beginPath(); x.moveTo(c1[0],c1[1]); x.lineTo(c2[0],c2[1]); x.lineTo(c3[0],c3[1]); x.stroke(); x.lineCap='butt' }
-    var lamp=robot.state==='WAITING'?(RM?.6:(.35+.65*Math.abs(Math.sin(t*3)))):1, lp=P(0,0.02,-.5); if(lp){ var rg2=x.createRadialGradient(lp[0],lp[1],0,lp[0],lp[1],F*0.12/lp[2]); rg2.addColorStop(0,'rgba(57,211,83,'+(.9*lamp)+')'); rg2.addColorStop(1,'rgba(57,211,83,0)'); x.fillStyle=rg2; x.beginPath(); x.arc(lp[0],lp[1],F*0.12/lp[2],0,7); x.fill() }
+    var lamp=robot.state==='WAITING'?(RM?.6:(.35+.65*Math.abs(Math.sin(t*3)))):1, lp=P(0,0.02,-.5); if(lp){ var rg2=x.createRadialGradient(lp[0],lp[1],0,lp[0],lp[1],F*0.12/lp[2]); var LC=robot.state==='WAITING'?'255,74,58':robot.state==='SLOW'?'242,194,48':'57,211,83'; rg2.addColorStop(0,'rgba('+LC+','+(.9*lamp)+')'); rg2.addColorStop(1,'rgba('+LC+',0)'); x.fillStyle=rg2; x.beginPath(); x.arc(lp[0],lp[1],F*0.12/lp[2],0,7); x.fill() }
     x.globalAlpha=1 })();
 
   // path
@@ -275,14 +275,14 @@ function hud(pd){
     x.font=Math.round(s*.72)+'px '+MONO; x.fillStyle='rgba(233,243,244,.7)'; x.textAlign='center'; x.fillText('TOP-DOWN · 8 M',rcx,rcy+rr+s*1.1); x.textAlign='left' }
   // status bar
   var bh=NARROW?Math.max(38,H*.085):Math.max(46,H*.075), byy=H-m-bh, st=robot.state, lamp=st==='WAITING'?(RM?.6:(.35+.65*Math.abs(Math.sin(t*3)))):1;
-  x.fillStyle='rgba(7,18,23,.92)'; x.fillRect(m,byy,W-2*m,bh); x.strokeStyle=st==='WORKING'?'rgba(127,227,220,.45)':'rgba(242,194,48,.7)'; x.lineWidth=1.5; x.strokeRect(m+.5,byy+.5,W-2*m-1,bh-1);
-  x.fillStyle=st==='WORKING'?'rgba(47,163,158,.9)':YEL; x.fillRect(m,byy,4,bh);
-  var lg2=x.createRadialGradient(m+bh*.55,byy+bh/2,0,m+bh*.55,byy+bh/2,bh*.42); lg2.addColorStop(0,'rgba(57,211,83,'+lamp+')'); lg2.addColorStop(.55,'rgba(57,211,83,'+(lamp*.8)+')'); lg2.addColorStop(1,'rgba(57,211,83,0)'); x.fillStyle=lg2; x.beginPath(); x.arc(m+bh*.55,byy+bh/2,bh*.42,0,7); x.fill();
+  x.fillStyle='rgba(7,18,23,.92)'; x.fillRect(m,byy,W-2*m,bh); var SC=st==='WAITING'?'255,74,58':st==='SLOW'?'242,194,48':'57,211,83'; x.strokeStyle=st==='WORKING'?'rgba(127,227,220,.45)':'rgba('+SC+',.7)'; x.lineWidth=1.5; x.strokeRect(m+.5,byy+.5,W-2*m-1,bh-1);
+  x.fillStyle=st==='WORKING'?'rgba(47,163,158,.9)':'rgb('+SC+')'; x.fillRect(m,byy,4,bh);
+  var lg2=x.createRadialGradient(m+bh*.55,byy+bh/2,0,m+bh*.55,byy+bh/2,bh*.42); lg2.addColorStop(0,'rgba('+SC+','+lamp+')'); lg2.addColorStop(.55,'rgba('+SC+','+(lamp*.8)+')'); lg2.addColorStop(1,'rgba('+SC+',0)'); x.fillStyle=lg2; x.beginPath(); x.arc(m+bh*.55,byy+bh/2,bh*.42,0,7); x.fill();
   x.font='700 '+Math.round(s*1.12)+'px '+MONO; x.fillStyle=WHITE;
-  var lab=NARROW?(st==='WORKING'?'WORKING':st==='SLOW'?'SLOWING':'WAITING'):(st==='WORKING'?'STEADY GREEN · WORKING':st==='SLOW'?'STEADY GREEN · SLOWING · PERSON INSIDE 3.2 M':'PULSING GREEN · WAITING · PERSON INSIDE 1.6 M');
+  var lab=NARROW?(st==='WORKING'?'WORKING':st==='SLOW'?'SLOWING':'WAITING'):(st==='WORKING'?'STEADY GREEN · WORKING':st==='SLOW'?'YELLOW · SLOWING · PERSON INSIDE 3.2 M':'PULSING RED · WAITING · PERSON INSIDE 1.6 M');
   x.fillText(lab,m+bh*1.05,byy+bh/2+s*.4);
   // segmented speed meter
-  var segs=NARROW?8:20, sw2=NARROW?6:8, sx=W-m-14-segs*(sw2+3); for(var i=0;i<segs;i++){ x.fillStyle=i<Math.round(robot.speed*segs)?(st==='WORKING'?TEALL:YEL):'rgba(127,227,220,.15)'; x.fillRect(sx+i*(sw2+3),byy+bh*.3,sw2,bh*.4) }
+  var segs=NARROW?8:20, sw2=NARROW?6:8, sx=W-m-14-segs*(sw2+3); for(var i=0;i<segs;i++){ x.fillStyle=i<Math.round(robot.speed*segs)?(st==='WORKING'?TEALL:'rgb('+SC+')'):'rgba(127,227,220,.15)'; x.fillRect(sx+i*(sw2+3),byy+bh*.3,sw2,bh*.4) }
   x.textAlign='right'; x.font=Math.round(s*.85)+'px '+MONO; x.fillStyle=TEALL; if(!NARROW) x.fillText('SPEED '+Math.round(robot.speed*100)+'% · PERSON '+pd.toFixed(1)+' M',sx-14,byy+bh/2+s*.32); x.textAlign='left';
   x.globalAlpha=1;
 }

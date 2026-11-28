@@ -7,7 +7,7 @@
 <meta name="description" content="UNIT 1024: an unofficial brand system for a humanoid robot. Every unit gets its own perforated mark, plus a design system, signage, two narrated films and a live perception view.">
 <meta property="og:title" content="UNIT 1024 · Robot Perforation · Tigre Studio">
 <meta property="og:description" content="Every robot gets its own mark. A brand system, two narrated films and a live perception view for a humanoid robot. Unofficial concept by Tigre Studio.">
-<meta name="twitter:card" content="summary_large_image"><meta property="og:image" content="https://tigrestudiodesign.github.io/robot-perforation/img/rp__og.jpg?v=3">
+<meta name="twitter:card" content="summary_large_image"><meta property="og:image" content="https://tigrestudiodesign.github.io/robot-perforation/img/rp__og.jpg?v=5">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Crect width='28' height='28' fill='%23132630'/%3E%3Cpath d='M4 4h20v6h-7v14h-6V10H4z' fill='%232FA39E'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="case.css">
 <style>
@@ -261,6 +261,9 @@ body{background:var(--paper);color:var(--ink)}
 .won b{text-transform:uppercase;font-weight:900}
 
 /* on the robot */
+.ons{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ons figure{margin:0}.ons .ons-w{grid-column:1/-1}
+@media(max-width:900px){.ons{grid-template-columns:1fr}}
 .orb-loop{margin:0 0 14px;background:#0b1317;border-radius:16px;overflow:hidden;color:#e4e8ea}
 .orb-loop video{display:block;width:100%;height:auto}
 .orb-loop figcaption{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:12px 16px 14px}
@@ -297,7 +300,7 @@ body{background:var(--paper);color:var(--ink)}
  <p class="tag">DRAWN FOR THE DULL, HEAVY, REPEATABLE WORK.</p>
  <p class="lede">A tracked utility humanoid I modelled in Rhino 9. Six scripted cameras, one material direction in Vizcom, one studio. Then a second job: dress the same robot in a humanoid maker's brand language, a calm teal and black, plain light studios and plain words, and show exactly how I got there, including the renders I threw away.</p>
  <div class="spec"><div><span class="mono">Scripted cameras</span><b>6</b></div><div><span class="mono">Liveries</span><b>2</b></div><div><span class="mono">Vizcom passes</span><b>3</b></div><div><span class="mono">Brand formats</span><b>29</b></div><div><span class="mono">Design system</span><b>v1.0</b></div></div>
- <div class="hero-img"><img src="img/rp__t_cover.webp?v=3" alt="Cover: the tracked utility humanoid in a teal and black livery on a pale steel studio sweep, title ROBOT PERFORATION in dark ink" width="3840" height="2160"></div>
+ <div class="hero-img"><img src="img/rp__t_cover.webp?v=5" alt="Cover: the tracked utility humanoid in a teal and black livery on a pale steel studio sweep, title ROBOT PERFORATION in dark ink" width="3840" height="2160"></div>
  <p class="disclaim"><i></i>Unofficial concept · not affiliated with or endorsed by Agility · no logos or proprietary type used</p>
 </div></header>
 
@@ -314,9 +317,9 @@ body{background:var(--paper);color:var(--ink)}
   </ol>
   <div>
    <div class="pics">
-    <figure class="w"><img src="img/rp__id_4.webp" alt="Fleet sheet: twenty unit marks, each a different perforation field around the same teal chevron, with unit numbers below" width="2200" height="1375" loading="lazy"><figcaption>01 · EVERY UNIT ITS OWN MARK</figcaption></figure>
-    <figure><img src="img/rp__cu_chest_slow.webp?v=4" alt="Close-up of the robot chest display showing SLOWING, PERSON NEAR, with a yellow status light" width="2400" height="1340" loading="lazy"><figcaption>02 · ON THE MACHINE</figcaption></figure>
-    <figure><img src="img/rp__onsite_robot.webp" alt="The robot in a warehouse aisle behind the STOP &amp; LOOK floor decal, with the ZONE B-04 sign above" width="2400" height="1340" loading="lazy"><figcaption>03 · ON THE FLOOR</figcaption></figure>
+    <figure class="w"><img src="img/rp__id_4.webp?v=5" alt="Fleet sheet: twenty unit marks, each a different perforation field around the same teal chevron, with unit numbers below" width="2200" height="1375" loading="lazy"><figcaption>01 · EVERY UNIT ITS OWN MARK</figcaption></figure>
+    <figure><img src="img/rp__cu_chest_slow.webp?v=5" alt="Close-up of the robot chest display showing SLOWING, PERSON NEAR, with a yellow status light" width="2400" height="1340" loading="lazy"><figcaption>02 · ON THE MACHINE</figcaption></figure>
+    <figure><img src="img/rp__onsite_robot.webp?v=5" alt="The robot in a warehouse aisle behind the STOP &amp; LOOK floor decal, with the ZONE B-04 sign hanging above the aisle" width="2400" height="1340" loading="lazy"><figcaption>03 · ON THE FLOOR</figcaption></figure>
    </div>
    <div class="cta"><a class="p" href="#film">▶ Watch the 78 s film</a><a href="#identity">Try a unit number</a><a href="system/">Open the design system ↗</a><a href="UNIT-1024-Two-Pager.pdf" download>Two-page PDF ↓</a></div>
   </div>
@@ -344,11 +347,11 @@ body{background:var(--paper);color:var(--ink)}
 <section class="sec" id="film"><div class="wrap">
  <div class="sec-h"><h2>THE FILM: <em>PERCEPTION STACK</em></h2><span class="mono">Ep. 01 · 78 s · Ep. 02 · 41 s · 1080p · sound on</span></div>
  <p class="lede" style="margin:0 0 26px;max-width:70ch">An explainer in the format of a robotics company's "foundations" series: what the robot has to do to work next to people, the five layers of its perception stack, and the live perception view doing each job. Every frame is drawn in code from this project's renders, tokens and simulation. The score is generated too.</p>
- <div class="film"><video src="img/rp__film.mp4" poster="img/rp__film_poster.webp" controls playsinline preload="metadata" aria-label="UNIT 1024 Foundations: Perception Stack, a 78-second explainer film with British English narration" crossorigin="anonymous"><track kind="captions" src="img/rp__film.vtt" srclang="en-GB" label="English" default></video></div>
+ <div class="film"><video src="img/rp__film.mp4?v=5" poster="img/rp__film_poster.webp?v=5" controls playsinline preload="metadata" aria-label="UNIT 1024 Foundations: Perception Stack, a 78-second explainer film with British English narration" crossorigin="anonymous"><track kind="captions" src="img/rp__film.vtt" srclang="en-GB" label="English" default></video></div>
  <div class="film-meta"><span><b>01</b> Boot · 1,024 positions</span><span><b>02</b> Title · construction lines</span><span><b>03</b> See · understand · decide</span><span><b>04</b> The five-layer stack</span><span><b>05</b> Live perception, layer by layer</span><span><b>06</b> One robot, every angle</span><span><b>07</b> The fleet</span></div>
  <p class="mono" style="margin-top:14px;font-size:11px;color:var(--mute)">Unofficial concept film. Simulated perception, not real robot software. Not affiliated with or endorsed by Agility Robotics.</p>
 <div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:clamp(18px,3vw,40px);align-items:center;margin:44px 0 0" class="ep2">
- <div class="film"><video src="img/rp__film_ep02.mp4?v=3" poster="img/rp__film_ep02_poster.webp" controls playsinline preload="none" aria-label="UNIT 1024 Foundations episode 2, The Brand, a 41-second film with British English narration" crossorigin="anonymous"><track kind="captions" src="img/rp__film_ep02.vtt" srclang="en-GB" label="English" default></video></div>
+ <div class="film"><video src="img/rp__film_ep02.mp4?v=5" poster="img/rp__film_ep02_poster.webp?v=5" controls playsinline preload="none" aria-label="UNIT 1024 Foundations episode 2, The Brand, a 41-second film with British English narration" crossorigin="anonymous"><track kind="captions" src="img/rp__film_ep02.vtt" srclang="en-GB" label="English" default></video></div>
  <div><span class="mono" style="font-size:12px;color:#17625f">EP. 02 · 41 S</span><h3 style="font-size:clamp(30px,3.4vw,50px);margin:8px 0 12px">THE BRAND</h3><p style="color:#33464f;font-size:16px;margin:0 0 12px">The identity as a system in motion. The grid fills and its 32 corner positions drop away. One tile cycles through unit numbers while the chevron holds still. Then the mark on the robot, the wayfinding family, every token pair checked for contrast, the five status loops, and the line it all comes back to: a brand is a system other people can use.</p></div>
 </div>
 <style>@media(max-width:800px){.ep2{grid-template-columns:1fr!important}}</style>
@@ -451,13 +454,13 @@ body{background:var(--paper);color:var(--ink)}
   </div>
  </div>
  <div class="idboards">
-  <button class="shot wide" type="button" aria-label="Enlarge: Master mark"><img src="img/rp__id_1.webp" alt="Master mark: a perforated rounded tile with a teal chevron of large holes, next to the wordmark UNIT 1024 and the line tracked utility humanoid" loading="lazy"></button>
-  <button class="shot" type="button" aria-label="Enlarge: Construction"><img src="img/rp__id_2.webp" alt="Construction sheet: the mark on its 32 by 32 grid with chevron points, clear space of 4 cells, and a size ladder from 200 px down to a solid 16 px version" loading="lazy"></button>
-  <button class="shot" type="button" aria-label="Enlarge: Lockups"><img src="img/rp__id_3.webp" alt="Lockups: horizontal, stacked and symbol versions on paper, ink and teal grounds" loading="lazy"></button>
-  <button class="shot wide" type="button" aria-label="Enlarge: Fleet system"><img src="img/rp__id_4.webp" alt="Fleet system: 24 unit marks, each with a different generated field and the same chevron; unit 1024 highlighted on teal" loading="lazy"></button>
-  <button class="shot wide" type="button" aria-label="Enlarge: On product"><img src="img/rp__id_5.webp?v=2" alt="The teal robot from the front with the mark on its chest display and a UNIT 1024 decal on the base plate, with close-ups of both" loading="lazy"></button>
-  <button class="shot" type="button" aria-label="Enlarge: Colour, type and voice"><img src="img/rp__id_6.webp" alt="Colour by area bar, a six-step type scale, and say-this-not-that voice examples" loading="lazy"></button>
-  <button class="shot" type="button" aria-label="Enlarge: Misuse"><img src="img/rp__id_7.webp" alt="Six misuse examples: rotated, red chevron, stretched, moved chevron, glow effect, and no tile on a busy photo" loading="lazy"></button>
+  <button class="shot wide" type="button" aria-label="Enlarge: Master mark"><img src="img/rp__id_1.webp?v=5" alt="Master mark: a perforated rounded tile with a teal chevron of large holes, next to the wordmark UNIT 1024 and the line tracked utility humanoid" loading="lazy"></button>
+  <button class="shot" type="button" aria-label="Enlarge: Construction"><img src="img/rp__id_2.webp?v=5" alt="Construction sheet: the mark on its 32 by 32 grid with chevron points, clear space of 4 cells, and a size ladder from 200 px down to a solid 16 px version" loading="lazy"></button>
+  <button class="shot" type="button" aria-label="Enlarge: Lockups"><img src="img/rp__id_3.webp?v=5" alt="Lockups: horizontal, stacked and symbol versions on paper, ink and teal grounds" loading="lazy"></button>
+  <button class="shot wide" type="button" aria-label="Enlarge: Fleet system"><img src="img/rp__id_4.webp?v=5" alt="Fleet system: 24 unit marks, each with a different generated field and the same chevron; unit 1024 highlighted on teal" loading="lazy"></button>
+  <button class="shot wide" type="button" aria-label="Enlarge: On product"><img src="img/rp__id_5.webp?v=5" alt="The teal robot from the front with the mark on its chest display and a UNIT 1024 decal on the base plate, with close-ups of both" loading="lazy"></button>
+  <button class="shot" type="button" aria-label="Enlarge: Colour, type and voice"><img src="img/rp__id_6.webp?v=5" alt="Colour by area bar, a six-step type scale, and say-this-not-that voice examples" loading="lazy"></button>
+  <button class="shot" type="button" aria-label="Enlarge: Misuse"><img src="img/rp__id_7.webp?v=5" alt="Six misuse examples: rotated, red chevron, stretched, moved chevron, glow effect, and no tile on a busy photo" loading="lazy"></button>
  </div>
  <p class="lede" style="margin:24px 0 0;max-width:70ch;font-size:15px">Why it fits the brief: it's a new idea that lives inside the existing palette and voice instead of fighting them, it scales from a 10-foot booth wall to a 16-pixel favicon, and the rules fit on one sheet a vendor can follow. Unofficial concept; the mark and the palette are mine.</p>
 </div></section>
@@ -478,9 +481,9 @@ body{background:var(--paper);color:var(--ink)}
  <div class="sec-h"><h2>THE SYSTEM, <em>LIVE</em></h2><span class="mono">Unit System v1.0 · its own site</span></div>
  <p class="lede" style="margin:0 0 30px;max-width:70ch">A mark and a palette aren't a brand until other people can use them without me in the room. So I built the whole design system as a working site. One tokens file drives the colours, type, spacing and motion. 18 icons are drawn on the chevron's geometry. 10 components are built only from tokens. A live fleet console uses nothing but those parts. A contrast matrix is computed from the tokens, so it can't drift from them, and a governance page says how the system changes.</p>
  <div class="sys">
-  <a class="shot2 big" href="system/#console"><img src="img/rp__ds_console.webp" alt="Fleet console: a floor map with eight units moving between racks, people with slow and wait rings, and a list of units with marks, status pills and battery meters" loading="lazy"><span>07 · Fleet console, simulated · open it ↗</span></a>
-  <a class="shot2" href="system/"><img src="img/rp__ds_cover.webp" alt="Unit System design system cover with token, icon and component counts" loading="lazy"><span>Unit System v1.0 ↗</span></a>
-  <a class="shot2" href="system/#components"><img src="img/rp__ds_comp.webp" alt="Components: buttons in four states, status pills, unit badges and readouts" loading="lazy"><span>06 · Components ↗</span></a>
+  <a class="shot2 big" href="system/#console"><img src="img/rp__ds_console.webp?v=5" alt="Fleet console: a floor map with eight units moving between racks, people with slow and wait rings, and a list of units with marks, status pills and battery meters" loading="lazy"><span>07 · Fleet console, simulated · open it ↗</span></a>
+  <a class="shot2" href="system/"><img src="img/rp__ds_cover.webp?v=5" alt="Unit System design system cover with token, icon and component counts" loading="lazy"><span>Unit System v1.0 ↗</span></a>
+  <a class="shot2" href="system/#components"><img src="img/rp__ds_comp.webp?v=5" alt="Components: buttons in four states, status pills, unit badges and readouts" loading="lazy"><span>06 · Components ↗</span></a>
  </div>
  <div class="sys-list">
   <div><b>Tokens</b>One source file in the W3C design-token format, exported to CSS and JS. Change one value and the whole site follows.</div>
@@ -527,27 +530,29 @@ body{background:var(--paper);color:var(--ink)}
   <div><b>Visor + side lights</b>The face and the head lights carry the same colour, so the state reads from the front and the side.</div>
   <div><b>E-stop</b>Red with a yellow ring on the upper chest, never used as decoration.</div>
  </div>
- <figure class="orb-loop"><video id="orbv" src="img/rp__cu_states_loop.mp4" poster="img/rp__cu_states_poster.jpg" autoplay muted loop playsinline width="1600" height="900" aria-label="Loop of the chest close-up switching from WORKING (green, two chevrons) to SLOWING (yellow, one chevron) to WAITING (red, hold bars), with the status light changing colour each time"></video><figcaption><span>A person walks closer: working, slowing, waiting. The screen, the icon and the light change together, and the shape alone tells you the state.</span><button type="button" id="orbp" aria-pressed="false">Pause</button></figcaption></figure>
+ <figure class="orb-loop"><video id="orbv" src="img/rp__cu_states_loop.mp4?v=5" poster="img/rp__cu_states_poster.jpg?v=5" autoplay muted loop playsinline width="1600" height="900" aria-label="Loop of the chest close-up switching from WORKING (green, two chevrons) to SLOWING (yellow, one chevron) to WAITING (red, hold bars), with the status light changing colour each time"></video><figcaption><span>A person walks closer: working, slowing, waiting. The screen, the icon and the light change together, and the shape alone tells you the state.</span><button type="button" id="orbp" aria-pressed="false">Pause</button></figcaption></figure>
  <div class="orb-tri">
-  <figure><img src="img/rp__cu_chest_ok_sq.webp?v=4" alt="Straight-on close-up of the robot's chest: the display shows WORKING, LANE CLEAR in green with a two-chevron icon, speed 100%; the status light above is green" width="1000" height="1000" loading="lazy"><figcaption><b><i style="background:#39d353"></i>Working</b><span>Nothing in the lane. Green light, speed 100%.</span></figcaption></figure>
-  <figure><img src="img/rp__cu_chest_slow_sq.webp?v=4" alt="Straight-on close-up of the chest display showing SLOWING, PERSON NEAR, a single-chevron icon, I SEE YOU 2.4 M, speed 40%; the status light above is yellow" width="1000" height="1000" loading="lazy"><figcaption><b><i style="background:#f2c230"></i>Slowing</b><span>Person inside 3.2 m. Yellow light, speed 40%, and it says how far you are.</span></figcaption></figure>
-  <figure><img src="img/rp__cu_chest_wait_sq.webp?v=4" alt="Straight-on close-up of the chest display showing WAITING, STOPPED FOR YOU, a hold-bars icon, AFTER YOU 1.2 M, speed 0%; the status light above is red" width="1000" height="1000" loading="lazy"><figcaption><b><i style="background:#e23b2e"></i>Waiting</b><span>Person inside 1.6 m. Red light, it stops and lets you go first. Speed 0%.</span></figcaption></figure>
+  <figure><img src="img/rp__cu_chest_ok_sq.webp?v=5" alt="Straight-on close-up of the robot's chest: the display shows WORKING, LANE CLEAR in green with a two-chevron icon, speed 100%; the status light above is green" width="1000" height="1000" loading="lazy"><figcaption><b><i style="background:#39d353"></i>Working</b><span>Nothing in the lane. Green light, speed 100%.</span></figcaption></figure>
+  <figure><img src="img/rp__cu_chest_slow_sq.webp?v=5" alt="Straight-on close-up of the chest display showing SLOWING, PERSON NEAR, a single-chevron icon, I SEE YOU 2.4 M, speed 40%; the status light above is yellow" width="1000" height="1000" loading="lazy"><figcaption><b><i style="background:#f2c230"></i>Slowing</b><span>Person inside 3.2 m. Yellow light, speed 40%, and it says how far you are.</span></figcaption></figure>
+  <figure><img src="img/rp__cu_chest_wait_sq.webp?v=5" alt="Straight-on close-up of the chest display showing WAITING, STOPPED FOR YOU, a hold-bars icon, AFTER YOU 1.2 M, speed 0%; the status light above is red" width="1000" height="1000" loading="lazy"><figcaption><b><i style="background:#e23b2e"></i>Waiting</b><span>Person inside 1.6 m. Red light, it stops and lets you go first. Speed 0%.</span></figcaption></figure>
  </div>
  <div class="orb-two">
-  <figure><img src="img/rp__cu_head.webp?v=3" alt="Close-up of the robot's head: the visor shows two yellow eyes looking toward a person and the words I SEE YOU 2.4 M; the side lights glow yellow" width="2400" height="1350" loading="lazy"><figcaption><b>Visor · I see you</b><span>When it slows, the eyes turn toward the person and the visor gives the distance. You know it has seen you.</span></figcaption></figure>
+  <figure><img src="img/rp__cu_head.webp?v=5" alt="Close-up of the robot's head: the visor shows two yellow eyes looking toward a person and the words I SEE YOU 2.4 M; the side lights glow yellow" width="2400" height="1350" loading="lazy"><figcaption><b>Visor · I see you</b><span>When it slows, the eyes turn toward the person and the visor gives the distance. You know it has seen you.</span></figcaption></figure>
   <figure><img src="img/rp__cu_base.webp?v=5" alt="Close-up of the tracked base: on the black front panel, the 120 by 40 mm ID decal with the teal unit mark and UNIT 1024, centred above the yellow base light between the two tie-down rings" width="1600" height="900" loading="lazy"><figcaption><b>ID decal · on the base</b><span>The same 120 × 40 mm decal from the print kit, at knee height where people look down: the unit mark and its number.</span></figcaption></figure>
  </div>
  <p class="mono" style="margin-top:14px;max-width:900px;line-height:1.6">How these were made: close-up crops of the Rhino model rendered in Vizcom (the chest straight-on, so the screen sits flat to the camera), then the real screen layouts, light states and decal artwork placed back on top, so every word and number is the actual design. Visualizations of a concept, not photos of a working robot.</p>
 </div></section>
 
 <section class="sec" id="onsite"><div class="wrap">
- <div class="sec-h"><h2>ON SITE: <em>THE PRINT KIT</em></h2><span class="mono">Floor decal · zone blade · wall poster · dock panel · visualized in Vizcom</span></div>
- <p style="max-width:760px;font-size:17px;line-height:1.55;margin:0 0 22px;color:#2c3f48">A brand for robots that work next to people lives on the floor, not on a screen. Here the print kit is shown where it would actually go: a STOP &amp; LOOK decal where the aisle meets the robot lane, a zone blade hung at 3.2 m, and the caution poster beside a charging dock.</p>
- <div style="display:grid;gap:16px">
-  <figure style="margin:0"><img src="img/rp__onsite_robot.webp" alt="UNIT 1024, the teal tracked robot, working down a warehouse aisle with orange pallet racking. In the foreground, the round STOP &amp; LOOK floor decal; above the aisle hangs the ZONE B-04 sign" width="2400" height="1340" loading="lazy" style="display:block;width:100%;height:auto;border-radius:16px"><figcaption class="mono" style="margin-top:8px">01 · AISLE · 600 mm Ø anti-slip floor decal + double-sided zone blade, 450 × 760 mm</figcaption></figure>
-  <figure style="margin:0"><img src="img/rp__onsite_wall.webp?v=2" alt="A painted block wall in a warehouse: a white CAUTION, PEOPLE + ROBOTS WORK HERE poster and a teal UNIT CHARGING, DOCK 2 panel above a grey charging dock" width="2400" height="1350" loading="lazy" style="display:block;width:100%;height:auto;border-radius:16px"><figcaption class="mono" style="margin-top:8px">02 · CHARGING BAY · caution poster + dock panel, 450 × 600 mm</figcaption></figure>
+ <div class="sec-h"><h2>ON SITE: <em>ONE SHIFT, FOUR MOMENTS</em></h2><span class="mono">The same unit, the same print kit · working · waiting · slowing · charging · visualized in Vizcom</span></div>
+ <p style="max-width:780px;font-size:17px;line-height:1.55;margin:0 0 22px;color:#2c3f48">A brand for robots that work next to people lives on the floor, not on a screen. So here is UNIT 1024 through a shift, in the places the print kit would actually go, with the chest screen and status light showing the right state in each moment.</p>
+ <div class="ons">
+  <figure class="ons-w"><img src="img/rp__onsite_robot.webp?v=5" alt="UNIT 1024, the teal tracked robot, driving down a warehouse aisle toward the camera. In the foreground, the round STOP &amp; LOOK floor decal; above the aisle, the ZONE B-04 sign hangs from two chains" width="2400" height="1340" loading="lazy" style="display:block;width:100%;height:auto;border-radius:16px"><figcaption class="mono" style="margin-top:8px"><b style="color:#146c30">● WORKING</b> · 01 · AISLE · 600 mm Ø anti-slip floor decal + zone blade hung on chains over the lane</figcaption></figure>
+  <figure><img src="img/rp__onsite_cross.webp?v=5" alt="At the end of an aisle, UNIT 1024 has stopped with a red status light and WAITING on its chest screen while a worker in a hi-vis vest carries a tote across the cross-aisle in front of it; the STOP &amp; LOOK decal is on the floor at the aisle mouth" width="2400" height="1340" loading="lazy" style="display:block;width:100%;height:auto;border-radius:16px"><figcaption class="mono" style="margin-top:8px"><b style="color:#b42318">● WAITING</b> · 02 · CROSSING · it stops at the aisle mouth and lets the person go first</figcaption></figure>
+  <figure><img src="img/rp__onsite_share.webp?v=5" alt="A worker in a hi-vis vest picks a box from a high shelf on the left of an aisle while UNIT 1024 comes down the right lane with a yellow status light and SLOWING on its chest screen" width="2400" height="1340" loading="lazy" style="display:block;width:100%;height:auto;border-radius:16px"><figcaption class="mono" style="margin-top:8px"><b style="color:#8a6a00">● SLOWING</b> · 03 · SHARED AISLE · a person inside 3.2 m, so it drops to 40% and keeps to its lane</figcaption></figure>
+  <figure class="ons-w"><img src="img/rp__onsite_wall.webp?v=5" alt="A charging bay on a painted block wall: the white CAUTION, PEOPLE + ROBOTS WORK HERE poster, the teal UNIT CHARGING, DOCK 2 panel, and UNIT 1024 parked on the charging plate inside yellow keep-clear hatching" width="2400" height="1340" loading="lazy" style="display:block;width:100%;height:auto;border-radius:16px"><figcaption class="mono" style="margin-top:8px"><b style="color:#17625f">● CHARGING</b> · 04 · CHARGING BAY · caution poster + dock panel, 450 × 600 mm, keep-clear hatching around the plate</figcaption></figure>
  </div>
- <p class="mono" style="margin-top:14px;max-width:900px;line-height:1.6">How these were made: I blocked out each scene in perspective (with the robot from my Rhino model), rendered it in Vizcom, then placed the actual print files back on top in perspective, so every word and mark is the real artwork, not regenerated. These are visualizations, not photos of a real site.</p>
+ <p class="mono" style="margin-top:14px;max-width:900px;line-height:1.6">How these were made: I built each scene as a perspective block-out with a real camera (eye height, lens, aisle widths), put the robot cutout from my Rhino model in it, and rendered it in Vizcom. Then the exact robot render and the real print files go back on top in perspective, with contact shadows and floor reflections, so it is the same robot and every word and mark is the real artwork, not regenerated. Visualizations, not photos of a real site.</p>
 </div></section>
 
 <section class="sec" id="inuse"><div class="wrap">
@@ -572,8 +577,8 @@ body{background:var(--paper);color:var(--ink)}
 
 
  <div class="rg" id="r01">
-  <div><button class="shot" type="button" aria-label="Enlarge: 10 by 10 foot inline booth on a show floor"><img src="img/rp__r_booth_view.webp?v=2" alt="A 10 by 10 foot inline trade-show booth on a busy exhibition floor: fabric back wall with the headline THE HEAVY, THE DULL, THE REPEAT. and the teal robot, a navy side wall, and a white counter reading UNIT 1024, ASK FOR A DEMO. Visualized in Vizcom with the real artwork placed on top" width="2200" height="1228" loading="lazy"></button>
-   <div class="g2" style="margin-top:10px"><button class="shot" type="button" aria-label="Enlarge: Booth back-wall artwork"><img src="img/rp__r_booth_wall.webp" alt="Back-wall artwork, 10 by 8 feet, flat" loading="lazy"></button><button class="shot" type="button" aria-label="Enlarge: Headline detail at full size"><img src="img/rp__r_booth_detail.webp" alt="Detail crop of the back-wall headline and body copy, as printed" loading="lazy" style="aspect-ratio:5/4;object-fit:cover"></button></div></div>
+  <div><button class="shot" type="button" aria-label="Enlarge: 10 by 10 foot inline booth on a show floor"><img src="img/rp__r_booth_view.webp?v=5" alt="A 10 by 10 foot inline trade-show booth on a busy exhibition floor: fabric back wall with the headline THE HEAVY, THE DULL, THE REPEAT. and the teal robot, a navy side wall, and a white counter reading UNIT 1024, ASK FOR A DEMO. Visualized in Vizcom with the real artwork placed on top" width="2200" height="1228" loading="lazy"></button>
+   <div class="g2" style="margin-top:10px"><button class="shot" type="button" aria-label="Enlarge: Booth back-wall artwork"><img src="img/rp__r_booth_wall.webp?v=5" alt="Back-wall artwork, 10 by 8 feet, flat" loading="lazy"></button><button class="shot" type="button" aria-label="Enlarge: Headline detail at full size"><img src="img/rp__r_booth_detail.webp?v=5" alt="Detail crop of the back-wall headline and body copy, as printed" loading="lazy" style="aspect-ratio:5/4;object-fit:cover"></button></div></div>
   <div><span class="k">01 · EVENTS</span><h3>TRADE-SHOW BOOTH</h3><p>One headline you can read from the aisle, the robot at true presence, and a footer that tells people when to come back. The wall carries the message; the demo carries the proof.</p>
    <table class="fab"><tbody>
     <tr><th scope="row">Back wall</th><td>120 × 96 in visible · +1 in bleed all sides</td></tr>
@@ -585,8 +590,8 @@ body{background:var(--paper);color:var(--ink)}
  </div>
 
  <div class="rg" id="r02">
-  <div><div class="g2"><button class="shot" type="button" aria-label="Enlarge: Shared-zone sign"><img src="img/rp__r_sign.webp?v=3" alt="18 by 24 inch sign: yellow CAUTION band, PEOPLE + ROBOTS WORK HERE, three pictograms for walkway, work zone and e-stop" loading="lazy"></button><div class="decal"><img src="img/rp__r_decal.webp" alt="36 inch circular floor decal with yellow and ink hazard stripes: ROBOT WORK ZONE, STOP AND LOOK, WAIT FOR GREEN" loading="lazy"></div></div>
-   <button class="shot" type="button" aria-label="Enlarge: Status light card" style="margin-top:10px"><img src="img/rp__r_lights.webp?v=3" alt="Field guide card READ THE LIGHTS: steady green working, pulsing green waiting, yellow needs a hand, red stopped" loading="lazy"></button></div>
+  <div><div class="g2"><button class="shot" type="button" aria-label="Enlarge: Shared-zone sign"><img src="img/rp__r_sign.webp?v=5" alt="18 by 24 inch sign: yellow CAUTION band, PEOPLE + ROBOTS WORK HERE, three pictograms for walkway, work zone and e-stop" loading="lazy"></button><div class="decal"><img src="img/rp__r_decal.webp?v=5" alt="36 inch circular floor decal with yellow and ink hazard stripes: ROBOT WORK ZONE, STOP AND LOOK, RED LIGHT: YOU GO FIRST" loading="lazy"></div></div>
+   <button class="shot" type="button" aria-label="Enlarge: Status light card" style="margin-top:10px"><img src="img/rp__r_lights.webp?v=5" alt="Field guide card READ THE LIGHTS: steady green working, pulsing green waiting, yellow needs a hand, red stopped" loading="lazy"></button></div>
   <div><span class="k">02 · FACILITY</span><h3>SIGNS, FLOOR, LIGHTS</h3><p>Where the brand meets the people who work next to the robot. Short sentences, one action each. Safety colours do safety jobs only; teal never appears where it could be mistaken for a signal.</p>
    <table class="fab"><tbody>
     <tr><th scope="row">Zone sign</th><td>18 × 24 in · aluminium composite · UV-cured inks</td></tr>
@@ -598,71 +603,71 @@ body{background:var(--paper);color:var(--ink)}
 
 
  <div class="rg" id="r02b">
-  <div><button class="shot" type="button" aria-label="Enlarge: Wayfinding family"><img src="img/rp__r_wayfinding.webp" alt="Wayfinding family: zone blade B-04, robot crossing caution panel, people-only walkway floor decal, unit charging panel, stop-button marker and robot route floor arrows" loading="lazy"></button></div>
+  <div><button class="shot" type="button" aria-label="Enlarge: Wayfinding family"><img src="img/rp__r_wayfinding.webp?v=5" alt="Wayfinding family: zone blade B-04, robot crossing caution panel, people-only walkway floor decal, unit charging panel, stop-button marker and robot route floor arrows" loading="lazy"></button></div>
   <div><span class="k">02B · WAYFINDING</span><h3>SIX SIGNS, ONE SYSTEM</h3><p>A wayfinding family built only from the design system: the same 18 icons scaled up, the same two typefaces, and colour that keeps its job. Yellow marks hazards, red appears only at a stop button, teal means a robot service like charging.</p>
    <table class="fab"><tbody><tr><th scope="row">Pieces</th><td>Zone blade · robot crossing · walkway decal · charging · stop marker · route arrows</td></tr><tr><th scope="row">Read test</th><td>Main word legible at 9 m</td></tr><tr><th scope="row">Standards</th><td>Brand layer only. Real safety signs follow ANSI Z535 / ISO 7010 and the site's EHS team</td></tr></tbody></table></div>
  </div>
 
  <div class="rg" id="r03">
-  <div><button class="shot" type="button" aria-label="Enlarge: One-page explainer"><img src="img/rp__r_explainer.webp" alt="Letter-size explainer HOW A HUMANOID JOINS YOUR FLOOR: five steps from walking the site to steady state, and a panel LESS LIFTING. SAME CREW." loading="lazy" style="max-height:760px;width:auto;margin:auto"></button></div>
+  <div><button class="shot" type="button" aria-label="Enlarge: One-page explainer"><img src="img/rp__r_explainer.webp?v=5" alt="Letter-size explainer HOW A HUMANOID JOINS YOUR FLOOR: five steps from walking the site to steady state, and a panel LESS LIFTING. SAME CREW." loading="lazy" style="max-height:760px;width:auto;margin:auto"></button></div>
   <div><span class="k">03 · COLLATERAL</span><h3>ONE-PAGE EXPLAINER</h3><p>Written for an operations lead, not an engineer: five steps from walking the site to steady state, and what changes for the crew. The hard part of robotics, made into one page someone can pin to a wall.</p>
    <table class="fab"><tbody><tr><th scope="row">Format</th><td>US Letter · print + PDF</td></tr><tr><th scope="row">Reading order</th><td>Headline → five steps → what changes → day one</td></tr></tbody></table>
    <p class="note2">Generic rollout steps for a portfolio, not any company's actual process.</p></div>
  </div>
 
  <div class="rg" id="r04">
-  <div><div class="g2"><button class="shot" type="button" aria-label="Enlarge: Slide 1"><img src="img/rp__r_slide1.webp" alt="Slide: ONE ROBOT. ONE JOB. EVERY SHIFT. with the teal robot on a pale steel sweep" loading="lazy"></button><button class="shot" type="button" aria-label="Enlarge: Slide 2"><img src="img/rp__r_slide2.webp?v=3" alt="Slide on ink: THE LOOP IT RUNS, four cards PICK, CARRY, PLACE, REPEAT" loading="lazy"></button></div></div>
+  <div><div class="g2"><button class="shot" type="button" aria-label="Enlarge: Slide 1"><img src="img/rp__r_slide1.webp?v=5" alt="Slide: ONE ROBOT. ONE JOB. EVERY SHIFT. with the teal robot on a pale steel sweep" loading="lazy"></button><button class="shot" type="button" aria-label="Enlarge: Slide 2"><img src="img/rp__r_slide2.webp?v=5" alt="Slide on ink: THE LOOP IT RUNS, four cards PICK, CARRY, PLACE, REPEAT" loading="lazy"></button></div></div>
   <div><span class="k">04 · PRESENTATIONS</span><h3>CUSTOMER BRIEFING</h3><p>A light title slide and a dark content slide from the same system, so a deck can breathe. One idea per slide, the robot as the only image, the loop in four words.</p>
    <table class="fab"><tbody><tr><th scope="row">Format</th><td>16:9 · 1920 × 1080</td></tr><tr><th scope="row">Pairing</th><td>Paper for titles · ink for content</td></tr></tbody></table></div>
  </div>
 
  <div class="rg" id="r05">
-  <div><div class="g3"><button class="shot" type="button" aria-label="Enlarge: Social 1"><img src="img/rp__r_social1.webp" alt="Social panel 1: MEET UNIT 1024" loading="lazy"></button><button class="shot" type="button" aria-label="Enlarge: Social 2"><img src="img/rp__r_social2.webp?v=3" alt="Social panel 2: ONE MODEL. SIX CAMERAS. with six robot views" loading="lazy"></button><button class="shot" type="button" aria-label="Enlarge: Social 3"><img src="img/rp__r_social3.webp" alt="Social panel 3 on teal: NO HERO SHOTS WITHOUT THE WORK." loading="lazy"></button></div></div>
+  <div><div class="g3"><button class="shot" type="button" aria-label="Enlarge: Social 1"><img src="img/rp__r_social1.webp?v=5" alt="Social panel 1: MEET UNIT 1024" loading="lazy"></button><button class="shot" type="button" aria-label="Enlarge: Social 2"><img src="img/rp__r_social2.webp?v=5" alt="Social panel 2: ONE MODEL. SIX CAMERAS. with six robot views" loading="lazy"></button><button class="shot" type="button" aria-label="Enlarge: Social 3"><img src="img/rp__r_social3.webp?v=5" alt="Social panel 3 on teal: NO HERO SHOTS WITHOUT THE WORK." loading="lazy"></button></div></div>
   <div><span class="k">05 · SOCIAL</span><h3>THREE-PANEL CAROUSEL</h3><p>Hook, proof, point of view. Paper, ink, teal: the three panels use the three main colours in order, so the carousel reads as one piece when it scrolls past.</p>
    <table class="fab"><tbody><tr><th scope="row">Format</th><td>4:5 · 1080 × 1350 × 3</td></tr><tr><th scope="row">Sequence</th><td>Meet it → how it was made → why it matters</td></tr></tbody></table></div>
  </div>
 
 
  <div class="rg" id="r05b">
-  <div><div style="max-width:360px;margin:0 auto;border-radius:22px;overflow:hidden;border:1px solid var(--line);background:#000"><video src="img/rp__film_9x16.mp4" poster="img/rp__film_9x16_poster.webp" controls playsinline preload="none" style="display:block;width:100%;aspect-ratio:9/16" aria-label="25-second vertical social cut of the perception film, narrated" crossorigin="anonymous"><track kind="captions" src="img/rp__film_9x16.vtt" srclang="en-GB" label="English" default></video></div></div>
+  <div><div style="max-width:360px;margin:0 auto;border-radius:22px;overflow:hidden;border:1px solid var(--line);background:#000"><video src="img/rp__film_9x16.mp4?v=5" poster="img/rp__film_9x16_poster.webp?v=5" controls playsinline preload="none" style="display:block;width:100%;aspect-ratio:9/16" aria-label="25-second vertical social cut of the perception film, narrated" crossorigin="anonymous"><track kind="captions" src="img/rp__film_9x16.vtt" srclang="en-GB" label="English" default></video></div></div>
   <div><span class="k">05B · SOCIAL VIDEO</span><h3>25-SECOND VERTICAL CUT</h3><p>The film, re-cut for Reels, Shorts and LinkedIn. One idea per beat, a headline you can read with the sound off, the footage in the middle third, and the bottom quarter left clear for the app's own buttons and captions.</p>
    <table class="fab"><tbody><tr><th scope="row">Format</th><td>9:16 · 1080 × 1920 · 25 s · 30 fps</td></tr><tr><th scope="row">Beats</th><td>Mark → stack → depth → replan → waits → end card</td></tr><tr><th scope="row">Safe zone</th><td>Text above 1,700 px, clear of platform UI</td></tr></tbody></table></div>
  </div>
 
  <div class="rg" id="r06">
-  <div><button class="shot" type="button" aria-label="Enlarge: Asset library"><img src="img/rp__r_library.webp?v=3" alt="Asset library sheet: colour, type, rules, six robot views, pictograms and the pieces in use" loading="lazy"></button></div>
+  <div><button class="shot" type="button" aria-label="Enlarge: Asset library"><img src="img/rp__r_library.webp?v=5" alt="Asset library sheet: colour, type, rules, six robot views, pictograms and the pieces in use" loading="lazy"></button></div>
   <div><span class="k">06 · SYSTEM</span><h3>ASSET LIBRARY</h3><p>Everything above comes out of one sheet: four brand colours, three safety colours with strict jobs, two typefaces, six robot views, five pictograms and four rules. Hand it to another designer or a vendor and the next piece still looks like this one.</p>
    <table class="fab"><tbody><tr><th scope="row">Rules</th><td>One teal accent per layout · safety colours for safety only · robot on pale steel · say what it does</td></tr></tbody></table></div>
  </div>
 
  <div class="rg" id="r07">
-  <div><div class="vid"><video src="img/rp__r_sting.mp4" poster="img/rp__r_sting_poster.webp" muted loop playsinline controls preload="metadata" aria-label="Nine-second motion sting: title lines wipe up, the robot turns through four views, a lower-third slides in, end card"></video></div></div>
+  <div><div class="vid"><video src="img/rp__r_sting.mp4?v=5" poster="img/rp__r_sting_poster.webp?v=5" muted loop playsinline controls preload="metadata" aria-label="Nine-second motion sting: title lines wipe up, the robot turns through four views, a lower-third slides in, end card"></video></div></div>
   <div><span class="k">07 · MOTION</span><h3>9-SECOND STING</h3><p>An opener for event screens and video: the headline wipes up line by line, the robot turns through four views on the studio floor, a lower-third names it, and an ink end card closes. Built so every piece can be swapped for real footage later.</p>
    <table class="fab"><tbody><tr><th scope="row">Format</th><td>16:9 · 1920 × 1080 · 30 fps · 9 s</td></tr><tr><th scope="row">Beats</th><td>Title 0–2 s · turn 1.6–6 s · lower-third 3.2–8 s · end card 8–9 s</td></tr><tr><th scope="row">Motion</th><td>Ease-out on entries · no bounces · no glows</td></tr></tbody></table></div>
  </div>
 
  <div class="rg" id="r08">
-  <div><button class="shot" type="button" aria-label="Enlarge: Web hero, desktop"><img src="img/rp__r_web_desktop.webp" alt="Website hero, desktop: THE HEAVY, THE DULL, THE REPEAT., two buttons, the robot on the right and a loop strip PICK CARRY PLACE REPEAT" loading="lazy"></button>
-   <div class="g2" style="margin-top:10px;grid-template-columns:1fr 1.4fr"><button class="shot" type="button" aria-label="Enlarge: Web hero, mobile"><img src="img/rp__r_web_mobile.webp" alt="Website hero on mobile" loading="lazy"></button><button class="shot" type="button" aria-label="Enlarge: Email"><img src="img/rp__r_email.webp?v=3" alt="Email: YOUR CREW'S FIRST WEEK WITH A ROBOT, a button for the floor guide and three modules" loading="lazy"></button></div></div>
+  <div><button class="shot" type="button" aria-label="Enlarge: Web hero, desktop"><img src="img/rp__r_web_desktop.webp?v=5" alt="Website hero, desktop: THE HEAVY, THE DULL, THE REPEAT., two buttons, the robot on the right and a loop strip PICK CARRY PLACE REPEAT" loading="lazy"></button>
+   <div class="g2" style="margin-top:10px;grid-template-columns:1fr 1.4fr"><button class="shot" type="button" aria-label="Enlarge: Web hero, mobile"><img src="img/rp__r_web_mobile.webp?v=5" alt="Website hero on mobile" loading="lazy"></button><button class="shot" type="button" aria-label="Enlarge: Email"><img src="img/rp__r_email.webp?v=5" alt="Email: YOUR CREW'S FIRST WEEK WITH A ROBOT, a button for the floor guide and three modules" loading="lazy"></button></div></div>
   <div><span class="k">08 · WEB + EMAIL</span><h3>LANDING HERO + EMAIL</h3><p>The booth headline, carried to the web without changing a word: one claim, one sentence of proof, one primary action. The email turns the explainer into a send: one thing to download, three short reasons to open it.</p>
    <table class="fab"><tbody><tr><th scope="row">Web</th><td>1440 desktop · 390 mobile · one primary button</td></tr><tr><th scope="row">Email</th><td>600 px · single column · live text, image-light</td></tr></tbody></table></div>
  </div>
 
  <div class="rg" id="r09">
-  <div><button class="shot" type="button" aria-label="Enlarge: Anatomy callout illustration"><img src="img/rp__r_anatomy.webp?v=3" alt="Front view of the robot with nine callouts: face and cameras, status light, unit display, perforated shell, swappable grippers, turret and column, light bar, front e-stop, tracked base" loading="lazy"></button></div>
+  <div><button class="shot" type="button" aria-label="Enlarge: Anatomy callout illustration"><img src="img/rp__r_anatomy.webp?v=5" alt="Front view of the robot with nine callouts: face and cameras, status light, unit display, perforated shell, swappable grippers, turret and column, light bar, front e-stop, tracked base" loading="lazy"></button></div>
   <div><span class="k">09 · TECHNICAL ILLUSTRATION</span><h3>ANATOMY, IN PLAIN WORDS</h3><p>Nine callouts, each one a part and why it matters to the person standing next to it. The same drawing works in a sales deck, an investor update and an onboarding binder, because none of it needs an engineer to explain it. This is what I did for sixteen years in technical manuals.</p>
    <p class="note2">Design intent for my concept robot, not a product specification.</p></div>
  </div>
 
  <div class="rg" id="r10">
-  <div><button class="shot" type="button" aria-label="Enlarge: Brand review redline"><img src="img/rp__r_redline.webp" alt="Brand review: an off-brand neon social post with six numbered red pins, six notes in the middle, and the corrected on-brand post on the right" loading="lazy"></button></div>
+  <div><button class="shot" type="button" aria-label="Enlarge: Brand review redline"><img src="img/rp__r_redline.webp?v=5" alt="Brand review: an off-brand neon social post with six numbered red pins, six notes in the middle, and the corrected on-brand post on the right" loading="lazy"></button></div>
   <div><span class="k">10 · BRAND GUARDIAN</span><h3>REDLINE REVIEW</h3><p>Part of the job is reviewing other teams' work. This is how I'd give that feedback: numbered pins on the piece, one short note per pin that names the rule and the fix, and the corrected version next to it so nobody has to guess.</p>
    <table class="fab"><tbody><tr><th scope="row">Format</th><td>Pin · rule · fix · after</td></tr><tr><th scope="row">Tone</th><td>About the work, never the person · every note has a fix</td></tr></tbody></table>
    <p class="note2">The "before" is a deliberate straw man I made for this review.</p></div>
  </div>
 
  <div class="rg" id="r11">
-  <div><button class="shot" type="button" aria-label="Enlarge: Photo direction shot list"><img src="img/rp__r_shotlist.webp?v=3" alt="Photo direction sheet WEAR-AND-TEAR, NOT UTOPIA: six planned shots with lens, framing and notes, plus light and grade rules" loading="lazy"></button></div>
+  <div><button class="shot" type="button" aria-label="Enlarge: Photo direction shot list"><img src="img/rp__r_shotlist.webp?v=5" alt="Photo direction sheet WEAR-AND-TEAR, NOT UTOPIA: six planned shots with lens, framing and notes, plus light and grade rules" loading="lazy"></button></div>
   <div><span class="k">11 · PHOTO DIRECTION</span><h3>ON-SITE SHOT LIST</h3><p>The studio set shows the product; this brief gets the truth. Six shots on a working floor: the aisle, the hands on a scuffed tote, the handoff, the stop, end of shift and the crew. Lens and framing for each, and one rule for the grade: keep the scuffs.</p>
    <table class="fab"><tbody><tr><th scope="row">Lenses</th><td>24 · 35 · 50 · 85 mm</td></tr><tr><th scope="row">Light</th><td>Available facility light + one soft fill · no gels, no haze</td></tr><tr><th scope="row">People</th><td>Real crew, real names, releases signed</td></tr></tbody></table></div>
  </div>
@@ -671,11 +676,11 @@ body{background:var(--paper);color:var(--ink)}
 <section class="sec" id="livery"><div class="wrap">
  <div class="sec-h"><h2>ONE ROBOT, <em>TWO SKINS</em></h2><span class="mono">Same cutout · same light · drag to compare</span></div>
  <article class="obj" style="border-top:0;padding-top:0">
-  <div class="om"><figure style="margin:0"><div class="cmp r43"><img src="img/rp__frame_01_hero.webp" alt="Hero view in the original safety-orange livery on a warm studio" loading="lazy"><img class="af" src="img/rp__t_frame_01_hero.webp?v=3" alt="Hero view in the teal and black livery on a pale steel studio" loading="lazy"><span class="h" aria-hidden="true"></span><span class="l a">SAFETY ORANGE</span><span class="l b">TEAL / BLACK</span><input type="range" min="0" max="100" value="50" aria-label="Compare the orange and teal liveries"></div><figcaption class="cmpcap mono"><span>Drag: Tigre orange → teal / black</span><span>Geometry untouched</span></figcaption></figure>
+  <div class="om"><figure style="margin:0"><div class="cmp r43"><img src="img/rp__frame_01_hero.webp?v=5" alt="Hero view in the original safety-orange livery on a warm studio" loading="lazy"><img class="af" src="img/rp__t_frame_01_hero.webp?v=5" alt="Hero view in the teal and black livery on a pale steel studio" loading="lazy"><span class="h" aria-hidden="true"></span><span class="l a">SAFETY ORANGE</span><span class="l b">TEAL / BLACK</span><input type="range" min="0" max="100" value="50" aria-label="Compare the orange and teal liveries"></div><figcaption class="cmpcap mono"><span>Drag: Tigre orange → teal / black</span><span>Geometry untouched</span></figcaption></figure>
   <div class="six" style="margin-top:10px">
-   <figure class="chk"><img src="img/rp__t_cut_hero.webp?v=3" alt="Teal cutout, hero" loading="lazy"></figure>
-   <figure class="chk"><img src="img/rp__t_cut_front.webp?v=3" alt="Teal cutout, front" loading="lazy"></figure>
-   <figure class="chk"><img src="img/rp__t_cut_side.webp?v=3" alt="Teal cutout, side" loading="lazy"></figure>
+   <figure class="chk"><img src="img/rp__t_cut_hero.webp?v=5" alt="Teal cutout, hero" loading="lazy"></figure>
+   <figure class="chk"><img src="img/rp__t_cut_front.webp?v=5" alt="Teal cutout, front" loading="lazy"></figure>
+   <figure class="chk"><img src="img/rp__t_cut_side.webp?v=5" alt="Teal cutout, side" loading="lazy"></figure>
   </div></div>
   <div class="ot"><p class="num">LIVERY PASS · PYTHON</p><h3>RE-SKIN, DON'T REDRAW</h3><p>Asking an image model for "teal" redraws the robot. So the livery is done after the render, on the cutouts: every orange shell pixel is moved to the teal family while keeping its own light and shade, so the perforation, the highlights and the parting lines all survive. The robot's geometry is never touched.</p>
   <pre class="logic"><b>MASK</b>     orange hue band · soft edges · blurred 1.2 px
@@ -702,7 +707,7 @@ body{background:var(--paper);color:var(--ink)}
 <section class="sec" id="steps"><div class="wrap">
 
  <article class="obj" id="s01" style="border-top:0;padding-top:0">
-  <div class="om"><button class="shot" type="button" aria-label="Enlarge: The Rhino 9 model in a ghosted viewport"><img src="img/rp__rhino_hero.webp" alt="The Rhino 9 model in a ghosted viewport: shells in orange curves, joints and tracks in grey, lights in green and yellow" loading="lazy" width="1920" height="1440"></button><div class="pair"><button class="shot" type="button" aria-label="Enlarge: Rhino viewport, side profile"><img src="img/rp__rhino_side.webp" alt="Rhino viewport, side profile" loading="lazy" width="1920" height="1440"></button><button class="shot" type="button" aria-label="Enlarge: Rhino viewport, high three-quarter"><img src="img/rp__rhino_top.webp" alt="Rhino viewport, high three-quarter" loading="lazy" width="1920" height="1440"></button></div></div>
+  <div class="om"><button class="shot" type="button" aria-label="Enlarge: The Rhino 9 model in a ghosted viewport"><img src="img/rp__rhino_hero.webp?v=5" alt="The Rhino 9 model in a ghosted viewport: shells in orange curves, joints and tracks in grey, lights in green and yellow" loading="lazy" width="1920" height="1440"></button><div class="pair"><button class="shot" type="button" aria-label="Enlarge: Rhino viewport, side profile"><img src="img/rp__rhino_side.webp?v=5" alt="Rhino viewport, side profile" loading="lazy" width="1920" height="1440"></button><button class="shot" type="button" aria-label="Enlarge: Rhino viewport, high three-quarter"><img src="img/rp__rhino_top.webp?v=5" alt="Rhino viewport, high three-quarter" loading="lazy" width="1920" height="1440"></button></div></div>
   <div class="ot"><p class="num">STEP 01 · RHINO 9</p><h3>THE MODEL</h3><p>Real geometry first. Head, torso shell, shoulder and elbow joints, gripper hands, a spring-loaded column, a turret ring and a tracked base with road wheels and guards. Parts are colour-coded on their layers so the render step can read what each part is.</p>
   <pre class="logic"><b>BODY</b>   head · torso shell · 2 arms · grippers
 <b>SPINE</b>  turret ring · spring column · guide rods
@@ -713,12 +718,12 @@ body{background:var(--paper);color:var(--ink)}
 
  <article class="obj" id="s02">
   <div class="om"><div class="six">
-   <figure><button class="shot" type="button" aria-label="Enlarge: Camera 01"><img src="img/rp__rhino_hero.webp" alt="Camera 01: hero, front three-quarter" loading="lazy"></button><figcaption class="mono">01 · Hero</figcaption></figure>
-   <figure><button class="shot" type="button" aria-label="Enlarge: Camera 02"><img src="img/rp__rhino_front.webp" alt="Camera 02: front elevation" loading="lazy"></button><figcaption class="mono">02 · Front</figcaption></figure>
-   <figure><button class="shot" type="button" aria-label="Enlarge: Camera 03"><img src="img/rp__rhino_side.webp" alt="Camera 03: side profile" loading="lazy"></button><figcaption class="mono">03 · Side</figcaption></figure>
-   <figure><button class="shot" type="button" aria-label="Enlarge: Camera 04"><img src="img/rp__rhino_back.webp" alt="Camera 04: rear three-quarter" loading="lazy"></button><figcaption class="mono">04 · Rear</figcaption></figure>
-   <figure><button class="shot" type="button" aria-label="Enlarge: Camera 05"><img src="img/rp__rhino_low.webp" alt="Camera 05: low angle" loading="lazy"></button><figcaption class="mono">05 · Low</figcaption></figure>
-   <figure><button class="shot" type="button" aria-label="Enlarge: Camera 06"><img src="img/rp__rhino_top.webp" alt="Camera 06: high three-quarter" loading="lazy"></button><figcaption class="mono">06 · High</figcaption></figure>
+   <figure><button class="shot" type="button" aria-label="Enlarge: Camera 01"><img src="img/rp__rhino_hero.webp?v=5" alt="Camera 01: hero, front three-quarter" loading="lazy"></button><figcaption class="mono">01 · Hero</figcaption></figure>
+   <figure><button class="shot" type="button" aria-label="Enlarge: Camera 02"><img src="img/rp__rhino_front.webp?v=5" alt="Camera 02: front elevation" loading="lazy"></button><figcaption class="mono">02 · Front</figcaption></figure>
+   <figure><button class="shot" type="button" aria-label="Enlarge: Camera 03"><img src="img/rp__rhino_side.webp?v=5" alt="Camera 03: side profile" loading="lazy"></button><figcaption class="mono">03 · Side</figcaption></figure>
+   <figure><button class="shot" type="button" aria-label="Enlarge: Camera 04"><img src="img/rp__rhino_back.webp?v=5" alt="Camera 04: rear three-quarter" loading="lazy"></button><figcaption class="mono">04 · Rear</figcaption></figure>
+   <figure><button class="shot" type="button" aria-label="Enlarge: Camera 05"><img src="img/rp__rhino_low.webp?v=5" alt="Camera 05: low angle" loading="lazy"></button><figcaption class="mono">05 · Low</figcaption></figure>
+   <figure><button class="shot" type="button" aria-label="Enlarge: Camera 06"><img src="img/rp__rhino_top.webp?v=5" alt="Camera 06: high three-quarter" loading="lazy"></button><figcaption class="mono">06 · High</figcaption></figure>
   </div></div>
   <div class="ot"><p class="num">STEP 02 · C# IN RHINO 9</p><h3>SIX CAMERAS, SCRIPTED</h3><p>One camera, one target, six directions, a lens for each, the model's bounding box fitted every time, written out at 1920 × 1440 with no grid or axes. If the model changes, all six views can be re-shot in seconds. Repeatable beats pretty.</p>
   <table class="cam"><thead><tr><th>Cam</th><th>Direction (x, y, z)</th><th>Lens</th></tr></thead><tbody>
@@ -732,7 +737,7 @@ body{background:var(--paper);color:var(--ink)}
  <article class="obj" id="s03">
   <div class="om">
    <div class="vpick" id="vpick" role="group" aria-label="Pick a view to compare"><button type="button" aria-pressed="true" data-v="hero">01 Hero</button><button type="button" aria-pressed="false" data-v="front">02 Front</button><button type="button" aria-pressed="false" data-v="side">03 Side</button><button type="button" aria-pressed="false" data-v="low">05 Low</button></div>
-   <figure style="margin:0"><div class="cmp r43"><img id="cmpA" src="img/rp__rhino_hero.webp" alt="Rhino viewport export" loading="lazy"><img class="af" id="cmpB" src="img/rp__raw_hero.webp" alt="Vizcom render of the same view" loading="lazy"><span class="h" aria-hidden="true"></span><span class="l a">RHINO</span><span class="l b">VIZCOM</span><input type="range" min="0" max="100" value="50" aria-label="Compare the Rhino viewport and the Vizcom render"></div><figcaption class="cmpcap mono"><span>Drag: viewport → render</span><span>Same camera, same geometry</span></figcaption></figure>
+   <figure style="margin:0"><div class="cmp r43"><img id="cmpA" src="img/rp__rhino_hero.webp?v=5" alt="Rhino viewport export" loading="lazy"><img class="af" id="cmpB" src="img/rp__raw_hero.webp?v=5" alt="Vizcom render of the same view" loading="lazy"><span class="h" aria-hidden="true"></span><span class="l a">RHINO</span><span class="l b">VIZCOM</span><input type="range" min="0" max="100" value="50" aria-label="Compare the Rhino viewport and the Vizcom render"></div><figcaption class="cmpcap mono"><span>Drag: viewport → render</span><span>Same camera, same geometry</span></figcaption></figure>
   </div>
   <div class="ot"><p class="num">STEP 03 · VIZCOM</p><h3>FROM VIEWPORT TO PHOTO</h3><p>Each capture goes into Vizcom with one written material direction: a perforated polymer shell, black anodised joints, bead-blasted aluminium arms, rubber tracks. Four outputs per view; I keep the one that stays truest to the model. The first pass was rendered in my studio's safety orange.</p>
   <pre class="logic"><b>MODE</b>    Modify · Pro · 4 outputs
@@ -745,12 +750,12 @@ body{background:var(--paper);color:var(--ink)}
 
  <article class="obj" id="s04">
   <div class="om"><div class="six">
-   <figure><button class="shot" type="button" aria-label="Enlarge: Raw render, hero"><img src="img/rp__raw_hero.webp" alt="Raw Vizcom render, hero view, light grey studio" loading="lazy"></button><figcaption class="mono">01 · grey</figcaption></figure>
-   <figure><button class="shot" type="button" aria-label="Enlarge: Raw render, front"><img src="img/rp__raw_front.webp" alt="Raw Vizcom render, front view, warm grey" loading="lazy"></button><figcaption class="mono">02 · warm grey</figcaption></figure>
-   <figure><button class="shot" type="button" aria-label="Enlarge: Raw render, side"><img src="img/rp__raw_side.webp" alt="Raw Vizcom render, side view, pure white" loading="lazy"></button><figcaption class="mono">03 · pure white</figcaption></figure>
-   <figure><button class="shot" type="button" aria-label="Enlarge: Raw render, rear"><img src="img/rp__raw_back.webp" alt="Raw Vizcom render, rear three-quarter, warm grey" loading="lazy"></button><figcaption class="mono">04 · warm grey</figcaption></figure>
-   <figure><button class="shot" type="button" aria-label="Enlarge: Raw render, low"><img src="img/rp__raw_low.webp" alt="Raw Vizcom render, low angle, beige" loading="lazy"></button><figcaption class="mono">05 · beige</figcaption></figure>
-   <figure><button class="shot" type="button" aria-label="Enlarge: Raw render, high"><img src="img/rp__raw_top.webp" alt="Raw Vizcom render, high three-quarter, white" loading="lazy"></button><figcaption class="mono">06 · white</figcaption></figure>
+   <figure><button class="shot" type="button" aria-label="Enlarge: Raw render, hero"><img src="img/rp__raw_hero.webp?v=5" alt="Raw Vizcom render, hero view, light grey studio" loading="lazy"></button><figcaption class="mono">01 · grey</figcaption></figure>
+   <figure><button class="shot" type="button" aria-label="Enlarge: Raw render, front"><img src="img/rp__raw_front.webp?v=5" alt="Raw Vizcom render, front view, warm grey" loading="lazy"></button><figcaption class="mono">02 · warm grey</figcaption></figure>
+   <figure><button class="shot" type="button" aria-label="Enlarge: Raw render, side"><img src="img/rp__raw_side.webp?v=5" alt="Raw Vizcom render, side view, pure white" loading="lazy"></button><figcaption class="mono">03 · pure white</figcaption></figure>
+   <figure><button class="shot" type="button" aria-label="Enlarge: Raw render, rear"><img src="img/rp__raw_back.webp?v=5" alt="Raw Vizcom render, rear three-quarter, warm grey" loading="lazy"></button><figcaption class="mono">04 · warm grey</figcaption></figure>
+   <figure><button class="shot" type="button" aria-label="Enlarge: Raw render, low"><img src="img/rp__raw_low.webp?v=5" alt="Raw Vizcom render, low angle, beige" loading="lazy"></button><figcaption class="mono">05 · beige</figcaption></figure>
+   <figure><button class="shot" type="button" aria-label="Enlarge: Raw render, high"><img src="img/rp__raw_top.webp?v=5" alt="Raw Vizcom render, high three-quarter, white" loading="lazy"></button><figcaption class="mono">06 · white</figcaption></figure>
   </div></div>
   <div class="ot"><p class="num">STEP 04 · ART DIRECTION</p><h3>KEEP WHAT'S TRUE</h3><p>Six good renders still aren't a set: every view came back on a different backdrop. Pushing Vizcom harder to match made it worse. On the side and high views it started turning the camera and redrawing the head and torso. A render that quietly changes the design is worse than a white background, so those went in the bin.</p>
   <div class="rule"><b>THE RULE</b>Never keep an output that changes the design. Fix consistency in the composite, not in the generator.</div>
@@ -761,14 +766,14 @@ body{background:var(--paper);color:var(--ink)}
 
  <article class="obj" id="s05">
   <div class="om"><div class="six">
-   <figure class="chk"><img src="img/rp__cut_hero.webp" alt="Cutout, hero, on a transparency checkerboard" loading="lazy"></figure>
-   <figure class="chk"><img src="img/rp__cut_front.webp" alt="Cutout, front" loading="lazy"></figure>
-   <figure class="chk"><img src="img/rp__cut_side.webp" alt="Cutout, side" loading="lazy"></figure>
-   <figure class="chk"><img src="img/rp__cut_back.webp" alt="Cutout, rear three-quarter" loading="lazy"></figure>
-   <figure class="chk"><img src="img/rp__cut_low.webp" alt="Cutout, low angle" loading="lazy"></figure>
-   <figure class="chk"><img src="img/rp__cut_top.webp" alt="Cutout, high three-quarter" loading="lazy"></figure>
+   <figure class="chk"><img src="img/rp__cut_hero.webp?v=5" alt="Cutout, hero, on a transparency checkerboard" loading="lazy"></figure>
+   <figure class="chk"><img src="img/rp__cut_front.webp?v=5" alt="Cutout, front" loading="lazy"></figure>
+   <figure class="chk"><img src="img/rp__cut_side.webp?v=5" alt="Cutout, side" loading="lazy"></figure>
+   <figure class="chk"><img src="img/rp__cut_back.webp?v=5" alt="Cutout, rear three-quarter" loading="lazy"></figure>
+   <figure class="chk"><img src="img/rp__cut_low.webp?v=5" alt="Cutout, low angle" loading="lazy"></figure>
+   <figure class="chk"><img src="img/rp__cut_top.webp?v=5" alt="Cutout, high three-quarter" loading="lazy"></figure>
   </div>
-  <div class="pair"><button class="shot" type="button" aria-label="Enlarge: Side view before"><img src="img/rp__raw_side.webp" alt="Before: raw side render on pure white" loading="lazy"></button><button class="shot" type="button" aria-label="Enlarge: Side view after, teal studio composite"><img src="img/rp__t_frame_03_side.webp?v=3" alt="After: the same side view in the teal livery, composited into the pale steel studio with cast and contact shadows" loading="lazy"></button></div></div>
+  <div class="pair"><button class="shot" type="button" aria-label="Enlarge: Side view before"><img src="img/rp__raw_side.webp?v=5" alt="Before: raw side render on pure white" loading="lazy"></button><button class="shot" type="button" aria-label="Enlarge: Side view after, teal studio composite"><img src="img/rp__t_frame_03_side.webp?v=5" alt="After: the same side view in the teal livery, composited into the pale steel studio with cast and contact shadows" loading="lazy"></button></div></div>
   <div class="ot"><p class="num">STEP 05 · CUT + COMPOSITE</p><h3>ONE STUDIO</h3><p>Vizcom cuts each robot off its backdrop. Each one is rebuilt into the same studio: one sweep, one key light from the upper right, one floor line. Shadows come from the robot's own silhouette, a long soft one back-left and a tight one where the tracks meet the floor. Same scale, same ground line, every view.</p>
   <pre class="logic"><b>CUT</b>       Vizcom Remove background · edge defringe
 <b>BACKDROP</b>  pale steel #CED4D7 → #E6EAEC · sweep floor · key pool
@@ -777,7 +782,7 @@ body{background:var(--paper);color:var(--ink)}
  </article>
 
  <article class="obj" id="s07">
-  <div class="om"><button class="shot" type="button" aria-label="Enlarge: Teal turnaround sheet"><img src="img/rp__t_turnaround.webp?v=3" alt="Turnaround sheet: all six teal views on one floor line, numbered 01 to 06" loading="lazy" width="3840" height="2160"></button><div class="pair"><button class="shot" type="button" aria-label="Enlarge: Teal frame 01"><img src="img/rp__t_frame_01_hero.webp?v=3" alt="Teal studio frame 01, hero" loading="lazy"></button><button class="shot" type="button" aria-label="Enlarge: Teal frame 05"><img src="img/rp__t_frame_05_low.webp?v=3" alt="Teal studio frame 05, low angle" loading="lazy"></button></div></div>
+  <div class="om"><button class="shot" type="button" aria-label="Enlarge: Teal turnaround sheet"><img src="img/rp__t_turnaround.webp?v=5" alt="Turnaround sheet: all six teal views on one floor line, numbered 01 to 06" loading="lazy" width="3840" height="2160"></button><div class="pair"><button class="shot" type="button" aria-label="Enlarge: Teal frame 01"><img src="img/rp__t_frame_01_hero.webp?v=5" alt="Teal studio frame 01, hero" loading="lazy"></button><button class="shot" type="button" aria-label="Enlarge: Teal frame 05"><img src="img/rp__t_frame_05_low.webp?v=5" alt="Teal studio frame 05, low angle" loading="lazy"></button></div></div>
   <div class="ot"><p class="num">STEP 07 · LAYOUT</p><h3>THE SET</h3><p>Six numbered frames, a six-view turnaround on one floor line, and a 16:9 cover, in both liveries. The teal set uses dark ink type with one teal accent, crop ticks and a faint grid: enough system to look engineered, quiet enough to stay out of the robot's way.</p>
   <pre class="logic"><b>COVER</b>       3840 × 2160 · title block + hero
 <b>TURNAROUND</b>  3840 × 2160 · 6 views · one floor datum
@@ -789,16 +794,16 @@ body{background:var(--paper);color:var(--ink)}
 
 <section class="sec dark" id="set"><div class="wrap">
  <div class="sec-h"><h2>THE <em>SET</em></h2><span class="mono">Teal / black livery · click to enlarge</span></div>
- <button class="shot" type="button" aria-label="Enlarge: Teal turnaround" style="margin-bottom:10px"><img src="img/rp__t_turnaround.webp?v=3" alt="Turnaround: six teal views of the robot on one studio floor" loading="lazy" width="3840" height="2160"></button>
+ <button class="shot" type="button" aria-label="Enlarge: Teal turnaround" style="margin-bottom:10px"><img src="img/rp__t_turnaround.webp?v=5" alt="Turnaround: six teal views of the robot on one studio floor" loading="lazy" width="3840" height="2160"></button>
  <div class="six">
-  <button class="shot" type="button" aria-label="Enlarge: 01 Hero"><img src="img/rp__t_frame_01_hero.webp?v=3" alt="01 Hero, front three-quarter, teal" loading="lazy"></button>
-  <button class="shot" type="button" aria-label="Enlarge: 02 Front"><img src="img/rp__t_frame_02_front.webp?v=3" alt="02 Front elevation, teal" loading="lazy"></button>
-  <button class="shot" type="button" aria-label="Enlarge: 03 Side"><img src="img/rp__t_frame_03_side.webp?v=3" alt="03 Side profile, teal" loading="lazy"></button>
-  <button class="shot" type="button" aria-label="Enlarge: 04 Rear"><img src="img/rp__t_frame_04_rear.webp?v=3" alt="04 Rear three-quarter, teal" loading="lazy"></button>
-  <button class="shot" type="button" aria-label="Enlarge: 05 Low"><img src="img/rp__t_frame_05_low.webp?v=3" alt="05 Low angle, teal" loading="lazy"></button>
-  <button class="shot" type="button" aria-label="Enlarge: 06 High"><img src="img/rp__t_frame_06_high.webp?v=3" alt="06 High three-quarter, teal" loading="lazy"></button>
+  <button class="shot" type="button" aria-label="Enlarge: 01 Hero"><img src="img/rp__t_frame_01_hero.webp?v=5" alt="01 Hero, front three-quarter, teal" loading="lazy"></button>
+  <button class="shot" type="button" aria-label="Enlarge: 02 Front"><img src="img/rp__t_frame_02_front.webp?v=5" alt="02 Front elevation, teal" loading="lazy"></button>
+  <button class="shot" type="button" aria-label="Enlarge: 03 Side"><img src="img/rp__t_frame_03_side.webp?v=5" alt="03 Side profile, teal" loading="lazy"></button>
+  <button class="shot" type="button" aria-label="Enlarge: 04 Rear"><img src="img/rp__t_frame_04_rear.webp?v=5" alt="04 Rear three-quarter, teal" loading="lazy"></button>
+  <button class="shot" type="button" aria-label="Enlarge: 05 Low"><img src="img/rp__t_frame_05_low.webp?v=5" alt="05 Low angle, teal" loading="lazy"></button>
+  <button class="shot" type="button" aria-label="Enlarge: 06 High"><img src="img/rp__t_frame_06_high.webp?v=5" alt="06 High three-quarter, teal" loading="lazy"></button>
  </div>
- <p class="mono" style="margin-top:26px">Original livery: <a href="img/rp__cover.webp" style="color:#2fa39e">safety-orange cover</a> · <a href="img/rp__turnaround.webp" style="color:#2fa39e">safety-orange turnaround</a></p>
+ <p class="mono" style="margin-top:26px">Original livery: <a href="img/rp__cover.webp?v=5" style="color:#2fa39e">safety-orange cover</a> · <a href="img/rp__turnaround.webp?v=5" style="color:#2fa39e">safety-orange turnaround</a></p>
  <p class="mono" style="margin-top:10px">Me: the robot model in Rhino 9, the camera set, the material direction, the brand read and every keep-or-bin call · Tools: Rhino 9 (C# view capture), Vizcom, Python livery pass and browser compositing with Claude</p>
 </div></section>
 
@@ -850,7 +855,7 @@ draw()})();
  var tt=document.getElementById('tt'),imgs=[].slice.call(tt.querySelectorAll('img')),hud=document.getElementById('ttHud'),cams=[].slice.call(document.querySelectorAll('#camBtns .pill')),lvs=[].slice.call(document.querySelectorAll('.pill.lv')),play=document.getElementById('ttPlay');
  var files=['01_hero','02_front','03_side','04_rear','05_low','06_high'],names=['HERO, FRONT 3/4','FRONT','SIDE','REAR 3/4','LOW ANGLE','HIGH 3/4'],cur=0,lv='t',timer=null;
  var RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
- function src(i){return 'img/rp__'+(lv==='t'?'t_':'')+'frame_'+files[i]+'.webp'+(lv==='t'?'?v=3':'')}
+ function src(i){return 'img/rp__'+(lv==='t'?'t_':'')+'frame_'+files[i]+'.webp?v=5'}
  function load(){imgs.forEach(function(m,i){m.src=src(i)})}
  function set(i){cur=(i+6)%6;imgs.forEach(function(m,k){m.classList.toggle('on',k===cur)});cams.forEach(function(b,k){b.setAttribute('aria-pressed',k===cur?'true':'false')});hud.innerHTML='<b>0'+(cur+1)+'</b> / 06 · '+names[cur]+' · '+(lv==='t'?'TEAL':'ORANGE')}
  load();
