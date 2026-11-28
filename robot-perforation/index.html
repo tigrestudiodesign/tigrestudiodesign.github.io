@@ -234,7 +234,7 @@ body{background:var(--paper);color:var(--ink)}
 
 
 <section class="sec" id="tour" style="padding-top:0"><div class="wrap">
- <div class="tour-h"><h2>THREE MINUTES? START HERE</h2><span class="mono">Made for the Brand Designer III application · <a href="UNIT-1024-Brand-Guidelines.pdf" download style="color:#17625f">Guidelines PDF ↓</a> · <a href="deck/" style="color:#17625f">Review deck ↗</a></span></div>
+ <div class="tour-h"><h2>THREE MINUTES? START HERE</h2><span class="mono">Made for the Brand Designer III application · <a href="UNIT-1024-Brand-Guidelines.pdf" download style="color:#17625f">Guidelines PDF ↓</a> · <a href="deck/" style="color:#17625f">Review deck ↗</a> · <a href="deck/UNIT-1024-Portfolio-Review.pdf" download style="color:#17625f">Deck PDF ↓</a></span></div>
  <div class="tour">
   <a href="#identity"><span class="n">01 · IDENTITY</span><b>A mark per unit</b><span class="d">A 1,024-position grid, one fixed chevron, a field generated from each robot's number. Try your own.</span></a>
   <a href="system/"><span class="n">02 · DESIGN SYSTEM ↗</span><b>Unit System v1.0</b><span class="d">Tokens, icons, components, a live fleet console, contrast checks, governance.</span></a>
@@ -333,7 +333,7 @@ body{background:var(--paper);color:var(--ink)}
    <div class="row" role="group" aria-label="Ground">
     <button type="button" data-g="paper" aria-pressed="true">Paper</button><button type="button" data-g="ink" aria-pressed="false">Ink</button><button type="button" data-g="teal" aria-pressed="false">Teal</button><button type="button" data-g="screen" aria-pressed="false">Chest screen</button>
    </div>
-   <div class="row"><button type="button" id="idRand">Random unit</button><button type="button" id="idSvg">Download SVG</button></div>
+   <div class="row"><button type="button" id="idRand">Random unit</button><button type="button" id="idSvg">Download SVG</button><button type="button" id="idDecal">Decal · print SVG</button></div>
    <div class="ro" id="idRo">SEED 1024 → FIELD · CHEVRON = CONSTANT</div>
   </div>
  </div>
@@ -663,6 +663,21 @@ inp.addEventListener('input',draw);
 document.querySelectorAll('.idgen [data-g]').forEach(function(b){b.addEventListener('click',function(){g=b.dataset.g;document.querySelectorAll('.idgen [data-g]').forEach(function(o){o.setAttribute('aria-pressed',o===b)});draw()})});
 document.getElementById('idRand').addEventListener('click',function(){inp.value=1000+Math.floor(Math.random()*9000);draw()});
 document.getElementById('idSvg').addEventListener('click',function(){var o=G[g],svg=UnitMark.svg(u(),{size:512,field:o.field,hot:o.hot,bg:o.bg}),a=document.createElement('a');a.href=URL.createObjectURL(new Blob([svg],{type:'image/svg+xml'}));a.download='unit-'+u()+'-mark.svg';a.click();setTimeout(function(){URL.revokeObjectURL(a.href)},1000)});
+
+document.getElementById('idDecal').addEventListener('click',function(){var u=(function(){var n=parseInt((document.getElementById('idIn').value||'').replace(/\D/g,''),10);return isNaN(n)?0:n})();
+ var SL=10,BL=3,TW=120,TH=40,W=TW+2*(BL+SL),H=TH+2*(BL+SL),tx=SL+BL,ty=SL+BL,ms=30,mx=tx+5,my=ty+5,c=ms/32,o=[];
+ o.push('<svg xmlns="http://www.w3.org/2000/svg" width="'+W+'mm" height="'+H+'mm" viewBox="0 0 '+W+' '+H+'">');
+ o.push('<title>UNIT '+u+' base-plate decal, print file</title><rect width="'+W+'" height="'+H+'" fill="#ffffff"/>');
+ o.push('<g id="bleed"><rect x="'+SL+'" y="'+SL+'" width="'+(TW+2*BL)+'" height="'+(TH+2*BL)+'" fill="#132630"/></g>');
+ o.push('<g id="mark">');UnitMark.dots(u).forEach(function(d){o.push('<circle cx="'+(mx+(d.i+.5)*c).toFixed(3)+'" cy="'+(my+(d.j+.5)*c).toFixed(3)+'" r="'+Math.max(.08,d.r*c).toFixed(3)+'" fill="'+(d.hot?'#2fa39e':'#dfe5e8')+'"/>')});o.push('</g>');
+ o.push('<g id="type" font-family="Inter Display, Inter, Helvetica, Arial, sans-serif"><text x="'+(tx+41)+'" y="'+(ty+19.5)+'" font-size="12.5" font-weight="900" fill="#e9eef0" letter-spacing="-.3">UNIT '+u+'</text>');
+ o.push('<text x="'+(tx+41.3)+'" y="'+(ty+27)+'" font-size="3.2" font-weight="700" fill="#9fb0b8" font-family="JetBrains Mono, Menlo, monospace" letter-spacing=".5">TRACKED UTILITY HUMANOID</text></g>');
+ o.push('<g id="crop" stroke="#000" stroke-width=".15">');[[tx,ty],[tx+TW,ty],[tx,ty+TH],[tx+TW,ty+TH]].forEach(function(p){var sx=p[0]===tx?-1:1,sy=p[1]===ty?-1:1;o.push('<line x1="'+(p[0]+sx*(BL+1))+'" y1="'+p[1]+'" x2="'+(p[0]+sx*(BL+SL-1))+'" y2="'+p[1]+'"/><line x1="'+p[0]+'" y1="'+(p[1]+sy*(BL+1))+'" x2="'+p[0]+'" y2="'+(p[1]+sy*(BL+SL-1))+'"/>')});o.push('</g>');
+ o.push('<g id="slug" font-family="JetBrains Mono, Menlo, monospace" font-size="2.2" fill="#132630"><text x="'+SL+'" y="'+(SL-3)+'">UNIT '+u+' BASE-PLATE DECAL · TRIM 120 × 40 MM · BLEED 3 MM · 1:1</text>');
+ o.push('<text x="'+SL+'" y="'+(H-SL+4)+'">CAST VINYL, MATTE LAMINATE · INK #132630 · TEAL #2FA39E · FIELD #DFE5E8</text>');
+ o.push('<text x="'+SL+'" y="'+(H-SL+6.8)+'">OUTLINE TEXT BEFORE PRINT · PROOF AGAINST A PHYSICAL SWATCH</text>');
+ o.push('<text x="'+SL+'" y="'+(H-SL+9.6)+'" fill="#5c6a72">UNOFFICIAL CONCEPT · TIGRE STUDIO · NOT AFFILIATED WITH AGILITY ROBOTICS</text></g></svg>');
+ var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([o.join('')],{type:'image/svg+xml'}));a.download='unit-'+u+'-decal-print.svg';a.click();setTimeout(function(){URL.revokeObjectURL(a.href)},1000)});
 draw()})();
 </script>
 <script>
