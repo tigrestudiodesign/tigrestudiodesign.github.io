@@ -102,6 +102,8 @@ meter($('#m1'),72);meter($('#m2'),18);
   if(i===2){var r=$('#ret');r.style.borderImage='none';r.animate([{width:'240px',height:'110px',borderColor:'rgba(31,128,124,0)'},{width:'120px',height:'80px',borderColor:'#1f807c'}],{duration:d*2,easing:e,fill:'forwards'})}}
  $$('#motionDemos button').forEach(function(b){b.addEventListener('click',function(){play(+b.dataset.i)})})})();
 
+// status loops: autoplay only without reduced motion
+(function(){var v=$('#loops');if(!v||RM)return;if('IntersectionObserver' in window){new IntersectionObserver(function(e){e[0].isIntersecting?v.play().catch(function(){}):v.pause()},{threshold:.3}).observe(v)}})();
 // a11y matrix
 (function(){var fg=[['ink-800',H('ink.800')],['ink-500',H('ink.500')],['teal-800',H('teal.800')],['teal-500',H('teal.500')],['white',H('white')],['ink-900',H('ink.900')]],
  bg=[['ink-50',H('ink.50')],['white',H('white')],['ink-100',H('ink.100')],['ink-800',H('ink.800')],['teal-500',H('teal.500')],['yellow',H('safety.yellow')],['red-700',H('safety.red-700')]];
