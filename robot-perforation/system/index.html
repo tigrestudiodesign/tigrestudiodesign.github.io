@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>UNIT SYSTEM v1.0 · Design system for a robot fleet · Tigre Studio</title>
+<meta name="description" content="UNIT SYSTEM: a complete design system for a fleet of tracked utility humanoids. Tokens, mark, icons, components, a live fleet console, motion, accessibility, voice and governance. Unofficial concept by Tigre Studio.">
+<meta property="og:title" content="UNIT SYSTEM v1.0 · Tigre Studio"><meta property="og:image" content="https://tigrestudiodesign.github.io/robot-perforation/img/rp__ds_cover.webp">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22%3E%3Crect width=%2224%22 height=%2224%22 rx=%223%22 fill=%22%23132630%22/%3E%3Cpath d=%22M8 5l7 7-7 7%22 fill=%22none%22 stroke=%22%232fa39e%22 stroke-width=%223%22/%3E%3C/svg%3E"><link rel="stylesheet" href="tokens.css"><link rel="stylesheet" href="ds.css">
+</head><body>
+<a class="skip" href="#main">Skip to content</a>
+<div id="sprite"></div>
+<header class="top">
+ <a class="brand" href="../">TIGRE STUDIO / <b>UNIT SYSTEM</b> v1.0</a>
+ <nav aria-label="Site"><a href="#console" class="opt">Live console</a><a href="#downloads" class="opt">Downloads</a><a href="../#identity">Case study ↗</a></nav>
+</header>
+<div class="gridov" id="gridov" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="shell">
+<nav class="side" aria-label="System sections">
+ <div class="grp">Foundations</div>
+ <a href="#principles"><span>00</span>Principles</a><a href="#colour"><span>01</span>Colour</a><a href="#type"><span>02</span>Type</a><a href="#space"><span>03</span>Space · grid</a><a href="#mark"><span>04</span>Mark</a><a href="#icons"><span>05</span>Icons</a>
+ <div class="grp">Build</div>
+ <a href="#components"><span>06</span>Components</a><a href="#console"><span>07</span>Fleet console</a><a href="#templates"><span>08</span>Templates</a><a href="#motion"><span>09</span>Motion</a>
+ <div class="grp">Rules</div>
+ <a href="#a11y"><span>10</span>Accessibility</a><a href="#voice"><span>11</span>Voice</a><a href="#governance"><span>12</span>Governance</a><a href="#downloads"><span>13</span>Downloads</a>
+</nav>
+<main id="main">
+
+<section class="hero" aria-labelledby="h1">
+ <canvas id="heroMark" width="1040" height="1040" aria-hidden="true"></canvas>
+ <div class="k">DESIGN SYSTEM · v1.0 · 2026</div>
+ <h1 id="h1">UNIT<br><em>SYSTEM</em></h1>
+ <p>One system for a fleet of tracked utility humanoids: the screen on the robot's chest, the decal on its base, the operator console, the booth wall and the sales deck. Tokens, mark, icons, components, patterns and the rules that hold them together.</p>
+ <div class="stats" id="stats"></div>
+ <div class="dl"><a class="btn btn-brand" href="#console">See it run <svg class="i"><use href="#i-go"/></svg></a><a class="btn btn-dark" href="tokens.json" download>tokens.json</a><a class="btn btn-dark" href="icons.svg" download>icons.svg</a></div>
+ <p style="margin:var(--space-5) 0 0"><span class="disc">Unofficial concept · not affiliated with or endorsed by Agility Robotics · no Agility logos or proprietary type</span></p>
+</section>
+
+<!-- 00 -->
+<section class="sec" id="principles"><div class="sec-h"><span class="n">00</span><h2>PRINCIPLES</h2></div>
+ <p class="lede">Four rules decide every argument the specs don't cover. If a design breaks one, it doesn't ship.</p>
+ <div class="g4">
+  <div class="card pr"><span class="num">P1</span><svg class="i"><use href="#i-check"/></svg><h4>Say what it does</h4><p>Plain words, real numbers, no hype. If we can't measure it, we don't claim it.</p></div>
+  <div class="card pr"><span class="num">P2</span><svg class="i"><use href="#i-unit"/></svg><h4>Built for the floor</h4><p>Everything works at 6 metres, under warehouse light, with gloves on. Pretty comes second.</p></div>
+  <div class="card pr"><span class="num">P3</span><svg class="i"><use href="#i-stop"/></svg><h4>Safety is not a style</h4><p>Red, yellow and green have one job each. They never decorate, never carry a brand moment.</p></div>
+  <div class="card pr"><span class="num">P4</span><svg class="i"><use href="#i-route"/></svg><h4>One family, every unit</h4><p>Every robot reads as the same brand and still can be told apart. The mark does both.</p></div>
+ </div>
+</section>
+
+<!-- 01 -->
+<section class="sec" id="colour"><div class="sec-h"><span class="n">01</span><h2>COLOUR</h2></div>
+ <p class="lede">Two ramps carry the brand, three safety colours carry meaning. Primitives are never used directly in product: designers pick a role, and the role points at a primitive. Click any swatch to copy its hex.</p>
+ <div id="ramps"></div>
+ <h3>Roles</h3>
+ <p class="lede">Contrast is calculated live in your browser against the role's intended ground (WCAG 2.x). Anything below 4.5:1 is restricted to large text or graphics, and the table says so.</p>
+ <div class="tblwrap"><table class="roles" id="roles"><thead><tr><th>Role</th><th>Token</th><th>Points to</th><th>On</th><th>Contrast</th></tr></thead><tbody></tbody></table></div>
+ <div class="rule"><b>Rule</b><span>Shell teal (teal-500) never carries text on paper: it only reaches 2.8:1. Teal text uses <code>fg-brand</code> (teal-800, 6.5:1). Teal-500 is for fills, the chevron and graphics.</span></div>
+ <h3>Colour by area</h3>
+ <div class="ratio" aria-label="Colour proportions"><div style="flex:44;background:var(--c-ink-50)"></div><div style="flex:26;background:var(--c-ink-800)"></div><div style="flex:18;background:var(--c-teal-500)"></div><div style="flex:8;background:var(--c-ink-100)"></div><div style="flex:2;background:var(--c-safety-yellow)"></div><div style="flex:1.2;background:var(--c-safety-green)"></div><div style="flex:.8;background:var(--c-safety-red)"></div></div>
+ <p class="lbl" style="margin-top:10px">Paper 44 · Ink 26 · Shell teal 18 · Steel 8 · Safety 4, and only where something is actually safe, running or stopped</p>
+</section>
+
+<!-- 02 -->
+<section class="sec" id="type"><div class="sec-h"><span class="n">02</span><h2>TYPE</h2></div>
+ <p class="lede">Two families, seven styles. Inter Display Black says what a thing is; JetBrains Mono says what it is doing. Headlines are always uppercase; body copy never is.</p>
+ <div id="typescale"></div>
+ <div class="rule"><b>Why mono</b><span>Status, zones, unit numbers and timestamps are machine data. Setting them in mono makes them scan like a readout and keeps digits from jumping when they change.</span></div>
+</section>
+
+<!-- 03 -->
+<section class="sec" id="space"><div class="sec-h"><span class="n">03</span><h2>SPACE · GRID · RADIUS</h2></div>
+ <p class="lede">The base unit is 8 px, the pitch of the perforation on the robot's shell. Every gap, margin and radius comes from it, so screens and hardware share one rhythm.</p>
+ <div class="g2">
+  <div class="card"><div class="lbl" style="margin-bottom:12px">Space scale</div><div id="spacescale"></div></div>
+  <div style="display:flex;flex-direction:column;gap:var(--space-4)">
+   <div class="card"><div class="lbl" style="margin-bottom:12px">8 px perforation pitch</div><div class="perf"></div></div>
+   <div class="card"><div class="lbl" style="margin-bottom:12px">Layout grid</div><p style="margin:0 0 14px;font-size:14px;color:#33464f">12 columns, 24 px gutters on desktop. 4 columns, 16 px on mobile. Turn it on and check this page against it.</p><label class="tog"><input type="checkbox" id="gridToggle"> Show grid</label></div>
+  </div>
+ </div>
+ <h3>Radius</h3>
+ <div class="rad" id="radius"></div>
+ <div class="rule"><b>Tile</b><span>The mark's corner (4.2 of 32 cells, 13.125%) matches the corner on the chassis panels. Use <code>radius-tile</code> only for the mark and app icons.</span></div>
+</section>
+
+<!-- 04 -->
+<section class="sec" id="mark"><div class="sec-h"><span class="n">04</span><h2>MARK</h2></div>
+ <p class="lede">A 32 × 32 perforated tile: 1,024 holes. The chevron of full-size holes never changes. The field is generated from the unit number, so each robot carries its own mark. The full guidelines, lockups and misuse sheet are on the <a href="../#identity">case study</a>.</p>
+ <div class="g3" id="markdemo"></div>
+</section>
+
+<!-- 05 -->
+<section class="sec" id="icons"><div class="sec-h"><span class="n">05</span><h2>ICONS</h2></div>
+ <p class="lede">Eighteen icons drawn for the floor, not the app store. 24 px grid, 2 px stroke, square caps, 45° and 90° only: the same geometry as the chevron. Click one to copy its SVG.</p>
+ <div class="iconstr"><div class="big"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" id="bigIcon"></svg></div>
+  <div style="max-width:420px"><div class="lbl">Construction</div><p style="font-size:14px;color:#33464f">Live area 20 × 20 inside a 2 px pad. Stroke 2 px at 24, scaled, never thinned. Square caps and mitre joins so icons sit next to the chevron without looking softer.</p>
+  <div class="row" style="gap:18px;margin-top:12px" id="sizes"></div></div></div>
+ <div class="icons" id="iconGrid" style="margin-top:var(--space-4)"></div>
+</section>
+
+<!-- 06 -->
+<section class="sec" id="components"><div class="sec-h"><span class="n">06</span><h2>COMPONENTS</h2></div>
+ <p class="lede">Every component is built from tokens only, with no hard-coded values, and works on paper and ink. They are all live: hover, tab through them, try them.</p>
+
+ <div class="compwrap"><div>
+   <div class="states" role="table" aria-label="Button states">
+    <span class="lbl hd"></span><span class="lbl hd">Default</span><span class="lbl hd">Hover</span><span class="lbl hd">Focus</span><span class="lbl hd">Disabled</span>
+    <span class="lbl">Primary</span><button class="btn btn-primary">Assign task</button><button class="btn btn-primary is-hover" tabindex="-1">Assign task</button><button class="btn btn-primary is-focus" tabindex="-1">Assign task</button><button class="btn btn-primary" disabled>Assign task</button>
+    <span class="lbl">Brand</span><button class="btn btn-brand">See it work</button><button class="btn btn-brand is-hover" tabindex="-1">See it work</button><button class="btn btn-brand is-focus" tabindex="-1">See it work</button><button class="btn btn-brand" disabled>See it work</button>
+    <span class="lbl">Secondary</span><button class="btn btn-secondary">View log</button><button class="btn btn-secondary is-hover" tabindex="-1">View log</button><button class="btn btn-secondary is-focus" tabindex="-1">View log</button><button class="btn btn-secondary" disabled>View log</button>
+    <span class="lbl">Stop</span><button class="btn btn-stop"><svg class="i"><use href="#i-stop"/></svg>Stop unit</button><button class="btn btn-stop is-hover" tabindex="-1"><svg class="i"><use href="#i-stop"/></svg>Stop unit</button><button class="btn btn-stop is-focus" tabindex="-1"><svg class="i"><use href="#i-stop"/></svg>Stop unit</button><span class="lbl" style="font-size:10px">Never disabled</span>
+   </div></div>
+  <div class="doc"><h4>Button</h4><p>Verb first, two words where possible. Height 44 px minimum, so it works with gloves.</p><ul><li>One brand button per view.</li><li>The stop button uses red-700 (6.6:1 with white) and is never disabled or hidden.</li></ul></div></div>
+
+ <div class="compwrap"><div class="row">
+   <span class="pill working"><span class="dot"></span>Working</span>
+   <span class="pill caution"><svg class="i"><use href="#i-slow"/></svg>Slow · person near</span>
+   <span class="pill caution"><svg class="i"><use href="#i-pause"/></svg>Waiting</span>
+   <span class="pill stop"><svg class="i"><use href="#i-stop"/></svg>Stopped</span>
+   <span class="pill info"><svg class="i"><use href="#i-charge"/></svg>Charging</span>
+   <span class="pill offline"><svg class="i"><use href="#i-signal"/></svg>Offline</span></div>
+  <div class="doc"><h4>Status pill</h4><p>The only place safety colours appear in UI.</p><ul><li>Always icon + word + colour: never colour alone.</li><li>States map 1:1 to the robot's light bar.</li></ul></div></div>
+
+ <div class="compwrap"><div class="row">
+   <div class="badge" id="badge1"></div><div class="badge light" id="badge2"></div></div>
+  <div class="doc"><h4>Unit badge</h4><p>The unit's mark, number and zone. Used on cards, console rows, the chest screen and in decks.</p></div></div>
+
+ <div class="compwrap"><div class="g3">
+   <div class="rd"><div class="lbl">Totes moved · shift</div><div class="v">412<small>TOTES</small></div><div class="d">▲ 8% vs last shift</div><svg class="sp" viewBox="0 0 200 44" preserveAspectRatio="none"><polyline fill="none" stroke="var(--c-teal-500)" stroke-width="2.5" points="0,34 20,30 40,32 60,24 80,26 100,18 120,20 140,14 160,16 180,9 200,8"/></svg></div>
+   <div class="rd"><div class="lbl">Uptime · 7 days</div><div class="v">97.2<small>%</small></div><div class="d">2 planned stops</div><svg class="sp" viewBox="0 0 200 44" preserveAspectRatio="none"><polyline fill="none" stroke="var(--c-ink-800)" stroke-width="2.5" points="0,10 30,10 31,30 40,10 120,10 121,26 128,10 200,10"/></svg></div>
+   <div class="rd dark"><div class="lbl">Person proximity</div><div class="v">1.4<small>M</small></div><div class="d" style="color:var(--c-safety-yellow)">Inside 1.6 m · unit waits</div><svg class="sp" viewBox="0 0 200 44" preserveAspectRatio="none"><polyline fill="none" stroke="var(--c-safety-yellow)" stroke-width="2.5" points="0,8 40,10 80,18 120,30 140,36 160,34 200,26"/></svg></div>
+  </div>
+  <div class="doc"><h4>Readout</h4><p>One number, one unit, one comparison. Sample values are placeholders, not measured data.</p><ul><li>Value in Display, unit and label in Mono.</li><li>Sparkline uses data colours; safety colours only when the metric is a safety metric.</li></ul></div></div>
+
+ <div class="compwrap"><div style="display:flex;flex-direction:column;gap:12px">
+   <div class="alert info" role="status"><svg class="i"><use href="#i-route"/></svg><div><b>Route updated</b>Unit 1024 is taking aisle 6. Aisle 4 is blocked by a pallet.</div></div>
+   <div class="alert caution" role="status"><svg class="i"><use href="#i-caution"/></svg><div><b>Person in zone B-04</b>Units in B-04 are moving at walking pace until the zone is clear.</div></div>
+   <div class="alert stop" role="alert"><svg class="i"><use href="#i-stop"/></svg><div><b>Unit 1031 stopped</b>Someone pressed its stop button. It stays stopped until a person releases it.</div></div></div>
+  <div class="doc"><h4>Alert</h4><p>Title says what happened. Body says what it means and what happens next.</p><ul><li>Stop alerts are the only ones that interrupt.</li><li>Never "Error!": name the thing.</li></ul></div></div>
+
+ <div class="compwrap"><div class="g2">
+   <div class="field"><label for="unitIn">Unit number</label><input id="unitIn" value="1024" inputmode="numeric" aria-describedby="unitHelp"><div class="help" id="unitHelp"><svg class="i" style="width:14px;height:14px"><use href="#i-check"/></svg>Unit 1024 · Zone B-04</div></div>
+   <div style="display:flex;flex-direction:column;gap:18px"><div><div class="lbl" style="margin-bottom:8px">Speed limit</div><div class="seg" role="group" aria-label="Speed limit" id="seg"><button aria-pressed="false">Walk</button><button aria-pressed="true">Standard</button><button aria-pressed="false">Restricted</button></div></div>
+   <label class="tog"><input type="checkbox" checked> Announce moves out loud</label>
+   <div><div class="lbl" style="margin-bottom:8px">Battery</div><div class="row"><span class="meter" id="m1"></span><span class="meter low" id="m2"></span></div></div></div></div>
+  <div class="doc"><h4>Inputs</h4><p>Type a unit that doesn't exist to see the error state. Errors say what's wrong and how to fix it.</p><ul><li>Segmented control for 2–4 exclusive options.</li><li>Battery turns yellow at 20%; it never goes red, because low battery isn't a stop.</li></ul></div></div>
+
+ <div class="compwrap"><div class="rcard"><div class="im"><img src="../img/rp__t_cut_front.webp" alt="Unit 1024, front view, teal livery" loading="lazy"></div>
+   <div class="bd"><div id="badge3"></div><span class="pill working" style="align-self:flex-start"><span class="dot"></span>Working</span>
+   <dl><dt>Task</dt><dd>Totes · line 3 → dock 2</dd><dt>Zone</dt><dd>B-04</dd><dt>Battery</dt><dd>72% · about 5 h</dd><dt>Next service</dt><dd>14 days</dd></dl>
+   <div class="row" style="margin-top:auto"><button class="btn btn-secondary btn-sm">Open log</button><button class="btn btn-stop btn-sm"><svg class="i"><use href="#i-stop"/></svg>Stop</button></div></div></div>
+  <div class="doc"><h4>Unit card</h4><p>The robot on pale steel, never cropped at the head. Status first, then task, then numbers.</p></div></div>
+</section>
+
+<!-- 07 -->
+<section class="sec" id="console"><div class="sec-h"><span class="n">07</span><h2>FLEET CONSOLE</h2></div>
+ <p class="lede">The whole system in one screen: the operator view for a floor of eight units. Simulated, not real data. Click the floor to drop a person in an aisle: units within 3.2 m slow down, units within 1.6 m wait. Click a unit to follow it. Then press Stop all.</p>
+ <div class="console" aria-label="Simulated fleet console">
+  <div class="bar"><span><b>FLOOR 2 · ZONE B</b> · SIMULATION</span><span id="clock">SHIFT 2 · 00:00</span><span class="row" style="gap:8px"><button class="btn btn-sm btn-dark" id="addP">Add person</button><button class="btn btn-sm btn-stop" id="stopAll"><svg class="i"><use href="#i-stop"/></svg><span>Stop all</span></button></span></div>
+  <div class="body"><canvas id="floor" width="1120" height="1200" aria-label="Floor map with units moving between aisles"></canvas>
+   <div class="units"><div id="ulist"></div><div class="log" id="log" aria-live="polite"></div></div></div>
+  <div class="kpis"><div>Working<b id="k1">0</b></div><div>Slow / waiting<b id="k2">0</b></div><div>Totes moved<b id="k3">0</b></div><div>People on floor<b id="k4">0</b></div></div>
+ </div>
+ <div class="rule"><b>Built from</b><span>Unit badge, status pill, battery meter, alert language, data colours, mono readouts, the mark generator and the icon set. No new parts were made for this screen.</span></div>
+</section>
+
+<!-- 08 -->
+<section class="sec" id="templates"><div class="sec-h"><span class="n">08</span><h2>TEMPLATES</h2></div>
+ <p class="lede">The same tokens, applied off-screen. Each of these is in the case study, built on this system.</p>
+ <div class="g4 tpl" id="tpl"></div>
+</section>
+
+<!-- 09 -->
+<section class="sec" id="motion"><div class="sec-h"><span class="n">09</span><h2>MOTION</h2></div>
+ <p class="lede">The robot moves deliberately, so the brand does too: fast in, firm stop, nothing bounces. Four durations, three curves. With reduced motion on, every duration drops to zero.</p>
+ <div class="g3" id="motionDemos"></div>
+</section>
+
+<!-- 10 -->
+<section class="sec" id="a11y"><div class="sec-h"><span class="n">10</span><h2>ACCESSIBILITY</h2></div>
+ <p class="lede">WCAG 2.2 AA is the floor, not the goal. This matrix is computed in the page from the tokens, so it can't drift from them.</p>
+ <div class="tblwrap"><table class="mx" id="mx"></table></div>
+ <div class="g4" style="margin-top:var(--space-5)">
+  <div class="card pr"><svg class="i"><use href="#i-scan"/></svg><h4>Never colour alone</h4><p>Every status has an icon and a word. It reads in greyscale and to colour-blind operators.</p></div>
+  <div class="card pr"><svg class="i"><use href="#i-check"/></svg><h4>44 px targets</h4><p>Gloves, tablets on carts, shaking hands. Nothing tappable is smaller.</p></div>
+  <div class="card pr"><svg class="i"><use href="#i-go"/></svg><h4>Visible focus</h4><p>3 px teal-800 ring, 2 px offset, on every interactive part. Tab through this page.</p></div>
+  <div class="card pr"><svg class="i"><use href="#i-pause"/></svg><h4>Motion off</h4><p>Reduced motion stops pulses, sweeps and the console animation steps instead.</p></div>
+ </div>
+</section>
+
+<!-- 11 -->
+<section class="sec" id="voice"><div class="sec-h"><span class="n">11</span><h2>VOICE</h2></div>
+ <p class="lede">Plain, direct and honest. Write like a good shift lead: say what's happening, what it means, and what to do. A little dry humour is allowed, never at a safety moment.</p>
+ <div class="tblwrap"><table class="vt"><thead><tr><th>Say</th><th>Not</th><th>Why</th></tr></thead><tbody>
+  <tr><td>Unit 1024</td><td class="not">our robot friend</td><td>It's equipment. Name it like equipment.</td></tr>
+  <tr><td>It moves totes from line 3 to dock 2.</td><td class="not">AI-powered logistics automation</td><td>Say the task, not the category.</td></tr>
+  <tr><td>Stopped: someone pressed its stop button.</td><td class="not">Error 0x3F: E-STOP</td><td>Cause first, in words a new hire knows.</td></tr>
+  <tr><td>Slowing down: person within 1.6 m.</td><td class="not">Proximity event detected</td><td>Give the number. It builds trust.</td></tr>
+  <tr><td>Takes the dull shift.</td><td class="not">Revolutionizing the future of work</td><td>Small, true and specific beats big.</td></tr>
+  <tr><td>Back to work.</td><td class="not">Resuming autonomous operations!</td><td>Short. No exclamation marks in product.</td></tr>
+ </tbody></table></div>
+ <h3>State copy</h3>
+ <div class="g3">
+  <div class="card"><span class="pill working"><span class="dot"></span>Working</span><p style="margin:12px 0 0;font-size:14px">Moving totes · line 3 → dock 2</p></div>
+  <div class="card"><span class="pill caution"><svg class="i"><use href="#i-pause"/></svg>Waiting</span><p style="margin:12px 0 0;font-size:14px">Person in the aisle. Waiting for a clear path.</p></div>
+  <div class="card"><span class="pill stop"><svg class="i"><use href="#i-stop"/></svg>Stopped</span><p style="margin:12px 0 0;font-size:14px">Stop button pressed at 14:02. A person needs to release it.</p></div>
+ </div>
+</section>
+
+<!-- 12 -->
+<section class="sec" id="governance"><div class="sec-h"><span class="n">12</span><h2>GOVERNANCE</h2></div>
+ <p class="lede">A system is only as good as the way it changes. Here's how a request becomes a token, and the checklist every piece passes before it goes out the door: the brand guardian's job, written down.</p>
+ <div class="flow"><div><span class="lbl">01</span><b>Request</b><p>Anyone files a need, not a solution: "operators can't see low battery from 6 m."</p></div><div><span class="lbl">02</span><b>Review</b><p>Brand checks it against the principles and the existing parts. Most requests are solved with what exists.</p></div><div><span class="lbl">03</span><b>Build</b><p>New tokens or components land in tokens.json first, then in code, then in the asset library.</p></div><div><span class="lbl">04</span><b>Release</b><p>Semantic version, changelog, a short note to every team that uses the part.</p></div></div>
+ <h3>Brand review checklist</h3>
+ <div class="g2" style="align-items:start"><ul class="check" id="check" style="columns:1"></ul>
+  <div class="card" style="text-align:center"><div class="lbl">Ready to ship</div><div class="score" id="score">0 / 10</div><p style="font-size:14px;color:#33464f;margin:8px 0 0" id="scoreNote">Tick what's true for the piece you're reviewing.</p></div></div>
+ <h3>Asset library</h3>
+ <pre class="tree"><b>unit-system/</b>
+├─ <b>tokens/</b>        tokens.json · tokens.css · tokens.js
+├─ <b>mark/</b>          generator · master SVGs · fleet sheet
+├─ <b>icons/</b>         icons.svg (18) · construction grid
+├─ <b>type/</b>          licences · type scale
+├─ <b>robot/</b>         6 views × 2 liveries · cut-outs on pale steel
+├─ <b>templates/</b>     booth · signage · slides · social · email · web
+├─ <b>motion/</b>        sting · lower thirds · status loops
+└─ <b>CHANGELOG.md</b></pre>
+ <h3>Changelog</h3>
+ <div class="log2"><b>v1.0 · 2026-11-28</b> · First release: tokens, mark generator, 18 icons, 10 components, fleet console pattern, a11y matrix.<br><b>v0.9 · 2026-11-27</b> · Unit mark and identity boards. Teal text darkened to teal-800 after the contrast audit.<br><b>v0.5 · 2026-11-26</b> · Teal livery, brand brief, 19 formats in use.</div>
+</section>
+
+<!-- 13 -->
+<section class="sec" id="downloads"><div class="sec-h"><span class="n">13</span><h2>DOWNLOADS</h2></div>
+ <p class="lede">Everything on this page comes from these files. Change a value in tokens.json, regenerate, and the site, the console and the matrix all follow.</p>
+ <div class="row"><a class="btn btn-primary" href="tokens.json" download>tokens.json · DTCG</a><a class="btn btn-secondary" href="tokens.css" download>tokens.css</a><a class="btn btn-secondary" href="icons.svg" download>icons.svg</a><a class="btn btn-secondary" href="../mark.js" download>mark.js</a></div>
+ <div class="foot"><span>Unit System v1.0 · Tigre Studio · Henry Mauricio Ortega</span><span>Unofficial concept. Palette is my approximation. Not affiliated with Agility Robotics.</span></div>
+</section>
+</main></div>
+<div class="toast" id="toast" role="status"><svg class="i"><use href="#i-check"/></svg><span></span></div>
+<script src="tokens.js"></script><script src="icons.js"></script><script src="../mark.js"></script><script src="ds.js"></script>
+</body></html>

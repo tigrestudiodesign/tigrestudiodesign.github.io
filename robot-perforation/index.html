@@ -121,6 +121,7 @@ body{background:var(--paper);color:var(--ink)}
 .brief-map thead th{font-family:var(--mono);font-weight:400;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);background:var(--steel)}
 .brief-map td:first-child{color:#33464f;width:55%}
 .brief-map a{color:var(--teal-d);font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;margin-right:12px;white-space:nowrap}
+@media(max-width:600px){.brief-map th,.brief-map td{padding:10px;font-size:14px}.brief-map a{display:block;white-space:normal;margin:0 0 4px}}
 .brief-map a:hover{text-decoration:underline}
 .vid{border-radius:14px;overflow:hidden;background:var(--ink)}
 .vid video{display:block;width:100%;height:auto}
@@ -162,13 +163,37 @@ body{background:var(--paper);color:var(--ink)}
 .idboards .wide{grid-column:1/-1}
 @media(max-width:700px){.idboards{grid-template-columns:1fr}}
 .idboards .shot img{border-radius:12px}
+
+/* TOUR + SYSTEM */
+.tour{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:0 0 8px}
+@media(max-width:900px){.tour{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.tour a{display:block;background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 18px 16px;text-decoration:none;color:#132630;transition:border-color .14s,transform .14s}
+.tour a:hover{border-color:#2fa39e;transform:translateY(-2px)}
+.tour .n{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:#17625f}
+.tour b{display:block;font-weight:900;font-size:clamp(20px,2vw,28px);line-height:.95;letter-spacing:-.02em;text-transform:uppercase;margin:10px 0 8px}
+.tour span.d{font-size:14px;color:#33464f;display:block}
+.tour-h{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:10px;margin:0 0 14px}
+.tour-h h2{font-size:clamp(26px,3vw,40px);margin:0}
+.sys{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;align-items:start}
+@media(max-width:900px){.sys{grid-template-columns:1fr}}
+.sys .big{grid-column:1/-1}
+.sys a.shot2{display:block;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#fff;text-decoration:none;color:#132630}
+.sys a.shot2 img{width:100%;height:auto;display:block}
+.sys a.shot2 span{display:block;padding:10px 14px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.sys-cta{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:22px 0 0}
+.sys-cta a.go{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 20px;border-radius:8px;background:#2fa39e;color:#0b1317;font-family:var(--mono);font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none}
+.sys-cta a.go2{background:transparent;border:2px solid #132630;color:#132630}
+.sys-list{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:22px 0 0}
+@media(max-width:700px){.sys-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.sys-list div{border-top:2px solid #132630;padding-top:10px;font-size:14px;color:#33464f}
+.sys-list b{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#132630;margin-bottom:4px}
 </style>
 </head>
 <body>
 <a href="#main" class="mono" style="position:absolute;left:-999px">Skip to content</a>
 <nav class="nav" aria-label="ROBOT PERFORATION sections"><div class="wrap">
  <a href="https://tigrestudiodesign.github.io/" style="text-decoration:none"><b>TIGRE STUDIO</b> <span class="mono">/ ROBOT PERFORATION</span></a>
- <ul><li><a href="#turntable">Turntable</a></li><li><a href="#vision">Robot vision</a></li><li><a href="#brief">Brand brief</a></li><li><a href="#identity">Identity</a></li><li><a href="#inuse">In use</a></li><li><a href="#livery">Livery</a></li><li><a href="#pipeline">Pipeline</a></li><li><a href="#set">The set</a></li><li><a href="https://tigrestudiodesign.github.io/">Portfolio ↗</a></li></ul>
+ <ul><li><a href="#turntable">Turntable</a></li><li><a href="#vision">Robot vision</a></li><li><a href="#brief">Brand brief</a></li><li><a href="#identity">Identity</a></li><li><a href="#system">System</a></li><li><a href="#inuse">In use</a></li><li><a href="#livery">Livery</a></li><li><a href="#pipeline">Pipeline</a></li><li><a href="#set">The set</a></li><li><a href="https://tigrestudiodesign.github.io/">Portfolio ↗</a></li></ul>
 </div></nav>
 <div class="stripe"></div>
 <main id="main">
@@ -178,12 +203,23 @@ body{background:var(--paper);color:var(--ink)}
  <h1>ROBOT<span>.</span><br>PERFORATION</h1>
  <p class="tag">DRAWN FOR THE DULL, HEAVY, REPEATABLE WORK.</p>
  <p class="lede">A tracked utility humanoid I modelled in Rhino 9. Six scripted cameras, one material direction in Vizcom, one studio. Then a second job: dress the same robot in a humanoid maker's brand language, a calm teal and black, plain light studios and plain words, and show exactly how I got there, including the renders I threw away.</p>
- <div class="spec"><div><span class="mono">Scripted cameras</span><b>6</b></div><div><span class="mono">Liveries</span><b>2</b></div><div><span class="mono">Vizcom passes</span><b>3</b></div><div><span class="mono">Brand formats</span><b>26</b></div><div><span class="mono">Master size</span><b>3840 × 2160</b></div></div>
+ <div class="spec"><div><span class="mono">Scripted cameras</span><b>6</b></div><div><span class="mono">Liveries</span><b>2</b></div><div><span class="mono">Vizcom passes</span><b>3</b></div><div><span class="mono">Brand formats</span><b>26</b></div><div><span class="mono">Design system</span><b>v1.0</b></div></div>
  <div class="hero-img"><img src="img/rp__t_cover.webp" alt="Cover: the tracked utility humanoid in a teal and black livery on a pale steel studio sweep, title ROBOT PERFORATION in dark ink" width="3840" height="2160"></div>
  <p class="disclaim"><i></i>Unofficial concept · not affiliated with or endorsed by Agility · no logos or proprietary type used</p>
 </div></header>
 
-<section class="sec" id="turntable" style="padding-top:0"><div class="wrap">
+
+<section class="sec" id="tour" style="padding-top:0"><div class="wrap">
+ <div class="tour-h"><h2>THREE MINUTES? START HERE</h2><span class="mono">Made for the Brand Designer III application</span></div>
+ <div class="tour">
+  <a href="#identity"><span class="n">01 · IDENTITY</span><b>A mark per unit</b><span class="d">1,024 holes, one fixed chevron, a field generated from each robot's number. Try your own.</span></a>
+  <a href="system/"><span class="n">02 · DESIGN SYSTEM ↗</span><b>Unit System v1.0</b><span class="d">Tokens, icons, components, a live fleet console, contrast checks, governance.</span></a>
+  <a href="#inuse"><span class="n">03 · IN USE</span><b>26 formats</b><span class="d">Booth, signage, slides, social, motion, web, email, each mapped to the job description.</span></a>
+  <a href="#vision"><span class="n">04 · ROBOT VISION</span><b>How it sees</b><span class="d">An interactive perception HUD. Drag the person and watch the robot slow down.</span></a>
+ </div>
+</div></section>
+
+<section class="sec" id="turntable"><div class="wrap">
  <div class="sec-h"><h2>THE <em>TURNTABLE</em></h2><span class="mono">Drag across the image · arrow keys · switch the livery</span></div>
  <div class="tt" id="tt" tabindex="0" role="group" aria-roledescription="turntable" aria-label="Six studio views of the robot. Drag sideways or use the arrow keys to rotate.">
   <div class="ratio"></div>
@@ -280,6 +316,24 @@ body{background:var(--paper);color:var(--ink)}
  <p class="lede" style="margin:24px 0 0;max-width:70ch;font-size:15px">Why it fits the brief: it's a new idea that lives inside the existing palette and voice instead of fighting them, it scales from a 10-foot booth wall to a 16-pixel favicon, and the rules fit on one sheet a vendor can follow. Unofficial concept; the mark and the palette are mine.</p>
 </div></section>
 
+
+<section class="sec" id="system"><div class="wrap">
+ <div class="sec-h"><h2>THE SYSTEM, <em>LIVE</em></h2><span class="mono">Unit System v1.0 · its own site</span></div>
+ <p class="lede" style="margin:0 0 30px;max-width:70ch">A mark and a palette aren't a brand until other people can use them without me in the room. So I built the whole design system as a working site. One tokens file drives the colours, type, spacing and motion. 18 icons are drawn on the chevron's geometry. 10 components are built only from tokens. A live fleet console uses nothing but those parts. A contrast matrix is computed from the tokens, so it can't drift from them, and a governance page says how the system changes.</p>
+ <div class="sys">
+  <a class="shot2 big" href="system/#console"><img src="img/rp__ds_console.webp" alt="Fleet console: a floor map with eight units moving between racks, people with slow and wait rings, and a list of units with marks, status pills and battery meters" loading="lazy"><span>07 · Fleet console, simulated · open it ↗</span></a>
+  <a class="shot2" href="system/"><img src="img/rp__ds_cover.webp" alt="Unit System design system cover with token, icon and component counts" loading="lazy"><span>Unit System v1.0 ↗</span></a>
+  <a class="shot2" href="system/#components"><img src="img/rp__ds_comp.webp" alt="Components: buttons in four states, status pills, unit badges and readouts" loading="lazy"><span>06 · Components ↗</span></a>
+ </div>
+ <div class="sys-list">
+  <div><b>Tokens</b>One source file in the W3C design-token format, exported to CSS and JS. Change one value and the whole site follows.</div>
+  <div><b>Accessibility</b>WCAG AA contrast checked live. I found teal text failing on paper and darkened it, and the changelog says so.</div>
+  <div><b>Safety colours</b>Red, yellow and green only ever mean stop, caution and running, with an icon and a word every time.</div>
+  <div><b>Governance</b>A request flow, a 10-point brand review checklist, the asset library structure and a changelog.</div>
+ </div>
+ <div class="sys-cta"><a class="go" href="system/">Open the design system ↗</a><a class="go go2" href="system/tokens.json" download>tokens.json</a></div>
+</div></section>
+
 <section class="sec" id="inuse"><div class="wrap">
  <div class="sec-h"><h2>THE BRAND, <em>IN USE</em></h2><span class="mono">Booth · facility · collateral · slides · social · system</span></div>
  <p class="lede" style="margin:0 0 30px;max-width:70ch">A brand for a humanoid has to work on a trade-show wall, on a factory floor, in a sales deck and in a feed, often in the same week. Same robot, same palette, same plain voice, twenty-six formats.</p>
@@ -293,9 +347,9 @@ body{background:var(--paper);color:var(--ink)}
   <tr><td>Email and web assets</td><td><a href="#r08">08 Web + email</a></td></tr>
   <tr><td>Complex robotics concepts made clear for every audience</td><td><a href="#r03">03 Explainer</a><a href="#r09">09 Anatomy</a></td></tr>
   <tr><td>Print and fabrication, vendor quality control</td><td><a href="#r01">01 Fab spec</a><a href="#r02">02 Sign spec</a></td></tr>
-  <tr><td>Brand guardian: quality standards and design feedback</td><td><a href="#r10">10 Brand review</a></td></tr>
+  <tr><td>Brand guardian: quality standards and design feedback</td><td><a href="#r10">10 Brand review</a><a href="system/#governance">Review checklist</a></td></tr>
   <tr><td>Directing photography</td><td><a href="#r11">11 Shot list</a></td></tr>
-  <tr><td>Brand asset libraries and design systems</td><td><a href="#r06">06 Asset library</a></td></tr>
+  <tr><td>Brand asset libraries and design systems</td><td><a href="system/">Unit System ↗</a><a href="#r06">06 Asset library</a></td></tr>
   <tr><td>New ideas inside an existing system</td><td><a href="#identity">Unit mark</a><a href="#livery">Livery pass</a></td></tr>
   <tr><td>Logo and identity craft, brand guidelines</td><td><a href="#identity">Identity · 7 boards</a></td></tr>
  </tbody></table>
